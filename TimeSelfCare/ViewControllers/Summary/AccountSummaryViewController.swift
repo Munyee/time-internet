@@ -1,0 +1,140 @@
+//
+//  AccountSummaryViewController.swift
+//  TimeSelfCare
+//
+//  Created by Loka on 21/11/2017.
+//  Copyright © 2017 Apptivity Lab. All rights reserved.
+//
+
+import UIKit
+
+class AccountSummaryViewController: BaseViewController {
+
+    static var didAnimate: Bool = false
+
+    private var service: Service?
+
+    @IBOutlet private weak var accountLabel: UILabel!
+    @IBOutlet private weak var speedLabel: UILabel!
+    @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var currencyLabel: UILabel!
+    @IBOutlet private weak var amountDueStackView: UIStackView!
+    @IBOutlet private weak var dueLabel: UILabel!
+    @IBOutlet private weak var autoDebitButton: UIButton!
+    @IBOutlet private weak var payButton: UIButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.priceLabel.font = UIFont(name: "DINCondensed-Bold", size: 80)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.refresh()
+
+        if !AccountSummaryViewController.didAnimate {
+            let animationTargets: [UIView] = [self.accountLabel, self.speedLabel, self.statusLabel, self.amountDueStackView, self.dueLabel, self.payButton, self.autoDebitButton]
+            animationTargets.forEach { (view: UIView) in
+                view.alpha = 0
+                view.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 16)
+            }
+        }
+
+    }
+
+    private func animateViews() {
+        if AccountSummaryViewController.didAnimate {
+            return
+        }
+
+        let animationTargets: [UIView] = [self.accountLabel, self.speedLabel, self.statusLabel, self.amountDueStackView, self.dueLabel, self.payButton, self.autoDebitButton]
+        animationTargets.forEach { (view: UIView) in
+            let index = animationTargets.index(of: view) ?? 0
+            let delay = TimeInterval(index) * 0.15
+            UIView.animate(withDuration: 0.25, delay: delay, options: [UIView.AnimationOptions.beginFromCurrentState, UIView.AnimationOptions.curveEaseIn], animations: {
+                view.transform = CGAffineTransform.identity
+                view.alpha = 1
+            }, completion: { (_: Bool) in
+                AccountSummaryViewController.didAnimate = true
+            })
+        }
+    }
+
+    @objc
+    func refresh() {
+        guard
+            AccountController.shared.profile != nil,
+            let account = AccountController.shared.selectedAccount
+        else {
+                self.animateViews()
+            return
+        }
+
+        BillDataController.shared.loadBills(account: account) { bills, _ in
+            if let bill = bills.first {
+                self.priceLabel.isHidden = false
+                self.currencyLabel.isHidden = false
+                self.priceLabel.text = bill.totalOutstanding?.currencyString(withSymbol: "", minimumFractionDigits: 2, maximumFractionDigits: 2) ?? "..."
+                self.currencyLabel.text = bill.currency
+                self.dueLabel.isHidden = false
+                self.dueLabel.text = "DUE \(bill.dueDate?.string(usingFormat: "d MMMM yyyy") ?? String())".uppercased()
+
+                let hasOutstandingAmount: Bool = !(bill.totalOutstanding?.isLessThanOrEqualTo(0) ?? false)
+                self.payButton.isHidden = false
+                self.payButton.isEnabled = hasOutstandingAmount
+                self.payButton.backgroundColor = self.payButton.isEnabled ? .primary : .grey2
+                self.payButton.setTitle(self.payButton.isEnabled ? NSLocalizedString("PAY NOW", comment: "") : NSLocalizedString("PAID", comment: ""), for: .normal)
+                bill.invoiceStatus = hasOutstandingAmount ? .unpaid : .paid
+            } else {
+                self.priceLabel.isHidden = true
+                self.dueLabel.isHidden = true
+                self.payButton.isHidden = true
+                self.currencyLabel.isHidden = true
+            }
+            self.animateViews()
+        }
+
+        CreditCardDataController.shared.loadCreditCards(account: account) { (creditCards: [CreditCard], _: Error?) in
+            let creditCard = creditCards.first
+            let debitButtonText = creditCard == nil ? NSLocalizedString("Register for Auto Debit", comment: "") : NSLocalizedString("You are on Auto Debit.", comment: "")
+            self.autoDebitButton.setTitle(debitButtonText, for: .normal)
+            self.autoDebitButton.setTitleColor(creditCard == nil ? .primary : .grey2, for: .normal)
+        }
+
+        NotificationSettingDataController.shared.loadNotificationSettings(account: account) {   _, _ in
+        }
+    }
+
+    override func updateDataSet(items: [Service]?) {
+        self.service = (items ?? ServiceDataController.shared.getServices(account: AccountController.shared.selectedAccount)).first { $0.category == .broadband }
+        self.updateUI()
+    }
+
+    override func updateUI() {
+        let selectedAccount = AccountController.shared.selectedAccount
+        self.accountLabel.text = selectedAccount?.displayAccountNo
+        self.speedLabel.text = selectedAccount?.title
+        self.statusLabel.text = selectedAccount?.accountStatus?.displayText
+        self.statusLabel.backgroundColor = selectedAccount?.accountStatus == .active ? .positive : .grey2
+        self.autoDebitButton.isHidden = !(selectedAccount?.showAutoDebit ?? true)
+    }
+
+    @IBAction func makePayment(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+
+        if let paymentSummaryVC = storyboard.instantiateInitialViewController() {
+            self.present(paymentSummaryVC, animated: true, completion: nil)
+        }
+    }
+
+    @IBAction func registerAutoDebit(_ sender: Any?) {
+        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+        guard let autoDebitVC = storyboard.instantiateViewController(withIdentifier: "AutoDebitViewController") as? AutoDebitViewController
+            else {
+                return
+        }
+        self.presentNavigation(autoDebitVC, animated: true)
+    }
+}

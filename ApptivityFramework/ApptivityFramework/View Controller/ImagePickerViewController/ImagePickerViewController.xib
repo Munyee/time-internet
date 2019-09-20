@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="KiV-cV-LSN" customClass="ImagePickerViewController" customModule="ApptivityFramework" customModuleProvider="target">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="P5g-JW-TGj"/>
+                <viewControllerLayoutGuide type="bottom" id="SFX-LX-Jbq"/>
+            </layoutGuides>
+            <view key="view" contentMode="scaleToFill" id="4tQ-PE-JcM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v75-8k-mc0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <connections>
+                            <action selector="dismissVC:" destination="KiV-cV-LSN" eventType="touchUpInside" id="Wi9-aF-CKd"/>
+                        </connections>
+                    </button>
+                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j33-iO-TYb">
+                        <rect key="frame" x="0.0" y="416" width="375" height="251"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="VtZ-dn-tKq">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="7zH-rs-Z6z">
+                                    <rect key="frame" x="0.0" y="35" width="375" height="216"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="2" minimumInteritemSpacing="2" id="fxq-hE-xkX">
+                                        <size key="itemSize" width="107" height="107"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <connections>
+                                        <outlet property="dataSource" destination="KiV-cV-LSN" id="74e-hw-kMH"/>
+                                        <outlet property="delegate" destination="KiV-cV-LSN" id="LAP-Iu-27D"/>
+                                    </connections>
+                                </collectionView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NwV-3C-LlG">
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="35"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="64" id="8Ud-B5-eQp"/>
+                                    </constraints>
+                                    <state key="normal" title="Cancel"/>
+                                    <connections>
+                                        <action selector="dismissVC:" destination="KiV-cV-LSN" eventType="touchUpInside" id="nuo-aD-ZtR"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="7zH-rs-Z6z" secondAttribute="bottom" id="0kl-h1-mdw"/>
+                                <constraint firstItem="7zH-rs-Z6z" firstAttribute="top" secondItem="NwV-3C-LlG" secondAttribute="bottom" id="JDQ-dO-HJD"/>
+                                <constraint firstAttribute="trailing" secondItem="7zH-rs-Z6z" secondAttribute="trailing" id="b4s-Rx-Js1"/>
+                                <constraint firstItem="NwV-3C-LlG" firstAttribute="top" secondItem="VtZ-dn-tKq" secondAttribute="top" id="jEM-2p-dLC"/>
+                                <constraint firstItem="NwV-3C-LlG" firstAttribute="leading" secondItem="VtZ-dn-tKq" secondAttribute="leading" id="qGA-Yt-nQd"/>
+                                <constraint firstItem="7zH-rs-Z6z" firstAttribute="top" secondItem="VtZ-dn-tKq" secondAttribute="top" constant="35" id="qpw-a1-XLa"/>
+                            </constraints>
+                        </view>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="251" id="5oD-bs-6kq"/>
+                        </constraints>
+                        <blurEffect style="light"/>
+                    </visualEffectView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="v75-8k-mc0" firstAttribute="leading" secondItem="4tQ-PE-JcM" secondAttribute="leading" id="1rY-Xh-Xgs"/>
+                    <constraint firstItem="v75-8k-mc0" firstAttribute="top" secondItem="4tQ-PE-JcM" secondAttribute="top" id="3Tt-NG-JM0"/>
+                    <constraint firstItem="7zH-rs-Z6z" firstAttribute="leading" secondItem="4tQ-PE-JcM" secondAttribute="leading" id="7Pg-iy-KUB"/>
+                    <constraint firstItem="SFX-LX-Jbq" firstAttribute="top" secondItem="j33-iO-TYb" secondAttribute="bottom" id="dt2-bN-iKy"/>
+                    <constraint firstAttribute="trailing" secondItem="j33-iO-TYb" secondAttribute="trailing" id="hHB-6j-4d7"/>
+                    <constraint firstAttribute="trailing" secondItem="v75-8k-mc0" secondAttribute="trailing" id="hNL-tV-XOT"/>
+                    <constraint firstItem="SFX-LX-Jbq" firstAttribute="top" secondItem="v75-8k-mc0" secondAttribute="bottom" id="sRW-Sn-YEv"/>
+                    <constraint firstItem="j33-iO-TYb" firstAttribute="width" secondItem="4tQ-PE-JcM" secondAttribute="width" id="tkf-GQ-N0t"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="assetsCollectionView" destination="7zH-rs-Z6z" id="hK0-ZM-mPx"/>
+                <outlet property="containerVisualEffectView" destination="j33-iO-TYb" id="PGe-dx-AA7"/>
+            </connections>
+            <point key="canvasLocation" x="39.5" y="100.5"/>
+        </viewController>
+    </objects>
+</document>

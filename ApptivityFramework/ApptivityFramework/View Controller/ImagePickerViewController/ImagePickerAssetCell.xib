@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AssetCell" id="9yj-qe-xUa" customClass="ImagePickerAssetCell" customModule="ApptivityFramework" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mkP-wb-QGz">
+                        <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                    </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_checkmark_white" translatesAutoresizingMaskIntoConstraints="NO" id="1x2-h2-bYo" customClass="RoundedImageView" customModule="ApptivityFramework" customModuleProvider="target">
+                        <rect key="frame" x="77" y="77" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="6Vs-Gd-tDY"/>
+                            <constraint firstAttribute="height" constant="20" id="p0l-ga-nAR"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mkP-wb-QGz" secondAttribute="bottom" id="5lk-XA-jjS"/>
+                <constraint firstItem="mkP-wb-QGz" firstAttribute="top" secondItem="9yj-qe-xUa" secondAttribute="top" id="75Y-ZZ-oxR"/>
+                <constraint firstAttribute="trailing" secondItem="1x2-h2-bYo" secondAttribute="trailing" constant="10" id="bgM-cE-XXA"/>
+                <constraint firstItem="mkP-wb-QGz" firstAttribute="leading" secondItem="9yj-qe-xUa" secondAttribute="leading" id="ciZ-79-Gli"/>
+                <constraint firstAttribute="bottom" secondItem="1x2-h2-bYo" secondAttribute="bottom" constant="10" id="f8S-T8-gVF"/>
+                <constraint firstAttribute="trailing" secondItem="mkP-wb-QGz" secondAttribute="trailing" id="gPX-O8-LFe"/>
+            </constraints>
+            <connections>
+                <outlet property="checkmarkImageView" destination="1x2-h2-bYo" id="wwf-Rc-LXm"/>
+                <outlet property="thumbnailImageView" destination="mkP-wb-QGz" id="hOi-dT-eOu"/>
+            </connections>
+            <point key="canvasLocation" x="-29" y="-59"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_checkmark_white" width="20" height="20"/>
+    </resources>
+</document>

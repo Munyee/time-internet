@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q1D-Vh-GSC">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Launch View Controller-->
+        <scene sceneID="1a1-xl-dMt">
+            <objects>
+                <viewController id="q1D-Vh-GSC" customClass="LaunchViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FKF-FJ-Rx8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="BZX-yd-ZDY">
+                                <rect key="frame" x="40" y="300.5" width="295" height="86"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time_logo" translatesAutoresizingMaskIntoConstraints="NO" id="J7N-75-Bhc">
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="62"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="J7N-75-Bhc" secondAttribute="height" multiplier="4.775" id="fGP-d6-8lS"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="L9r-7v-MoQ">
+                                        <rect key="frame" x="101.5" y="66" width="92.5" height="20"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5FZ-WS-ixB">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUu-Yv-9bJ">
+                                                <rect key="frame" x="24" y="0.0" width="68.5" height="20"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Internet connection appears to be offline. An active Internet connection is required to use Self Care." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="dct-xd-lMl">
+                                        <rect key="frame" x="12" y="86" width="271.5" height="0.0"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vN7-WG-odC">
+                                        <rect key="frame" x="0.0" y="86" width="295" height="0.0"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showNext" destination="q1D-Vh-GSC" eventType="touchUpInside" id="XNY-pM-pNq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="vN7-WG-odC" firstAttribute="width" secondItem="BZX-yd-ZDY" secondAttribute="width" id="R91-qr-uh0"/>
+                                    <constraint firstItem="J7N-75-Bhc" firstAttribute="width" secondItem="BZX-yd-ZDY" secondAttribute="width" id="jfc-GY-XLY"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.84834182262420654" green="0.18184372782707214" blue="0.54119318723678589" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="40" id="4kb-wm-iZL"/>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="centerY" secondItem="c38-DK-s8v" secondAttribute="centerY" id="RSu-t7-ak9"/>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="trailing" secondItem="c38-DK-s8v" secondAttribute="trailing" constant="-40" id="g90-3N-PoW"/>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="centerX" secondItem="c38-DK-s8v" secondAttribute="centerX" id="saX-Tp-gdI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="c38-DK-s8v"/>
+                    </view>
+                    <connections>
+                        <outlet property="errorLabel" destination="dct-xd-lMl" id="5kQ-lL-0eY"/>
+                        <outlet property="okButton" destination="vN7-WG-odC" id="FAB-ec-vNh"/>
+                        <outlet property="progressStackView" destination="L9r-7v-MoQ" id="Npl-do-lu7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="arx-WI-R1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="101.59999999999999" y="123.68815592203899"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_time_logo" width="191" height="40"/>
+    </resources>
+</document>

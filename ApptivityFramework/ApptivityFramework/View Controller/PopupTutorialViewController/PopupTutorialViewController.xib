@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController storyboardIdentifier="APTPopupTutorialViewController" id="t9q-bX-AV6" customClass="APTPopupTutorialViewController" customModule="APTPopupTutorialViewController" customModuleProvider="target">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="SAj-9C-Nlm"/>
+                <viewControllerLayoutGuide type="bottom" id="C9e-jv-JAd"/>
+            </layoutGuides>
+            <view key="view" contentMode="scaleToFill" id="A5u-Cf-A3o">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GBr-SX-RFV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="X5u-NI-Yxq">
+                            <size key="itemSize" width="551" height="516"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="t9q-bX-AV6" id="gdZ-cV-JJF"/>
+                            <outlet property="delegate" destination="t9q-bX-AV6" id="w6C-z2-iWU"/>
+                        </connections>
+                    </collectionView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="IdN-MR-H49">
+                        <rect key="frame" x="20" y="630" width="335" height="37"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="37" id="ODk-of-Y3G"/>
+                        </constraints>
+                    </pageControl>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4z-JR-I3d">
+                        <rect key="frame" x="137.5" y="593" width="100" height="40"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="7Pj-Xy-ZlL"/>
+                            <constraint firstAttribute="height" constant="40" id="cAC-7Z-WmN"/>
+                        </constraints>
+                        <state key="normal" title="Done"/>
+                        <connections>
+                            <action selector="dismiss:" destination="t9q-bX-AV6" eventType="touchUpInside" id="8Yn-xs-6Hl"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="M4z-JR-I3d" firstAttribute="centerX" secondItem="A5u-Cf-A3o" secondAttribute="centerX" id="25j-UO-kPF"/>
+                    <constraint firstItem="IdN-MR-H49" firstAttribute="leading" secondItem="A5u-Cf-A3o" secondAttribute="leading" constant="20" id="6Dx-b7-YfG"/>
+                    <constraint firstItem="C9e-jv-JAd" firstAttribute="top" secondItem="M4z-JR-I3d" secondAttribute="bottom" constant="34" id="9tB-rp-OKI"/>
+                    <constraint firstItem="GBr-SX-RFV" firstAttribute="top" secondItem="A5u-Cf-A3o" secondAttribute="top" id="Cx4-nH-h8B"/>
+                    <constraint firstItem="GBr-SX-RFV" firstAttribute="leading" secondItem="A5u-Cf-A3o" secondAttribute="leading" id="MlP-aQ-QLA"/>
+                    <constraint firstAttribute="trailing" secondItem="IdN-MR-H49" secondAttribute="trailing" constant="20" id="XjA-9F-LZE"/>
+                    <constraint firstAttribute="trailing" secondItem="GBr-SX-RFV" secondAttribute="trailing" id="k1u-3X-B8O"/>
+                    <constraint firstItem="C9e-jv-JAd" firstAttribute="top" secondItem="GBr-SX-RFV" secondAttribute="bottom" id="kGi-J8-Euo"/>
+                    <constraint firstItem="C9e-jv-JAd" firstAttribute="top" secondItem="IdN-MR-H49" secondAttribute="bottom" id="kfg-hP-N5N"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="collectionView" destination="GBr-SX-RFV" id="jt5-Bm-k98"/>
+                <outlet property="dismissButton" destination="M4z-JR-I3d" id="Hrg-A8-b6x"/>
+                <outlet property="pageControl" destination="IdN-MR-H49" id="oLR-1q-C4Q"/>
+            </connections>
+            <point key="canvasLocation" x="298" y="387"/>
+        </viewController>
+    </objects>
+</document>

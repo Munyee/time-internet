@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Confirmation View Controller-->
+        <scene sceneID="hCz-ex-gdU">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmationViewController" id="rhT-Ce-CvV" customClass="ConfirmationViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AN3-Cf-lzM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="FAC-nN-dQ2">
+                                <rect key="frame" x="0.0" y="195" width="375" height="298.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oej-Ow-bcq">
+                                        <rect key="frame" x="0.0" y="8" width="0.0" height="31.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_status_success" translatesAutoresizingMaskIntoConstraints="NO" id="ggN-fB-GXo">
+                                        <rect key="frame" x="147.5" y="79.5" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Rth-Ym-pKZ"/>
+                                            <constraint firstAttribute="height" constant="80" id="Xvr-eR-sk1"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWs-Nw-lhm">
+                                        <rect key="frame" x="0.0" y="199.5" width="0.0" height="18"/>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="22" bottom="8" trailing="22"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQb-mN-oo1">
+                                        <rect key="frame" x="153" y="257.5" width="69" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="Continue">
+                                            <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actionButtonTapped:" destination="rhT-Ce-CvV" eventType="touchUpInside" id="BLf-jv-qwe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="40" bottom="8" trailing="40"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FAC-nN-dQ2" firstAttribute="centerX" secondItem="F8r-cJ-PYd" secondAttribute="centerX" id="Kct-V6-1Mc"/>
+                            <constraint firstItem="FAC-nN-dQ2" firstAttribute="width" secondItem="AN3-Cf-lzM" secondAttribute="width" id="d0Y-Ts-kd4"/>
+                            <constraint firstItem="FAC-nN-dQ2" firstAttribute="centerY" secondItem="F8r-cJ-PYd" secondAttribute="centerY" id="iIv-iv-3VO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="F8r-cJ-PYd"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="XQb-mN-oo1" id="L0L-io-dh9"/>
+                        <outlet property="descriptionLabel" destination="lWs-Nw-lhm" id="Cun-63-bwW"/>
+                        <outlet property="iconImageView" destination="ggN-fB-GXo" id="U3x-Vf-MUm"/>
+                        <outlet property="titleLabel" destination="oej-Ow-bcq" id="xVC-1O-7Am"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1r3-Wj-iBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1560" y="1154"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_status_success" width="80" height="80"/>
+    </resources>
+</document>

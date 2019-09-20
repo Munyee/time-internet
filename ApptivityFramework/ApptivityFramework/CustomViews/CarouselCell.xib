@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CarouselCell" customModule="ApptivityFramework" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="295" height="231"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="295" height="231"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YTC-Ep-Ma0">
+                        <rect key="frame" x="0.0" y="0.0" width="295" height="231"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="YTC-Ep-Ma0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1xs-ux-xcM"/>
+                <constraint firstAttribute="bottom" secondItem="YTC-Ep-Ma0" secondAttribute="bottom" id="ANc-5A-Uwa"/>
+                <constraint firstAttribute="bottom" secondItem="YTC-Ep-Ma0" secondAttribute="bottom" id="L8t-am-ZhR"/>
+                <constraint firstItem="YTC-Ep-Ma0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="dSg-ys-dtU"/>
+                <constraint firstItem="YTC-Ep-Ma0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fQe-Ck-oQc"/>
+                <constraint firstAttribute="trailing" secondItem="YTC-Ep-Ma0" secondAttribute="trailing" id="hp0-O4-eL1"/>
+                <constraint firstItem="YTC-Ep-Ma0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="npX-0X-q5Q"/>
+                <constraint firstAttribute="trailing" secondItem="YTC-Ep-Ma0" secondAttribute="trailing" id="xxA-vL-jF5"/>
+            </constraints>
+            <size key="customSize" width="295" height="231"/>
+            <connections>
+                <outlet property="imageView" destination="YTC-Ep-Ma0" id="j7l-2Y-70E"/>
+            </connections>
+            <point key="canvasLocation" x="59.5" y="114.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

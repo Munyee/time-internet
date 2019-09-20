@@ -1,0 +1,36 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+  WORKSPACE: "TimeSelfCare.xcworkspace"
+
+before_script:
+  - security unlock-keychain -p $MAC_MINI_SU_PASSWORD login.keychain
+  - echo $MAC_MINI_SU_PASSWORD | sudo -S  gem install bundler
+  - bundle install
+
+stages:
+  - testflight
+  - run_test
+
+run_test_build:
+  stage: run_test
+  script:
+    - export SCHEME=$STAGING_SCHEME
+    - fastlane test
+  tags:
+    - ios
+  only:
+    - merge_requests
+
+test_flight_build:
+  dependencies: []
+  stage: testflight
+  script:
+    - export SCHEME=$PRODUCTION_SCHEME
+    - fastlane testflight_build
+  tags:
+    - ios
+  only:
+    - develop
+    - master

@@ -1,0 +1,66 @@
+disabled_rules:
+  - identifier_name
+  - redundant_string_enum_value
+  - line_length
+  - colon
+  - explicit_top_level_acl
+  - explicit_type_interface
+  - let_var_whitespace
+  - explicit_enum_raw_value
+  - type_body_length
+  - file_length
+  - function_body_length
+opt_in_rules:
+  - attributes
+  - closure_spacing
+  - empty_count
+  - extension_access_modifier
+  - fatal_error_message
+  - implicit_return
+  - implicitly_unwrapped_optional
+  - joined_default_parameter
+  - multiline_parameters
+  - object_literal
+  - number_separator
+  - operator_usage_whitespace
+  - pattern_matching_keywords
+  - private_outlet
+  - quick_discouraged_call
+  - single_test_class
+  - strict_fileprivate
+  - switch_case_on_newline
+  - trailing_closure
+  - unneeded_parentheses_in_closure_argument
+  - vertical_parameter_alignment_on_call
+  - closure_end_indentation
+  - conditional_returns_on_newline
+  - overridden_super_call
+  - explicit_init
+  - first_where
+  - force_unwrapping
+  - nimble_operator
+  - prohibited_super_call
+  - redundant_nil_coalescing
+excluded:
+  - Pods
+  - ApptivityFramework
+  - TimeSelfCareTests
+  - TimeSelfCareUITests
+  - TimeSelfCareDataTests
+  - fastlane
+warning_threshold: 1000
+custom_rules:
+  inline_comment: # rule identifier
+    included: ".*.swift" # regex that defines paths to include during linting. optional.
+    name: "Inline comments style" # rule name. optional.
+    regex: '\/\/\S' # matching pattern
+    match_kinds: # SyntaxKinds to match. optional.
+      - comment
+    message: "Please include a space between comment delimiter and your message." # violation message. optional.
+    severity: error # violation severity. optional.
+  type_specifier_colon: # rule identifier
+    included: ".*.swift" # regex that defines paths to include during linting. optional.
+    name: "Space between colon and type for type specifier" # rule name. optional.
+    regex: '(var|let|class|enum|prototype|extension)\s*\w+:\w+' # matching pattern
+    message: "Please include a space between colon and type for type specifiers." # violation message. optional.
+    severity: error # violation severity. optional.

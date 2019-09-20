@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController storyboardIdentifier="ImagePickerViewController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="Jyo-v2-Y0e" customClass="TimeImagePickerViewController" customModule="TimeSelfCare" customModuleProvider="target">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="Pxu-mG-Sjf"/>
+                <viewControllerLayoutGuide type="bottom" id="xbJ-3M-8IP"/>
+            </layoutGuides>
+            <view key="view" contentMode="scaleToFill" id="mkv-gf-53U">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hre-lt-9Pq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="am8-NY-OkS">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="i9H-V2-1sX">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="251"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="2" minimumInteritemSpacing="2" id="D9t-6c-kCP">
+                                        <size key="itemSize" width="107" height="107"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <connections>
+                                        <outlet property="dataSource" destination="Jyo-v2-Y0e" id="tzg-oP-jZp"/>
+                                        <outlet property="delegate" destination="Jyo-v2-Y0e" id="zo4-0u-8nL"/>
+                                    </connections>
+                                </collectionView>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="i9H-V2-1sX" secondAttribute="bottom" id="KVI-zt-yoL"/>
+                                <constraint firstAttribute="trailing" secondItem="i9H-V2-1sX" secondAttribute="trailing" id="OFl-r3-Hys"/>
+                                <constraint firstItem="i9H-V2-1sX" firstAttribute="top" secondItem="am8-NY-OkS" secondAttribute="top" id="qdZ-7S-Jaf"/>
+                            </constraints>
+                        </view>
+                        <constraints>
+                            <constraint firstItem="i9H-V2-1sX" firstAttribute="leading" secondItem="hre-lt-9Pq" secondAttribute="leading" id="f23-8x-Wg0"/>
+                        </constraints>
+                        <blurEffect style="light"/>
+                    </visualEffectView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="xbJ-3M-8IP" firstAttribute="top" secondItem="hre-lt-9Pq" secondAttribute="bottom" id="0wY-fo-NQ5"/>
+                    <constraint firstItem="hre-lt-9Pq" firstAttribute="top" secondItem="X3i-ck-xzv" secondAttribute="top" id="Mhq-DI-t4T"/>
+                    <constraint firstItem="hre-lt-9Pq" firstAttribute="leading" secondItem="mkv-gf-53U" secondAttribute="leading" id="Moy-fZ-w8u"/>
+                    <constraint firstAttribute="trailing" secondItem="hre-lt-9Pq" secondAttribute="trailing" id="UlO-D7-LB1"/>
+                </constraints>
+                <viewLayoutGuide key="safeArea" id="X3i-ck-xzv"/>
+            </view>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <size key="freeformSize" width="375" height="251"/>
+            <connections>
+                <outlet property="assetsCollectionView" destination="i9H-V2-1sX" id="PSU-vt-Ie3"/>
+                <outlet property="assetsCollectionViewLeading" destination="f23-8x-Wg0" id="R8a-DX-pYy"/>
+                <outlet property="containerVisualEffectView" destination="hre-lt-9Pq" id="3wx-qx-61g"/>
+            </connections>
+            <point key="canvasLocation" x="-186" y="997"/>
+        </viewController>
+    </objects>
+</document>

@@ -1,0 +1,19 @@
+# I Wish Apptivity Framework has...
+
+## UIPickerView for inputting custom data model
+
+In RaceX, there's all these custom PickerView + Toolbar, each which have to have a datasource and delegate.
+Ideally, my data models should confirm to a "Pickable" protocol:
+- Responds to number of elements in total
+- Gives a list of all possible values
+- When user makes a selection, the DataPickerView returns the correct data model item.
+
+For example... DataPicker<BloodType> which asks the BloodType data model for all possible values, and returns a chosenBloodType
+
+
+## Custom Views...
+1. Transparent navigation bar?
+
+## View Controller extension
+IBAction for dismissing a VC
+

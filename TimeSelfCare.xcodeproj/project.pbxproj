@@ -46,6 +46,10 @@
 		6BC0022120F3B21AE87CEBCA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1E5D5E41834FB29389B370 /* AVFoundation.framework */; };
 		87237A182A79F41C8F9B8660 /* Pods_TimeSelfCareData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57546A0E3F767577B5BA65F /* Pods_TimeSelfCareData.framework */; };
 		9558CC222B9AE745B3BC9813 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F301820E7E82ACC89C85B876 /* AssetsLibrary.framework */; };
+		9E3878812356FC7F005ECC61 /* APTSidebarContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3878792356FC7C005ECC61 /* APTSidebarContentSegue.m */; };
+		9E3878822356FC7F005ECC61 /* UIViewController+APTSidebarNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E38787A2356FC7C005ECC61 /* UIViewController+APTSidebarNavigation.m */; };
+		9E3878832356FC7F005ECC61 /* APTSidebarNavigationControllerPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E38787D2356FC7D005ECC61 /* APTSidebarNavigationControllerPushSegue.m */; };
+		9E3878842356FC7F005ECC61 /* APTSidebarNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E38787E2356FC7E005ECC61 /* APTSidebarNavigationController.m */; };
 		9F20436BE2988E73317AE7E0 /* Pods_TimeSelfCareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA8E281FE2A53CF06734088 /* Pods_TimeSelfCareTests.framework */; };
 		A238C908768410875E621A61 /* Pods_TimeSelfCareDataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F45E125803803C3AEF265973 /* Pods_TimeSelfCareDataTests.framework */; };
 		DAB87017C3B94A15F4436D20 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBFC4B4383EEC1C068E0A9D /* BuddyBuildSDK.framework */; };
@@ -291,6 +295,14 @@
 		876E5A14D3E5A6ACB94D8856 /* Pods_TimeSelfCareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91457483CA931F8B086EEF61 /* Pods-TimeSelfCare.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.staging.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.staging.xcconfig"; sourceTree = "<group>"; };
 		95A3A37A326B83CBCF2EE367 /* Pods-TimeSelfCareDataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E3878792356FC7C005ECC61 /* APTSidebarContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarContentSegue.m; sourceTree = "<group>"; };
+		9E38787A2356FC7C005ECC61 /* UIViewController+APTSidebarNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+APTSidebarNavigation.m"; sourceTree = "<group>"; };
+		9E38787B2356FC7C005ECC61 /* APTSidebarNavigationControllerPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationControllerPushSegue.h; sourceTree = "<group>"; };
+		9E38787C2356FC7D005ECC61 /* APTSidebarContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarContentSegue.h; sourceTree = "<group>"; };
+		9E38787D2356FC7D005ECC61 /* APTSidebarNavigationControllerPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarNavigationControllerPushSegue.m; sourceTree = "<group>"; };
+		9E38787E2356FC7E005ECC61 /* APTSidebarNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarNavigationController.m; sourceTree = "<group>"; };
+		9E38787F2356FC7E005ECC61 /* APTSidebarNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationController.h; sourceTree = "<group>"; };
+		9E3878802356FC7F005ECC61 /* UIViewController+APTSidebarNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+APTSidebarNavigation.h"; sourceTree = "<group>"; };
 		9F604557CEE62B598F117893 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B091416469ACDD813F3DFE11 /* Pods-TimeSelfCare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.debug.xcconfig"; sourceTree = "<group>"; };
 		C190A6122825C2ED2ED62794 /* Pods-TimeSelfCareUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -665,6 +677,7 @@
 		5A478FFC1FA972070074B5D4 /* TimeSelfCare */ = {
 			isa = PBXGroup;
 			children = (
+				9E3878782356FC49005ECC61 /* APTSidebarNavigationController */,
 				E2626D5520A965A200891953 /* TimeSelfCare.entitlements */,
 				E22A5B5222C5A4E500C99ED2 /* GoogleService-Info.plist */,
 				E22050DB1FCD4A47004D5B10 /* Resource */,
@@ -720,6 +733,21 @@
 				5A47903F1FA972390074B5D4 /* TimeSelfCareDataTests.swift */,
 			);
 			path = TimeSelfCareDataTests;
+			sourceTree = "<group>";
+		};
+		9E3878782356FC49005ECC61 /* APTSidebarNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				9E38787C2356FC7D005ECC61 /* APTSidebarContentSegue.h */,
+				9E3878792356FC7C005ECC61 /* APTSidebarContentSegue.m */,
+				9E38787F2356FC7E005ECC61 /* APTSidebarNavigationController.h */,
+				9E38787E2356FC7E005ECC61 /* APTSidebarNavigationController.m */,
+				9E38787B2356FC7C005ECC61 /* APTSidebarNavigationControllerPushSegue.h */,
+				9E38787D2356FC7D005ECC61 /* APTSidebarNavigationControllerPushSegue.m */,
+				9E3878802356FC7F005ECC61 /* UIViewController+APTSidebarNavigation.h */,
+				9E38787A2356FC7C005ECC61 /* UIViewController+APTSidebarNavigation.m */,
+			);
+			path = APTSidebarNavigationController;
 			sourceTree = "<group>";
 		};
 		E20A717A1FD4A7BE00938766 /* Cells */ = {
@@ -1107,7 +1135,7 @@
 				TargetAttributes = {
 					5A478FF91FA972070074B5D4 = {
 						CreatedOnToolsVersion = 9.0.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1377,7 +1405,6 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/APTSidebarNavigationController/APTSidebarNavigationController.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/EasyTipView/EasyTipView.framework",
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
@@ -1390,7 +1417,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/APTSidebarNavigationController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTipView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
@@ -1415,6 +1441,7 @@
 				E2AD92C11FC2C43B00138334 /* ConfirmationViewController.swift in Sources */,
 				E2DD467D21181B180010D84A /* ConversationFooterView.swift in Sources */,
 				E2730B8B2097032600A140F1 /* BillingInfoDetailViewController.swift in Sources */,
+				9E3878822356FC7F005ECC61 /* UIViewController+APTSidebarNavigation.m in Sources */,
 				E2FDB2D720AACC37002F0A66 /* UIStoryboard+.swift in Sources */,
 				E274AD6A210711F700E62A42 /* TicketFormViewController.swift in Sources */,
 				0A8E01F91FA9B50B00CA27A9 /* AuthMenuViewController.swift in Sources */,
@@ -1432,6 +1459,7 @@
 				E2A8E8481FCE543400EA5DF2 /* ChangePasswordViewController.swift in Sources */,
 				E2610F791FC51F8D00959D85 /* PaymentSummaryViewController.swift in Sources */,
 				E27A883A22CEF81400C00F63 /* RewardConfirmationViewController.swift in Sources */,
+				9E3878812356FC7F005ECC61 /* APTSidebarContentSegue.m in Sources */,
 				E2DE286B1FBD67B400E3CC1E /* ChangeEmailViewController.swift in Sources */,
 				E21AA70320B3E795008851F1 /* FloatLabeledTextView.swift in Sources */,
 				E2626D5220A9241E00891953 /* ActivityViewController.swift in Sources */,
@@ -1466,6 +1494,7 @@
 				E27CE9FA22CCB6BA00DD9340 /* RewardHeaderView.swift in Sources */,
 				E22050E81FCD50E9004D5B10 /* UIFont+.swift in Sources */,
 				E2610F7B1FC5579900959D85 /* PaymentViewController.swift in Sources */,
+				9E3878832356FC7F005ECC61 /* APTSidebarNavigationControllerPushSegue.m in Sources */,
 				E2B6C2CB1FB42A8500F65B05 /* SidebarNavigationController.swift in Sources */,
 				E274AD67210711F700E62A42 /* AttachmentCell.swift in Sources */,
 				E2D9BF4020CE6CBE00F9A48B /* ServiceSidebarCell.swift in Sources */,
@@ -1481,6 +1510,7 @@
 				0A9433831FAAC5E000AA0DFF /* CentredImageButton.swift in Sources */,
 				E2AD92C31FC3A41F00138334 /* AccountSummaryViewController.swift in Sources */,
 				E274AD6C210711F700E62A42 /* PhotoViewController.swift in Sources */,
+				9E3878842356FC7F005ECC61 /* APTSidebarNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1719,9 +1749,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TimeSelfCare/TimeSelfCare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = F38KJ6Y8H2;
+				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1730,10 +1760,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apptivitylab.timeselfcare;
+				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2673cf0a-e2e0-4b88-a1b9-07abe964808e";
-				PROVISIONING_PROFILE_SPECIFIER = "TimeSelfCare Development Profile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeSelfCare/Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1748,8 +1778,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TimeSelfCare/TimeSelfCare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: TT DOTCOM SDN BHD (V2J6WJMU9K)";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1762,7 +1792,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "dc68cc85-5115-4eb1-be50-a2b237712afc";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore my.com.time.selfcare.app";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeSelfCare/Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1992,9 +2022,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TimeSelfCare/TimeSelfCare.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = F38KJ6Y8H2;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2003,10 +2034,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.3.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apptivitylab.timeselfcare;
+				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "272f298e-a20e-4633-8506-a5268ad54d5d";
-				PROVISIONING_PROFILE_SPECIFIER = "TIME Self Care Internal Review Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeSelfCare/Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

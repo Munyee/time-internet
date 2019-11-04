@@ -19,7 +19,7 @@ internal class SidebarTableViewController: UIViewController {
     private var accounts: [Account] = []
 
     private var services: [ServiceSidebarCell.ServiceType] {
-        let shouldShowSupportAndReward = self.accounts.first { $0.custSegment == .residential } != nil
+        let shouldShowSupportAndReward = self.accounts.first { $0.custSegment == .residential || $0.custSegment == .business } != nil
 
 //        return shouldShowSupportAndReward ? [.reward, .support] : []
         /// temporary hide reward module.

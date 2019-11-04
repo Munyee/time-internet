@@ -1,11 +1,10 @@
 PODS:
   - Alamofire (4.7.2)
   - ApptivityFramework (0.0.1)
-  - APTSidebarNavigationController (0.0.7)
   - CardIO (5.4.1)
   - Crashlytics (3.13.2):
     - Fabric (~> 1.10.2)
-  - EasyTipView (1.0.2)
+  - EasyTipView (1.0)
   - Fabric (1.10.2)
   - Firebase/Core (6.3.0):
     - Firebase/CoreOnly
@@ -68,10 +67,9 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - ApptivityFramework (from `./ApptivityFramework`)
-  - APTSidebarNavigationController
   - CardIO
   - Crashlytics
-  - EasyTipView
+  - "EasyTipView (from `git@gitlab.time.com.my:BSS/EasyTipView.git`)"
   - Firebase/Core
   - JVFloatLabeledTextField
   - lottie-ios
@@ -80,13 +78,10 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  "git@bitbucket.org:apptivitylab/aptpodrepo.git":
-    - APTSidebarNavigationController
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - CardIO
     - Crashlytics
-    - EasyTipView
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -104,14 +99,20 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   ApptivityFramework:
     :path: "./ApptivityFramework"
+  EasyTipView:
+    :git: "git@gitlab.time.com.my:BSS/EasyTipView.git"
+
+CHECKOUT OPTIONS:
+  EasyTipView:
+    :commit: 2c2992e240055993a52f7c78a4d6a1ad199c7127
+    :git: "git@gitlab.time.com.my:BSS/EasyTipView.git"
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   ApptivityFramework: 4b06161602339e7082cde797473e2fde0ad92835
-  APTSidebarNavigationController: c9d7df7b37efd5a122165c860c30f6a178bb1b44
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   Crashlytics: 611738c7847f8291a1a51084e35987b86ba6b3ee
-  EasyTipView: b93a19be981cc2221d6d7191d49872f547e0bebf
+  EasyTipView: 5d3f5561de06ac81c118fa298bf42a2595c776bb
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 8432d732974498afd5987e9001a05f90f1a3d625
   FirebaseAnalytics: 470ddab7253b21ad5a40bebd4a9903d7ae19386a
@@ -126,6 +127,6 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
 
-PODFILE CHECKSUM: 12ee2345a7ced64070b19d48b7dbb641fb7fd4b1
+PODFILE CHECKSUM: 0abd7b504b74d46ba8832db31226f54f1ff87349
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.1

@@ -1,6 +1,5 @@
 # Uncomment the next line to define a global platform for your project
 source 'https://github.com/CocoaPods/Specs.git'
-source 'git@bitbucket.org:apptivitylab/aptpodrepo.git'
 platform :ios, '10.0'
 
 
@@ -14,10 +13,9 @@ target 'TimeSelfCareData' do
   
   # Pods for TimeSelfCareData
   pod 'Alamofire'
-  pod 'APTSidebarNavigationController'
   pod 'CardIO'
   pod 'SDWebImage'
-  pod 'EasyTipView'
+  pod 'EasyTipView', :git => 'git@gitlab.time.com.my:BSS/EasyTipView.git'
   pod 'JVFloatLabeledTextField'
 
   target 'TimeSelfCareDataTests' do
@@ -52,4 +50,32 @@ target 'TimeSelfCare' do
     # Pods for testing
   end
 
+end
+
+my_project_pods_swift_versions = Hash[
+  "4.0", ["Alamofire", "CardIO", "SDWebImage", "EasyTipView", "JVFloatLabeledTextField", "SwiftLint", "MBProgressHUD", "lottie-ios", "Firebase/Core", "Crashlytics", "ApptivityFramework"]
+]
+
+def setup_all_swift_versions(target, pods_swift_versions)
+  pods_swift_versions.each { |swift_version, pods| setup_swift_version(target, pods, swift_version) }
+end
+
+def setup_swift_version(target, pods, swift_version)
+  if pods.any? { |pod| target.name.include?(pod) }
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = swift_version
+    end
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    setup_all_swift_versions(target, my_project_pods_swift_versions)
+  end
+end
+
+pre_install do |installer|
+  installer.analysis_result.specifications.each do |s|
+    s.swift_version = '4.2'
+  end
 end

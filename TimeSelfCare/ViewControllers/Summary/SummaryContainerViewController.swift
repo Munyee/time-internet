@@ -155,7 +155,7 @@ class SummaryContainerViewController: TimeBaseViewController {
             }
             menuItems.append(.billingInfo)
         case .performanceStatusSummary:
-            menuItems = [.changeSsid]
+            menuItems = [.runDiagnostics]
         default:
             break
         }
@@ -269,6 +269,13 @@ class SummaryContainerViewController: TimeBaseViewController {
         let changeSsidVC: ChangeSSIDViewController = storyboard.instantiateViewController()
         self.presentNavigation(changeSsidVC, animated: true)
     }
+    
+    @IBAction func runDiagnostics(_ sender: Any?) {
+        let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.diagnosis.filename, bundle: nil)
+        
+        let diagnosisVC: DiagnosisViewController = storyboard.instantiateViewController()
+        self.presentNavigation(diagnosisVC, animated: true)
+    }
 
     @objc
     func handleConnectionStatusUpdate(notification: Notification) {
@@ -315,12 +322,12 @@ extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
             hideFloatingActionButton()
         case .performanceStatusSummary:
             self.pageTitleLabel.text = NSLocalizedString("Performance", comment: "")
-
-            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false {
-                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
-            } else {
-                hideFloatingActionButton()
-            }
+            showFloatingActionButton(with: #imageLiteral(resourceName: "ic_fab_menu"))
+//            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false {
+//                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
+//            } else {
+//                hideFloatingActionButton()
+//            }
         }
     }
 }
@@ -339,6 +346,8 @@ extension SummaryContainerViewController: FABViewControllerDelegate {
                 return self.activateHomeForward(nil)
             case .changeSsid:
                 return self.changeSsid(nil)
+            case .runDiagnostics:
+                return self.runDiagnostics(nil)
             }
         }
 

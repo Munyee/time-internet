@@ -46,10 +46,13 @@
 		6BC0022120F3B21AE87CEBCA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1E5D5E41834FB29389B370 /* AVFoundation.framework */; };
 		87237A182A79F41C8F9B8660 /* Pods_TimeSelfCareData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57546A0E3F767577B5BA65F /* Pods_TimeSelfCareData.framework */; };
 		9558CC222B9AE745B3BC9813 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F301820E7E82ACC89C85B876 /* AssetsLibrary.framework */; };
+		9E1BC96C2378EC8700810623 /* Diagnosis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1BC96B2378EC8700810623 /* Diagnosis.swift */; };
 		9E3878812356FC7F005ECC61 /* APTSidebarContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3878792356FC7C005ECC61 /* APTSidebarContentSegue.m */; };
 		9E3878822356FC7F005ECC61 /* UIViewController+APTSidebarNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E38787A2356FC7C005ECC61 /* UIViewController+APTSidebarNavigation.m */; };
 		9E3878832356FC7F005ECC61 /* APTSidebarNavigationControllerPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E38787D2356FC7D005ECC61 /* APTSidebarNavigationControllerPushSegue.m */; };
 		9E3878842356FC7F005ECC61 /* APTSidebarNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E38787E2356FC7E005ECC61 /* APTSidebarNavigationController.m */; };
+		9ECA4BDE237007810067C0D7 /* Diagnosis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA4BDD237007810067C0D7 /* Diagnosis.storyboard */; };
+		9ECA4BE0237014430067C0D7 /* DiagnosisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA4BDF237014430067C0D7 /* DiagnosisViewController.swift */; };
 		9F20436BE2988E73317AE7E0 /* Pods_TimeSelfCareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA8E281FE2A53CF06734088 /* Pods_TimeSelfCareTests.framework */; };
 		A238C908768410875E621A61 /* Pods_TimeSelfCareDataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F45E125803803C3AEF265973 /* Pods_TimeSelfCareDataTests.framework */; };
 		DAB87017C3B94A15F4436D20 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBFC4B4383EEC1C068E0A9D /* BuddyBuildSDK.framework */; };
@@ -295,6 +298,7 @@
 		876E5A14D3E5A6ACB94D8856 /* Pods_TimeSelfCareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91457483CA931F8B086EEF61 /* Pods-TimeSelfCare.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.staging.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.staging.xcconfig"; sourceTree = "<group>"; };
 		95A3A37A326B83CBCF2EE367 /* Pods-TimeSelfCareDataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E1BC96B2378EC8700810623 /* Diagnosis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnosis.swift; sourceTree = "<group>"; };
 		9E3878792356FC7C005ECC61 /* APTSidebarContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarContentSegue.m; sourceTree = "<group>"; };
 		9E38787A2356FC7C005ECC61 /* UIViewController+APTSidebarNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+APTSidebarNavigation.m"; sourceTree = "<group>"; };
 		9E38787B2356FC7C005ECC61 /* APTSidebarNavigationControllerPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationControllerPushSegue.h; sourceTree = "<group>"; };
@@ -303,6 +307,8 @@
 		9E38787E2356FC7E005ECC61 /* APTSidebarNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarNavigationController.m; sourceTree = "<group>"; };
 		9E38787F2356FC7E005ECC61 /* APTSidebarNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationController.h; sourceTree = "<group>"; };
 		9E3878802356FC7F005ECC61 /* UIViewController+APTSidebarNavigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+APTSidebarNavigation.h"; sourceTree = "<group>"; };
+		9ECA4BDD237007810067C0D7 /* Diagnosis.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Diagnosis.storyboard; sourceTree = "<group>"; };
+		9ECA4BDF237014430067C0D7 /* DiagnosisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisViewController.swift; sourceTree = "<group>"; };
 		9F604557CEE62B598F117893 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B091416469ACDD813F3DFE11 /* Pods-TimeSelfCare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.debug.xcconfig"; sourceTree = "<group>"; };
 		C190A6122825C2ED2ED62794 /* Pods-TimeSelfCareUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -506,6 +512,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9ECA4BDC2370074B0067C0D7 /* Diagnosis */,
 				E2FB110B22CC9477000FED93 /* Reward */,
 				E274AD54210711F700E62A42 /* Support */,
 				E2626D4E20A923DD00891953 /* Activity */,
@@ -594,6 +601,7 @@
 				E2AD69DD20AD2E4C001D104E /* Ssid.swift */,
 				E2E8692A20B665CB00BD9C3C /* ActivityNotification.swift */,
 				E2FB110722CC54B1000FED93 /* Reward.swift */,
+				9E1BC96B2378EC8700810623 /* Diagnosis.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -748,6 +756,15 @@
 				9E38787A2356FC7C005ECC61 /* UIViewController+APTSidebarNavigation.m */,
 			);
 			path = APTSidebarNavigationController;
+			sourceTree = "<group>";
+		};
+		9ECA4BDC2370074B0067C0D7 /* Diagnosis */ = {
+			isa = PBXGroup;
+			children = (
+				9ECA4BDD237007810067C0D7 /* Diagnosis.storyboard */,
+				9ECA4BDF237014430067C0D7 /* DiagnosisViewController.swift */,
+			);
+			path = Diagnosis;
 			sourceTree = "<group>";
 		};
 		E20A717A1FD4A7BE00938766 /* Cells */ = {
@@ -1202,6 +1219,7 @@
 				E2FB110D22CC9492000FED93 /* Reward.storyboard in Resources */,
 				E2A8E8441FCE3D6E00EA5DF2 /* Profile.storyboard in Resources */,
 				E2E84FED1FCEB4FB0014CEAA /* DIN Alternate Regular.otf in Resources */,
+				9ECA4BDE237007810067C0D7 /* Diagnosis.storyboard in Resources */,
 				E2626D5020A923F700891953 /* Activity.storyboard in Resources */,
 				E2A8E84B1FCE6A4B00EA5DF2 /* Common.storyboard in Resources */,
 				E2AD92C91FC3AE2700138334 /* Summary.storyboard in Resources */,
@@ -1448,6 +1466,7 @@
 				E27DCC961FE0C3D900A82769 /* String+.swift in Sources */,
 				E2AD92C71FC3A5DC00138334 /* VoiceSummaryViewController.swift in Sources */,
 				E22050DA1FCD08EF004D5B10 /* AddOnDetailViewController.swift in Sources */,
+				9ECA4BE0237014430067C0D7 /* DiagnosisViewController.swift in Sources */,
 				E20A71821FD4F8DC00938766 /* BillsViewController.swift in Sources */,
 				E2DE28A71FBEACBF00E3CC1E /* BaseAuthViewController.swift in Sources */,
 				E219AD9E1FB3D23900A896FE /* WalkthroughViewController.swift in Sources */,
@@ -1543,6 +1562,7 @@
 				E2AD69E020AD2F7F001D104E /* SsidDataController.swift in Sources */,
 				E2345C801FB9654D00DA42F0 /* Activity.swift in Sources */,
 				E2DD464320D242D600764512 /* TicketDataController.swift in Sources */,
+				9E1BC96C2378EC8700810623 /* Diagnosis.swift in Sources */,
 				E2AD69DE20AD2E4C001D104E /* Ssid.swift in Sources */,
 				E2345C811FB9654D00DA42F0 /* Bill.swift in Sources */,
 				E22050D41FCCD2BF004D5B10 /* AddOn.swift in Sources */,

@@ -14,6 +14,7 @@ public enum FloatingMenuItem {
     case billingInfo
     case activateHomeForward
     case changeSsid
+    case runDiagnostics
 
     public var title: String {
         switch self {
@@ -27,6 +28,8 @@ public enum FloatingMenuItem {
             return NSLocalizedString("Activate Home Forward", comment: "")
         case .changeSsid:
             return NSLocalizedString("Change SSID", comment: "")
+        case .runDiagnostics:
+            return NSLocalizedString("Run Diagnostics", comment: "")
         }
     }
 }

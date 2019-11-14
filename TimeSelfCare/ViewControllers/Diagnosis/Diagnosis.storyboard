@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Diagnosis View Controller-->
+        <scene sceneID="joB-YQ-Oiy">
+            <objects>
+                <viewController storyboardIdentifier="DiagnosisViewController" id="qF1-9X-i4C" customClass="DiagnosisViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vmd-1d-HyI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e73-kv-TWJ">
+                                <rect key="frame" x="142.5" y="782" width="129" height="30"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Back to homepage">
+                                    <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToHomepage:" destination="qF1-9X-i4C" eventType="touchUpInside" id="S7V-JO-M8I"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L96-D5-MyU">
+                                <rect key="frame" x="165.5" y="732" width="83" height="30"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <state key="normal" title="Raise Ticket">
+                                    <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="raiseTicket:" destination="qF1-9X-i4C" eventType="touchUpInside" id="Sds-cJ-da1"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0m-NP-isg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="668"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fjJ-sH-lu2">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="337.5"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_icon_error" translatesAutoresizingMaskIntoConstraints="NO" id="wwh-cB-g1E">
+                                                <rect key="frame" x="162" y="120" width="90" height="90"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="90" id="0aI-iQ-Bgn"/>
+                                                    <constraint firstAttribute="width" secondItem="wwh-cB-g1E" secondAttribute="height" multiplier="1:1" id="uzH-fb-Wj1"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your broadband service has been suspended due to an overdue payment. To restore services" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eI9-54-ktm">
+                                                <rect key="frame" x="41.5" y="250" width="331.5" height="57.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="wwh-cB-g1E" firstAttribute="centerX" secondItem="fjJ-sH-lu2" secondAttribute="centerX" id="2rI-XS-gb0"/>
+                                            <constraint firstItem="eI9-54-ktm" firstAttribute="top" secondItem="wwh-cB-g1E" secondAttribute="bottom" constant="40" id="FGj-No-9QT"/>
+                                            <constraint firstItem="wwh-cB-g1E" firstAttribute="top" secondItem="fjJ-sH-lu2" secondAttribute="top" constant="120" id="NZl-gb-fuG"/>
+                                            <constraint firstAttribute="bottom" secondItem="eI9-54-ktm" secondAttribute="bottom" constant="30" id="WSj-8t-6Rx"/>
+                                            <constraint firstItem="eI9-54-ktm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fjJ-sH-lu2" secondAttribute="leading" constant="40" id="cL1-8Q-mZX"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eI9-54-ktm" secondAttribute="trailing" constant="40" id="cQ4-N4-iBR"/>
+                                            <constraint firstItem="eI9-54-ktm" firstAttribute="centerX" secondItem="fjJ-sH-lu2" secondAttribute="centerX" id="eBc-As-mvE"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fjJ-sH-lu2" firstAttribute="top" secondItem="z0m-NP-isg" secondAttribute="top" id="HaQ-cF-oRI"/>
+                                    <constraint firstAttribute="bottom" secondItem="fjJ-sH-lu2" secondAttribute="bottom" id="Kzo-1F-KNC"/>
+                                    <constraint firstAttribute="trailing" secondItem="fjJ-sH-lu2" secondAttribute="trailing" id="iEP-9n-9lI"/>
+                                    <constraint firstItem="fjJ-sH-lu2" firstAttribute="leading" secondItem="z0m-NP-isg" secondAttribute="leading" id="woC-Dg-EBM"/>
+                                    <constraint firstItem="fjJ-sH-lu2" firstAttribute="width" secondItem="z0m-NP-isg" secondAttribute="width" id="zRQ-4W-PEm"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="e73-kv-TWJ" firstAttribute="centerX" secondItem="baB-q7-ZRq" secondAttribute="centerX" id="2vA-HH-xVl"/>
+                            <constraint firstItem="e73-kv-TWJ" firstAttribute="top" secondItem="L96-D5-MyU" secondAttribute="bottom" constant="20" id="7Pf-Fm-OFg"/>
+                            <constraint firstItem="baB-q7-ZRq" firstAttribute="trailing" secondItem="z0m-NP-isg" secondAttribute="trailing" id="KCX-2n-kcD"/>
+                            <constraint firstItem="z0m-NP-isg" firstAttribute="top" secondItem="baB-q7-ZRq" secondAttribute="top" id="k5s-2q-XV4"/>
+                            <constraint firstItem="L96-D5-MyU" firstAttribute="top" secondItem="z0m-NP-isg" secondAttribute="bottom" constant="20" id="mnJ-FZ-FG0"/>
+                            <constraint firstItem="z0m-NP-isg" firstAttribute="leading" secondItem="baB-q7-ZRq" secondAttribute="leading" id="tuh-is-mcO"/>
+                            <constraint firstItem="L96-D5-MyU" firstAttribute="centerX" secondItem="e73-kv-TWJ" secondAttribute="centerX" id="wdd-MC-crm"/>
+                            <constraint firstItem="baB-q7-ZRq" firstAttribute="bottom" secondItem="e73-kv-TWJ" secondAttribute="bottom" constant="50" id="zFY-7T-h3A"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="baB-q7-ZRq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pSL-1x-xAq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="481.15942028985512" y="150"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_icon_error" width="52" height="39.5"/>
+    </resources>
+</document>

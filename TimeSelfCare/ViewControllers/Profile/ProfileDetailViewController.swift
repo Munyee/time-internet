@@ -58,6 +58,11 @@ internal class ProfileDetailViewController: TimeBaseViewController {
         let notifcationSettingsVC: NotificationSettingsViewController = UIStoryboard(name: TimeSelfCareStoryboard.profile.filename, bundle: nil).instantiateViewController()
         self.show(notifcationSettingsVC, sender: nil)
     }
+    
+    @IBAction func editProfile(_ sender: Any) {
+        let editProfileVC: EditProfileViewController = UIStoryboard(name: TimeSelfCareStoryboard.profile.filename, bundle: nil).instantiateViewController()
+        self.show(editProfileVC, sender: nil)
+    }
 
     @IBAction func changePassword(_ sender: Any) {
         let changePasswordVC: ChangePasswordViewController = UIStoryboard(name: TimeSelfCareStoryboard.profile.filename, bundle: nil).instantiateViewController()

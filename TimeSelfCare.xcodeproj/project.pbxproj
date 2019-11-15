@@ -46,6 +46,7 @@
 		6BC0022120F3B21AE87CEBCA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1E5D5E41834FB29389B370 /* AVFoundation.framework */; };
 		87237A182A79F41C8F9B8660 /* Pods_TimeSelfCareData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57546A0E3F767577B5BA65F /* Pods_TimeSelfCareData.framework */; };
 		9558CC222B9AE745B3BC9813 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F301820E7E82ACC89C85B876 /* AssetsLibrary.framework */; };
+		9E021AB0237CF94E00EC3A07 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E021AAF237CF94E00EC3A07 /* EditProfileViewController.swift */; };
 		9E3878812356FC7F005ECC61 /* APTSidebarContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3878792356FC7C005ECC61 /* APTSidebarContentSegue.m */; };
 		9E3878822356FC7F005ECC61 /* UIViewController+APTSidebarNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E38787A2356FC7C005ECC61 /* UIViewController+APTSidebarNavigation.m */; };
 		9E3878832356FC7F005ECC61 /* APTSidebarNavigationControllerPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E38787D2356FC7D005ECC61 /* APTSidebarNavigationControllerPushSegue.m */; };
@@ -295,6 +296,7 @@
 		876E5A14D3E5A6ACB94D8856 /* Pods_TimeSelfCareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91457483CA931F8B086EEF61 /* Pods-TimeSelfCare.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.staging.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.staging.xcconfig"; sourceTree = "<group>"; };
 		95A3A37A326B83CBCF2EE367 /* Pods-TimeSelfCareDataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E021AAF237CF94E00EC3A07 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		9E3878792356FC7C005ECC61 /* APTSidebarContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarContentSegue.m; sourceTree = "<group>"; };
 		9E38787A2356FC7C005ECC61 /* UIViewController+APTSidebarNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+APTSidebarNavigation.m"; sourceTree = "<group>"; };
 		9E38787B2356FC7C005ECC61 /* APTSidebarNavigationControllerPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationControllerPushSegue.h; sourceTree = "<group>"; };
@@ -890,6 +892,7 @@
 				E2A8E8451FCE3D9900EA5DF2 /* ProfileDetailViewController.swift */,
 				E2A8E8471FCE543400EA5DF2 /* ChangePasswordViewController.swift */,
 				E2FDB2D420AAB490002F0A66 /* NotificationSettingsViewController.swift */,
+				9E021AAF237CF94E00EC3A07 /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1460,6 +1463,7 @@
 				E2610F791FC51F8D00959D85 /* PaymentSummaryViewController.swift in Sources */,
 				E27A883A22CEF81400C00F63 /* RewardConfirmationViewController.swift in Sources */,
 				9E3878812356FC7F005ECC61 /* APTSidebarContentSegue.m in Sources */,
+				9E021AB0237CF94E00EC3A07 /* EditProfileViewController.swift in Sources */,
 				E2DE286B1FBD67B400E3CC1E /* ChangeEmailViewController.swift in Sources */,
 				E21AA70320B3E795008851F1 /* FloatLabeledTextView.swift in Sources */,
 				E2626D5220A9241E00891953 /* ActivityViewController.swift in Sources */,

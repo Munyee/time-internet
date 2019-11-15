@@ -83,6 +83,18 @@ extension APIClient {
         ]
         self.simplePost(body, completion: completion)
     }
+    
+    public func editProfile(_ email: String, contact: String, completion: @escaping SimpleRequestListener) {
+        let path = "change_profile"
+        let body: [String : Any] = [
+            "action" : path,
+            "email_address": email,
+            "contact": contact,
+            "token" : self.getToken(forPath: path),
+            "session_id" : AccountController.shared.sessionId
+        ]
+        self.simplePost(body, completion: completion)
+    }
 
     public func verifyPasswordStrength(_ password: String, completion: @escaping ((_ passwordStrength: String?) -> Void)) {
         let path = "check_password"

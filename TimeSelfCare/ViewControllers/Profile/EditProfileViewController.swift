@@ -12,12 +12,25 @@ class EditProfileViewController: BaseAuthViewController {
 
     private var job: DispatchWorkItem?
 
+    @IBOutlet private weak var accountNumberLabel: UILabel!
+    @IBOutlet private weak var fullnameLabel: UILabel!
+    @IBOutlet private weak var businessRegistrationNumberLabel: UILabel!
+    @IBOutlet private weak var fullNameKeyLabel: UILabel!
+    @IBOutlet private weak var businessRegistrationNumberKeyLabel: UILabel!
+
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet weak var emailTextField: VDTTextField!
-    @IBOutlet weak var contactTextField: VDTTextField!
-    @IBOutlet weak var emailErrorLabel: UILabel!
-    @IBOutlet weak var updateButton: UIButton!
-    
+    @IBOutlet private weak var emailTextField: VDTTextField!
+    @IBOutlet private weak var contactPersonTextField: VDTTextField!
+    @IBOutlet private weak var contactTextField: VDTTextField!
+    @IBOutlet private weak var contactOfficeTextField: VDTTextField!
+    @IBOutlet private weak var emailErrorLabel: UILabel!
+    @IBOutlet private weak var updateButton: UIButton!
+
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var contactPersonStackView: UIStackView!
+    @IBOutlet private weak var contactOfficeStackView: UIStackView!
+    @IBOutlet weak var emailStackView: UIStackView!
+
     override var allRequiredTextFields: [VDTTextField] {
         return [self.emailTextField,
                 self.contactTextField]
@@ -35,6 +48,28 @@ class EditProfileViewController: BaseAuthViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.cancelEditProfile))
         
         Keyboard.addKeyboardChangeObserver(self)
+
+        let selectedAccount = AccountController.shared.selectedAccount
+        let profile = selectedAccount?.profile
+
+        if selectedAccount?.custSegment == .residential {
+            stackView.removeArrangedSubview(contactPersonStackView)
+            contactPersonStackView.removeFromSuperview()
+            stackView.removeArrangedSubview(contactOfficeStackView)
+            contactOfficeStackView.removeFromSuperview()
+            stackView.removeArrangedSubview(emailStackView)
+            stackView.insertArrangedSubview(emailStackView, at: 3)
+        }
+
+        self.fullNameKeyLabel.text = selectedAccount?.custSegment == .residential ? NSLocalizedString("Name", comment: "") : NSLocalizedString("Company Name", comment: "")
+        self.businessRegistrationNumberKeyLabel.text = selectedAccount?.custSegment == .residential ? NSLocalizedString("MyKad No./ Passport No.", comment: "") : NSLocalizedString("Business Registration Number", comment: "")
+        self.businessRegistrationNumberLabel.text = selectedAccount?.profileUsername ?? "-"
+        self.accountNumberLabel.text = selectedAccount?.accountNo ?? "-"
+        self.fullnameLabel.text = profile?.fullname ?? "-"
+        self.contactPersonTextField.text = profile?.contactPerson ?? ""
+        self.contactTextField.text = profile?.mobileNo ?? ""
+        self.contactOfficeTextField.text = profile?.officeNo ?? ""
+        self.emailTextField.text = profile?.email ?? ""
     }
     
     override func updateUI() {
@@ -43,8 +78,14 @@ class EditProfileViewController: BaseAuthViewController {
     }
     
     @IBAction func updateProfile(_ sender: Any) {
-        
-        APIClient.shared.editProfile(self.emailTextField.text!, contact: self.contactTextField.text!) { error in
+
+        guard let username = AccountController.shared.selectedAccount?.profile?.username else {
+            let error = NSError(domain: "TimeSelfCare", code: 500, userInfo: [NSLocalizedDescriptionKey: "Unexpected error has occured. Please try again later."])
+            self.showAlertMessage(with: error)
+            return
+        }
+
+        APIClient.shared.editProfile(username, email: self.emailTextField.text ?? "", contact: self.contactTextField.text ?? "") { error in
 //            hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)

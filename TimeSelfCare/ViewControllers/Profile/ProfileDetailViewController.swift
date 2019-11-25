@@ -28,6 +28,8 @@ internal class ProfileDetailViewController: TimeBaseViewController {
         self.title = NSLocalizedString("Profile", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.back))
 
+        loadDataFromServer()
+
         // populate data
         let selectedAccount = AccountController.shared.selectedAccount
         let profile = selectedAccount?.profile
@@ -47,6 +49,45 @@ internal class ProfileDetailViewController: TimeBaseViewController {
         self.contactMobileLabel.text = profile?.mobileNo ?? "-"
         self.contactOfficeLabel.text = profile?.officeNo ?? "-"
         self.emailAddressLabel.text = profile?.email ?? "-"
+    }
+
+    private func loadDataFromServer() {
+
+        AccountDataController.shared.loadAccounts { (accounts: [Account], error: Error?) in
+            let totalAccountsCount = accounts.count
+            var serviceCount = 0
+            accounts.forEach { (account: Account) in
+                ServiceDataController.shared.loadServices(accountNo: account.accountNo) { (_: [Service], error: Error?) in
+                    if error != nil {
+                        AuthUser.current?.logout()
+                        return
+                    }
+                    serviceCount += 1
+                    if serviceCount == totalAccountsCount {
+                        let service = ServiceDataController.shared.getServices(account: account).first { $0.category == .broadband || $0.category == .broadbandAstro }
+                        SsidDataController.shared.loadSsids(account: account, service: service) { _, _ in
+                        }
+                    }
+                }
+
+                ActivityDataController.shared.loadActivities(account: account) { _,_  in
+                    let selectedAccount = AccountController.shared.selectedAccount
+                    let profile = selectedAccount?.profile
+                    self.businessRegistrationNumberLabel.text = selectedAccount?.profileUsername ?? "-"
+                    self.accountNumberLabel.text = selectedAccount?.accountNo ?? "-"
+                    self.fullnameLabel.text = profile?.fullname ?? "-"
+                    self.contactPersonLabel.text = profile?.contactPerson ?? "-"
+                    self.contactPersonContainerView.isHidden = selectedAccount?.custSegment != .business
+                    self.contactMobileLabel.text = profile?.mobileNo ?? "-"
+                    if profile?.officeNo == "" {
+                        self.contactOfficeLabel.text = "-"
+                    } else {
+                        self.contactOfficeLabel.text = profile?.officeNo ?? "-"
+                    }
+                    self.emailAddressLabel.text = profile?.email ?? "-"
+                }
+            }
+        }
     }
 
     @objc

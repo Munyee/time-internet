@@ -84,12 +84,13 @@ extension APIClient {
         self.simplePost(body, completion: completion)
     }
     
-    public func editProfile(_ email: String, contact: String, completion: @escaping SimpleRequestListener) {
-        let path = "change_profile"
+    public func editProfile(_ username: String, email: String, contact: String, completion: @escaping SimpleRequestListener) {
+        let path = "update_profile"
         let body: [String : Any] = [
             "action" : path,
             "email_address": email,
             "contact": contact,
+            "username" : username,
             "token" : self.getToken(forPath: path),
             "session_id" : AccountController.shared.sessionId
         ]

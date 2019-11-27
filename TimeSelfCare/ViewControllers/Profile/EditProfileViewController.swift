@@ -68,8 +68,10 @@ class EditProfileViewController: BaseAuthViewController {
         self.fullnameLabel.text = profile?.fullname ?? "-"
         self.contactPersonTextField.text = profile?.contactPerson ?? ""
         self.contactTextField.text = profile?.mobileNo ?? ""
-        self.contactOfficeTextField.text = profile?.officeNo ?? ""
+        self.contactOfficeTextField.text = profile?.officeNo
         self.emailTextField.text = profile?.email ?? ""
+        self.emailErrorLabel.text = nil
+        updateUI()
     }
     
     override func updateUI() {

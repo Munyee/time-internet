@@ -85,7 +85,7 @@ extension APIClient {
     }
     
     public func editProfile(_ username: String, email: String, contact: String, completion: @escaping SimpleRequestListener) {
-        let path = "update_profile"
+        let path = "change_profile_info"
         let body: [String : Any] = [
             "action" : path,
             "email_address": email,

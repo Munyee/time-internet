@@ -29,7 +29,7 @@ class EditProfileViewController: BaseAuthViewController {
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var contactPersonStackView: UIStackView!
     @IBOutlet private weak var contactOfficeStackView: UIStackView!
-    @IBOutlet weak var emailStackView: UIStackView!
+    @IBOutlet private weak var emailStackView: UIStackView!
 
     override var allRequiredTextFields: [VDTTextField] {
         return [self.emailTextField,

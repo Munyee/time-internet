@@ -112,8 +112,8 @@ public extension BillingInfoDataController {
         for (key, value) in billingInfo.toJson() {
             body[key] = value
         }
-        APIClient.shared.postRequest(path: "change_billing_info", body: body) { (_, error: Error?) in
-            completion(error)
+        APIClient.shared.postRequest(path: "change_billing_info", body: body) { response, error in
+            completion(response, error)
         }
     }
 

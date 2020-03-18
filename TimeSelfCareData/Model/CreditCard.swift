@@ -39,6 +39,13 @@ public class CreditCard: JsonRecord {
         if let ccTypeRawValue = json["cc_type"] as? String,
             let ccType = CcType(rawValue: ccTypeRawValue) {
             self.ccType = ccType
+        } else {
+            if let cc_list = json["list_cc_type_id"] as? [String : Any],
+                let cc_type_id = json["cc_type_id"] as? String,
+                let ccTypeRawValue = cc_list[cc_type_id] as? String,
+                let ccType = CcType(rawValue: ccTypeRawValue) {
+                self.ccType = ccType
+            }
         }
         self.ccNo = ccNo
         self.ccName = json["cc_name"] as? String

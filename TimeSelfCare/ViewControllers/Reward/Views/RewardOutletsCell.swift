@@ -29,10 +29,11 @@ class RewardOutletsCell: UITableViewCell {
             let horizontalStackView = UIStackView()
             horizontalStackView.alignment = .center
             horizontalStackView.distribution = .fill
-            horizontalStackView.spacing = 4
+            horizontalStackView.spacing = 8
 
             let iconImageView = UIImageView(image: icon)
             iconImageView.translatesAutoresizingMaskIntoConstraints = false
+            iconImageView.contentMode = .scaleAspectFit
             NSLayoutConstraint.activate([
                 NSLayoutConstraint(item: iconImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
                 NSLayoutConstraint(item: iconImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)

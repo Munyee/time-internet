@@ -35,8 +35,7 @@ public class NotificationSettingDataController {
                     let notificationSetting = notificationSettings.first,
                     deviceToken != notificationSetting.deviceToken {
                     notificationSetting.deviceToken = deviceToken
-                    self.updateNotificationSetting(notificationSetting: notificationSetting) { (_: Error?) in
-                    }
+                    self.updateNotificationSetting(notificationSetting: notificationSetting)
                 }
 
                 completion(notificationSettings, error)
@@ -106,14 +105,14 @@ public extension NotificationSettingDataController {
         self.loadNotificationSettingData(path: path, body: body, completion: completion)
     }
 
-    func updateNotificationSetting(notificationSetting: NotificationSetting, completion: @escaping SimpleRequestListener) {
+    func updateNotificationSetting(notificationSetting: NotificationSetting, completion: SimpleRequestListener? = nil) {
         var body: [String: Any] = [:]
         body["username"] = AccountController.shared.profile?.username
         for (key, value) in notificationSetting.toJson() {
             body[key] = value
         }
-        APIClient.shared.postRequest(path: "change_notification_info", body: body) { (_, error: Error?) in
-            completion(error)
+        APIClient.shared.postRequest(path: "change_notification_info", body: body) { response, error in
+            completion?(response, error)
         }
     }
 

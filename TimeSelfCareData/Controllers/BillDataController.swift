@@ -39,7 +39,7 @@ public class BillDataController {
                 }
 
                 var paymentTypeJSONArray: [[String: Any]] = []
-                let keys = ["fpx", "cc"]
+                let keys = ["fpx", "cc", "payment"]
                 keys.forEach { key in
                     var paymentTypeJSON: [String: Any] = [:]
                     paymentTypeJSON["type_id"] = key
@@ -140,6 +140,7 @@ public extension BillDataController {
         var body: [String: Any] = [:]
         body["username"] =  AccountController.shared.profile?.username
         body["account_no"] = account?.accountNo
+        body["upgw"] = "yes"
         self.loadBillData(path: path, body: body, completion: completion)
     }
 

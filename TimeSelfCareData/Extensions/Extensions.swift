@@ -11,6 +11,19 @@ import ApptivityFramework
 import CommonCrypto
 
 extension Profile: Person { }
+public extension Profile {
+    var shouldChangeEmail: Bool {
+        return self.todo == "update_email_address"
+    }
+
+    var shouldChangePassword: Bool {
+        return (self.todo ?? "").contains("update_password")
+    }
+
+    var passwordHasExpired: Bool {
+        return self.todo == "password_expired"
+    }
+}
 
 extension AccountController {
     var API: APIClient {

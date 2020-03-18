@@ -16,7 +16,6 @@ extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
 }
 
-@UIApplicationMain
 internal class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
@@ -87,7 +86,7 @@ extension AppDelegate {
             return
         }
         notificationSetting.deviceToken = token
-        NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { _ in }
+        NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

@@ -72,7 +72,7 @@ extension AccountController: AuthUserDelegate {
     }
 
     public func logoutUser(completion: @escaping () -> Void) {
-        self.API.logout { (error: Error?) in
+        self.API.logout { (_, error: Error?) in
             if let error = error {
                 debugPrint("Logout error: \(error)")
             }
@@ -80,7 +80,7 @@ extension AccountController: AuthUserDelegate {
                 notificationSetting.deviceToken = String()
                 APNSController.shared.deleteAllNotifications()
                 UIApplication.shared.applicationIconBadgeNumber = 0
-                NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { _ in }
+                NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting)
             }
 
             self.needUpdateEmailAddress = false
@@ -107,7 +107,7 @@ extension AccountController: IdentityDelegate {
     }
 
     public func authenticate(using identity: Identity, completion: ((Identity?, AuthError?) -> Void)?) {
-        self.API.loginWithEmail(identity.identifier, password: identity.challenge) { (error: Error?) in
+        self.API.loginWithEmail(identity.identifier, password: identity.challenge) { (_, error: Error?) in
             completion?(identity, self.authErrorFrom(error))
         }
     }

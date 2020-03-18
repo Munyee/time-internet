@@ -70,7 +70,7 @@ class AppDataTests: XCTestCase {
         self.testLoadBillingInfo()
         var billingInfo: BillingInfo = BillingInfoDataController.shared.getBillingInfos(account: AccountDataController.shared.getAccounts().first!).first!
         billingInfo.billState = "Shah Alam"
-        billingInfo.billingEmailAddress = "test@gmail.com"
+        // billingInfo.billingEmailAddress = "test@gmail.com"
         BillingInfoDataController.shared.updateBillingInfo(billingInfo: billingInfo) { (error: Error?) in
             XCTAssertNil(error, "Billing info should be updated without errors")
             loadingExpectation.fulfill()

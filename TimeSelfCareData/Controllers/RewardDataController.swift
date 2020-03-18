@@ -105,8 +105,8 @@ public extension RewardDataController {
         body["provider"] = reward.provider
         body["account_no"] = account?.accountNo
 
-        APIClient.shared.postRequest(path: "grab_reward", body: body) { _, error in
-            completion(error)
+        APIClient.shared.postRequest(path: "grab_reward", body: body) { response, error in
+            completion(response, error)
         }
     }
 
@@ -119,8 +119,8 @@ public extension RewardDataController {
         body["provider"] = reward.provider
         body["year"] = reward.year
 
-        APIClient.shared.postRequest(path: "redeem_reward", body: body) { _, error in
-            completion(error)
+        APIClient.shared.postRequest(path: "redeem_reward", body: body) { response, error in
+            completion(response, error)
         }
 
     }

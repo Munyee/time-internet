@@ -15,13 +15,11 @@ extension APIClient {
 
         self.request(method: .post, parameters: body).responseJSON { (response: DataResponse<Any>) in
             do {
-                let responseJSON = try self.JSONFromResponse(response: response)
-                self.extractLoginInfo(responseJSON)
-
-                completion(nil)
-
+                let response = try self.JSONFromResponse(response: response)
+                self.extractLoginInfo(response)
+                completion(response, nil)
             } catch {
-                completion(error)
+                completion(nil, error)
             }
         }
     }
@@ -37,12 +35,11 @@ extension APIClient {
 
         self.request(method: .post, parameters: body).responseJSON { (response: DataResponse<Any>) in
             do {
-                let responseJSON = try self.JSONFromResponse(response: response)
-                self.extractLoginInfo(responseJSON)
-
-                completion(nil)
+                let response = try self.JSONFromResponse(response: response)
+                self.extractLoginInfo(response)
+                completion(response, nil)
             } catch {
-                completion(error)
+                completion(nil, error)
             }
         }
     }
@@ -144,16 +141,20 @@ extension APIClient {
     public func simplePost(_ body: [String: Any], completion: @escaping SimpleRequestListener) {
         self.request(method: .post, parameters: body).responseJSON { (response: DataResponse<Any>) in
             do {
-                _ = try self.JSONFromResponse(response: response)
-                completion(nil)
+                let response = try self.JSONFromResponse(response: response)
+                completion(response, nil)
             } catch {
-                completion(error)
+                completion(nil, error)
             }
         }
     }
 
     private func extractLoginInfo(_ responseJSON: [String : Any]) {
         if let profileJSON = responseJSON["data"] as? [String: Any], let profile = Profile(with: profileJSON) {
+            if (responseJSON["status"] as? String) == "password_expired" {
+                profile.todo = "password_expired"
+            }
+
             AuthUser.current?.person = profile
             Installation.current().set(profileJSON["session_id"] as? String, forKey: sessionIdKey)
             AccountController.shared.needUpdateEmailAddress = (profileJSON["todo"] as? String) == "update_email_address"
@@ -179,15 +180,15 @@ extension APIClient {
             ]
             self.request(method: .post, parameters: body).responseJSON { (response: DataResponse<Any>) in
                 do {
-                    _ = try self.JSONFromResponse(response: response)
-                    completion(nil)
+                    let response = try self.JSONFromResponse(response: response)
+                    completion(response, nil)
                 } catch {
-                    completion(error)
+                    completion(nil, error)
                 }
             }
         } else {
             // No API call, assume success
-            completion(nil)
+            completion(nil, nil)
         }
     }
 }

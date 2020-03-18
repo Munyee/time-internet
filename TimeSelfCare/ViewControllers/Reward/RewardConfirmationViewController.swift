@@ -44,8 +44,10 @@ class RewardConfirmationViewController: TimeBaseViewController {
     @IBAction func redeem(_ sender: Any) {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Redeeming...", comment: "")
-        RewardDataController.shared.redeemReward(reward,
-                                                 account: AccountController.shared.selectedAccount) { error in
+        RewardDataController.shared.redeemReward(
+            self.reward,
+            account: AccountController.shared.selectedAccount
+        ) { _, error in
             hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)

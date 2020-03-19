@@ -12,6 +12,7 @@ public class PaymentType: JsonRecord {
     public enum TypeId: String {
         case fpx = "fpx"
         case cc = "cc"
+        case payment = "payment"
         case unknown = "unknown"
     }
 

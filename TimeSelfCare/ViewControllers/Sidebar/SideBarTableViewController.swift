@@ -21,9 +21,7 @@ internal class SidebarTableViewController: UIViewController {
     private var services: [ServiceSidebarCell.ServiceType] {
         let shouldShowSupportAndReward = self.accounts.first { $0.custSegment == .residential } != nil
 
-//        return shouldShowSupportAndReward ? [.reward, .support] : []
-        /// temporary hide reward module.
-        return shouldShowSupportAndReward ? [.support] : []
+        return shouldShowSupportAndReward ? [.reward, .support] : []
     }
 
     @IBOutlet private weak var tableView: UITableView!

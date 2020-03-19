@@ -564,7 +564,7 @@ class BillingInfoFormViewController: UIViewController {
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             hud.label.text = NSLocalizedString("Updating...", comment: "")
 
-            BillingInfoDataController.shared.updateBillingInfo(billingInfo: self.billingInfo) { (error: Error?) in
+            BillingInfoDataController.shared.updateBillingInfo(billingInfo: self.billingInfo) { _, error in
                 hud.hide(animated: true)
                 if let error = error {
                     self.showAlertMessage(with: error)

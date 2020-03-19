@@ -28,7 +28,7 @@ internal class ForgetPasswordViewController: BaseAuthViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let noteText = "A temporary password will be sent to your email in the next five minutes. Otherwise, please get in touch with us at 1 800 18 1818 or cs@time.com.my."
+        let noteText = "An email will be sent to you in the next five minutes to reset your password. Otherwise, please get in touch with us at 1800 18 1818 or cs@time.com.my."
         let attributedString = NSMutableAttributedString(string: noteText, attributes: [NSAttributedString.Key.font: UIFont.getCustomFont(family: "DIN", style: .subheadline)])
 
         attributedString.addAttributes([NSAttributedString.Key.font: UIFont(name: "DIN-Bold", size: 16)], range: (noteText as NSString).range(of: "temporary password"))
@@ -59,7 +59,7 @@ internal class ForgetPasswordViewController: BaseAuthViewController {
     @IBAction func resetPassword(_ sender: Any) {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Resetting password...", comment: "")
-        APIClient.shared.forgetPassword(self.usernameTextField.inputText, accountNo: self.accountTextField.inputText) { error in
+        APIClient.shared.forgetPassword(self.usernameTextField.inputText, accountNo: self.accountTextField.inputText) { response, error in
             hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)
@@ -68,7 +68,14 @@ internal class ForgetPasswordViewController: BaseAuthViewController {
             let dismissAction = UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default) { _ in
                 self.dismiss(animated: true, completion: nil)
             }
-            self.showAlertMessage(title: NSLocalizedString("Success", comment: ""), message: NSLocalizedString("Temporary password has been sent to your registered email.", comment: ""), actions: [dismissAction])
+
+            let message: String
+            if let responseMessage = response?["message"] as? String, !responseMessage.isEmpty {
+                message = responseMessage
+            } else {
+                message = NSLocalizedString("Temporary password has been sent to your registered email.", comment: "")
+            }
+            self.showAlertMessage(title: NSLocalizedString("Success", comment: ""), message: message, actions: [dismissAction])
         }
     }
 

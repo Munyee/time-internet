@@ -87,7 +87,7 @@ class EditProfileViewController: BaseAuthViewController {
             return
         }
 
-        APIClient.shared.editProfile(username, email: self.emailTextField.text ?? "", contact: self.contactTextField.text ?? "") { error in
+        APIClient.shared.editProfile(username, email: self.emailTextField.text ?? "", contact: self.contactTextField.text ?? "") { _, error in
 //            hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)

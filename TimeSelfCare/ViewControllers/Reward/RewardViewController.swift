@@ -26,7 +26,7 @@ class RewardViewController: TimeBaseViewController {
 
             self.validityPeriodStackView.axis = reward.status == .grabbed ? .vertical : .horizontal
 
-            let voucherCode = reward.code?.first { $0.isValidURL == false }
+            let voucherCode = reward.code?.filter { $0.isValidURL == false }.joined(separator: "\n")
             self.voucherCodeLabel.text = voucherCode
 
             let shouldHideVoucher = voucherCode == nil || reward.status == .redeemed
@@ -169,7 +169,7 @@ class RewardViewController: TimeBaseViewController {
                 let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                 hud.label.text = NSLocalizedString("Grabbing...", comment: "")
                 RewardDataController.shared.grabReward(reward,
-                                                       account: AccountController.shared.selectedAccount) { error in
+                                                       account: AccountController.shared.selectedAccount) { _, error in
                                                         hud.hide(animated: true)
                                                         if let error = error {
                                                             self.showAlertMessage(with: error)

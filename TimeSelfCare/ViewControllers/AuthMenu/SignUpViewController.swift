@@ -92,7 +92,7 @@ internal class SignUpViewController: BaseAuthViewController {
             icNumber: self.myKadNoTextField.inputText,
             accountNumber: self.accountNumberTextField.inputText,
             password: self.createPasswordTextField.inputText
-        ) { (error: Error?) in
+        ) { _, error in
             hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)

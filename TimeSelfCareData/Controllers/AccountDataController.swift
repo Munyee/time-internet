@@ -139,8 +139,8 @@ public extension AccountDataController {
         body["username"] = account.profileUsername
         body["service_id"] = service.serviceId
 
-        APIClient.shared.postRequest(path: path, body: body) { (_: [String: Any], error: Error?) in
-            completion(error)
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
         }
     }
 }

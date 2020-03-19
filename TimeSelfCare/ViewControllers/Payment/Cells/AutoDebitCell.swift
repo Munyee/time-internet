@@ -26,14 +26,17 @@ internal class AutoDebitCell: UITableViewCell {
 
     func configure(with creditCard: CreditCard) {
         self.creditCard = creditCard
-        switch creditCard.ccNo.inferredCreditCardType() {
+        switch creditCard.ccType ?? .unknown {
         case CreditCard.CcType.mastercard:
             self.debitCardImageView.image = #imageLiteral(resourceName: "ic_debit_mastercard")
         case CreditCard.CcType.visa:
             self.debitCardImageView.image = #imageLiteral(resourceName: "ic_debit_visa")
+        case CreditCard.CcType.amex:
+            self.debitCardImageView.image = #imageLiteral(resourceName: "ic_debit_amex")
         default:
             self.debitCardImageView.image = #imageLiteral(resourceName: "ic_debit_card_default_big")
         }
+
         let creditCardEndingNumber = creditCard.ccNo.substring(from: creditCard.ccNo.isEmpty ? 0 : creditCard.ccNo.count - 4)
         self.cardNumberLabel.text = String(format: NSLocalizedString("Card ending %@", comment: ""), creditCardEndingNumber)
         self.planNameLabel.text = "\(creditCard.account?.displayAccountNo ?? "") (\(creditCard.account?.title ?? ""))"

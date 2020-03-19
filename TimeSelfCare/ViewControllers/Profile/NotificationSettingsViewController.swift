@@ -127,7 +127,7 @@ class NotificationSettingsViewController: BaseViewController {
 
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             hud.label.text = NSLocalizedString("Updating...", comment: "")
-            NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { (error: Error?) in
+            NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { _, error in
                 hud.hide(animated: true)
 
                 if let error = error {

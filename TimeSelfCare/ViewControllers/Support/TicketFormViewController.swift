@@ -369,7 +369,7 @@ class TicketFormViewController: TimeBaseViewController {
             return image
         }
 
-        TicketDataController.shared.createTicket(ticket, account: AccountController.shared.selectedAccount, attachments: images) { (error: Error?) in
+        TicketDataController.shared.createTicket(ticket, account: AccountController.shared.selectedAccount, attachments: images) { _, error in
             hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)

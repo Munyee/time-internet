@@ -88,9 +88,8 @@ public extension ActivityDataController {
         let path = "get_account_notification_center"
         let body = [
             "username": AccountController.shared.profile.username,
-            "account_no": account?.accountNo
+            "account_no": account!.accountNo
         ]
-
         self.loadActivityData(path: path, body: body, completion: completion)
     }
 

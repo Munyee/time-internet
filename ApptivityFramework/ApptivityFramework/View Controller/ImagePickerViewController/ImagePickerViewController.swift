@@ -223,7 +223,7 @@ extension ImagePickerViewController: UICollectionViewDataSource, UICollectionVie
 
         let options: PHImageRequestOptions = PHImageRequestOptions()
         options.resizeMode = .none
-        //options.isSynchronous = true
+        options.isSynchronous = true
         options.isNetworkAccessAllowed = true
 
         self.assetsController.imageManager.requestImage(for: asset, targetSize: pickedImageSize, contentMode: PHImageContentMode.default, options: options, resultHandler: { [unowned self] (image: UIImage?, info: [AnyHashable : Any]?) -> Void in

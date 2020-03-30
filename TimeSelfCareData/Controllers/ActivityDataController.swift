@@ -34,9 +34,7 @@ public class ActivityDataController {
                         activityJSON?["profile_username"] = AccountController.shared.profile.username
                         return activityJSON
                     }
-
                     activities = self.processResponse(activityJSONArray)
-
                 }
                 DispatchQueue.main.async {
                     completion(activities, error)
@@ -97,7 +95,7 @@ public extension ActivityDataController {
         let path = "click_notification_center"
         let body = [
             "username": AccountController.shared.profile.username,
-            "account_no": account?.accountNo,
+            "account_no": account!.accountNo,
             "target_id": "\(activity.id)"
         ]
 

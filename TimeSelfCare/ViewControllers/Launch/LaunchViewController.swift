@@ -197,13 +197,8 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                         completion?(nil)
                     }
                 }
-                
-                ActivityDataController.shared.loadActivities(account: account) { (_, _) in
-                    
+                    ActivityDataController.shared.loadActivities(account: account) { (_, _) in
                 }
-
-//                ActivityDataController.shared.loadActivities(account: account) { (_, _) in
-//                }
             }
         }
     }

@@ -244,7 +244,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         }
 
         activityJson["account_no"] = account.accountNo
-        activityJson["profile_username"] = AccountController.shared.profile.username
+        activityJson["profile_username"] = AccountController.shared.profile?.username
 
         guard let activity = Activity(with: activityJson) else {
             openActivity()

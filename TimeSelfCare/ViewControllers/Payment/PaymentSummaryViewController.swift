@@ -77,7 +77,7 @@ internal class PaymentSummaryViewController: TimeBaseViewController {
         var parameters: [String: Any] = [:]
         let path = "make_payment"
         parameters["action"] = path
-        parameters["username"] = AccountController.shared.profile.username
+        parameters["username"] = AccountController.shared.profile?.username
         parameters["account_no"] = AccountController.shared.selectedAccount?.accountNo
         parameters["token"] = APIClient.shared.getToken(forPath: path)
         parameters["amount"] = amount

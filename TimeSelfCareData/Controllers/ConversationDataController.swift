@@ -114,7 +114,7 @@ public extension ConversationDataController {
         ) {
         let path = "get_ticket_conversations"
         var body: [String: Any] = [:]
-        body["username"] = AccountController.shared.profile.username
+        body["username"] = AccountController.shared.profile?.username
         body["account_no"] = account?.accountNo
         body["ticket_id"] = ticket?.id
         self.loadConversationData(path: path, body: body, completion: completion)
@@ -128,7 +128,7 @@ public extension ConversationDataController {
 
         let path: String = "reply_ticket"
         var body: [String: Any] = [:]
-        body["username"] = AccountController.shared.profile.username
+        body["username"] = AccountController.shared.profile?.username
         body["account_no"] = conversation.ticket?.accountNo
 
         for (key, value) in conversation.toJson() {

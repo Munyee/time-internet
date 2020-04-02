@@ -258,7 +258,7 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
 
     func pickerView(pickerView: CustomPickerView, didConfirmSelectionOfRowWithTitle title: [String]) {
         self.textView.resignFirstResponder()
-        self.text = title.first
+        self.text = title.first ?? ""
         delegate?.billingInfoFormComponentView(self, didUpdateBillingMethod: title.first ?? "")
     }
 

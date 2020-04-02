@@ -13,8 +13,7 @@ import MBProgressHUD
 class RewardConfirmationViewController: TimeBaseViewController {
     @IBOutlet private weak var rewardImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var voucherCodeLabel: UILabel!
-    @IBOutlet private weak var voucherCodeImageView: UIImageView!
+    @IBOutlet private weak var voucherStackView: UIStackView!
 
     var reward: Reward! // swiftlint:disable:this implicitly_unwrapped_optional
 
@@ -27,18 +26,31 @@ class RewardConfirmationViewController: TimeBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        
         if let imagePath = reward.image {
             self.rewardImageView?.sd_setImage(with: URL(string: imagePath), completed: nil)
         }
         self.nameLabel.text = reward.name
-        self.voucherCodeLabel.text = reward.code?.first { $0.isValidURL == false }
-        self.voucherCodeLabel.font = self.voucherCodeLabel.font.bold()
-        if let voucherImagePath = reward.code?.first(where: { $0.isValidURL }) {
-            self.voucherCodeImageView.sd_setImage(with: URL(string: voucherImagePath), completed: nil)
-            self.voucherCodeImageView.isHidden = false
-        } else {
-            self.voucherCodeImageView.isHidden = true
+
+        if let voucherCodes = reward.code {
+            for (index, voucherCode) in voucherCodes.enumerated() {
+                if let voucherView = UINib(nibName: "EVoucherView", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? EVoucherView {
+                    voucherView.voucherLabel.text = "E-Voucher Code \(index + 1)"
+                    if (voucherCode.isValidURL) {
+                        voucherView.voucherImg.sd_setImage(with: URL(string: voucherCode), completed: nil)
+                        voucherView.voucherCode.isHidden = true
+                        voucherView.voucherImg.isHidden = false
+                    } else {
+                        voucherView.voucherCode.text = voucherCode
+                        voucherView.voucherCode.isHidden = false
+                        voucherView.voucherImg.isHidden = true
+                    }
+
+                    voucherStackView.addArrangedSubview(voucherView)
+                }
+            }
         }
+
     }
 
     @IBAction func redeem(_ sender: Any) {

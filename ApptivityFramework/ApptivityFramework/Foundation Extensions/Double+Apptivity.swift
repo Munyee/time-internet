@@ -11,12 +11,14 @@ import Foundation
 public extension Double {
 
     public func currencyString(withSymbol currencySymbol: String, minimumFractionDigits: Int = 0, maximumFractionDigits: Int = 2) -> String {
+
         let currencyFormatter: NumberFormatter = NumberFormatter()
-        currencyFormatter.currencySymbol = currencySymbol
+        currencyFormatter.locale = Locale(identifier: "ms_MY")
+        currencyFormatter.currencySymbol = ""
         currencyFormatter.minimumFractionDigits = minimumFractionDigits
         currencyFormatter.maximumFractionDigits = maximumFractionDigits
         currencyFormatter.numberStyle = NumberFormatter.Style.currency
-        currencyFormatter.groupingSeparator = ","
+//        currencyFormatter.groupingSeparator = ","
 
         return currencyFormatter.string(from: NSNumber(value: self)) ?? ""
     }

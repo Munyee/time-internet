@@ -134,7 +134,7 @@ public extension TicketDataController {
         let path: String = "raise_ticket"
 
         var body: [String: Any] = [:]
-        body["username"] = AccountController.shared.profile.username
+        body["username"] = AccountController.shared.profile?.username
 
         for (key, value) in ticket.toJson() {
             body[key] = value

@@ -110,7 +110,7 @@ extension AutoDebitViewController {
         var parameters: [String: Any] = [:]
         let path = "make_payment_autodebit"
         parameters["action"] = path
-        parameters["username"] = AccountController.shared.profile.username
+        parameters["username"] = AccountController.shared.profile?.username
         parameters["account_no"] = AccountController.shared.selectedAccount?.accountNo
         parameters["token"] = APIClient.shared.getToken(forPath: path)
         parameters["amount"] = "\(billAmount?.isLessThanOrEqualTo(0) ?? true ? 1.00 : billAmount!)" // swiftlint:disable:this force_unwrapping

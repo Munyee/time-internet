@@ -105,8 +105,8 @@ public class AuthUser {
 
     // Save and load user from Keychain service
     public func save() {
-        try! self.uuid?.saveInKeychain(service: "AuthUser", withKey: "uuid")
-        try! self.sessionToken?.saveInKeychain(service: "AuthUser", withKey: "sessionToken")
+        try? self.uuid?.saveInKeychain(service: "AuthUser", withKey: "uuid")
+        try? self.sessionToken?.saveInKeychain(service: "AuthUser", withKey: "sessionToken")
 
         for identity in self.identities {
             if identity is KeychainableIdentity {
@@ -134,7 +134,7 @@ public class AuthUser {
     }
 
     public func saveIdentityToKeychain(_ identity: KeychainableIdentity) {
-        try! identity.keychainData().saveInKeychain(service: "AuthUser.identities", withKey: "\(identity.type.rawValue)::\(identity.identifier)")
+        try? identity.keychainData().saveInKeychain(service: "AuthUser.identities", withKey: "\(identity.type.rawValue)::\(identity.identifier)")
 
         // Quick fix to add identity to self.identities if doesn't exist (to refactor)
         var index: Int = -1

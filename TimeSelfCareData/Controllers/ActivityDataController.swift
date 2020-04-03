@@ -34,9 +34,7 @@ public class ActivityDataController {
                         activityJSON?["profile_username"] = AccountController.shared.profile?.username
                         return activityJSON
                     }
-
                     activities = self.processResponse(activityJSONArray)
-
                 }
                 DispatchQueue.main.async {
                     completion(activities, error)
@@ -90,8 +88,7 @@ public extension ActivityDataController {
             "username": AccountController.shared.profile?.username,
             "account_no": account?.accountNo
         ]
-
-        self.loadActivityData(path: path, body: body, completion: completion)
+        self.loadActivityData(path: path, body: body as [String : Any], completion: completion)
     }
 
     func markActivityAsRead(for activity: Activity, account: Account? = nil) {
@@ -103,6 +100,6 @@ public extension ActivityDataController {
         ]
 
         self.activities.first { $0.id == activity.id }?.isNew = false
-        APIClient.shared.postRequest(path: path, body: body, completion: nil)
+        APIClient.shared.postRequest(path: path, body: body as [String : Any], completion: nil)
     }
 }

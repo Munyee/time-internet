@@ -140,7 +140,7 @@ public extension UIViewController {
 
     public func presentNavigation(_ rootViewController: UIViewController, animated flag: Bool, completion: (() -> Swift.Void)? = nil) {
         let navigationController = UINavigationController(rootViewController: rootViewController)
-
+        navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: flag, completion: completion)
     }
 

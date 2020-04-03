@@ -119,6 +119,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             return
         }
 
+        landingVC.modalPresentationStyle = .fullScreen
         landingVC.modalTransitionStyle = .crossDissolve
         ((landingVC as? UINavigationController)?.viewControllers.first as? AuthMenuViewController)?.authAction = action
         self.present(landingVC, animated: true, completion: nil)
@@ -146,6 +147,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             return
         }
 
+        initialViewController.modalPresentationStyle = .fullScreen
         initialViewController.modalTransitionStyle = .crossDissolve
         self.present(initialViewController, animated: true) {
             if self.shouldOpenActivityController {

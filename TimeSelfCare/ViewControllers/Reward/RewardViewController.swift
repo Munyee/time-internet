@@ -26,10 +26,23 @@ class RewardViewController: TimeBaseViewController {
 
             self.validityPeriodStackView.axis = reward.status == .grabbed ? .vertical : .horizontal
 
-            let voucherCode = reward.code?.filter { $0.isValidURL == false }.joined(separator: "\n")
-            self.voucherCodeLabel.text = voucherCode
+            for (index, view) in self.voucherStackView.arrangedSubviews.enumerated() {
+                if (index != 0) {
+                    self.voucherStackView.removeArrangedSubview(view)
+                    view.removeFromSuperview()
+                }
+            }
 
-            let shouldHideVoucher = voucherCode == nil || reward.status == .redeemed
+            if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
+                for voucherCode in voucherCodes {
+                    if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
+                        voucherLabel.text = voucherCode
+                        self.voucherStackView.addArrangedSubview(voucherLabel)
+                    }
+                }
+            }
+
+            let shouldHideVoucher = reward.code == nil || reward.status == .redeemed
             self.voucherStackView.isHidden = shouldHideVoucher
             self.voucherStackView.arrangedSubviews.forEach {
                 $0.isHidden = shouldHideVoucher

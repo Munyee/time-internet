@@ -161,6 +161,7 @@ class SummaryContainerViewController: TimeBaseViewController {
         }
         fabMenuVC.menuItems = menuItems
         fabMenuVC.delegate = self
+        fabMenuVC.modalPresentationStyle = .fullScreen
         self.present(fabMenuVC, animated: true, completion: nil)
     }
 

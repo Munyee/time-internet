@@ -129,6 +129,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         guard let walkthroughVC = UIStoryboard(name: "Walkthrough", bundle: nil).instantiateInitialViewController() else {
             return
         }
+        walkthroughVC.modalPresentationStyle = .fullScreen
         self.present(walkthroughVC, animated: true, completion: nil)
     }
 
@@ -139,6 +140,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
 
     private func launchUpdateEmailViewController() {
         let changeMenuVc: ChangeEmailViewController = UIStoryboard(name: TimeSelfCareStoryboard.authMenu.filename, bundle: nil).instantiateViewController()
+        changeMenuVc.modalPresentationStyle = .fullScreen
         self.present(changeMenuVc, animated: true, completion: nil)
     }
 

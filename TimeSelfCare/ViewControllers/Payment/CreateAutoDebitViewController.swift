@@ -222,6 +222,7 @@ internal class CreateAutoDebitViewController: TimeBaseViewController {
                 self.presentingViewController?.dismiss(animated: false, completion: nil)
                 self.confirmationDidDismissAction?()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }
@@ -234,6 +235,7 @@ internal class CreateAutoDebitViewController: TimeBaseViewController {
                 self.presentingViewController?.dismiss(animated: false, completion: nil)
                 self.confirmationDidDismissAction?()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }

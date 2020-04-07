@@ -159,7 +159,7 @@ internal class LoginViewController: BaseAuthViewController {
         if string == "" {
             textField.deleteBackward()
         } else {
-            textField.insertText(textField == usernameTextField ? string : string.withoutWhitespace())
+            textField.insertText(textField == usernameTextField ? string : string.alphaNumeric())
         }
         self.updateUI()
         return false

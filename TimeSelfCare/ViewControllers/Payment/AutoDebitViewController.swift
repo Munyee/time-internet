@@ -170,6 +170,7 @@ extension AutoDebitViewController {
                 self.presentingViewController?.dismiss(animated: false, completion: nil)
                 // self.confirmationDidDismissAction?()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }
@@ -210,6 +211,7 @@ extension AutoDebitViewController {
                 self.presentingViewController?.dismiss(animated: false, completion: nil)
                 // self.confirmationDidDismissAction?()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }

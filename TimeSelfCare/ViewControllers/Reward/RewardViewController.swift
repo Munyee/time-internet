@@ -248,10 +248,12 @@ extension RewardViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RewardHeaderView") as? RewardHeaderView
-        headerView?.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
-        headerView?.delegate = self
-        return headerView
+        if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RewardHeaderView") as? RewardHeaderView {
+            headerView.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
+            headerView.delegate = self
+            return headerView
+        }
+        return nil
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

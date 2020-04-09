@@ -575,6 +575,7 @@ class BillingInfoFormViewController: UIViewController {
                 confirmationVC.actionBlock = {
                     self.dismissVC()
                 }
+                confirmationVC.modalPresentationStyle = .fullScreen
                 self.present(confirmationVC, animated: true, completion: nil)
             }
         }

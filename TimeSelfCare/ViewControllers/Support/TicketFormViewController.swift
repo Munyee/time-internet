@@ -150,7 +150,7 @@ class TicketFormComponentView: UIStackView, UITextViewDelegate, CustomPickerView
     }
 
     func pickerView(pickerView: CustomPickerView, didConfirmSelectionOfRowWithTitle title: [String]) {
-        self.textView.text = title.first
+        self.textView.text = title.first ?? ""
         self.textView.resignFirstResponder()
         self.textViewDidChange(self.textView)
     }
@@ -381,6 +381,7 @@ class TicketFormViewController: TimeBaseViewController {
             confirmationVC.actionBlock = {
                 self.dismissVC()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }

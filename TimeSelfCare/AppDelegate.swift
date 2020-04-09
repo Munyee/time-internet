@@ -63,7 +63,10 @@ extension AppDelegate {
         var userInfo = userInfo
         if var activityJson = userInfo["activity"] as? [String: Any] {
             activityJson["account_no"] = AccountController.shared.selectedAccount?.accountNo
-            activityJson["profile_username"] = AccountController.shared.profile.username
+            guard let username = AccountController.shared.profile?.username else {
+                return
+            }
+            activityJson["profile_username"] = username
             userInfo["activity"] = activityJson
         }
 

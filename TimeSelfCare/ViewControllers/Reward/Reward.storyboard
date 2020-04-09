@@ -293,7 +293,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="qBz-6i-NIR">
-                                        <rect key="frame" x="0.0" y="20" width="414" height="792"/>
+                                        <rect key="frame" x="0.0" y="20" width="414" height="676"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Redeem Confirmation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abh-r2-FEe">
                                                 <rect key="frame" x="85" y="0.0" width="244.5" height="31.5"/>
@@ -320,30 +320,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FFH-cn-bNS">
-                                                <rect key="frame" x="150.5" y="484" width="113" height="60"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voucher Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7y-c6-dgI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="113" height="20.5"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CV7-rs-gFQ">
-                                                        <rect key="frame" x="50.5" y="28.5" width="12" height="31.5"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                        <color key="textColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WGx-bn-Rqw">
-                                                <rect key="frame" x="157" y="560" width="100" height="100"/>
+                                                <rect key="frame" x="0.0" y="484" width="414" height="60"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="100" id="K2r-Wk-lUh"/>
+                                                    <constraint firstAttribute="height" priority="250" id="Xcw-u8-HTb"/>
                                                 </constraints>
-                                            </imageView>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zxY-Qe-SPD">
-                                                <rect key="frame" x="31.5" y="676" width="351" height="116"/>
+                                                <rect key="frame" x="31.5" y="560" width="351" height="116"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The &quot;Redeem Now&quot; button is only for merchant use" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF8-WY-8zG">
                                                         <rect key="frame" x="0.0" y="16" width="351" height="18"/>
@@ -371,6 +354,10 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="16" leading="0.0" bottom="16" trailing="0.0"/>
                                             </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="FFH-cn-bNS" firstAttribute="leading" secondItem="qBz-6i-NIR" secondAttribute="leading" id="m1T-tT-3ha"/>
+                                            <constraint firstAttribute="trailing" secondItem="FFH-cn-bNS" secondAttribute="trailing" id="tNF-0m-M46"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -396,13 +383,12 @@
                     <connections>
                         <outlet property="nameLabel" destination="KI8-l1-ALS" id="0CC-c2-8wR"/>
                         <outlet property="rewardImageView" destination="et4-Th-Dvp" id="a7r-bk-Zs0"/>
-                        <outlet property="voucherCodeImageView" destination="WGx-bn-Rqw" id="LJ7-HQ-fFo"/>
-                        <outlet property="voucherCodeLabel" destination="CV7-rs-gFQ" id="c2P-Mv-cfe"/>
+                        <outlet property="voucherStackView" destination="FFH-cn-bNS" id="HpS-hD-6Da"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HJ9-MZ-fzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="83" y="76"/>
+            <point key="canvasLocation" x="82.608695652173921" y="75.669642857142847"/>
         </scene>
     </scenes>
 </document>

@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import Alamofire
 import MBProgressHUD
 import UserNotifications
+import FirebaseRemoteConfig
 
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
+internal let dontAskAgainFlag: String = "dontAskAgain"
 
 internal class LaunchViewController: UIViewController, UNUserNotificationCenterDelegate {
+    var appVersionConfig: AppVersionModal!
+    var remoteConfig: RemoteConfig!
+    var message = ""
+
      private var hasShownWalkthrough: Bool {
          return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
      }
@@ -22,6 +29,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var progressStackView: UIStackView!
     @IBOutlet private weak var okButton: UIButton!
+    @IBOutlet private weak var versionUpdateView: UIView!
+    @IBOutlet private weak var dontShowButton: UIButton!
+    @IBOutlet private weak var cancelButton: UIButton!
+    @IBOutlet private weak var updateOrContinueButton: UIButton!
+    @IBOutlet private weak var updateInfoTextView: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +41,127 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         UNUserNotificationCenter.current().delegate = self
     }
 
+    deinit {
+        appVersionConfig = nil
+        remoteConfig = nil
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.errorLabel.isHidden = true
         self.okButton.isHidden = true
+        self.versionUpdateView.isHidden = true
+        self.versionUpdateView.layer.cornerRadius = 10
+        self.versionUpdateView.layer.borderWidth = 1
+        self.versionUpdateView.layer.borderColor = UIColor.black.cgColor
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.showNext()
+        getFirebaseAppVersion()
     }
 
+    func getFirebaseAppVersion() {
+        if NetworkReachabilityManager()!.isReachable {
+            remoteConfig = RemoteConfig.remoteConfig()
+            let settings = RemoteConfigSettings()
+            settings.minimumFetchInterval = 0
+            remoteConfig.configSettings = settings
+            remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
+            remoteConfig.fetch(withExpirationDuration: 3600) { (status, error) -> Void in
+                if status == .success {
+                    print("Config fetched!")
+                    self.remoteConfig.activate(completionHandler: { (error) in
+                        self.appVersionConfig = AppVersionModal(dictionary: (self.remoteConfig["app_init_staging"].jsonValue as? NSDictionary)!)
+                        DispatchQueue.main.async { self.checkAppVersion() }
+                    })
+                } else {
+                    self.showNext()
+                    print("Config not fetched")
+                    print("Error: \(error?.localizedDescription ?? "No error available.")")
+                }
+            }
+        } else {
+            let alert = UIAlertController(title:"", message: "No Internet Connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "RETRY", style: .cancel, handler: { (_) in
+                self.getFirebaseAppVersion()
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func checkAppVersion() {
+        guard
+            let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,
+            let currentInstalledVersion = Int(bundleVersion),
+            let majorVersion = Int(self.appVersionConfig.major),
+            let minorVersion = Int(self.appVersionConfig.minor),
+            let latestVersion = Int(self.appVersionConfig.latest) else {
+            return
+        }
+        
+        if currentInstalledVersion < latestVersion {
+            if currentInstalledVersion < majorVersion {
+                print("Major Version update")
+                showAppVersionWithMajorUpdate()
+            } else
+                if currentInstalledVersion < minorVersion {
+                print("Minor Version update")
+                showAppVersionWithMinorUpdate()
+            } else if currentInstalledVersion < latestVersion {
+                print("Latest Version update")
+                showAppVersionWithLatestUpdate()
+            }
+        } else {
+            print("No update")
+            self.versionUpdateView.isHidden = true
+            self.showNext()
+        }
+    }
+    
+    func showAppVersionWithMajorUpdate() {
+        self.versionUpdateView.isHidden = false
+        self.dontShowButton.isHidden = true
+        self.updateInfoTextView.text = "A Major version of this app is available. Please update the app to continue using it."
+    }
+    
+    func showAppVersionWithMinorUpdate() {
+        
+        if UserDefaults.standard.bool(forKey:dontAskAgainFlag) {
+            self.versionUpdateView.isHidden = true
+            self.dontShowButton.isHidden = true
+            self.showNext()
+        }else {
+            self.versionUpdateView.isHidden = false
+            self.dontShowButton.isHidden = false
+        }
+        self.updateInfoTextView.text = "A Minor version of this app is available. Please update the app to continue using it."
+    }
+    
+    func showAppVersionWithLatestUpdate() {
+        self.versionUpdateView.isHidden = false
+        self.dontShowButton.isHidden = true
+        self.updateInfoTextView.text = "A newer version of this app is available. Please update the app to continue using it."
+    }
+    
+    @IBAction func dontAskAgainButtonTapped(_ sender: Any) {
+        let isDontAskEnabled: Bool = UserDefaults.standard.bool(forKey:dontAskAgainFlag)
+        UserDefaults.standard.set(true, forKey:dontAskAgainFlag)
+        self.showNext()
+    }
+    
+    @IBAction func updateButtonTapped(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey:dontAskAgainFlag)
+        if let url = URL(string: self.appVersionConfig.urlApp) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        self.showNext()
+    }
+    
     @IBAction private func showNext() { // swiftlint:disable:this cyclomatic_complexity
         guard
             let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,

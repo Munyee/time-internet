@@ -73,7 +73,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 if status == .success {
                     print("Config fetched!")
                     self.remoteConfig.activate(completionHandler: { (error) in
-                        self.appVersionConfig = AppVersionModal(dictionary: (self.remoteConfig["app_init_staging"].jsonValue as? NSDictionary)!)
+                        self.appVersionConfig = AppVersionModal(dictionary: (self.remoteConfig["app_init"].jsonValue as? NSDictionary)!)
                         DispatchQueue.main.async { self.checkAppVersion() }
                     })
                 } else {
@@ -136,7 +136,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             self.versionUpdateView.isHidden = false
             self.dontShowButton.isHidden = false
         }
-        self.updateInfoTextView.text = "A Minor version of this app is available. Please update the app to continue using it."
+        self.updateInfoTextView.text = "A newer version of this app is available. Please update the app to continue using it."
     }
     
     func showAppVersionWithLatestUpdate() {

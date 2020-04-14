@@ -17,7 +17,6 @@ class AppVersionModal: NSObject {
     var minor_title = ""
     var minor_text  = ""
     var url         = ""
-    var urlApp      = ""
 
     override init() {
         super.init()
@@ -33,7 +32,6 @@ class AppVersionModal: NSObject {
         minor_title = "\(dict?["minor_title"] ?? "")"
         minor_text  = "\(dict?["minor_text"] ?? "")"
         url         = "\(dict?["url"] ?? "")"
-        urlApp      = "\(dict?["url_app"] ?? "")"
     }
 
     deinit {

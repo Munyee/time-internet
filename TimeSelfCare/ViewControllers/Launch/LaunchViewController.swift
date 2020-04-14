@@ -154,14 +154,13 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
     
     @IBAction func dontAskAgainButtonTapped(_ sender: Any) {
-        let isDontAskEnabled: Bool = UserDefaults.standard.bool(forKey:dontAskAgainFlag)
         UserDefaults.standard.set(true, forKey:dontAskAgainFlag)
         self.showNext()
     }
     
     @IBAction func updateButtonTapped(_ sender: Any) {
         UserDefaults.standard.set(false, forKey:dontAskAgainFlag)
-        if let url = URL(string: self.appVersionConfig.urlApp) {
+        if let url = URL(string: self.appVersionConfig.url) {
             UIApplication.shared.open(url)
         }
     }

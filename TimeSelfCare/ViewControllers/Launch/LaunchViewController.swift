@@ -33,6 +33,8 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var dontShowButton: UIButton!
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var updateOrContinueButton: UIButton!
+    
+    @IBOutlet weak var alertTitleLabel: UILabel!
     @IBOutlet private weak var updateInfoTextView: UITextView!
 
     override func viewDidLoad() {
@@ -97,18 +99,22 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             let currentInstalledVersion = Int(bundleVersion),
             let majorVersion = Int(self.appVersionConfig.major),
             let minorVersion = Int(self.appVersionConfig.minor),
-            let latestVersion = Int(self.appVersionConfig.latest) else {
+            let latestVersion = Int(self.appVersionConfig.latest),
+            let majorTitle = self.appVersionConfig.major_title as? String,
+            let majorText = self.appVersionConfig.major_text as? String,
+            let minorTitle = self.appVersionConfig.minor_title as? String,
+            let minorText = self.appVersionConfig.minor_text as? String else {
             return
         }
         
         if currentInstalledVersion < latestVersion {
             if currentInstalledVersion < majorVersion {
                 print("Major Version update")
-                showAppVersionWithMajorUpdate()
+                showAppVersionWithMajorUpdate(messageTitle:majorTitle, messageBody: majorText)
             } else
                 if currentInstalledVersion < minorVersion {
                 print("Minor Version update")
-                showAppVersionWithMinorUpdate()
+                showAppVersionWithMinorUpdate(messageTitle:minorTitle, messageBody: minorText)
             } else if currentInstalledVersion < latestVersion {
                 print("Latest Version update")
                 showAppVersionWithLatestUpdate()
@@ -120,14 +126,14 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         }
     }
     
-    func showAppVersionWithMajorUpdate() {
+    func showAppVersionWithMajorUpdate(messageTitle: String, messageBody:String ) {
         self.versionUpdateView.isHidden = false
         self.dontShowButton.isHidden = true
-        self.updateInfoTextView.text = "A Major version of this app is available. Please update the app to continue using it."
+        self.alertTitleLabel.text = messageTitle
+        self.updateInfoTextView.text = messageBody
     }
     
-    func showAppVersionWithMinorUpdate() {
-        
+    func showAppVersionWithMinorUpdate(messageTitle: String, messageBody:String ) {
         if UserDefaults.standard.bool(forKey:dontAskAgainFlag) {
             self.versionUpdateView.isHidden = true
             self.dontShowButton.isHidden = true
@@ -136,12 +142,14 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             self.versionUpdateView.isHidden = false
             self.dontShowButton.isHidden = false
         }
-        self.updateInfoTextView.text = "A newer version of this app is available. Please update the app to continue using it."
+        self.alertTitleLabel.text = messageTitle
+        self.updateInfoTextView.text = messageBody
     }
     
     func showAppVersionWithLatestUpdate() {
         self.versionUpdateView.isHidden = false
         self.dontShowButton.isHidden = true
+        self.alertTitleLabel.text = "New Update Available"
         self.updateInfoTextView.text = "A newer version of this app is available. Please update the app to continue using it."
     }
     

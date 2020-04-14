@@ -91,7 +91,9 @@ class NotificationSettingsViewController: BaseViewController {
                     }
 
                     let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
-                    self.showAlertMessage(message: NSLocalizedString("Push notifications for TIME Self Care are currently disabled. If you'd like to receive push notifications, please enable them in the Setting.", comment: ""), actions: [cancelAction, openAction])
+                    DispatchQueue.main.async {
+                        self.showAlertMessage(message: NSLocalizedString("Push notifications for TIME Self Care are currently disabled. If you'd like to receive push notifications, please enable them in the Setting.", comment: ""), actions: [cancelAction, openAction])
+                    }
                 } else {
                     UIApplication.shared.setupRemoteNotifications()
                 }

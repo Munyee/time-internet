@@ -39,6 +39,7 @@ target 'TimeSelfCare' do
   pod 'lottie-ios', '~> 2.5.3'
   pod 'Firebase/Core'
   pod 'Crashlytics'
+  pod 'FreshchatSDK', :git => 'https://github.com/freshdesk/freshchat-ios.git', :branch => 'hybrid-sdk'
 
   target 'TimeSelfCareTests' do
     inherit! :search_paths
@@ -53,7 +54,7 @@ target 'TimeSelfCare' do
 end
 
 my_project_pods_swift_versions = Hash[
-  "4.0", ["Alamofire", "CardIO", "SDWebImage", "EasyTipView", "JVFloatLabeledTextField", "SwiftLint", "MBProgressHUD", "lottie-ios", "Firebase/Core", "Crashlytics", "ApptivityFramework"]
+  "4.0", ["Alamofire", "CardIO", "SDWebImage", "EasyTipView", "JVFloatLabeledTextField", "SwiftLint", "MBProgressHUD", "lottie-ios", "Firebase/Core", "Crashlytics", "ApptivityFramework", "FreshchatSDK"]
 ]
 
 def setup_all_swift_versions(target, pods_swift_versions)

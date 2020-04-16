@@ -20,6 +20,9 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let freshchatConfig: FreshchatConfig = FreshchatConfig.init(appID: "e7b242c4-d7f0-4442-ac69-14af0b14ff91", andAppKey: "8c2c04e4-0080-44ba-b4d3-dc0fa8af2cc2")
+        Freshchat.sharedInstance().initWith(freshchatConfig)
+
         FirebaseApp.configure()
 
         AuthUser.authDelegate = AccountController.shared

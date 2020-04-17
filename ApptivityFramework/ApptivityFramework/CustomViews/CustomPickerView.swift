@@ -91,7 +91,7 @@ open class CustomPickerView: UIView {
                 selectedRows.append(array[rowIndex])
             }
         }
-        return selectedRows
+        return selectedRows.isEmpty ? [] : selectedRows
     }
 
     public func selectRow(_ row: Int, inComponent component: Int, animated: Bool) {

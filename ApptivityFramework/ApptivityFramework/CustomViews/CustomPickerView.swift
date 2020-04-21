@@ -121,7 +121,6 @@ extension CustomPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         return NSAttributedString(string: self.dataArray[component][row], attributes: attributes)
     }
 
-
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return self.dataArray[component].count
     }

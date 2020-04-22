@@ -60,6 +60,7 @@ internal class SidebarTableViewController: UIViewController {
                     confirmationVC.actionBlock = {
                         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
                     }
+                    confirmationVC.modalPresentationStyle = .fullScreen
                     self.present(confirmationVC, animated: true, completion: nil)
                 }
             }

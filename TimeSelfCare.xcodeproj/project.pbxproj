@@ -49,6 +49,10 @@
 		9EC1356B241B6E1200E59C44 /* APTSidebarNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13566241B6E1200E59C44 /* APTSidebarNavigationController.m */; };
 		9EC1356C241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13568241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m */; };
 		9EC1356D241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13569241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m */; };
+		9ECA46402436C79F00EB0DB8 /* EVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA463E2436C79F00EB0DB8 /* EVoucherView.swift */; };
+		9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */; };
+		9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */; };
+		9ECA46462436C7AE00EB0DB8 /* VoucherLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */; };
 		B018E39B5B7E817784BAE038 /* Pods_TimeSelfCareDataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58C2E86DE2155A9872935D6F /* Pods_TimeSelfCareDataTests.framework */; };
 		B8398C3EF5E14DC6CD51DAD5 /* Pods_TimeSelfCareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBE17C0DC790D81DE2B6420 /* Pods_TimeSelfCareUITests.framework */; };
 		C549D48BB2182DD42D2BDA23 /* Pods_TimeSelfCare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AD07830B8224A808109C05 /* Pods_TimeSelfCare.framework */; };
@@ -301,6 +305,10 @@
 		9EC13567241B6E1200E59C44 /* APTSidebarContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarContentSegue.h; sourceTree = "<group>"; };
 		9EC13568241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+APTSidebarNavigation.m"; sourceTree = "<group>"; };
 		9EC13569241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarNavigationControllerPushSegue.m; sourceTree = "<group>"; };
+		9ECA463E2436C79F00EB0DB8 /* EVoucherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVoucherView.swift; sourceTree = "<group>"; };
+		9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVoucherView.xib; sourceTree = "<group>"; };
+		9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherLabel.xib; sourceTree = "<group>"; };
+		9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherLabel.swift; sourceTree = "<group>"; };
 		9F604557CEE62B598F117893 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		ADBE17C0DC790D81DE2B6420 /* Pods_TimeSelfCareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B36444420D735134782AC890 /* Pods-TimeSelfCare.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.staging.xcconfig"; sourceTree = "<group>"; };
@@ -767,6 +775,24 @@
 			path = APTSidebarNavigationController;
 			sourceTree = "<group>";
 		};
+		9ECA463D2436C79F00EB0DB8 /* EVoucherView */ = {
+			isa = PBXGroup;
+			children = (
+				9ECA463E2436C79F00EB0DB8 /* EVoucherView.swift */,
+				9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */,
+			);
+			path = EVoucherView;
+			sourceTree = "<group>";
+		};
+		9ECA46422436C7AE00EB0DB8 /* VoucherLabel */ = {
+			isa = PBXGroup;
+			children = (
+				9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */,
+				9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */,
+			);
+			path = VoucherLabel;
+			sourceTree = "<group>";
+		};
 		E20A717A1FD4A7BE00938766 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -983,6 +1009,8 @@
 		E2FB110B22CC9477000FED93 /* Reward */ = {
 			isa = PBXGroup;
 			children = (
+				9ECA46422436C7AE00EB0DB8 /* VoucherLabel */,
+				9ECA463D2436C79F00EB0DB8 /* EVoucherView */,
 				E2FB111022CC9603000FED93 /* Views */,
 				E2FB110C22CC9492000FED93 /* Reward.storyboard */,
 				E2FB110E22CC95EC000FED93 /* RewardViewController.swift */,
@@ -1125,7 +1153,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Apptivity Lab";
 				TargetAttributes = {
 					5A478FF91FA972070074B5D4 = {
@@ -1189,6 +1217,7 @@
 				E2F7225220CA47D800C5204D /* anim_notification_bell.json in Resources */,
 				E22A5B5322C5A4E600C99ED2 /* GoogleService-Info.plist in Resources */,
 				E2AD69D820AD12CB001D104E /* Performance.storyboard in Resources */,
+				9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */,
 				5A4790051FA972080074B5D4 /* Assets.xcassets in Resources */,
 				E22050E21FCD4D0B004D5B10 /* DIN-Bold.ttf in Resources */,
 				E2610F771FC51F6F00959D85 /* Payment.storyboard in Resources */,
@@ -1198,6 +1227,7 @@
 				E2A8E8441FCE3D6E00EA5DF2 /* Profile.storyboard in Resources */,
 				E2E84FED1FCEB4FB0014CEAA /* DIN Alternate Regular.otf in Resources */,
 				E2626D5020A923F700891953 /* Activity.storyboard in Resources */,
+				9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */,
 				E2A8E84B1FCE6A4B00EA5DF2 /* Common.storyboard in Resources */,
 				E2AD92C91FC3AE2700138334 /* Summary.storyboard in Resources */,
 				E2E84FE71FCEA87E0014CEAA /* DINCondensed-Bold.ttf in Resources */,
@@ -1467,11 +1497,13 @@
 				9EC1356D241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m in Sources */,
 				E2217F081FCB250600E9056B /* ScanCardViewController.swift in Sources */,
 				E2DE28691FBD404E00E3CC1E /* ForgetPasswordViewController.swift in Sources */,
+				9ECA46462436C7AE00EB0DB8 /* VoucherLabel.swift in Sources */,
 				E21CF72F1FC674E900F13FAF /* AutoDebitViewController.swift in Sources */,
 				5A20BF431FE98EFC00ECFF78 /* TimeBaseViewController.swift in Sources */,
 				E2AD92C51FC3A58C00138334 /* AddOnViewController.swift in Sources */,
 				E2A8E8481FCE543400EA5DF2 /* ChangePasswordViewController.swift in Sources */,
 				E2610F791FC51F8D00959D85 /* PaymentSummaryViewController.swift in Sources */,
+				9ECA46402436C79F00EB0DB8 /* EVoucherView.swift in Sources */,
 				E27A883A22CEF81400C00F63 /* RewardConfirmationViewController.swift in Sources */,
 				E2DE286B1FBD67B400E3CC1E /* ChangeEmailViewController.swift in Sources */,
 				E21AA70320B3E795008851F1 /* FloatLabeledTextView.swift in Sources */,
@@ -1659,6 +1691,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1666,6 +1699,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1718,6 +1752,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1725,6 +1760,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1766,7 +1802,7 @@
 				CODE_SIGN_ENTITLEMENTS = TimeSelfCare/TimeSelfCare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 691;
+				CURRENT_PROJECT_VERSION = 802;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1776,7 +1812,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.4;
+				MARKETING_VERSION = 3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1796,7 +1832,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 691;
+				CURRENT_PROJECT_VERSION = 802;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1805,7 +1841,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.4;
+				MARKETING_VERSION = 3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1993,6 +2029,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2000,6 +2037,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -2041,7 +2079,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 691;
+				CURRENT_PROJECT_VERSION = 802;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2050,7 +2088,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.4;
+				MARKETING_VERSION = 3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

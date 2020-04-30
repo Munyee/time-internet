@@ -23,7 +23,11 @@ public extension UIImage {
             drawTransposed = false
         }
 
-        return self.imageResizedTo(newSize: size, transform: self.transformForOrientation(orientation: self.imageOrientation, scaledToSize: size), drawTransposed: drawTransposed, interpolationQuality: interpolationQuality)
+        if let image = self.imageResizedTo(newSize: size, transform: self.transformForOrientation(orientation: self.imageOrientation, scaledToSize: size), drawTransposed: drawTransposed, interpolationQuality: interpolationQuality) {
+            return image
+        } else {
+            return self
+        }
     }
 
     public func resizedTo(maximumDimension: CGFloat) -> UIImage! {

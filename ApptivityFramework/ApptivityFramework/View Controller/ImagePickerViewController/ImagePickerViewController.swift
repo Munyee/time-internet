@@ -252,20 +252,20 @@ extension ImagePickerViewController: UICollectionViewDataSource, UICollectionVie
 
 public extension ImagePickerViewController {
 
-    public class func imagePicker(mediaTypes: [String] = [kUTTypeImage as String], allowMultipleSelection: Bool = false,  pickedTargetSize: CGSize = PHImageManagerMaximumSize, sourceType: UIImagePickerControllerSourceType? = nil, picked: ((_ info: [String : Any]?) -> Void)? = nil) -> ImagePickerViewController {
+    class func imagePicker(mediaTypes: [String] = [kUTTypeImage as String], allowMultipleSelection: Bool = false,  pickedTargetSize: CGSize = PHImageManagerMaximumSize, sourceType: UIImagePickerControllerSourceType? = nil, picked: ((_ info: [String : Any]?) -> Void)? = nil) -> ImagePickerViewController {
         var imagePickerViewController: ImagePickerViewController! = nil
 
         for items in self.imagePickerNib.instantiate(withOwner: nil, options: nil) {
             if let targetVC: ImagePickerViewController = items as? ImagePickerViewController {
                 imagePickerViewController = targetVC
-                break
+                imagePickerViewController.allowMultipleSelection = allowMultipleSelection
+                imagePickerViewController.sourceType = sourceType
+                imagePickerViewController.imagePickerCompletion = picked
+                imagePickerViewController.mediaTypes = mediaTypes
+                imagePickerViewController.pickedImageSize = pickedTargetSize
+                return imagePickerViewController
             }
         }
-        imagePickerViewController.allowMultipleSelection = allowMultipleSelection
-        imagePickerViewController.sourceType = sourceType
-        imagePickerViewController.imagePickerCompletion = picked
-        imagePickerViewController.mediaTypes = mediaTypes
-        imagePickerViewController.pickedImageSize = pickedTargetSize
         return imagePickerViewController
     }
 }

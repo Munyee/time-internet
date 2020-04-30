@@ -56,7 +56,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.versionUpdateView.layer.cornerRadius = 10
         self.versionUpdateView.layer.borderWidth = 1
         self.versionUpdateView.layer.borderColor = UIColor.black.cgColor
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -71,7 +70,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             settings.minimumFetchInterval = 0
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-            remoteConfig.fetch(withExpirationDuration: 3600) { (status, error) -> Void in
+            remoteConfig.fetch(withExpirationDuration:3600) { (status, error) -> Void in
                 if status == .success {
                     print("Config fetched!")
                     self.remoteConfig.activate(completionHandler: { (error) in
@@ -161,6 +160,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBAction func updateButtonTapped(_ sender: Any) {
         UserDefaults.standard.set(false, forKey:dontAskAgainFlag)
         if let url = URL(string: self.appVersionConfig.url) {
+            print("Url = \(url)")
             UIApplication.shared.open(url)
         }
     }
@@ -185,22 +185,22 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             return
         }
 
-        guard currentInstalledVersion >= remoteVersion else {
-            let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String // swiftlint:disable:this force_cast
-            let alertAction = UIAlertAction(title: NSLocalizedString("UPDATE", comment: ""), style: .default) { _ in
-                let url = URL(string: "itms-apps://itunes.apple.com/app/1315891250")! // swiftlint:disable:this force_unwrap
-                if UIApplication.shared.canOpenURL(url) {
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(url)
-                    } else {
-                        UIApplication.shared.openURL(url)
-                    }
-                }
-                self.showNext()
-            }
-            self.showAlertMessage(title: NSLocalizedString("Update Required", comment: ""), message: String.localizedStringWithFormat("A newer version of this app is available. Please update the app to continue using it.", appName), actions: [alertAction])
-            return
-        }
+//        guard currentInstalledVersion >= remoteVersion else {
+//            let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String // swiftlint:disable:this force_cast
+//            let alertAction = UIAlertAction(title: NSLocalizedString("UPDATE", comment: ""), style: .default) { _ in
+//                let url = URL(string: "itms-apps:itunes.apple.com/app/1315891250")! // swiftlint:disable:this force_unwrap
+//                if UIApplication.shared.canOpenURL(url) {
+//                    if #available(iOS 10.0, *) {
+//                        UIApplication.shared.open(url)
+//                    } else {
+//                        UIApplication.shared.openURL(url)
+//                    }
+//                }
+//                self.showNext()
+//            }
+//            self.showAlertMessage(title: NSLocalizedString("Update Required", comment: ""), message: String.localizedStringWithFormat("A newer version of this app is available. Please update the app to continue using it.", appName), actions: [alertAction])
+//            return
+//        }
 
         guard let profile = AccountController.shared.profile else {
             self.launchAuthMenu()

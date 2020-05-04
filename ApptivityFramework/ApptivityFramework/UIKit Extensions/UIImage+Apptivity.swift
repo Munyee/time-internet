@@ -79,9 +79,7 @@ public extension UIImage {
         let newRect: CGRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height).integral
         let transposedRect = CGRect(x: 0, y: 0, width: newRect.size.height, height: newRect.size.width)
 
-        guard let imageRef: CGImage! = self.cgImage else {
-            return
-        }
+        let imageRef: CGImage! = self.cgImage
 
         // Build a context that's the same dimensions as the new size
         let bitmap: CGContext = CGContext(data: nil, width: Int(newRect.size.width), height: Int(newRect.size.height), bitsPerComponent: imageRef.bitsPerComponent, bytesPerRow: 0, space: imageRef.colorSpace ?? CGColorSpaceCreateDeviceRGB(), bitmapInfo: imageRef.bitmapInfo.rawValue)!

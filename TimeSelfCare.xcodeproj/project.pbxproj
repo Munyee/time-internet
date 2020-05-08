@@ -54,8 +54,6 @@
 		9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */; };
 		9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */; };
 		9ECA46462436C7AE00EB0DB8 /* VoucherLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */; };
-		9EE0B956246509F30073288B /* LiveChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EE0B955246509F30073288B /* LiveChatView.xib */; };
-		9EE0B95824650AA60073288B /* LiveChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0B95724650AA60073288B /* LiveChatView.swift */; };
 		9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF3C4A8243EB924007C22DC /* ContactUsViewController.swift */; };
 		B018E39B5B7E817784BAE038 /* Pods_TimeSelfCareDataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58C2E86DE2155A9872935D6F /* Pods_TimeSelfCareDataTests.framework */; };
 		B8398C3EF5E14DC6CD51DAD5 /* Pods_TimeSelfCareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBE17C0DC790D81DE2B6420 /* Pods_TimeSelfCareUITests.framework */; };
@@ -314,8 +312,6 @@
 		9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVoucherView.xib; sourceTree = "<group>"; };
 		9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherLabel.xib; sourceTree = "<group>"; };
 		9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherLabel.swift; sourceTree = "<group>"; };
-		9EE0B955246509F30073288B /* LiveChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveChatView.xib; sourceTree = "<group>"; };
-		9EE0B95724650AA60073288B /* LiveChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatView.swift; sourceTree = "<group>"; };
 		9EF3C4A8243EB924007C22DC /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		9F604557CEE62B598F117893 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		ADBE17C0DC790D81DE2B6420 /* Pods_TimeSelfCareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -616,7 +612,6 @@
 		0A9433811FAAC5AC00AA0DFF /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				9EE0B954246509F30073288B /* LiveChat */,
 				0A9433821FAAC5E000AA0DFF /* CentredImageButton.swift */,
 				E21AA70220B3E795008851F1 /* FloatLabeledTextView.swift */,
 				E277BA1621118C6000660FCE /* TimeTableView.swift */,
@@ -801,15 +796,6 @@
 				9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */,
 			);
 			path = VoucherLabel;
-			sourceTree = "<group>";
-		};
-		9EE0B954246509F30073288B /* LiveChat */ = {
-			isa = PBXGroup;
-			children = (
-				9EE0B955246509F30073288B /* LiveChatView.xib */,
-				9EE0B95724650AA60073288B /* LiveChatView.swift */,
-			);
-			path = LiveChat;
 			sourceTree = "<group>";
 		};
 		E20A717A1FD4A7BE00938766 /* Cells */ = {
@@ -1241,7 +1227,6 @@
 				5A4790051FA972080074B5D4 /* Assets.xcassets in Resources */,
 				E22050E21FCD4D0B004D5B10 /* DIN-Bold.ttf in Resources */,
 				E2610F771FC51F6F00959D85 /* Payment.storyboard in Resources */,
-				9EE0B956246509F30073288B /* LiveChatView.xib in Resources */,
 				E22D054620BBE40300C38B54 /* BadConnection.json in Resources */,
 				E2730B892097026C00A140F1 /* BillingInfo.storyboard in Resources */,
 				E2FB110D22CC9492000FED93 /* Reward.storyboard in Resources */,
@@ -1515,7 +1500,6 @@
 				E27DCC961FE0C3D900A82769 /* String+.swift in Sources */,
 				E2AD92C71FC3A5DC00138334 /* VoiceSummaryViewController.swift in Sources */,
 				E22050DA1FCD08EF004D5B10 /* AddOnDetailViewController.swift in Sources */,
-				9EE0B95824650AA60073288B /* LiveChatView.swift in Sources */,
 				9EC1356C241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m in Sources */,
 				41A79D2B24403EA0002A9C4B /* AppVersionModal.swift in Sources */,
 				E20A71821FD4F8DC00938766 /* BillsViewController.swift in Sources */,

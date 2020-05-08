@@ -35,9 +35,11 @@ target 'TimeSelfCare' do
 
   # Pods for TimeSelfCare
   pod 'SwiftLint'
+  pod 'SwiftyJSON'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'lottie-ios', '~> 2.5.3'
   pod 'Firebase/Core'
+  pod 'Firebase/RemoteConfig'
   pod 'Crashlytics'
   pod 'FreshchatSDK', :git => 'https://github.com/freshdesk/freshchat-ios.git', :branch => 'hybrid-sdk'
 

@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DIN-Light.ttf">
+            <string>DIN-Light</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="SwA-vX-kzB">
@@ -88,7 +93,7 @@
                                                     <color key="titleColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="showSignUpPlans:" destination="uhy-ep-yp0" eventType="touchUpInside" id="Zqo-Ra-pm5"/>
+                                                    <action selector="showSignUpPlans:" destination="uhy-ep-yp0" eventType="touchUpInside" id="5iF-RS-ENQ"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="95u-YN-za5">
@@ -110,7 +115,7 @@
                                                     <color key="titleColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="showContactUs:" destination="uhy-ep-yp0" eventType="touchUpInside" id="lmQ-re-88R"/>
+                                                    <segue destination="8Eh-Pc-ujL" kind="show" id="xPT-0o-5hK"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1063,6 +1068,157 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ujj-UD-8Fd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1564" y="501"/>
+        </scene>
+        <!--Contact Us View Controller-->
+        <scene sceneID="koH-hN-I4K">
+            <objects>
+                <viewController id="8Eh-Pc-ujL" customClass="ContactUsViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SZf-4x-h6s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="3GI-o4-UaF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="uQ1-e7-fzN">
+                                        <rect key="frame" x="44" y="0.0" width="287" height="591"/>
+                                        <subviews>
+                                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6hB-vP-N0x">
+                                                <rect key="frame" x="0.0" y="44" width="287" height="211.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotline" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oj0-ld-Xpy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="287" height="31.5"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PwL-gQ-4XF">
+                                                        <rect key="frame" x="0.0" y="36.5" width="287" height="46"/>
+                                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
+                                                        <state key="normal" title="1800 18 1818">
+                                                            <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="actCall:" destination="8Eh-Pc-ujL" eventType="touchUpInside" id="Tql-rf-VO9"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tg-pO-qsu">
+                                                        <rect key="frame" x="0.0" y="87.5" width="287" height="34"/>
+                                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gp0-gX-5FB">
+                                                        <rect key="frame" x="0.0" y="126.5" width="287" height="46"/>
+                                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
+                                                        <state key="normal" title="+603 5021 2122">
+                                                            <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="actCall:" destination="8Eh-Pc-ujL" eventType="touchUpInside" id="WD1-YE-F29"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(if you are abroad)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ew-Rj-Ej7">
+                                                        <rect key="frame" x="0.0" y="177.5" width="287" height="34"/>
+                                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iyI-K6-G96">
+                                                <rect key="frame" x="0.0" y="315.5" width="287" height="82.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOi-CL-V3x">
+                                                        <rect key="frame" x="0.0" y="0.0" width="287" height="31.5"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWK-Qn-Toe">
+                                                        <rect key="frame" x="0.0" y="36.5" width="287" height="46"/>
+                                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
+                                                        <state key="normal" title="cs@time.com.my">
+                                                            <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="actSendEmail:" destination="8Eh-Pc-ujL" eventType="touchUpInside" id="XbO-Am-5AU"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="M5B-PV-dah">
+                                                <rect key="frame" x="0.0" y="458" width="287" height="93"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9N-gI-099">
+                                                        <rect key="frame" x="23.5" y="0.0" width="240" height="0.0"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" id="co1-K1-m9n"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ik9-sb-2R4">
+                                                        <rect key="frame" x="89.5" y="60" width="108" height="33"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <state key="normal" title="Back to Home">
+                                                            <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="backToHome:" destination="8Eh-Pc-ujL" eventType="touchUpInside" id="RTW-Od-nEB"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="44" leading="0.0" bottom="40" trailing="0.0"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="uQ1-e7-fzN" firstAttribute="top" secondItem="3GI-o4-UaF" secondAttribute="top" id="Es1-i2-06r"/>
+                                    <constraint firstAttribute="bottom" secondItem="uQ1-e7-fzN" secondAttribute="bottom" id="KAR-mi-IsV"/>
+                                    <constraint firstAttribute="trailing" secondItem="uQ1-e7-fzN" secondAttribute="trailing" constant="-44" id="gl5-01-ZhU"/>
+                                    <constraint firstItem="uQ1-e7-fzN" firstAttribute="leading" secondItem="3GI-o4-UaF" secondAttribute="leading" constant="44" id="oso-AO-VEZ"/>
+                                </constraints>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqS-TG-1ph">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="pZy-tm-aH9"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="hLc-4q-ncT"/>
+                                <items>
+                                    <navigationItem title="CONTACT US" id="lLJ-Iw-weP">
+                                        <barButtonItem key="leftBarButtonItem" image="ic_back_arrow" id="i6x-PK-4iH">
+                                            <connections>
+                                                <action selector="dismiss" destination="8Eh-Pc-ujL" id="fny-yV-s4v"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uQ1-e7-fzN" firstAttribute="width" secondItem="SZf-4x-h6s" secondAttribute="width" constant="-88" id="03e-9h-9IV"/>
+                            <constraint firstItem="y2O-D6-qy8" firstAttribute="bottom" secondItem="3GI-o4-UaF" secondAttribute="bottom" id="75n-EM-Bmh"/>
+                            <constraint firstItem="3GI-o4-UaF" firstAttribute="top" secondItem="oqS-TG-1ph" secondAttribute="bottom" id="FJu-xS-gwN"/>
+                            <constraint firstItem="y2O-D6-qy8" firstAttribute="trailing" secondItem="oqS-TG-1ph" secondAttribute="trailing" id="JVz-ec-OOV"/>
+                            <constraint firstItem="y2O-D6-qy8" firstAttribute="trailing" secondItem="3GI-o4-UaF" secondAttribute="trailing" id="Z3G-fU-vj7"/>
+                            <constraint firstItem="3GI-o4-UaF" firstAttribute="leading" secondItem="y2O-D6-qy8" secondAttribute="leading" id="dHS-ix-UmD"/>
+                            <constraint firstItem="y2O-D6-qy8" firstAttribute="top" secondItem="oqS-TG-1ph" secondAttribute="top" id="j6e-hi-MuS"/>
+                            <constraint firstItem="oqS-TG-1ph" firstAttribute="leading" secondItem="y2O-D6-qy8" secondAttribute="leading" id="pDF-hN-hB4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="y2O-D6-qy8"/>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="uQ1-e7-fzN" id="Knd-hj-lSj"/>
+                        <outlet property="customNavigationBar" destination="oqS-TG-1ph" id="rf5-nc-rV3"/>
+                        <outlet property="scrollView" destination="3GI-o4-UaF" id="O2s-8Q-Svl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xcb-t4-jkm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-228" y="500.59970014992507"/>
         </scene>
     </scenes>
     <resources>

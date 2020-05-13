@@ -28,7 +28,7 @@ class AppDataTests: XCTestCase {
         let username: String = "770101011111"
         let password: String = "time123"
 
-        APIClient.shared.loginWithEmail(username, password: password) { (error: Error?) in
+        APIClient.shared.loginWithEmail(username, password: password) { (_, error: Error?) in
             XCTAssertNil(error, "Login with valid credentials should not cause error")
 
             XCTAssertNotNil(AccountController.shared.profile, "After login, app should be able to access TIME profile.")
@@ -68,10 +68,10 @@ class AppDataTests: XCTestCase {
     func testUpdateBillingInfo() {
         let loadingExpectation: XCTestExpectation = expectation(description: "Should load billing info.")
         self.testLoadBillingInfo()
-        var billingInfo: BillingInfo = BillingInfoDataController.shared.getBillingInfos(account: AccountDataController.shared.getAccounts().first!).first!
+        let billingInfo: BillingInfo = BillingInfoDataController.shared.getBillingInfos(account: AccountDataController.shared.getAccounts().first!).first!
         billingInfo.billState = "Shah Alam"
         // billingInfo.billingEmailAddress = "test@gmail.com"
-        BillingInfoDataController.shared.updateBillingInfo(billingInfo: billingInfo) { (error: Error?) in
+        BillingInfoDataController.shared.updateBillingInfo(billingInfo: billingInfo) { (_, error: Error?) in
             XCTAssertNil(error, "Billing info should be updated without errors")
             loadingExpectation.fulfill()
         }
@@ -111,7 +111,7 @@ class AppDataTests: XCTestCase {
 
         notificationSetting.methodsString = notificationSetting.methodOptions.keys.joined(separator: ",")
 
-        NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { (error: Error?) in
+        NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { (_, error: Error?) in
             XCTAssertNil(error, "Notification setting should be updated without errors")
             loadingExpectation.fulfill()
         }
@@ -189,11 +189,13 @@ class AppDataTests: XCTestCase {
         ticket.description = "Test"
         ticket.accountNo = AccountDataController.shared.getAccounts().first!.accountNo
 
-        let image: UIImage = UIImage(named: "time_router.jpg", in: Bundle(for: type(of: self)), compatibleWith: nil)!
-        TicketDataController.shared.createTicket(ticket, attachments: [image]) { (error: Error?) in
-            XCTAssertNil(error, "Create ticket should not have error.")
-            loadingExpectation.fulfill()
+        if let image: UIImage = UIImage(named: "AppIcon") {
+            TicketDataController.shared.createTicket(ticket, attachments: [image]) { (_, error: Error?) in
+                XCTAssertNil(error, "Create ticket should not have error.")
+                loadingExpectation.fulfill()
+            }
         }
+
         self.wait(for: [loadingExpectation], timeout: 10)
     }
 
@@ -244,7 +246,7 @@ class AppDataTests: XCTestCase {
                 let conversation = Conversation(ticket: ticket)
                 conversation.body = "Reply from test - \(Date().string(usingFormat: "YYYY-MM-dd hh:mm:ss"))"
 
-                ConversationDataController.shared.replyConversation(conversation: conversation, attachment: []) { (error: Error?) in
+                ConversationDataController.shared.replyConversation(conversation: conversation, attachment: []) { (_, error: Error?) in
                     XCTAssertNil(error, "Reply conversation should not have error.")
                     loadingExpectation.fulfill()
                 }
@@ -278,7 +280,7 @@ class AppDataTests: XCTestCase {
 
                 let image: UIImage = UIImage(named: "time_router.jpg", in: Bundle(for: type(of: self)), compatibleWith: nil)!
 
-                ConversationDataController.shared.replyConversation(conversation: conversation, attachment: [image]) { (error: Error?) in
+                ConversationDataController.shared.replyConversation(conversation: conversation, attachment: [image]) { (_, error: Error?) in
                     XCTAssertNil(error, "Reply conversation should not have error.")
                     loadingExpectation.fulfill()
                 }

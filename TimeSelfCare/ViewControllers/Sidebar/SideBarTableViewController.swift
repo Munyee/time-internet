@@ -180,7 +180,29 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             let ticketListVC: TicketListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(ticketListVC, animated: true)
         case .livechat:
-            Freshchat.sharedInstance()?.showFAQs(self)
+            if let selectedAccount = AccountController.shared.selectedAccount {
+                let user = FreshchatUser.sharedInstance()
+                let profile = selectedAccount.profile
+                user?.firstName = profile?.fullname
+                user?.email = profile?.email
+                user?.phoneNumber = profile?.mobileNo
+                Freshchat.sharedInstance().setUser(user)
+                Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
+            }
+
+            let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
+
+            alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
+                Freshchat.sharedInstance()?.showConversations(self)
+            }))
+
+            alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
+                Freshchat.sharedInstance()?.showFAQs(self)
+            }))
+
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+
+            self.present(alert, animated: true, completion: nil)
         }
 
     }

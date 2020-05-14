@@ -27,9 +27,9 @@ internal class SidebarTableViewController: UIViewController {
         let isBusiness = self.accounts.first { $0.custSegment == .business } != nil
 
         if (isResidential) {
-            return [.reward, .support]
+            return [.reward, .support, .livechat]
         } else if (isBusiness) {
-            return [.support]
+            return [.support, .livechat]
         } else {
             return []
         }
@@ -179,6 +179,8 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
         case .support:
             let ticketListVC: TicketListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(ticketListVC, animated: true)
+        case .livechat:
+            Freshchat.sharedInstance()?.showFAQs(self)
         }
 
     }

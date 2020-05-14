@@ -20,7 +20,7 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let freshchatConfig: FreshchatConfig = FreshchatConfig.init(appID: "e7b242c4-d7f0-4442-ac69-14af0b14ff91", andAppKey: "8c2c04e4-0080-44ba-b4d3-dc0fa8af2cc2")
+        let freshchatConfig: FreshchatConfig = FreshchatConfig.init(appID: "23bb7b7f-0da4-4837-b4c4-a233c251adad", andAppKey: "590e83e4-c424-4f02-9cd0-e7dab8db8320")
         Freshchat.sharedInstance().initWith(freshchatConfig)
 
         FirebaseApp.configure()

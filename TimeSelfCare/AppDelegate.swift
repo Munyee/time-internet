@@ -81,6 +81,9 @@ extension AppDelegate {
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+
+        Freshchat.sharedInstance().setPushRegistrationToken(deviceToken)
+
         let token = deviceToken.hexadecimalString()
         debugPrint("Device Token: \(token)")
 

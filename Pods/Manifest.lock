@@ -57,7 +57,7 @@ PODS:
     - GoogleUtilities/Environment (~> 6.2)
     - "GoogleUtilities/NSData+zlib (~> 6.2)"
     - Protobuf (>= 3.9.2, ~> 3.9)
-  - FreshchatSDK (3.0.0)
+  - FreshchatSDK (3.4.0)
   - GoogleAppMeasurement (6.4.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -110,7 +110,7 @@ DEPENDENCIES:
   - "EasyTipView (from `git@gitlab.time.com.my:BSS/EasyTipView.git`)"
   - Firebase/Core
   - Firebase/RemoteConfig
-  - FreshchatSDK (from `https://github.com/freshdesk/freshchat-ios.git`, branch `hybrid-sdk`)
+  - FreshchatSDK
   - JVFloatLabeledTextField
   - lottie-ios (~> 2.5.3)
   - MBProgressHUD (~> 1.1.0)
@@ -134,6 +134,7 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseRemoteConfig
+    - FreshchatSDK
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -153,17 +154,11 @@ EXTERNAL SOURCES:
     :path: "./ApptivityFramework"
   EasyTipView:
     :git: "git@gitlab.time.com.my:BSS/EasyTipView.git"
-  FreshchatSDK:
-    :branch: hybrid-sdk
-    :git: https://github.com/freshdesk/freshchat-ios.git
 
 CHECKOUT OPTIONS:
   EasyTipView:
     :commit: 2c2992e240055993a52f7c78a4d6a1ad199c7127
     :git: "git@gitlab.time.com.my:BSS/EasyTipView.git"
-  FreshchatSDK:
-    :commit: 733f78501e336c6cc19c4757653126cd7738deef
-    :git: https://github.com/freshdesk/freshchat-ios.git
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -182,7 +177,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
   FirebaseInstanceID: 4b87a9a75ef628a53bb5de46e4d4cecfcce88c02
   FirebaseRemoteConfig: 47abf7a04a9082091955ea555aa79cfdd249b19c
-  FreshchatSDK: 0457b4df0494c897014cdaaf038dbcae1426ee97
+  FreshchatSDK: 03551681a92e784238677c85172e232d7f764561
   GoogleAppMeasurement: e49be3954045b17d046f271b9cc1ec052bad9702
   GoogleDataTransport: 6ffa4dd0b6d547f8d27b91bd92fa9e197a3f5f1f
   GoogleDataTransportCCTSupport: 2d7e609f8c5af1a33d7d59053e6f8cba59365df5
@@ -197,6 +192,6 @@ SPEC CHECKSUMS:
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 607ba1d21b3a3a74ef2e3a8700cbe4eb3cc11449
+PODFILE CHECKSUM: bd440e788e5c584fdcbbf9ab5874c08dd8779b18
 
 COCOAPODS: 1.9.1

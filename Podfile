@@ -41,7 +41,7 @@ target 'TimeSelfCare' do
   pod 'Firebase/Core'
   pod 'Firebase/RemoteConfig'
   pod 'Crashlytics'
-  pod 'FreshchatSDK', :git => 'https://github.com/freshdesk/freshchat-ios.git', :branch => 'hybrid-sdk'
+  pod 'FreshchatSDK'
 
   target 'TimeSelfCareTests' do
     inherit! :search_paths

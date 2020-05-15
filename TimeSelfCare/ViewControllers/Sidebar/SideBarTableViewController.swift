@@ -183,9 +183,9 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             if let selectedAccount = AccountController.shared.selectedAccount {
                 let user = FreshchatUser.sharedInstance()
                 let profile = selectedAccount.profile
-                user?.firstName = profile?.fullname
-                user?.email = profile?.email
-                user?.phoneNumber = profile?.mobileNo
+                user.firstName = profile?.fullname
+                user.email = profile?.email
+                user.phoneNumber = profile?.mobileNo
                 Freshchat.sharedInstance().setUser(user)
                 Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
             }
@@ -193,11 +193,11 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
 
             alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
-                Freshchat.sharedInstance()?.showConversations(self)
+                Freshchat.sharedInstance().showConversations(self)
             }))
 
             alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
-                Freshchat.sharedInstance()?.showFAQs(self)
+                Freshchat.sharedInstance().showFAQs(self)
             }))
 
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))

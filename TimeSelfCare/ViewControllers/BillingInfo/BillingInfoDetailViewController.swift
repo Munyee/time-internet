@@ -95,11 +95,22 @@ class BillingInfoDetailViewController: TimeBaseViewController {
     }
 
     @IBOutlet private weak var stackViewContainer: UIStackView!
+    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
+    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         self.billingInfo = BillingInfoDataController.shared.getBillingInfos(account: AccountController.shared.selectedAccount).first
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if (liveChatView.isExpand) {
+            liveChatConstraint.constant = 0
+        } else {
+            liveChatConstraint.constant = -125
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

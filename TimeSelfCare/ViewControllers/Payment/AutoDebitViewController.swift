@@ -22,11 +22,22 @@ internal class AutoDebitViewController: TimeBaseViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var registerButton: UIButton!
     @IBOutlet private weak var removeButton: UIButton!
-
+    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
+    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Auto Debit", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(self.back))
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if (liveChatView.isExpand) {
+            liveChatConstraint.constant = 0
+        } else {
+            liveChatConstraint.constant = -125
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

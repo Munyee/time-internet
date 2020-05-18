@@ -42,7 +42,7 @@ class PerformanceViewController: BaseViewController {
         }
 
         self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
-        AccountDataController.shared.loadConnectionStatus(account: account, service: service) { (error: Error?) in
+        AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
             let isConnected: Bool = error == nil
             self.animationView.setAnimation(named: isConnected ? "GoodConnection" : "BadConnection")
             self.animationView.loopAnimation = false

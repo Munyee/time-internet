@@ -12,7 +12,7 @@ target 'TimeSelfCareData' do
   #pod 'ApptivityFramework', :git => 'git@bitbucket.org:apptivitylab/apptivityframework-ios.git', :branch => 'master'
   
   # Pods for TimeSelfCareData
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 4.7.2'
   pod 'CardIO'
   pod 'SDWebImage'
   pod 'EasyTipView', :git => 'git@gitlab.time.com.my:BSS/EasyTipView.git'
@@ -35,9 +35,11 @@ target 'TimeSelfCare' do
 
   # Pods for TimeSelfCare
   pod 'SwiftLint'
-  pod 'MBProgressHUD'
-  pod 'lottie-ios'
+  pod 'SwiftyJSON'
+  pod 'MBProgressHUD', '~> 1.1.0'
+  pod 'lottie-ios', '~> 2.5.3'
   pod 'Firebase/Core'
+  pod 'Firebase/RemoteConfig'
   pod 'Crashlytics'
 
   target 'TimeSelfCareTests' do

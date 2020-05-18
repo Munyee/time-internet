@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 internal class AutoDebitViewController: TimeBaseViewController {
 
@@ -20,6 +21,7 @@ internal class AutoDebitViewController: TimeBaseViewController {
     @IBOutlet private weak var placeholderView: UIStackView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var registerButton: UIButton!
+    @IBOutlet private weak var removeButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,21 +33,6 @@ internal class AutoDebitViewController: TimeBaseViewController {
         super.viewWillAppear(animated)
         self.updateDataSet()
         self.refresh()
-    }
-
-    @IBAction func registerCard(_ sender: Any?) {
-        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
-        guard let createCardVC = storyboard.instantiateViewController(withIdentifier: "CreateAutoDebitViewController") as? CreateAutoDebitViewController else {
-            return
-        }
-
-        let cell = sender as? AutoDebitCell
-        createCardVC.existingCreditCard = cell?.creditCard
-        createCardVC.confirmationDidDismissAction = { [unowned self] () -> Void in
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
-        }
-
-        self.presentNavigation(createCardVC, animated: true)
     }
 
     private func updateDataSet() {
@@ -88,12 +75,144 @@ extension AutoDebitViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.registerCard(nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if self.creditCards.isEmpty {
+            return nil
+        }
+
+        return self.removeButton
     }
 }
 
 extension AutoDebitViewController: AutoDebitCellDelegate {
     func modify(cell: AutoDebitCell, creditCard: CreditCard) {
-        self.registerCard(cell)
+        self.modifyAutoDebit(self)
+    }
+}
+
+// Registering for autodebit using new payment gateway
+extension AutoDebitViewController {
+    enum AutoDebitAction: String {
+        case modify
+        case new
+    }
+
+    private func prepareAutoDebitPayment(action: AutoDebitAction = .new) -> PaymentViewController? {
+        guard let paymentVC = self.storyboard?.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController else {
+            return nil
+        }
+
+        let billAmount = BillDataController.shared.getBills(account: AccountController.shared.selectedAccount).first?.totalOutstanding
+
+        var parameters: [String: Any] = [:]
+        let path = "make_payment_autodebit"
+        parameters["action"] = path
+        parameters["username"] = AccountController.shared.profile?.username
+        parameters["account_no"] = AccountController.shared.selectedAccount?.accountNo
+        parameters["token"] = APIClient.shared.getToken(forPath: path)
+        parameters["amount"] = "\(billAmount?.isLessThanOrEqualTo(0) ?? true ? 1.00 : billAmount!)" // swiftlint:disable:this force_unwrapping
+        parameters["autodebit_payment"] = (billAmount?.isLessThanOrEqualTo(0) ?? true) ? "verify_cc" : "bill_payment"
+        parameters["autodebit_action"] = action == .new ? "new" : "modify"
+        parameters["upgw"] = "yes"
+        parameters["cc_type_id"] = 1 // According to API docs, this should not be required... but without it, goes API redirects to payment failed
+        parameters["session_id"] = AccountController.shared.sessionId
+        paymentVC.parameters = parameters
+        paymentVC.transactionFailedBlock = {
+            self.presentedViewController?.dismissVC()
+        }
+        paymentVC.transactionSuccessBlock = {
+            self.presentedViewController?.dismiss(animated: false) {
+                self.showSuccessConfirmation()
+            }
+        }
+
+        return paymentVC
+    }
+
+    @IBAction func registerAutoDebit(_ sender: Any) {
+        guard let paymentVC = self.prepareAutoDebitPayment(action: .new) else {
+            return
+        }
+
+        paymentVC.title = NSLocalizedString("Register Auto Debit", comment: "")
+
+        let billAmount = BillDataController.shared.getBills(account: AccountController.shared.selectedAccount).first?.totalOutstanding
+
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
+            self.presentNavigation(paymentVC, animated: true)
+        }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
+
+        let alertTitle = (billAmount?.isLessThanOrEqualTo(0) ?? true) ? NSLocalizedString("RM1 Deduction", comment: "") : NSLocalizedString("Clear Payment", comment: "")
+        let alertMessage = (billAmount?.isLessThanOrEqualTo(0) ?? true) ? NSLocalizedString("To verify your card, RM 1 will be charged and reversed on the same day.", comment: "") :
+            String(format: NSLocalizedString("There's an outstanding amount of %.2f on your account. This will be charged to your card. Should you proceed?", comment: ""), billAmount ?? 0)
+        self.showAlertMessage(title: alertTitle, message: alertMessage, actions: [cancelAction, okAction])
+    }
+
+    @IBAction func modifyAutoDebit(_ sender: Any) {
+        guard let paymentVC = self.prepareAutoDebitPayment(action: .modify) else {
+            return
+        }
+
+        paymentVC.title = NSLocalizedString("Modify Auto Debit", comment: "")
+
+        self.presentNavigation(paymentVC, animated: true)
+    }
+
+    func showSuccessConfirmation() {
+        let storyboard = UIStoryboard(name: "Common", bundle: nil)
+        if let confirmationVC = storyboard.instantiateViewController(withIdentifier: "ConfirmationViewController") as? ConfirmationViewController {
+            confirmationVC.mode = .autodebitAdded
+            confirmationVC.actionBlock = {
+                self.presentingViewController?.dismiss(animated: false, completion: nil)
+                // self.confirmationDidDismissAction?()
+            }
+            confirmationVC.modalPresentationStyle = .fullScreen
+            self.present(confirmationVC, animated: true, completion: nil)
+        }
+    }
+}
+
+// Removing registered autodebit
+extension AutoDebitViewController {
+    @IBAction func removeAutoDebit(_ sender: Any) {
+        guard
+            let profile = AccountController.shared.profile,
+            let selectedAccount = AccountController.shared.selectedAccount
+            else {
+                return
+        }
+
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.label.text = NSLocalizedString("Removing...", comment: "")
+            CreditCardDataController.shared.removeCreditCard(username: profile.username, account: selectedAccount) { error in
+                hud.hide(animated: true)
+                if let error = error {
+                    self.showAlertMessage(with: error)
+                    return
+                }
+                self.showRemovedConfirmation()
+            }
+        }
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
+        self.showAlertMessage(title: NSLocalizedString("Remove Auto Debit", comment: ""),
+                              message: "You will no longer enjoy RM 2 off your monthly bill. Are you sure?", actions: [cancelAction, yesAction])
+    }
+
+    func showRemovedConfirmation() {
+        let storyboard = UIStoryboard(name: "Common", bundle: nil)
+        if let confirmationVC = storyboard.instantiateViewController(withIdentifier: "ConfirmationViewController") as? ConfirmationViewController {
+            confirmationVC.mode = .autodebitRemoved
+            confirmationVC.actionBlock = {
+                self.presentingViewController?.dismiss(animated: false, completion: nil)
+                // self.confirmationDidDismissAction?()
+            }
+            confirmationVC.modalPresentationStyle = .fullScreen
+            self.present(confirmationVC, animated: true, completion: nil)
+        }
     }
 }

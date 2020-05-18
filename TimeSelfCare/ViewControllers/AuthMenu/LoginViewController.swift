@@ -34,6 +34,11 @@ internal class LoginViewController: BaseAuthViewController {
         self.updateVersionDisplay()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+
     @IBAction func login(_ sender: Any) {
         self.resignFirstResponder()
         guard self.hasAllTextFieldFilled else {
@@ -45,15 +50,37 @@ internal class LoginViewController: BaseAuthViewController {
         HUD.label.text = NSLocalizedString("Logging in...", comment: "Logging in...")
 
         let identity = UserPassIdentity(username: self.usernameTextField.inputText, password: self.passwordTextField.inputText)
-        APIClient.shared.loginWithEmail(identity.identifier, password: identity.challenge) { (_ error: Error?) in
-            HUD.hide(animated: true)
-
+        APIClient.shared.loginWithEmail(identity.identifier, password: identity.challenge) { _, error in
             guard error == nil else {
+                HUD.hide(animated: true)
                 self.showAlertMessage(with: error)
                 return
             }
 
-            self.dismissVC()
+            guard let profile = AccountController.shared.profile else {
+                HUD.hide(animated: true)
+                self.showAlertMessage(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("An unexpected login error has occured.", comment: ""), actions: [UIAlertAction(title: "OK", style: .default, handler: nil)])
+                return
+            }
+
+            if profile.passwordHasExpired {
+                AuthUser.current?.logout { _ in
+                    HUD.hide(animated: true)
+
+                    let alertTitle = NSLocalizedString("Password Expired", comment: "")
+                    let alertMessage = NSLocalizedString("Password expired. Please reset your password.", comment: "")
+                    let resetPasswordAction = UIAlertAction(title: NSLocalizedString("Reset Password", comment: ""), style: .default) { _ in
+                        if let forgotPasswordVC: ForgetPasswordViewController = self.storyboard?.instantiateViewController() {
+                            self.navigationController?.pushViewController(forgotPasswordVC, animated: true)
+                        }
+                    }
+                    let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in }
+                    self.showAlertMessage(title: alertTitle, message: alertMessage, actions: [resetPasswordAction, cancelAction])
+                }
+            } else {
+                HUD.hide(animated: true)
+                self.dismissVC()
+            }
         }
     }
 
@@ -132,7 +159,7 @@ internal class LoginViewController: BaseAuthViewController {
         if string == "" {
             textField.deleteBackward()
         } else {
-            textField.insertText(textField == usernameTextField ? string : string.alphaNumeric())
+            textField.insertText(textField == usernameTextField ? string : string.withoutWhitespace())
         }
         self.updateUI()
         return false

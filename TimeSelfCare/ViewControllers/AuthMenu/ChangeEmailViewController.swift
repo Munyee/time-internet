@@ -25,14 +25,17 @@ internal class ChangeEmailViewController: BaseAuthViewController {
     @IBAction func changeEmailAddress(_ sender: Any) {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Updating email address...", comment: "")
-        APIClient.shared.changeEmailAddress(AccountController.shared.profile.username, email: self.emailAddressTextField.inputText) { error in
+        APIClient.shared.changeEmailAddress(AccountController.shared.profile.username, email: self.emailAddressTextField.inputText) { _, error in
             hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)
                 return
             }
 
-            AccountController.shared.needUpdateEmailAddress = false
+            if let profile = AuthUser.current?.person as? Profile {
+                profile.todo = nil
+                AuthUser.current?.person = profile
+            }
 
             let storyboard = UIStoryboard(name: "Common", bundle: nil)
             if let confirmationVC = storyboard.instantiateViewController(withIdentifier: "ConfirmationViewController") as? ConfirmationViewController {
@@ -40,6 +43,7 @@ internal class ChangeEmailViewController: BaseAuthViewController {
                 confirmationVC.actionBlock = {
                     UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
                 }
+                confirmationVC.modalPresentationStyle = .fullScreen
                 self.present(confirmationVC, animated: true, completion: nil)
             }
         }

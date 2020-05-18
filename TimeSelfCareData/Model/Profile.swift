@@ -18,6 +18,7 @@ public class Profile: JsonRecord {
     public var officeNo: String?
     public var contactPerson: String?
     public var billingAddress: String?
+    public var todo: String?
 
     // Relationships
     public var accountsAccountNo: [String] = []
@@ -43,6 +44,7 @@ public class Profile: JsonRecord {
         self.officeNo = json["office_no"] as? String
         self.contactPerson = json["contact_person"] as? String
         self.billingAddress = json["billing_address"] as? String
+        self.todo = json["todo"] as? String
     }
 
     public func toJson() -> [String : Any] {
@@ -58,6 +60,7 @@ public class Profile: JsonRecord {
         json["office_no"] = self.officeNo
         json["contact_person"] = self.contactPerson
         json["billing_address"] = self.billingAddress
+        json["todo"] = self.todo
 
         return json
     }

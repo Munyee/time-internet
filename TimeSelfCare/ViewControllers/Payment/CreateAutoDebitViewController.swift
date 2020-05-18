@@ -177,7 +177,7 @@ internal class CreateAutoDebitViewController: TimeBaseViewController {
         var parameters: [String: Any] = [:]
         let path = "make_payment_autodebit"
         parameters["action"] = path
-        parameters["username"] = AccountController.shared.profile.username
+        parameters["username"] = AccountController.shared.profile?.username
         parameters["account_no"] = AccountController.shared.selectedAccount?.accountNo
         parameters["token"] = APIClient.shared.getToken(forPath: path)
         parameters["amount"] = "\(billAmount?.isZero ?? true ? 1.00 : billAmount!)" // swiftlint:disable:this force_unwrapping
@@ -222,6 +222,7 @@ internal class CreateAutoDebitViewController: TimeBaseViewController {
                 self.presentingViewController?.dismiss(animated: false, completion: nil)
                 self.confirmationDidDismissAction?()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }
@@ -234,6 +235,7 @@ internal class CreateAutoDebitViewController: TimeBaseViewController {
                 self.presentingViewController?.dismiss(animated: false, completion: nil)
                 self.confirmationDidDismissAction?()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }

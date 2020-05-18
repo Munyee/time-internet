@@ -152,6 +152,7 @@
 		5AA543C71EF8095900DE825F /* PHAsset+Apptivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PHAsset+Apptivity.swift"; sourceTree = "<group>"; };
 		5AD0E19D1DBDE36E0072F9B8 /* ApptivityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ApptivityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD0E1A01DBDE36E0072F9B8 /* ApptivityFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApptivityFramework.h; sourceTree = "<group>"; };
+		5AD0E1A11DBDE36E0072F9B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5AD0E1A61DBDE36E0072F9B8 /* ApptivityFrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApptivityFrameworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD0E1AB1DBDE36E0072F9B8 /* ApptivityFrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApptivityFrameworkTests.swift; sourceTree = "<group>"; };
 		5AD0E1AD1DBDE36E0072F9B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -185,7 +186,6 @@
 		8FB0947F1DC836AC0024F918 /* NotificationsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsHistoryViewController.swift; sourceTree = "<group>"; };
 		8FB5B17B20E248DA006488A7 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		8FD43D151DC06F0600F9D513 /* NavigationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationSegue.swift; sourceTree = "<group>"; };
-		9E0CAE44235FECDA00CF956B /* Framework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Framework-Info.plist"; sourceTree = "<group>"; };
 		9F1CD31E1E6C451700A4BD03 /* CountryCodeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCodeListViewController.swift; sourceTree = "<group>"; };
 		9F1CD3201E6C452600A4BD03 /* CountryCodeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryCodeListViewController.xib; sourceTree = "<group>"; };
 		9F1CD3241E6C457700A4BD03 /* CountryCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCodeCell.swift; sourceTree = "<group>"; };
@@ -389,7 +389,7 @@
 				5A24DB8A1EFAAB6400F94AB2 /* Orchestrate */,
 				5A4A738B1E51C1790039F07C /* Google Analytics */,
 				5AD0E1A01DBDE36E0072F9B8 /* ApptivityFramework.h */,
-				9E0CAE44235FECDA00CF956B /* Framework-Info.plist */,
+				5AD0E1A11DBDE36E0072F9B8 /* Info.plist */,
 				8F7FB1271DE2B7FA00778186 /* ApptivityFramework.podspec */,
 				5AFEE0B91DC2FB0700898FD9 /* Wishlist.txt */,
 				B36A9EE01ED56BA80080D3E6 /* MockData.swift */,
@@ -587,12 +587,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Apptivity Lab";
 				TargetAttributes = {
 					5AD0E19C1DBDE36E0072F9B8 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = V2J6WJMU9K;
+						DevelopmentTeam = F38KJ6Y8H2;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -606,10 +606,9 @@
 			};
 			buildConfigurationList = 5AD0E1971DBDE36E0072F9B8 /* Build configuration list for PBXProject "ApptivityFramework" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -756,6 +755,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -765,6 +765,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -772,6 +773,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -817,6 +819,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -826,6 +829,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -833,6 +837,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -873,11 +878,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = V2J6WJMU9K;
+				DEVELOPMENT_TEAM = F38KJ6Y8H2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "ApptivityFramework/Framework-Info.plist";
+				INFOPLIST_FILE = ApptivityFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apptivitylab.ApptivityFramework;
@@ -894,11 +899,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = V2J6WJMU9K;
+				DEVELOPMENT_TEAM = F38KJ6Y8H2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "ApptivityFramework/Framework-Info.plist";
+				INFOPLIST_FILE = ApptivityFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apptivitylab.ApptivityFramework;
@@ -913,7 +918,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = F38KJ6Y8H2;
-				INFOPLIST_FILE = "ApptivityFrameworkTests/Framework-Info.plist";
+				INFOPLIST_FILE = ApptivityFrameworkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apptivitylab.ApptivityFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -926,7 +931,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = F38KJ6Y8H2;
-				INFOPLIST_FILE = "ApptivityFrameworkTests/Framework-Info.plist";
+				INFOPLIST_FILE = ApptivityFrameworkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apptivitylab.ApptivityFrameworkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

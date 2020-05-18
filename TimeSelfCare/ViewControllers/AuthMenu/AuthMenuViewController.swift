@@ -10,6 +10,12 @@ import UIKit
 import SafariServices
 
 internal class AuthMenuViewController: TimeBaseViewController {
+    enum AuthenticationAction {
+        case login
+        case firstTimeLoginPasswordChange
+    }
+
+    var authAction: AuthenticationAction?
     @IBOutlet private var stackviews: [UIStackView]!
 
     override func viewDidLoad() {
@@ -17,6 +23,16 @@ internal class AuthMenuViewController: TimeBaseViewController {
 
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.isTranslucent = true
+
+        if self.authAction == .firstTimeLoginPasswordChange {
+            let loginVC: LoginViewController = UIStoryboard(name: TimeSelfCareStoryboard.authMenu.filename, bundle: nil).instantiateViewController()
+            let changePasswordVC: ChangePasswordViewController = UIStoryboard(name: TimeSelfCareStoryboard.profile.filename, bundle: nil).instantiateViewController()
+            self.navigationController?.setViewControllers([
+                self,
+                loginVC,
+                changePasswordVC
+                ], animated: false)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -38,11 +54,6 @@ internal class AuthMenuViewController: TimeBaseViewController {
 
     @IBAction func showSignUpPlans(_ sender: Any) {
         let url = URL(string: "http://www.time.com.my/personal/broadband/fibre-broadband")! // swiftlint:disable:this force_unwrapping
-        self.showSafariController(with: url)
-    }
-
-    @IBAction func showContactUs(_ sender: Any) {
-        let url = URL(string: "http://www.time.com.my/contact-us")! // swiftlint:disable:this force_unwrapping
         self.showSafariController(with: url)
     }
 

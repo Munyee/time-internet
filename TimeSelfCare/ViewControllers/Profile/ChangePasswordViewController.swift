@@ -32,10 +32,16 @@ internal class ChangePasswordViewController: BaseAuthViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.title = NSLocalizedString("Change Password", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.cancelChangePassword))
 
         Keyboard.addKeyboardChangeObserver(self)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
 
     override func updateUI() {
@@ -51,7 +57,18 @@ internal class ChangePasswordViewController: BaseAuthViewController {
 
     @objc
     func cancelChangePassword() {
-        self.navigationController?.popViewController(animated: true)
+        // Requirement from TIME:
+        // If user needs to have their password changed but choose not to,
+        // log them out so they need to login again and restart the flow.
+        if AccountController.shared.profile?.shouldChangePassword == true {
+            AuthUser.current?.logout()
+        }
+
+        if self.navigationController?.viewControllers.count ?? 0 > 1 {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismissVC()
+        }
     }
 
     func checkPasswordStrength() {
@@ -70,7 +87,7 @@ internal class ChangePasswordViewController: BaseAuthViewController {
     }
 
     @IBAction func changePassword(_ sender: Any) {
-        guard let username = AccountController.shared.selectedAccount?.profile?.username else {
+        guard let username = AccountController.shared.profile?.username else {
             let error = NSError(domain: "TimeSelfCare", code: 500, userInfo: [NSLocalizedDescriptionKey: "Unexpected error has occured. Please try again later."])
             self.showAlertMessage(with: error)
             return
@@ -78,14 +95,25 @@ internal class ChangePasswordViewController: BaseAuthViewController {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Changing Password..", comment: "")
 
-        APIClient.shared.changePassword(username, currentPassword: self.currentPasswordTextField.inputText, newPassword: self.newPasswordTextField.inputText) { (error: Error?) in
+        APIClient.shared.changePassword(username, currentPassword: self.currentPasswordTextField.inputText, newPassword: self.newPasswordTextField.inputText) { _, error in
             hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)
                 return
             }
+
+            if let profile = AuthUser.current?.person as? Profile {
+                if profile.todo == "update_password_email_address" {
+                    profile.todo = "update_email_address"
+                } else {
+                    // Mark todo as done
+                    profile.todo = nil
+                }
+                AuthUser.current?.person = profile
+            }
+
             let alertTitle = NSLocalizedString("Success", comment: "")
-            let alertMessage = NSLocalizedString("You have successfully changed your password.", comment: "")
+            let alertMessage = NSLocalizedString("You have successfully changed your password. Please use your new password in your next login.", comment: "")
             let dismissAction = UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default) { _ in
                 self.dismissVC()
             }
@@ -96,7 +124,6 @@ internal class ChangePasswordViewController: BaseAuthViewController {
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.confirmNewPasswordErrorLabel.text = self.confirmationErrorMessage
         self.confirmNewPasswordErrorLabel.isHidden = self.confirmationErrorMessage == nil
-
     }
 
     override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -48,7 +48,7 @@ class ChangeSSIDViewController: TimeBaseViewController {
         ssid.name = self.ssidNameTextField.text
         ssid.password = self.ssidPasswordTextField.text
 
-        SsidDataController.shared.updateSsid(ssid: ssid) { (error: Error?) in
+        SsidDataController.shared.updateSsid(ssid: ssid) { _, error in
             hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)
@@ -60,6 +60,7 @@ class ChangeSSIDViewController: TimeBaseViewController {
             confirmationVC.actionBlock = {
                 self.dismissVC()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }

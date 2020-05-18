@@ -19,11 +19,21 @@ internal class SidebarTableViewController: UIViewController {
     private var accounts: [Account] = []
 
     private var services: [ServiceSidebarCell.ServiceType] {
-        let shouldShowSupportAndReward = self.accounts.first { $0.custSegment == .residential } != nil
-
+//        let shouldShowSupportAndReward = self.accounts.first { $0.custSegment == .residential || $0.custSegment == .business } != nil
+//
 //        return shouldShowSupportAndReward ? [.reward, .support] : []
-        /// temporary hide reward module.
-        return shouldShowSupportAndReward ? [.support] : []
+
+        let isResidential = self.accounts.first { $0.custSegment == .residential } != nil
+        let isBusiness = self.accounts.first { $0.custSegment == .business } != nil
+
+        if (isResidential) {
+            return [.reward, .support]
+        } else if (isBusiness) {
+            return [.support]
+        } else {
+            return []
+        }
+
     }
 
     @IBOutlet private weak var tableView: UITableView!
@@ -62,6 +72,7 @@ internal class SidebarTableViewController: UIViewController {
                     confirmationVC.actionBlock = {
                         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
                     }
+                    confirmationVC.modalPresentationStyle = .fullScreen
                     self.present(confirmationVC, animated: true, completion: nil)
                 }
             }

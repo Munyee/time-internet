@@ -26,10 +26,23 @@ class RewardViewController: TimeBaseViewController {
 
             self.validityPeriodStackView.axis = reward.status == .grabbed ? .vertical : .horizontal
 
-            let voucherCode = reward.code?.first { $0.isValidURL == false }
-            self.voucherCodeLabel.text = voucherCode
+            for (index, view) in self.voucherStackView.arrangedSubviews.enumerated() {
+                if (index != 0) {
+                    self.voucherStackView.removeArrangedSubview(view)
+                    view.removeFromSuperview()
+                }
+            }
 
-            let shouldHideVoucher = voucherCode == nil || reward.status == .redeemed
+            if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
+                for voucherCode in voucherCodes {
+                    if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
+                        voucherLabel.text = voucherCode
+                        self.voucherStackView.addArrangedSubview(voucherLabel)
+                    }
+                }
+            }
+
+            let shouldHideVoucher = reward.code == nil || reward.status == .redeemed
             self.voucherStackView.isHidden = shouldHideVoucher
             self.voucherStackView.arrangedSubviews.forEach {
                 $0.isHidden = shouldHideVoucher
@@ -91,7 +104,7 @@ class RewardViewController: TimeBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("TIME Reward", comment: "")
+        self.title = NSLocalizedString("TIME Rewards", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
 
         self.tableView.addSubview(self.refreshControl)
@@ -169,7 +182,7 @@ class RewardViewController: TimeBaseViewController {
                 let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                 hud.label.text = NSLocalizedString("Grabbing...", comment: "")
                 RewardDataController.shared.grabReward(reward,
-                                                       account: AccountController.shared.selectedAccount) { error in
+                                                       account: AccountController.shared.selectedAccount) { _, error in
                                                         hud.hide(animated: true)
                                                         if let error = error {
                                                             self.showAlertMessage(with: error)
@@ -235,10 +248,12 @@ extension RewardViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RewardHeaderView") as? RewardHeaderView
-        headerView?.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
-        headerView?.delegate = self
-        return headerView
+        if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RewardHeaderView") as? RewardHeaderView {
+            headerView.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
+            headerView.delegate = self
+            return headerView
+        }
+        return nil
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

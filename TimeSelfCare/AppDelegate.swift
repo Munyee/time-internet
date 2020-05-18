@@ -16,7 +16,6 @@ extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
 }
 
-@UIApplicationMain
 internal class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
@@ -64,7 +63,10 @@ extension AppDelegate {
         var userInfo = userInfo
         if var activityJson = userInfo["activity"] as? [String: Any] {
             activityJson["account_no"] = AccountController.shared.selectedAccount?.accountNo
-            activityJson["profile_username"] = AccountController.shared.profile.username
+            guard let username = AccountController.shared.profile?.username else {
+                return
+            }
+            activityJson["profile_username"] = username
             userInfo["activity"] = activityJson
         }
 
@@ -87,7 +89,7 @@ extension AppDelegate {
             return
         }
         notificationSetting.deviceToken = token
-        NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { _ in }
+        NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

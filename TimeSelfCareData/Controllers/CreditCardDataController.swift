@@ -74,9 +74,13 @@ public class CreditCardDataController {
         let allCreditCards = incomingCreditCards + self.creditCards
 
         let incomingCcnos: [String] = incomingCreditCards.compactMap { $0.ccNo }
-        let existingCcnos: [String] = self.creditCards.compactMap { $0.ccNo }
 
-        let incomingUnionExistingCcnos = Set<String>(incomingCcnos + existingCcnos)
+        // For AutoDebit cards, we only care for the new incoming sets
+        // since we don't have a stable identifier for cards given than cards
+        // can be modified.
+        // let existingCcnos: [String] = self.creditCards.compactMap { $0.ccNo }
+
+        let incomingUnionExistingCcnos = Set<String>(incomingCcnos)
         self.creditCards = incomingUnionExistingCcnos.compactMap { (ccNo: String) -> CreditCard? in
             allCreditCards.first { $0.ccNo == ccNo }
         }
@@ -114,13 +118,13 @@ public extension CreditCardDataController {
         ) {
         let path = "get_account_autodebit_info"
         var body: [String: Any] = [:]
-        body["username"] = AccountController.shared.profile.username
+        body["username"] = AccountController.shared.profile?.username
         body["account_no"] = AccountController.shared.selectedAccount?.accountNo
         self.loadCreditCardData(path: path, body: body, completion: completion)
     }
 
     func removeCreditCard(username: String, account: Account, completion: @escaping ((_ error: Error?) -> Void)) {
-        APIClient.shared.removeAutoDebit(username, account: account) { (error: Error?) in
+        APIClient.shared.removeAutoDebit(username, account: account) { (_, error: Error?) in
             if error == nil {
                 self.creditCards = self.creditCards.filter { $0.accountNo != account.accountNo }
             }

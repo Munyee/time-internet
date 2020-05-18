@@ -104,8 +104,8 @@ public extension SsidDataController {
         for (key, value) in ssid.toJson() {
             body[key] = value
         }
-        APIClient.shared.postRequest(path: "change_ssid", body: body) { (_, error: Error?) in
-            completion(error)
+        APIClient.shared.postRequest(path: "change_ssid", body: body) { response, error in
+            completion(response, error)
         }
     }
 }

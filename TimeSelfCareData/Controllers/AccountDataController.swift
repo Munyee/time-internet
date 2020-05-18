@@ -26,7 +26,9 @@ public class AccountDataController {
             var accounts: [Account] = []
             // API return format requires heave manipulation.
             guard var dataJSON = json["data"] as? [String: Any],
-                let accountsJSON = dataJSON["accounts"] as? [String: Any] else {
+                let accountsJSON = dataJSON["accounts"] as? [String: Any],
+                let accounts2JSON = dataJSON["accounts2"] as? [String: Any]
+                else {
                     completion(accounts, error)
                     return
             }
@@ -34,7 +36,9 @@ public class AccountDataController {
             let processedAccountsJSON: [[String: Any]] = accountsJSON.keys.compactMap {
                 [
                     "account_no": $0,
-                    "display_account_no": accountsJSON[$0] as? String
+                    "display_account_no": accountsJSON[$0] as? String,
+                    "profile_username": body["username"],
+                    "title": accounts2JSON[$0] as? String,
                 ]
             }
             var fullAccountsJSON: [[String: Any]] = []
@@ -139,8 +143,8 @@ public extension AccountDataController {
         body["username"] = account.profileUsername
         body["service_id"] = service.serviceId
 
-        APIClient.shared.postRequest(path: path, body: body) { (_: [String: Any], error: Error?) in
-            completion(error)
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
         }
     }
 }

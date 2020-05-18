@@ -150,7 +150,7 @@ class TicketFormComponentView: UIStackView, UITextViewDelegate, CustomPickerView
     }
 
     func pickerView(pickerView: CustomPickerView, didConfirmSelectionOfRowWithTitle title: [String]) {
-        self.textView.text = title.first
+        self.textView.text = title.first ?? ""
         self.textView.resignFirstResponder()
         self.textViewDidChange(self.textView)
     }
@@ -369,7 +369,7 @@ class TicketFormViewController: TimeBaseViewController {
             return image
         }
 
-        TicketDataController.shared.createTicket(ticket, account: AccountController.shared.selectedAccount, attachments: images) { (error: Error?) in
+        TicketDataController.shared.createTicket(ticket, account: AccountController.shared.selectedAccount, attachments: images) { _, error in
             hud.hide(animated: true)
             if let error = error {
                 self.showAlertMessage(with: error)
@@ -381,6 +381,7 @@ class TicketFormViewController: TimeBaseViewController {
             confirmationVC.actionBlock = {
                 self.dismissVC()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }

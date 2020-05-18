@@ -91,7 +91,9 @@ class NotificationSettingsViewController: BaseViewController {
                     }
 
                     let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
-                    self.showAlertMessage(message: NSLocalizedString("Push notifications for TIME Self Care are currently disabled. If you'd like to receive push notifications, please enable them in the Setting.", comment: ""), actions: [cancelAction, openAction])
+                    DispatchQueue.main.async {
+                        self.showAlertMessage(message: NSLocalizedString("Push notifications for TIME Self Care are currently disabled. If you'd like to receive push notifications, please enable them in the Setting.", comment: ""), actions: [cancelAction, openAction])
+                    }
                 } else {
                     UIApplication.shared.setupRemoteNotifications()
                 }
@@ -127,7 +129,7 @@ class NotificationSettingsViewController: BaseViewController {
 
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             hud.label.text = NSLocalizedString("Updating...", comment: "")
-            NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { (error: Error?) in
+            NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { _, error in
                 hud.hide(animated: true)
 
                 if let error = error {
@@ -141,7 +143,7 @@ class NotificationSettingsViewController: BaseViewController {
                 confirmationVC.actionBlock = {
                     self.dismissVC()
                 }
-
+                confirmationVC.modalPresentationStyle = .fullScreen
                 self.present(confirmationVC, animated: true, completion: nil)
             }
         }

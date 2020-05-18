@@ -205,7 +205,7 @@ class TicketDetailViewController: UIViewController {
 
     private func send(_ conversation: Conversation) {
         conversation.timestamp = Int(Date().timeIntervalSince1970)
-        ConversationDataController.shared.replyConversation(conversation: conversation, attachment: conversation.images) { (error: Error?) in
+        ConversationDataController.shared.replyConversation(conversation: conversation, attachment: conversation.images) { _, error in
             if error == nil {
                 ConversationDataController.shared.remove(conversation: conversation)
             }

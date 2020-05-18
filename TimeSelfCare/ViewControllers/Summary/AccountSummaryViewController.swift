@@ -125,6 +125,7 @@ class AccountSummaryViewController: BaseViewController {
         let storyboard = UIStoryboard(name: "Payment", bundle: nil)
 
         if let paymentSummaryVC = storyboard.instantiateInitialViewController() {
+            paymentSummaryVC.modalPresentationStyle = .fullScreen
             self.present(paymentSummaryVC, animated: true, completion: nil)
         }
     }

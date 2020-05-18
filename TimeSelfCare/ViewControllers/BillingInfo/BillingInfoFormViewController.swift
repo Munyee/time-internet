@@ -258,7 +258,7 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
 
     func pickerView(pickerView: CustomPickerView, didConfirmSelectionOfRowWithTitle title: [String]) {
         self.textView.resignFirstResponder()
-        self.text = title.first
+        self.text = title.first ?? ""
         delegate?.billingInfoFormComponentView(self, didUpdateBillingMethod: title.first ?? "")
     }
 
@@ -564,7 +564,7 @@ class BillingInfoFormViewController: UIViewController {
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             hud.label.text = NSLocalizedString("Updating...", comment: "")
 
-            BillingInfoDataController.shared.updateBillingInfo(billingInfo: self.billingInfo) { (error: Error?) in
+            BillingInfoDataController.shared.updateBillingInfo(billingInfo: self.billingInfo) { _, error in
                 hud.hide(animated: true)
                 if let error = error {
                     self.showAlertMessage(with: error)
@@ -575,6 +575,7 @@ class BillingInfoFormViewController: UIViewController {
                 confirmationVC.actionBlock = {
                     self.dismissVC()
                 }
+                confirmationVC.modalPresentationStyle = .fullScreen
                 self.present(confirmationVC, animated: true, completion: nil)
             }
         }

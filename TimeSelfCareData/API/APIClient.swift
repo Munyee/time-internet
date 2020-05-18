@@ -15,7 +15,7 @@ public let TimeSelfCareDomainErrorCodeKey: String = "TimeSelfCareAPIErrorCode" /
 
 public typealias ListListener<Element> = ((_ items: [Element], _ error: Error?) -> Void)
 public typealias ElementListener<Element> = ((_ item: Element?, _ error: Error?) -> Void)
-public typealias SimpleRequestListener = ((_ error: Error?) -> Void)
+public typealias SimpleRequestListener = ((_ response: [String: Any]?, _ error: Error?) -> Void)
 public typealias CreateRequestListener<Element> = ((_ element: Element, _ error: Error?) -> Void)
 
 public struct Pagination {
@@ -155,18 +155,18 @@ public class APIClient {
             case .success(let request, _, _):
                 request.responseJSON(completionHandler: { response in
                     do {
-                        _ = try APIClient.shared.JSONFromResponse(response: response)
-                        completion(nil)
+                        let response = try APIClient.shared.JSONFromResponse(response: response)
+                        completion(response, nil)
                     } catch {
                         if (error as? NSError)?.code == 403 {
                             NotificationCenter.default.post(name: NSNotification.Name.SessionInvalid, object: nil)
                             return
                         }
-                        completion(error)
+                        completion(nil, error)
                     }
                 })
             case .failure(let error):
-                completion(error)
+                completion(nil, error)
             }
         })
     }
@@ -205,7 +205,7 @@ public class APIClient {
             }
 
             if let json: [String: Any] = responseValue as? [String: Any] {
-                if let statusValue: String = json["status"] as? String, statusValue != "ok" {
+                if let statusValue: String = json["status"] as? String, (statusValue != "ok" && statusValue != "password_expired") {
                     throw NSError(domain: "Time Self Care", code: 500, userInfo: [
                         NSLocalizedDescriptionKey: json["message"] ?? NSLocalizedString("An unexpected server error has occured. Please try again later.", comment: ""),
                         TimeSelfCareDomainErrorCodeKey: 500

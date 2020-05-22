@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DIN-Light.ttf">
+            <string>DIN-Light</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Diagnosis View Controller-->
         <scene sceneID="joB-YQ-Oiy">
@@ -19,8 +22,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e73-kv-TWJ">
-                                <rect key="frame" x="142.5" y="782" width="129" height="30"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <rect key="frame" x="141" y="780" width="132" height="32"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="16"/>
                                 <state key="normal" title="Back to homepage">
                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -29,8 +32,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L96-D5-MyU">
-                                <rect key="frame" x="165.5" y="732" width="83" height="30"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                <rect key="frame" x="164" y="728" width="86" height="32"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="16"/>
                                 <state key="normal" title="Raise Ticket">
                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -39,10 +42,10 @@
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0m-NP-isg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="668"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="664"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fjJ-sH-lu2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="337.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="319"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_icon_error" translatesAutoresizingMaskIntoConstraints="NO" id="wwh-cB-g1E">
                                                 <rect key="frame" x="162" y="120" width="90" height="90"/>
@@ -52,8 +55,8 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your broadband service has been suspended due to an overdue payment. To restore services" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eI9-54-ktm">
-                                                <rect key="frame" x="41.5" y="250" width="331.5" height="57.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <rect key="frame" x="41" y="250" width="332.5" height="39"/>
+                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="16"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -92,6 +95,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="baB-q7-ZRq"/>
                     </view>
+                    <connections>
+                        <outlet property="backButton" destination="e73-kv-TWJ" id="5Tu-J3-5sW"/>
+                        <outlet property="iconImageView" destination="wwh-cB-g1E" id="4oe-qR-uvq"/>
+                        <outlet property="messageLabel" destination="eI9-54-ktm" id="U8O-jt-eyH"/>
+                        <outlet property="raiseTicket" destination="L96-D5-MyU" id="gQc-AZ-5QR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pSL-1x-xAq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

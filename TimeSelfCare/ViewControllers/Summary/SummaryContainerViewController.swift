@@ -271,10 +271,10 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     @IBAction func runDiagnostics(_ sender: Any?) {
-        let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.diagnosis.filename, bundle: nil)
+        let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil)
         
-        let diagnosisVC: DiagnosisViewController = storyboard.instantiateViewController()
-        self.presentNavigation(diagnosisVC, animated: true)
+        let diagnosticsVC: DiagnosisViewController = storyboard.instantiateViewController()
+        self.presentNavigation(diagnosticsVC, animated: true)
     }
 
     @objc

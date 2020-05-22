@@ -46,6 +46,10 @@
 		9558CC222B9AE745B3BC9813 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F301820E7E82ACC89C85B876 /* AssetsLibrary.framework */; };
 		95B7D97FD72DA1B4226AEA34 /* Pods_TimeSelfCareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ED4B2FF35CE24E9AD30ED35 /* Pods_TimeSelfCareTests.framework */; };
 		997D3DC1A9F30D872E59E82B /* Pods_TimeSelfCareData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9099B74CEBD33D59A92D6F4 /* Pods_TimeSelfCareData.framework */; };
+		9E0742A924738049008E7566 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0742A824738049008E7566 /* UIImageView+.swift */; };
+		9E0742AB24738147008E7566 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0742AA24738147008E7566 /* Diagnostics.swift */; };
+		9E7F5068247250510032B6FE /* DiagnosticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7F5066247250510032B6FE /* DiagnosticsViewController.swift */; };
+		9E7F5069247250510032B6FE /* Diagnostics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7F5067247250510032B6FE /* Diagnostics.storyboard */; };
 		9EC1356A241B6E1200E59C44 /* APTSidebarContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13563241B6E1200E59C44 /* APTSidebarContentSegue.m */; };
 		9EC1356B241B6E1200E59C44 /* APTSidebarNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13566241B6E1200E59C44 /* APTSidebarNavigationController.m */; };
 		9EC1356C241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13568241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m */; };
@@ -300,6 +304,10 @@
 		7AFD7AAB803F2E20474F3A08 /* Pods-TimeSelfCare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.release.xcconfig"; sourceTree = "<group>"; };
 		8FBBD5F5BB76FA032F18CF05 /* Pods-TimeSelfCareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A9FF88E4A5F06A745DA8FF9 /* Pods-TimeSelfCareData.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareData.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareData/Pods-TimeSelfCareData.release.xcconfig"; sourceTree = "<group>"; };
+		9E0742A824738049008E7566 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		9E0742AA24738147008E7566 /* Diagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
+		9E7F5066247250510032B6FE /* DiagnosticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticsViewController.swift; sourceTree = "<group>"; };
+		9E7F5067247250510032B6FE /* Diagnostics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Diagnostics.storyboard; sourceTree = "<group>"; };
 		9EC13562241B6E1200E59C44 /* APTSidebarNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationController.h; sourceTree = "<group>"; };
 		9EC13563241B6E1200E59C44 /* APTSidebarContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarContentSegue.m; sourceTree = "<group>"; };
 		9EC13564241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationControllerPushSegue.h; sourceTree = "<group>"; };
@@ -521,6 +529,7 @@
 				0A8E01F11FA9B50B00CA27A9 /* AuthMenu */,
 				E2730B872097024D00A140F1 /* BillingInfo */,
 				E2A8E8491FCE6A3800EA5DF2 /* Common */,
+				9E7F5065247250510032B6FE /* Diagnostics */,
 				E2B6C2C91FB42A3A00F65B05 /* Launch */,
 				E2610F751FC51F5300959D85 /* Payment */,
 				E2AD69D620AD12B5001D104E /* Performance */,
@@ -605,6 +614,7 @@
 				E2AD69DD20AD2E4C001D104E /* Ssid.swift */,
 				E2E8692A20B665CB00BD9C3C /* ActivityNotification.swift */,
 				E2FB110722CC54B1000FED93 /* Reward.swift */,
+				9E0742AA24738147008E7566 /* Diagnostics.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -627,6 +637,7 @@
 				E27DCC951FE0C3D900A82769 /* String+.swift */,
 				E27DCC971FE0E60300A82769 /* UIView+.swift */,
 				E2FDB2D620AACC37002F0A66 /* UIStoryboard+.swift */,
+				9E0742A824738049008E7566 /* UIImageView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -763,6 +774,15 @@
 				5A47903F1FA972390074B5D4 /* TimeSelfCareDataTests.swift */,
 			);
 			path = TimeSelfCareDataTests;
+			sourceTree = "<group>";
+		};
+		9E7F5065247250510032B6FE /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				9E7F5066247250510032B6FE /* DiagnosticsViewController.swift */,
+				9E7F5067247250510032B6FE /* Diagnostics.storyboard */,
+			);
+			path = Diagnostics;
 			sourceTree = "<group>";
 		};
 		9EC13561241B6E1200E59C44 /* APTSidebarNavigationController */ = {
@@ -1221,6 +1241,7 @@
 			files = (
 				E22050E41FCD4D17004D5B10 /* DIN-Light.ttf in Resources */,
 				E2F7225220CA47D800C5204D /* anim_notification_bell.json in Resources */,
+				9E7F5069247250510032B6FE /* Diagnostics.storyboard in Resources */,
 				E22A5B5322C5A4E600C99ED2 /* GoogleService-Info.plist in Resources */,
 				E2AD69D820AD12CB001D104E /* Performance.storyboard in Resources */,
 				9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */,
@@ -1495,6 +1516,7 @@
 				E2DD467D21181B180010D84A /* ConversationFooterView.swift in Sources */,
 				E2730B8B2097032600A140F1 /* BillingInfoDetailViewController.swift in Sources */,
 				E2FDB2D720AACC37002F0A66 /* UIStoryboard+.swift in Sources */,
+				9E7F5068247250510032B6FE /* DiagnosticsViewController.swift in Sources */,
 				E274AD6A210711F700E62A42 /* TicketFormViewController.swift in Sources */,
 				0A8E01F91FA9B50B00CA27A9 /* AuthMenuViewController.swift in Sources */,
 				E27DCC961FE0C3D900A82769 /* String+.swift in Sources */,
@@ -1560,6 +1582,7 @@
 				E21CF7311FC6906800F13FAF /* CreateAutoDebitViewController.swift in Sources */,
 				E2A8E8461FCE3D9900EA5DF2 /* ProfileDetailViewController.swift in Sources */,
 				E274AD66210711F700E62A42 /* TicketCell.swift in Sources */,
+				9E0742A924738049008E7566 /* UIImageView+.swift in Sources */,
 				E20451DE2212A5B700847AE4 /* SideBarTableViewController.swift in Sources */,
 				E274AD64210711F700E62A42 /* AddAttachmentCell.swift in Sources */,
 				E22050D81FCCF984004D5B10 /* AddOnCell.swift in Sources */,
@@ -1593,6 +1616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E0742AB24738147008E7566 /* Diagnostics.swift in Sources */,
 				E2345C821FB9654D00DA42F0 /* CreditCard.swift in Sources */,
 				E2345C831FB9654D00DA42F0 /* Service.swift in Sources */,
 				E2345C8D1FB968A500DA42F0 /* ActivityDataController.swift in Sources */,

@@ -19,7 +19,7 @@ enum TimeSelfCareStoryboard: String, Storyboard {
     case walkthrough
     case authMenu
     case performance
-    case diagnosis
+    case diagnostics
     case support
     case reward
 

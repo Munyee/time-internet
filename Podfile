@@ -15,7 +15,7 @@ target 'TimeSelfCareData' do
   pod 'Alamofire', '~> 4.7.2'
   pod 'CardIO'
   pod 'SDWebImage'
-  pod 'EasyTipView', :git => 'git@gitlab.time.com.my:BSS/EasyTipView.git'
+  pod 'EasyTipView', :git => 'git@10.60.81.57:BSS/EasyTipView.git'
   pod 'JVFloatLabeledTextField'
 
   target 'TimeSelfCareDataTests' do

@@ -27,7 +27,7 @@ internal class LoginViewController: BaseAuthViewController {
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var liveChatView: ExpandableLiveChatView!
-    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var liveChatConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()

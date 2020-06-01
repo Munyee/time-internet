@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -81,16 +83,42 @@
                                     <constraint firstItem="fjJ-sH-lu2" firstAttribute="width" secondItem="z0m-NP-isg" secondAttribute="width" id="zRQ-4W-PEm"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6E-0y-jjL">
+                                <rect key="frame" x="151.5" y="728" width="111" height="32"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="16"/>
+                                <state key="normal" title="Run Speed Test">
+                                    <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="actRunSpeedTest:" destination="qF1-9X-i4C" eventType="touchUpInside" id="zpF-Z5-9QO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLw-9Q-ZYx">
+                                <rect key="frame" x="145.5" y="728" width="123" height="32"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="16"/>
+                                <state key="normal" title="Update Firmware">
+                                    <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="actUpdateFirmware:" destination="qF1-9X-i4C" eventType="touchUpInside" id="dW4-Pl-RKA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="e73-kv-TWJ" firstAttribute="top" secondItem="q6E-0y-jjL" secondAttribute="bottom" constant="20" id="19M-I7-2WC"/>
                             <constraint firstItem="e73-kv-TWJ" firstAttribute="centerX" secondItem="baB-q7-ZRq" secondAttribute="centerX" id="2vA-HH-xVl"/>
                             <constraint firstItem="e73-kv-TWJ" firstAttribute="top" secondItem="L96-D5-MyU" secondAttribute="bottom" constant="20" id="7Pf-Fm-OFg"/>
+                            <constraint firstItem="q6E-0y-jjL" firstAttribute="centerX" secondItem="baB-q7-ZRq" secondAttribute="centerX" id="CIm-Jh-yW4"/>
                             <constraint firstItem="baB-q7-ZRq" firstAttribute="trailing" secondItem="z0m-NP-isg" secondAttribute="trailing" id="KCX-2n-kcD"/>
+                            <constraint firstItem="e73-kv-TWJ" firstAttribute="top" secondItem="nLw-9Q-ZYx" secondAttribute="bottom" constant="20" id="W9X-9x-irX"/>
+                            <constraint firstItem="nLw-9Q-ZYx" firstAttribute="top" secondItem="z0m-NP-isg" secondAttribute="bottom" constant="20" id="fTN-XZ-Dcu"/>
+                            <constraint firstItem="nLw-9Q-ZYx" firstAttribute="centerX" secondItem="baB-q7-ZRq" secondAttribute="centerX" id="gGO-DO-uJw"/>
                             <constraint firstItem="z0m-NP-isg" firstAttribute="top" secondItem="baB-q7-ZRq" secondAttribute="top" id="k5s-2q-XV4"/>
                             <constraint firstItem="L96-D5-MyU" firstAttribute="top" secondItem="z0m-NP-isg" secondAttribute="bottom" constant="20" id="mnJ-FZ-FG0"/>
                             <constraint firstItem="z0m-NP-isg" firstAttribute="leading" secondItem="baB-q7-ZRq" secondAttribute="leading" id="tuh-is-mcO"/>
                             <constraint firstItem="L96-D5-MyU" firstAttribute="centerX" secondItem="e73-kv-TWJ" secondAttribute="centerX" id="wdd-MC-crm"/>
+                            <constraint firstItem="q6E-0y-jjL" firstAttribute="top" secondItem="z0m-NP-isg" secondAttribute="bottom" constant="20" id="xre-3d-ZyW"/>
                             <constraint firstItem="baB-q7-ZRq" firstAttribute="bottom" secondItem="e73-kv-TWJ" secondAttribute="bottom" constant="50" id="zFY-7T-h3A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="baB-q7-ZRq"/>
@@ -100,6 +128,8 @@
                         <outlet property="iconImageView" destination="wwh-cB-g1E" id="4oe-qR-uvq"/>
                         <outlet property="messageLabel" destination="eI9-54-ktm" id="U8O-jt-eyH"/>
                         <outlet property="raiseTicket" destination="L96-D5-MyU" id="gQc-AZ-5QR"/>
+                        <outlet property="runSpeedTest" destination="q6E-0y-jjL" id="Q1L-X2-c8X"/>
+                        <outlet property="updateFirmware" destination="nLw-9Q-ZYx" id="0Ki-7I-jj9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pSL-1x-xAq" userLabel="First Responder" sceneMemberID="firstResponder"/>

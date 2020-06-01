@@ -50,6 +50,8 @@ class PerformanceViewController: BaseViewController {
             return
         }
 
+        self.issueDetect.alpha = 0
+
         self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
         AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
             let isConnected: Bool = error == nil

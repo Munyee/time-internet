@@ -12,11 +12,15 @@ public class Diagnostics: JsonRecord {
     public let message: String?
     public var icon: String?
     public var action: String?
+    public var category: String?
+    public var subject: String?
 
     public init() {
         self.message = String()
         self.icon = String()
         self.action = String()
+        self.category = String()
+        self.subject = String()
     }
 
     public required init?(with json: [String : Any]) {
@@ -30,5 +34,7 @@ public class Diagnostics: JsonRecord {
         self.message = data["msg"] as? String
         self.icon = data["icon"] as? String
         self.action = data["action"] as? String
+        self.category = data["category"] as? String
+        self.subject = data["subject"] as? String
     }
 }

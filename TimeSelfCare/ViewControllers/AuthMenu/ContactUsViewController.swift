@@ -11,11 +11,13 @@ import MessageUI
 
 class ContactUsViewController: BaseAuthViewController {
 
+    @IBOutlet weak var liveChat: LiveChatView!
     @IBOutlet private weak var containerView: UIStackView!
     @IBOutlet private weak var scrollView: UIScrollView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        liveChat.layer.cornerRadius = 12
     }
 
     @IBAction func actCall(_ sender: UIButton) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,18 +34,31 @@
                                     <constraint firstAttribute="bottom" secondItem="P3L-Me-ozo" secondAttribute="bottom" id="mqT-b9-D74"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2VV-lr-tDK" customClass="ExpandableLiveChatView" customModule="TimeSelfCare" customModuleProvider="target">
+                                <rect key="frame" x="-125" y="580" width="150" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="150" id="5cE-WP-wrC"/>
+                                    <constraint firstAttribute="height" constant="50" id="gvn-7G-PiT"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="W0G-29-ul7"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2Hq-aq-2Sk" firstAttribute="leading" secondItem="73O-I5-99M" secondAttribute="leading" id="2my-Qa-fMP"/>
                             <constraint firstItem="73O-I5-99M" firstAttribute="trailing" secondItem="2Hq-aq-2Sk" secondAttribute="trailing" id="Jy2-WV-H5n"/>
+                            <constraint firstItem="2VV-lr-tDK" firstAttribute="leading" secondItem="73O-I5-99M" secondAttribute="leading" constant="-125" id="PxJ-R5-kfO"/>
                             <constraint firstItem="2Hq-aq-2Sk" firstAttribute="top" secondItem="73O-I5-99M" secondAttribute="top" id="Rsn-7T-NLd"/>
                             <constraint firstItem="73O-I5-99M" firstAttribute="bottom" secondItem="2Hq-aq-2Sk" secondAttribute="bottom" id="hNc-j8-ppN"/>
+                            <constraint firstAttribute="bottom" secondItem="2VV-lr-tDK" secondAttribute="bottom" constant="37" id="vve-Wz-dT4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="73O-I5-99M"/>
                     </view>
                     <navigationItem key="navigationItem" title="Billing Info" id="6hM-uk-o3X"/>
                     <connections>
+                        <outlet property="liveChatConstraint" destination="PxJ-R5-kfO" id="sER-XJ-yL2"/>
+                        <outlet property="liveChatView" destination="2VV-lr-tDK" id="acE-bu-XLL"/>
                         <outlet property="stackViewContainer" destination="P3L-Me-ozo" id="8OH-IH-MgC"/>
                     </connections>
                 </viewController>

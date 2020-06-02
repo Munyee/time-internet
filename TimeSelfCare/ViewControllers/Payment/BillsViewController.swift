@@ -24,7 +24,9 @@ internal class BillsViewController: TimeBaseViewController {
 
     @IBOutlet private weak var emptyStateLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
-
+    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Bills", comment: "Bills")
@@ -32,6 +34,15 @@ internal class BillsViewController: TimeBaseViewController {
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.addSubview(self.refreshControl)
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if (liveChatView.isExpand) {
+            liveChatConstraint.constant = 0
+        } else {
+            liveChatConstraint.constant = -125
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

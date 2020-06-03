@@ -10,7 +10,7 @@ import Foundation
 
 public class Reward: Codable {
     public enum Status: String, Codable {
-        case available, grabbed, redeemed
+        case available, grabbed, redeemed, expired
         case fullyGrabbed = "fully_grabbed"
     }
 

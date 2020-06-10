@@ -277,6 +277,9 @@ extension RewardViewController: RewardHeaderViewDelegate {
         let index = self.sections.firstIndex { $0 == section } ?? 0
         self.sectionCollapsed[index] = !self.sectionCollapsed[index]
 
+        if index < 0 {
+            return
+        }
         tableView.reloadSections(IndexSet(integer: index), with: .automatic)
     }
 }

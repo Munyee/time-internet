@@ -24,6 +24,8 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var profileFullNameLabel: UILabel!
     @IBOutlet private weak var floatingActionButton: UIButton!
     @IBOutlet private weak var activityButton: UIButton!
+    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
+    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,15 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.view.addGestureRecognizer(hideSidebarGesture)
 
         self.updateNotificationIndicator()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if (liveChatView.isExpand) {
+            liveChatConstraint.constant = 0
+        } else {
+            liveChatConstraint.constant = -125
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

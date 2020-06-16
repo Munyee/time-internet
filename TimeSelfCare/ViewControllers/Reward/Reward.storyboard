@@ -253,13 +253,24 @@
                                     <outlet property="delegate" destination="c9Q-5f-YdG" id="TK7-vY-5F7"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hd-7m-Xrf" customClass="ExpandableLiveChatView" customModule="TimeSelfCare" customModuleProvider="target">
+                                <rect key="frame" x="-125" y="809" width="150" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="150" id="EQV-ld-4O0"/>
+                                    <constraint firstAttribute="height" constant="50" id="Zco-RW-Pc8"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="rKd-2N-VfB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="sVp-l8-Gwb" firstAttribute="bottom" secondItem="yk6-aT-9oN" secondAttribute="bottom" id="2ba-WK-QXv"/>
                             <constraint firstItem="yk6-aT-9oN" firstAttribute="top" secondItem="sVp-l8-Gwb" secondAttribute="top" id="50e-eJ-eIi"/>
                             <constraint firstItem="yk6-aT-9oN" firstAttribute="leading" secondItem="sVp-l8-Gwb" secondAttribute="leading" id="68n-gv-0jQ"/>
+                            <constraint firstAttribute="bottom" secondItem="3hd-7m-Xrf" secondAttribute="bottom" constant="37" id="Wap-PG-luW"/>
                             <constraint firstItem="sVp-l8-Gwb" firstAttribute="trailing" secondItem="yk6-aT-9oN" secondAttribute="trailing" id="dTo-5D-AMH"/>
+                            <constraint firstItem="3hd-7m-Xrf" firstAttribute="leading" secondItem="sVp-l8-Gwb" secondAttribute="leading" priority="750" constant="-125" id="oaP-VG-3KU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sVp-l8-Gwb"/>
                     </view>
@@ -268,6 +279,8 @@
                         <outlet property="congratulationStackView" destination="HCs-I5-AZQ" id="Y90-un-8xe"/>
                         <outlet property="footerInfoLabel" destination="hbY-1G-7Yl" id="n7p-zB-McQ"/>
                         <outlet property="footerStackView" destination="vqh-tD-wjC" id="6UX-K6-2vO"/>
+                        <outlet property="liveChatConstraint" destination="oaP-VG-3KU" id="03e-CY-PHE"/>
+                        <outlet property="liveChatView" destination="3hd-7m-Xrf" id="khC-2O-zpi"/>
                         <outlet property="rewardNameLabel" destination="sTJ-Pp-uQo" id="7Ab-no-j6G"/>
                         <outlet property="tableHeaderImageView" destination="f90-Df-5tb" id="8tk-wC-Fgc"/>
                         <outlet property="tableView" destination="yk6-aT-9oN" id="E9F-fo-iXQ"/>

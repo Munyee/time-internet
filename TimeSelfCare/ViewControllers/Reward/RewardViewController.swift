@@ -33,11 +33,13 @@ class RewardViewController: TimeBaseViewController {
                 }
             }
 
-            if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
-                for voucherCode in voucherCodes {
-                    if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
-                        voucherLabel.text = voucherCode
-                        self.voucherStackView.addArrangedSubview(voucherLabel)
+            if (reward.status != .expired) {
+                if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
+                    for voucherCode in voucherCodes {
+                        if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
+                            voucherLabel.text = voucherCode
+                            self.voucherStackView.addArrangedSubview(voucherLabel)
+                        }
                     }
                 }
             }
@@ -101,7 +103,9 @@ class RewardViewController: TimeBaseViewController {
     @IBOutlet private weak var voucherStackView: UIStackView!
     @IBOutlet private weak var voucherCodeLabel: UILabel!
     @IBOutlet private weak var validityPeriodStackView: UIStackView!
-
+    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
+    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("TIME Rewards", comment: "")
@@ -112,6 +116,15 @@ class RewardViewController: TimeBaseViewController {
         self.tableView.estimatedRowHeight = 50
 
         self.tableView.register(UINib(nibName: "RewardHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "RewardHeaderView")
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if (liveChatView.isExpand) {
+            liveChatConstraint.constant = 0
+        } else {
+            liveChatConstraint.constant = -125
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -266,6 +279,9 @@ extension RewardViewController: RewardHeaderViewDelegate {
         let index = self.sections.firstIndex { $0 == section } ?? 0
         self.sectionCollapsed[index] = !self.sectionCollapsed[index]
 
+        if index < 0 {
+            return
+        }
         tableView.reloadSections(IndexSet(integer: index), with: .automatic)
     }
 }
@@ -326,6 +342,8 @@ extension Reward.Status {
             return NSLocalizedString("FULLY GRABBED", comment: "")
         case .redeemed:
             return NSLocalizedString("REDEEMED", comment: "")
+        case .expired:
+            return NSLocalizedString("EXPIRED", comment: "")
         }
     }
 

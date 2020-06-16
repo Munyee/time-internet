@@ -377,6 +377,14 @@
                                     <constraint firstAttribute="bottom" secondItem="j9j-10-4qc" secondAttribute="bottom" id="v9g-7J-kE4"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjh-xl-G9J" customClass="ExpandableLiveChatView" customModule="TimeSelfCare" customModuleProvider="target">
+                                <rect key="frame" x="-125" y="580" width="150" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Bwo-CO-OSD"/>
+                                    <constraint firstAttribute="width" priority="750" constant="150" id="Vxp-SL-ggV"/>
+                                </constraints>
+                            </view>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNz-uq-4J8">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
@@ -397,8 +405,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zTv-Cf-WOo" firstAttribute="top" secondItem="GNz-uq-4J8" secondAttribute="top" id="4RW-Vs-Ntc"/>
+                            <constraint firstItem="zTv-Cf-WOo" firstAttribute="bottom" secondItem="hjh-xl-G9J" secondAttribute="bottom" constant="37" id="591-RH-BaC"/>
                             <constraint firstItem="j9j-10-4qc" firstAttribute="width" secondItem="wfs-ed-p1e" secondAttribute="width" constant="-88" id="6zn-MG-xnp"/>
                             <constraint firstItem="zTv-Cf-WOo" firstAttribute="trailing" secondItem="GNz-uq-4J8" secondAttribute="trailing" id="8ss-eD-ou6"/>
+                            <constraint firstItem="hjh-xl-G9J" firstAttribute="leading" secondItem="zTv-Cf-WOo" secondAttribute="leading" priority="750" constant="-125" id="Jnm-bC-cv6"/>
                             <constraint firstItem="zTv-Cf-WOo" firstAttribute="bottom" secondItem="Ryg-Lv-BtI" secondAttribute="bottom" id="NAf-cr-HdS"/>
                             <constraint firstItem="Ryg-Lv-BtI" firstAttribute="leading" secondItem="zTv-Cf-WOo" secondAttribute="leading" id="faS-LM-svy"/>
                             <constraint firstItem="GNz-uq-4J8" firstAttribute="leading" secondItem="zTv-Cf-WOo" secondAttribute="leading" id="h3m-bd-gs5"/>
@@ -410,6 +420,8 @@
                     <connections>
                         <outlet property="containerView" destination="j9j-10-4qc" id="gMo-7E-paK"/>
                         <outlet property="customNavigationBar" destination="GNz-uq-4J8" id="ja5-Ln-up2"/>
+                        <outlet property="liveChatConstraint" destination="Jnm-bC-cv6" id="cNK-uq-h9j"/>
+                        <outlet property="liveChatView" destination="hjh-xl-G9J" id="vM9-x4-rRg"/>
                         <outlet property="loginButton" destination="792-p2-fdb" id="8d1-Nf-P0s"/>
                         <outlet property="passwordIconButton" destination="g7h-bf-zBA" id="VMe-wf-kIY"/>
                         <outlet property="passwordTextField" destination="9ec-ob-wvh" id="zke-mf-lg1"/>
@@ -759,7 +771,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Create Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1k2-iv-9tc" customClass="VDTTextField" customModule="ApptivityFramework">
-                                                                        <rect key="frame" x="49" y="1" width="189" height="54"/>
+                                                                        <rect key="frame" x="49" y="16" width="189" height="24"/>
                                                                         <color key="tintColor" red="0.93725490199999995" green="0.22352941179999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -823,7 +835,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qA0-xl-HD9" customClass="VDTTextField" customModule="ApptivityFramework">
-                                                                        <rect key="frame" x="49" y="1" width="189" height="54"/>
+                                                                        <rect key="frame" x="49" y="16" width="189" height="24"/>
                                                                         <color key="tintColor" red="0.93725490199999995" green="0.22352941179999999" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
@@ -1074,14 +1086,14 @@
             <objects>
                 <viewController id="8Eh-Pc-ujL" customClass="ContactUsViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SZf-4x-h6s">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="3GI-o4-UaF">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="686"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="uQ1-e7-fzN">
-                                        <rect key="frame" x="44" y="0.0" width="287" height="591"/>
+                                        <rect key="frame" x="44" y="0.0" width="287" height="701"/>
                                         <subviews>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6hB-vP-N0x">
                                                 <rect key="frame" x="0.0" y="44" width="287" height="211.5"/>
@@ -1147,8 +1159,21 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oXS-bV-DqS">
+                                                <rect key="frame" x="0.0" y="458" width="287" height="50"/>
+                                                <subviews>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p10-Xu-Jez" customClass="LiveChatView" customModule="TimeSelfCare" customModuleProvider="target">
+                                                        <rect key="frame" x="68.5" y="0.0" width="150" height="50"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="SRX-Cj-394"/>
+                                                            <constraint firstAttribute="width" constant="150" id="aVP-9r-JjO"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="M5B-PV-dah">
-                                                <rect key="frame" x="0.0" y="458" width="287" height="93"/>
+                                                <rect key="frame" x="0.0" y="568" width="287" height="93"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9N-gI-099">
                                                         <rect key="frame" x="23.5" y="0.0" width="240" height="0.0"/>
@@ -1210,15 +1235,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y2O-D6-qy8"/>
                     </view>
+                    <size key="freeformSize" width="375" height="750"/>
                     <connections>
                         <outlet property="containerView" destination="uQ1-e7-fzN" id="Knd-hj-lSj"/>
                         <outlet property="customNavigationBar" destination="oqS-TG-1ph" id="rf5-nc-rV3"/>
+                        <outlet property="liveChat" destination="p10-Xu-Jez" id="fGZ-tV-Yrd"/>
                         <outlet property="scrollView" destination="3GI-o4-UaF" id="O2s-8Q-Svl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xcb-t4-jkm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-228" y="500.59970014992507"/>
+            <point key="canvasLocation" x="-228" y="500.1499250374813"/>
         </scene>
     </scenes>
     <resources>

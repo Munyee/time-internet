@@ -1879,6 +1879,10 @@ Copyright 2020 Google
    limitations under the License.
 
 
+## FreshchatSDK
+
+See https://www.freshworks.com/terms
+
 ## GoogleAppMeasurement
 
 Copyright 2020 Google

@@ -144,8 +144,10 @@ class BillingInfoDetailViewController: TimeBaseViewController {
             view?.billingInfo = billingInfo
         }
 
-        let canEditBillingInfo: Bool = billingInfo?.canUpdateBillingMethod ?? false || billingInfo?.canUpdateBillingAddress ?? false
-        self.navigationItem.rightBarButtonItem = canEditBillingInfo ? UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain, target: self, action: #selector(self.editBillingInfo)) : nil
+//        let canEditBillingInfo: Bool = billingInfo?.canUpdateBillingMethod ?? false || billingInfo?.canUpdateBillingAddress ?? false
+//        self.navigationItem.rightBarButtonItem = canEditBillingInfo ? UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain, target: self, action: #selector(self.editBillingInfo)) : nil
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain, target: self, action: #selector(self.editBillingInfo))
     }
 
     @objc

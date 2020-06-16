@@ -460,7 +460,7 @@ class BillingInfoFormViewController: UIViewController {
                 componentView.text = billingInfo.billCountry
             }
         }
-        self.updateUI()
+       // self.updateUI()
     }
 
     private func updateUI() {

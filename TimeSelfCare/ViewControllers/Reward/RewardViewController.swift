@@ -33,11 +33,13 @@ class RewardViewController: TimeBaseViewController {
                 }
             }
 
-            if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
-                for voucherCode in voucherCodes {
-                    if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
-                        voucherLabel.text = voucherCode
-                        self.voucherStackView.addArrangedSubview(voucherLabel)
+            if (reward.status != .expired) {
+                if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
+                    for voucherCode in voucherCodes {
+                        if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
+                            voucherLabel.text = voucherCode
+                            self.voucherStackView.addArrangedSubview(voucherLabel)
+                        }
                     }
                 }
             }
@@ -277,6 +279,9 @@ extension RewardViewController: RewardHeaderViewDelegate {
         let index = self.sections.firstIndex { $0 == section } ?? 0
         self.sectionCollapsed[index] = !self.sectionCollapsed[index]
 
+        if index < 0 {
+            return
+        }
         tableView.reloadSections(IndexSet(integer: index), with: .automatic)
     }
 }
@@ -337,6 +342,8 @@ extension Reward.Status {
             return NSLocalizedString("FULLY GRABBED", comment: "")
         case .redeemed:
             return NSLocalizedString("REDEEMED", comment: "")
+        case .expired:
+            return NSLocalizedString("EXPIRED", comment: "")
         }
     }
 

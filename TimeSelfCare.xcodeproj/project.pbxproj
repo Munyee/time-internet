@@ -48,11 +48,20 @@
 		8DE3FED9EF97544305FDB322 /* Pods_TimeSelfCareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D242A15D7C1AEA93370ECCA /* Pods_TimeSelfCareUITests.framework */; };
 		9558CC222B9AE745B3BC9813 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F301820E7E82ACC89C85B876 /* AssetsLibrary.framework */; };
 		982D662598530203E17C5787 /* Pods_TimeSelfCareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C4B4A429CE5CDA9E755E4 /* Pods_TimeSelfCareTests.framework */; };
+		9E05D856249B030800D01D66 /* ReferralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05D855249B030800D01D66 /* ReferralViewController.swift */; };
+		9E05D859249B03D000D01D66 /* ReferralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05D858249B03D000D01D66 /* ReferralTableViewCell.swift */; };
+		9E7018D22499EBAA00350D3F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7018D12499EBAA00350D3F /* ShareViewController.swift */; };
+		9E8DBCA024987B3300880724 /* Hookup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8DBC9F24987B3300880724 /* Hookup.storyboard */; };
+		9E8DBCA224987B4A00880724 /* HookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DBCA124987B4A00880724 /* HookupViewController.swift */; };
+		9E8DBCA52498999600880724 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DBCA42498999600880724 /* SegmentControl.swift */; };
 		9E9BBA092465516D00F2514D /* FCTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E9BBA082465516D00F2514D /* FCTheme.plist */; };
 		9EC1356A241B6E1200E59C44 /* APTSidebarContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13563241B6E1200E59C44 /* APTSidebarContentSegue.m */; };
 		9EC1356B241B6E1200E59C44 /* APTSidebarNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13566241B6E1200E59C44 /* APTSidebarNavigationController.m */; };
 		9EC1356C241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13568241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m */; };
 		9EC1356D241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13569241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m */; };
+		9EC1E3692499B04E00D16728 /* HowItWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC1E3682499B04E00D16728 /* HowItWorkViewController.swift */; };
+		9EC87F66249B1ACB005824A0 /* DiscountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC87F65249B1ACB005824A0 /* DiscountTableViewCell.swift */; };
+		9EC87F68249B1AFF005824A0 /* DiscountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC87F67249B1AFF005824A0 /* DiscountViewController.swift */; };
 		9ECA46402436C79F00EB0DB8 /* EVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA463E2436C79F00EB0DB8 /* EVoucherView.swift */; };
 		9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */; };
 		9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */; };
@@ -305,6 +314,12 @@
 		88FB0D8F60899197099FF773 /* Pods_TimeSelfCare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		965B83A933543A79F26EC5D1 /* Pods-TimeSelfCareUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D242A15D7C1AEA93370ECCA /* Pods_TimeSelfCareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E05D855249B030800D01D66 /* ReferralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralViewController.swift; sourceTree = "<group>"; };
+		9E05D858249B03D000D01D66 /* ReferralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralTableViewCell.swift; sourceTree = "<group>"; };
+		9E7018D12499EBAA00350D3F /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		9E8DBC9F24987B3300880724 /* Hookup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Hookup.storyboard; sourceTree = "<group>"; };
+		9E8DBCA124987B4A00880724 /* HookupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HookupViewController.swift; sourceTree = "<group>"; };
+		9E8DBCA42498999600880724 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
 		9E9BBA082465516D00F2514D /* FCTheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FCTheme.plist; sourceTree = "<group>"; };
 		9EC13562241B6E1200E59C44 /* APTSidebarNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationController.h; sourceTree = "<group>"; };
 		9EC13563241B6E1200E59C44 /* APTSidebarContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarContentSegue.m; sourceTree = "<group>"; };
@@ -314,6 +329,9 @@
 		9EC13567241B6E1200E59C44 /* APTSidebarContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarContentSegue.h; sourceTree = "<group>"; };
 		9EC13568241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+APTSidebarNavigation.m"; sourceTree = "<group>"; };
 		9EC13569241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarNavigationControllerPushSegue.m; sourceTree = "<group>"; };
+		9EC1E3682499B04E00D16728 /* HowItWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowItWorkViewController.swift; sourceTree = "<group>"; };
+		9EC87F65249B1ACB005824A0 /* DiscountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountTableViewCell.swift; sourceTree = "<group>"; };
+		9EC87F67249B1AFF005824A0 /* DiscountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountViewController.swift; sourceTree = "<group>"; };
 		9ECA463E2436C79F00EB0DB8 /* EVoucherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVoucherView.swift; sourceTree = "<group>"; };
 		9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVoucherView.xib; sourceTree = "<group>"; };
 		9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherLabel.xib; sourceTree = "<group>"; };
@@ -525,6 +543,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9E8DBC9E24987B1000880724 /* HookUp */,
 				E2FB110B22CC9477000FED93 /* Reward */,
 				E274AD54210711F700E62A42 /* Support */,
 				E2626D4E20A923DD00891953 /* Activity */,
@@ -622,6 +641,7 @@
 		0A9433811FAAC5AC00AA0DFF /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				9E8DBCA32498996800880724 /* SegmentControl */,
 				9EE0B95E2465206F0073288B /* ExpandableLiveChat */,
 				9EE0B959246512A70073288B /* LiveChat */,
 				0A9433821FAAC5E000AA0DFF /* CentredImageButton.swift */,
@@ -776,6 +796,37 @@
 				5A47903F1FA972390074B5D4 /* TimeSelfCareDataTests.swift */,
 			);
 			path = TimeSelfCareDataTests;
+			sourceTree = "<group>";
+		};
+		9E05D857249B03BD00D01D66 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9E05D858249B03D000D01D66 /* ReferralTableViewCell.swift */,
+				9EC87F65249B1ACB005824A0 /* DiscountTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9E8DBC9E24987B1000880724 /* HookUp */ = {
+			isa = PBXGroup;
+			children = (
+				9E05D857249B03BD00D01D66 /* Cell */,
+				9E8DBC9F24987B3300880724 /* Hookup.storyboard */,
+				9E8DBCA124987B4A00880724 /* HookupViewController.swift */,
+				9EC1E3682499B04E00D16728 /* HowItWorkViewController.swift */,
+				9E7018D12499EBAA00350D3F /* ShareViewController.swift */,
+				9E05D855249B030800D01D66 /* ReferralViewController.swift */,
+				9EC87F67249B1AFF005824A0 /* DiscountViewController.swift */,
+			);
+			path = HookUp;
+			sourceTree = "<group>";
+		};
+		9E8DBCA32498996800880724 /* SegmentControl */ = {
+			isa = PBXGroup;
+			children = (
+				9E8DBCA42498999600880724 /* SegmentControl.swift */,
+			);
+			path = SegmentControl;
 			sourceTree = "<group>";
 		};
 		9EC13561241B6E1200E59C44 /* APTSidebarNavigationController */ = {
@@ -1255,6 +1306,7 @@
 				E2F7225220CA47D800C5204D /* anim_notification_bell.json in Resources */,
 				E22A5B5322C5A4E600C99ED2 /* GoogleService-Info.plist in Resources */,
 				9E9BBA092465516D00F2514D /* FCTheme.plist in Resources */,
+				9E8DBCA024987B3300880724 /* Hookup.storyboard in Resources */,
 				E2AD69D820AD12CB001D104E /* Performance.storyboard in Resources */,
 				9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */,
 				5A4790051FA972080074B5D4 /* Assets.xcassets in Resources */,
@@ -1550,8 +1602,10 @@
 				0A9433861FAACE2900AA0DFF /* UIColor+.swift in Sources */,
 				E2AD92C11FC2C43B00138334 /* ConfirmationViewController.swift in Sources */,
 				E2DD467D21181B180010D84A /* ConversationFooterView.swift in Sources */,
+				9E05D859249B03D000D01D66 /* ReferralTableViewCell.swift in Sources */,
 				E2730B8B2097032600A140F1 /* BillingInfoDetailViewController.swift in Sources */,
 				E2FDB2D720AACC37002F0A66 /* UIStoryboard+.swift in Sources */,
+				9E8DBCA52498999600880724 /* SegmentControl.swift in Sources */,
 				E274AD6A210711F700E62A42 /* TicketFormViewController.swift in Sources */,
 				0A8E01F91FA9B50B00CA27A9 /* AuthMenuViewController.swift in Sources */,
 				E27DCC961FE0C3D900A82769 /* String+.swift in Sources */,
@@ -1564,6 +1618,7 @@
 				E219AD9E1FB3D23900A896FE /* WalkthroughViewController.swift in Sources */,
 				9EC1356D241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m in Sources */,
 				E2217F081FCB250600E9056B /* ScanCardViewController.swift in Sources */,
+				9EC87F68249B1AFF005824A0 /* DiscountViewController.swift in Sources */,
 				E2DE28691FBD404E00E3CC1E /* ForgetPasswordViewController.swift in Sources */,
 				9ECA46462436C7AE00EB0DB8 /* VoucherLabel.swift in Sources */,
 				9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */,
@@ -1580,11 +1635,13 @@
 				E261DD2D1FD7BF3000DEEDBA /* HomeForwardDetailViewController.swift in Sources */,
 				0A3DA9F91FE3CEBB004E304A /* TIMEWebViewController.swift in Sources */,
 				E274AD69210711F700E62A42 /* TicketListViewController.swift in Sources */,
+				9EC1E3692499B04E00D16728 /* HowItWorkViewController.swift in Sources */,
 				E26CC2DD210F039F00FF7875 /* SelectedImageCell.swift in Sources */,
 				E2FB110F22CC95EC000FED93 /* RewardViewController.swift in Sources */,
 				E20A71841FD5008100938766 /* InvoiceCell.swift in Sources */,
 				E2480B3F2112A3CF00555A19 /* ConversationAttachmentCell.swift in Sources */,
 				E27CE9FE22CCBF2200DD9340 /* RewardCell.swift in Sources */,
+				9E7018D22499EBAA00350D3F /* ShareViewController.swift in Sources */,
 				E20A717E1FD4E75000938766 /* FABViewController.swift in Sources */,
 				E2626D5920A972BD00891953 /* ActivityTableViewCell.swift in Sources */,
 				E219ADA01FB3D3D500A896FE /* WalkthroughCell.swift in Sources */,
@@ -1608,6 +1665,7 @@
 				0A8E01F71FA9B50B00CA27A9 /* LaunchViewController.swift in Sources */,
 				E20C8ED41FB55A1900D6190F /* AccountSidebarCell.swift in Sources */,
 				E294990420995E09006468D0 /* BillingInfoFormViewController.swift in Sources */,
+				9E05D856249B030800D01D66 /* ReferralViewController.swift in Sources */,
 				E27CE9FA22CCB6BA00DD9340 /* RewardHeaderView.swift in Sources */,
 				E22050E81FCD50E9004D5B10 /* UIFont+.swift in Sources */,
 				E2610F7B1FC5579900959D85 /* PaymentViewController.swift in Sources */,
@@ -1621,9 +1679,11 @@
 				E20451DE2212A5B700847AE4 /* SideBarTableViewController.swift in Sources */,
 				E274AD64210711F700E62A42 /* AddAttachmentCell.swift in Sources */,
 				E22050D81FCCF984004D5B10 /* AddOnCell.swift in Sources */,
+				9EC87F66249B1ACB005824A0 /* DiscountTableViewCell.swift in Sources */,
 				E2AD69DA20AD12E2001D104E /* PerformanceViewController.swift in Sources */,
 				0A9433801FAAB9CA00AA0DFF /* SummaryPageViewController.swift in Sources */,
 				9EE0B965246520FD0073288B /* ExpandableLiveChatView.swift in Sources */,
+				9E8DBCA224987B4A00880724 /* HookupViewController.swift in Sources */,
 				0A9433831FAAC5E000AA0DFF /* CentredImageButton.swift in Sources */,
 				E2AD92C31FC3A41F00138334 /* AccountSummaryViewController.swift in Sources */,
 				9EC1356A241B6E1200E59C44 /* APTSidebarContentSegue.m in Sources */,

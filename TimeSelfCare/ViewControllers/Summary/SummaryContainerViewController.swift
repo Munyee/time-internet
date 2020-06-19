@@ -166,7 +166,7 @@ class SummaryContainerViewController: TimeBaseViewController {
             }
             menuItems.append(.billingInfo)
         case .performanceStatusSummary:
-            menuItems = [.runDiagnostics]
+            menuItems = [.changeSsid, .runDiagnostics]
         default:
             break
         }

@@ -47,6 +47,7 @@ class PerformanceViewController: BaseViewController {
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
         else {
+            showRunDiagnostic()
             return
         }
 
@@ -65,19 +66,23 @@ class PerformanceViewController: BaseViewController {
                 self.issueDetect.alpha = 0
             } else {
                 self.issueDetect.alpha = 1
-                let attributedString = NSMutableAttributedString(string: self.issueDetect.text ?? "")
-                let attributes: [NSAttributedString.Key : Any] = [
-                    NSAttributedString.Key.foregroundColor: UIColor.primary,
-                    NSAttributedString.Key.font: UIFont.getCustomFont(family: "DIN", style: .body) ?? UIFont.preferredFont(forTextStyle: .body)
-                ]
-                attributedString.addAttributes(attributes, range: (self.issueDetect.text! as NSString).range(of: NSLocalizedString("diagnostics", comment: "")))
-                self.issueDetect.attributedText = attributedString
-                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTappedAttributedLabel(gesture:)))
-                self.issueDetect.isUserInteractionEnabled = true
-                self.issueDetect.addGestureRecognizer(tapGesture)
+                self.showRunDiagnostic()
             }
 
             NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
         }
+    }
+
+    func showRunDiagnostic() {
+        let attributedString = NSMutableAttributedString(string: self.issueDetect.text ?? "")
+        let attributes: [NSAttributedString.Key : Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.primary,
+            NSAttributedString.Key.font: UIFont.getCustomFont(family: "DIN", style: .body) ?? UIFont.preferredFont(forTextStyle: .body)
+        ]
+        attributedString.addAttributes(attributes, range: (self.issueDetect.text! as NSString).range(of: NSLocalizedString("diagnostics", comment: "")))
+        self.issueDetect.attributedText = attributedString
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTappedAttributedLabel(gesture:)))
+        self.issueDetect.isUserInteractionEnabled = true
+        self.issueDetect.addGestureRecognizer(tapGesture)
     }
 }

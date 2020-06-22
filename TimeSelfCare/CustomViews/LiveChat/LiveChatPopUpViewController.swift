@@ -33,9 +33,9 @@ class LiveChatPopUpViewController: PopUpViewController {
         let fullText = liveChatLabel.text ?? String()
         let termsText = "Facebook Messenger"
         let termsRange = (fullText as NSString).range(of: termsText)
-        if gesture.didTapAttributedTextInLabel(label: liveChatLabel, inRange: termsRange) {
+//        if gesture.didTapAttributedTextInLabel(label: liveChatLabel, inRange: termsRange) {
             self.openMessenger()
-        }
+//        }
     }
 
     func openMessenger() {

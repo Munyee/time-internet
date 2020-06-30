@@ -592,7 +592,6 @@ extension BillingInfoFormViewController: BillingInfoFormComponentViewDelegate {
     }
 
     func billingInfoFormComponentView(_ billingInfoFormComponentView: BillingInfoFormComponentView, didUpdateBillingMethod billingMethodString: String) {
-        self.updateUI()
         self.updateSaveButton()
     }
 }

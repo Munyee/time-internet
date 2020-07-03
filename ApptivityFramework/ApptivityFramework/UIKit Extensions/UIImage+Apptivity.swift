@@ -76,30 +76,32 @@ public extension UIImage {
 
     private func imageResizedTo(newSize: CGSize, transform: CGAffineTransform, drawTransposed: Bool, interpolationQuality: CGInterpolationQuality) -> UIImage! {
 
-        let newRect: CGRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height).integral
-        let transposedRect = CGRect(x: 0, y: 0, width: newRect.size.height, height: newRect.size.width)
+        autoreleasepool {
+            let newRect: CGRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height).integral
+            let transposedRect = CGRect(x: 0, y: 0, width: newRect.size.height, height: newRect.size.width)
 
-        guard let imageRef: CGImage! = self.cgImage else {
-            return
+            let imageRef: CGImage! = self.cgImage
+
+            if (imageRef == nil) { return nil }
+
+            // Build a context that's the same dimensions as the new size
+            let bitmap: CGContext = CGContext(data: nil, width: Int(newRect.size.width), height: Int(newRect.size.height), bitsPerComponent: imageRef.bitsPerComponent, bytesPerRow: 0, space: imageRef.colorSpace ?? CGColorSpaceCreateDeviceRGB(), bitmapInfo: imageRef.bitmapInfo.rawValue)!
+
+            // Rotate and/or flip the image if required by its orientation
+            bitmap.concatenate(transform)
+
+            // Set the quality level to use when rescaling
+            bitmap.interpolationQuality = interpolationQuality
+
+            // Draw into the context; this scales the image
+            bitmap.draw(imageRef, in: drawTransposed ? transposedRect : newRect)
+
+            // Get the resized image from the context and a UIImage
+            let newImageRef: CGImage = bitmap.makeImage()!
+            let newImage: UIImage! = UIImage(cgImage: newImageRef)
+
+            return newImage;
         }
-
-        // Build a context that's the same dimensions as the new size
-        let bitmap: CGContext = CGContext(data: nil, width: Int(newRect.size.width), height: Int(newRect.size.height), bitsPerComponent: imageRef.bitsPerComponent, bytesPerRow: 0, space: imageRef.colorSpace ?? CGColorSpaceCreateDeviceRGB(), bitmapInfo: imageRef.bitmapInfo.rawValue)!
-
-        // Rotate and/or flip the image if required by its orientation
-        bitmap.concatenate(transform)
-
-        // Set the quality level to use when rescaling
-        bitmap.interpolationQuality = interpolationQuality
-
-        // Draw into the context; this scales the image
-        bitmap.draw(imageRef, in: drawTransposed ? transposedRect : newRect)
-
-        // Get the resized image from the context and a UIImage
-        let newImageRef: CGImage = bitmap.makeImage()!
-        let newImage: UIImage! = UIImage(cgImage: newImageRef)
-
-        return newImage;
     }
 }
 

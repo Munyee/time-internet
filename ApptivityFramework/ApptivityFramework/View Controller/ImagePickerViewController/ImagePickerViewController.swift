@@ -225,13 +225,17 @@ extension ImagePickerViewController: UICollectionViewDataSource, UICollectionVie
         options.resizeMode = .none
         options.isSynchronous = true
         options.isNetworkAccessAllowed = true
-
-        self.assetsController.imageManager.requestImage(for: asset, targetSize: pickedImageSize, contentMode: PHImageContentMode.default, options: options, resultHandler: { [unowned self] (image: UIImage?, info: [AnyHashable : Any]?) -> Void in
-
+        
+       if #available(iOS 13, *) {
+            self.assetsController.imageManager.requestImageDataAndOrientation(for: asset, options: options, resultHandler: {(data, dataUTI, orientation, info) in
+            
             var info: [String : Any] = [:]
-            if let adjustedImage: UIImage = image?.scaledTo(scale: 1) {
-                info[UIImagePickerControllerOriginalImage] = adjustedImage as Any
-                info["localIdentifier"] = asset.localIdentifier
+            
+            if data != nil {
+                if let adjustedImage: UIImage = UIImage(data: data!, scale: 1) {
+                    info[UIImagePickerControllerOriginalImage] = adjustedImage as Any
+                    info["localIdentifier"] = asset.localIdentifier
+                }
             }
 
             self.imagePickerDelegate?.imagePicker(self, didSelectMediaWithInfo: info)
@@ -241,6 +245,24 @@ extension ImagePickerViewController: UICollectionViewDataSource, UICollectionVie
                 self.dismiss(animated: true, completion: nil)
             }
         })
+        
+       } else {
+           self.assetsController.imageManager.requestImage(for: asset, targetSize: pickedImageSize, contentMode: PHImageContentMode.default, options: options, resultHandler: { [unowned self] (image: UIImage?, info: [AnyHashable : Any]?) -> Void in
+
+               var info: [String : Any] = [:]
+               if let adjustedImage: UIImage = image?.scaledTo(scale: 1) {
+                   info[UIImagePickerControllerOriginalImage] = adjustedImage as Any
+                   info["localIdentifier"] = asset.localIdentifier
+               }
+
+               self.imagePickerDelegate?.imagePicker(self, didSelectMediaWithInfo: info)
+               self.imagePickerCompletion?(info)
+
+               if self.imagePickerDelegate == nil {
+                   self.dismiss(animated: true, completion: nil)
+               }
+           })
+       }
     }
 
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -252,20 +274,20 @@ extension ImagePickerViewController: UICollectionViewDataSource, UICollectionVie
 
 public extension ImagePickerViewController {
 
-    public class func imagePicker(mediaTypes: [String] = [kUTTypeImage as String], allowMultipleSelection: Bool = false,  pickedTargetSize: CGSize = PHImageManagerMaximumSize, sourceType: UIImagePickerControllerSourceType? = nil, picked: ((_ info: [String : Any]?) -> Void)? = nil) -> ImagePickerViewController {
+    class func imagePicker(mediaTypes: [String] = [kUTTypeImage as String], allowMultipleSelection: Bool = false,  pickedTargetSize: CGSize = PHImageManagerMaximumSize, sourceType: UIImagePickerControllerSourceType? = nil, picked: ((_ info: [String : Any]?) -> Void)? = nil) -> ImagePickerViewController {
         var imagePickerViewController: ImagePickerViewController! = nil
 
         for items in self.imagePickerNib.instantiate(withOwner: nil, options: nil) {
             if let targetVC: ImagePickerViewController = items as? ImagePickerViewController {
                 imagePickerViewController = targetVC
-                break
+                imagePickerViewController.allowMultipleSelection = allowMultipleSelection
+                imagePickerViewController.sourceType = sourceType
+                imagePickerViewController.imagePickerCompletion = picked
+                imagePickerViewController.mediaTypes = mediaTypes
+                imagePickerViewController.pickedImageSize = pickedTargetSize
+                return imagePickerViewController
             }
         }
-        imagePickerViewController.allowMultipleSelection = allowMultipleSelection
-        imagePickerViewController.sourceType = sourceType
-        imagePickerViewController.imagePickerCompletion = picked
-        imagePickerViewController.mediaTypes = mediaTypes
-        imagePickerViewController.pickedImageSize = pickedTargetSize
         return imagePickerViewController
     }
 }

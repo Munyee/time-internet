@@ -84,11 +84,13 @@ open class CustomPickerView: UIView {
 
     fileprivate func getSelectedRows() -> [String] {
         var selectedRows: [String] = []
-
-        for (i, array) in self.dataArray.enumerated() {
-            let rowIndex: Int = pickerView.selectedRow(inComponent: i)
-            if rowIndex >= 0 {
-                selectedRows.append(array[rowIndex])
+        
+        if self.dataArray.count > 0 {
+            for (i, array) in self.dataArray.enumerated() {
+                let rowIndex: Int = pickerView.selectedRow(inComponent: i)
+                if rowIndex >= 0 {
+                    selectedRows.append(array[rowIndex])
+                }
             }
         }
         return selectedRows
@@ -99,7 +101,9 @@ open class CustomPickerView: UIView {
     }
 
     @objc func doneButtonTapped(sender: AnyObject?) {
-        self.delegate?.pickerView(pickerView: self, didConfirmSelectionOfRowWithTitle: self.getSelectedRows())
+        if sender != nil {
+            self.delegate?.pickerView(pickerView: self, didConfirmSelectionOfRowWithTitle: self.getSelectedRows())
+        }
     }
 
     @objc func cancelButtonTapped(sender: AnyObject?) {

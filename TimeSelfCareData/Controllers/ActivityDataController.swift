@@ -31,12 +31,10 @@ public class ActivityDataController {
                     let activityJSONArray: [[String: Any]] = activityJSONDict.keys.compactMap {
                         var activityJSON = activityJSONDict[$0] as? [String: Any]
                         activityJSON?["account_no"] = body["account_no"]
-                        activityJSON?["profile_username"] = AccountController.shared.profile.username
+                        activityJSON?["profile_username"] = AccountController.shared.profile?.username
                         return activityJSON
                     }
-
                     activities = self.processResponse(activityJSONArray)
-
                 }
                 DispatchQueue.main.async {
                     completion(activities, error)
@@ -87,22 +85,21 @@ public extension ActivityDataController {
         ) {
         let path = "get_account_notification_center"
         let body = [
-            "username": AccountController.shared.profile.username,
+            "username": AccountController.shared.profile?.username,
             "account_no": account?.accountNo
         ]
-
-        self.loadActivityData(path: path, body: body, completion: completion)
+        self.loadActivityData(path: path, body: body as [String : Any], completion: completion)
     }
 
     func markActivityAsRead(for activity: Activity, account: Account? = nil) {
         let path = "click_notification_center"
         let body = [
-            "username": AccountController.shared.profile.username,
+            "username": AccountController.shared.profile?.username,
             "account_no": account?.accountNo,
             "target_id": "\(activity.id)"
         ]
 
         self.activities.first { $0.id == activity.id }?.isNew = false
-        APIClient.shared.postRequest(path: path, body: body, completion: nil)
+        APIClient.shared.postRequest(path: path, body: body as [String : Any], completion: nil)
     }
 }

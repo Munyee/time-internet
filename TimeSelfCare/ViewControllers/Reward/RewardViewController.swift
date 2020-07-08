@@ -26,10 +26,25 @@ class RewardViewController: TimeBaseViewController {
 
             self.validityPeriodStackView.axis = reward.status == .grabbed ? .vertical : .horizontal
 
-            let voucherCode = reward.code?.filter { $0.isValidURL == false }.joined(separator: "\n")
-            self.voucherCodeLabel.text = voucherCode
+            for (index, view) in self.voucherStackView.arrangedSubviews.enumerated() {
+                if (index != 0) {
+                    self.voucherStackView.removeArrangedSubview(view)
+                    view.removeFromSuperview()
+                }
+            }
 
-            let shouldHideVoucher = voucherCode == nil || reward.status == .redeemed
+            if (reward.status != .expired) {
+                if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
+                    for voucherCode in voucherCodes {
+                        if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
+                            voucherLabel.text = voucherCode
+                            self.voucherStackView.addArrangedSubview(voucherLabel)
+                        }
+                    }
+                }
+            }
+
+            let shouldHideVoucher = reward.code == nil || reward.status == .redeemed
             self.voucherStackView.isHidden = shouldHideVoucher
             self.voucherStackView.arrangedSubviews.forEach {
                 $0.isHidden = shouldHideVoucher
@@ -88,10 +103,12 @@ class RewardViewController: TimeBaseViewController {
     @IBOutlet private weak var voucherStackView: UIStackView!
     @IBOutlet private weak var voucherCodeLabel: UILabel!
     @IBOutlet private weak var validityPeriodStackView: UIStackView!
-
+    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
+    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("TIME Reward", comment: "")
+        self.title = NSLocalizedString("TIME Rewards", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
 
         self.tableView.addSubview(self.refreshControl)
@@ -99,6 +116,15 @@ class RewardViewController: TimeBaseViewController {
         self.tableView.estimatedRowHeight = 50
 
         self.tableView.register(UINib(nibName: "RewardHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "RewardHeaderView")
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if (liveChatView.isExpand) {
+            liveChatConstraint.constant = 0
+        } else {
+            liveChatConstraint.constant = -125
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -235,10 +261,12 @@ extension RewardViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RewardHeaderView") as? RewardHeaderView
-        headerView?.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
-        headerView?.delegate = self
-        return headerView
+        if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RewardHeaderView") as? RewardHeaderView {
+            headerView.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
+            headerView.delegate = self
+            return headerView
+        }
+        return nil
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -251,6 +279,9 @@ extension RewardViewController: RewardHeaderViewDelegate {
         let index = self.sections.firstIndex { $0 == section } ?? 0
         self.sectionCollapsed[index] = !self.sectionCollapsed[index]
 
+        if index < 0 {
+            return
+        }
         tableView.reloadSections(IndexSet(integer: index), with: .automatic)
     }
 }
@@ -311,6 +342,8 @@ extension Reward.Status {
             return NSLocalizedString("FULLY GRABBED", comment: "")
         case .redeemed:
             return NSLocalizedString("REDEEMED", comment: "")
+        case .expired:
+            return NSLocalizedString("EXPIRED", comment: "")
         }
     }
 

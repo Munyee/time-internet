@@ -118,7 +118,7 @@ public extension CreditCardDataController {
         ) {
         let path = "get_account_autodebit_info"
         var body: [String: Any] = [:]
-        body["username"] = AccountController.shared.profile.username
+        body["username"] = AccountController.shared.profile?.username
         body["account_no"] = AccountController.shared.selectedAccount?.accountNo
         self.loadCreditCardData(path: path, body: body, completion: completion)
     }

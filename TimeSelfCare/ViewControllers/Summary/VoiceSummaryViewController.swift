@@ -30,6 +30,9 @@ class VoiceSummaryViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = NSLocalizedString("Voice", comment: "")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+
         self.tableView.register(VoicePlanHeaderView.self, forHeaderFooterViewReuseIdentifier: headerViewIdentifier)
 
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension

@@ -258,7 +258,7 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
 
     func pickerView(pickerView: CustomPickerView, didConfirmSelectionOfRowWithTitle title: [String]) {
         self.textView.resignFirstResponder()
-        self.text = title.first
+        self.text = title.first ?? ""
         delegate?.billingInfoFormComponentView(self, didUpdateBillingMethod: title.first ?? "")
     }
 
@@ -575,6 +575,7 @@ class BillingInfoFormViewController: UIViewController {
                 confirmationVC.actionBlock = {
                     self.dismissVC()
                 }
+                confirmationVC.modalPresentationStyle = .fullScreen
                 self.present(confirmationVC, animated: true, completion: nil)
             }
         }

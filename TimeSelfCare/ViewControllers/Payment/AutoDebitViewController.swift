@@ -22,11 +22,22 @@ internal class AutoDebitViewController: TimeBaseViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var registerButton: UIButton!
     @IBOutlet private weak var removeButton: UIButton!
-
+    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
+    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Auto Debit", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(self.back))
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if (liveChatView.isExpand) {
+            liveChatConstraint.constant = 0
+        } else {
+            liveChatConstraint.constant = -125
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -110,7 +121,7 @@ extension AutoDebitViewController {
         var parameters: [String: Any] = [:]
         let path = "make_payment_autodebit"
         parameters["action"] = path
-        parameters["username"] = AccountController.shared.profile.username
+        parameters["username"] = AccountController.shared.profile?.username
         parameters["account_no"] = AccountController.shared.selectedAccount?.accountNo
         parameters["token"] = APIClient.shared.getToken(forPath: path)
         parameters["amount"] = "\(billAmount?.isLessThanOrEqualTo(0) ?? true ? 1.00 : billAmount!)" // swiftlint:disable:this force_unwrapping
@@ -170,6 +181,7 @@ extension AutoDebitViewController {
                 self.presentingViewController?.dismiss(animated: false, completion: nil)
                 // self.confirmationDidDismissAction?()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }
@@ -210,6 +222,7 @@ extension AutoDebitViewController {
                 self.presentingViewController?.dismiss(animated: false, completion: nil)
                 // self.confirmationDidDismissAction?()
             }
+            confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)
         }
     }

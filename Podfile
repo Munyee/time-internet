@@ -15,7 +15,7 @@ target 'TimeSelfCareData' do
   pod 'Alamofire', '~> 4.7.2'
   pod 'CardIO'
   pod 'SDWebImage'
-  pod 'EasyTipView', :git => 'git@gitlab.time.com.my:BSS/EasyTipView.git'
+  pod 'EasyTipView', :git => 'git@10.60.81.57:BSS/EasyTipView.git'
   pod 'JVFloatLabeledTextField'
 
   target 'TimeSelfCareDataTests' do
@@ -35,10 +35,13 @@ target 'TimeSelfCare' do
 
   # Pods for TimeSelfCare
   pod 'SwiftLint'
+  pod 'SwiftyJSON'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'lottie-ios', '~> 2.5.3'
   pod 'Firebase/Core'
+  pod 'Firebase/RemoteConfig'
   pod 'Crashlytics'
+  pod 'FreshchatSDK'
 
   target 'TimeSelfCareTests' do
     inherit! :search_paths
@@ -53,7 +56,7 @@ target 'TimeSelfCare' do
 end
 
 my_project_pods_swift_versions = Hash[
-  "4.0", ["Alamofire", "CardIO", "SDWebImage", "EasyTipView", "JVFloatLabeledTextField", "SwiftLint", "MBProgressHUD", "lottie-ios", "Firebase/Core", "Crashlytics", "ApptivityFramework"]
+  "4.0", ["Alamofire", "CardIO", "SDWebImage", "EasyTipView", "JVFloatLabeledTextField", "SwiftLint", "MBProgressHUD", "lottie-ios", "Firebase/Core", "Crashlytics", "ApptivityFramework", "FreshchatSDK"]
 ]
 
 def setup_all_swift_versions(target, pods_swift_versions)

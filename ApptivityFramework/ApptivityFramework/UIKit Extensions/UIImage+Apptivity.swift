@@ -23,7 +23,11 @@ public extension UIImage {
             drawTransposed = false
         }
 
-        return self.imageResizedTo(newSize: size, transform: self.transformForOrientation(orientation: self.imageOrientation, scaledToSize: size), drawTransposed: drawTransposed, interpolationQuality: interpolationQuality)
+        if let image = self.imageResizedTo(newSize: size, transform: self.transformForOrientation(orientation: self.imageOrientation, scaledToSize: size), drawTransposed: drawTransposed, interpolationQuality: interpolationQuality) {
+            return image
+        } else {
+            return self
+        }
     }
 
     public func resizedTo(maximumDimension: CGFloat) -> UIImage! {
@@ -78,7 +82,7 @@ public extension UIImage {
         let imageRef: CGImage! = self.cgImage
 
         // Build a context that's the same dimensions as the new size
-        let bitmap: CGContext = CGContext(data: nil, width: Int(newRect.size.width), height: Int(newRect.size.height), bitsPerComponent: imageRef.bitsPerComponent, bytesPerRow: 0, space: imageRef.colorSpace!, bitmapInfo: imageRef.bitmapInfo.rawValue)!
+        let bitmap: CGContext = CGContext(data: nil, width: Int(newRect.size.width), height: Int(newRect.size.height), bitsPerComponent: imageRef.bitsPerComponent, bytesPerRow: 0, space: imageRef.colorSpace ?? CGColorSpaceCreateDeviceRGB(), bitmapInfo: imageRef.bitmapInfo.rawValue)!
 
         // Rotate and/or flip the image if required by its orientation
         bitmap.concatenate(transform)

@@ -56,6 +56,7 @@ internal class TIMEWebViewController: UIViewController, WKUIDelegate {
 
         let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [document], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.modalPresentationStyle = .fullScreen
         self.present(activityViewController, animated: true, completion: nil)
     }
 }

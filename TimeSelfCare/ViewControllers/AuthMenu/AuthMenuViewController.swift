@@ -57,11 +57,6 @@ internal class AuthMenuViewController: TimeBaseViewController {
         self.showSafariController(with: url)
     }
 
-    @IBAction func showContactUs(_ sender: Any) {
-        let url = URL(string: "http://www.time.com.my/contact-us")! // swiftlint:disable:this force_unwrapping
-        self.showSafariController(with: url)
-    }
-
     private func showSafariController(with url: URL) {
         let safariController = SFSafariViewController(url: url)
         safariController.preferredControlTintColor = .primary

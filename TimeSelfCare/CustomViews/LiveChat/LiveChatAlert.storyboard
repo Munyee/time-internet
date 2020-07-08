@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iJb-O3-DlS">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Live Chat Pop Up View Controller-->
+        <scene sceneID="HZN-6I-ctc">
+            <objects>
+                <viewController storyboardIdentifier="alertView" id="iJb-O3-DlS" customClass="LiveChatPopUpViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fsm-Eu-GWI" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFg-rx-gbx">
+                                <rect key="frame" x="30" y="262.66666666666669" width="354" height="210.66666666666669"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j51-ZH-zNo">
+                                        <rect key="frame" x="20" y="20" width="314" height="130.33333333333334"/>
+                                        <string key="text">Hi! Our live chat Support Ninjas are still on training wheels, so please bear with us! For now, our live chat operating hours are from 8am-10pm. In the meantime, get in touch with us on our Facebook Messenger instead!"</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MtH-3z-nZY" customClass="UIControl">
+                                        <rect key="frame" x="0.0" y="160.33333333333331" width="354" height="40.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCC-df-ZYg">
+                                                <rect key="frame" x="10" y="9.9999999999999982" width="334" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="RCC-df-ZYg" firstAttribute="leading" secondItem="MtH-3z-nZY" secondAttribute="leading" constant="10" id="5lz-Y3-6A7"/>
+                                            <constraint firstAttribute="trailing" secondItem="RCC-df-ZYg" secondAttribute="trailing" constant="10" id="ZaU-PP-mkf"/>
+                                            <constraint firstAttribute="bottom" secondItem="RCC-df-ZYg" secondAttribute="bottom" constant="10" id="bBs-b0-RRe"/>
+                                            <constraint firstItem="RCC-df-ZYg" firstAttribute="top" secondItem="MtH-3z-nZY" secondAttribute="top" constant="10" id="eve-1z-ROD"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="actDismiss:" destination="iJb-O3-DlS" eventType="touchUpInside" id="ydB-81-fjt"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="j51-ZH-zNo" firstAttribute="top" secondItem="wFg-rx-gbx" secondAttribute="top" constant="20" id="24h-Gd-6gl"/>
+                                    <constraint firstItem="MtH-3z-nZY" firstAttribute="top" secondItem="j51-ZH-zNo" secondAttribute="bottom" constant="10" id="I5W-dX-cNy"/>
+                                    <constraint firstItem="MtH-3z-nZY" firstAttribute="leading" secondItem="wFg-rx-gbx" secondAttribute="leading" id="Oe6-fZ-Drs"/>
+                                    <constraint firstAttribute="trailing" secondItem="MtH-3z-nZY" secondAttribute="trailing" id="XTP-s5-l73"/>
+                                    <constraint firstItem="j51-ZH-zNo" firstAttribute="leading" secondItem="wFg-rx-gbx" secondAttribute="leading" constant="20" id="evw-MW-Smh"/>
+                                    <constraint firstAttribute="trailing" secondItem="j51-ZH-zNo" secondAttribute="trailing" constant="20" id="roC-H3-ZZy"/>
+                                    <constraint firstAttribute="bottom" secondItem="MtH-3z-nZY" secondAttribute="bottom" constant="10" id="ybq-aa-yoN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wFg-rx-gbx" firstAttribute="centerY" secondItem="fsm-Eu-GWI" secondAttribute="centerY" id="Dhk-VG-FfP"/>
+                            <constraint firstItem="wFg-rx-gbx" firstAttribute="leading" secondItem="GK7-yG-YJF" secondAttribute="leading" constant="30" id="GpA-J4-L25"/>
+                            <constraint firstAttribute="trailing" secondItem="wFg-rx-gbx" secondAttribute="trailing" constant="30" id="Iah-uU-hA1"/>
+                            <constraint firstItem="wFg-rx-gbx" firstAttribute="centerX" secondItem="fsm-Eu-GWI" secondAttribute="centerX" id="wCV-4n-h7F"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GK7-yG-YJF"/>
+                        <connections>
+                            <action selector="actDismiss:" destination="iJb-O3-DlS" eventType="touchUpInside" id="mgl-BD-CnZ"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="liveChatLabel" destination="j51-ZH-zNo" id="IHF-jo-0Xx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hiP-z2-KQm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="31.884057971014496" y="50.892857142857139"/>
+        </scene>
+    </scenes>
+</document>

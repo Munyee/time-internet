@@ -19,7 +19,9 @@ internal class PaymentSummaryViewController: TimeBaseViewController {
     @IBOutlet private weak var accountNumberLabel: UILabel!
     @IBOutlet private weak var paymentButton: UIButton!
     @IBOutlet private weak var errorLabel: UILabel!
-
+    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
+    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Keyboard.addKeyboardChangeObserver(self)
@@ -47,6 +49,15 @@ internal class PaymentSummaryViewController: TimeBaseViewController {
         self.agreementLabel.addGestureRecognizer(agreementGesture)
 
         self.updateAgreement()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if (liveChatView.isExpand) {
+            liveChatConstraint.constant = 0
+        } else {
+            liveChatConstraint.constant = -125
+        }
     }
 
     @IBAction func cancelPayment(_ sender: Any) {
@@ -77,7 +88,7 @@ internal class PaymentSummaryViewController: TimeBaseViewController {
         var parameters: [String: Any] = [:]
         let path = "make_payment"
         parameters["action"] = path
-        parameters["username"] = AccountController.shared.profile.username
+        parameters["username"] = AccountController.shared.profile?.username
         parameters["account_no"] = AccountController.shared.selectedAccount?.accountNo
         parameters["token"] = APIClient.shared.getToken(forPath: path)
         parameters["amount"] = amount

@@ -55,6 +55,10 @@
 		9E8DBCA224987B4A00880724 /* HookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DBCA124987B4A00880724 /* HookupViewController.swift */; };
 		9E8DBCA52498999600880724 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DBCA42498999600880724 /* SegmentControl.swift */; };
 		9E9BBA092465516D00F2514D /* FCTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E9BBA082465516D00F2514D /* FCTheme.plist */; };
+		9EAB2C09249CB9ED00F12A3C /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAB2C08249CB9ED00F12A3C /* PopUpViewController.swift */; };
+		9EAB2C0B249CBB0500F12A3C /* LiveChatAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EAB2C0A249CBB0500F12A3C /* LiveChatAlert.storyboard */; };
+		9EAB2C0D249CBDF300F12A3C /* LiveChatPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAB2C0C249CBDF300F12A3C /* LiveChatPopUpViewController.swift */; };
+		9EAB2C0F249CE3CE00F12A3C /* LiveChatDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAB2C0E249CE3CE00F12A3C /* LiveChatDataController.swift */; };
 		9EC1356A241B6E1200E59C44 /* APTSidebarContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13563241B6E1200E59C44 /* APTSidebarContentSegue.m */; };
 		9EC1356B241B6E1200E59C44 /* APTSidebarNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13566241B6E1200E59C44 /* APTSidebarNavigationController.m */; };
 		9EC1356C241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13568241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m */; };
@@ -321,6 +325,10 @@
 		9E8DBCA124987B4A00880724 /* HookupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HookupViewController.swift; sourceTree = "<group>"; };
 		9E8DBCA42498999600880724 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
 		9E9BBA082465516D00F2514D /* FCTheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FCTheme.plist; sourceTree = "<group>"; };
+		9EAB2C08249CB9ED00F12A3C /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		9EAB2C0A249CBB0500F12A3C /* LiveChatAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LiveChatAlert.storyboard; sourceTree = "<group>"; };
+		9EAB2C0C249CBDF300F12A3C /* LiveChatPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatPopUpViewController.swift; sourceTree = "<group>"; };
+		9EAB2C0E249CE3CE00F12A3C /* LiveChatDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatDataController.swift; sourceTree = "<group>"; };
 		9EC13562241B6E1200E59C44 /* APTSidebarNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationController.h; sourceTree = "<group>"; };
 		9EC13563241B6E1200E59C44 /* APTSidebarContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarContentSegue.m; sourceTree = "<group>"; };
 		9EC13564241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationControllerPushSegue.h; sourceTree = "<group>"; };
@@ -598,6 +606,7 @@
 				E2AD69DF20AD2F7F001D104E /* SsidDataController.swift */,
 				E2FB110922CC5D91000FED93 /* RewardDataController.swift */,
 				E2D7E8E52341EB17004794B3 /* VersionDataController.swift */,
+				9EAB2C0E249CE3CE00F12A3C /* LiveChatDataController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -647,6 +656,7 @@
 				0A9433821FAAC5E000AA0DFF /* CentredImageButton.swift */,
 				E21AA70220B3E795008851F1 /* FloatLabeledTextView.swift */,
 				E277BA1621118C6000660FCE /* TimeTableView.swift */,
+				9EAB2C08249CB9ED00F12A3C /* PopUpViewController.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -867,6 +877,8 @@
 			children = (
 				9EE0B95A246512A70073288B /* LiveChatView.xib */,
 				9EE0B95C246513290073288B /* LiveChatView.swift */,
+				9EAB2C0A249CBB0500F12A3C /* LiveChatAlert.storyboard */,
+				9EAB2C0C249CBDF300F12A3C /* LiveChatPopUpViewController.swift */,
 			);
 			path = LiveChat;
 			sourceTree = "<group>";
@@ -1323,6 +1335,7 @@
 				9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */,
 				E2A8E84B1FCE6A4B00EA5DF2 /* Common.storyboard in Resources */,
 				E2AD92C91FC3AE2700138334 /* Summary.storyboard in Resources */,
+				9EAB2C0B249CBB0500F12A3C /* LiveChatAlert.storyboard in Resources */,
 				E2E84FE71FCEA87E0014CEAA /* DINCondensed-Bold.ttf in Resources */,
 				0A8E01FA1FA9B50B00CA27A9 /* AuthMenu.storyboard in Resources */,
 				E22D054820BBE40300C38B54 /* Loading.json in Resources */,
@@ -1615,6 +1628,7 @@
 				41A79D2B24403EA0002A9C4B /* AppVersionModal.swift in Sources */,
 				E20A71821FD4F8DC00938766 /* BillsViewController.swift in Sources */,
 				E2DE28A71FBEACBF00E3CC1E /* BaseAuthViewController.swift in Sources */,
+				9EAB2C0D249CBDF300F12A3C /* LiveChatPopUpViewController.swift in Sources */,
 				E219AD9E1FB3D23900A896FE /* WalkthroughViewController.swift in Sources */,
 				9EC1356D241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m in Sources */,
 				E2217F081FCB250600E9056B /* ScanCardViewController.swift in Sources */,
@@ -1622,6 +1636,7 @@
 				E2DE28691FBD404E00E3CC1E /* ForgetPasswordViewController.swift in Sources */,
 				9ECA46462436C7AE00EB0DB8 /* VoucherLabel.swift in Sources */,
 				9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */,
+				9EAB2C09249CB9ED00F12A3C /* PopUpViewController.swift in Sources */,
 				E21CF72F1FC674E900F13FAF /* AutoDebitViewController.swift in Sources */,
 				5A20BF431FE98EFC00ECFF78 /* TimeBaseViewController.swift in Sources */,
 				E2AD92C51FC3A58C00138334 /* AddOnViewController.swift in Sources */,
@@ -1749,6 +1764,7 @@
 				E2DD464520D242D600764512 /* ConversationDataController.swift in Sources */,
 				0A8E023E1FA9CC2B00CA27A9 /* Profile.swift in Sources */,
 				0A8E02031FA9C5AE00CA27A9 /* AccountController.swift in Sources */,
+				9EAB2C0F249CE3CE00F12A3C /* LiveChatDataController.swift in Sources */,
 				E2FDB2DB20AAD98D002F0A66 /* NotificationSetting.swift in Sources */,
 				0A8E02331FA9C84A00CA27A9 /* JsonRecord.swift in Sources */,
 				E23108FC2091BD6E0089EB8C /* BillingInfoDataController.swift in Sources */,
@@ -1933,7 +1949,7 @@
 				CODE_SIGN_ENTITLEMENTS = TimeSelfCare/TimeSelfCare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 805;
+				CURRENT_PROJECT_VERSION = 806;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1943,7 +1959,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.9;
+				MARKETING_VERSION = 3.9.1;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1964,7 +1980,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 805;
+				CURRENT_PROJECT_VERSION = 806;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1973,7 +1989,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.9;
+				MARKETING_VERSION = 3.9.1;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2212,7 +2228,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 805;
+				CURRENT_PROJECT_VERSION = 806;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2221,7 +2237,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.9;
+				MARKETING_VERSION = 3.9.1;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";

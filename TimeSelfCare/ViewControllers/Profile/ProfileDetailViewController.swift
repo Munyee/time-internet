@@ -27,6 +27,7 @@ internal class ProfileDetailViewController: TimeBaseViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("Profile", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.back))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(self.editProfile))
 
         loadDataFromServer()
 
@@ -100,7 +101,8 @@ internal class ProfileDetailViewController: TimeBaseViewController {
         self.show(notifcationSettingsVC, sender: nil)
     }
     
-    @IBAction func editProfile(_ sender: Any) {
+    @objc
+    func editProfile() {
         let editProfileVC: EditProfileViewController = UIStoryboard(name: TimeSelfCareStoryboard.profile.filename, bundle: nil).instantiateViewController()
         self.show(editProfileVC, sender: nil)
     }

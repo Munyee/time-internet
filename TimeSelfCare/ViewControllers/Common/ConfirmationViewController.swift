@@ -17,6 +17,8 @@ internal class ConfirmationViewController: UIViewController {
         case infoUpdated
         case ticketSubmitted
         case rewardRedeemed
+        case profileUpdated
+        case profileFailed
 
         var title: String {
             switch self {
@@ -28,8 +30,10 @@ internal class ConfirmationViewController: UIViewController {
                 return NSLocalizedString("Successful!", comment: "")
             case .logout:
                 return NSLocalizedString("Successfully Logged Out", comment: "")
-            case .infoUpdated:
+            case .infoUpdated, .profileUpdated:
                 return NSLocalizedString("Changes Saved", comment: "")
+            case .profileFailed:
+                return NSLocalizedString("Changes Failed", comment: "")
             case .ticketSubmitted, .rewardRedeemed:
                 return NSLocalizedString("Thank You", comment: "")
             }
@@ -41,6 +45,8 @@ internal class ConfirmationViewController: UIViewController {
                 return #imageLiteral(resourceName: "ic_debit_card_removed")
             case .logout:
                 return #imageLiteral(resourceName: "ic_logout")
+            case .profileFailed:
+                return #imageLiteral(resourceName: "ic_status_failed")
             default:
                 return #imageLiteral(resourceName: "ic_status_success")
             }
@@ -54,7 +60,7 @@ internal class ConfirmationViewController: UIViewController {
                 return NSLocalizedString("Continue", comment: "")
             case .logout:
                 return NSLocalizedString("Go to Menu", comment: "")
-            case .infoUpdated:
+            case .infoUpdated, .profileUpdated, .profileFailed:
                 return NSLocalizedString("Close", comment: "")
             case .ticketSubmitted:
                 return NSLocalizedString("View Tickets", comment: "")
@@ -79,6 +85,10 @@ internal class ConfirmationViewController: UIViewController {
                 return NSLocalizedString("Your ticket has been submitted!", comment: "")
             case .rewardRedeemed:
                 return NSLocalizedString("You have claimed your reward", comment: "")
+            case .profileUpdated:
+                return NSLocalizedString("Your information has been updated.", comment: "")
+            case .profileFailed:
+                return NSLocalizedString("Your information failed to update.", comment: "")
             }
         }
     }

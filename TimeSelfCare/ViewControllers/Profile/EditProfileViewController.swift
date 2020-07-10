@@ -57,8 +57,8 @@ class EditProfileViewController: BaseAuthViewController {
             contactPersonStackView.removeFromSuperview()
             stackView.removeArrangedSubview(contactOfficeStackView)
             contactOfficeStackView.removeFromSuperview()
-            stackView.removeArrangedSubview(emailStackView)
-            stackView.insertArrangedSubview(emailStackView, at: 3)
+//            stackView.removeArrangedSubview(emailStackView)
+//            stackView.insertArrangedSubview(emailStackView, at: 3)
         }
 
         self.fullNameKeyLabel.text = selectedAccount?.custSegment == .residential ? NSLocalizedString("Name", comment: "") : NSLocalizedString("Company Name", comment: "")
@@ -81,19 +81,36 @@ class EditProfileViewController: BaseAuthViewController {
     
     @IBAction func updateProfile(_ sender: Any) {
 
-        guard let username = AccountController.shared.selectedAccount?.profile?.username else {
-            let error = NSError(domain: "TimeSelfCare", code: 500, userInfo: [NSLocalizedDescriptionKey: "Unexpected error has occured. Please try again later."])
-            self.showAlertMessage(with: error)
-            return
-        }
+        let alert = UIAlertController(title: "Change Confirmation", message: "Area you sure you want to proceed", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
 
-        APIClient.shared.editProfile(username, email: self.emailTextField.text ?? "", contact: self.contactTextField.text ?? "") { _, error in
-//            hud.hide(animated: true)
-            if let error = error {
-                self.showAlertMessage(with: error)
-                return
+        }))
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+//            guard let username = AccountController.shared.selectedAccount?.profile?.username else {
+//                        let error = NSError(domain: "TimeSelfCare", code: 500, userInfo: [NSLocalizedDescriptionKey: "Unexpected error has occured. Please try again later."])
+//                        self.showAlertMessage(with: error)
+//                        return
+//                    }
+//
+//                    APIClient.shared.editProfile(username, email: self.emailTextField.text ?? "", contact: self.contactTextField.text ?? "") { _, error in
+//            //            hud.hide(animated: true)
+//                        if let error = error {
+//                            self.showAlertMessage(with: error)
+//                            return
+//                        }
+//                    }
+            let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
+            confirmationVC.mode = .profileFailed
+            confirmationVC.actionBlock = {
+                confirmationVC.dismissVC()
+//                self.navigationController?.popViewController(animated: true)
             }
-        }
+            confirmationVC.modalPresentationStyle = .fullScreen
+            self.present(confirmationVC, animated: true, completion: nil)
+        }))
+
+        self.present(alert, animated: true, completion: nil)
     }
 
     @objc func cancelEditProfile() {

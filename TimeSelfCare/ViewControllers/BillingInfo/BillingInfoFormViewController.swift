@@ -62,9 +62,9 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
 //            if self.billingInfoComponent == .billingMethod {
 //                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
 //            } else
-                if self.billingInfoComponent == .emailAddress {
-                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
-            }
+//                if self.billingInfoComponent == .emailAddress {
+//                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
+//            }
         }
     }
 
@@ -86,9 +86,9 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
 //            if self.billingInfoComponent == .billingMethod {
 //                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
 //            } else
-                if self.billingInfoComponent == .emailAddress {
-                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
-            }
+//                if self.billingInfoComponent == .emailAddress {
+//                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
+//            }
         }
     }
 
@@ -145,7 +145,6 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
         rightImageView.setContentHuggingPriority(UILayoutPriority(1_000), for: .horizontal)
         rightImageView.isHidden = true
         rightImageView.addTarget(self, action: #selector(self.handleButtonTap), for: .touchUpInside)
-        // rightImageView.backgroundColor = .red
 
         let dividerView = UIView()
         dividerView.translatesAutoresizingMaskIntoConstraints = false
@@ -563,9 +562,9 @@ class BillingInfoFormViewController: UIViewController {
 
             switch billingInfoComponent {
             case .billingMethod:
-                if self.billingInfo.canUpdateBillingMethod ?? false {
+               // if self.billingInfo.canUpdateBillingMethod ?? false {
                     billingInfo.billingMethodString = $0.text
-                }
+               // }
             case .emailAddress:
                 billingInfo.billingEmailAddress = $0.text
             case .block:

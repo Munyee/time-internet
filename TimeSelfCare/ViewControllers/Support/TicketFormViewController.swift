@@ -359,13 +359,14 @@ class TicketFormViewController: TimeBaseViewController {
                 return nil
             }
 
-            let ratio = max(
-                max(image.size.width, image.size.height) / 1_920,
-                min(image.size.width, image.size.height) / 1_080
-            )
-            if ratio > 1 {
-                image = image.scaledTo(scale: 1 / ratio)
-            }
+//            let ratio = max(
+//                max(image.size.width, image.size.height) / 1_920,
+//                min(image.size.width, image.size.height) / 1_080
+//            )
+//            if ratio > 1 {
+//                image = image.scaledTo(scale: 1 / ratio)
+//            }
+            
             return image
         }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class EditProfileViewController: BaseAuthViewController {
 
@@ -87,27 +88,50 @@ class EditProfileViewController: BaseAuthViewController {
         }))
 
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-//            guard let username = AccountController.shared.selectedAccount?.profile?.username else {
-//                        let error = NSError(domain: "TimeSelfCare", code: 500, userInfo: [NSLocalizedDescriptionKey: "Unexpected error has occured. Please try again later."])
-//                        self.showAlertMessage(with: error)
-//                        return
-//                    }
-//
-//                    APIClient.shared.editProfile(username, email: self.emailTextField.text ?? "", contact: self.contactTextField.text ?? "") { _, error in
-//            //            hud.hide(animated: true)
-//                        if let error = error {
-//                            self.showAlertMessage(with: error)
-//                            return
-//                        }
-//                    }
-            let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
-            confirmationVC.mode = .profileFailed
-            confirmationVC.actionBlock = {
-                confirmationVC.dismissVC()
-//                self.navigationController?.popViewController(animated: true)
+            guard let username = AccountController.shared.selectedAccount?.profile?.username else {
+                    let error = NSError(domain: "TimeSelfCare", code: 500, userInfo: [NSLocalizedDescriptionKey: "Unexpected error has occured. Please try again later."])
+                    self.showAlertMessage(with: error)
+                    return
+                }
+            
+            var body = [
+                "email": self.emailTextField.text ?? "",
+                "mobile_no": self.contactTextField.text ?? "",
+                "username" : username,
+                "account_no": self.accountNumberLabel.text ?? ""
+            ]
+            
+            let selectedAccount = AccountController.shared.selectedAccount
+
+            if selectedAccount?.custSegment == .business {
+                body["contact_person"] = self.contactPersonTextField.text ?? ""
+                body["office_no"] = self.contactOfficeTextField.text ?? ""
             }
-            confirmationVC.modalPresentationStyle = .fullScreen
-            self.present(confirmationVC, animated: true, completion: nil)
+            
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+
+            APIClient.shared.editProfile(body) { _, error in
+                hud.hide(animated: true)
+                if let error = error {
+                    let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
+                    confirmationVC.mode = .profileFailed
+                    confirmationVC.actionBlock = {
+                        confirmationVC.dismissVC()
+                    }
+                    confirmationVC.modalPresentationStyle = .fullScreen
+                    self.present(confirmationVC, animated: true, completion: nil)
+                    return
+                }
+                
+                let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
+                confirmationVC.mode = .profileUpdated
+                confirmationVC.actionBlock = {
+                    confirmationVC.dismissVC()
+                    self.navigationController?.popViewController(animated: true)
+                }
+                confirmationVC.modalPresentationStyle = .fullScreen
+                self.present(confirmationVC, animated: true, completion: nil)
+            }
         }))
 
         self.present(alert, animated: true, completion: nil)

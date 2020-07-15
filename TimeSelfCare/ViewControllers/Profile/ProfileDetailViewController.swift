@@ -29,7 +29,7 @@ internal class ProfileDetailViewController: TimeBaseViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.back))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(self.editProfile))
 
-        loadDataFromServer()
+//        loadDataFromServer()
 
         // populate data
         let selectedAccount = AccountController.shared.selectedAccount
@@ -51,7 +51,12 @@ internal class ProfileDetailViewController: TimeBaseViewController {
         self.contactOfficeLabel.text = profile?.officeNo ?? "-"
         self.emailAddressLabel.text = profile?.email ?? "-"
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadDataFromServer()
+    }
+    
     private func loadDataFromServer() {
 
         AccountDataController.shared.loadAccounts { (accounts: [Account], error: Error?) in

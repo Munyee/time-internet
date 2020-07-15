@@ -427,9 +427,9 @@ class BillingInfoFormViewController: UIViewController {
             if $0 == .emailAddress || $0.isAddress && $0 != .addressCountry {
                 billingInfoFormComponentView.isEditable = self.billingInfo.canUpdateBillingAddress ?? false
             }
-//            else if $0 == .billingMethod {
-//                billingInfoFormComponentView.isEditable = self.billingInfo.canUpdateBillingMethod ?? false
-//            }
+            else if $0 == .billingMethod {
+                billingInfoFormComponentView.isEditable = self.billingInfo.canUpdateBillingMethod ?? false
+            }
         }
         self.stackViewContainer.addArrangedSubview(addressStackView)
 
@@ -509,6 +509,12 @@ class BillingInfoFormViewController: UIViewController {
         let emailAddressComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .emailAddress }
         billingMethodView?.isEditable = !billingMethodString.contains("Online")
         
+        if billingMethodString.contains("Online") {
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default, handler: nil)
+            self.showAlertMessage(title: NSLocalizedString("Update Billing Address", comment: ""), message: NSLocalizedString("As your current billing method is via Online Bill, you're not allowed to update billing address here. However, you may do so by using selfcare portal", comment: ""), actions: [cancelAction])
+            return
+        }
+        
         emailAddressComponentView?.isHidden = !billingMethodString.contains("Online")
 
         emailAddressComponentView?.rulesMapping = !(emailAddressComponentView?.isHidden ?? true) ?
@@ -550,8 +556,11 @@ class BillingInfoFormViewController: UIViewController {
     }
 
     private func updateSaveButton() {
-        self.saveButton.isEnabled = self.billingInfoComponentViews.reduce(true) { $0 && $1.isTextValid }
-        self.saveButton.backgroundColor = self.saveButton.isEnabled ? .primary : .grey
+        guard let billingMethodString = self.billingInfo.billingMethodString else { return }
+        if !billingMethodString.contains("Online") {
+            self.saveButton.isEnabled = self.billingInfoComponentViews.reduce(true) { $0 && $1.isTextValid }
+            self.saveButton.backgroundColor = self.saveButton.isEnabled ? .primary : .grey
+        }
     }
 
     private func populateData() {

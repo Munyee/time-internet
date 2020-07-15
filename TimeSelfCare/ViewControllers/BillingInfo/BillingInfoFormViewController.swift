@@ -62,9 +62,9 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
 //            if self.billingInfoComponent == .billingMethod {
 //                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
 //            } else
-//                if self.billingInfoComponent == .emailAddress {
-//                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
-//            }
+                if self.billingInfoComponent == .emailAddress {
+                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
+            }
         }
     }
 
@@ -86,9 +86,9 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
 //            if self.billingInfoComponent == .billingMethod {
 //                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
 //            } else
-//                if self.billingInfoComponent == .emailAddress {
-//                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
-//            }
+                if self.billingInfoComponent == .emailAddress {
+                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
+            }
         }
     }
 
@@ -337,9 +337,7 @@ class BillingInfoFormViewController: UIViewController {
 
         var rightImage: UIImage? {
             switch self {
-            case .addressCity:
-                return #imageLiteral(resourceName: "ic_expand_magenta")
-            case .addressCountry:
+            case .addressState:
                 return #imageLiteral(resourceName: "ic_expand_magenta")
             default:
                 return nil
@@ -347,7 +345,7 @@ class BillingInfoFormViewController: UIViewController {
         }
         
         var isEditable: Bool {
-            return ![.deposit, .billingMethod, .billingCycle].contains(self)
+            return ![.deposit, .billingCycle, .addressCountry].contains(self)
         }
 
         var isAddress: Bool {
@@ -500,7 +498,7 @@ class BillingInfoFormViewController: UIViewController {
                 componentView.text = billingInfo.billCountry
             }
         }
-       // self.updateUI()
+        self.updateUI()
     }
 
     private func updateUI() {
@@ -509,6 +507,8 @@ class BillingInfoFormViewController: UIViewController {
 
         // Hard coded business rules
         let emailAddressComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .emailAddress }
+        billingMethodView?.isEditable = !billingMethodString.contains("Online")
+        
         emailAddressComponentView?.isHidden = !billingMethodString.contains("Online")
 
         emailAddressComponentView?.rulesMapping = !(emailAddressComponentView?.isHidden ?? true) ?
@@ -525,7 +525,7 @@ class BillingInfoFormViewController: UIViewController {
             ] :
             []
 
-        self.addressStackView.isHidden = !billingMethodString.contains("Paper")
+        // self.addressStackView.isHidden = !billingMethodString.contains("Paper")
         let addressComponentViews = self.billingInfoComponentViews.filter {
             $0.billingInfoComponent.isAddress &&
             $0.billingInfoComponent != .addressLine3 &&
@@ -562,9 +562,9 @@ class BillingInfoFormViewController: UIViewController {
 
             switch billingInfoComponent {
             case .billingMethod:
-               // if self.billingInfo.canUpdateBillingMethod ?? false {
+                if self.billingInfo.canUpdateBillingMethod ?? false {
                     billingInfo.billingMethodString = $0.text
-               // }
+                }
             case .emailAddress:
                 billingInfo.billingEmailAddress = $0.text
             case .block:

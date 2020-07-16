@@ -18,12 +18,12 @@ protocol BillingInfoFormComponentViewDelegate: class {
 class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPickerViewDelegate {
     var rulesMapping: [((_ text: String) -> Bool, errorMessage: String)] = []
     
-    var rightImage: UIImage? {
-        didSet {
-            self.rightImageView.setImage(rightImage, for: .normal)
-            self.rightImageView.isHidden = rightImage == nil
-        }
-    }
+//    var rightImage: UIImage? {
+//        didSet {
+//            self.rightImageView.setImage(rightImage, for: .normal)
+//            self.rightImageView.isHidden = rightImage == nil
+//        }
+//    }
 
     weak var billingInfo: BillingInfo?
     weak var delegate: BillingInfoFormComponentViewDelegate?
@@ -405,7 +405,7 @@ class BillingInfoFormViewController: UIViewController {
             billingInfoFormComponentView.billingInfo = self.billingInfo
             billingInfoFormComponentView.billingInfoComponent = $0
             billingInfoFormComponentView.isEditable = $0.isEditable
-            billingInfoFormComponentView.rightImage = $0.rightImage
+           // billingInfoFormComponentView.rightImage = $0.rightImage
 
             billingInfoFormComponentView.delegate = self
             self.billingInfoComponentViews.append(billingInfoFormComponentView)
@@ -510,9 +510,6 @@ class BillingInfoFormViewController: UIViewController {
     private func updateUI() {
         let billingMethodView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .billingMethod }
         let billingMethodString = billingMethodView?.text ?? ""
-
-        // Hard coded business rules
-        let emailAddressComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .emailAddress }
         billingMethodView?.isEditable = !billingMethodString.contains("Online")
         
         if billingMethodString.contains("Online") {
@@ -520,6 +517,9 @@ class BillingInfoFormViewController: UIViewController {
             self.showAlertMessage(title: NSLocalizedString("Update Billing Address", comment: ""), message: NSLocalizedString("As your current billing method is via Online Bill, you're not allowed to update billing address here. However, you may do so by using selfcare portal", comment: ""), actions: [cancelAction])
             return
         }
+        
+        // Hard coded business rules
+        let emailAddressComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .emailAddress }
         
         emailAddressComponentView?.isHidden = !billingMethodString.contains("Online")
 
@@ -556,7 +556,6 @@ class BillingInfoFormViewController: UIViewController {
             } else if componentView.billingInfoComponent == .unit {
                 rulesMapping.append(({ $0.isEmpty || $0.range(of: "[^a-zA-Z0-9/-]", options: .regularExpression) == nil }, NSLocalizedString("Must contain alphanumeric, '-' and '/' characters only.", comment: "")))
             }
-
             componentView.rulesMapping = !addressStackView.isHidden ? rulesMapping : []
         }
     }

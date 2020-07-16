@@ -95,6 +95,7 @@ internal class ConfirmationViewController: UIViewController {
 
     var actionBlock: (() -> Void)?
     var mode: Mode! // swiftlint:disable:this implicitly_unwrapped_optional
+    var descriptionText: String!
 
     @IBOutlet private weak var actionButton: UIButton!
     @IBOutlet private weak var descriptionLabel: UILabel!
@@ -104,7 +105,7 @@ internal class ConfirmationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.actionButton.setTitle(mode.actionButtonTitle, for: .normal)
-        self.descriptionLabel.text = mode.description
+        self.descriptionLabel.text = (descriptionText != nil) ? descriptionText : mode.description
         self.iconImageView.image = mode.iconImage
         self.titleLabel.text = mode.title
     }

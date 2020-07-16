@@ -115,6 +115,7 @@ class EditProfileViewController: BaseAuthViewController {
                 if let error = error {
                     let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
                     confirmationVC.mode = .profileFailed
+                    confirmationVC.descriptionText = error.localizedDescription
                     confirmationVC.actionBlock = {
                         confirmationVC.dismissVC()
                     }

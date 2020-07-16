@@ -376,8 +376,13 @@ class BillingInfoFormViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       guard let strBillingMethod = self.billingInfo?.billingMethodString  else { return }
+        if strBillingMethod.contains("Online") {
+            let cancelAction = UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default, handler: nil)
+            self.showAlertMessage(title: NSLocalizedString("Update Billing Address", comment: ""), message: NSLocalizedString("As your current billing method is via Online Bill, you're not allowed to update billing address here. However, you may do so by using selfcare portal", comment: ""), actions: [cancelAction])
+        }
         self.setupUI()
-
         Keyboard.addKeyboardChangeObserver(self)
     }
 
@@ -432,8 +437,7 @@ class BillingInfoFormViewController: UIViewController {
             // Hard coded business rule
             if $0 == .emailAddress || $0.isAddress && $0 != .addressCountry {
                 billingInfoFormComponentView.isEditable = self.billingInfo.canUpdateBillingAddress ?? false
-            }
-            else if $0 == .billingMethod {
+            } else if $0 == .billingMethod {
                 billingInfoFormComponentView.isEditable = self.billingInfo.canUpdateBillingMethod ?? false
             }
         }
@@ -506,23 +510,14 @@ class BillingInfoFormViewController: UIViewController {
         }
         self.updateUI()
     }
-
+    
     private func updateUI() {
         let billingMethodView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .billingMethod }
         let billingMethodString = billingMethodView?.text ?? ""
         billingMethodView?.isEditable = !billingMethodString.contains("Online")
         
-        if billingMethodString.contains("Online") {
-            let cancelAction = UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default, handler: nil)
-            self.showAlertMessage(title: NSLocalizedString("Update Billing Address", comment: ""), message: NSLocalizedString("As your current billing method is via Online Bill, you're not allowed to update billing address here. However, you may do so by using selfcare portal", comment: ""), actions: [cancelAction])
-            return
-        }
-        
-        // Hard coded business rules
         let emailAddressComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .emailAddress }
-        
         emailAddressComponentView?.isHidden = !billingMethodString.contains("Online")
-
         emailAddressComponentView?.rulesMapping = !(emailAddressComponentView?.isHidden ?? true) ?
             [
                 ({ !$0.isEmpty }, NSLocalizedString("Field is required.", comment: "")),
@@ -536,36 +531,41 @@ class BillingInfoFormViewController: UIViewController {
                 }, NSLocalizedString("Invalid email address.", comment: ""))
             ] :
             []
-
-        // self.addressStackView.isHidden = !billingMethodString.contains("Paper")
-        let addressComponentViews = self.billingInfoComponentViews.filter {
-            $0.billingInfoComponent.isAddress &&
-            $0.billingInfoComponent != .addressLine3 &&
-            $0.billingInfoComponent != .addressLine2 &&
-            $0.billingInfoComponent != .block &&
-            $0.billingInfoComponent != .level &&
-            $0.billingInfoComponent != .building
-        }
-        for componentView in addressComponentViews {
-            var rulesMapping: [((_ text: String) -> Bool, errorMessage: String)] = [
-                ({ !$0.isEmpty }, NSLocalizedString("Field is required.", comment: ""))
-            ]
-
-            if componentView.billingInfoComponent == .addressZip {
-                rulesMapping.append(({ $0.count == 5 }, NSLocalizedString("Must be 5 digits.", comment: "")))
-            } else if componentView.billingInfoComponent == .unit {
-                rulesMapping.append(({ $0.isEmpty || $0.range(of: "[^a-zA-Z0-9/-]", options: .regularExpression) == nil }, NSLocalizedString("Must contain alphanumeric, '-' and '/' characters only.", comment: "")))
-            }
-            componentView.rulesMapping = !addressStackView.isHidden ? rulesMapping : []
-        }
+        
+        let blockComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .block }
+        blockComponentView?.isEditable = !billingMethodString.contains("Online")
+        
+        let levelComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .level }
+        levelComponentView?.isEditable = !billingMethodString.contains("Online")
+        
+        let unitComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .unit }
+        unitComponentView?.isEditable = !billingMethodString.contains("Online")
+        
+        let buildingComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .building }
+        buildingComponentView?.isEditable = !billingMethodString.contains("Online")
+        
+        let addressLine2ComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .addressLine2 }
+        addressLine2ComponentView?.isEditable = !billingMethodString.contains("Online")
+        
+        let addressLine3ComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .addressLine3 }
+        addressLine3ComponentView?.isEditable = !billingMethodString.contains("Online")
+        
+        let addressZipComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .addressZip }
+        addressZipComponentView?.isEditable = !billingMethodString.contains("Online")
+        
+        let addressCityComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .addressCity }
+        addressCityComponentView?.isEditable = !billingMethodString.contains("Online")
+        
+        let addressStateComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .addressState }
+        addressStateComponentView?.isEditable = !billingMethodString.contains("Online")
+        
+        let addressCountryComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .addressCountry }
+        addressCountryComponentView?.isEditable = !billingMethodString.contains("Online")
     }
 
     private func updateSaveButton() {
-        guard let billingMethodString = self.billingInfo.billingMethodString else { return }
-        if !billingMethodString.contains("Online") {
-            self.saveButton.isEnabled = self.billingInfoComponentViews.reduce(true) { $0 && $1.isTextValid }
-            self.saveButton.backgroundColor = self.saveButton.isEnabled ? .primary : .grey
-        }
+        self.saveButton.isEnabled = self.billingInfoComponentViews.reduce(true) { $0 && $1.isTextValid }
+        self.saveButton.backgroundColor = self.saveButton.isEnabled ? .primary : .grey
     }
 
     private func populateData() {

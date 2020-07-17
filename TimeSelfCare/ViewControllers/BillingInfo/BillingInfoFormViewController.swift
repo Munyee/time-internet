@@ -59,12 +59,9 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
                 textView.inputAccessoryView = toolBar
             }
 
-            if self.billingInfoComponent == .billingMethod {
-                guard let strBillingMethod = self.billingInfo?.billingMethodString  else { return }
-                if !strBillingMethod.contains("Online"){
-                    self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
-                }
-            } else
+//            if self.billingInfoComponent == .billingMethod {
+//                    self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
+//            } else
                 if self.billingInfoComponent == .emailAddress {
                 self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
             }
@@ -86,12 +83,9 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
             self.textView.isEditable = isEditable
             self.textView.textColor = isEditable ? .black : .grey
 
-            if self.billingInfoComponent == .billingMethod {
-                guard let strBillingMethod = self.billingInfo?.billingMethodString  else { return }
-                if !strBillingMethod.contains("Online"){
-                    self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
-                }
-            } else
+//            if self.billingInfoComponent == .billingMethod {
+//                    self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
+//            } else
                 if self.billingInfoComponent == .emailAddress {
                 self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
             }
@@ -508,7 +502,7 @@ class BillingInfoFormViewController: UIViewController {
     private func updateUI() {
         let billingMethodView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .billingMethod }
         let billingMethodString = billingMethodView?.text ?? ""
-        billingMethodView?.isEditable = !billingMethodString.contains("Online")
+        billingMethodView?.isEditable = false
 
         // Hard coded business rules
         let emailAddressComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .emailAddress }

@@ -52,6 +52,7 @@
 		9EAB2C0B249CBB0500F12A3C /* LiveChatAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EAB2C0A249CBB0500F12A3C /* LiveChatAlert.storyboard */; };
 		9EAB2C0D249CBDF300F12A3C /* LiveChatPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAB2C0C249CBDF300F12A3C /* LiveChatPopUpViewController.swift */; };
 		9EAB2C0F249CE3CE00F12A3C /* LiveChatDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAB2C0E249CE3CE00F12A3C /* LiveChatDataController.swift */; };
+		9EBA8B7C24B579690021B6AB /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBA8B7B24B579690021B6AB /* EditProfileViewController.swift */; };
 		9EC1356A241B6E1200E59C44 /* APTSidebarContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13563241B6E1200E59C44 /* APTSidebarContentSegue.m */; };
 		9EC1356B241B6E1200E59C44 /* APTSidebarNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13566241B6E1200E59C44 /* APTSidebarNavigationController.m */; };
 		9EC1356C241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13568241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m */; };
@@ -310,6 +311,7 @@
 		9EAB2C0A249CBB0500F12A3C /* LiveChatAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LiveChatAlert.storyboard; sourceTree = "<group>"; };
 		9EAB2C0C249CBDF300F12A3C /* LiveChatPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatPopUpViewController.swift; sourceTree = "<group>"; };
 		9EAB2C0E249CE3CE00F12A3C /* LiveChatDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatDataController.swift; sourceTree = "<group>"; };
+		9EBA8B7B24B579690021B6AB /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		9EC13562241B6E1200E59C44 /* APTSidebarNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationController.h; sourceTree = "<group>"; };
 		9EC13563241B6E1200E59C44 /* APTSidebarContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarContentSegue.m; sourceTree = "<group>"; };
 		9EC13564241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarNavigationControllerPushSegue.h; sourceTree = "<group>"; };
@@ -978,6 +980,7 @@
 			isa = PBXGroup;
 			children = (
 				E2A8E8431FCE3D6E00EA5DF2 /* Profile.storyboard */,
+				9EBA8B7B24B579690021B6AB /* EditProfileViewController.swift */,
 				E2A8E8451FCE3D9900EA5DF2 /* ProfileDetailViewController.swift */,
 				E2A8E8471FCE543400EA5DF2 /* ChangePasswordViewController.swift */,
 				E2FDB2D420AAB490002F0A66 /* NotificationSettingsViewController.swift */,
@@ -1557,6 +1560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EBA8B7C24B579690021B6AB /* EditProfileViewController.swift in Sources */,
 				E25E3825230B956E0013CEFD /* RewardOutletsCell.swift in Sources */,
 				E277BA1721118C6000660FCE /* TimeTableView.swift in Sources */,
 				0A8E01F81FA9B50B00CA27A9 /* SignUpViewController.swift in Sources */,

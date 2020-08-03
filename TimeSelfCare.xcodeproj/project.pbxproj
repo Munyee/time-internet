@@ -48,6 +48,10 @@
 		8DE3FED9EF97544305FDB322 /* Pods_TimeSelfCareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D242A15D7C1AEA93370ECCA /* Pods_TimeSelfCareUITests.framework */; };
 		9558CC222B9AE745B3BC9813 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F301820E7E82ACC89C85B876 /* AssetsLibrary.framework */; };
 		982D662598530203E17C5787 /* Pods_TimeSelfCareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C4B4A429CE5CDA9E755E4 /* Pods_TimeSelfCareTests.framework */; };
+		9E12CE5924A33E270083E398 /* DiagnosticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E12CE5724A33E270083E398 /* DiagnosticsViewController.swift */; };
+		9E12CE5A24A33E270083E398 /* Diagnostics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E12CE5824A33E270083E398 /* Diagnostics.storyboard */; };
+		9E12CE5C24A33E8D0083E398 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E12CE5B24A33E8C0083E398 /* Diagnostics.swift */; };
+		9E12CE5E24A33EB40083E398 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E12CE5D24A33EB40083E398 /* UIImageView+.swift */; };
 		9E9BBA092465516D00F2514D /* FCTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E9BBA082465516D00F2514D /* FCTheme.plist */; };
 		9EAB2C09249CB9ED00F12A3C /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAB2C08249CB9ED00F12A3C /* PopUpViewController.swift */; };
 		9EAB2C0B249CBB0500F12A3C /* LiveChatAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EAB2C0A249CBB0500F12A3C /* LiveChatAlert.storyboard */; };
@@ -309,6 +313,10 @@
 		88FB0D8F60899197099FF773 /* Pods_TimeSelfCare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		965B83A933543A79F26EC5D1 /* Pods-TimeSelfCareUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D242A15D7C1AEA93370ECCA /* Pods_TimeSelfCareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E12CE5724A33E270083E398 /* DiagnosticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticsViewController.swift; sourceTree = "<group>"; };
+		9E12CE5824A33E270083E398 /* Diagnostics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Diagnostics.storyboard; sourceTree = "<group>"; };
+		9E12CE5B24A33E8C0083E398 /* Diagnostics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
+		9E12CE5D24A33EB40083E398 /* UIImageView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		9E9BBA082465516D00F2514D /* FCTheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FCTheme.plist; sourceTree = "<group>"; };
 		9EAB2C08249CB9ED00F12A3C /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		9EAB2C0A249CBB0500F12A3C /* LiveChatAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LiveChatAlert.storyboard; sourceTree = "<group>"; };
@@ -539,6 +547,7 @@
 				0A8E01F11FA9B50B00CA27A9 /* AuthMenu */,
 				E2730B872097024D00A140F1 /* BillingInfo */,
 				E2A8E8491FCE6A3800EA5DF2 /* Common */,
+				9E12CE5624A33E270083E398 /* Diagnostics */,
 				E2B6C2C91FB42A3A00F65B05 /* Launch */,
 				E2610F751FC51F5300959D85 /* Payment */,
 				E2AD69D620AD12B5001D104E /* Performance */,
@@ -612,6 +621,7 @@
 				E2345C7D1FB9654D00DA42F0 /* Bank.swift */,
 				E2345C7A1FB9654C00DA42F0 /* Bill.swift */,
 				E2345C7B1FB9654D00DA42F0 /* CreditCard.swift */,
+				9E12CE5B24A33E8C0083E398 /* Diagnostics.swift */,
 				E2345C781FB9654C00DA42F0 /* PaymentType.swift */,
 				E2345C7C1FB9654D00DA42F0 /* Service.swift */,
 				0A8E023C1FA9CC2B00CA27A9 /* Profile.swift */,
@@ -649,6 +659,7 @@
 				E27DCC951FE0C3D900A82769 /* String+.swift */,
 				E27DCC971FE0E60300A82769 /* UIView+.swift */,
 				E2FDB2D620AACC37002F0A66 /* UIStoryboard+.swift */,
+				9E12CE5D24A33EB40083E398 /* UIImageView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -786,6 +797,15 @@
 				5A47903F1FA972390074B5D4 /* TimeSelfCareDataTests.swift */,
 			);
 			path = TimeSelfCareDataTests;
+			sourceTree = "<group>";
+		};
+		9E12CE5624A33E270083E398 /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				9E12CE5724A33E270083E398 /* DiagnosticsViewController.swift */,
+				9E12CE5824A33E270083E398 /* Diagnostics.storyboard */,
+			);
+			path = Diagnostics;
 			sourceTree = "<group>";
 		};
 		9EC13561241B6E1200E59C44 /* APTSidebarNavigationController */ = {
@@ -1276,6 +1296,7 @@
 				E22D054620BBE40300C38B54 /* BadConnection.json in Resources */,
 				9EE0B966246520FD0073288B /* ExpandableLiveChatView.xib in Resources */,
 				E2730B892097026C00A140F1 /* BillingInfo.storyboard in Resources */,
+				9E12CE5A24A33E270083E398 /* Diagnostics.storyboard in Resources */,
 				E2FB110D22CC9492000FED93 /* Reward.storyboard in Resources */,
 				E2A8E8441FCE3D6E00EA5DF2 /* Profile.storyboard in Resources */,
 				E2E84FED1FCEB4FB0014CEAA /* DIN Alternate Regular.otf in Resources */,
@@ -1575,6 +1596,7 @@
 				E20A71821FD4F8DC00938766 /* BillsViewController.swift in Sources */,
 				E2DE28A71FBEACBF00E3CC1E /* BaseAuthViewController.swift in Sources */,
 				9EAB2C0D249CBDF300F12A3C /* LiveChatPopUpViewController.swift in Sources */,
+				9E12CE5E24A33EB40083E398 /* UIImageView+.swift in Sources */,
 				E219AD9E1FB3D23900A896FE /* WalkthroughViewController.swift in Sources */,
 				9EC1356D241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m in Sources */,
 				E2217F081FCB250600E9056B /* ScanCardViewController.swift in Sources */,
@@ -1598,6 +1620,7 @@
 				E26CC2DD210F039F00FF7875 /* SelectedImageCell.swift in Sources */,
 				E2FB110F22CC95EC000FED93 /* RewardViewController.swift in Sources */,
 				E20A71841FD5008100938766 /* InvoiceCell.swift in Sources */,
+				9E12CE5924A33E270083E398 /* DiagnosticsViewController.swift in Sources */,
 				E2480B3F2112A3CF00555A19 /* ConversationAttachmentCell.swift in Sources */,
 				E27CE9FE22CCBF2200DD9340 /* RewardCell.swift in Sources */,
 				E20A717E1FD4E75000938766 /* FABViewController.swift in Sources */,
@@ -1671,6 +1694,7 @@
 				E2345C831FB9654D00DA42F0 /* Service.swift in Sources */,
 				E2345C8D1FB968A500DA42F0 /* ActivityDataController.swift in Sources */,
 				E2345C931FB968A500DA42F0 /* ServiceDataController.swift in Sources */,
+				9E12CE5C24A33E8D0083E398 /* Diagnostics.swift in Sources */,
 				E2FB110822CC54B1000FED93 /* Reward.swift in Sources */,
 				E2DD463B20D2426900764512 /* Attachment.swift in Sources */,
 				E2AD69E020AD2F7F001D104E /* SsidDataController.swift in Sources */,
@@ -1889,7 +1913,7 @@
 				CODE_SIGN_ENTITLEMENTS = TimeSelfCare/TimeSelfCare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 806;
+				CURRENT_PROJECT_VERSION = 807;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1899,7 +1923,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.9.1;
+				MARKETING_VERSION = 4.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1920,7 +1944,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 806;
+				CURRENT_PROJECT_VERSION = 807;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1929,7 +1953,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.9.1;
+				MARKETING_VERSION = 4.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2168,7 +2192,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 806;
+				CURRENT_PROJECT_VERSION = 807;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2177,7 +2201,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 3.9.1;
+				MARKETING_VERSION = 4.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -147,4 +147,28 @@ public extension AccountDataController {
             completion(response, error)
         }
     }
+
+    func runDiagnostic(account: Account, service: Service, completion: @escaping SimpleRequestListener) {
+        let path = "run_diagnostic"
+        var body: [String: Any] = [:]
+        body["account_no"] = account.accountNo
+        body["username"] = account.profileUsername
+        body["service_id"] = service.serviceId
+
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
+        }
+    }
+
+    func upgradeFirmware(account: Account, service: Service, completion: @escaping SimpleRequestListener) {
+        let path = "upgrade_firmware"
+        var body: [String: Any] = [:]
+        body["account_no"] = account.accountNo
+        body["username"] = account.profileUsername
+        body["service_id"] = service.serviceId
+
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
+        }
+    }
 }

@@ -17,6 +17,13 @@ protocol BillingInfoFormComponentViewDelegate: class {
 
 class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPickerViewDelegate {
     var rulesMapping: [((_ text: String) -> Bool, errorMessage: String)] = []
+    
+    var rightImage: UIImage? {
+        didSet {
+            self.rightImageView.setImage(rightImage, for: .normal)
+            self.rightImageView.isHidden = rightImage == nil
+        }
+    }
 
     weak var billingInfo: BillingInfo?
     weak var delegate: BillingInfoFormComponentViewDelegate?
@@ -52,9 +59,10 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
                 textView.inputAccessoryView = toolBar
             }
 
-            if self.billingInfoComponent == .billingMethod {
-                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
-            } else if self.billingInfoComponent == .emailAddress {
+//            if self.billingInfoComponent == .billingMethod {
+//                    self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
+//            } else
+                if self.billingInfoComponent == .emailAddress {
                 self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
             }
         }
@@ -75,9 +83,10 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
             self.textView.isEditable = isEditable
             self.textView.textColor = isEditable ? .black : .grey
 
-            if self.billingInfoComponent == .billingMethod {
-                self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
-            } else if self.billingInfoComponent == .emailAddress {
+//            if self.billingInfoComponent == .billingMethod {
+//                    self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
+//            } else
+                if self.billingInfoComponent == .emailAddress {
                 self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
             }
         }
@@ -95,6 +104,7 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
     private weak var errorLabel: UILabel!
     private weak var dividerView: UIView!
     private weak var infoButton: UIButton!
+    private weak var rightImageView: UIButton!
     // swiftlint:enable implicitly_unwrapped_optional
 
     override init(frame: CGRect) {
@@ -125,6 +135,16 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
         ])
         infoButton.setContentHuggingPriority(UILayoutPriority(1_000), for: .horizontal)
         infoButton.isHidden = true
+        
+        let rightImageView: UIButton = UIButton()
+        rightImageView.contentMode = .scaleAspectFit
+        rightImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            rightImageView.widthAnchor.constraint(equalToConstant: 40)
+        ])
+        rightImageView.setContentHuggingPriority(UILayoutPriority(1_000), for: .horizontal)
+        rightImageView.isHidden = true
+        rightImageView.addTarget(self, action: #selector(self.handleButtonTap), for: .touchUpInside)
 
         let dividerView = UIView()
         dividerView.translatesAutoresizingMaskIntoConstraints = false
@@ -144,6 +164,7 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
 
         innerStackView.addArrangedSubview(textView)
         innerStackView.addArrangedSubview(infoButton)
+        innerStackView.addArrangedSubview(rightImageView)
 
         self.addArrangedSubview(innerStackView)
         self.addArrangedSubview(dividerView)
@@ -153,6 +174,7 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
         self.textView = textView
         self.dividerView = dividerView
         self.infoButton = infoButton
+        self.rightImageView = rightImageView
 
         NSLayoutConstraint.activate([
             dividerView.heightAnchor.constraint(equalToConstant: 1)
@@ -208,6 +230,11 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
         self.tooltip?.dismiss(gesture: nil)
         self.tooltip = tooltip
         self.tooltip?.show(animated: true, forView: sender, withinSuperview: self.superview)
+    }
+    
+@objc
+    private func handleButtonTap() {
+        self.textView.becomeFirstResponder()
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -308,6 +335,15 @@ class BillingInfoFormViewController: UIViewController {
             }
         }
 
+        var rightImage: UIImage? {
+            switch self {
+            case .addressState:
+                return #imageLiteral(resourceName: "ic_expand_magenta")
+            default:
+                return nil
+            }
+        }
+        
         var isEditable: Bool {
             return ![.deposit, .billingCycle, .addressCountry].contains(self)
         }
@@ -335,7 +371,6 @@ class BillingInfoFormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-
         Keyboard.addKeyboardChangeObserver(self)
     }
 
@@ -363,6 +398,7 @@ class BillingInfoFormViewController: UIViewController {
             billingInfoFormComponentView.billingInfo = self.billingInfo
             billingInfoFormComponentView.billingInfoComponent = $0
             billingInfoFormComponentView.isEditable = $0.isEditable
+            billingInfoFormComponentView.rightImage = $0.rightImage
 
             billingInfoFormComponentView.delegate = self
             self.billingInfoComponentViews.append(billingInfoFormComponentView)
@@ -462,15 +498,15 @@ class BillingInfoFormViewController: UIViewController {
         }
         self.updateUI()
     }
-
+    
     private func updateUI() {
         let billingMethodView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .billingMethod }
         let billingMethodString = billingMethodView?.text ?? ""
+        billingMethodView?.isEditable = false
 
         // Hard coded business rules
         let emailAddressComponentView = self.billingInfoComponentViews.first { $0.billingInfoComponent == .emailAddress }
         emailAddressComponentView?.isHidden = !billingMethodString.contains("Online")
-
         emailAddressComponentView?.rulesMapping = !(emailAddressComponentView?.isHidden ?? true) ?
             [
                 ({ !$0.isEmpty }, NSLocalizedString("Field is required.", comment: "")),
@@ -485,7 +521,7 @@ class BillingInfoFormViewController: UIViewController {
             ] :
             []
 
-        self.addressStackView.isHidden = !billingMethodString.contains("Paper")
+       // self.addressStackView.isHidden = !billingMethodString.contains("Paper")
         let addressComponentViews = self.billingInfoComponentViews.filter {
             $0.billingInfoComponent.isAddress &&
             $0.billingInfoComponent != .addressLine3 &&
@@ -504,7 +540,6 @@ class BillingInfoFormViewController: UIViewController {
             } else if componentView.billingInfoComponent == .unit {
                 rulesMapping.append(({ $0.isEmpty || $0.range(of: "[^a-zA-Z0-9/-]", options: .regularExpression) == nil }, NSLocalizedString("Must contain alphanumeric, '-' and '/' characters only.", comment: "")))
             }
-
             componentView.rulesMapping = !addressStackView.isHidden ? rulesMapping : []
         }
     }
@@ -592,7 +627,6 @@ extension BillingInfoFormViewController: BillingInfoFormComponentViewDelegate {
     }
 
     func billingInfoFormComponentView(_ billingInfoFormComponentView: BillingInfoFormComponentView, didUpdateBillingMethod billingMethodString: String) {
-        self.updateUI()
         self.updateSaveButton()
     }
 }

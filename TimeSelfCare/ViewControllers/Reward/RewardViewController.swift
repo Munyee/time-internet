@@ -66,6 +66,8 @@ class RewardViewController: TimeBaseViewController {
             self.footerInfoLabel.isHidden = shouldHideFooter
             self.footerStackView.isHidden = shouldHideFooter
             self.tableView.tableFooterView?.isHidden = shouldHideFooter
+            self.tableView.sectionHeaderHeight = UITableView.automaticDimension
+            self.tableView.estimatedSectionHeaderHeight = 62
 
             self.congratulationStackView.isHidden = reward.status != .grabbed
             self.congratulationStackView.arrangedSubviews.forEach {
@@ -269,9 +271,9 @@ extension RewardViewController: UITableViewDataSource, UITableViewDelegate {
         return nil
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 62
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 62
+//    }
 }
 
 extension RewardViewController: RewardHeaderViewDelegate {
@@ -282,7 +284,11 @@ extension RewardViewController: RewardHeaderViewDelegate {
         if index < 0 {
             return
         }
-        tableView.reloadSections(IndexSet(integer: index), with: .automatic)
+        guard self.tableView.numberOfSections > 0 else {
+           return
+       }
+
+       tableView.reloadSections(IndexSet(integer: index), with: .automatic)
     }
 }
 

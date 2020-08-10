@@ -70,11 +70,14 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             settings.minimumFetchInterval = 0
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-            remoteConfig.fetch(withExpirationDuration:3600) { (status, error) -> Void in
+            remoteConfig.fetch(withExpirationDuration: 0) { status, error -> Void in
                 if status == .success {
-                    print("Config fetched!")
-                    self.remoteConfig.activate(completionHandler: { (error) in
-                        self.appVersionConfig = AppVersionModal(dictionary: (self.remoteConfig["app_init"].jsonValue as? NSDictionary)!)
+                    guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+                        self.showNext()
+                        return
+                    }
+                    self.remoteConfig.activate(completionHandler: { _ in
+                        self.appVersionConfig = AppVersionModal(dictionary: appInit)
                         DispatchQueue.main.async { self.checkAppVersion() }
                     })
                 } else {

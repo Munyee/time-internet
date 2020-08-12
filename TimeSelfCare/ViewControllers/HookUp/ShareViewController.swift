@@ -39,8 +39,8 @@ class ShareViewController: UIViewController {
     }
 
     func share() {
-        let items = ["Sign up for the TIME Fibre Home Broadband 500Mbps plan and pay just RM99 for the first 3 months! Get started now at huae.time.com.my/?2735036"]
-        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        let items = [data?.text]
+        let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
         present(ac, animated: true)
     }
 

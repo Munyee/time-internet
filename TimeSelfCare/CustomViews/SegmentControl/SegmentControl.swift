@@ -18,6 +18,7 @@ class SegmentControl: UIView {
     private var buttons: [UIButton]!
     private var selectorView: UIView!
     weak var delegate: SegmentControlDelegate?
+    private var currentIndex: Int!
 
     var textColor: UIColor = .lightGray
     var selectorViewColor: UIColor = .primary
@@ -25,12 +26,15 @@ class SegmentControl: UIView {
 
     convenience init(frame: CGRect, buttonTitle: [String]) {
         self.init(frame: frame)
+        currentIndex = 0
         self.buttonTitles = buttonTitle
     }
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         updateView()
+        let selectorPosition = frame.width / CGFloat(buttonTitles.count) * CGFloat(currentIndex)
+        self.selectorView.frame.origin.x = selectorPosition
     }
 
     private func configStackView() {
@@ -78,6 +82,7 @@ class SegmentControl: UIView {
             btn.setTitleColor(textColor, for: .normal)
             if btn == sender {
                 let selectorPosition = frame.width / CGFloat(buttonTitles.count) * CGFloat(buttonIndex)
+                currentIndex = buttonIndex
                 delegate?.changeToIndex(index: buttonIndex)
                 UIView.animate(withDuration: 0.3) {
                     self.selectorView.frame.origin.x = selectorPosition

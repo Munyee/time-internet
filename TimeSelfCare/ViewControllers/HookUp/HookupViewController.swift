@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class HookupViewController: TimeBaseViewController {
 
@@ -15,6 +16,7 @@ class HookupViewController: TimeBaseViewController {
     @IBOutlet private weak var referralContainer: UIView!
     @IBOutlet private weak var discountContainer: UIView!
     @IBOutlet private weak var howItWorkContainer: UIView!
+    public var huae: HUAE?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,42 @@ class HookupViewController: TimeBaseViewController {
         shareContainer.isHidden = false
         segment.delegate = self
         segmentView.addSubview(segment)
+        
+        guard
+            let account = AccountController.shared.selectedAccount
+            else {
+                return
+        }
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        
+        AccountDataController.shared.getHuaeInfo(account: account) { data, error in
+            hud.hide(animated: true)
+            guard error == nil else {
+                return
+            }
+            if let result = data {
+                self.huae = HUAE(with: result)
+                self.updateUI(huae: self.huae)
+            }
+        }
+    }
+    
+    func updateUI(huae: HUAE?) {
+        
+        for child in self.children {
+            if let shareVC = child as? ShareViewController {
+                shareVC.data = huae
+                shareVC.initView()
+            } else if let referralVC = child as? ReferralViewController {
+                referralVC.data = huae
+                referralVC.initView()
+            } else if let discountVC = child as? DiscountViewController {
+                discountVC.data = huae
+                discountVC.initView()
+            }
+        }
     }
 }
 

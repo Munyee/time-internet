@@ -41,6 +41,7 @@ class ShareViewController: UIViewController {
     func share() {
         let items = [data?.text]
         let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
+        ac.setValue(data?.subject, forKey: "subject")
         present(ac, animated: true)
     }
 

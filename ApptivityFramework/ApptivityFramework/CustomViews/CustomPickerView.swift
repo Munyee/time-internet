@@ -134,7 +134,7 @@ extension CustomPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         return self.dataArray.count
     }
 
-    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.delegate?.pickerView(pickerView: self, didSelectRowWithTitle: self.getSelectedRows())
-    }
+//    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        self.delegate?.pickerView(pickerView: self, didSelectRowWithTitle: self.getSelectedRows())
+//    }
 }

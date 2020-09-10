@@ -24,7 +24,7 @@ class ShopViewController: TimeBaseViewController, WKUIDelegate {
         parameters["username"] = AccountController.shared.profile?.username
         parameters["account_no"] = AccountController.shared.selectedAccount?.accountNo
         parameters["token"] = APIClient.shared.getToken(forPath: path)
-       // parameters["bulb"] = "yes"
+        parameters["bulb"] = "yes"
         parameters["session_id"] = AccountController.shared.sessionId
         
         let webConfiguration = WKWebViewConfiguration()

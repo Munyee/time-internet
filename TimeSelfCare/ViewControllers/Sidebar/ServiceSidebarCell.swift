@@ -20,7 +20,7 @@ internal class ServiceSidebarCell: UITableViewCell {
             case .support:
                 return #imageLiteral(resourceName: "ic_support")
             case .shop:
-                return #imageLiteral(resourceName: "shop")
+                return #imageLiteral(resourceName: "shop_black")
             case .reward:
                 return #imageLiteral(resourceName: "ic_sidebar_rewards")
             case .livechat:

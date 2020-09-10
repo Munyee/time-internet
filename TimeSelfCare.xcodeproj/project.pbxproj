@@ -32,6 +32,7 @@
 		20131C3E2EBB8DFFEDF33892 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02BAAA47F5FA637DF163E1F /* SystemConfiguration.framework */; };
 		417FAF3B2509C78800BF31FD /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 417FAF3A2509C78700BF31FD /* Shop.storyboard */; };
 		417FAF3D2509C7A600BF31FD /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FAF3C2509C7A600BF31FD /* ShopViewController.swift */; };
+		417FAF3F2509D4AA00BF31FD /* ShopDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FAF3E2509D4AA00BF31FD /* ShopDataController.swift */; };
 		41A79D2B24403EA0002A9C4B /* AppVersionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A79D2A24403EA0002A9C4B /* AppVersionModal.swift */; };
 		4D0A9757D0386117A572CDEA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2CC50C123745B40460E00F /* CoreVideo.framework */; };
 		4DF7BCB51EFC6F3DD4BF22F1 /* Pods_TimeSelfCareData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83F18ECBC16F79DEA8C33A2 /* Pods_TimeSelfCareData.framework */; };
@@ -290,6 +291,7 @@
 		3813A10A15EC60642B16C8D1 /* Pods-TimeSelfCareDataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.debug.xcconfig"; sourceTree = "<group>"; };
 		417FAF3A2509C78700BF31FD /* Shop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
 		417FAF3C2509C7A600BF31FD /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		417FAF3E2509D4AA00BF31FD /* ShopDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDataController.swift; sourceTree = "<group>"; };
 		41A79D2A24403EA0002A9C4B /* AppVersionModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionModal.swift; sourceTree = "<group>"; };
 		41B70FEAB234DE370E212DBE /* Pods-TimeSelfCareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.release.xcconfig"; sourceTree = "<group>"; };
 		54502DE6E63ACD59BD3C00E6 /* Pods-TimeSelfCare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.release.xcconfig"; sourceTree = "<group>"; };
@@ -604,6 +606,7 @@
 				E2FB110922CC5D91000FED93 /* RewardDataController.swift */,
 				E2D7E8E52341EB17004794B3 /* VersionDataController.swift */,
 				9EAB2C0E249CE3CE00F12A3C /* LiveChatDataController.swift */,
+				417FAF3E2509D4AA00BF31FD /* ShopDataController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1716,6 +1719,7 @@
 				E2345C931FB968A500DA42F0 /* ServiceDataController.swift in Sources */,
 				9E9EB76624D7985900D0D342 /* Diagnostics.swift in Sources */,
 				E2FB110822CC54B1000FED93 /* Reward.swift in Sources */,
+				417FAF3F2509D4AA00BF31FD /* ShopDataController.swift in Sources */,
 				E2DD463B20D2426900764512 /* Attachment.swift in Sources */,
 				E2AD69E020AD2F7F001D104E /* SsidDataController.swift in Sources */,
 				E2345C801FB9654D00DA42F0 /* Activity.swift in Sources */,

@@ -20,24 +20,12 @@ class ShopViewController: TimeBaseViewController, WKUIDelegate {
         self.title = NSLocalizedString("Shop", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
         
-        if let webViewContainer = webViewContainer {
-            // Initialize:
-            let webView = WKWebView(frame: webViewContainer.bounds, configuration: WKWebViewConfiguration()) // Create a new web view
-            webView.translatesAutoresizingMaskIntoConstraints = false // This needs to be called due to manually adding constraints
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        self.view = webView
 
-            // Add as a subview:
-            webViewContainer.addSubview(webView)
-
-            // Add constraints to be the same as webViewContainer
-            webViewContainer.addConstraint(NSLayoutConstraint(item: webView, attribute: .leading, relatedBy: .equal, toItem: webViewContainer, attribute: .leading, multiplier: 1.0, constant: 0.0))
-            webViewContainer.addConstraint(NSLayoutConstraint(item: webView, attribute: .trailing, relatedBy: .equal, toItem: webViewContainer, attribute: .trailing, multiplier: 1.0, constant: 0.0))
-            webViewContainer.addConstraint(NSLayoutConstraint(item: webView, attribute: .top, relatedBy: .equal, toItem: webViewContainer, attribute: .top, multiplier: 1.0, constant: 0.0))
-            webViewContainer.addConstraint(NSLayoutConstraint(item: webView, attribute: .bottom, relatedBy: .equal, toItem: webViewContainer, attribute: .bottom, multiplier: 1.0, constant: 0.0))
-
-            // Assign web view for reference
-            self.webView = webView
-        }
-        
         let path = "open_shop"
         parameters["action"] = path
         parameters["username"] = AccountController.shared.profile?.username
@@ -59,6 +47,10 @@ extension ShopViewController: WKNavigationDelegate {
         guard let url = webView.url else {
             return }
         debugPrint("Commit... \(url)")
+        
+        if url.absoluteString.contains("user/dashboard/") {
+            self.webViewDidClose(webView)
+        }
     }
 
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) { // swiftlint:disable:this implicitly_unwrapped_optional
@@ -70,7 +62,7 @@ extension ShopViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { // swiftlint:disable:this implicitly_unwrapped_optional
-        webView.evaluateJavaScript("document.title") { (string, error) in
+        webView.evaluateJavaScript("document.body.textContent") { (string, error) in
             print("title = \(String(describing: string))")
         }
     }

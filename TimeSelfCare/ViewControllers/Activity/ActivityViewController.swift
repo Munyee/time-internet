@@ -113,6 +113,9 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
         case .voicePlan:
             let voiceVC: VoiceSummaryViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(voiceVC, animated: true)
+        case .shop:
+            let shopVC: ShopViewController = UIStoryboard(name: TimeSelfCareStoryboard.shop.filename, bundle: nil).instantiateViewController()
+            self.presentNavigation(shopVC, animated: true)
         default:
             break
         }

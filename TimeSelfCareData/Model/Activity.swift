@@ -20,7 +20,6 @@ public class Activity: JsonRecord {
         case grabbed = "grabbed"
         case redeemed = "redeemed"
         case fullyGrabbed = "fully_grabbed"
-
         case unknown
     }
 
@@ -33,6 +32,7 @@ public class Activity: JsonRecord {
         case addOns = "Add Ons"
         case broadbandPlan = "Broadband Plan"
         case voicePlan = "Voice Plan"
+        case shop = "Shop"
     }
 
     public var id: String
@@ -48,7 +48,8 @@ public class Activity: JsonRecord {
              .ticket,
              .rewards,
              .billing,
-             .addOns:
+             .addOns,
+             .shop:
            return true
         default:
             return false

@@ -47,9 +47,9 @@ class ShopViewController: TimeBaseViewController, WKUIDelegate {
 extension ShopViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) { // swiftlint:disable:this implicitly_unwrapped_optional
         debugPrint("Commit... \(webView.url)")
-        guard let url = webView.url else {
-            return
-        }
+//        guard let url = webView.url else {
+//            return
+//        }
     }
 
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) { // swiftlint:disable:this implicitly_unwrapped_optional

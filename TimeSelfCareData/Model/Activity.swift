@@ -32,7 +32,7 @@ public class Activity: JsonRecord {
         case addOns = "Add Ons"
         case broadbandPlan = "Broadband Plan"
         case voicePlan = "Voice Plan"
-        case shop = "Shop"
+        case reDirectMsg = "Redirect Msg"
     }
 
     public var id: String
@@ -41,6 +41,7 @@ public class Activity: JsonRecord {
     public var line2: String?
     public var status: String?
     public var isNew: Bool = false
+    public var click: String?
 
     public var isActionable: Bool {
         switch self.type {
@@ -49,7 +50,7 @@ public class Activity: JsonRecord {
              .rewards,
              .billing,
              .addOns,
-             .shop:
+             .reDirectMsg:
            return true
         default:
             return false
@@ -80,6 +81,7 @@ public class Activity: JsonRecord {
         self.isNew = json["is_new"] as? Bool ?? false
         self.accountNo = json["account_no"] as? String
         self.profileUsername = profileUsername
+        self.click =  json["click"] as? String
     }
 
 }

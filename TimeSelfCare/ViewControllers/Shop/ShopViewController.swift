@@ -44,13 +44,7 @@ class ShopViewController: TimeBaseViewController, WKUIDelegate {
 
 extension ShopViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) { // swiftlint:disable:this implicitly_unwrapped_optional
-        guard let url = webView.url else {
-            return }
-        debugPrint("Commit... \(url)")
-        
-        if url.absoluteString.contains("user/dashboard/") {
-            self.webViewDidClose(webView)
-        }
+        debugPrint("Commit...")
     }
 
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) { // swiftlint:disable:this implicitly_unwrapped_optional
@@ -62,8 +56,8 @@ extension ShopViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { // swiftlint:disable:this implicitly_unwrapped_optional
-        webView.evaluateJavaScript("document.body.textContent") { (string, error) in
-            print("title = \(String(describing: string))")
+        webView.evaluateJavaScript("document.body.title") { (string, error) in
+           // print("title = \(String(describing: string))")
         }
     }
 
@@ -77,5 +71,19 @@ extension ShopViewController: WKNavigationDelegate {
 
     func webViewDidClose(_ webView: WKWebView) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        if navigationAction.request.url!.absoluteString.contains("/user/dashboard/") {
+            if navigationAction.request.url!.absoluteString.contains("/welcome/") {
+                decisionHandler(.allow)
+            } else {
+                self.webViewDidClose(webView)
+                decisionHandler(.cancel)
+            }
+        } else {
+        decisionHandler(.allow)
+        }
     }
 }

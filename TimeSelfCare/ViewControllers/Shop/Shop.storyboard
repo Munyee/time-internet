@@ -15,9 +15,35 @@
                     <view key="view" contentMode="scaleToFill" id="9SQ-pR-c9a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="fLk-Jo-7mO">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" red="0.80000000000000004" green="0.0" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xyq-Aa-n2C">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Xyq-Aa-n2C" secondAttribute="bottom" id="4yg-qm-BXX"/>
+                            <constraint firstItem="Xyq-Aa-n2C" firstAttribute="top" secondItem="9SQ-pR-c9a" secondAttribute="top" id="C94-8c-CB2"/>
+                            <constraint firstItem="fLk-Jo-7mO" firstAttribute="centerY" secondItem="9SQ-pR-c9a" secondAttribute="centerY" id="PNE-7n-Xhf"/>
+                            <constraint firstItem="Xyq-Aa-n2C" firstAttribute="trailing" secondItem="B2S-4y-2Ie" secondAttribute="trailing" id="bfY-8e-9ko"/>
+                            <constraint firstItem="fLk-Jo-7mO" firstAttribute="centerX" secondItem="9SQ-pR-c9a" secondAttribute="centerX" id="fCC-P4-mTr"/>
+                            <constraint firstItem="Xyq-Aa-n2C" firstAttribute="leading" secondItem="B2S-4y-2Ie" secondAttribute="leading" id="fwA-9Z-Pu3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="B2S-4y-2Ie"/>
                     </view>
+                    <connections>
+                        <outlet property="activity" destination="fLk-Jo-7mO" id="4Xv-hA-tnL"/>
+                        <outlet property="webView" destination="Xyq-Aa-n2C" id="GNO-Fg-blk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFh-FG-K1w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

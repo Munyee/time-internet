@@ -68,20 +68,19 @@ public class Activity: JsonRecord {
             let activityType = ActivityType(rawValue: activityTypeStr),
             let profileUsername = json["profile_username"] as? String
         else {
-                debugPrint("ERROR: Failed to construct Activity from JSON\n\(json)")
-                return nil
+            debugPrint("ERROR: Failed to construct Activity from JSON\n\(json)")
+            return nil
         }
 
         self.id = id
         self.type = activityType
-
         self.line1 = json["line1"] as? String
         self.line2 = json["line2"] as? String
         self.status = json["status"] as? String
         self.isNew = json["is_new"] as? Bool ?? false
         self.accountNo = json["account_no"] as? String
         self.profileUsername = profileUsername
-        self.click =  json["click"] as? String
+        self.click = json["click"] as? String
     }
 
 }

@@ -18,9 +18,9 @@ class ActivityTableViewCell: UITableViewCell {
     @IBOutlet private weak var line2Label: UILabel!
 
     func configure(with activity: Activity) {
-        self.titleLabel.text = activity.type.rawValue
-        self.detailLabel.text = activity.line1
-        self.line2Label.text = activity.line2
+        self.titleLabel.text = String(htmlEncodedString: activity.type.rawValue ?? "")
+        self.detailLabel.text = String(htmlEncodedString: activity.line1 ?? "")
+        self.line2Label.text = String(htmlEncodedString: activity.line2 ?? "")
         self.statusLabel.text = activity.status
         self.statusLabel.isHidden = self.statusLabel.text?.isEmpty ?? true
         self.statusLabel.borderColor = Activity.Status(rawValue: activity.status?.lowercased() ?? "")?.color ?? Activity.Status.unknown.color

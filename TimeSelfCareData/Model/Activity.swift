@@ -35,7 +35,7 @@ public class Activity: JsonRecord {
         case reDirectMsg = "Redirect Msg"
     }
 
-    public var id: String
+    public var id: Int
     public var type: ActivityType
     public var line1: String?
     public var line2: String?
@@ -72,7 +72,7 @@ public class Activity: JsonRecord {
             return nil
         }
 
-        self.id = id
+        self.id = Int(id)!
         self.type = activityType
         self.line1 = json["line1"] as? String
         self.line2 = json["line2"] as? String

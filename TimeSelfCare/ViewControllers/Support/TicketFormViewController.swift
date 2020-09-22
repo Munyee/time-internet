@@ -150,7 +150,9 @@ class TicketFormComponentView: UIStackView, UITextViewDelegate, CustomPickerView
     }
 
     func pickerView(pickerView: CustomPickerView, didConfirmSelectionOfRowWithTitle title: [String]) {
-        self.textView.text = title.first ?? ""
+        if !title.isEmpty {
+            self.textView.text = title.first ?? ""
+        }
         self.textView.resignFirstResponder()
         self.textViewDidChange(self.textView)
     }

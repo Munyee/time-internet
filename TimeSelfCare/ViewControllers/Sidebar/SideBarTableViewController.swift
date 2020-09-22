@@ -171,7 +171,8 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
         guard serviceIndexPath.section == Section.service.rawValue else {
             return
         }
-
+        
+        DispatchQueue.main.async {
         switch self.services[serviceIndexPath.item] {
         case .reward:
             let rewardVC: RewardViewController = UIStoryboard(name: TimeSelfCareStoryboard.reward.filename, bundle: nil).instantiateViewController()
@@ -196,37 +197,36 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
                             Freshchat.sharedInstance().setUser(user)
                             Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
                         }
+                            let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
 
-                        let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
+                            alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
+                                Freshchat.sharedInstance().showConversations(self)
+                            }))
 
-                        alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
-                            Freshchat.sharedInstance().showConversations(self)
-                        }))
+                            alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
+                                Freshchat.sharedInstance().showFAQs(self)
+                            }))
 
-                        alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
-                            Freshchat.sharedInstance().showFAQs(self)
-                        }))
+                            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
 
-                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                                while let presentedViewController = vc.presentedViewController {
+                                    vc = presentedViewController
+                                }
 
-                        self.present(alert, animated: true, completion: nil)
-                    } else {
-                        if var vc = UIApplication.shared.keyWindow?.rootViewController {
-                            while let presentedViewController = vc.presentedViewController {
-                                vc = presentedViewController
-                            }
-
-                            if let alertView = UIStoryboard(name: "LiveChatAlert", bundle: nil).instantiateViewController(withIdentifier: "alertView") as? LiveChatPopUpViewController {
-                                vc.addChild(alertView)
-                                alertView.view.frame = vc.view.frame
-                                vc.view.addSubview(alertView.view)
-                                alertView.didMove(toParent: vc)
+                                if let alertView = UIStoryboard(name: "LiveChatAlert", bundle: nil).instantiateViewController(withIdentifier: "alertView") as? LiveChatPopUpViewController {
+                                    vc.addChild(alertView)
+                                    alertView.view.frame = vc.view.frame
+                                    vc.view.addSubview(alertView.view)
+                                    alertView.didMove(toParent: vc)
+                                }
                             }
                         }
                     }
                 }
             }
         }
-
     }
 }

@@ -115,8 +115,8 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
             self.presentNavigation(voiceVC, animated: true)
         case .reDirectMsg:
             if activity.click == "AddOnSummaryPage" {
-                let summaryVC: AddOnViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
-                self.presentNavigation(summaryVC, animated: true)
+                let addOnVC: AddOnViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
+                self.presentNavigation(addOnVC, animated: true)
             }
         default:
             break

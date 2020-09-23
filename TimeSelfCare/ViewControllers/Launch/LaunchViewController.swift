@@ -393,6 +393,12 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             let rewardVC: RewardViewController = UIStoryboard(name: TimeSelfCareStoryboard.reward.filename, bundle: nil).instantiateViewController()
             currentViewController.presentNavigation(rewardVC, animated: true)
             completionHandler()
+        case .reDirectMsg:
+            if activity.click == "AddOnSummaryPage" {
+                let addOnVC: AddOnViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
+                currentViewController.presentNavigation(addOnVC, animated: true)
+                completionHandler()
+            }
         default:
             openActivity()
             completionHandler()

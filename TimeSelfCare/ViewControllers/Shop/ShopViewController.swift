@@ -13,6 +13,8 @@ class ShopViewController: TimeBaseViewController, WKUIDelegate {
     
     @IBOutlet private weak var webView: WKWebView!
     @IBOutlet private weak var activity: UIActivityIndicatorView!
+    @IBOutlet private weak var liveChatView: ExpandableLiveChatView!
+    
     var parameters: [String: Any] = [:]
     
     override func viewDidLoad() {
@@ -58,6 +60,7 @@ extension ShopViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { // swiftlint:disable:this implicitly_unwrapped_optional
         self.activity.stopAnimating()
+        debugPrint("Commit... \(webView.url)")
 //        webView.evaluateJavaScript("document.body.title") { (string, error) in
 //            print("title = \(String(describing: string))")
 //        }

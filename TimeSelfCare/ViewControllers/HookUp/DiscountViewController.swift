@@ -11,20 +11,22 @@ import UIKit
 class DiscountViewController: UIViewController {
 
     weak var data: HUAE?
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var discountBalanceLabel: UILabel!
-    @IBOutlet weak var billDateLabel: UILabel!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var discountBalanceLabel: UILabel!
+    @IBOutlet private weak var billDateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.isHidden = true
-        // Do any additional setup after loading the view.
+        self.title = NSLocalizedString("DISCOUNT STATUS", comment: "")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
+    }
+    
+    @objc
+    func popBack() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func initView() {
-        if data?.referral_status_list?.isEmpty == false {
-            tableView.isHidden = false
-        }
         discountBalanceLabel.text = data?.discount_balance
         billDateLabel.text = data?.discount_bill_date
         tableView.reloadData()

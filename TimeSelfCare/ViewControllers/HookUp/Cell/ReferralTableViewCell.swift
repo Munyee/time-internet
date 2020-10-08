@@ -12,7 +12,6 @@ class ReferralTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var signUpDateLabel: UILabel!
     @IBOutlet weak var activationDateLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

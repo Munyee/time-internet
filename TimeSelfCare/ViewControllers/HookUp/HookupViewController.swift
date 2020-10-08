@@ -11,23 +11,23 @@ import MBProgressHUD
 
 class HookupViewController: TimeBaseViewController {
 
-    @IBOutlet private var segmentView: UIView!
-    @IBOutlet private weak var shareContainer: UIView!
-    @IBOutlet private weak var referralContainer: UIView!
-    @IBOutlet private weak var discountContainer: UIView!
-    @IBOutlet private weak var howItWorkContainer: UIView!
     public var huae: HUAE?
-
+    @IBOutlet private weak var referralLabel: UILabel!
+    @IBOutlet private weak var activatedLabel: UILabel!
+    @IBOutlet private weak var discountLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var heightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Hook Up & Earn", comment: "")
+        self.title = NSLocalizedString("HOOK UP & EARN", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
-
-        let segment = SegmentControl(frame: CGRect(x: 0, y: 0, width: self.segmentView.frame.width, height: self.segmentView.frame.height), buttonTitle: ["Share", "Referral Status", "Discount Status", "How it works?"])
-        hideAllContainer()
-        shareContainer.isHidden = false
-        segment.delegate = self
-        segmentView.addSubview(segment)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_notification_highlight_new").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(showNotifcation))
+        heightConstraint.constant = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         guard
             let account = AccountController.shared.selectedAccount
@@ -50,8 +50,33 @@ class HookupViewController: TimeBaseViewController {
         }
     }
     
+    @objc
+    func showNotifcation() {
+        let storyboard = UIStoryboard(name: "Activity", bundle: nil)
+        let activityViewController: ActivityViewController = storyboard.instantiateViewController()
+        self.presentNavigation(activityViewController, animated: true)
+    }
+    
     func updateUI(huae: HUAE?) {
-        
+        if huae?.referral_status_list?.count ?? 0 > 0 {
+            self.referralLabel.text = String(format: "%d", huae?.referral_status_list?.count ?? 0)
+            let filteredDictionary = huae?.referral_status_list?.filter { _, value -> Bool in
+                if let val = value as? NSDictionary {
+                    let status = val.value(forKey: "status") as? String
+                    return status == "Activated"
+                }
+                return false
+            }
+            self.activatedLabel.text = String(format: "%d", filteredDictionary?.count ?? 0)
+            self.discountLabel.text = String(format: "RM%@", huae?.discount_balance ?? "0")
+            self.dateLabel.text = "As of \(huae?.discount_bill_date ?? "")"
+            UIView.animate(withDuration: 0.5) {
+                self.heightConstraint.constant = 142
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            heightConstraint.constant = 0
+        }
         for child in self.children {
             if let shareVC = child as? ShareViewController {
                 shareVC.data = huae
@@ -65,29 +90,18 @@ class HookupViewController: TimeBaseViewController {
             }
         }
     }
-}
-
-extension HookupViewController: SegmentControlDelegate {
-    func hideAllContainer() {
-        shareContainer.isHidden = true
-        referralContainer.isHidden = true
-        discountContainer.isHidden = true
-        howItWorkContainer.isHidden = true
+    
+    @IBAction func actReferral(_ sender: Any) {
+        if let referralVC = UIStoryboard(name: TimeSelfCareStoryboard.hookup.filename, bundle: nil).instantiateViewController(withIdentifier: "ReferralViewController") as? ReferralViewController {
+            referralVC.data = huae
+            self.navigationController?.pushViewController(referralVC, animated: true)
+        }
     }
-
-    func changeToIndex(index: Int) {
-        hideAllContainer()
-        switch index {
-        case 0:
-            shareContainer.isHidden = false
-        case 1:
-            referralContainer.isHidden = false
-        case 2:
-            discountContainer.isHidden = false
-        case 3:
-            howItWorkContainer.isHidden = false
-        default:
-            break
+    
+    @IBAction func actDiscount(_ sender: Any) {
+        if let discountVC = UIStoryboard(name: TimeSelfCareStoryboard.hookup.filename, bundle: nil).instantiateViewController(withIdentifier: "DiscountViewController") as? DiscountViewController {
+            discountVC.data = huae
+            self.navigationController?.pushViewController(discountVC, animated: true)
         }
     }
 }

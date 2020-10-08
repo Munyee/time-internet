@@ -13,10 +13,11 @@ class ShareViewController: UIViewController {
     weak var data: HUAE?
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var desc: UILabel!
-    @IBOutlet private weak var subject: UILabel!
-    @IBOutlet private weak var text: UILabel!
-    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet private weak var tncView: UIView!
+    
+    let images = [#imageLiteral(resourceName: "spread_the_word"), #imageLiteral(resourceName: "track_progress"), #imageLiteral(resourceName: "enjoy_off")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,26 +27,67 @@ class ShareViewController: UIViewController {
     func initView() {
         titleLabel.text = data?.title ?? ""
         desc.text = data?.description ?? ""
-        subject.text = data?.subject ?? ""
-        text.text = data?.text ?? ""
         
         if data?.title != nil {
-            imageView.isHidden = false
+            collectionView.isHidden = false
             shareButton.isHidden = false
+            tncView.isHidden = false
         } else {
-            imageView.isHidden = true
+            collectionView.isHidden = true
             shareButton.isHidden = true
+            tncView.isHidden = true
         }
     }
 
-    func share() {
-        let items = [data?.text]
-        let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
-        ac.setValue(data?.subject, forKey: "subject")
-        present(ac, animated: true)
-    }
+    
+    func showTnc() {
+            let timeWebView = TIMEWebViewController()
+            let urlString = "https://www.time.com.my/terms-and-conditions?link=personal&title=HookUpAndEarn"
+            let url = URL(string: urlString)
+            timeWebView.url = url
+            timeWebView.title = NSLocalizedString("Terms & Conditions", comment: "")
+            self.navigationController?.pushViewController(timeWebView, animated: true)
+        }
 
-    @IBAction func actShare(_ sender: Any) {
-        share()
+        func showFAQ() {
+            let timeWebView = TIMEWebViewController()
+            let urlString = "http://www1.time.com.my/support/faq?section=self-care&question=who-is-eligible-for-this-programme"
+            let url = URL(string: urlString)
+            timeWebView.url = url
+            timeWebView.title = NSLocalizedString("FAQ", comment: "")
+            self.navigationController?.pushViewController(timeWebView, animated: true)
+        }
+    //
+        @IBAction func actTnC(_ sender: Any) {
+            showTnc()
+        }
+
+        @IBAction func actFAQ(_ sender: Any) {
+            showFAQ()
+        }
+    
+    @IBAction func actRefer(_ sender: Any) {
+        if let referVC = UIStoryboard(name: "ReferView", bundle: nil).instantiateInitialViewController() as? ReferViewController {
+            referVC.data = data
+            self.navigationController?.pushViewController(referVC, animated: true)
+        }
+    }
+}
+
+extension ShareViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.bounds.width - 40, height: 220)
+    }
+}
+
+extension ShareViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "bannerCell", for: indexPath) as? BannerCollectionViewCell
+        cell?.bannerImage.image = images[indexPath.row]
+        return cell ?? UICollectionViewCell()
     }
 }

@@ -108,6 +108,7 @@ public class APIClient {
         parameters["token"] = self.getToken(forPath: path)
 
         parameters["session_id"] = AccountController.shared.sessionId
+        print(parameters)
         self.request(
             method: .post,
             parameters: parameters,

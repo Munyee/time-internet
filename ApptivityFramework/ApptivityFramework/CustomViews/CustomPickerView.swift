@@ -56,7 +56,7 @@ open class CustomPickerView: UIView {
         self.pickerView = pickerView
 
         // Init control bar
-        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.size.width / 3, height: 44))
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 44))
 
         let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.cancelButtonTapped(sender:)))
         cancelButton.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: UIFontTextStyle.body), NSAttributedStringKey.foregroundColor: buttonTextColor ?? UIColor.black ], for: UIControlState.normal)
@@ -134,7 +134,7 @@ extension CustomPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         return self.dataArray.count
     }
 
-    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.delegate?.pickerView(pickerView: self, didSelectRowWithTitle: self.getSelectedRows())
-    }
+//    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        self.delegate?.pickerView(pickerView: self, didSelectRowWithTitle: self.getSelectedRows())
+//    }
 }

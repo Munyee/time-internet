@@ -22,6 +22,7 @@ enum TimeSelfCareStoryboard: String, Storyboard {
     case diagnostics
     case support
     case reward
+    case shop
 
     var filename: String {
         return rawValue.capitalizedFirstLetter

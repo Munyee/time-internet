@@ -150,7 +150,9 @@ class TicketFormComponentView: UIStackView, UITextViewDelegate, CustomPickerView
     }
 
     func pickerView(pickerView: CustomPickerView, didConfirmSelectionOfRowWithTitle title: [String]) {
-        self.textView.text = title.first ?? ""
+        if !title.isEmpty {
+            self.textView.text = title.first ?? ""
+        }
         self.textView.resignFirstResponder()
         self.textViewDidChange(self.textView)
     }
@@ -359,13 +361,14 @@ class TicketFormViewController: TimeBaseViewController {
                 return nil
             }
 
-            let ratio = max(
-                max(image.size.width, image.size.height) / 1_920,
-                min(image.size.width, image.size.height) / 1_080
-            )
-            if ratio > 1 {
-                image = image.scaledTo(scale: 1 / ratio)
-            }
+//            let ratio = max(
+//                max(image.size.width, image.size.height) / 1_920,
+//                min(image.size.width, image.size.height) / 1_080
+//            )
+//            if ratio > 1 {
+//                image = image.scaledTo(scale: 1 / ratio)
+//            }
+            
             return image
         }
 

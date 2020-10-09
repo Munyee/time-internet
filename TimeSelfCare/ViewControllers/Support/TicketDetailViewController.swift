@@ -164,13 +164,13 @@ class TicketDetailViewController: UIViewController {
                 return nil
             }
 
-            let ratio = max(
-                max(image.size.width, image.size.height) / 1_920,
-                min(image.size.width, image.size.height) / 1_080
-            )
-            if ratio > 1 {
-                image = image.scaledTo(scale: 1 / ratio)
-            }
+//            let ratio = max(
+//                max(image.size.width, image.size.height) / 1_920,
+//                min(image.size.width, image.size.height) / 1_080
+//            )
+//            if ratio > 1 {
+//                image = image.scaledTo(scale: 1 / ratio)
+//            }
             return image
         }
         newConversation.images = images
@@ -212,6 +212,10 @@ class TicketDetailViewController: UIViewController {
 
             conversation.status = error == nil ? .success : .failed
             if let index = self.conversations.index(where: { $0.id == conversation.id }) {
+                guard self.tableView.numberOfSections > 0 else {
+                    return
+                }
+                
                 self.tableView.reloadSections([index], with: .automatic)
             }
         }

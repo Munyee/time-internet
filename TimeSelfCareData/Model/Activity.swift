@@ -33,6 +33,7 @@ public class Activity: JsonRecord {
         case addOns = "Add Ons"
         case broadbandPlan = "Broadband Plan"
         case voicePlan = "Voice Plan"
+        case huae = "Hook Up & Earn"
     }
 
     public var id: String
@@ -48,7 +49,8 @@ public class Activity: JsonRecord {
              .ticket,
              .rewards,
              .billing,
-             .addOns:
+             .addOns,
+             .huae:
            return true
         default:
             return false

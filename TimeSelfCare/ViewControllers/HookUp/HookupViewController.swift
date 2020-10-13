@@ -54,6 +54,7 @@ class HookupViewController: TimeBaseViewController {
     func showNotifcation() {
         let storyboard = UIStoryboard(name: "Activity", bundle: nil)
         let activityViewController: ActivityViewController = storyboard.instantiateViewController()
+        activityViewController.filter = "huae"
         self.presentNavigation(activityViewController, animated: true)
     }
     
@@ -93,7 +94,6 @@ class HookupViewController: TimeBaseViewController {
     
     @IBAction func actReferral(_ sender: Any) {
         if let referralVC = UIStoryboard(name: TimeSelfCareStoryboard.hookup.filename, bundle: nil).instantiateViewController(withIdentifier: "ReferralViewController") as? ReferralViewController {
-            referralVC.data = huae
             self.navigationController?.pushViewController(referralVC, animated: true)
         }
     }

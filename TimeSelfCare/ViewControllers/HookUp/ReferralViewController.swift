@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class ReferralViewController: UIViewController {
 
-    weak var data: HUAE?
+    var data: HUAE?
     @IBOutlet private weak var referralLabel: UILabel!
     @IBOutlet private weak var pendingLabel: UILabel!
     @IBOutlet private weak var activatedLabel: UILabel!
@@ -23,8 +24,7 @@ class ReferralViewController: UIViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("REFERRAL STATUS", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
-        filterData = data?.referral_status_list
-        initView()
+        retrieveData()
     }
     
     @objc
@@ -32,7 +32,31 @@ class ReferralViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-     func initView() {
+    func retrieveData() {
+        guard
+            let account = AccountController.shared.selectedAccount
+            else {
+                return
+        }
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        
+        AccountDataController.shared.getHuaeInfo(account: account) { data, error in
+            hud.hide(animated: true)
+            guard error == nil else {
+                return
+            }
+            if let result = data {
+                self.data = HUAE(with: result)
+                self.initView()
+            }
+        }
+    }
+    
+    func initView() {
+        filterData = data?.referral_status_list
+
         let pending = data?.referral_status_list?.filter { _, value -> Bool in
             if let val = value as? NSDictionary {
                 let status = val.value(forKey: "status") as? String

@@ -81,12 +81,14 @@ public extension ActivityDataController {
 
     func loadActivities(
         account: Account? = nil,
+        filter: String? = "",
         completion: @escaping ListListener<Activity>
         ) {
         let path = "get_account_notification_center"
         let body = [
             "username": AccountController.shared.profile?.username,
-            "account_no": account?.accountNo
+            "account_no": account?.accountNo,
+            "filter": filter
         ]
         self.loadActivityData(path: path, body: body as [String : Any], completion: completion)
     }

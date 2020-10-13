@@ -40,7 +40,7 @@ target 'TimeSelfCare' do
   pod 'lottie-ios', '~> 2.5.3'
   pod 'Firebase/Core'
   pod 'Firebase/RemoteConfig'
-  pod 'Crashlytics'
+  pod 'Firebase/Crashlytics'
   pod 'FreshchatSDK'
 
   target 'TimeSelfCareTests' do

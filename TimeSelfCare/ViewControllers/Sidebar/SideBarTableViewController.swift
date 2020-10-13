@@ -27,7 +27,7 @@ internal class SidebarTableViewController: UIViewController {
         let isBusiness = self.accounts.first { $0.custSegment == .business } != nil
 
         if (isResidential) {
-            return [.reward, .hookup, .support, .livechat]
+            return [.reward, .hookup, .shop, .support, .livechat]
         } else if (isBusiness) {
             return [.support, .livechat]
         } else {
@@ -171,7 +171,8 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
         guard serviceIndexPath.section == Section.service.rawValue else {
             return
         }
-
+        
+        DispatchQueue.main.async {
         switch self.services[serviceIndexPath.item] {
         case .reward:
             let rewardVC: RewardViewController = UIStoryboard(name: TimeSelfCareStoryboard.reward.filename, bundle: nil).instantiateViewController()
@@ -179,6 +180,9 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
         case .hookup:
             let hookupVC: HookupViewController = UIStoryboard(name: TimeSelfCareStoryboard.hookup.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(hookupVC, animated: true)
+        case .shop:
+            let shopVC: ShopViewController = UIStoryboard(name: TimeSelfCareStoryboard.shop.filename, bundle: nil).instantiateViewController()
+            self.presentNavigation(shopVC, animated: true)
         case .support:
             let ticketListVC: TicketListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(ticketListVC, animated: true)
@@ -196,37 +200,36 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
                             Freshchat.sharedInstance().setUser(user)
                             Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
                         }
+                            let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
 
-                        let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
+                            alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
+                                Freshchat.sharedInstance().showConversations(self)
+                            }))
 
-                        alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
-                            Freshchat.sharedInstance().showConversations(self)
-                        }))
+                            alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
+                                Freshchat.sharedInstance().showFAQs(self)
+                            }))
 
-                        alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
-                            Freshchat.sharedInstance().showFAQs(self)
-                        }))
+                            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
 
-                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                                while let presentedViewController = vc.presentedViewController {
+                                    vc = presentedViewController
+                                }
 
-                        self.present(alert, animated: true, completion: nil)
-                    } else {
-                        if var vc = UIApplication.shared.keyWindow?.rootViewController {
-                            while let presentedViewController = vc.presentedViewController {
-                                vc = presentedViewController
-                            }
-
-                            if let alertView = UIStoryboard(name: "LiveChatAlert", bundle: nil).instantiateViewController(withIdentifier: "alertView") as? LiveChatPopUpViewController {
-                                vc.addChild(alertView)
-                                alertView.view.frame = vc.view.frame
-                                vc.view.addSubview(alertView.view)
-                                alertView.didMove(toParent: vc)
+                                if let alertView = UIStoryboard(name: "LiveChatAlert", bundle: nil).instantiateViewController(withIdentifier: "alertView") as? LiveChatPopUpViewController {
+                                    vc.addChild(alertView)
+                                    alertView.view.frame = vc.view.frame
+                                    vc.view.addSubview(alertView.view)
+                                    alertView.didMove(toParent: vc)
+                                }
                             }
                         }
                     }
                 }
             }
         }
-
     }
 }

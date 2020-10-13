@@ -20,7 +20,6 @@ public class Activity: JsonRecord {
         case grabbed = "grabbed"
         case redeemed = "redeemed"
         case fullyGrabbed = "fully_grabbed"
-
         case unknown
     }
 
@@ -33,15 +32,17 @@ public class Activity: JsonRecord {
         case addOns = "Add Ons"
         case broadbandPlan = "Broadband Plan"
         case voicePlan = "Voice Plan"
-        case huae = "Hook Up & Earn"
+        case huae = "HOOK UP & EARN"
+        case reDirectMsg = "Redirect Msg"
     }
 
-    public var id: String
+    public var id: Int
     public var type: ActivityType
     public var line1: String?
     public var line2: String?
     public var status: String?
     public var isNew: Bool = false
+    public var click: String?
 
     public var isActionable: Bool {
         switch self.type {
@@ -50,7 +51,8 @@ public class Activity: JsonRecord {
              .rewards,
              .billing,
              .addOns,
-             .huae:
+             .huae,
+             .reDirectMsg:
            return true
         default:
             return false
@@ -58,29 +60,28 @@ public class Activity: JsonRecord {
     }
 
     // Relationships
-    public var profileUsername: String
+    public var profileUsername: String? = ""
     public var accountNo: String?
 
     public required init?(with json: [String: Any]) {
         guard
             let id = json["id"] as? String,
             let activityTypeStr = json["activity"] as? String,
-            let activityType = ActivityType(rawValue: activityTypeStr),
-            let profileUsername = json["profile_username"] as? String
+            let activityType = ActivityType(rawValue: activityTypeStr)
         else {
-                debugPrint("ERROR: Failed to construct Activity from JSON\n\(json)")
-                return nil
+            debugPrint("ERROR: Failed to construct Activity from JSON\n\(json)")
+            return nil
         }
 
-        self.id = id
+        self.id = Int(id)!
         self.type = activityType
-
         self.line1 = json["line1"] as? String
         self.line2 = json["line2"] as? String
         self.status = json["status"] as? String
         self.isNew = json["is_new"] as? Bool ?? false
         self.accountNo = json["account_no"] as? String
-        self.profileUsername = profileUsername
+        self.profileUsername = ""
+        self.click = json["click"] as? String
     }
 
 }
@@ -88,7 +89,7 @@ public class Activity: JsonRecord {
 public extension Activity {
     // profile: Activity belongs-to Profile
     var profile: Profile? {
-        return ProfileDataController.shared.getProfile(by: self.profileUsername)
+        return ProfileDataController.shared.getProfile(by: self.profileUsername ?? "")
     }
 
     // account: Activity belongs-to Account

@@ -52,7 +52,7 @@ class ActivityViewController: TimeBaseViewController {
 
     @objc
     func refresh() {
-        self.activities = ActivityDataController.shared.getActivities(account: AccountController.shared.selectedAccount)
+        self.activities = ActivityDataController.shared.getActivities(account: AccountController.shared.selectedAccount, filter: filter)
 
         ActivityDataController.shared.loadActivities(account: AccountController.shared.selectedAccount, filter: filter) { (activities: [Activity], error: Error?) in
             self.refreshControl.endRefreshing()
@@ -61,7 +61,7 @@ class ActivityViewController: TimeBaseViewController {
                 return
             }
 
-            self.activities = ActivityDataController.shared.getActivities(account: AccountController.shared.selectedAccount)
+            self.activities = ActivityDataController.shared.getActivities(account: AccountController.shared.selectedAccount, filter: self.filter)
         }
 
     }
@@ -117,6 +117,11 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
         case .huae:
             let referralVC = UIStoryboard(name: TimeSelfCareStoryboard.hookup.filename, bundle: nil).instantiateViewController(withIdentifier: "ReferralViewController")
             self.navigationController?.pushViewController(referralVC, animated: true)
+        case .reDirectMsg:
+            if activity.click == "AddOnSummaryPage" {
+                let addOnVC: AddOnViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
+                self.presentNavigation(addOnVC, animated: true)
+            }
         default:
             break
         }

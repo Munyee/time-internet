@@ -24,7 +24,6 @@ class DiagnosisViewController: TimeBaseViewController {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissVC(_:)))
         self.title = NSLocalizedString("Diagnostics", comment: "")
-        Keyboard.addKeyboardChangeObserver(self)
 
         iconImageView.image = UIImage()
         messageLabel.text = ""
@@ -175,11 +174,5 @@ class DiagnosisViewController: TimeBaseViewController {
 
     @IBAction func backToHomepage(_ sender: UIButton) {
         self.dismissVC()
-    }
-}
-
-extension DiagnosisViewController: KeyboardChangeObserver {
-    func keyboardChanging(endHeight: CGFloat, duration: TimeInterval) {
-        self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: endHeight, right: 0)
     }
 }

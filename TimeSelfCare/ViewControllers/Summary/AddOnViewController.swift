@@ -20,7 +20,8 @@ class AddOnViewController: BaseViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var placeHolderView: UIStackView!
     @IBOutlet private weak var addOnsButton: UIButton!
-
+    @IBOutlet weak var shopButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Add Ons", comment: "Add Ons")
@@ -39,7 +40,7 @@ class AddOnViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.addOnsButton.isHidden = AccountController.shared.selectedAccount?.custSegment == .business ||
             (AccountController.shared.selectedAccount?.custSegment == .astro && AccountController.shared.selectedAccount?.services.filter { $0.category == .broadbandAstro }.count ?? 0 > 0)
-
+        self.shopButton.addTarget(self, action: #selector(self.openShop), for: .touchUpInside)
         self.refresh()
     }
 
@@ -94,5 +95,11 @@ extension AddOnViewController: UITableViewDataSource, UITableViewDelegate {
             detailVC.addOn = self.addOns[indexPath.row]
             self.presentNavigation(detailVC, animated: true)
         }
+    }
+    
+    @objc
+    func openShop() {
+        let shopVC: ShopViewController = UIStoryboard(name: TimeSelfCareStoryboard.shop.filename, bundle: nil).instantiateViewController()
+        self.presentNavigation(shopVC, animated: true)
     }
 }

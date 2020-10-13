@@ -21,8 +21,8 @@ class RewardViewController: TimeBaseViewController {
                 self.tableHeaderImageView.sd_setImage(with: URL(string: imagePath), completed: nil)
             }
             self.sectionCollapsed = [Bool](repeating: true, count: reward.sections.count)
-            self.rewardNameLabel.text = reward.name
-            self.validityLabel.text = reward.validityPeriod
+            self.rewardNameLabel.text = String(htmlEncodedString: reward.name ?? "")
+            self.validityLabel.text = String(htmlEncodedString: reward.validityPeriod ?? "")
 
             self.validityPeriodStackView.axis = reward.status == .grabbed ? .vertical : .horizontal
 
@@ -37,7 +37,7 @@ class RewardViewController: TimeBaseViewController {
                 if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
                     for voucherCode in voucherCodes {
                         if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
-                            voucherLabel.text = voucherCode
+                            voucherLabel.text = String(htmlEncodedString: voucherCode ?? "")
                             self.voucherStackView.addArrangedSubview(voucherLabel)
                         }
                     }
@@ -57,7 +57,7 @@ class RewardViewController: TimeBaseViewController {
             self.actionButton.isEnabled = buttonActionable
             self.actionButton.backgroundColor = buttonActionable ? .primary : .grey2
 
-            self.footerInfoLabel.text = reward.status?.footerInfo
+            self.footerInfoLabel.text = String(htmlEncodedString: reward.status?.footerInfo ?? "")
             self.footerInfoLabel.isHidden = reward.status?.footerInfo == nil
             self.footerInfoLabel.textColor = reward.status?.footerInfoColor ?? .grey
 

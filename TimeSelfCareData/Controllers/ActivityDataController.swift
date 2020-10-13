@@ -30,6 +30,11 @@ public class ActivityDataController {
 
                     let activityJSONArray: [[String: Any]] = activityJSONDict.keys.compactMap {
                         var activityJSON = activityJSONDict[$0] as? [String: Any]
+                        
+                        if body["filter"] as? String == "huae" {
+                            return activityJSON
+                        }
+                        
                         activityJSON?["account_no"] = body["account_no"]
                         activityJSON?["profile_username"] = AccountController.shared.profile?.username
                         return activityJSON
@@ -66,9 +71,14 @@ public class ActivityDataController {
 
 public extension ActivityDataController {
     func getActivities(
-        account: Account? = nil
+        account: Account? = nil,
+        filter: String? = nil
         ) -> [Activity] {
         var filteredItems = self.activities
+        
+        if filter == "huae" {
+            return filteredItems
+        }
 
         if let account = account {
             filteredItems = filteredItems.filter {

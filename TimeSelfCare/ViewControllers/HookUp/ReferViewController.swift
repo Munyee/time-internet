@@ -27,7 +27,7 @@ class ReferViewController: TimeBaseViewController {
     }
     
     func initView() {
-        let message = data?.text ?? ""
+        let message = data?.text?.htmlAttributedString?.string ?? ""
         let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.getCustomFont(family: "DIN", style: .subheadline) ?? UIFont.preferredFont(forTextStyle: .subheadline),
                                                          NSAttributedString.Key.foregroundColor: UIColor.black]
         let attributedString = NSMutableAttributedString(string: message, attributes: attributes)

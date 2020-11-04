@@ -11,6 +11,7 @@ import Alamofire
 import MBProgressHUD
 import UserNotifications
 import FirebaseRemoteConfig
+import FirebaseCrashlytics
 
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
 internal let dontAskAgainFlag: String = "dontAskAgain"
@@ -76,12 +77,13 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                         self.showNext()
                         return
                     }
-                    self.remoteConfig.activate(completionHandler: { _ in
+                    self.remoteConfig.activate { _, _ in
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
                         DispatchQueue.main.async { self.checkAppVersion() }
-                    })
+                    }
                 } else {
                     self.showNext()
+                    Crashlytics.crashlytics().record(error: error!)
                     print("Config not fetched")
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 }
@@ -182,7 +184,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     error == nil {
                     self.showNext()
                 } else {
-                    self.showAlertMessage(with: error)
+                    self.showAlertMessage(title: NSLocalizedString("Error", comment: "Error"), message: error?.localizedDescription ?? "", actions: [
+                        UIAlertAction(title: "RETRY", style: .cancel, handler: { _ in
+                            self.showNext()
+                        })
+                    ])
                 }
             }
             return

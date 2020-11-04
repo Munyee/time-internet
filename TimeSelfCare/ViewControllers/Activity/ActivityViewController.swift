@@ -24,6 +24,7 @@ class ActivityViewController: TimeBaseViewController {
     }()
 
     @IBOutlet private weak var tableView: UITableView!
+    var filter: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,16 +52,16 @@ class ActivityViewController: TimeBaseViewController {
 
     @objc
     func refresh() {
-        self.activities = ActivityDataController.shared.getActivities(account: AccountController.shared.selectedAccount)
+        self.activities = ActivityDataController.shared.getActivities(account: AccountController.shared.selectedAccount, filter: filter)
 
-        ActivityDataController.shared.loadActivities(account: AccountController.shared.selectedAccount) { (activities: [Activity], error: Error?) in
+        ActivityDataController.shared.loadActivities(account: AccountController.shared.selectedAccount, filter: filter) { (activities: [Activity], error: Error?) in
             self.refreshControl.endRefreshing()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return
             }
 
-            self.activities = ActivityDataController.shared.getActivities(account: AccountController.shared.selectedAccount)
+            self.activities = ActivityDataController.shared.getActivities(account: AccountController.shared.selectedAccount, filter: self.filter)
         }
 
     }
@@ -113,6 +114,9 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
         case .voicePlan:
             let voiceVC: VoiceSummaryViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(voiceVC, animated: true)
+        case .huae:
+            let referralVC = UIStoryboard(name: TimeSelfCareStoryboard.hookup.filename, bundle: nil).instantiateViewController(withIdentifier: "ReferralViewController")
+            self.navigationController?.pushViewController(referralVC, animated: true)
         case .reDirectMsg:
             if activity.click == "AddOnSummaryPage" {
                 let addOnVC: AddOnViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()

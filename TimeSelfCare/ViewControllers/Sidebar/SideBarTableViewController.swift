@@ -27,7 +27,7 @@ internal class SidebarTableViewController: UIViewController {
         let isBusiness = self.accounts.first { $0.custSegment == .business } != nil
 
         if (isResidential) {
-            return [.reward, .shop, .support, .livechat]
+            return [.reward, .hookup, .shop, .support, .livechat]
         } else if (isBusiness) {
             return [.support, .livechat]
         } else {
@@ -177,6 +177,9 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
         case .reward:
             let rewardVC: RewardViewController = UIStoryboard(name: TimeSelfCareStoryboard.reward.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(rewardVC, animated: true)
+        case .hookup:
+            let hookupVC: HookupViewController = UIStoryboard(name: TimeSelfCareStoryboard.hookup.filename, bundle: nil).instantiateViewController()
+            self.presentNavigation(hookupVC, animated: true)
         case .shop:
             let shopVC: ShopViewController = UIStoryboard(name: TimeSelfCareStoryboard.shop.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(shopVC, animated: true)

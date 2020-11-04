@@ -32,6 +32,7 @@ public class Activity: JsonRecord {
         case addOns = "Add Ons"
         case broadbandPlan = "Broadband Plan"
         case voicePlan = "Voice Plan"
+        case huae = "HOOK UP & EARN"
         case reDirectMsg = "Redirect Msg"
     }
 
@@ -50,6 +51,7 @@ public class Activity: JsonRecord {
              .rewards,
              .billing,
              .addOns,
+             .huae,
              .reDirectMsg:
            return true
         default:
@@ -58,15 +60,14 @@ public class Activity: JsonRecord {
     }
 
     // Relationships
-    public var profileUsername: String
+    public var profileUsername: String? = ""
     public var accountNo: String?
 
     public required init?(with json: [String: Any]) {
         guard
             let id = json["id"] as? String,
             let activityTypeStr = json["activity"] as? String,
-            let activityType = ActivityType(rawValue: activityTypeStr),
-            let profileUsername = json["profile_username"] as? String
+            let activityType = ActivityType(rawValue: activityTypeStr)
         else {
             debugPrint("ERROR: Failed to construct Activity from JSON\n\(json)")
             return nil
@@ -79,7 +80,7 @@ public class Activity: JsonRecord {
         self.status = json["status"] as? String
         self.isNew = json["is_new"] as? Bool ?? false
         self.accountNo = json["account_no"] as? String
-        self.profileUsername = profileUsername
+        self.profileUsername = ""
         self.click = json["click"] as? String
     }
 
@@ -88,7 +89,7 @@ public class Activity: JsonRecord {
 public extension Activity {
     // profile: Activity belongs-to Profile
     var profile: Profile? {
-        return ProfileDataController.shared.getProfile(by: self.profileUsername)
+        return ProfileDataController.shared.getProfile(by: self.profileUsername ?? "")
     }
 
     // account: Activity belongs-to Account

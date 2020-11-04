@@ -11,6 +11,7 @@ import UIKit
 internal class ServiceSidebarCell: UITableViewCell {
     enum ServiceType {
         case support
+        case hookup
         case shop
         case reward
         case livechat
@@ -19,6 +20,8 @@ internal class ServiceSidebarCell: UITableViewCell {
             switch self {
             case .support:
                 return #imageLiteral(resourceName: "ic_support")
+            case .hookup:
+                return #imageLiteral(resourceName: "ic_huae")
             case .shop:
                 return #imageLiteral(resourceName: "shop_black")
             case .reward:
@@ -36,6 +39,8 @@ internal class ServiceSidebarCell: UITableViewCell {
                 return NSLocalizedString("Shop", comment: "")
             case .reward:
                 return NSLocalizedString("Reward", comment: "")
+            case .hookup:
+                return NSLocalizedString("Hook Up & Earn", comment: "")
             case .livechat:
                 return NSLocalizedString("Live Chat", comment: "")
             }

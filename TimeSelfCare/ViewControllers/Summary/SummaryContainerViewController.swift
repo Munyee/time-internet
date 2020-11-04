@@ -359,6 +359,8 @@ extension SummaryContainerViewController: FABViewControllerDelegate {
                 return self.changeSsid(nil)
             case .runDiagnostics:
                 return self.runDiagnostics(nil)
+            case .all, .activated, .inprogress, .unsuccessful:
+                return nil
             }
         }
 

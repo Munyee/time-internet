@@ -22,6 +22,7 @@ enum TimeSelfCareStoryboard: String, Storyboard {
     case diagnostics
     case support
     case reward
+    case hookup
     case shop
 
     var filename: String {

@@ -41,6 +41,13 @@ public extension NSNotification.Name {
 }
 
 public class APIClient {
+    
+    open class MyServerTrustPolicyManager: ServerTrustPolicyManager {
+        open override func serverTrustPolicy(forHost host: String) -> ServerTrustPolicy? {
+            return ServerTrustPolicy.disableEvaluation
+        }
+    }
+    
     // swiftlint:disable force_unwrapping
     public static var  BaseAPIURL: URL {
         if Installation.isStagingMode {
@@ -60,10 +67,13 @@ public class APIClient {
     private init() {
         let config = URLSessionConfiguration.default
         let serverTrust: [String: ServerTrustPolicy] = [
-            "211.24.220.161": .disableEvaluation
+            :
         ]
+        
+        config.tlsMaximumSupportedProtocol = SSLProtocol.tlsProtocol12
+        config.tlsMaximumSupportedProtocol = SSLProtocol.tlsProtocol12
 
-        self.manager = Alamofire.SessionManager(configuration: config, delegate: SessionDelegate(), serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrust))
+        self.manager = Alamofire.SessionManager(configuration: config, delegate: SessionDelegate(), serverTrustPolicyManager: MyServerTrustPolicyManager(policies: serverTrust))
     }
 
     public func getToken(forPath path: String) -> String {
@@ -108,6 +118,7 @@ public class APIClient {
         parameters["token"] = self.getToken(forPath: path)
 
         parameters["session_id"] = AccountController.shared.sessionId
+        print(parameters)
         self.request(
             method: .post,
             parameters: parameters,

@@ -76,7 +76,7 @@ class ReferViewController: TimeBaseViewController {
     }
     
     @IBAction func openWhatsapp(_ sender: Any) {
-        let url = String(format: "whatsapp://send?text=%@", data?.whatsapp_text ?? "")
+        let url = String(format: "https://api.whatsapp.com/send?text=%@", data?.whatsapp_text ?? "")
         if let link = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
             if UIApplication.shared.canOpenURL(link) {
               UIApplication.shared.open(link)
@@ -87,8 +87,10 @@ class ReferViewController: TimeBaseViewController {
     }
     
     @IBAction func openEmail(_ sender: Any) {
-        let url = String(format: "mailto://\("")?subject\(data?.email_subject ?? "")&body\(data?.email_text ?? "")")
-        if let link = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
+        let subject = data?.email_subject ?? ""
+        let body = data?.email_text ?? ""
+        let coded = "mailto:?subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        if let link = URL(string: coded ?? "") {
             if UIApplication.shared.canOpenURL(link) {
                 UIApplication.shared.open(link)
             } else {

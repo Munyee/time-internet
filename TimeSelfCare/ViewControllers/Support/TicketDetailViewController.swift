@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import FirebaseCrashlytics
 
 class TicketDetailViewController: UIViewController {
     var conversations: [Conversation] = [] {
@@ -195,6 +196,7 @@ class TicketDetailViewController: UIViewController {
             guard let identifier = info["localIdentifier"]  as? String else {
                 return
             }
+//            Crashlytics.crashlytics().
             self.imagePickerVC?.deselectItem(for: identifier)
         }
         self.selectedImageInfos = []

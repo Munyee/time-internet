@@ -232,7 +232,7 @@ extension ImagePickerViewController: UICollectionViewDataSource, UICollectionVie
             var info: [String : Any] = [:]
             
             if data != nil {
-                if let adjustedImage: UIImage = UIImage(data: data!, scale: 1) {
+                if let adjustedImage: UIImage = UIImage(data: data!, scale: 0.5) {
                     info[UIImagePickerControllerOriginalImage] = adjustedImage as Any
                     info["localIdentifier"] = asset.localIdentifier
                 }
@@ -250,7 +250,7 @@ extension ImagePickerViewController: UICollectionViewDataSource, UICollectionVie
            self.assetsController.imageManager.requestImage(for: asset, targetSize: pickedImageSize, contentMode: PHImageContentMode.default, options: options, resultHandler: { [unowned self] (image: UIImage?, info: [AnyHashable : Any]?) -> Void in
 
                var info: [String : Any] = [:]
-               if let adjustedImage: UIImage = image?.scaledTo(scale: 1) {
+            if let adjustedImage: UIImage = image?.scaledTo(scale: 0.5) {
                    info[UIImagePickerControllerOriginalImage] = adjustedImage as Any
                    info["localIdentifier"] = asset.localIdentifier
                }

@@ -66,7 +66,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="295" height="192.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <state key="normal" title="SELF CARE" image="ic_self_care">
-                                                    <color key="titleColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="1y3-g0-gsb" kind="show" id="XZB-QL-Z2E"/>
@@ -88,7 +88,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="295" height="192"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <state key="normal" title="SIGN UP" image="ic_signup_plans">
-                                                    <color key="titleColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="showSignUpPlans:" destination="uhy-ep-yp0" eventType="touchUpInside" id="5iF-RS-ENQ"/>
@@ -110,7 +110,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="295" height="193.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <state key="normal" title="CONTACT US" image="ic_contact_us">
-                                                    <color key="titleColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <segue destination="8Eh-Pc-ujL" kind="show" id="xPT-0o-5hK"/>
@@ -1083,10 +1083,10 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="706"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="uQ1-e7-fzN">
-                                        <rect key="frame" x="44" y="0.0" width="287" height="705"/>
+                                        <rect key="frame" x="44" y="0.0" width="287" height="700"/>
                                         <subviews>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6hB-vP-N0x">
-                                                <rect key="frame" x="0.0" y="44" width="287" height="213.5"/>
+                                                <rect key="frame" x="0.0" y="44" width="287" height="209.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotline" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oj0-ld-Xpy">
                                                         <rect key="frame" x="0.0" y="0.0" width="287" height="33.5"/>
@@ -1095,7 +1095,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PwL-gQ-4XF">
-                                                        <rect key="frame" x="0.0" y="38.5" width="287" height="46"/>
+                                                        <rect key="frame" x="0.0" y="38.5" width="287" height="45"/>
                                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
                                                         <state key="normal" title="1800 18 1818">
                                                             <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1105,13 +1105,13 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tg-pO-qsu">
-                                                        <rect key="frame" x="0.0" y="89.5" width="287" height="34"/>
+                                                        <rect key="frame" x="0.0" y="88.5" width="287" height="33"/>
                                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gp0-gX-5FB">
-                                                        <rect key="frame" x="0.0" y="128.5" width="287" height="46"/>
+                                                        <rect key="frame" x="0.0" y="126.5" width="287" height="45"/>
                                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
                                                         <state key="normal" title="+603 5021 2122">
                                                             <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1121,7 +1121,7 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(if you are abroad)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ew-Rj-Ej7">
-                                                        <rect key="frame" x="0.0" y="179.5" width="287" height="34"/>
+                                                        <rect key="frame" x="0.0" y="176.5" width="287" height="33"/>
                                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1129,7 +1129,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iyI-K6-G96">
-                                                <rect key="frame" x="0.0" y="317.5" width="287" height="84.5"/>
+                                                <rect key="frame" x="0.0" y="313.5" width="287" height="83.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOi-CL-V3x">
                                                         <rect key="frame" x="0.0" y="0.0" width="287" height="33.5"/>
@@ -1138,7 +1138,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWK-Qn-Toe">
-                                                        <rect key="frame" x="0.0" y="38.5" width="287" height="46"/>
+                                                        <rect key="frame" x="0.0" y="38.5" width="287" height="45"/>
                                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="28"/>
                                                         <state key="normal" title="cs@time.com.my">
                                                             <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1150,7 +1150,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oXS-bV-DqS">
-                                                <rect key="frame" x="0.0" y="462" width="287" height="50"/>
+                                                <rect key="frame" x="0.0" y="457" width="287" height="50"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p10-Xu-Jez" customClass="LiveChatView" customModule="TimeSelfCare" customModuleProvider="target">
                                                         <rect key="frame" x="68.5" y="0.0" width="150" height="50"/>
@@ -1163,7 +1163,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="M5B-PV-dah">
-                                                <rect key="frame" x="0.0" y="572" width="287" height="93"/>
+                                                <rect key="frame" x="0.0" y="567" width="287" height="93"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9N-gI-099">
                                                         <rect key="frame" x="23.5" y="0.0" width="240" height="0.0"/>

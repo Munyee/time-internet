@@ -34,14 +34,17 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var dontShowButton: UIButton!
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var updateOrContinueButton: UIButton!
-    
-    @IBOutlet weak var alertTitleLabel: UILabel!
+    @IBOutlet private weak var taskProgressView: UIProgressView!
+    @IBOutlet private weak var alertTitleLabel: UILabel!
     @IBOutlet private weak var updateInfoTextView: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
         UNUserNotificationCenter.current().delegate = self
+        
+        self.taskProgressView.progressViewStyle = .default
+        self.taskProgressView.setProgress(1.0, animated: true)
     }
 
     deinit {
@@ -89,7 +92,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 }
             }
         } else {
-            let alert = UIAlertController(title:"", message: "No Internet Connection", preferredStyle: .alert)
+            let alert = UIAlertController(title: "", message: "No Internet Connection", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "RETRY", style: .cancel, handler: { (_) in
                 self.getFirebaseAppVersion()
             }))
@@ -142,7 +145,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             self.versionUpdateView.isHidden = true
             self.dontShowButton.isHidden = true
             self.showNext()
-        }else {
+        } else {
             self.versionUpdateView.isHidden = false
             self.dontShowButton.isHidden = false
         }
@@ -193,23 +196,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             }
             return
         }
-
-//        guard currentInstalledVersion >= remoteVersion else {
-//            let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String // swiftlint:disable:this force_cast
-//            let alertAction = UIAlertAction(title: NSLocalizedString("UPDATE", comment: ""), style: .default) { _ in
-//                let url = URL(string: "itms-apps:itunes.apple.com/app/1315891250")! // swiftlint:disable:this force_unwrap
-//                if UIApplication.shared.canOpenURL(url) {
-//                    if #available(iOS 10.0, *) {
-//                        UIApplication.shared.open(url)
-//                    } else {
-//                        UIApplication.shared.openURL(url)
-//                    }
-//                }
-//                self.showNext()
-//            }
-//            self.showAlertMessage(title: NSLocalizedString("Update Required", comment: ""), message: String.localizedStringWithFormat("A newer version of this app is available. Please update the app to continue using it.", appName), actions: [alertAction])
-//            return
-//        }
 
         guard let profile = AccountController.shared.profile else {
             self.launchAuthMenu()

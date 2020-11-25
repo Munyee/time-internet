@@ -136,14 +136,15 @@ extension AppDelegate {
             UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: title2Font]
         }
 
-//        var backgroundImage: UIImage
-//        if #available(iOS 11.0, *) {
-//            backgroundImage = #imageLiteral(resourceName: "bg_navbar_44")
-//        } else {
-//            backgroundImage = #imageLiteral(resourceName: "bg_navbar_64")
-//        }
+        var backgroundImage: UIImage
+        if #available(iOS 11.0, *) {
+            backgroundImage = #imageLiteral(resourceName: "bg_navbar_44")
+        } else {
+            backgroundImage = #imageLiteral(resourceName: "bg_navbar_64")
+        }
+        
 
-       // UINavigationBar.appearance().setBackgroundImage(backgroundImage.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
+        UINavigationBar.appearance().setBackgroundImage(backgroundImage.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
 
         if let subheadlineFont = UIFont.getCustomFont(family: "DIN", style: .subheadline) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: subheadlineFont], for: .normal)

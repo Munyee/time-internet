@@ -17,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="BZX-yd-ZDY">
-                                <rect key="frame" x="40" y="290.5" width="295" height="86"/>
+                                <rect key="frame" x="50" y="142.5" width="275" height="82"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time_logo" translatesAutoresizingMaskIntoConstraints="NO" id="J7N-75-Bhc">
-                                        <rect key="frame" x="0.0" y="0.0" width="295" height="62"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="58"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="J7N-75-Bhc" secondAttribute="height" multiplier="4.775" id="fGP-d6-8lS"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="L9r-7v-MoQ">
-                                        <rect key="frame" x="101.5" y="66" width="92.5" height="20"/>
+                                        <rect key="frame" x="91.5" y="62" width="92.5" height="20"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5FZ-WS-ixB">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -40,13 +40,13 @@
                                         </subviews>
                                     </stackView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Internet connection appears to be offline. An active Internet connection is required to use Self Care." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="dct-xd-lMl">
-                                        <rect key="frame" x="12" y="86" width="271.5" height="0.0"/>
+                                        <rect key="frame" x="2" y="82" width="271.5" height="0.0"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vN7-WG-odC">
-                                        <rect key="frame" x="0.0" y="86" width="295" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="82" width="275" height="0.0"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <state key="normal" title="OK">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -135,12 +135,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.84834182262420654" green="0.18184372782707214" blue="0.54119318723678589" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="40" id="4kb-wm-iZL"/>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="50" id="4kb-wm-iZL"/>
                             <constraint firstItem="O37-fy-qwi" firstAttribute="centerX" secondItem="FKF-FJ-Rx8" secondAttribute="centerX" id="HPn-fY-mgw"/>
                             <constraint firstItem="O37-fy-qwi" firstAttribute="centerY" secondItem="FKF-FJ-Rx8" secondAttribute="centerY" id="Hcl-4F-zPl"/>
                             <constraint firstItem="c38-DK-s8v" firstAttribute="trailing" secondItem="O37-fy-qwi" secondAttribute="trailing" constant="40" id="IHx-N7-A6x"/>
-                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="centerY" secondItem="c38-DK-s8v" secondAttribute="centerY" id="RSu-t7-ak9"/>
-                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="trailing" secondItem="c38-DK-s8v" secondAttribute="trailing" constant="-40" id="g90-3N-PoW"/>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="centerY" secondItem="c38-DK-s8v" secondAttribute="centerY" constant="-150" id="RSu-t7-ak9"/>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="trailing" secondItem="c38-DK-s8v" secondAttribute="trailing" constant="-50" id="g90-3N-PoW"/>
                             <constraint firstItem="BZX-yd-ZDY" firstAttribute="centerX" secondItem="c38-DK-s8v" secondAttribute="centerX" id="saX-Tp-gdI"/>
                             <constraint firstItem="O37-fy-qwi" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="40" id="zZm-kD-OX6"/>
                         </constraints>

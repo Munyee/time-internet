@@ -114,7 +114,7 @@ class AccountSummaryViewController: BaseViewController {
 
     override func updateUI() {
         let selectedAccount = AccountController.shared.selectedAccount
-        self.accountLabel.text = selectedAccount?.displayAccountNo
+        self.accountLabel.text = selectedAccount?.accountNo
         self.speedLabel.text = selectedAccount?.title
         self.statusLabel.text = selectedAccount?.accountStatus?.displayText
         self.statusLabel.backgroundColor = selectedAccount?.accountStatus == .active ? .positive : .grey2

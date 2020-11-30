@@ -98,8 +98,16 @@ class AccountSummaryViewController: BaseViewController {
 
         CreditCardDataController.shared.loadCreditCards(account: account) { (creditCards: [CreditCard], _: Error?) in
             let creditCard = creditCards.first
-            let debitButtonText = creditCard == nil ? NSLocalizedString("Register for Auto Debit", comment: "") : NSLocalizedString("You are on Auto Debit.", comment: "")
-            self.autoDebitButton.setTitle(debitButtonText, for: .normal)
+            if creditCard == nil {
+                self.autoDebitButton.setTitle(NSLocalizedString("Register for Auto Debit", comment: ""), for: .normal)
+            } else {
+                if creditCard!.ccExist == true {
+                    self.autoDebitButton.setTitle(NSLocalizedString("You are on Auto Debit.", comment: ""), for: .normal)
+                } else {
+                    self.autoDebitButton.setTitle(NSLocalizedString("Register for Auto Debit", comment: ""), for: .normal)
+                }
+            }
+            
             self.autoDebitButton.setTitleColor(creditCard == nil ? .primary : .grey2, for: .normal)
         }
 

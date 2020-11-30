@@ -100,15 +100,16 @@ class AccountSummaryViewController: BaseViewController {
             let creditCard = creditCards.first
             if creditCard == nil {
                 self.autoDebitButton.setTitle(NSLocalizedString("Register for Auto Debit", comment: ""), for: .normal)
+                self.autoDebitButton.setTitleColor(.primary, for: .normal)
             } else {
                 if creditCard!.ccExist == true {
                     self.autoDebitButton.setTitle(NSLocalizedString("You are on Auto Debit.", comment: ""), for: .normal)
+                    self.autoDebitButton.setTitleColor(.grey2, for: .normal)
                 } else {
                     self.autoDebitButton.setTitle(NSLocalizedString("Register for Auto Debit", comment: ""), for: .normal)
+                    self.autoDebitButton.setTitleColor(.primary, for: .normal)
                 }
             }
-            
-            self.autoDebitButton.setTitleColor(creditCard == nil ? .primary : .grey2, for: .normal)
         }
 
         NotificationSettingDataController.shared.loadNotificationSettings(account: account) {   _, _ in

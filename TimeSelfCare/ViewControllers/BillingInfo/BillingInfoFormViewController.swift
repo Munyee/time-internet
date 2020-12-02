@@ -382,7 +382,7 @@ class BillingInfoFormViewController: UIViewController {
     }
 
     private func setupUI() {
-        self.navigationItem.title = NSLocalizedString("Billing Info", comment: "")
+        self.navigationItem.title = NSLocalizedString("BILLING INFO", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissVC(_:)))
 
         let addressStackView = UIStackView()

@@ -270,10 +270,6 @@ extension RewardViewController: UITableViewDataSource, UITableViewDelegate {
         }
         return nil
     }
-
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 62
-//    }
 }
 
 extension RewardViewController: RewardHeaderViewDelegate {

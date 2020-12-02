@@ -59,7 +59,7 @@ class BillingInfoDetailComponentView: UIStackView {
         self.subtitleLabel.text = "-"
         
         underlineLabel.backgroundColor = .grey2
-        underlineLabel.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
+        underlineLabel.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
 
         self.addArrangedSubview(titleLabel)
         self.addArrangedSubview(subtitleLabel)
@@ -150,6 +150,7 @@ class BillingInfoDetailViewController: TimeBaseViewController {
         }
 
         let canEditBillingInfo: Bool = billingInfo?.canUpdateBillingMethod ?? false || billingInfo?.canUpdateBillingAddress ?? false
+        self.navigationItem.title = NSLocalizedString("BILLING INFO", comment: "")
         self.navigationItem.rightBarButtonItem = canEditBillingInfo ? UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain, target: self, action: #selector(self.editBillingInfo)) : nil
     }
 

@@ -29,7 +29,7 @@ internal class BillsViewController: TimeBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Bills", comment: "Bills")
+        self.title = NSLocalizedString("BILLS", comment: "BILLS")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.back))
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)

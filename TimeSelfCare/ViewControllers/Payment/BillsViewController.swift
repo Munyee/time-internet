@@ -121,7 +121,7 @@ extension BillsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.configureCell(with: self.bills[indexPath.row])
         let shouldShowBill: Bool = AccountController.shared.selectedAccount?.showBill ?? false
-        cell.accessoryView = shouldShowBill ? UIImageView(image: #imageLiteral(resourceName: "ic_next_arrow_small")) : nil
+       // cell.accessoryView = shouldShowBill ? UIImageView(image: #imageLiteral(resourceName: "ic_next_arrow_black")) : nil
         return cell
     }
 

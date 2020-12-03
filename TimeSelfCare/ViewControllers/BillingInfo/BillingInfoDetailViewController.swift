@@ -59,7 +59,7 @@ class BillingInfoDetailComponentView: UIStackView {
         self.subtitleLabel.text = "-"
         
         underlineLabel.backgroundColor = .grey2
-        underlineLabel.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
+        underlineLabel.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
 
         self.addArrangedSubview(titleLabel)
         self.addArrangedSubview(subtitleLabel)

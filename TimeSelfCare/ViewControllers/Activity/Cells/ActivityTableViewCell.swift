@@ -23,8 +23,8 @@ class ActivityTableViewCell: UITableViewCell {
         self.line2Label.text = String(htmlEncodedString: activity.line2 ?? "")
         self.statusLabel.text = activity.status
         self.statusLabel.isHidden = self.statusLabel.text?.isEmpty ?? true
-        self.statusLabel.borderColor = Activity.Status(rawValue: activity.status?.lowercased() ?? "")?.color ?? Activity.Status.unknown.color
-        self.statusLabel.textColor = Activity.Status(rawValue: activity.status?.lowercased() ?? "")?.color ?? Activity.Status.unknown.color
+       // self.statusLabel.borderColor = Activity.Status(rawValue: activity.status?.lowercased() ?? "")?.color ?? Activity.Status.unknown.color
+        self.statusLabel.backgroundColor = Activity.Status(rawValue: activity.status?.lowercased() ?? "")?.color ?? Activity.Status.unknown.color
         self.unreadStatusImageView.image = activity.isNew ? #imageLiteral(resourceName: "ic_new_notifications") : nil
         self.actionableIndicatorImageView.isHidden = !activity.isActionable
     }
@@ -44,14 +44,14 @@ class ActivityTableViewCell: UITableViewCell {
 extension Activity.Status {
     var color: UIColor {
         switch self {
-        case .unpaid, .open:
+        case .open:
             return .positive
-        case .available:
+        case .available, .unpaid:
             return .primary
         case .redeemed, .fullyGrabbed:
             return .turquoise
         default:
-            return .grey
+            return .positive
         }
     }
 }

@@ -401,22 +401,22 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UTQ-LH-lJ7">
-                                                            <rect key="frame" x="20" y="20.5" width="167" height="63"/>
+                                                            <rect key="frame" x="20" y="20.5" width="129" height="63"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxM-lp-XHq">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="167" height="14.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="129" height="14.5"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Bill No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDB-9c-gUk">
-                                                                    <rect key="frame" x="0.0" y="19.5" width="167" height="14.5"/>
+                                                                    <rect key="frame" x="0.0" y="19.5" width="129" height="14.5"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                     <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="...." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSe-Xo-g7m">
-                                                                    <rect key="frame" x="0.0" y="39" width="167" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="39" width="129" height="24"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                     <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -424,7 +424,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CeB-LG-j0f">
-                                                            <rect key="frame" x="195" y="42.5" width="64" height="19.5"/>
+                                                            <rect key="frame" x="157" y="42.5" width="64" height="19.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygn-0q-Hdt">
                                                                     <rect key="frame" x="0.0" y="0.0" width="64" height="19.5"/>
@@ -438,7 +438,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ASU-EM-OUf">
-                                                            <rect key="frame" x="267" y="40.5" width="88" height="23.5"/>
+                                                            <rect key="frame" x="229" y="40.5" width="88" height="23.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="PAY NOW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqS-n3-yUc" customClass="InsetLabel" customModule="ApptivityFramework">
                                                                     <rect key="frame" x="0.0" y="0.0" width="88" height="23.5"/>
@@ -469,6 +469,18 @@
                                                                 <constraint firstAttribute="width" constant="88" id="YHJ-4s-yiQ"/>
                                                             </constraints>
                                                         </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WQZ-Vj-fnZ">
+                                                            <rect key="frame" x="325" y="27" width="30" height="50"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="Sw0-iR-I9n">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="30" id="DtM-eq-1wh"/>
+                                                            </constraints>
+                                                        </stackView>
                                                     </subviews>
                                                     <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="20" bottom="10" trailing="20"/>
                                                 </stackView>
@@ -484,6 +496,7 @@
                                         <connections>
                                             <outlet property="amountLabel" destination="Ygn-0q-Hdt" id="r4s-qh-F7z"/>
                                             <outlet property="dateLabel" destination="nxM-lp-XHq" id="tw0-Bn-tKj"/>
+                                            <outlet property="imgView" destination="Sw0-iR-I9n" id="mzg-TY-Wzo"/>
                                             <outlet property="invoiceLabel" destination="wSe-Xo-g7m" id="tSK-fd-5OD"/>
                                             <outlet property="statusLabel" destination="YqS-n3-yUc" id="OnJ-WA-4cm"/>
                                         </connections>
@@ -903,5 +916,6 @@ http://www.time.com.my/privacy-policy.</string>
         <image name="ic_checkbox_selected" width="44" height="44"/>
         <image name="ic_debit_card_default_big" width="94" height="66"/>
         <image name="ic_debit_scan_card" width="72" height="56"/>
+        <image name="ic_next_arrow_black" width="50" height="50"/>
     </resources>
 </document>

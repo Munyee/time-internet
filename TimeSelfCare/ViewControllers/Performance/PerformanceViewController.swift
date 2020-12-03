@@ -59,18 +59,27 @@ class PerformanceViewController: BaseViewController {
             self.animationView.setAnimation(named: isConnected ? "GoodConnection" : "BadConnection")
             self.animationView.loopAnimation = false
             self.animationView.play()
-
-            self.statusLabel.text = isConnected ? NSLocalizedString("Your internet connection is good.", comment: "") : NSLocalizedString("Your internet connection is down.", comment: "")
-
+                
             if (isConnected) {
                 self.issueDetect.alpha = 0
+                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is good.", boldString: "good", color: UIColor.green, font: self.statusLabel.font)
             } else {
                 self.issueDetect.alpha = 1
+                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is down.", boldString: "down", color: UIColor.red, font: self.statusLabel.font)
                 self.showRunDiagnostic()
             }
 
             NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
         }
+    }
+    
+    func attributedText(withString string: String, boldString: String, color: UIColor, font: UIFont) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.font: font])
+        let boldFontAttribute: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: font.pointSize)]
+        let range = (string as NSString).range(of: boldString)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+        attributedString.addAttributes(boldFontAttribute, range: range)
+        return attributedString
     }
 
     func showRunDiagnostic() {

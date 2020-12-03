@@ -27,7 +27,7 @@ internal class AutoDebitViewController: TimeBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Auto Debit", comment: "")
+        self.title = NSLocalizedString("AUTO DEBIT", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(self.back))
     }
 

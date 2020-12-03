@@ -20,6 +20,7 @@ internal class AddOnCell: UITableViewCell {
         if let isUnderWarranty = addOn.isUnderWarranty {
             self.statusLabel.isHidden = false
             self.statusLabel.text = isUnderWarranty ? NSLocalizedString("UNDER WARRANTY", comment: "") : NSLocalizedString("OUT OF WARRANTY", comment: "")
+            self.statusLabel.backgroundColor = isUnderWarranty ? .positive  : .grey2
         } else {
             self.statusLabel.isHidden = true
         }

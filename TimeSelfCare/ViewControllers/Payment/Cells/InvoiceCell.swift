@@ -13,7 +13,8 @@ internal class InvoiceCell: UITableViewCell {
     @IBOutlet private weak var invoiceLabel: UILabel!
     @IBOutlet private weak var amountLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
-
+    @IBOutlet private weak var imgView: UIImageView?
+    
     func configureCell(with bill: Bill) {
         self.invoiceLabel.text = bill.invoiceNo
         self.amountLabel.text = bill.currentCharges?.currencyString(withSymbol: bill.currency ?? "RM", minimumFractionDigits: 2, maximumFractionDigits: 2)

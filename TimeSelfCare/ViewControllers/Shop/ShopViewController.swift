@@ -19,7 +19,7 @@ class ShopViewController: TimeBaseViewController, WKUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Shop", comment: "")
+        self.title = NSLocalizedString("SHOP", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
         
         let path = "open_shop"

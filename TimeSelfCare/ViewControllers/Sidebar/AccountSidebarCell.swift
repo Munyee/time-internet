@@ -15,7 +15,7 @@ internal class AccountSidebarCell: UITableViewCell {
     @IBOutlet private weak var descriptionLabel: UILabel!
 
     func configureCell(with account: Account) {
-        self.titleLabel.text = account.displayAccountNo
+        self.titleLabel.text = account.accountNo
         self.descriptionLabel.text = account.title
 
         self.titleLabel.textColor = account.isSelected ? .primary : .black

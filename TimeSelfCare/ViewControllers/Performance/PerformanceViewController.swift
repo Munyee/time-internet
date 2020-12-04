@@ -19,8 +19,8 @@ class PerformanceViewController: BaseViewController {
 
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var animationView: LOTAnimationView!
-    @IBOutlet private weak var issueDetect: UILabel!
-
+    @IBOutlet var runDiagnosticsButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -33,7 +33,6 @@ class PerformanceViewController: BaseViewController {
     @objc
     func didTappedAttributedLabel(gesture: UITapGestureRecognizer) {
         let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil)
-
         let diagnosticsVC: DiagnosisViewController = storyboard.instantiateViewController()
         self.presentNavigation(diagnosticsVC, animated: true)
     }
@@ -47,11 +46,8 @@ class PerformanceViewController: BaseViewController {
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
         else {
-            showRunDiagnostic()
             return
         }
-
-        self.issueDetect.alpha = 0
 
         self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
         AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
@@ -61,16 +57,23 @@ class PerformanceViewController: BaseViewController {
             self.animationView.play()
                 
             if (isConnected) {
-                self.issueDetect.alpha = 0
                 self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is good.", boldString: "good", color: UIColor.green, font: self.statusLabel.font)
+                self.runDiagnosticsButton.isEnabled = false
+                self.runDiagnosticsButton.backgroundColor = self.runDiagnosticsButton.isEnabled ? .primary : .grey2
             } else {
-                self.issueDetect.alpha = 1
-                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is down.", boldString: "down", color: UIColor.red, font: self.statusLabel.font)
-                self.showRunDiagnostic()
+                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is down.\n Connection issue detected", boldString: "down", color: UIColor.red, font: self.statusLabel.font)
+                self.runDiagnosticsButton.isEnabled = true
+                self.runDiagnosticsButton.backgroundColor = self.runDiagnosticsButton.isEnabled ? .primary : .grey2
             }
 
             NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
         }
+    }
+    
+    @IBAction func runDiagnosticsCheck(_ sender: Any) {
+        let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil)
+        let diagnosticsVC: DiagnosisViewController = storyboard.instantiateViewController()
+        self.presentNavigation(diagnosticsVC, animated: true)
     }
     
     func attributedText(withString string: String, boldString: String, color: UIColor, font: UIFont) -> NSAttributedString {
@@ -80,18 +83,5 @@ class PerformanceViewController: BaseViewController {
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
         attributedString.addAttributes(boldFontAttribute, range: range)
         return attributedString
-    }
-
-    func showRunDiagnostic() {
-        let attributedString = NSMutableAttributedString(string: self.issueDetect.text ?? "")
-        let attributes: [NSAttributedString.Key : Any] = [
-            NSAttributedString.Key.foregroundColor: UIColor.primary,
-            NSAttributedString.Key.font: UIFont.getCustomFont(family: "DIN", style: .body) ?? UIFont.preferredFont(forTextStyle: .body)
-        ]
-        attributedString.addAttributes(attributes, range: (self.issueDetect.text! as NSString).range(of: NSLocalizedString("diagnostics", comment: "")))
-        self.issueDetect.attributedText = attributedString
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTappedAttributedLabel(gesture:)))
-        self.issueDetect.isUserInteractionEnabled = true
-        self.issueDetect.addGestureRecognizer(tapGesture)
     }
 }

@@ -45,7 +45,7 @@ class EditProfileViewController: BaseAuthViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Edit Profile", comment: "")
+        self.title = NSLocalizedString("EDIT PROFILE", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.cancelEditProfile))
         
         Keyboard.addKeyboardChangeObserver(self)

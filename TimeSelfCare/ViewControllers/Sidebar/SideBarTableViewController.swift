@@ -38,7 +38,8 @@ internal class SidebarTableViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var nameInitialLabel: UILabel!
-
+    @IBOutlet var versionLabel: UILabel!
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,7 @@ internal class SidebarTableViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateDataSet()
+        updateVersionDisplay()
     }
 
     private func updateDataSet() {
@@ -79,6 +81,15 @@ internal class SidebarTableViewController: UIViewController {
         }
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
         self.showAlertMessage(title: NSLocalizedString("Logout from TIME Self Care", comment: ""), message: NSLocalizedString("Proceed to logout?", comment: ""), actions: [cancelAction, yesAction])
+    }
+    
+    private func updateVersionDisplay() {
+         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
+        var appVersion = Installation.appVersion
+        if isStagingMode {
+            appVersion = "\(appVersion) (Staging)"
+        }
+        self.versionLabel.text = appVersion
     }
 
     @objc

@@ -110,7 +110,7 @@ class RewardViewController: TimeBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("TIME Rewards", comment: "")
+        self.title = NSLocalizedString("TIME REWARDS", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
 
         self.tableView.addSubview(self.refreshControl)

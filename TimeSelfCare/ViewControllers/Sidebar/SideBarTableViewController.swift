@@ -153,7 +153,7 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             divider.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 divider.heightAnchor.constraint(equalToConstant: 1),
-                divider.widthAnchor.constraint(equalTo: view.widthAnchor),
+                divider.widthAnchor.constraint(equalToConstant: view.frame.size.width - 20),
                 divider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 divider.centerYAnchor.constraint(equalTo: view.centerYAnchor)
                 ])

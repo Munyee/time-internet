@@ -31,6 +31,7 @@ internal class AddOnDetailViewController: TimeBaseViewController {
         }
         if let isUnderWarraty = addOn.isUnderWarranty {
             self.statusLabel.isHidden = false
+            self.statusLabel.backgroundColor = isUnderWarraty ? .positive  : .grey2
             self.statusLabel.text = isUnderWarraty ? NSLocalizedString("UNDER WARRANTY", comment: "") : NSLocalizedString("OUT OF WARRANTY", comment: "")
         } else {
             self.statusLabel.isHidden = true

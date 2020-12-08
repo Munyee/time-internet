@@ -109,7 +109,15 @@ class TicketDetailViewController: UIViewController {
         self.detailLabel.text = ticket.detail
         self.statusLabel.text = ticket.statusString
         self.statusLabel.isHidden = ticket.statusString?.isEmpty ?? true
-        self.statusLabel.backgroundColor = ["open"].contains(ticket.statusString?.lowercased()) ? .positive : .darkGrey
+        
+        if ["open"].contains(ticket.statusString?.lowercased()) {
+            self.statusLabel.backgroundColor = .positive
+        } else if ["closed"].contains(ticket.statusString?.lowercased()) {
+            self.statusLabel.backgroundColor = .grey2
+        } else {
+            self.statusLabel.backgroundColor = .primary
+        }
+        
         self.messageLabel.text = ticket.description
         self.attachmentCollectionViewHeightConstraint.constant = (self.attachmentCollectionView.bounds.width / 3)
         self.attachmentCollectionView.reloadData()

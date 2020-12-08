@@ -19,9 +19,6 @@ internal class SidebarTableViewController: UIViewController {
     private var accounts: [Account] = []
 
     private var services: [ServiceSidebarCell.ServiceType] {
-//        let shouldShowSupportAndReward = self.accounts.first { $0.custSegment == .residential || $0.custSegment == .business } != nil
-//
-//        return shouldShowSupportAndReward ? [.reward, .support] : []
 
         let isResidential = self.accounts.first { $0.custSegment == .residential } != nil
         let isBusiness = self.accounts.first { $0.custSegment == .business } != nil
@@ -33,12 +30,11 @@ internal class SidebarTableViewController: UIViewController {
         } else {
             return []
         }
-
     }
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var nameInitialLabel: UILabel!
-    @IBOutlet var versionLabel: UILabel!
+    @IBOutlet private var versionLabel: UILabel!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

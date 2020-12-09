@@ -12,7 +12,6 @@ import MBProgressHUD
 import UserNotifications
 import FirebaseRemoteConfig
 import FirebaseCrashlytics
-import Spring
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
 internal let dontAskAgainFlag: String = "dontAskAgain"
 
@@ -37,14 +36,15 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var taskProgressView: UIProgressView!
     @IBOutlet private weak var alertTitleLabel: UILabel!
     @IBOutlet private weak var updateInfoTextView: UITextView!
-
+    @IBOutlet private var appLogoImgView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
         UNUserNotificationCenter.current().delegate = self
         
         self.taskProgressView.progressViewStyle = .default
-        self.taskProgressView.setProgress(1.0, animated: true)
+       // self.taskProgressView.setProgress(1.0, animated: true)
     }
 
     deinit {
@@ -60,6 +60,10 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.versionUpdateView.layer.cornerRadius = 10
         self.versionUpdateView.layer.borderWidth = 1
         self.versionUpdateView.layer.borderColor = UIColor.black.cgColor
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.appLogoImgView.frame.origin.x += 250
+        }, completion: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {

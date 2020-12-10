@@ -33,18 +33,15 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var dontShowButton: UIButton!
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var updateOrContinueButton: UIButton!
-    @IBOutlet private weak var taskProgressView: UIProgressView!
     @IBOutlet private weak var alertTitleLabel: UILabel!
     @IBOutlet private weak var updateInfoTextView: UITextView!
     @IBOutlet private var appLogoImgView: UIImageView!
+    @IBOutlet private var progressImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
         UNUserNotificationCenter.current().delegate = self
-        
-        self.taskProgressView.progressViewStyle = .default
-       // self.taskProgressView.setProgress(1.0, animated: true)
     }
 
     deinit {
@@ -62,13 +59,34 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.versionUpdateView.layer.borderColor = UIColor.black.cgColor
         
         UIView.animate(withDuration: 0.5, animations: {
-            self.appLogoImgView.frame.origin.x += 250
+            self.appLogoImgView.frame.origin.x += 350
         }, completion: nil)
+        
+        progressImageView.animationImages = animatedImages(for: "PreloadBarFrames")
+        progressImageView.animationDuration = 1
+        progressImageView.animationRepeatCount = 10
+        progressImageView.image = progressImageView.animationImages?.first
+        progressImageView.startAnimating()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getFirebaseAppVersion()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        progressImageView.stopAnimating()
+    }
+    
+    func animatedImages(for name: String) -> [UIImage] {
+        var i = 0
+        var images = [UIImage]()
+        while let image = UIImage(named: "\(name)/preloadbar\(i)") {
+            images.append(image)
+            i += 1
+        }
+        return images
     }
 
     func getFirebaseAppVersion() {

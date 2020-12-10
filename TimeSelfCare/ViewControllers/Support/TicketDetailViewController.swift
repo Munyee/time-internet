@@ -118,7 +118,7 @@ class TicketDetailViewController: UIViewController {
             self.statusLabel.backgroundColor = .primary
         }
         
-        self.messageLabel.text = ticket.description
+        self.messageLabel.attributedText = try? NSAttributedString(htmlString:ticket.description ?? "")
         self.attachmentCollectionViewHeightConstraint.constant = (self.attachmentCollectionView.bounds.width / 3)
         self.attachmentCollectionView.reloadData()
 
@@ -172,14 +172,6 @@ class TicketDetailViewController: UIViewController {
             guard var image = $0[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
                 return nil
             }
-
-//            let ratio = max(
-//                max(image.size.width, image.size.height) / 1_920,
-//                min(image.size.width, image.size.height) / 1_080
-//            )
-//            if ratio > 1 {
-//                image = image.scaledTo(scale: 1 / ratio)
-//            }
             return image
         }
         newConversation.images = images
@@ -225,7 +217,6 @@ class TicketDetailViewController: UIViewController {
                 guard self.tableView.numberOfSections > 0 else {
                     return
                 }
-                
                 self.tableView.reloadSections([index], with: .automatic)
             }
         }
@@ -443,6 +434,15 @@ extension TicketDetailViewController: UICollectionViewDataSource, UICollectionVi
             photoVC.modalPresentationStyle = .overCurrentContext
             self.present(photoVC, animated: true, completion: nil)
         }
+    }
+}
+
+extension NSAttributedString {
+    convenience init(htmlString html: String) throws {
+        try self.init(data: Data(html.utf8), options: [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ], documentAttributes: nil)
     }
 }
 

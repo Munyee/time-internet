@@ -62,7 +62,7 @@ public class Ticket: JsonRecord {
         self.categoryOptions = json["list_category"] as? [String: String] ?? [:]
 
         self.subject = json["subject"] as? String
-        self.description = json["description_text"] as? String
+        self.description = json["description"] as? String
         self.timestamp = json["timestamp"] as? Int
         self.datetime = json["datetime"] as? String
         self.status = Int(json["status"] as? String ?? "")

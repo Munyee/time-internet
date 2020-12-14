@@ -21,6 +21,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     var appVersionConfig: AppVersionModal!
     var remoteConfig: RemoteConfig!
     var message = ""
+    var timer: Timer?
 
      private var hasShownWalkthrough: Bool {
          return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
@@ -29,7 +30,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     private var shouldOpenActivityController: Bool = false
 
     @IBOutlet private weak var errorLabel: UILabel!
-    @IBOutlet private weak var progressStackView: UIStackView!
+  //  @IBOutlet private weak var progressStackView: UIStackView!
     @IBOutlet private weak var okButton: UIButton!
     @IBOutlet private weak var versionUpdateView: UIView!
     @IBOutlet private weak var dontShowButton: UIButton!
@@ -37,7 +38,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var updateOrContinueButton: UIButton!
     @IBOutlet private weak var alertTitleLabel: UILabel!
     @IBOutlet private weak var updateInfoTextView: UITextView!
-    @IBOutlet private var appLogoImgView: SpringImageView!
+    @IBOutlet private var appLogoImgView: UIImageView!
     @IBOutlet private var progressImageView: UIImageView!
     
     let animations: [Spring.AnimationPreset] = [
@@ -121,25 +122,34 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.versionUpdateView.layer.borderWidth = 1
         self.versionUpdateView.layer.borderColor = UIColor.black.cgColor
         
-        appLogoImgView.animation = animations[20].rawValue
-        appLogoImgView.curve = animationCurves[3].rawValue
-    
-        appLogoImgView.animateNext {
-            self.progressImageView.animationImages = self.animatedImages(for: "PreloadBarFrames")
-            self.progressImageView.animationDuration = 1.0
-            self.progressImageView.image = self.progressImageView.animationImages?.first
-            self.progressImageView.startAnimating()
-        }
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: false)
+        
+        appLogoImgView.animationImages = self.animatedLogoImages(for: "TIME_AnimationFrame")
+        appLogoImgView.contentMode = .scaleAspectFill
+        appLogoImgView.animationDuration = 1.0
+        appLogoImgView.animationRepeatCount = 1
+        appLogoImgView.image = appLogoImgView.animationImages?.last
+        appLogoImgView.startAnimating()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        getFirebaseAppVersion()
+        // getFirebaseAppVersion()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         progressImageView.stopAnimating()
+    }
+    
+    func animatedLogoImages(for name: String) -> [UIImage] {
+        var i = 0
+        var images = [UIImage]()
+        while let image = UIImage(named: "\(name)/Frame\(i)") {
+            images.append(image)
+            i += 1
+        }
+        return images
     }
     
     func animatedImages(for name: String) -> [UIImage] {
@@ -305,7 +315,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         if AccountDataController.shared.getAccounts(profile: AccountController.shared.profile).isEmpty {
             self.loadDataFromServer { error in
                 if error == nil {
-                    self.progressStackView.isHidden = true
                     self.showNext()
                 }
             }
@@ -375,11 +384,8 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
 
     private func loadDataFromServer(completion: ((Error?) -> Void)? = nil) {
-        self.progressStackView.isHidden = false
-
         AccountDataController.shared.loadAccounts { (accounts: [Account], error: Error?) in
             guard error == nil else {
-                self.progressStackView.isHidden = true
                 self.errorLabel.text = error?.localizedDescription
                 self.errorLabel.isHidden = false
                 self.okButton.isHidden = false
@@ -393,7 +399,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             accounts.forEach { (account: Account) in
                 ServiceDataController.shared.loadServices(accountNo: account.accountNo) { (_: [Service], error: Error?) in
                     if error != nil {
-                        self.progressStackView.isHidden = true
                         self.errorLabel.text = error?.localizedDescription
                         self.errorLabel.isHidden = false
                         self.okButton.isHidden = false
@@ -420,6 +425,17 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     private func handlingInvalidSession() {
         AuthUser.current?.logout()
         self.showNext()
+    }
+    
+    @objc func startTimer() {
+        progressImageView.animationImages = self.animatedImages(for: "PreloadBarFrames")
+        progressImageView.contentMode = .scaleAspectFill
+        progressImageView.animationDuration = 1
+        progressImageView.animationRepeatCount = 1
+        progressImageView.image = self.progressImageView.animationImages?.last
+        progressImageView.startAnimating()
+        
+        getFirebaseAppVersion()
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

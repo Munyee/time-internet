@@ -37,8 +37,69 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var updateOrContinueButton: UIButton!
     @IBOutlet private weak var alertTitleLabel: UILabel!
     @IBOutlet private weak var updateInfoTextView: UITextView!
-    @IBOutlet private var appLogoImgView: UIImageView!
+    @IBOutlet private var appLogoImgView: SpringImageView!
     @IBOutlet private var progressImageView: UIImageView!
+    
+    let animations: [Spring.AnimationPreset] = [
+        .Shake,
+        .Pop,
+        .Morph,
+        .Squeeze,
+        .Wobble,
+        .Swing,
+        .FlipX,
+        .FlipY,
+        .Fall,
+        .SqueezeLeft,
+        .SqueezeRight,
+        .SqueezeDown,
+        .SqueezeUp,
+        .SlideLeft,
+        .SlideRight,
+        .SlideDown,
+        .SlideUp,
+        .FadeIn,
+        .FadeOut,
+        .FadeInLeft,
+        .FadeInRight,
+        .FadeInDown,
+        .FadeInUp,
+        .ZoomIn,
+        .ZoomOut,
+        .Flash
+    ]
+    
+    var animationCurves: [Spring.AnimationCurve] = [
+        .EaseIn,
+        .EaseOut,
+        .EaseInOut,
+        .Linear,
+        .Spring,
+        .EaseInSine,
+        .EaseOutSine,
+        .EaseInOutSine,
+        .EaseInQuad,
+        .EaseOutQuad,
+        .EaseInOutQuad,
+        .EaseInCubic,
+        .EaseOutCubic,
+        .EaseInOutCubic,
+        .EaseInQuart,
+        .EaseOutQuart,
+        .EaseInOutQuart,
+        .EaseInQuint,
+        .EaseOutQuint,
+        .EaseInOutQuint,
+        .EaseInExpo,
+        .EaseOutExpo,
+        .EaseInOutExpo,
+        .EaseInCirc,
+        .EaseOutCirc,
+        .EaseInOutCirc,
+        .EaseInBack,
+        .EaseOutBack,
+        .EaseInOutBack
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,15 +121,15 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.versionUpdateView.layer.borderWidth = 1
         self.versionUpdateView.layer.borderColor = UIColor.black.cgColor
         
-        UIView.animate(withDuration: 0.5, animations: {
-            self.appLogoImgView.frame.origin.x += 350
-        }, completion: nil)
-        
-        progressImageView.animationImages = animatedImages(for: "PreloadBarFrames")
-        progressImageView.animationDuration = 1
-        progressImageView.animationRepeatCount = 10
-        progressImageView.image = progressImageView.animationImages?.first
-        progressImageView.startAnimating()
+        appLogoImgView.animation = animations[20].rawValue
+        appLogoImgView.curve = animationCurves[3].rawValue
+    
+        appLogoImgView.animateNext {
+            self.progressImageView.animationImages = self.animatedImages(for: "PreloadBarFrames")
+            self.progressImageView.animationDuration = 1.0
+            self.progressImageView.image = self.progressImageView.animationImages?.first
+            self.progressImageView.startAnimating()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

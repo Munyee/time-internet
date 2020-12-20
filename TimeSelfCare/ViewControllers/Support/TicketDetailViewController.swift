@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 import MBProgressHUD
 import FirebaseCrashlytics
 
@@ -68,7 +69,7 @@ class TicketDetailViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
-    @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet private weak var messageWebView: WKWebView!
     @IBOutlet private weak var headerStackView: UIStackView!
     @IBOutlet private weak var headerBasicStackView: UIStackView!
     @IBOutlet private weak var ticketAgentStackView: UIStackView!
@@ -81,7 +82,8 @@ class TicketDetailViewController: UIViewController {
     @IBOutlet private weak var showHideButton: UIButton!
     @IBOutlet private weak var ticketAgentNameLabel: UILabel!
     // swiftlint:enable implicitly_unwrapped_optional
-
+    @IBOutlet private var webviewHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -117,8 +119,8 @@ class TicketDetailViewController: UIViewController {
         } else {
             self.statusLabel.backgroundColor = .primary
         }
-        
-        self.messageLabel.attributedText = try? NSAttributedString(htmlString:ticket.description ?? "")
+        self.messageWebView.loadHTMLString(ticket.description ?? "", baseURL: nil)
+        self.webviewHeightConstraint.constant = 400
         self.attachmentCollectionViewHeightConstraint.constant = (self.attachmentCollectionView.bounds.width / 3)
         self.attachmentCollectionView.reloadData()
 

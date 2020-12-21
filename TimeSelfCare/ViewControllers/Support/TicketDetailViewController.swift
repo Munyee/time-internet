@@ -120,7 +120,7 @@ class TicketDetailViewController: UIViewController {
             self.statusLabel.backgroundColor = .primary
         }
         self.messageWebView.loadHTMLString(ticket.description ?? "", baseURL: nil)
-        self.webviewHeightConstraint.constant = 400
+        self.webviewHeightConstraint.constant = self.tableView.frame.size.height - 100
         self.attachmentCollectionViewHeightConstraint.constant = (self.attachmentCollectionView.bounds.width / 3)
         self.attachmentCollectionView.reloadData()
 

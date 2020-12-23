@@ -16,7 +16,8 @@ class ActivityTableViewCell: UITableViewCell {
     @IBOutlet private weak var unreadStatusImageView: UIImageView!
     @IBOutlet private weak var actionableIndicatorImageView: UIImageView!
     @IBOutlet private weak var line2Label: UILabel!
-
+    @IBOutlet var bottomLineLabel: UILabel!
+    
     func configure(with activity: Activity) {
         self.titleLabel.text = String(htmlEncodedString: activity.type.rawValue ?? "")
         self.detailLabel.text = String(htmlEncodedString: activity.line1 ?? "")

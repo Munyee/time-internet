@@ -163,6 +163,21 @@ internal class LoginViewController: BaseAuthViewController {
         }
         self.versionButton.setTitle(appVersion, for: .normal)
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        for subview in self.containerView.subviews where subview is EasyTipView {
+            subview.removeFromSuperview()
+        }
+        
+        if textField == self.usernameTextField {
+            self.toggleTooltip(usernameIconButton)
+        }
+         
+        if textField == self.passwordTextField {
+            self.toggleTooltip(passwordIconButton)
+        }
+    }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.tooltip?.dismiss(gesture: nil) {

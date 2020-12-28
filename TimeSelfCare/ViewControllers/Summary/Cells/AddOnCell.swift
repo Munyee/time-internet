@@ -13,7 +13,8 @@ internal class AddOnCell: UITableViewCell {
     @IBOutlet private weak var productLabel: UILabel!
     @IBOutlet private weak var modelLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
-
+    @IBOutlet var underlineLabel: UILabel!
+    
     func configure(with addOn: AddOn) {
         self.productLabel.text = addOn.item
         self.modelLabel.text = addOn.model
@@ -24,6 +25,5 @@ internal class AddOnCell: UITableViewCell {
         } else {
             self.statusLabel.isHidden = true
         }
-
     }
 }

@@ -29,6 +29,7 @@ class BillingInfoDetailComponentView: UIStackView {
                 case .emailAddress?:
                     return billingInfo?.billingEmailAddress
                 case .address?:
+                    underlineLabel.backgroundColor = .white
                     return billingInfo?.displayBillingAddress
                 default:
                     return nil

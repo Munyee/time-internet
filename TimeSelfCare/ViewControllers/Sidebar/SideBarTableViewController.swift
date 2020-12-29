@@ -41,6 +41,7 @@ internal class SidebarTableViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateInitial), name: NSNotification.Name.PersonDidChange, object: nil)
         self.nameInitialLabel.font = UIFont(name: "DINCondensed-Bold", size: 50)
+        tableView.backgroundColor = .white
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -123,6 +124,12 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             return self.services.count
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .white
+        }
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = Section(rawValue: indexPath.section)
@@ -153,7 +160,7 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             divider.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 divider.heightAnchor.constraint(equalToConstant: 1),
-                divider.widthAnchor.constraint(equalToConstant: view.frame.size.width - 20),
+                divider.widthAnchor.constraint(equalToConstant: view.frame.size.width - 30),
                 divider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 divider.centerYAnchor.constraint(equalTo: view.centerYAnchor)
                 ])

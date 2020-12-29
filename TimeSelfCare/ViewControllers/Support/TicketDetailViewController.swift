@@ -84,6 +84,9 @@ class TicketDetailViewController: UIViewController {
     // swiftlint:enable implicitly_unwrapped_optional
     @IBOutlet private var webviewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet var bottomView: UIView!
+    @IBOutlet var bottomStackView: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -120,7 +123,7 @@ class TicketDetailViewController: UIViewController {
             self.statusLabel.backgroundColor = .primary
         }
         self.messageWebView.loadHTMLString(ticket.description ?? "", baseURL: nil)
-        self.webviewHeightConstraint.constant = self.tableView.frame.size.height - 100
+        self.webviewHeightConstraint.constant = self.attachmentCollectionView.bounds.width
         self.attachmentCollectionViewHeightConstraint.constant = (self.attachmentCollectionView.bounds.width / 3)
         self.attachmentCollectionView.reloadData()
 

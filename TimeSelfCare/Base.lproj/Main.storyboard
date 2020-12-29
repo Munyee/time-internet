@@ -117,6 +117,7 @@
                                             <constraint firstAttribute="height" constant="30" id="Qx6-WN-UlF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="VIEW PROFILE">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -161,17 +162,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VJU-Km-5DG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="165"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="150"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_radio_unselect" translatesAutoresizingMaskIntoConstraints="NO" id="JWZ-6g-Gkl">
-                                                            <rect key="frame" x="32" y="70.5" width="24" height="24"/>
+                                                            <rect key="frame" x="32" y="63" width="24" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="1ES-n2-Roq"/>
                                                                 <constraint firstAttribute="height" constant="24" id="m8B-Tf-lkT"/>
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="hqI-Ua-wG5">
-                                                            <rect key="frame" x="66" y="72" width="190" height="21"/>
+                                                            <rect key="frame" x="66" y="64.5" width="190" height="21"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhT-7a-YiJ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="190" height="18"/>
@@ -196,7 +197,7 @@
                                             <constraints>
                                                 <constraint firstItem="VJU-Km-5DG" firstAttribute="leading" secondItem="PIn-b6-gjJ" secondAttribute="leading" id="4ux-aX-f8v"/>
                                                 <constraint firstItem="VJU-Km-5DG" firstAttribute="top" secondItem="PIn-b6-gjJ" secondAttribute="top" id="IEF-wn-bME"/>
-                                                <constraint firstAttribute="bottom" secondItem="VJU-Km-5DG" secondAttribute="bottom" id="ZHH-ud-QzZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="VJU-Km-5DG" secondAttribute="bottom" constant="15" id="ZHH-ud-QzZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="VJU-Km-5DG" secondAttribute="trailing" id="mEb-Hb-7PP"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -215,17 +216,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YGD-ai-uy8">
-                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="165"/>
+                                                    <rect key="frame" x="0.0" y="10" width="280" height="155"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qhz-TA-aea">
-                                                            <rect key="frame" x="32" y="70.5" width="24" height="24"/>
+                                                            <rect key="frame" x="32" y="65.5" width="24" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="66t-bd-6E6"/>
                                                                 <constraint firstAttribute="width" constant="24" id="OPk-ZR-Oj2"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzc-Pf-9ie">
-                                                            <rect key="frame" x="66" y="73.5" width="190" height="18"/>
+                                                            <rect key="frame" x="66" y="68.5" width="190" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -237,7 +238,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="YGD-ai-uy8" secondAttribute="trailing" id="DVc-Ld-Zyc"/>
                                                 <constraint firstItem="YGD-ai-uy8" firstAttribute="leading" secondItem="w5o-x8-yzG" secondAttribute="leading" id="G67-jH-iCG"/>
-                                                <constraint firstItem="YGD-ai-uy8" firstAttribute="top" secondItem="w5o-x8-yzG" secondAttribute="top" id="Kpd-gu-J5l"/>
+                                                <constraint firstItem="YGD-ai-uy8" firstAttribute="top" secondItem="w5o-x8-yzG" secondAttribute="top" constant="10" id="Kpd-gu-J5l"/>
                                                 <constraint firstAttribute="bottom" secondItem="YGD-ai-uy8" secondAttribute="bottom" id="Zp3-u7-8SG"/>
                                             </constraints>
                                         </tableViewCellContentView>

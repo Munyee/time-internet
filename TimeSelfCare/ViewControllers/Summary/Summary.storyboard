@@ -436,7 +436,7 @@
                                             <constraint firstAttribute="width" constant="300" id="hR3-l2-QUG"/>
                                         </constraints>
                                     </stackView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lqg-gB-0xd">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lqg-gB-0xd">
                                         <rect key="frame" x="0.0" y="24" width="375" height="643"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
@@ -447,20 +447,30 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jru-gh-Y9F">
+                                                            <rect key="frame" x="15" y="100.5" width="345" height="0.5"/>
+                                                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="0.5" id="VM8-HE-HtN"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XgJ-iE-1Xb">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7D2-rR-fGj">
-                                                                    <rect key="frame" x="20" y="29" width="296.5" height="43.5"/>
+                                                                    <rect key="frame" x="20" y="29" width="280.5" height="43.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19p-tw-AiX">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="296.5" height="14.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19p-tw-AiX">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="280.5" height="14.5"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydO-sR-Jeh">
-                                                                            <rect key="frame" x="0.0" y="19.5" width="296.5" height="24"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Model Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydO-sR-Jeh">
+                                                                            <rect key="frame" x="0.0" y="19.5" width="280.5" height="24"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -468,7 +478,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6M-i2-vh8" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                                    <rect key="frame" x="326.5" y="44" width="28.5" height="13.5"/>
+                                                                    <rect key="frame" x="310.5" y="39" width="44.5" height="23.5"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.76470588240000004" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -499,6 +509,9 @@
                                                         <constraint firstAttribute="trailing" secondItem="XgJ-iE-1Xb" secondAttribute="trailing" id="DAV-QE-9qT"/>
                                                         <constraint firstItem="XgJ-iE-1Xb" firstAttribute="leading" secondItem="UVP-5R-eIK" secondAttribute="leading" id="IFw-ea-xaE"/>
                                                         <constraint firstAttribute="bottom" secondItem="XgJ-iE-1Xb" secondAttribute="bottom" id="cGf-Oi-py1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="jru-gh-Y9F" secondAttribute="trailing" constant="15" id="iTa-cm-eaC"/>
+                                                        <constraint firstItem="jru-gh-Y9F" firstAttribute="leading" secondItem="UVP-5R-eIK" secondAttribute="leading" constant="15" id="l2s-rN-3z9"/>
+                                                        <constraint firstAttribute="bottom" secondItem="jru-gh-Y9F" secondAttribute="bottom" id="qCp-eC-k7i"/>
                                                         <constraint firstItem="XgJ-iE-1Xb" firstAttribute="top" secondItem="UVP-5R-eIK" secondAttribute="top" id="ujS-uS-iYs"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -506,6 +519,7 @@
                                                     <outlet property="modelLabel" destination="ydO-sR-Jeh" id="aYc-2Z-ron"/>
                                                     <outlet property="productLabel" destination="19p-tw-AiX" id="GYp-Sj-g0a"/>
                                                     <outlet property="statusLabel" destination="s6M-i2-vh8" id="wZE-mf-XUJ"/>
+                                                    <outlet property="underlineLabel" destination="jru-gh-Y9F" id="Uz7-9R-cSt"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

@@ -13,7 +13,8 @@ class TicketCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
-
+    @IBOutlet private var rowDividerLabel: UILabel!
+    
     func configure(with ticket: Ticket) {
         self.dateTimeLabel.text = ticket.datetime
         self.titleLabel.text = ticket.subject

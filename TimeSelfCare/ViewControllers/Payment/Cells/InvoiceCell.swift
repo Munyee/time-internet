@@ -14,6 +14,7 @@ internal class InvoiceCell: UITableViewCell {
     @IBOutlet private weak var amountLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var imgView: UIImageView?
+    @IBOutlet var rowDividerLabel: UILabel!
     
     func configureCell(with bill: Bill) {
         self.invoiceLabel.text = bill.invoiceNo

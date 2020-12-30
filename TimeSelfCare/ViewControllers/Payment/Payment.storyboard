@@ -448,10 +448,10 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ASU-EM-OUf">
-                                                            <rect key="frame" x="229" y="40.5" width="88" height="23.5"/>
+                                                            <rect key="frame" x="229" y="45.5" width="88" height="13.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="PAY NOW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqS-n3-yUc" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="88" height="23.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="88" height="13.5"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.76470588240000004" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -511,6 +511,7 @@
                                             <outlet property="dateLabel" destination="nxM-lp-XHq" id="tw0-Bn-tKj"/>
                                             <outlet property="imgView" destination="Sw0-iR-I9n" id="mzg-TY-Wzo"/>
                                             <outlet property="invoiceLabel" destination="wSe-Xo-g7m" id="tSK-fd-5OD"/>
+                                            <outlet property="rowDividerLabel" destination="a7a-ss-ZTz" id="juv-92-hVm"/>
                                             <outlet property="statusLabel" destination="YqS-n3-yUc" id="OnJ-WA-4cm"/>
                                         </connections>
                                     </tableViewCell>

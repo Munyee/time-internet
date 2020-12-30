@@ -122,6 +122,13 @@ extension BillsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configureCell(with: self.bills[indexPath.row])
         let shouldShowBill: Bool = AccountController.shared.selectedAccount?.showBill ?? false
        // cell.accessoryView = shouldShowBill ? UIImageView(image: #imageLiteral(resourceName: "ic_next_arrow_black")) : nil
+        
+        if indexPath.row == self.bills.count - 1 {
+            cell.rowDividerLabel.backgroundColor = .white
+        } else {
+            cell.rowDividerLabel.backgroundColor = .lightGray
+        }
+        
         return cell
     }
 

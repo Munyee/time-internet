@@ -82,6 +82,7 @@ extension AddOnViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         cell.configure(with: self.addOns[indexPath.row])
+        cell.displayRowUnderline(with: indexPath.row, arrayList: self.addOns)
         cell.selectionStyle = .none
         return cell
     }

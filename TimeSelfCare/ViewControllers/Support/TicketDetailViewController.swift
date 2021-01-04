@@ -84,9 +84,6 @@ class TicketDetailViewController: UIViewController {
     // swiftlint:enable implicitly_unwrapped_optional
     @IBOutlet private var webviewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet var bottomView: UIView!
-    @IBOutlet var bottomStackView: UIStackView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -122,7 +119,9 @@ class TicketDetailViewController: UIViewController {
         } else {
             self.statusLabel.backgroundColor = .primary
         }
-        self.messageWebView.loadHTMLString(ticket.description ?? "", baseURL: nil)
+      //  self.messageWebView.loadHTMLString(ticket.description ?? "", baseURL: nil)
+        
+        self.messageWebView.loadHTMLStringWithMagic(content: ticket.description ?? "", baseURL: nil)
         self.webviewHeightConstraint.constant = self.attachmentCollectionView.bounds.width
         self.attachmentCollectionViewHeightConstraint.constant = (self.attachmentCollectionView.bounds.width / 3)
         self.attachmentCollectionView.reloadData()
@@ -439,6 +438,13 @@ extension TicketDetailViewController: UICollectionViewDataSource, UICollectionVi
             photoVC.modalPresentationStyle = .overCurrentContext
             self.present(photoVC, animated: true, completion: nil)
         }
+    }
+}
+
+extension WKWebView {
+    func loadHTMLStringWithMagic(content:String,baseURL:URL?) {
+        let headerString = "<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></header>"
+        loadHTMLString(headerString + content, baseURL: baseURL)
     }
 }
 

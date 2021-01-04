@@ -18,7 +18,7 @@ class TicketCell: UITableViewCell {
     func configure(with ticket: Ticket) {
         self.dateTimeLabel.text = ticket.datetime
         self.titleLabel.text = ticket.subject
-        self.detailLabel.text = ticket.detail
+        self.detailLabel.text = ticket.category
         self.statusLabel.text = ticket.statusString
         self.statusLabel.isHidden = ticket.statusString?.isEmpty ?? true
         

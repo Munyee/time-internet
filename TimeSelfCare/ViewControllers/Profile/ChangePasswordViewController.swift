@@ -33,7 +33,7 @@ internal class ChangePasswordViewController: BaseAuthViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = NSLocalizedString("Change Password", comment: "")
+        self.title = NSLocalizedString("CHANGE PASSWORD", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.cancelChangePassword))
 
         Keyboard.addKeyboardChangeObserver(self)

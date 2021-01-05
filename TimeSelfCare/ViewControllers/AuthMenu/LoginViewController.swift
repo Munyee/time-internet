@@ -126,7 +126,10 @@ internal class LoginViewController: BaseAuthViewController {
             return
         }
         
-        let message: String = sender == usernameIconButton ? NSLocalizedString("Your username is your MyKad No./ Passport No./ Business Registration No. [BRN]", comment: "") : NSLocalizedString("If you can't remember, click on 'Forgot Password' to reset. Special characters are not allowed.", comment: "")
+   //     let message: String = sender == usernameIconButton ? NSLocalizedString("Your username is your MyKad No./ Passport No./ Business Registration No. [BRN] \n e.g. MyKad No. : 810530105163 \n Passport No.:(as stated on your passport) \n BRN: 413292P", comment: "") : NSLocalizedString("If you can't remember, click on 'Forgot Password' to reset. Special characters are not allowed.", comment: "")
+        
+         let message: String = sender == usernameIconButton ? NSLocalizedString("Your username should not contain any special characters such as \"-\".", comment: "") : NSLocalizedString("If you can't remember, click on 'Forgot Password' to reset. Special characters are not allowed.", comment: "")
+        
         let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.getCustomFont(family: "DIN", style: .caption1) ?? UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.white]
         let attributedString = NSAttributedString(string: message, attributes: attributes)
 

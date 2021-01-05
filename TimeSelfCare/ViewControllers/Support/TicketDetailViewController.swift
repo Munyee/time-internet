@@ -119,7 +119,6 @@ class TicketDetailViewController: UIViewController {
         } else {
             self.statusLabel.backgroundColor = .primary
         }
-      //  self.messageWebView.loadHTMLString(ticket.description ?? "", baseURL: nil)
         
         self.messageWebView.loadHTMLStringWithMagic(content: ticket.description ?? "", baseURL: nil)
         self.webviewHeightConstraint.constant = self.attachmentCollectionView.bounds.width
@@ -443,7 +442,7 @@ extension TicketDetailViewController: UICollectionViewDataSource, UICollectionVi
 
 extension WKWebView {
     func loadHTMLStringWithMagic(content:String,baseURL:URL?) {
-        let headerString = "<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></header>"
+        let headerString = "<header><meta name='viewport' content='width=device-width, user-scalable=no'></header>"
         loadHTMLString(headerString + content, baseURL: baseURL)
     }
 }

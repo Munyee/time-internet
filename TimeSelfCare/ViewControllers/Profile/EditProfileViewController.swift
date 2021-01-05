@@ -20,10 +20,10 @@ class EditProfileViewController: BaseAuthViewController {
     @IBOutlet private weak var businessRegistrationNumberKeyLabel: UILabel!
 
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var emailTextField: VDTTextField!
-    @IBOutlet private weak var contactPersonTextField: VDTTextField!
-    @IBOutlet private weak var contactTextField: VDTTextField!
-    @IBOutlet private weak var contactOfficeTextField: VDTTextField!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var contactPersonTextField: UITextField!
+    @IBOutlet private weak var contactTextField: UITextField!
+    @IBOutlet private weak var contactOfficeTextField: UITextField!
     @IBOutlet private weak var emailErrorLabel: UILabel!
     @IBOutlet private weak var updateButton: UIButton!
 
@@ -31,11 +31,6 @@ class EditProfileViewController: BaseAuthViewController {
     @IBOutlet private weak var contactPersonStackView: UIStackView!
     @IBOutlet private weak var contactOfficeStackView: UIStackView!
     @IBOutlet private weak var emailStackView: UIStackView!
-
-    override var allRequiredTextFields: [VDTTextField] {
-        return [self.emailTextField,
-                self.contactTextField]
-    }
     
     private var emailValidation: String? {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -58,8 +53,6 @@ class EditProfileViewController: BaseAuthViewController {
             contactPersonStackView.removeFromSuperview()
             stackView.removeArrangedSubview(contactOfficeStackView)
             contactOfficeStackView.removeFromSuperview()
-//            stackView.removeArrangedSubview(emailStackView)
-//            stackView.insertArrangedSubview(emailStackView, at: 3)
         }
 
         self.fullNameKeyLabel.text = selectedAccount?.custSegment == .residential ? NSLocalizedString("Name", comment: "") : NSLocalizedString("Company Name", comment: "")

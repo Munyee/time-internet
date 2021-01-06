@@ -41,6 +41,7 @@ class AddOnViewController: BaseViewController {
         self.addOnsButton.isHidden = AccountController.shared.selectedAccount?.custSegment == .business ||
             (AccountController.shared.selectedAccount?.custSegment == .astro && AccountController.shared.selectedAccount?.services.filter { $0.category == .broadbandAstro }.count ?? 0 > 0)
         self.shopButton.addTarget(self, action: #selector(self.openShop), for: .touchUpInside)
+        self.view.bringSubviewToFront(self.shopButton)
         self.refresh()
     }
 

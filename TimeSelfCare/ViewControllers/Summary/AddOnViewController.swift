@@ -24,7 +24,7 @@ class AddOnViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Add Ons", comment: "Add Ons")
+        self.title = NSLocalizedString("ADD ONS", comment: "ADD ONS")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.back))
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -41,6 +41,7 @@ class AddOnViewController: BaseViewController {
         self.addOnsButton.isHidden = AccountController.shared.selectedAccount?.custSegment == .business ||
             (AccountController.shared.selectedAccount?.custSegment == .astro && AccountController.shared.selectedAccount?.services.filter { $0.category == .broadbandAstro }.count ?? 0 > 0)
         self.shopButton.addTarget(self, action: #selector(self.openShop), for: .touchUpInside)
+        self.view.bringSubviewToFront(self.shopButton)
         self.refresh()
     }
 

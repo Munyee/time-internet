@@ -24,7 +24,7 @@ class AddOnViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Add Ons", comment: "Add Ons")
+        self.title = NSLocalizedString("ADD ONS", comment: "ADD ONS")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.back))
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)

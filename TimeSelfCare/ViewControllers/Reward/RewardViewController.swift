@@ -105,6 +105,7 @@ class RewardViewController: TimeBaseViewController {
     @IBOutlet private weak var voucherStackView: UIStackView!
     @IBOutlet private weak var voucherCodeLabel: UILabel!
     @IBOutlet private weak var validityPeriodStackView: UIStackView!
+    @IBOutlet private weak var rewardVoucherDetailsStackView: UIStackView!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
     

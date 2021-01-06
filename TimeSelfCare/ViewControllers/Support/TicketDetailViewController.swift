@@ -121,7 +121,9 @@ class TicketDetailViewController: UIViewController {
         }
         
         self.messageWebView.loadHTMLStringWithMagic(content: ticket.description ?? "", baseURL: nil)
-        self.webviewHeightConstraint.constant = self.attachmentCollectionView.bounds.width
+
+        self.webviewHeightConstraint.constant = UIScreen.main.bounds.height - 350
+        
         self.attachmentCollectionViewHeightConstraint.constant = (self.attachmentCollectionView.bounds.width / 3)
         self.attachmentCollectionView.reloadData()
 

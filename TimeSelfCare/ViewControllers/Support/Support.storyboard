@@ -160,13 +160,13 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gi-xn-UHK" customClass="RoundedButton" customModule="ApptivityFramework">
-                                <rect key="frame" x="295" y="575" width="60" height="60"/>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="300" y="575" width="55" height="55"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="BJi-mW-nyR"/>
-                                    <constraint firstAttribute="width" constant="60" id="VTC-qz-L9r"/>
+                                    <constraint firstAttribute="height" constant="55" id="BJi-mW-nyR"/>
+                                    <constraint firstAttribute="width" constant="55" id="VTC-qz-L9r"/>
                                 </constraints>
-                                <state key="normal" image="ic_white_add"/>
+                                <state key="normal" image="icons_plus"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="30"/>
@@ -184,7 +184,7 @@
                             <constraint firstItem="EGy-XW-Nic" firstAttribute="trailing" secondItem="iJG-1y-HQd" secondAttribute="trailing" id="UUh-vc-ELq"/>
                             <constraint firstItem="EGy-XW-Nic" firstAttribute="trailing" secondItem="QNP-77-LTT" secondAttribute="trailing" id="agW-oh-nRp"/>
                             <constraint firstItem="EGy-XW-Nic" firstAttribute="trailing" secondItem="1gi-xn-UHK" secondAttribute="trailing" constant="20" id="eQl-Yi-Kzw"/>
-                            <constraint firstItem="EGy-XW-Nic" firstAttribute="bottom" secondItem="1gi-xn-UHK" secondAttribute="bottom" constant="32" id="eTJ-sl-gGV"/>
+                            <constraint firstItem="EGy-XW-Nic" firstAttribute="bottom" secondItem="1gi-xn-UHK" secondAttribute="bottom" constant="37" id="eTJ-sl-gGV"/>
                             <constraint firstItem="EGy-XW-Nic" firstAttribute="bottom" secondItem="QNP-77-LTT" secondAttribute="bottom" id="khY-yL-V3J"/>
                             <constraint firstItem="iJG-1y-HQd" firstAttribute="centerY" secondItem="EGy-XW-Nic" secondAttribute="centerY" id="nDB-2C-mOe"/>
                             <constraint firstItem="QNP-77-LTT" firstAttribute="leading" secondItem="EGy-XW-Nic" secondAttribute="leading" id="vSd-9I-3sh"/>
@@ -192,6 +192,7 @@
                         <viewLayoutGuide key="safeArea" id="EGy-XW-Nic"/>
                     </view>
                     <connections>
+                        <outlet property="createTicketButton" destination="1gi-xn-UHK" id="Px6-kd-Piz"/>
                         <outlet property="emptyPlaceholderView" destination="iJG-1y-HQd" id="4Uy-u7-S9w"/>
                         <outlet property="tableView" destination="QNP-77-LTT" id="UFb-QY-k3g"/>
                     </connections>
@@ -733,6 +734,6 @@
         <image name="ic_send_message" width="28" height="28"/>
         <image name="ic_ticket_placeholder" width="88" height="88"/>
         <image name="ic_time_agent" width="24" height="24"/>
-        <image name="ic_white_add" width="32" height="32"/>
+        <image name="icons_plus" width="50" height="50"/>
     </resources>
 </document>

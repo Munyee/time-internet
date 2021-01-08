@@ -25,7 +25,7 @@ class ShareViewController: UIViewController {
     }
     
     func initView() {
-        titleLabel.text = data?.title ?? ""
+       // titleLabel.text = data?.title ?? ""
         desc.text = data?.description ?? ""
         
         if data?.title != nil {
@@ -45,7 +45,7 @@ class ShareViewController: UIViewController {
             let urlString = "https://www.time.com.my/terms-and-conditions?link=personal&title=HookUpAndEarn"
             let url = URL(string: urlString)
             timeWebView.url = url
-            timeWebView.title = NSLocalizedString("Terms & Conditions", comment: "")
+            timeWebView.title = NSLocalizedString("TERMS & CONDITIONS", comment: "")
             self.navigationController?.pushViewController(timeWebView, animated: true)
         }
 
@@ -57,7 +57,6 @@ class ShareViewController: UIViewController {
             timeWebView.title = NSLocalizedString("FAQ", comment: "")
             self.navigationController?.pushViewController(timeWebView, animated: true)
         }
-    //
         @IBAction func actTnC(_ sender: Any) {
             showTnc()
         }

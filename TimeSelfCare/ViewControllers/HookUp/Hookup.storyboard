@@ -686,7 +686,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="710"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tAH-wO-7oh">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="652.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="662.66666666666663"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4PK-gd-i3N">
                                                 <rect key="frame" x="0.0" y="30" width="414" height="532.66666666666663"/>
@@ -696,7 +696,7 @@
                                                         <string key="text">Spread The Word And 
 Earn Discounts!</string>
                                                         <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="28"/>
-                                                        <color key="textColor" red="0.80000000000000004" green="0.0" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZv-E2-kOr">
@@ -760,7 +760,7 @@ Earn Discounts!</string>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FDX-A2-pEq">
                                                                 <rect key="frame" x="3" y="3" width="135" height="24"/>
-                                                                <color key="tintColor" red="0.80000000000000004" green="0.0" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="tintColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal">
                                                                     <attributedString key="attributedTitle">
                                                                         <fragment content="Terms &amp; Conditions">
@@ -777,7 +777,7 @@ Earn Discounts!</string>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="exd-7X-Xl8">
                                                                 <rect key="frame" x="149" y="3" width="30" height="24"/>
-                                                                <color key="tintColor" red="0.80000000000000004" green="0.0" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="tintColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal">
                                                                     <attributedString key="attributedTitle">
                                                                         <fragment content="FAQ">
@@ -834,22 +834,17 @@ Earn Discounts!</string>
                                                     <constraint firstAttribute="bottom" secondItem="eZv-E2-kOr" secondAttribute="bottom" constant="100" id="uwo-2F-fXi"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thC-4l-r4d">
-                                                <rect key="frame" x="122" y="562.66666666666663" width="170" height="40"/>
-                                                <color key="backgroundColor" red="0.80285602807998657" green="0.19704824686050415" blue="0.4999237060546875" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thC-4l-r4d">
+                                                <rect key="frame" x="122" y="562.66666666666663" width="170" height="50"/>
+                                                <color key="backgroundColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="gHt-UR-b9d"/>
+                                                    <constraint firstAttribute="height" constant="50" id="gHt-UR-b9d"/>
                                                     <constraint firstAttribute="width" constant="170" id="wk9-su-aS1"/>
                                                 </constraints>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="REFER NOW">
-                                                            <attributes>
-                                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="20" name="DINAlternate-Bold"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="REFER NOW">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="actRefer:" destination="Hax-D8-gVD" eventType="touchUpInside" id="sgU-py-V07"/>

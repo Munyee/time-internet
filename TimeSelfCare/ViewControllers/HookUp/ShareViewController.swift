@@ -51,7 +51,7 @@ class ShareViewController: UIViewController {
 
         func showFAQ() {
             let timeWebView = TIMEWebViewController()
-            let urlString = "http://www1.time.com.my/support/faq?section=self-care&question=who-is-eligible-for-this-programme"
+            let urlString = "https://www.time.com.my/support/faq?section=self-care&question=who-is-eligible-for-this-programme"
             let url = URL(string: urlString)
             timeWebView.url = url
             timeWebView.title = NSLocalizedString("FAQ", comment: "")

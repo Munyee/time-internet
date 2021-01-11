@@ -35,6 +35,7 @@ internal class SidebarTableViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var nameInitialLabel: UILabel!
     @IBOutlet private var versionLabel: UILabel!
+    @IBOutlet var viewProfileButton: RoundedButton!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -42,6 +43,7 @@ internal class SidebarTableViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateInitial), name: NSNotification.Name.PersonDidChange, object: nil)
         self.nameInitialLabel.font = UIFont(name: "DINCondensed-Bold", size: 50)
         tableView.backgroundColor = .white
+        self.viewProfileButton.titleLabel?.textAlignment = .center
     }
 
     override func viewWillAppear(_ animated: Bool) {

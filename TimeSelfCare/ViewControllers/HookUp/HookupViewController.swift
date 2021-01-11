@@ -22,7 +22,7 @@ class HookupViewController: TimeBaseViewController {
         super.viewDidLoad()
         self.title = NSLocalizedString("HOOK UP & EARN", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_notification_highlight_new").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(showNotifcation))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "hookups_notification_icon").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(showNotifcation))
         heightConstraint.constant = 0
     }
     

@@ -38,7 +38,7 @@ internal class ForgetPasswordViewController: BaseAuthViewController {
             .font: UIFont(name: "DIN-Bold", size: 16)
         ]
         attributedString.addAttributes(linkAttributes, range: (noteText as NSString).range(of: "cs@time.com.my"))
-        attributedString.addAttributes(linkAttributes, range: (noteText as NSString).range(of: "1 800 18 1818"))
+        attributedString.addAttributes(linkAttributes, range: (noteText as NSString).range(of: "1800 18 1818"))
         self.noteLabel.attributedText = attributedString
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTappedAttributedLabel(gesture:)))

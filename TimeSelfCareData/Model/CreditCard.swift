@@ -24,6 +24,7 @@ public class CreditCard: JsonRecord {
     public var ccName: String?
     public var ccExpiry: String?
     public var ccCvv: String?
+    public var ccExist: Bool?
 
     // Relationships
     public var accountNo: String?
@@ -53,6 +54,7 @@ public class CreditCard: JsonRecord {
         self.ccCvv = json["cc_cvv"] as? String
         self.accountNo = json["account_no"] as? String
         self.bankBankId = json["bank_bank_id"] as? String
+        self.ccExist = json["cc_exist"] as? Bool
     }
 
 }

@@ -29,6 +29,7 @@ class BillingInfoDetailComponentView: UIStackView {
                 case .emailAddress?:
                     return billingInfo?.billingEmailAddress
                 case .address?:
+                    underlineLabel.backgroundColor = .white
                     return billingInfo?.displayBillingAddress
                 default:
                     return nil
@@ -40,6 +41,7 @@ class BillingInfoDetailComponentView: UIStackView {
 
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
+    private let underlineLabel = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,9 +58,13 @@ class BillingInfoDetailComponentView: UIStackView {
         self.subtitleLabel.textColor = .black
         self.subtitleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
         self.subtitleLabel.text = "-"
+        
+        underlineLabel.backgroundColor = .grey2
+        underlineLabel.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
 
         self.addArrangedSubview(titleLabel)
         self.addArrangedSubview(subtitleLabel)
+        self.addArrangedSubview(underlineLabel)
     }
 
     required init(coder: NSCoder) {
@@ -145,6 +151,7 @@ class BillingInfoDetailViewController: TimeBaseViewController {
         }
 
         let canEditBillingInfo: Bool = billingInfo?.canUpdateBillingMethod ?? false || billingInfo?.canUpdateBillingAddress ?? false
+        self.navigationItem.title = NSLocalizedString("BILLING INFO", comment: "")
         self.navigationItem.rightBarButtonItem = canEditBillingInfo ? UIBarButtonItem(title: NSLocalizedString("Edit", comment: ""), style: .plain, target: self, action: #selector(self.editBillingInfo)) : nil
     }
 

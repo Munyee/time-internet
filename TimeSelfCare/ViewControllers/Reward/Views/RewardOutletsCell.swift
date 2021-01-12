@@ -38,18 +38,27 @@ class RewardOutletsCell: UITableViewCell {
                 NSLayoutConstraint(item: iconImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20),
                 NSLayoutConstraint(item: iconImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
             ])
-
-            let outletLabel = UILabel()
-            outletLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-            outletLabel.numberOfLines = 0
-            outletLabel.text = outlet
-            outletLabel.textColor = .darkGrey
+            
+            let outletTextView = UITextView()
+            outletTextView.font = UIFont.preferredFont(forTextStyle: .subheadline)
+            outletTextView.dataDetectorTypes = .all
+            outletTextView.text = String(htmlEncodedString: outlet)
+            outletTextView.textColor = .darkGray
+            
+            do {
+                let attrStr = try NSMutableAttributedString(data: outlet.data(using: String.Encoding.unicode, allowLossyConversion: true)!, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+                outletTextView.attributedText = attrStr
+            } catch {
+                print(error)
+            }
+            
+            outletTextView.translatesAutoresizingMaskIntoConstraints = false
+            outletTextView.isScrollEnabled = false
 
             horizontalStackView.addArrangedSubview(iconImageView)
-            horizontalStackView.addArrangedSubview(outletLabel)
+            horizontalStackView.addArrangedSubview(outletTextView)
 
             self.outletStackViews.append(horizontalStackView)
-
             self.stackView.addArrangedSubview(horizontalStackView)
         }
     }

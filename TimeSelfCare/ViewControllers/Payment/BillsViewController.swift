@@ -29,7 +29,7 @@ internal class BillsViewController: TimeBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Bills", comment: "Bills")
+        self.title = NSLocalizedString("BILLS", comment: "BILLS")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.back))
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -121,7 +121,14 @@ extension BillsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.configureCell(with: self.bills[indexPath.row])
         let shouldShowBill: Bool = AccountController.shared.selectedAccount?.showBill ?? false
-        cell.accessoryView = shouldShowBill ? UIImageView(image: #imageLiteral(resourceName: "ic_next_arrow_small")) : nil
+       // cell.accessoryView = shouldShowBill ? UIImageView(image: #imageLiteral(resourceName: "ic_next_arrow_black")) : nil
+        
+        if indexPath.row == self.bills.count - 1 {
+            cell.rowDividerLabel.backgroundColor = .white
+        } else {
+            cell.rowDividerLabel.backgroundColor = .lightGray
+        }
+        
         return cell
     }
 

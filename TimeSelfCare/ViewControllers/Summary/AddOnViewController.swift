@@ -24,7 +24,7 @@ class AddOnViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Add Ons", comment: "Add Ons")
+        self.title = NSLocalizedString("ADD ONS", comment: "ADD ONS")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.back))
 
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -38,9 +38,16 @@ class AddOnViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        shopButton.layer.shadowColor = UIColor.gray.cgColor
+        shopButton.layer.shadowOffset = CGSize(width: 0, height: 1)
+        shopButton.layer.shadowOpacity = 1.0;
+        shopButton.layer.shadowRadius = 10;
+        
         self.addOnsButton.isHidden = AccountController.shared.selectedAccount?.custSegment == .business ||
             (AccountController.shared.selectedAccount?.custSegment == .astro && AccountController.shared.selectedAccount?.services.filter { $0.category == .broadbandAstro }.count ?? 0 > 0)
         self.shopButton.addTarget(self, action: #selector(self.openShop), for: .touchUpInside)
+        self.view.bringSubviewToFront(self.shopButton)
         self.refresh()
     }
 
@@ -82,6 +89,7 @@ extension AddOnViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         cell.configure(with: self.addOns[indexPath.row])
+        cell.displayRowUnderline(with: indexPath.row, arrayList: self.addOns)
         cell.selectionStyle = .none
         return cell
     }

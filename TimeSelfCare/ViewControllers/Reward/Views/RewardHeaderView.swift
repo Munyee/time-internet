@@ -38,17 +38,13 @@ class RewardHeaderView: UITableViewHeaderFooterView {
         self.section = rewardSection
         self.titleLabel.text = rewardSection.title
 
-        self.titleLabel.font = isCollapsed
-            ? UIFont.preferredFont(forTextStyle: .body)
-            : UIFont.preferredFont(forTextStyle: .body).bold()
+        self.titleLabel.font = UIFont.preferredFont(forTextStyle: .body).bold()
 
-        self.arrowImageView.image = isCollapsed ? #imageLiteral(resourceName: "ic_arrow_down.png") : #imageLiteral(resourceName: "ic_arrow.png")
+        self.arrowImageView.image = isCollapsed ? #imageLiteral(resourceName: "ic_down_arrow_black") : #imageLiteral(resourceName: "ic_up_arraow_black")
     }
 
     func setCollapsed(_ isCollapsed: Bool) {
-        self.titleLabel.font = isCollapsed
-            ? UIFont.preferredFont(forTextStyle: .body)
-            : UIFont.preferredFont(forTextStyle: .body).bold()
+        self.titleLabel.font = UIFont.preferredFont(forTextStyle: .body).bold()
         self.arrowImageView.rotate(isCollapsed ? .pi / 2 : .pi * 1.5)
     }
 

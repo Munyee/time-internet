@@ -20,6 +20,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     var appVersionConfig: AppVersionModal!
     var remoteConfig: RemoteConfig!
     var message = ""
+    var timer: Timer?
 
      private var hasShownWalkthrough: Bool {
          return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
@@ -28,16 +29,16 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     private var shouldOpenActivityController: Bool = false
 
     @IBOutlet private weak var errorLabel: UILabel!
-    @IBOutlet private weak var progressStackView: UIStackView!
     @IBOutlet private weak var okButton: UIButton!
     @IBOutlet private weak var versionUpdateView: UIView!
     @IBOutlet private weak var dontShowButton: UIButton!
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var updateOrContinueButton: UIButton!
-    
-    @IBOutlet weak var alertTitleLabel: UILabel!
+    @IBOutlet private weak var alertTitleLabel: UILabel!
     @IBOutlet private weak var updateInfoTextView: UITextView!
-
+    @IBOutlet private var appLogoImgView: UIImageView!
+    @IBOutlet private var progressImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
@@ -57,11 +58,45 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.versionUpdateView.layer.cornerRadius = 10
         self.versionUpdateView.layer.borderWidth = 1
         self.versionUpdateView.layer.borderColor = UIColor.black.cgColor
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: false)
+        
+        appLogoImgView.animationImages = self.animatedLogoImages(for: "TIME_AnimationFrame")
+        appLogoImgView.contentMode = .scaleAspectFill
+        appLogoImgView.animationDuration = 1.0
+        appLogoImgView.animationRepeatCount = 1
+        appLogoImgView.image = appLogoImgView.animationImages?.last
+        appLogoImgView.startAnimating()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        getFirebaseAppVersion()
+        // getFirebaseAppVersion()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        progressImageView.stopAnimating()
+    }
+    
+    func animatedLogoImages(for name: String) -> [UIImage] {
+        var i = 0
+        var images = [UIImage]()
+        while let image = UIImage(named: "\(name)/Frame\(i)") {
+            images.append(image)
+            i += 1
+        }
+        return images
+    }
+    
+    func animatedImages(for name: String) -> [UIImage] {
+        var i = 0
+        var images = [UIImage]()
+        while let image = UIImage(named: "\(name)/preloadbar\(i)") {
+            images.append(image)
+            i += 1
+        }
+        return images
     }
 
     func getFirebaseAppVersion() {
@@ -89,7 +124,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 }
             }
         } else {
-            let alert = UIAlertController(title:"", message: "No Internet Connection", preferredStyle: .alert)
+            let alert = UIAlertController(title: "", message: "No Internet Connection", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "RETRY", style: .cancel, handler: { (_) in
                 self.getFirebaseAppVersion()
             }))
@@ -142,7 +177,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             self.versionUpdateView.isHidden = true
             self.dontShowButton.isHidden = true
             self.showNext()
-        }else {
+        } else {
             self.versionUpdateView.isHidden = false
             self.dontShowButton.isHidden = false
         }
@@ -194,23 +229,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             return
         }
 
-//        guard currentInstalledVersion >= remoteVersion else {
-//            let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String // swiftlint:disable:this force_cast
-//            let alertAction = UIAlertAction(title: NSLocalizedString("UPDATE", comment: ""), style: .default) { _ in
-//                let url = URL(string: "itms-apps:itunes.apple.com/app/1315891250")! // swiftlint:disable:this force_unwrap
-//                if UIApplication.shared.canOpenURL(url) {
-//                    if #available(iOS 10.0, *) {
-//                        UIApplication.shared.open(url)
-//                    } else {
-//                        UIApplication.shared.openURL(url)
-//                    }
-//                }
-//                self.showNext()
-//            }
-//            self.showAlertMessage(title: NSLocalizedString("Update Required", comment: ""), message: String.localizedStringWithFormat("A newer version of this app is available. Please update the app to continue using it.", appName), actions: [alertAction])
-//            return
-//        }
-
         guard let profile = AccountController.shared.profile else {
             self.launchAuthMenu()
             return
@@ -234,7 +252,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         if AccountDataController.shared.getAccounts(profile: AccountController.shared.profile).isEmpty {
             self.loadDataFromServer { error in
                 if error == nil {
-                    self.progressStackView.isHidden = true
                     self.showNext()
                 }
             }
@@ -304,11 +321,8 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
 
     private func loadDataFromServer(completion: ((Error?) -> Void)? = nil) {
-        self.progressStackView.isHidden = false
-
         AccountDataController.shared.loadAccounts { (accounts: [Account], error: Error?) in
             guard error == nil else {
-                self.progressStackView.isHidden = true
                 self.errorLabel.text = error?.localizedDescription
                 self.errorLabel.isHidden = false
                 self.okButton.isHidden = false
@@ -322,7 +336,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             accounts.forEach { (account: Account) in
                 ServiceDataController.shared.loadServices(accountNo: account.accountNo) { (_: [Service], error: Error?) in
                     if error != nil {
-                        self.progressStackView.isHidden = true
                         self.errorLabel.text = error?.localizedDescription
                         self.errorLabel.isHidden = false
                         self.okButton.isHidden = false
@@ -349,6 +362,17 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     private func handlingInvalidSession() {
         AuthUser.current?.logout()
         self.showNext()
+    }
+    
+    @objc func startTimer() {
+        progressImageView.animationImages = self.animatedImages(for: "PreloadBarFrames")
+        progressImageView.contentMode = .scaleAspectFill
+        progressImageView.animationDuration = 1
+        progressImageView.animationRepeatCount = 1
+        progressImageView.image = self.progressImageView.animationImages?.last
+        progressImageView.startAnimating()
+        
+        getFirebaseAppVersion()
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

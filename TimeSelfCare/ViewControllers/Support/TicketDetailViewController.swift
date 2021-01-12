@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 import MBProgressHUD
 import FirebaseCrashlytics
 
@@ -68,7 +69,7 @@ class TicketDetailViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
-    @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet private weak var messageWebView: WKWebView!
     @IBOutlet private weak var headerStackView: UIStackView!
     @IBOutlet private weak var headerBasicStackView: UIStackView!
     @IBOutlet private weak var ticketAgentStackView: UIStackView!
@@ -81,7 +82,8 @@ class TicketDetailViewController: UIViewController {
     @IBOutlet private weak var showHideButton: UIButton!
     @IBOutlet private weak var ticketAgentNameLabel: UILabel!
     // swiftlint:enable implicitly_unwrapped_optional
-
+    @IBOutlet private var webviewHeightConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,11 +108,22 @@ class TicketDetailViewController: UIViewController {
         self.attachmentCollectionView.delegate = self
         self.dateTimeLabel.text = ticket.displayDateTime
         self.titleLabel.text = ticket.subject
-        self.detailLabel.text = ticket.detail
+        self.detailLabel.text = ticket.category
         self.statusLabel.text = ticket.statusString
         self.statusLabel.isHidden = ticket.statusString?.isEmpty ?? true
-        self.statusLabel.backgroundColor = ["open"].contains(ticket.statusString?.lowercased()) ? .positive : .darkGrey
-        self.messageLabel.text = ticket.description
+        
+        if ["open"].contains(ticket.statusString?.lowercased()) {
+            self.statusLabel.backgroundColor = .positive
+        } else if ["closed"].contains(ticket.statusString?.lowercased()) {
+            self.statusLabel.backgroundColor = .grey2
+        } else {
+            self.statusLabel.backgroundColor = .primary
+        }
+        
+        self.messageWebView.loadHTMLStringWithMagic(content: ticket.description ?? "", baseURL: nil)
+
+        self.webviewHeightConstraint.constant = UIScreen.main.bounds.height - 400
+        
         self.attachmentCollectionViewHeightConstraint.constant = (self.attachmentCollectionView.bounds.width / 3)
         self.attachmentCollectionView.reloadData()
 
@@ -164,14 +177,6 @@ class TicketDetailViewController: UIViewController {
             guard var image = $0[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
                 return nil
             }
-
-//            let ratio = max(
-//                max(image.size.width, image.size.height) / 1_920,
-//                min(image.size.width, image.size.height) / 1_080
-//            )
-//            if ratio > 1 {
-//                image = image.scaledTo(scale: 1 / ratio)
-//            }
             return image
         }
         newConversation.images = images
@@ -217,7 +222,6 @@ class TicketDetailViewController: UIViewController {
                 guard self.tableView.numberOfSections > 0 else {
                     return
                 }
-                
                 self.tableView.reloadSections([index], with: .automatic)
             }
         }
@@ -435,6 +439,22 @@ extension TicketDetailViewController: UICollectionViewDataSource, UICollectionVi
             photoVC.modalPresentationStyle = .overCurrentContext
             self.present(photoVC, animated: true, completion: nil)
         }
+    }
+}
+
+extension WKWebView {
+    func loadHTMLStringWithMagic(content:String,baseURL:URL?) {
+        let headerString = "<header><meta name='viewport' content='width=device-width, user-scalable=no'></header>"
+        loadHTMLString(headerString + content, baseURL: baseURL)
+    }
+}
+
+extension NSAttributedString {
+    convenience init(htmlString html: String) throws {
+        try self.init(data: Data(html.utf8), options: [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ], documentAttributes: nil)
     }
 }
 

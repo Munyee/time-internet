@@ -13,14 +13,22 @@ class TicketCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
-
+    @IBOutlet private var rowDividerLabel: UILabel!
+    
     func configure(with ticket: Ticket) {
-        self.dateTimeLabel.text = ticket.displayDateTime
+        self.dateTimeLabel.text = ticket.datetime
         self.titleLabel.text = ticket.subject
-        self.detailLabel.text = ticket.detail
+        self.detailLabel.text = ticket.category
         self.statusLabel.text = ticket.statusString
         self.statusLabel.isHidden = ticket.statusString?.isEmpty ?? true
-        self.statusLabel.backgroundColor = ["open"].contains(ticket.statusString?.lowercased()) ? .positive : .grey2
+        
+        if ["open"].contains(ticket.statusString?.lowercased()) {
+            self.statusLabel.backgroundColor = .positive
+        } else if ["closed"].contains(ticket.statusString?.lowercased()) {
+            self.statusLabel.backgroundColor = .grey2
+        } else {
+            self.statusLabel.backgroundColor = .primary
+        }
     }
 
     override func prepareForReuse() {

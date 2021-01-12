@@ -125,10 +125,12 @@ internal class LoginViewController: BaseAuthViewController {
             self.tooltip = nil
             return
         }
-
-        let message: String = sender == usernameIconButton ? NSLocalizedString("Your username is your MyKad No./ Passport No./ Passport No./ Business Registration No. [BRN]", comment: "") : NSLocalizedString("If you can't remember, click on 'Forgot Password' to reset. Special characters are not allowed.", comment: "")
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.getCustomFont(family: "DIN", style: .caption1) ?? UIFont.preferredFont(forTextStyle: .caption1),
-                                                        NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+   //     let message: String = sender == usernameIconButton ? NSLocalizedString("Your username is your MyKad No./ Passport No./ Business Registration No. [BRN] \n e.g. MyKad No. : 810530105163 \n Passport No.:(as stated on your passport) \n BRN: 413292P", comment: "") : NSLocalizedString("If you can't remember, click on 'Forgot Password' to reset. Special characters are not allowed.", comment: "")
+        
+         let message: String = sender == usernameIconButton ? NSLocalizedString("Your username should not contain any special characters such as \"-\".", comment: "") : NSLocalizedString("If you can't remember, click on 'Forgot Password' to reset. Special characters are not allowed.", comment: "")
+        
+        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.getCustomFont(family: "DIN", style: .caption1) ?? UIFont.preferredFont(forTextStyle: .caption1), NSAttributedString.Key.foregroundColor: UIColor.white]
         let attributedString = NSAttributedString(string: message, attributes: attributes)
 
         var preferences = EasyTipView.Preferences()
@@ -163,6 +165,21 @@ internal class LoginViewController: BaseAuthViewController {
             appVersion = "\(appVersion) (Staging)"
         }
         self.versionButton.setTitle(appVersion, for: .normal)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        for subview in self.containerView.subviews where subview is EasyTipView {
+            subview.removeFromSuperview()
+        }
+        
+        if textField == self.usernameTextField {
+            self.toggleTooltip(usernameIconButton)
+        }
+         
+        if textField == self.passwordTextField {
+            self.toggleTooltip(passwordIconButton)
+        }
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {

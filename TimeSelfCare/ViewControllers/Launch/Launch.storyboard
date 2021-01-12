@@ -17,36 +17,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="BZX-yd-ZDY">
-                                <rect key="frame" x="40" y="290.5" width="295" height="86"/>
+                                <rect key="frame" x="50" y="137.5" width="275" height="92"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_time_logo" translatesAutoresizingMaskIntoConstraints="NO" id="J7N-75-Bhc">
-                                        <rect key="frame" x="0.0" y="0.0" width="295" height="62"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J7N-75-Bhc" customClass="SpringImageView" customModule="Spring">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="92"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="J7N-75-Bhc" secondAttribute="height" multiplier="4.775" id="fGP-d6-8lS"/>
+                                            <constraint firstAttribute="width" secondItem="J7N-75-Bhc" secondAttribute="height" multiplier="3" id="fGP-d6-8lS"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="L9r-7v-MoQ">
-                                        <rect key="frame" x="101.5" y="66" width="92.5" height="20"/>
-                                        <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5FZ-WS-ixB">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                            </activityIndicatorView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUu-Yv-9bJ">
-                                                <rect key="frame" x="24" y="0.0" width="68.5" height="20"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Internet connection appears to be offline. An active Internet connection is required to use Self Care." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="dct-xd-lMl">
-                                        <rect key="frame" x="12" y="86" width="271.5" height="0.0"/>
+                                        <rect key="frame" x="2" y="0.0" width="271.5" height="0.0"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vN7-WG-odC">
-                                        <rect key="frame" x="0.0" y="86" width="295" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="0.0"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <state key="normal" title="OK">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,7 +60,7 @@
                                         <rect key="frame" x="53.5" y="194" width="188" height="36"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <state key="normal" title="DON'T SHOW AGAIN">
-                                            <color key="titleColor" red="0.79607843140000001" green="0.0" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="dontAskAgainButtonTapped:" destination="q1D-Vh-GSC" eventType="touchUpInside" id="s53-fD-yFI"/>
@@ -87,7 +73,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="132.5" height="50"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <state key="normal" title="CANCEL">
-                                                    <color key="titleColor" red="0.79607843140000001" green="0.0" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="cancelButtonTapped:" destination="q1D-Vh-GSC" eventType="touchUpInside" id="Uni-wl-G2I"/>
@@ -97,7 +83,7 @@
                                                 <rect key="frame" x="142.5" y="0.0" width="132.5" height="50"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <state key="normal" title="UPDATE">
-                                                    <color key="titleColor" red="0.79607843140000001" green="0.0" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="updateButtonTapped:" destination="q1D-Vh-GSC" eventType="touchUpInside" id="4MN-zi-n1e"/>
@@ -132,15 +118,24 @@
                                     <constraint firstItem="6s3-Ms-amT" firstAttribute="centerX" secondItem="O37-fy-qwi" secondAttribute="centerX" id="x6B-81-fpJ"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j19-Cg-Ndo">
+                                <rect key="frame" x="100" y="587" width="175" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="m3P-ff-SCg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.84834182262420654" green="0.18184372782707214" blue="0.54119318723678589" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="40" id="4kb-wm-iZL"/>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="50" id="4kb-wm-iZL"/>
+                            <constraint firstItem="c38-DK-s8v" firstAttribute="bottom" secondItem="j19-Cg-Ndo" secondAttribute="bottom" constant="50" id="ERQ-bA-YH8"/>
                             <constraint firstItem="O37-fy-qwi" firstAttribute="centerX" secondItem="FKF-FJ-Rx8" secondAttribute="centerX" id="HPn-fY-mgw"/>
                             <constraint firstItem="O37-fy-qwi" firstAttribute="centerY" secondItem="FKF-FJ-Rx8" secondAttribute="centerY" id="Hcl-4F-zPl"/>
                             <constraint firstItem="c38-DK-s8v" firstAttribute="trailing" secondItem="O37-fy-qwi" secondAttribute="trailing" constant="40" id="IHx-N7-A6x"/>
-                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="centerY" secondItem="c38-DK-s8v" secondAttribute="centerY" id="RSu-t7-ak9"/>
-                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="trailing" secondItem="c38-DK-s8v" secondAttribute="trailing" constant="-40" id="g90-3N-PoW"/>
+                            <constraint firstItem="j19-Cg-Ndo" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="100" id="R6S-hc-WuE"/>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="centerY" secondItem="c38-DK-s8v" secondAttribute="centerY" constant="-150" id="RSu-t7-ak9"/>
+                            <constraint firstItem="c38-DK-s8v" firstAttribute="trailing" secondItem="j19-Cg-Ndo" secondAttribute="trailing" constant="100" id="axD-Jm-4av"/>
+                            <constraint firstItem="BZX-yd-ZDY" firstAttribute="trailing" secondItem="c38-DK-s8v" secondAttribute="trailing" constant="-50" id="g90-3N-PoW"/>
                             <constraint firstItem="BZX-yd-ZDY" firstAttribute="centerX" secondItem="c38-DK-s8v" secondAttribute="centerX" id="saX-Tp-gdI"/>
                             <constraint firstItem="O37-fy-qwi" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="40" id="zZm-kD-OX6"/>
                         </constraints>
@@ -148,11 +143,12 @@
                     </view>
                     <connections>
                         <outlet property="alertTitleLabel" destination="6s3-Ms-amT" id="uEY-LC-pHN"/>
+                        <outlet property="appLogoImgView" destination="J7N-75-Bhc" id="g6D-eR-TFh"/>
                         <outlet property="cancelButton" destination="BN3-3z-eRq" id="B9c-EX-2NK"/>
                         <outlet property="dontShowButton" destination="njV-3n-9Jf" id="87s-gb-qCw"/>
                         <outlet property="errorLabel" destination="dct-xd-lMl" id="5kQ-lL-0eY"/>
                         <outlet property="okButton" destination="vN7-WG-odC" id="FAB-ec-vNh"/>
-                        <outlet property="progressStackView" destination="L9r-7v-MoQ" id="Npl-do-lu7"/>
+                        <outlet property="progressImageView" destination="j19-Cg-Ndo" id="zOj-1K-HpT"/>
                         <outlet property="updateInfoTextView" destination="oEJ-cF-Xla" id="V7h-Oh-Qmj"/>
                         <outlet property="updateOrContinueButton" destination="3Hh-p8-7mY" id="4VF-Bw-whk"/>
                         <outlet property="versionUpdateView" destination="O37-fy-qwi" id="HQU-r2-bQN"/>
@@ -160,10 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arx-WI-R1X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="101.59999999999999" y="123.68815592203899"/>
+            <point key="canvasLocation" x="-97" y="31"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ic_time_logo" width="191" height="40"/>
-    </resources>
 </document>

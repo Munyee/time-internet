@@ -21,7 +21,6 @@ public extension APNSControllerDelegate {
         } else if let _ = userInfo["content-available"] {
             notification = SilentNotification(userInfo: userInfo)
         }
-
         return notification
     }
 }

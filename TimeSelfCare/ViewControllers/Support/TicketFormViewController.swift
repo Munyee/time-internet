@@ -256,7 +256,7 @@ class TicketFormViewController: TimeBaseViewController {
     }
 
     private func setupUI() {
-        self.title = NSLocalizedString("Create Ticket", comment: "")
+        self.title = NSLocalizedString("CREATE TICKET", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .done, target: self, action: #selector(self.dismissVC(_:)))
 
         for component in TicketFormComponent.allValues {
@@ -359,16 +359,7 @@ class TicketFormViewController: TimeBaseViewController {
         let images: [UIImage] = self.selectedImageInfo.compactMap {
             guard var image = $0[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
                 return nil
-            }
-
-//            let ratio = max(
-//                max(image.size.width, image.size.height) / 1_920,
-//                min(image.size.width, image.size.height) / 1_080
-//            )
-//            if ratio > 1 {
-//                image = image.scaledTo(scale: 1 / ratio)
-//            }
-            
+            }            
             return image
         }
 

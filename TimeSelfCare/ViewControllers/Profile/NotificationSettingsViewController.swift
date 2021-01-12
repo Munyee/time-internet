@@ -29,7 +29,7 @@ class NotificationSettingsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("Notification Settings", comment: "")
+        self.title = NSLocalizedString("NOTIFICATION SETTINGS", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.cancel))
     }
 

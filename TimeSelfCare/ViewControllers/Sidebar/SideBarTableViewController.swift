@@ -19,9 +19,6 @@ internal class SidebarTableViewController: UIViewController {
     private var accounts: [Account] = []
 
     private var services: [ServiceSidebarCell.ServiceType] {
-//        let shouldShowSupportAndReward = self.accounts.first { $0.custSegment == .residential || $0.custSegment == .business } != nil
-//
-//        return shouldShowSupportAndReward ? [.reward, .support] : []
 
         let isResidential = self.accounts.first { $0.custSegment == .residential } != nil
         let isBusiness = self.accounts.first { $0.custSegment == .business } != nil
@@ -33,22 +30,26 @@ internal class SidebarTableViewController: UIViewController {
         } else {
             return []
         }
-
     }
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var nameInitialLabel: UILabel!
-
+    @IBOutlet private var versionLabel: UILabel!
+    @IBOutlet var viewProfileButton: RoundedButton!
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateInitial), name: NSNotification.Name.PersonDidChange, object: nil)
         self.nameInitialLabel.font = UIFont(name: "DINCondensed-Bold", size: 50)
+        tableView.backgroundColor = .white
+        self.viewProfileButton.titleLabel?.textAlignment = .center
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateDataSet()
+        updateVersionDisplay()
     }
 
     private func updateDataSet() {
@@ -79,6 +80,15 @@ internal class SidebarTableViewController: UIViewController {
         }
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
         self.showAlertMessage(title: NSLocalizedString("Logout from TIME Self Care", comment: ""), message: NSLocalizedString("Proceed to logout?", comment: ""), actions: [cancelAction, yesAction])
+    }
+    
+    private func updateVersionDisplay() {
+         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
+        var appVersion = Installation.appVersion
+        if isStagingMode {
+            appVersion = "\(appVersion) (Staging)"
+        }
+        self.versionLabel.text = appVersion
     }
 
     @objc
@@ -116,6 +126,12 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             return self.services.count
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .white
+        }
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = Section(rawValue: indexPath.section)
@@ -146,7 +162,7 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             divider.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 divider.heightAnchor.constraint(equalToConstant: 1),
-                divider.widthAnchor.constraint(equalTo: view.widthAnchor),
+                divider.widthAnchor.constraint(equalToConstant: view.frame.size.width - 30),
                 divider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 divider.centerYAnchor.constraint(equalTo: view.centerYAnchor)
                 ])

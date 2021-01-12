@@ -23,7 +23,7 @@ class DiagnosisViewController: TimeBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissVC(_:)))
-        self.title = NSLocalizedString("Diagnostics", comment: "")
+        self.title = NSLocalizedString("DIAGNOSTICS", comment: "")
 
         iconImageView.image = UIImage()
         messageLabel.text = ""

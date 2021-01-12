@@ -23,7 +23,7 @@ internal class AddOnDetailViewController: TimeBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = addOn.item
+        self.title = addOn.item?.uppercased()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.backToPreviousVC))
         self.modelLabel.text = addOn.model
         if let imageURLString = addOn.image {
@@ -31,12 +31,13 @@ internal class AddOnDetailViewController: TimeBaseViewController {
         }
         if let isUnderWarraty = addOn.isUnderWarranty {
             self.statusLabel.isHidden = false
+            self.statusLabel.backgroundColor = isUnderWarraty ? .positive  : .grey2
             self.statusLabel.text = isUnderWarraty ? NSLocalizedString("UNDER WARRANTY", comment: "") : NSLocalizedString("OUT OF WARRANTY", comment: "")
         } else {
             self.statusLabel.isHidden = true
         }
         self.featureLabel.text = addOn.features
-        self.orderLabel.text = addOn.orderId
+        self.orderLabel.text = (addOn.orderId != nil) ? addOn.orderId : "-"
 
         self.transactionDateLabel.text = addOn.datetime?.string(usingFormat: "d MMM yyyy") ?? "-"
         if let startDAte = addOn.warrantyStartDate?.string(usingFormat: "d MMM yyyy"),

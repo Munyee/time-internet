@@ -333,7 +333,7 @@ extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
             hideFloatingActionButton()
         case .performanceStatusSummary:
             self.pageTitleLabel.text = NSLocalizedString("Performance", comment: "")
-            showFloatingActionButton(with: #imageLiteral(resourceName: "ic_fab_menu"))
+            hideFloatingActionButton()
 //            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false {
 //                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
 //            } else {

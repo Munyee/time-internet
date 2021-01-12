@@ -142,6 +142,7 @@ extension AppDelegate {
         } else {
             backgroundImage = #imageLiteral(resourceName: "bg_navbar_64")
         }
+        
 
         UINavigationBar.appearance().setBackgroundImage(backgroundImage.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
 

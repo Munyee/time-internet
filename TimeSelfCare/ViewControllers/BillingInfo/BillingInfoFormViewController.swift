@@ -59,10 +59,8 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
                 textView.inputAccessoryView = toolBar
             }
 
-//            if self.billingInfoComponent == .billingMethod {
-//                    self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
-//            } else
-                if self.billingInfoComponent == .emailAddress {
+
+            if self.billingInfoComponent == .emailAddress {
                 self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
             }
         }
@@ -83,10 +81,7 @@ class BillingInfoFormComponentView: UIStackView, UITextViewDelegate, CustomPicke
             self.textView.isEditable = isEditable
             self.textView.textColor = isEditable ? .black : .grey
 
-//            if self.billingInfoComponent == .billingMethod {
-//                    self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingMethod ?? false)
-//            } else
-                if self.billingInfoComponent == .emailAddress {
+            if self.billingInfoComponent == .emailAddress {
                 self.infoButton.isHidden = !self.isEditable && !(self.billingInfo?.canUpdateBillingAddress ?? false)
             }
         }
@@ -382,7 +377,7 @@ class BillingInfoFormViewController: UIViewController {
     }
 
     private func setupUI() {
-        self.navigationItem.title = NSLocalizedString("Billing Info", comment: "")
+        self.navigationItem.title = NSLocalizedString("BILLING INFO", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissVC(_:)))
 
         let addressStackView = UIStackView()

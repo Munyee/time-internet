@@ -98,9 +98,18 @@ class AccountSummaryViewController: BaseViewController {
 
         CreditCardDataController.shared.loadCreditCards(account: account) { (creditCards: [CreditCard], _: Error?) in
             let creditCard = creditCards.first
-            let debitButtonText = creditCard == nil ? NSLocalizedString("Register for Auto Debit", comment: "") : NSLocalizedString("You are on Auto Debit.", comment: "")
-            self.autoDebitButton.setTitle(debitButtonText, for: .normal)
-            self.autoDebitButton.setTitleColor(creditCard == nil ? .primary : .grey2, for: .normal)
+            if creditCard == nil {
+                self.autoDebitButton.setTitle(NSLocalizedString("Register for Auto Debit", comment: ""), for: .normal)
+                self.autoDebitButton.setTitleColor(.primary, for: .normal)
+            } else {
+                if creditCard!.ccExist == true {
+                    self.autoDebitButton.setTitle(NSLocalizedString("You are on Auto Debit.", comment: ""), for: .normal)
+                    self.autoDebitButton.setTitleColor(.grey2, for: .normal)
+                } else {
+                    self.autoDebitButton.setTitle(NSLocalizedString("Register for Auto Debit", comment: ""), for: .normal)
+                    self.autoDebitButton.setTitleColor(.primary, for: .normal)
+                }
+            }
         }
 
         NotificationSettingDataController.shared.loadNotificationSettings(account: account) {   _, _ in
@@ -114,7 +123,7 @@ class AccountSummaryViewController: BaseViewController {
 
     override func updateUI() {
         let selectedAccount = AccountController.shared.selectedAccount
-        self.accountLabel.text = selectedAccount?.displayAccountNo
+        self.accountLabel.text = selectedAccount?.accountNo
         self.speedLabel.text = selectedAccount?.title
         self.statusLabel.text = selectedAccount?.accountStatus?.displayText
         self.statusLabel.backgroundColor = selectedAccount?.accountStatus == .active ? .positive : .grey2

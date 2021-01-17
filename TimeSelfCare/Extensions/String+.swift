@@ -25,6 +25,7 @@ public extension String {
     
    init(htmlEncodedString: String) {
         self.init()
+    
         guard let encodedData = htmlEncodedString.data(using: .utf8) else {
             self = htmlEncodedString
             return
@@ -43,6 +44,22 @@ public extension String {
             print("Error: \(error)")
             self = htmlEncodedString
         }
+    }
+    
+    func htmlAttributdString() -> NSAttributedString? {
+        
+        let style = "<style> body { font-family: 'DIN-Light'; font-size: 16px; } b {font-family: 'DIN-Bold'; font-size: 16px;} i {font-family: 'D-DIN-Italic'; font-size: 16px;} </style>"
+        let styledHtml = style + self
+        
+        guard let data = styledHtml.data(using: .utf8) else {
+            return nil
+        }
+        
+        return try? NSAttributedString(
+            data: data,
+            options: [.documentType: NSAttributedString.DocumentType.html],
+            documentAttributes: nil
+        )
     }
 }
 

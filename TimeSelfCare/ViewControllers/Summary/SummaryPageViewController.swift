@@ -8,6 +8,7 @@
 
 import UIKit
 import SystemConfiguration
+import Smartlook
 
 internal class BaseViewController: TimeBaseViewController {
     func updateDataSet(items: [Service]?) {}
@@ -40,7 +41,9 @@ internal class SummaryPageViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        Smartlook.setUserIdentifier(AccountController.shared.profile?.username)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
         self.dataSource = self
         self.delegate = self

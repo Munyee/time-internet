@@ -43,7 +43,12 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         application.setupRemoteNotifications()
         APNSController.shared.dataDelegate = self
         
-        Smartlook.setupAndStartRecording(key: "73e0b72d49d303d9c7e365bbfbcffde6e0e5dabc")
+        #if DEBUG
+
+        #else
+            Smartlook.setupAndStartRecording(key: "73e0b72d49d303d9c7e365bbfbcffde6e0e5dabc")
+        #endif
+        
         
         self.applyAppearance()
 

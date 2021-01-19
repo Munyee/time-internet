@@ -13,72 +13,31 @@ class RewardViewController: TimeBaseViewController {
 
     private var rewards: [Reward] = [] {
         didSet {
+            
+            if rewards.count >= 2 {
+                self.yearsView.isHidden = false
+                self.yearsConstraint.constant = 60
+                self.rewards = self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }
+                self.yearLabel1.text = String(format: "%d", self.rewards[0].year!)
+                self.yearLabel1.textColor = UIColor.primary
+                self.yearLabel2.text = String(format: "%d", self.rewards[1].year!)
+                self.yearLabel2.textColor = UIColor.gray
+                self.reward = self.rewards[0]
+            } else {
+                self.reward = self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }.first
+            }
+            
             guard let reward = self.reward else {
                 return
             }
 
-            if let imagePath = reward.image {
-                self.tableHeaderImageView.sd_setImage(with: URL(string: imagePath), completed: nil)
-            }
-            self.sectionCollapsed = [Bool](repeating: true, count: reward.sections.count)
-            self.rewardNameLabel.text = String(htmlEncodedString: reward.name ?? "")
-            self.validityLabel.text = String(htmlEncodedString: reward.validityPeriod ?? "")
-
-            self.validityPeriodStackView.axis = reward.status == .grabbed ? .vertical : .horizontal
-
-            for (index, view) in self.voucherStackView.arrangedSubviews.enumerated() {
-                if (index != 0) {
-                    self.voucherStackView.removeArrangedSubview(view)
-                    view.removeFromSuperview()
-                }
-            }
-
-            if (reward.status != .expired) {
-                if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
-                    for voucherCode in voucherCodes {
-                        if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
-                            voucherLabel.text = String(htmlEncodedString: voucherCode ?? "")
-                            self.voucherStackView.addArrangedSubview(voucherLabel)
-                        }
-                    }
-                }
-            }
-
-            let shouldHideVoucher = reward.code == nil || reward.status == .redeemed
-            self.voucherStackView.isHidden = shouldHideVoucher
-            self.voucherStackView.arrangedSubviews.forEach {
-                $0.isHidden = shouldHideVoucher
-            }
-
-            self.tableView.reloadData()
-            self.actionButton.setTitle(reward.status?.buttonTitle ?? "", for: .normal)
-
-            let buttonActionable = reward.status == .available || (reward.status == .grabbed && self.reward?.canRedeem == true)
-            self.actionButton.isEnabled = buttonActionable
-            self.actionButton.backgroundColor = buttonActionable ? .primary : .grey2
-
-            self.footerInfoLabel.text = String(htmlEncodedString: reward.status?.footerInfo ?? "")
-            self.footerInfoLabel.isHidden = reward.status?.footerInfo == nil
-            self.footerInfoLabel.textColor = reward.status?.footerInfoColor ?? .grey
-
-            let shouldHideFooter: Bool = (reward.status == .grabbed && self.reward?.canRedeem == false)
-            self.actionButton.isHidden = shouldHideFooter
-            self.footerInfoLabel.isHidden = shouldHideFooter
-            self.footerStackView.isHidden = shouldHideFooter
-            self.tableView.tableFooterView?.isHidden = shouldHideFooter
-            self.tableView.sectionHeaderHeight = UITableView.automaticDimension
-            self.tableView.estimatedSectionHeaderHeight = 62
-
-            self.congratulationStackView.isHidden = reward.status != .grabbed
-            self.congratulationStackView.arrangedSubviews.forEach {
-                $0.isHidden = reward.status != .grabbed
-            }
+            displayReward(reward: reward)
         }
     }
 
-    private var reward: Reward? {
-        return self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }.first
-    }
+//    private var reward: Reward? {
+//        return self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }.first
+//    }
 
     private var count: Int = 0
 
@@ -108,6 +67,11 @@ class RewardViewController: TimeBaseViewController {
     @IBOutlet private weak var rewardVoucherDetailsStackView: UIStackView!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var yearsView: UIView!
+    @IBOutlet private weak var yearLabel1: UILabel!
+    @IBOutlet private weak var yearLabel2: UILabel!
+    @IBOutlet private weak var yearsConstraint: NSLayoutConstraint!
+    private var reward: Reward?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,7 +87,7 @@ class RewardViewController: TimeBaseViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        if (liveChatView.isExpand) {
+        if liveChatView.isExpand {
             liveChatConstraint.constant = 0
         } else {
             liveChatConstraint.constant = -125
@@ -132,6 +96,8 @@ class RewardViewController: TimeBaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.yearsConstraint.constant = 0
+        self.yearsView.isHidden = true
         self.refresh()
     }
 
@@ -216,6 +182,77 @@ class RewardViewController: TimeBaseViewController {
         default:
             return
         }
+    }
+    
+    func displayReward(reward: Reward) {
+        if let imagePath = reward.image {
+            self.tableHeaderImageView.sd_setImage(with: URL(string: imagePath), completed: nil)
+        }
+        self.sectionCollapsed = [Bool](repeating: true, count: reward.sections.count)
+        self.rewardNameLabel.text = String(htmlEncodedString: reward.name ?? "")
+        self.validityLabel.text = String(htmlEncodedString: reward.validityPeriod ?? "")
+
+        self.validityPeriodStackView.axis = reward.status == .grabbed ? .vertical : .horizontal
+
+        for (index, view) in self.voucherStackView.arrangedSubviews.enumerated() {
+            if (index != 0) {
+                self.voucherStackView.removeArrangedSubview(view)
+                view.removeFromSuperview()
+            }
+        }
+
+        if (reward.status != .expired) {
+            if let voucherCodes = reward.code?.filter({ $0.isValidURL == false }) {
+                for voucherCode in voucherCodes {
+                    if let voucherLabel = UINib(nibName: "VoucherLabel", bundle:nil).instantiate(withOwner: nil, options: nil)[0] as? VoucherLabel {
+                        voucherLabel.text = String(htmlEncodedString: voucherCode ?? "")
+                        self.voucherStackView.addArrangedSubview(voucherLabel)
+                    }
+                }
+            }
+        }
+
+        let shouldHideVoucher = reward.code == nil || reward.status == .redeemed
+        self.voucherStackView.isHidden = shouldHideVoucher
+        self.voucherStackView.arrangedSubviews.forEach {
+            $0.isHidden = shouldHideVoucher
+        }
+
+        self.tableView.reloadData()
+        self.actionButton.setTitle(reward.status?.buttonTitle ?? "", for: .normal)
+
+        let buttonActionable = reward.status == .available || (reward.status == .grabbed && self.reward?.canRedeem == true)
+        self.actionButton.isEnabled = buttonActionable
+        self.actionButton.backgroundColor = buttonActionable ? .primary : .grey2
+
+        self.footerInfoLabel.text = String(htmlEncodedString: reward.status?.footerInfo ?? "")
+        self.footerInfoLabel.isHidden = reward.status?.footerInfo == nil
+        self.footerInfoLabel.textColor = reward.status?.footerInfoColor ?? .grey
+
+        let shouldHideFooter: Bool = (reward.status == .grabbed && (self.reward?.canRedeem == false || self.reward?.canRedeem == nil))
+        self.actionButton.isHidden = shouldHideFooter
+        self.footerInfoLabel.isHidden = shouldHideFooter
+        self.footerStackView.isHidden = shouldHideFooter
+        self.tableView.tableFooterView?.isHidden = shouldHideFooter
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension
+        self.tableView.estimatedSectionHeaderHeight = 62
+
+        self.congratulationStackView.isHidden = reward.status != .grabbed
+        self.congratulationStackView.arrangedSubviews.forEach {
+            $0.isHidden = reward.status != .grabbed
+        }
+    }
+    
+    @IBAction func actYear1(_ sender: Any) {
+        self.yearLabel1.textColor = UIColor.primary
+        self.yearLabel2.textColor = UIColor.gray
+        displayReward(reward: self.rewards[0])
+    }
+    
+    @IBAction func actYear2(_ sender: Any) {
+        self.yearLabel1.textColor = UIColor.gray
+        self.yearLabel2.textColor = UIColor.primary
+        displayReward(reward: self.rewards[1])
     }
 }
 
@@ -390,3 +427,5 @@ extension String {
 //        }
 //    }
 }
+
+

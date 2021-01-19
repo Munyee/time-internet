@@ -11,6 +11,7 @@ import ApptivityFramework
 import TimeSelfCareData
 import UserNotifications
 import Firebase
+import Smartlook
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -41,7 +42,9 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
         application.setupRemoteNotifications()
         APNSController.shared.dataDelegate = self
-
+        
+        Smartlook.setupAndStartRecording(key: "73e0b72d49d303d9c7e365bbfbcffde6e0e5dabc")
+        
         self.applyAppearance()
 
         return true

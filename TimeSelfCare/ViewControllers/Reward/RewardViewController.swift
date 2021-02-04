@@ -185,6 +185,8 @@ class RewardViewController: TimeBaseViewController {
     }
     
     func displayReward(reward: Reward) {
+        
+        self.reward = reward
         if let imagePath = reward.image {
             self.tableHeaderImageView.sd_setImage(with: URL(string: imagePath), completed: nil)
         }

@@ -11,6 +11,7 @@ import ApptivityFramework
 import TimeSelfCareData
 import UserNotifications
 import Firebase
+import Smartlook
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")

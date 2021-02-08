@@ -42,6 +42,7 @@ target 'TimeSelfCare' do
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Crashlytics'
   pod 'FreshchatSDK'
+  pod 'Smartlook'
 
   target 'TimeSelfCareTests' do
     inherit! :search_paths

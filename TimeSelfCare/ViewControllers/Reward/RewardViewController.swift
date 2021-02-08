@@ -71,6 +71,7 @@ class RewardViewController: TimeBaseViewController {
     @IBOutlet private weak var yearLabel1: UILabel!
     @IBOutlet private weak var yearLabel2: UILabel!
     @IBOutlet private weak var yearsConstraint: NSLayoutConstraint!
+    
     private var reward: Reward?
     
     override func viewDidLoad() {
@@ -185,6 +186,8 @@ class RewardViewController: TimeBaseViewController {
     }
     
     func displayReward(reward: Reward) {
+        
+        self.reward = reward
         if let imagePath = reward.image {
             self.tableHeaderImageView.sd_setImage(with: URL(string: imagePath), completed: nil)
         }

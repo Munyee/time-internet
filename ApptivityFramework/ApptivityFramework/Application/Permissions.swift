@@ -44,7 +44,7 @@ public extension UIViewController {
             })
         case .authorized:
             authorized?()
-        case .restricted, .denied, .limited:
+        case .restricted, .denied:
             self.showAlertMessage(title: alertTitle, message: reason, actions: [
                 UIAlertAction(title: NSLocalizedString("Later", comment: "Later"), style: UIAlertActionStyle.cancel, handler: nil),
                 UIAlertAction(title: NSLocalizedString("Settings", comment: "Settings"), style: UIAlertActionStyle.default, handler: { (action: UIAlertAction) in
@@ -62,7 +62,7 @@ public extension UIViewController {
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization({ (selectedStatus: PHAuthorizationStatus) in
                 switch selectedStatus {
-                case .authorized, .limited:
+                case .authorized:
                     if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
                         imagePicker.sourceType = UIImagePickerControllerSourceType.camera
                         self.present(imagePicker, animated: true, completion: nil)
@@ -79,7 +79,7 @@ public extension UIViewController {
                 self.present(imagePicker, animated: true, completion: nil)
             }
 
-        case .restricted, .denied, .limited:
+        case .restricted, .denied:
             self.showAlertMessage(title: alertTitle, message: reason, actions: [
                 UIAlertAction(title: NSLocalizedString("Later", comment: "Later"), style: UIAlertActionStyle.cancel, handler: nil),
                 UIAlertAction(title: NSLocalizedString("Settings", comment: "Settings"), style: UIAlertActionStyle.default, handler: { (action: UIAlertAction) in

@@ -71,6 +71,7 @@ class RewardViewController: TimeBaseViewController {
     @IBOutlet private weak var yearLabel1: UILabel!
     @IBOutlet private weak var yearLabel2: UILabel!
     @IBOutlet private weak var yearsConstraint: NSLayoutConstraint!
+    
     private var reward: Reward?
     
     override func viewDidLoad() {

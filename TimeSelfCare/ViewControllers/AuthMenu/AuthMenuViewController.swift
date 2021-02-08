@@ -53,7 +53,7 @@ internal class AuthMenuViewController: TimeBaseViewController {
     }
 
     @IBAction func showSignUpPlans(_ sender: Any) {
-        let url = URL(string: "http://www.time.com.my/personal/broadband/fibre-broadband")! // swiftlint:disable:this force_unwrapping
+        let url = URL(string: "https://www.time.com.my/personal/broadband/fibre-broadband")! // swiftlint:disable:this force_unwrapping
         self.showSafariController(with: url)
     }
 

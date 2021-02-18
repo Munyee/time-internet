@@ -82,4 +82,10 @@ class PerformanceViewController: BaseViewController {
         attributedString.addAttributes(boldFontAttribute, range: range)
         return attributedString
     }
+    
+    @IBAction func actParentalControl(_ sender: Any) {
+        let parentalControlVC: PCMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController()
+        self.presentNavigation(parentalControlVC, animated: true)
+    }
+    
 }

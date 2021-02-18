@@ -12,6 +12,7 @@ import TimeSelfCareData
 import UserNotifications
 import Firebase
 import Smartlook
+import HwMobileSDK
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -49,6 +50,8 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         self.applyAppearance()
+        
+        initHwSdk()
 
         return true
     }
@@ -156,5 +159,26 @@ extension AppDelegate {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: subheadlineFont], for: .normal)
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: subheadlineFont], for: .highlighted)
         }
+    }
+}
+
+extension AppDelegate {
+    func initHwSdk() {
+        let callBackAdapter = HwCallbackAdapter.init()
+        let defaults = UserDefaults.standard
+        callBackAdapter.handle = {(value) in
+            if let _ = value as? HwAuthInitResult {
+                
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        let param  = HwAppAuthInitParam.init()
+        param.ip = "nce.time.com.my";
+        param.port = 30110;
+        param.locale = NSLocale.system;
+        HwNetopenMobileSDK.initWithHwAuth(param, with: callBackAdapter)
     }
 }

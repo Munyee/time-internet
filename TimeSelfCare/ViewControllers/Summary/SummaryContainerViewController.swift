@@ -8,6 +8,7 @@
 
 import UIKit
 import Lottie
+import MBProgressHUD
 
 class SummaryContainerViewController: TimeBaseViewController {
     enum Page {
@@ -57,7 +58,7 @@ class SummaryContainerViewController: TimeBaseViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        if (liveChatView.isExpand) {
+        if liveChatView.isExpand {
             liveChatConstraint.constant = 0
         } else {
             liveChatConstraint.constant = -125
@@ -89,6 +90,41 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.pages.append(.performanceStatusSummary)
 
         self.updatePageControl()
+        
+        guard
+            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+            else {
+                return
+        }
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        
+        if account.custSegment == .residential {
+            AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
+                hud.hide(animated: true)
+                guard error == nil else {
+                    return
+                }
+
+                if let result = data {
+                    let huaweiDevice = IsHuaweiDevice(with: result)
+                    if huaweiDevice?.status == "ok" {
+                        HuaweiHelper.shared.initHwSdk {
+                            HuaweiHelper.shared.checkIsLogin { result in
+                                if !result.isLogined {
+                                    HuaweiHelper.shared.login { loginInfo in
+                                        HuaweiHelper.shared.loginInfo(result: loginInfo)
+                                    }
+                                } else {
+                                    HuaweiHelper.shared.loginInfo(result: result.loginInfo)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @objc

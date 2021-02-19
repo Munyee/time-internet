@@ -128,6 +128,12 @@ class PCProfileViewController: UIViewController {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
+    
+    @IBAction func actPeriodSelect(_ sender: Any) {
+        if let devicesVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "DevicesViewController") as? DevicesViewController {
+            self.presentNavigation(devicesVC, animated: true)
+        }
+    }
 }
 
 extension PCProfileViewController: BlockWebsiteViewDelegate {

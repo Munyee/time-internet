@@ -8,6 +8,7 @@
 
 import UIKit
 import ApptivityFramework
+import HwMobileSDK
 
 public extension NSNotification.Name {
     static let SelectedAccountDidChange: NSNotification.Name = NSNotification.Name(rawValue: "SelectedAccountDidChange")
@@ -39,6 +40,15 @@ public class AccountController {
         }
         set(value) {
             Installation.current().set(value, forKey: "needUpdateEmailAddress")
+        }
+    }
+    
+    public var gatewayDevId: String? {
+        get {
+            return UserDefaults.standard.value(forKey: "gatewayDevId") as? String ?? ""
+        }
+        set(value) {
+            UserDefaults.standard.set(value, forKey: "gatewayDevId")
         }
     }
 

@@ -19,7 +19,16 @@ class PerformanceViewController: BaseViewController {
 
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var animationView: LOTAnimationView!
-    @IBOutlet var runDiagnosticsButton: UIButton!
+    @IBOutlet private weak var runDiagnosticsButton: UIButton!
+    @IBOutlet private weak var speedTestView: UIView!
+    @IBOutlet private weak var nceView: UIView!
+    @IBOutlet weak var numberOfDevice: UILabel!
+    @IBOutlet weak var downSpeed: UILabel!
+    @IBOutlet weak var downByte: UILabel!
+    @IBOutlet weak var upSpeed: UILabel!
+    @IBOutlet weak var upByte: UILabel!
+    
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +37,32 @@ class PerformanceViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.checkConnectionStatus()
+        
+        speedTestView.isHidden = true
+        nceView.isHidden = true
+        
+        timer?.invalidate()
+        
+        HuaweiHelper.shared.queryGateway { gateway in
+            HuaweiHelper.shared.queryLanDeviceCount { result in
+                self.numberOfDevice.text = "\(result.lanDeviceCount)"
+            }
+            self.speedTestView.isHidden = false
+            self.nceView.isHidden = false
+            
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
+                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in
+                    let (downSpeed, downByte) = Units(kBytes: Int64(gatewaySpeed.downSpeed)).getReadableUnit()
+                    let (upSpeed, upByte) = Units(kBytes: Int64(gatewaySpeed.upSpeed)).getReadableUnit()
+                    self.downSpeed.text = "\(downSpeed)"
+                    self.downByte.text = "\(downByte)"
+                    self.upSpeed.text = "\(upSpeed)"
+                    self.upByte.text = "\(upByte)"
+                }
+            }
+        }
+        
+        
     }
 
     @objc

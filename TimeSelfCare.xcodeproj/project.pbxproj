@@ -53,12 +53,16 @@
 		9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21C0E025DE45AF008B3824 /* PCProfileViewController.swift */; };
 		9E21C0E425DE9EA3008B3824 /* BlockWebsiteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E21C0E325DE9EA3008B3824 /* BlockWebsiteView.xib */; };
 		9E21C0E625DE9EB6008B3824 /* BlockWebsiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */; };
+		9E4AB95225DFA79000F1DEFE /* IsHuaweiDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */; };
+		9E4AB95A25DFF97B00F1DEFE /* FunctionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; };
+		9E4AB95B25DFF97B00F1DEFE /* FunctionSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9E4AB95C25DFF97B00F1DEFE /* HwMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789A25D40C0400C4D388 /* HwMobileSDK.framework */; };
+		9E4AB95D25DFF97B00F1DEFE /* HwMobileSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789A25D40C0400C4D388 /* HwMobileSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9E4AB95F25DFFA0800F1DEFE /* HuaweiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */; };
+		9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB96025E00EE600F1DEFE /* Units.swift */; };
+		9E4FE1D525DF59F300EDBBF7 /* DevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4FE1D425DF59F300EDBBF7 /* DevicesViewController.swift */; };
 		9E59AF6325DE325A00FF427A /* Parentalcontrol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */; };
 		9E59AF6525DE32AE00FF427A /* PCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */; };
-		9E5F789D25D410C100C4D388 /* FunctionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; };
-		9E5F789E25D410C100C4D388 /* FunctionSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9E5F789F25D410C200C4D388 /* HwMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789A25D40C0400C4D388 /* HwMobileSDK.framework */; };
-		9E5F78A025D410C200C4D388 /* HwMobileSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789A25D40C0400C4D388 /* HwMobileSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9E8FC9BA25357255008936D2 /* HowItWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9AE25357255008936D2 /* HowItWorkViewController.swift */; };
 		9E8FC9BB25357255008936D2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9AF25357255008936D2 /* ShareViewController.swift */; };
 		9E8FC9BC25357255008936D2 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9B125357255008936D2 /* BannerCollectionViewCell.swift */; };
@@ -269,20 +273,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9E5F78A025D410C200C4D388 /* HwMobileSDK.framework in Embed Frameworks */,
+				9E4AB95D25DFF97B00F1DEFE /* HwMobileSDK.framework in Embed Frameworks */,
 				5A4790461FA972390074B5D4 /* TimeSelfCareData.framework in Embed Frameworks */,
-				9E5F789E25D410C100C4D388 /* FunctionSDK.framework in Embed Frameworks */,
+				9E4AB95B25DFF97B00F1DEFE /* FunctionSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E254D5C820103C4000AABF66 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -345,6 +340,10 @@
 		9E21C0E325DE9EA3008B3824 /* BlockWebsiteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockWebsiteView.xib; sourceTree = "<group>"; };
 		9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockWebsiteView.swift; sourceTree = "<group>"; };
 		9E38767725C028590015A514 /* Smartlook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Smartlook.framework; path = "System/Library/Frameworks/Smartlook.xcframework/ios-arm64_i386_x86_64-simulator/Smartlook.framework"; sourceTree = SDKROOT; };
+		9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsHuaweiDevice.swift; sourceTree = "<group>"; };
+		9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuaweiHelper.swift; sourceTree = "<group>"; };
+		9E4AB96025E00EE600F1DEFE /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		9E4FE1D425DF59F300EDBBF7 /* DevicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesViewController.swift; sourceTree = "<group>"; };
 		9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Parentalcontrol.storyboard; sourceTree = "<group>"; };
 		9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCMainViewController.swift; sourceTree = "<group>"; };
 		9E5F789925D40C0200C4D388 /* FunctionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FunctionSDK.framework; sourceTree = "<group>"; };
@@ -546,12 +545,12 @@
 				1CD36BF464D398D6CB05155E /* CoreTelephony.framework in Frameworks */,
 				20131C3E2EBB8DFFEDF33892 /* SystemConfiguration.framework in Frameworks */,
 				00C198B8F4D0F7F138121D4A /* QuartzCore.framework in Frameworks */,
-				9E5F789F25D410C200C4D388 /* HwMobileSDK.framework in Frameworks */,
-				9E5F789D25D410C100C4D388 /* FunctionSDK.framework in Frameworks */,
+				9E4AB95C25DFF97B00F1DEFE /* HwMobileSDK.framework in Frameworks */,
 				6BC0022120F3B21AE87CEBCA /* AVFoundation.framework in Frameworks */,
 				E7405981203C439B5ACD9CE9 /* CoreMedia.framework in Frameworks */,
 				4D0A9757D0386117A572CDEA /* CoreVideo.framework in Frameworks */,
 				4D47E5CADA854258D4F72E40 /* Pods_TimeSelfCare.framework in Frameworks */,
+				9E4AB95A25DFF97B00F1DEFE /* FunctionSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,6 +690,7 @@
 				E2AD69DD20AD2E4C001D104E /* Ssid.swift */,
 				E2E8692A20B665CB00BD9C3C /* ActivityNotification.swift */,
 				E2FB110722CC54B1000FED93 /* Reward.swift */,
+				9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -798,6 +798,7 @@
 		5A478FFC1FA972070074B5D4 /* TimeSelfCare */ = {
 			isa = PBXGroup;
 			children = (
+				9E4AB95925DFF8D100F1DEFE /* HuaweiHelper */,
 				9EC13561241B6E1200E59C44 /* APTSidebarNavigationController */,
 				E2626D5520A965A200891953 /* TimeSelfCare.entitlements */,
 				E22A5B5222C5A4E500C99ED2 /* GoogleService-Info.plist */,
@@ -877,6 +878,15 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		9E4AB95925DFF8D100F1DEFE /* HuaweiHelper */ = {
+			isa = PBXGroup;
+			children = (
+				9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */,
+				9E4AB96025E00EE600F1DEFE /* Units.swift */,
+			);
+			path = HuaweiHelper;
+			sourceTree = "<group>";
+		};
 		9E59AF6125DE31AD00FF427A /* ParentalControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -884,6 +894,7 @@
 				9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */,
 				9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */,
 				9E21C0E025DE45AF008B3824 /* PCProfileViewController.swift */,
+				9E4FE1D425DF59F300EDBBF7 /* DevicesViewController.swift */,
 			);
 			path = ParentalControl;
 			sourceTree = "<group>";
@@ -1302,7 +1313,6 @@
 				5A47902D1FA972390074B5D4 /* Headers */,
 				5A47902E1FA972390074B5D4 /* Resources */,
 				0A8E01ED1FA9B10700CA27A9 /* SwiftLint */,
-				E254D5C820103C4000AABF66 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1713,6 +1723,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E4FE1D525DF59F300EDBBF7 /* DevicesViewController.swift in Sources */,
 				9EBA8B7C24B579690021B6AB /* EditProfileViewController.swift in Sources */,
 				E25E3825230B956E0013CEFD /* RewardOutletsCell.swift in Sources */,
 				E277BA1721118C6000660FCE /* TimeTableView.swift in Sources */,
@@ -1779,6 +1790,7 @@
 				E261DD291FD7A0C500DEEDBA /* HomeForwardListViewController.swift in Sources */,
 				E20A717C1FD4A80F00938766 /* AutoDebitCell.swift in Sources */,
 				9E8FC9C025357255008936D2 /* DiscountViewController.swift in Sources */,
+				9E4AB95F25DFFA0800F1DEFE /* HuaweiHelper.swift in Sources */,
 				E2E2FF6A1FC3C11100125566 /* SummaryContainerViewController.swift in Sources */,
 				9E9EB76324D797FE00D0D342 /* DiagnosticsViewController.swift in Sources */,
 				E2FB887E20905EB200DDADC5 /* VoicePlanHeaderView.swift in Sources */,
@@ -1786,6 +1798,7 @@
 				0A8E01FB1FA9B50B00CA27A9 /* LoginViewController.swift in Sources */,
 				E27DCC981FE0E60300A82769 /* UIView+.swift in Sources */,
 				9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */,
+				9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */,
 				9E8FC9BA25357255008936D2 /* HowItWorkViewController.swift in Sources */,
 				9EE0B95D246513290073288B /* LiveChatView.swift in Sources */,
 				0A8E01F71FA9B50B00CA27A9 /* LaunchViewController.swift in Sources */,
@@ -1875,6 +1888,7 @@
 				E2345C911FB968A500DA42F0 /* AccountDataController.swift in Sources */,
 				E2345C921FB968A500DA42F0 /* BillDataController.swift in Sources */,
 				E2345C7F1FB9654D00DA42F0 /* PaymentType.swift in Sources */,
+				9E4AB95225DFA79000F1DEFE /* IsHuaweiDevice.swift in Sources */,
 				E2DD464520D242D600764512 /* ConversationDataController.swift in Sources */,
 				0A8E023E1FA9CC2B00CA27A9 /* Profile.swift in Sources */,
 				0A8E02031FA9C5AE00CA27A9 /* AccountController.swift in Sources */,
@@ -2188,6 +2202,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1918B3578907B8DF5E6CF629 /* Pods-TimeSelfCareData.debug.xcconfig */;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2197,13 +2212,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TimeSelfCareData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apptivitylab.timeselfcare.data;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -2220,6 +2236,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 43B6E46DAF462DB312B7C63E /* Pods-TimeSelfCareData.release.xcconfig */;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2228,13 +2245,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TimeSelfCareData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apptivitylab.timeselfcare.data;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -2405,6 +2423,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 703FF6EF78BAE37AA85B29C1 /* Pods-TimeSelfCareData.staging.xcconfig */;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2413,6 +2432,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2420,7 +2440,7 @@
 				);
 				INFOPLIST_FILE = TimeSelfCareData/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apptivitylab.timeselfcare.data;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";

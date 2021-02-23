@@ -58,6 +58,8 @@
 		9E36BB4925E3EF4700E5575F /* PCDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */; };
 		9E36BB4B25E3EFB400E5575F /* PCDevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4A25E3EFB400E5575F /* PCDevicesViewController.swift */; };
 		9E36BB4D25E3F0C100E5575F /* PCPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4C25E3F0C100E5575F /* PCPeriodViewController.swift */; };
+		9E36BB4F25E4D9C800E5575F /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4E25E4D9C800E5575F /* DeviceView.swift */; };
+		9E36BB5125E4DA7400E5575F /* DeviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E36BB5025E4DA7400E5575F /* DeviceView.xib */; };
 		9E4AB95225DFA79000F1DEFE /* IsHuaweiDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */; };
 		9E4AB95A25DFF97B00F1DEFE /* FunctionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; };
 		9E4AB95B25DFF97B00F1DEFE /* FunctionSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -348,6 +350,8 @@
 		9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		9E36BB4A25E3EFB400E5575F /* PCDevicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCDevicesViewController.swift; sourceTree = "<group>"; };
 		9E36BB4C25E3F0C100E5575F /* PCPeriodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCPeriodViewController.swift; sourceTree = "<group>"; };
+		9E36BB4E25E4D9C800E5575F /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
+		9E36BB5025E4DA7400E5575F /* DeviceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceView.xib; sourceTree = "<group>"; };
 		9E38767725C028590015A514 /* Smartlook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Smartlook.framework; path = "System/Library/Frameworks/Smartlook.xcframework/ios-arm64_i386_x86_64-simulator/Smartlook.framework"; sourceTree = SDKROOT; };
 		9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsHuaweiDevice.swift; sourceTree = "<group>"; };
 		9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuaweiHelper.swift; sourceTree = "<group>"; };
@@ -882,6 +886,8 @@
 			children = (
 				9E21C0E325DE9EA3008B3824 /* BlockWebsiteView.xib */,
 				9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */,
+				9E36BB5025E4DA7400E5575F /* DeviceView.xib */,
+				9E36BB4E25E4D9C800E5575F /* DeviceView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -1439,6 +1445,7 @@
 				9E59AF6325DE325A00FF427A /* Parentalcontrol.storyboard in Resources */,
 				9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */,
 				5A4790051FA972080074B5D4 /* Assets.xcassets in Resources */,
+				9E36BB5125E4DA7400E5575F /* DeviceView.xib in Resources */,
 				E22050E21FCD4D0B004D5B10 /* DIN-Bold.ttf in Resources */,
 				E2610F771FC51F6F00959D85 /* Payment.storyboard in Resources */,
 				9EE0B95B246512A80073288B /* LiveChatView.xib in Resources */,
@@ -1817,6 +1824,7 @@
 				9E9EB76324D797FE00D0D342 /* DiagnosticsViewController.swift in Sources */,
 				E2FB887E20905EB200DDADC5 /* VoicePlanHeaderView.swift in Sources */,
 				E274AD65210711F700E62A42 /* RightConversationCell.swift in Sources */,
+				9E36BB4F25E4D9C800E5575F /* DeviceView.swift in Sources */,
 				0A8E01FB1FA9B50B00CA27A9 /* LoginViewController.swift in Sources */,
 				E27DCC981FE0E60300A82769 /* UIView+.swift in Sources */,
 				9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */,

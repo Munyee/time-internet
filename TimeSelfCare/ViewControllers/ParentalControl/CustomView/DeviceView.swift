@@ -1,43 +1,70 @@
 //
-//  PCDeviceTableViewCell.swift
+//  DeviceView.swift
 //  TimeSelfCare
 //
-//  Created by Chan Mun Yee on 22/02/2021.
+//  Created by Chan Mun Yee on 23/02/2021.
 //  Copyright © 2021 Apptivity Lab. All rights reserved.
 //
 
 import UIKit
+import HwMobileSDK
 
-class PCDeviceTableViewCell: UITableViewCell {
+protocol DeviceViewDelegate {
+    func removeDevice(device: HwLanDevice)
+    func showDevices()
+}
 
+class DeviceView: UIView {
+
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mac: UILabel!
-    @IBOutlet weak var radioImg: UIImageView!
     @IBOutlet weak var deviceImg: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    var device: HwLanDevice?
+    var delegate: DeviceViewDelegate?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
     }
     
-    func setChosen(chosen: Bool) {
-        if chosen {
-            radioImg.image = UIImage(#imageLiteral(resourceName: "ic_tick"))
-        } else {
-            radioImg.image = UIImage(#imageLiteral(resourceName: "ic_unselect_radio"))
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    required init(device: HwLanDevice) {
+        super.init(frame: .zero)
+        commonInit()
+        self.device = device
+        name.text = device.name
+        mac.text = device.mac
+        
+        HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: [device.mac]) { deviceTypeInfo in
+            if let deviceInfo = deviceTypeInfo.first(where: { $0.mac == device.mac }) {
+                self.setDeviceImg(device: deviceInfo.deviceType)
+            }
         }
     }
     
-    func setDeviceImg(device: String, isOnline: Bool) {
-        if isOnline {
-            deviceImg.tintColor = .primary
-        } else {
-            deviceImg.tintColor = UIColor(hex: "8B8B8B")
+    private func commonInit() {
+        Bundle.main.loadNibNamed("DeviceView", owner: self, options: nil)
+        addSubview(contentView)
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    }
+    
+    @IBAction func actRemoveDevice(_ sender: Any) {
+        if let dev = device {
+            delegate?.removeDevice(device: self.device!)
         }
+    }
+    
+    @IBAction func actSelect(_ sender: Any) {
+        delegate?.showDevices()
+    }
+    
+    func setDeviceImg(device: String) {
         switch device {
         case "PC":
             deviceImg.image = UIImage(#imageLiteral(resourceName: "ic_device_pc"))
@@ -67,5 +94,4 @@ class PCDeviceTableViewCell: UITableViewCell {
             deviceImg.image = UIImage(#imageLiteral(resourceName: "ic_device_other"))
         }
     }
-
 }

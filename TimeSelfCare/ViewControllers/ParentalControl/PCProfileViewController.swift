@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import HwMobileSDK
 
 class PCProfileViewController: UIViewController {
+    
+    var selectedDevices: [HwLanDevice] = []
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -19,7 +22,8 @@ class PCProfileViewController: UIViewController {
     
     @IBOutlet weak var deviceTextView: FloatLabeledTextView!
     @IBOutlet weak var deviceSeperator: UIView!
-    @IBOutlet weak var selectDeviceView: UIView!
+    @IBOutlet weak var selectDeviceStack: UIStackView!
+    @IBOutlet weak var selectDeviceView: UIControl!
     
     @IBOutlet weak var periodTextView: FloatLabeledTextView!
     @IBOutlet weak var periodSeperator: UIView!
@@ -92,7 +96,7 @@ class PCProfileViewController: UIViewController {
     }
     
     func insertBlockWebsiteInput() {
-        let blockWebsiteView = BlockWebsiteView.init(allowRemove: false, isPrimary: true)
+        let blockWebsiteView = BlockWebsiteView(allowRemove: false, isPrimary: true)
         blockWebsiteView.delegate = self
         blockWebsiteStack.addArrangedSubview(blockWebsiteView)
     }
@@ -131,6 +135,7 @@ class PCProfileViewController: UIViewController {
     
     @IBAction func actDeviceSelect(_ sender: Any) {
         if let devicesVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCDevicesViewController") as? PCDevicesViewController {
+            devicesVC.delegate = self
             self.presentNavigation(devicesVC, animated: true)
         }
     }
@@ -169,5 +174,59 @@ extension PCProfileViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         profileSeperator.backgroundColor = UIColor(hex: "D9D9D9")
+    }
+}
+
+extension PCProfileViewController: PCDevicesViewControllerDelegate {
+    func selected(devices: [HwLanDevice]) {
+        selectedDevices = devices
+        updateDeviceList()
+    }
+    
+    func updateDeviceList() {
+        for view in selectDeviceStack.subviews {
+            if let devView = view as? DeviceView {
+                selectDeviceStack.removeArrangedSubview(devView)
+                devView.removeFromSuperview()
+            }
+        }
+        
+        if selectedDevices.isEmpty {
+            selectDeviceView.isHidden = false
+            deviceTextView.alwaysShowFloatingLabel = false
+        } else {
+            selectDeviceView.isHidden = true
+            deviceTextView.alwaysShowFloatingLabel = true
+            for device in selectedDevices {
+                let deviceView = DeviceView(device: device)
+                deviceView.delegate = self
+                selectDeviceStack.addArrangedSubview(deviceView)
+            }
+        }
+    }
+}
+
+extension PCProfileViewController: DeviceViewDelegate {
+    func removeDevice(device: HwLanDevice) {
+        let index = selectedDevices.firstIndex(of: device)
+        if let i = index {
+            selectedDevices.remove(at: i)
+            let view = selectDeviceStack.subviews[i + 1]
+            selectDeviceStack.removeArrangedSubview(view)
+            view.removeFromSuperview()
+            
+            if selectedDevices.isEmpty {
+                selectDeviceView.isHidden = false
+                deviceTextView.alwaysShowFloatingLabel = false
+            }
+        }
+    }
+    
+    func showDevices() {
+        if let devicesVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCDevicesViewController") as? PCDevicesViewController {
+            devicesVC.delegate = self
+            devicesVC.selectedDevices = selectedDevices
+            self.presentNavigation(devicesVC, animated: true)
+        }
     }
 }

@@ -323,7 +323,7 @@ access</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="806"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjw-As-waR">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="410.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="417.33333333333331"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new user profile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZB3-5Q-gbu">
                                                 <rect key="frame" x="35" y="20" width="344" height="18.666666666666671"/>
@@ -338,7 +338,7 @@ access</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="rqt-Uu-crv">
-                                                <rect key="frame" x="35" y="108.33333333333331" width="344" height="272"/>
+                                                <rect key="frame" x="35" y="108.33333333333331" width="344" height="279"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeZ-cr-m9o">
                                                         <rect key="frame" x="0.0" y="0.0" width="344" height="59"/>
@@ -379,15 +379,8 @@ access</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wev-Zp-dU2">
-                                                        <rect key="frame" x="0.0" y="74.000000000000014" width="344" height="58.999999999999986"/>
+                                                        <rect key="frame" x="0.0" y="74.000000000000014" width="344" height="65.999999999999986"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSq-qg-i1W" userLabel="Separator">
-                                                                <rect key="frame" x="0.0" y="58" width="344" height="1"/>
-                                                                <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="xqe-iJ-dOO"/>
-                                                                </constraints>
-                                                            </view>
                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2N-1v-TB1" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="0.0" width="324" height="50"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -403,14 +396,14 @@ access</string>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iQi-0a-s6D">
-                                                                <rect key="frame" x="0.0" y="15" width="344" height="43"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iQi-0a-s6D">
+                                                                <rect key="frame" x="0.0" y="15" width="344" height="50"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4R2-Au-MeG" customClass="UIControl">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="43"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="50"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Device(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GsV-I3-eru">
-                                                                                <rect key="frame" x="10" y="0.0" width="324" height="35"/>
+                                                                                <rect key="frame" x="10" y="0.0" width="324" height="42"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                                 <color key="textColor" red="0.76870030160000002" green="0.76852744819999996" blue="0.77646559479999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 <nil key="highlightedColor"/>
@@ -429,6 +422,13 @@ access</string>
                                                                     </view>
                                                                 </subviews>
                                                             </stackView>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSq-qg-i1W" userLabel="Separator">
+                                                                <rect key="frame" x="0.0" y="65" width="344" height="1"/>
+                                                                <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="xqe-iJ-dOO"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
@@ -438,7 +438,6 @@ access</string>
                                                             <constraint firstAttribute="trailing" secondItem="K2N-1v-TB1" secondAttribute="trailing" constant="10" id="IL6-j9-qIw"/>
                                                             <constraint firstItem="K2N-1v-TB1" firstAttribute="leading" secondItem="wev-Zp-dU2" secondAttribute="leading" constant="10" id="IT8-F4-Hey"/>
                                                             <constraint firstItem="K2N-1v-TB1" firstAttribute="top" secondItem="wev-Zp-dU2" secondAttribute="top" id="OGI-8L-Au4"/>
-                                                            <constraint firstItem="SSq-qg-i1W" firstAttribute="top" secondItem="K2N-1v-TB1" secondAttribute="bottom" constant="8" id="P5Q-39-YNF"/>
                                                             <constraint firstAttribute="trailing" secondItem="SSq-qg-i1W" secondAttribute="trailing" id="Rzy-sl-NSx"/>
                                                             <constraint firstItem="iQi-0a-s6D" firstAttribute="top" secondItem="wev-Zp-dU2" secondAttribute="top" constant="15" id="WpF-j2-IFT"/>
                                                             <constraint firstItem="SSq-qg-i1W" firstAttribute="leading" secondItem="wev-Zp-dU2" secondAttribute="leading" id="Xfj-o5-Sjs"/>
@@ -446,7 +445,7 @@ access</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLo-Na-Too">
-                                                        <rect key="frame" x="0.0" y="148" width="344" height="59"/>
+                                                        <rect key="frame" x="0.0" y="155" width="344" height="59"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHJ-2Z-a4k" userLabel="Separator">
                                                                 <rect key="frame" x="0.0" y="58" width="344" height="1"/>
@@ -513,7 +512,7 @@ access</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-IL-3Vq">
-                                                        <rect key="frame" x="0.0" y="222" width="344" height="50"/>
+                                                        <rect key="frame" x="0.0" y="229" width="344" height="50"/>
                                                         <subviews>
                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOQ-oZ-dEI" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="0.0" width="324" height="50"/>
@@ -630,7 +629,8 @@ access</string>
                         <outlet property="profileSeperator" destination="1iG-Xk-zsh" id="aUS-id-oTp"/>
                         <outlet property="profileTextView" destination="XjS-ip-Lra" id="GRv-6e-cgq"/>
                         <outlet property="scrollView" destination="kox-ze-vcc" id="9tx-RS-m2T"/>
-                        <outlet property="selectDeviceView" destination="4R2-Au-MeG" id="nDA-aP-vBy"/>
+                        <outlet property="selectDeviceStack" destination="iQi-0a-s6D" id="vcy-9D-ghT"/>
+                        <outlet property="selectDeviceView" destination="4R2-Au-MeG" id="XvP-Nk-LVR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N6j-Jl-DNl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -662,7 +662,7 @@ access</string>
                                     <constraint firstAttribute="height" constant="50" id="Q7V-ol-j56"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="actSetup:" destination="hpT-sP-uWF" eventType="touchUpInside" id="beS-pM-wRh"/>
+                                    <action selector="actConfirm:" destination="R3w-QO-jSo" eventType="touchUpInside" id="sCh-Us-rEb"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qh-fN-oG1">
@@ -701,7 +701,7 @@ access</string>
                                                                         <constraint firstAttribute="height" constant="1" id="jBT-4J-cpg"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9cb-rb-wbt">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_device_other" translatesAutoresizingMaskIntoConstraints="NO" id="9cb-rb-wbt">
                                                                     <rect key="frame" x="13" y="16" width="25" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="25" id="lJQ-oC-M3Y"/>
@@ -753,6 +753,7 @@ access</string>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="deviceImg" destination="9cb-rb-wbt" id="mx8-Tj-XtC"/>
                                                     <outlet property="mac" destination="sGK-L8-4DE" id="oma-uO-278"/>
                                                     <outlet property="name" destination="UGe-1c-rkA" id="Fqg-Qd-6K1"/>
                                                     <outlet property="radioImg" destination="UbP-Lo-ReA" id="mUQ-oZ-eXH"/>
@@ -894,6 +895,7 @@ access</string>
         <image name="ic_add_parental_control" width="46" height="43"/>
         <image name="ic_adddevice" width="46" height="38"/>
         <image name="ic_block_website" width="46" height="43"/>
+        <image name="ic_device_other" width="20" height="17"/>
         <image name="ic_unselect_radio" width="20" height="20"/>
     </resources>
 </document>

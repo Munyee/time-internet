@@ -9,11 +9,16 @@
 import UIKit
 import HwMobileSDK
 
+protocol PCDevicesViewControllerDelegate {
+    func selected(devices: [HwLanDevice])
+}
+
 class PCDevicesViewController: UIViewController {
 
     var arrDevices: [HwLanDevice] = []
     var arrDeviceTypes: [HwDeviceTypeInfo] = []
     var selectedDevices: [HwLanDevice] = []
+    var delegate: PCDevicesViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -26,22 +31,30 @@ class PCDevicesViewController: UIViewController {
     }
     
     func queryDevices() {
-        HuaweiHelper.shared.queryLanDeviceListEx { devices in
-            self.arrDevices = devices.filter { !$0.isAp }
-            self.arrDevices = self.arrDevices.sorted { $0.onLine && !$1.onLine }
+        HuaweiHelper.shared.getAttachParentControlList { arrAttachPC in
+            let controlledDev = arrAttachPC.map { $0.mac }
             
-            
-            let arrMac = self.arrDevices.map { $0.mac }
-            if let macList = arrMac as? [String] {
-                HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: macList) { deviceTypeInfo in
-                    self.arrDeviceTypes = deviceTypeInfo
+            HuaweiHelper.shared.queryLanDeviceListEx { devices in
+                self.arrDevices = devices.filter { !$0.isAp }
+                self.arrDevices = self.arrDevices.filter { !controlledDev.contains($0.mac) }
+                self.arrDevices = self.arrDevices.sorted { $0.onLine && !$1.onLine }
+                
+                let arrMac = self.arrDevices.map { $0.mac }
+                if let macList = arrMac as? [String] {
+                    HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: macList) { deviceTypeInfo in
+                        self.arrDeviceTypes = deviceTypeInfo
+                        self.tableView.reloadData()
+                    }
                 }
             }
-            
-            self.tableView.reloadData()
         }
     }
-
+    
+    @IBAction func actConfirm(_ sender: Any) {
+        self.dismissVC()
+        delegate?.selected(devices: selectedDevices)
+    }
+    
 }
 
 extension PCDevicesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -55,6 +68,7 @@ extension PCDevicesViewController: UITableViewDelegate, UITableViewDataSource {
         let deviceType = arrDeviceTypes.first { $0.mac == device.mac }
         cell?.name.text = device.name
         cell?.mac.text = device.mac
+        cell?.setDeviceImg(device: deviceType?.deviceType ?? "", isOnline: device.onLine)
         cell?.selectionStyle = .none
         
         cell?.setChosen(chosen: selectedDevices.contains { $0.mac == device.mac })

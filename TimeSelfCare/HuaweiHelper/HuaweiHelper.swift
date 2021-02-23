@@ -122,6 +122,22 @@ public extension HuaweiHelper {
         }
     }
     
+    func getAttachParentControlList(completion: @escaping(_ result: [HwAttachParentControl]) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let tplList = value as? [HwAttachParentControl] {
+                completion(tplList)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getAttachParentControlList(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+    
     func getAttachParentalControlTemplateList(completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in

@@ -129,8 +129,14 @@ class PCProfileViewController: UIViewController {
         scrollView.scrollIndicatorInsets = contentInsets
     }
     
+    @IBAction func actDeviceSelect(_ sender: Any) {
+        if let devicesVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCDevicesViewController") as? PCDevicesViewController {
+            self.presentNavigation(devicesVC, animated: true)
+        }
+    }
+    
     @IBAction func actPeriodSelect(_ sender: Any) {
-        if let devicesVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "DevicesViewController") as? DevicesViewController {
+        if let devicesVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCPeriodViewController") as? PCPeriodViewController {
             self.presentNavigation(devicesVC, animated: true)
         }
     }

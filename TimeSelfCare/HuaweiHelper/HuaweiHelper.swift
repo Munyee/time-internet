@@ -18,7 +18,7 @@ public class HuaweiHelper {
 
 public extension HuaweiHelper {
     func initHwSdk(completion: @escaping() -> Void) {
-        let callBackAdapter = HwCallbackAdapter.init()
+        let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let _ = value as? HwAuthInitResult {
                 completion()
@@ -28,7 +28,7 @@ public extension HuaweiHelper {
             print(exception?.errorCode ?? "")
         }
         
-        let param = HwAppAuthInitParam.init() // swiftlint:disable:this
+        let param = HwAppAuthInitParam() // swiftlint:disable:this
         param.ip = "nce.time.com.my"
         param.port = 30110 // swiftlint:disable:this
         param.locale = NSLocale.system
@@ -36,9 +36,9 @@ public extension HuaweiHelper {
     }
     
     func login(completion: @escaping(_ result: HwLoginInfo) -> Void) {
-        let callBackAdapter = HwCallbackAdapter.init()
+        let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
-            if let result = value as? HwLoginInfo  {
+            if let result = value as? HwLoginInfo {
                 completion(result)
             }
         }
@@ -46,7 +46,7 @@ public extension HuaweiHelper {
             print(exception?.errorCode ?? "")
         }
         
-        let loginParam = HwLoginParam.init()
+        let loginParam = HwLoginParam()
         //        loginParam.account = "timence2"
         //        loginParam.password = "timence2@"
         loginParam.account = "timetestnce"
@@ -55,7 +55,7 @@ public extension HuaweiHelper {
     }
     
     func checkIsLogin(completion: @escaping(_ result: HwIsLoginedResult) -> Void) {
-        let callBackAdapter = HwCallbackAdapter.init()
+        let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let result = value as? HwIsLoginedResult {
                 completion(result)
@@ -75,7 +75,7 @@ public extension HuaweiHelper {
     }
     
     func queryGateway(completion: @escaping(_ result: HwSystemInfo) -> Void) {
-        let callBackAdapter = HwCallbackAdapter.init()
+        let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let gateway = value as? HwSystemInfo {
                 completion(gateway)
@@ -91,7 +91,7 @@ public extension HuaweiHelper {
     }
     
     func getGatewaySpeed(completion: @escaping(_ result: HwGatewaySpeed) -> Void) {
-        let callBackAdapter = HwCallbackAdapter.init()
+        let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let gatewaySpeed = value as? HwGatewaySpeed {
                 completion(gatewaySpeed)
@@ -107,7 +107,7 @@ public extension HuaweiHelper {
     }
     
     func queryLanDeviceCount(completion: @escaping(_ result: HwQueryLanDeviceCountResult) -> Void) {
-        let callBackAdapter = HwCallbackAdapter.init()
+        let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let lanDevCountResult = value as? HwQueryLanDeviceCountResult {
                 completion(lanDevCountResult)
@@ -119,6 +119,118 @@ public extension HuaweiHelper {
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.queryLanDeviceCount(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+    
+    func getAttachParentalControlTemplateList(completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let tplList = value as? [HwAttachParentControlTemplate] {
+                completion(tplList)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getAttachParentControlTemplateList(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+    
+    func getAttachParentControlTemplate(templateName: String, completion: @escaping(_ result: HwAttachParentControlTemplate) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwAttachParentControlTemplate {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getAttachParentControlTemplate(AccountController.shared.gatewayDevId ?? "", withTemplateName: templateName, with: callBackAdapter)
+        }
+    }
+    
+    func getParentControlTemplateDetailList(templateNames: [String], completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? [HwAttachParentControlTemplate] {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getParentControlTemplateDetailList(AccountController.shared.gatewayDevId ?? "", withParentControlNameList: templateNames, with: callBackAdapter)
+        }
+    }
+    
+    func setAttachParentControlTemplate(ctrlTemplate: HwAttachParentControlTemplate, completion: @escaping(_ result: HwSetAttachParentControlTemplateResult) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwSetAttachParentControlTemplateResult {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.setAttachParentControlTemplate(AccountController.shared.gatewayDevId ?? "", withParentControl: ctrlTemplate, with: callBackAdapter)
+        }
+    }
+    
+    func setAttachParentControl(attachParentCtrl: HwAttachParentControl, completion: @escaping(_ result: HwSetAttachParentControlResult ) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwSetAttachParentControlResult {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.setAttachParentControl(AccountController.shared.gatewayDevId ?? "", with: attachParentCtrl, with: callBackAdapter)
+        }
+    }
+    
+    func queryLanDeviceListEx(completion: @escaping(_ result: [HwLanDevice] ) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? [HwLanDevice] {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.queryLanDeviceListEx(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+    
+    func queryLanDeviceManufacturingInfoList(macList: [String], completion: @escaping(_ result: [HwDeviceTypeInfo] ) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? [HwDeviceTypeInfo] {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.queryLanDeviceManufacturingInfoList(AccountController.shared.gatewayDevId ?? "", macList: macList, callback: callBackAdapter)
         }
     }
 }

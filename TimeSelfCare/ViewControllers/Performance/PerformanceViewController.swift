@@ -8,6 +8,7 @@
 
 import UIKit
 import Lottie
+import HwMobileSDK
 
 public extension NSNotification.Name {
     static let ConnectionStatusDidUpdate: NSNotification.Name = NSNotification.Name(rawValue: "ConnectionStatusDidUpdate")
@@ -16,7 +17,7 @@ public extension NSNotification.Name {
 let kIsConnected: String = "IsConnected"
 
 class PerformanceViewController: BaseViewController {
-
+    
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var animationView: LOTAnimationView!
     @IBOutlet private weak var runDiagnosticsButton: UIButton!
@@ -33,7 +34,7 @@ class PerformanceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.checkConnectionStatus()
@@ -50,7 +51,7 @@ class PerformanceViewController: BaseViewController {
             self.speedTestView.isHidden = false
             self.nceView.isHidden = false
             
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in
                     let (downSpeed, downByte) = Units(kBytes: Int64(gatewaySpeed.downSpeed)).getReadableUnit()
                     let (upSpeed, upByte) = Units(kBytes: Int64(gatewaySpeed.upSpeed)).getReadableUnit()
@@ -61,36 +62,34 @@ class PerformanceViewController: BaseViewController {
                 }
             }
         }
-        
-        
     }
-
+    
     @objc
     func didTappedAttributedLabel(gesture: UITapGestureRecognizer) {
         let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil)
         let diagnosticsVC: DiagnosisViewController = storyboard.instantiateViewController()
         self.presentNavigation(diagnosticsVC, animated: true)
     }
-
+    
     @IBAction private func checkConnectionStatus() {
         animationView.setAnimation(named: "Loading")
         animationView.loopAnimation = true
         animationView.play()
-
+        
         guard
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
-        else {
-            return
+            else {
+                return
         }
-
+        
         self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
         AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
             let isConnected: Bool = error == nil
             self.animationView.setAnimation(named: isConnected ? "GoodConnection" : "BadConnection")
             self.animationView.loopAnimation = false
             self.animationView.play()
-                
+            
             if (isConnected) {
                 self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is good.", boldString: "good", color: UIColor.green, font: self.statusLabel.font)
             } else {
@@ -119,8 +118,17 @@ class PerformanceViewController: BaseViewController {
     }
     
     @IBAction func actParentalControl(_ sender: Any) {
-        let parentalControlVC: PCMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController()
-        self.presentNavigation(parentalControlVC, animated: true)
+        HuaweiHelper.shared.getAttachParentalControlTemplateList { tplList in
+            if tplList.isEmpty {
+                let parentalControlVC: PCMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController()
+                self.presentNavigation(parentalControlVC, animated: true)
+            } else {
+                if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCTemplateListViewController") as? PCTemplateListViewController {
+                    self.presentNavigation(templateVC, animated: true)
+                }
+                
+            }
+        }
     }
     
 }

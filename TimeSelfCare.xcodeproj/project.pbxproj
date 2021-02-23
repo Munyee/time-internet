@@ -53,6 +53,11 @@
 		9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21C0E025DE45AF008B3824 /* PCProfileViewController.swift */; };
 		9E21C0E425DE9EA3008B3824 /* BlockWebsiteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E21C0E325DE9EA3008B3824 /* BlockWebsiteView.xib */; };
 		9E21C0E625DE9EB6008B3824 /* BlockWebsiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */; };
+		9E36BB4125E3569D00E5575F /* PCTemplateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4025E3569D00E5575F /* PCTemplateListViewController.swift */; };
+		9E36BB4425E356F500E5575F /* PCTemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4325E356F500E5575F /* PCTemplateTableViewCell.swift */; };
+		9E36BB4925E3EF4700E5575F /* PCDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */; };
+		9E36BB4B25E3EFB400E5575F /* PCDevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4A25E3EFB400E5575F /* PCDevicesViewController.swift */; };
+		9E36BB4D25E3F0C100E5575F /* PCPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4C25E3F0C100E5575F /* PCPeriodViewController.swift */; };
 		9E4AB95225DFA79000F1DEFE /* IsHuaweiDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */; };
 		9E4AB95A25DFF97B00F1DEFE /* FunctionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; };
 		9E4AB95B25DFF97B00F1DEFE /* FunctionSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -60,7 +65,6 @@
 		9E4AB95D25DFF97B00F1DEFE /* HwMobileSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789A25D40C0400C4D388 /* HwMobileSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9E4AB95F25DFFA0800F1DEFE /* HuaweiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */; };
 		9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB96025E00EE600F1DEFE /* Units.swift */; };
-		9E4FE1D525DF59F300EDBBF7 /* DevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4FE1D425DF59F300EDBBF7 /* DevicesViewController.swift */; };
 		9E59AF6325DE325A00FF427A /* Parentalcontrol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */; };
 		9E59AF6525DE32AE00FF427A /* PCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */; };
 		9E8FC9BA25357255008936D2 /* HowItWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9AE25357255008936D2 /* HowItWorkViewController.swift */; };
@@ -339,11 +343,15 @@
 		9E21C0E025DE45AF008B3824 /* PCProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCProfileViewController.swift; sourceTree = "<group>"; };
 		9E21C0E325DE9EA3008B3824 /* BlockWebsiteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockWebsiteView.xib; sourceTree = "<group>"; };
 		9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockWebsiteView.swift; sourceTree = "<group>"; };
+		9E36BB4025E3569D00E5575F /* PCTemplateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCTemplateListViewController.swift; sourceTree = "<group>"; };
+		9E36BB4325E356F500E5575F /* PCTemplateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCTemplateTableViewCell.swift; sourceTree = "<group>"; };
+		9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCDeviceTableViewCell.swift; sourceTree = "<group>"; };
+		9E36BB4A25E3EFB400E5575F /* PCDevicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCDevicesViewController.swift; sourceTree = "<group>"; };
+		9E36BB4C25E3F0C100E5575F /* PCPeriodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCPeriodViewController.swift; sourceTree = "<group>"; };
 		9E38767725C028590015A514 /* Smartlook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Smartlook.framework; path = "System/Library/Frameworks/Smartlook.xcframework/ios-arm64_i386_x86_64-simulator/Smartlook.framework"; sourceTree = SDKROOT; };
 		9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsHuaweiDevice.swift; sourceTree = "<group>"; };
 		9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuaweiHelper.swift; sourceTree = "<group>"; };
 		9E4AB96025E00EE600F1DEFE /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
-		9E4FE1D425DF59F300EDBBF7 /* DevicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesViewController.swift; sourceTree = "<group>"; };
 		9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Parentalcontrol.storyboard; sourceTree = "<group>"; };
 		9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCMainViewController.swift; sourceTree = "<group>"; };
 		9E5F789925D40C0200C4D388 /* FunctionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FunctionSDK.framework; sourceTree = "<group>"; };
@@ -878,6 +886,15 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		9E36BB4225E356D500E5575F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9E36BB4325E356F500E5575F /* PCTemplateTableViewCell.swift */,
+				9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		9E4AB95925DFF8D100F1DEFE /* HuaweiHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,11 +907,14 @@
 		9E59AF6125DE31AD00FF427A /* ParentalControl */ = {
 			isa = PBXGroup;
 			children = (
+				9E36BB4225E356D500E5575F /* Cell */,
 				9E21C0E225DE9E59008B3824 /* CustomView */,
 				9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */,
 				9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */,
 				9E21C0E025DE45AF008B3824 /* PCProfileViewController.swift */,
-				9E4FE1D425DF59F300EDBBF7 /* DevicesViewController.swift */,
+				9E36BB4025E3569D00E5575F /* PCTemplateListViewController.swift */,
+				9E36BB4A25E3EFB400E5575F /* PCDevicesViewController.swift */,
+				9E36BB4C25E3F0C100E5575F /* PCPeriodViewController.swift */,
 			);
 			path = ParentalControl;
 			sourceTree = "<group>";
@@ -1723,7 +1743,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E4FE1D525DF59F300EDBBF7 /* DevicesViewController.swift in Sources */,
 				9EBA8B7C24B579690021B6AB /* EditProfileViewController.swift in Sources */,
 				E25E3825230B956E0013CEFD /* RewardOutletsCell.swift in Sources */,
 				E277BA1721118C6000660FCE /* TimeTableView.swift in Sources */,
@@ -1732,6 +1751,7 @@
 				E2AD92C11FC2C43B00138334 /* ConfirmationViewController.swift in Sources */,
 				9E8FC9C425357255008936D2 /* HookupViewController.swift in Sources */,
 				E2DD467D21181B180010D84A /* ConversationFooterView.swift in Sources */,
+				9E36BB4B25E3EFB400E5575F /* PCDevicesViewController.swift in Sources */,
 				E2730B8B2097032600A140F1 /* BillingInfoDetailViewController.swift in Sources */,
 				E2FDB2D720AACC37002F0A66 /* UIStoryboard+.swift in Sources */,
 				E274AD6A210711F700E62A42 /* TicketFormViewController.swift in Sources */,
@@ -1747,8 +1767,10 @@
 				9E21C0E625DE9EB6008B3824 /* BlockWebsiteView.swift in Sources */,
 				E219AD9E1FB3D23900A896FE /* WalkthroughViewController.swift in Sources */,
 				9EC1356D241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m in Sources */,
+				9E36BB4D25E3F0C100E5575F /* PCPeriodViewController.swift in Sources */,
 				E2217F081FCB250600E9056B /* ScanCardViewController.swift in Sources */,
 				9E8FC9C325357255008936D2 /* ReferViewController.swift in Sources */,
+				9E36BB4425E356F500E5575F /* PCTemplateTableViewCell.swift in Sources */,
 				E2DE28691FBD404E00E3CC1E /* ForgetPasswordViewController.swift in Sources */,
 				9ECA46462436C7AE00EB0DB8 /* VoucherLabel.swift in Sources */,
 				9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */,
@@ -1810,8 +1832,10 @@
 				E2610F7B1FC5579900959D85 /* PaymentViewController.swift in Sources */,
 				E2B6C2CB1FB42A8500F65B05 /* SidebarNavigationController.swift in Sources */,
 				E274AD67210711F700E62A42 /* AttachmentCell.swift in Sources */,
+				9E36BB4125E3569D00E5575F /* PCTemplateListViewController.swift in Sources */,
 				9E8FC9BD25357255008936D2 /* DiscountTableViewCell.swift in Sources */,
 				E2D9BF4020CE6CBE00F9A48B /* ServiceSidebarCell.swift in Sources */,
+				9E36BB4925E3EF4700E5575F /* PCDeviceTableViewCell.swift in Sources */,
 				E2FDB2D520AAB490002F0A66 /* NotificationSettingsViewController.swift in Sources */,
 				E21CF7311FC6906800F13FAF /* CreateAutoDebitViewController.swift in Sources */,
 				E2A8E8461FCE3D9900EA5DF2 /* ProfileDetailViewController.swift in Sources */,

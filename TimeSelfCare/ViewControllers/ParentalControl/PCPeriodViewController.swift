@@ -1,5 +1,5 @@
 //
-//  DevicesViewController.swift
+//  PCPeriodViewController.swift
 //  TimeSelfCare
 //
 //  Created by Chan Mun Yee on 19/02/2021.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DevicesViewController: UIViewController {
+class PCPeriodViewController: UIViewController {
     
     let maxV = 120
     
@@ -28,7 +28,7 @@ class DevicesViewController: UIViewController {
     
 }
 
-extension DevicesViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension PCPeriodViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 5
     }

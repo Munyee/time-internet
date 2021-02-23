@@ -12,6 +12,7 @@ protocol BlockWebsiteViewDelegate {
     func didBeginEdit(separator: UIView)
     func didEndEdit(separator: UIView)
     func didEditChange(textField: UITextField)
+    func delete(view: UIView)
 }
 
 class BlockWebsiteView: UIView {
@@ -66,6 +67,10 @@ class BlockWebsiteView: UIView {
         if primary {
             delegate?.didEditChange(textField: textField)
         }
+    }
+    
+    @IBAction func deleteView(_ sender: Any) {
+        delegate?.delete(view: self)
     }
 }
 

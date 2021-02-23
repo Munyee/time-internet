@@ -60,6 +60,11 @@
 		9E36BB4D25E3F0C100E5575F /* PCPeriodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4C25E3F0C100E5575F /* PCPeriodViewController.swift */; };
 		9E36BB4F25E4D9C800E5575F /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4E25E4D9C800E5575F /* DeviceView.swift */; };
 		9E36BB5125E4DA7400E5575F /* DeviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E36BB5025E4DA7400E5575F /* DeviceView.xib */; };
+		9E36BB5325E506C400E5575F /* PCPeriodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB5225E506C400E5575F /* PCPeriodTableViewCell.swift */; };
+		9E36BB5625E52DDE00E5575F /* PeriodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB5525E52DDE00E5575F /* PeriodModel.swift */; };
+		9E36BB5825E539BB00E5575F /* SelectPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB5725E539BB00E5575F /* SelectPeriod.swift */; };
+		9E36BB5A25E542D600E5575F /* PeriodView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E36BB5925E542D600E5575F /* PeriodView.xib */; };
+		9E36BB5C25E5430000E5575F /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB5B25E5430000E5575F /* PeriodView.swift */; };
 		9E4AB95225DFA79000F1DEFE /* IsHuaweiDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */; };
 		9E4AB95A25DFF97B00F1DEFE /* FunctionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; };
 		9E4AB95B25DFF97B00F1DEFE /* FunctionSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -352,6 +357,11 @@
 		9E36BB4C25E3F0C100E5575F /* PCPeriodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCPeriodViewController.swift; sourceTree = "<group>"; };
 		9E36BB4E25E4D9C800E5575F /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
 		9E36BB5025E4DA7400E5575F /* DeviceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceView.xib; sourceTree = "<group>"; };
+		9E36BB5225E506C400E5575F /* PCPeriodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCPeriodTableViewCell.swift; sourceTree = "<group>"; };
+		9E36BB5525E52DDE00E5575F /* PeriodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodModel.swift; sourceTree = "<group>"; };
+		9E36BB5725E539BB00E5575F /* SelectPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPeriod.swift; sourceTree = "<group>"; };
+		9E36BB5925E542D600E5575F /* PeriodView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeriodView.xib; sourceTree = "<group>"; };
+		9E36BB5B25E5430000E5575F /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		9E38767725C028590015A514 /* Smartlook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Smartlook.framework; path = "System/Library/Frameworks/Smartlook.xcframework/ios-arm64_i386_x86_64-simulator/Smartlook.framework"; sourceTree = SDKROOT; };
 		9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsHuaweiDevice.swift; sourceTree = "<group>"; };
 		9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuaweiHelper.swift; sourceTree = "<group>"; };
@@ -888,6 +898,8 @@
 				9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */,
 				9E36BB5025E4DA7400E5575F /* DeviceView.xib */,
 				9E36BB4E25E4D9C800E5575F /* DeviceView.swift */,
+				9E36BB5925E542D600E5575F /* PeriodView.xib */,
+				9E36BB5B25E5430000E5575F /* PeriodView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -897,8 +909,18 @@
 			children = (
 				9E36BB4325E356F500E5575F /* PCTemplateTableViewCell.swift */,
 				9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */,
+				9E36BB5225E506C400E5575F /* PCPeriodTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		9E36BB5425E52DCD00E5575F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E36BB5525E52DDE00E5575F /* PeriodModel.swift */,
+				9E36BB5725E539BB00E5575F /* SelectPeriod.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		9E4AB95925DFF8D100F1DEFE /* HuaweiHelper */ = {
@@ -913,6 +935,7 @@
 		9E59AF6125DE31AD00FF427A /* ParentalControl */ = {
 			isa = PBXGroup;
 			children = (
+				9E36BB5425E52DCD00E5575F /* Model */,
 				9E36BB4225E356D500E5575F /* Cell */,
 				9E21C0E225DE9E59008B3824 /* CustomView */,
 				9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */,
@@ -1455,6 +1478,7 @@
 				9E8FC9C125357255008936D2 /* Hookup.storyboard in Resources */,
 				E2730B892097026C00A140F1 /* BillingInfo.storyboard in Resources */,
 				9E8FC9BF25357255008936D2 /* ReferView.storyboard in Resources */,
+				9E36BB5A25E542D600E5575F /* PeriodView.xib in Resources */,
 				9E9EB76424D797FE00D0D342 /* Diagnostics.storyboard in Resources */,
 				E2FB110D22CC9492000FED93 /* Reward.storyboard in Resources */,
 				E2A8E8441FCE3D6E00EA5DF2 /* Profile.storyboard in Resources */,
@@ -1814,6 +1838,7 @@
 				5A478FFE1FA972080074B5D4 /* AppDelegate.swift in Sources */,
 				E2E2FF701FC3F5C700125566 /* VoicePlanCell.swift in Sources */,
 				9E9EB76824D7988700D0D342 /* UIImageView+.swift in Sources */,
+				9E36BB5625E52DDE00E5575F /* PeriodModel.swift in Sources */,
 				E203036223617F8200F27028 /* TestAppDelegate.swift in Sources */,
 				E261DD2B1FD7A14C00DEEDBA /* HomeForwardCell.swift in Sources */,
 				E261DD291FD7A0C500DEEDBA /* HomeForwardListViewController.swift in Sources */,
@@ -1829,6 +1854,7 @@
 				E27DCC981FE0E60300A82769 /* UIView+.swift in Sources */,
 				9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */,
 				9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */,
+				9E36BB5825E539BB00E5575F /* SelectPeriod.swift in Sources */,
 				9E8FC9BA25357255008936D2 /* HowItWorkViewController.swift in Sources */,
 				9EE0B95D246513290073288B /* LiveChatView.swift in Sources */,
 				0A8E01F71FA9B50B00CA27A9 /* LaunchViewController.swift in Sources */,
@@ -1855,12 +1881,14 @@
 				9E016BC42519896400877A62 /* ShopViewController.swift in Sources */,
 				E2AD69DA20AD12E2001D104E /* PerformanceViewController.swift in Sources */,
 				0A9433801FAAB9CA00AA0DFF /* SummaryPageViewController.swift in Sources */,
+				9E36BB5C25E5430000E5575F /* PeriodView.swift in Sources */,
 				9EE0B965246520FD0073288B /* ExpandableLiveChatView.swift in Sources */,
 				0A9433831FAAC5E000AA0DFF /* CentredImageButton.swift in Sources */,
 				E2AD92C31FC3A41F00138334 /* AccountSummaryViewController.swift in Sources */,
 				9EC1356A241B6E1200E59C44 /* APTSidebarContentSegue.m in Sources */,
 				E274AD6C210711F700E62A42 /* PhotoViewController.swift in Sources */,
 				9EC1356B241B6E1200E59C44 /* APTSidebarNavigationController.m in Sources */,
+				9E36BB5325E506C400E5575F /* PCPeriodTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

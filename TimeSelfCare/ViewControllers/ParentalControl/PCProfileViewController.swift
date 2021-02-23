@@ -12,7 +12,8 @@ import HwMobileSDK
 class PCProfileViewController: UIViewController {
     
     var selectedDevices: [HwLanDevice] = []
-    
+    var selectedPeriod: [SelectPeriod] = []
+
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
@@ -20,18 +21,23 @@ class PCProfileViewController: UIViewController {
     @IBOutlet weak var profileTextView: FloatLabeledTextView!
     @IBOutlet weak var profileSeperator: UIView!
     
+    @IBOutlet weak var deviceView: UIView!
     @IBOutlet weak var deviceTextView: FloatLabeledTextView!
     @IBOutlet weak var deviceSeperator: UIView!
     @IBOutlet weak var selectDeviceStack: UIStackView!
     @IBOutlet weak var selectDeviceView: UIControl!
     
+    @IBOutlet weak var periodView: UIView!
     @IBOutlet weak var periodTextView: FloatLabeledTextView!
-    @IBOutlet weak var periodSeperator: UIView!
-    @IBOutlet weak var selectPeriodView: UIView!
-    
+    @IBOutlet weak var selectPeriodStack: UIStackView!
+    @IBOutlet weak var selectPeriodView: UIControl!
+
     @IBOutlet weak var blockWebsiteStack: UIStackView!
     @IBOutlet weak var blockWebsiteTextView: FloatLabeledTextView!
         
+    @IBOutlet weak var addTimeView: UIView!
+    @IBOutlet weak var addWebsiteView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,8 +47,11 @@ class PCProfileViewController: UIViewController {
         self.title = NSLocalizedString("PARENTAL CONTROLS", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
         self.liveChatView.isHidden = false
+        addTimeView.isHidden = true
+        addWebsiteView.isHidden = true
         setupProfileName()
         setupDevice()
+        setupPeriod()
         setupBlockWebsite()
     }
     
@@ -73,6 +82,7 @@ class PCProfileViewController: UIViewController {
         profileTextView.floatingLabel.text = "Profile name"
         profileTextView.tintColor = .primary
         profileTextView.delegate = self
+        profileTextView.returnKeyType = .done
         profileTextView.autocapitalizationType = .sentences
         profileTextView.autocorrectionType = .no
         profileTextView.isScrollEnabled = false
@@ -83,20 +93,22 @@ class PCProfileViewController: UIViewController {
         deviceTextView.floatingLabelTextColor = .grey
         deviceTextView.floatingLabelFont = UIFont.preferredFont(forTextStyle: .caption1)
         deviceTextView.floatingLabel.text = "Device(s)"
-        deviceTextView.delegate = self
-        deviceTextView.autocapitalizationType = .sentences
-        deviceTextView.autocorrectionType = .no
-        deviceTextView.isScrollEnabled = false
+    }
+    
+    func setupPeriod() {
+        periodTextView.floatingLabelTextColor = .grey
+        periodTextView.floatingLabelFont = UIFont.preferredFont(forTextStyle: .caption1)
+        periodTextView.floatingLabel.text = "Internet access period"
     }
     
     func setupBlockWebsite() {
-        insertBlockWebsiteInput()
+        insertBlockWebsiteInput(allowRemove:false, isPrimary: true)
         blockWebsiteTextView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         blockWebsiteTextView.animateEvenIfNotFirstResponder = true
     }
     
-    func insertBlockWebsiteInput() {
-        let blockWebsiteView = BlockWebsiteView(allowRemove: false, isPrimary: true)
+    func insertBlockWebsiteInput(allowRemove: Bool, isPrimary: Bool) {
+        let blockWebsiteView = BlockWebsiteView(allowRemove: allowRemove, isPrimary: isPrimary)
         blockWebsiteView.delegate = self
         blockWebsiteStack.addArrangedSubview(blockWebsiteView)
     }
@@ -141,10 +153,16 @@ class PCProfileViewController: UIViewController {
     }
     
     @IBAction func actPeriodSelect(_ sender: Any) {
-        if let devicesVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCPeriodViewController") as? PCPeriodViewController {
-            self.presentNavigation(devicesVC, animated: true)
+        if let periodVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCPeriodViewController") as? PCPeriodViewController {
+            periodVC.delegate = self
+            self.presentNavigation(periodVC, animated: true)
         }
     }
+    
+    @IBAction func actAddWebsite(_ sender: Any) {
+        insertBlockWebsiteInput(allowRemove: true, isPrimary: false)
+    }
+    
 }
 
 extension PCProfileViewController: BlockWebsiteViewDelegate {
@@ -158,10 +176,16 @@ extension PCProfileViewController: BlockWebsiteViewDelegate {
         separator.backgroundColor = UIColor(hex: "D9D9D9")
         blockWebsiteTextView.floatingLabelTextColor = .grey
         blockWebsiteTextView.layoutSubviews()
+        addWebsiteView.isHidden = false
     }
     
     func didEditChange(textField: UITextField) {
         blockWebsiteTextView.text = textField.text
+    }
+    
+    func delete(view: UIView) {
+        blockWebsiteStack.removeArrangedSubview(view)
+        view.removeFromSuperview()
     }
 }
 
@@ -174,6 +198,23 @@ extension PCProfileViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         profileSeperator.backgroundColor = UIColor(hex: "D9D9D9")
+        
+        if textView == profileTextView {
+            if !deviceView.isUserInteractionEnabled && profileTextView.text != "" {
+                UIView.animate(withDuration: 0.5) {
+                    self.deviceView.isUserInteractionEnabled = true
+                    self.deviceView.alpha = 1
+                }
+            }
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }
 
@@ -195,6 +236,13 @@ extension PCProfileViewController: PCDevicesViewControllerDelegate {
             selectDeviceView.isHidden = false
             deviceTextView.alwaysShowFloatingLabel = false
         } else {
+            if !periodView.isUserInteractionEnabled {
+                UIView.animate(withDuration: 0.5) {
+                    self.periodView.isUserInteractionEnabled = true
+                    self.periodView.alpha = 1
+                }
+            }
+            
             selectDeviceView.isHidden = true
             deviceTextView.alwaysShowFloatingLabel = true
             for device in selectedDevices {
@@ -227,6 +275,87 @@ extension PCProfileViewController: DeviceViewDelegate {
             devicesVC.delegate = self
             devicesVC.selectedDevices = selectedDevices
             self.presentNavigation(devicesVC, animated: true)
+        }
+    }
+}
+
+extension PCProfileViewController: PCPeriodViewControllerDelegate {
+    func selected(period: SelectPeriod) {
+        
+        if period.index == nil {
+            period.index = selectedPeriod.count
+            selectedPeriod.append(period)
+        } else {
+            if let index = selectedPeriod.firstIndex(where: { $0.index == period.index }) {
+                selectedPeriod[index] = period
+            }
+        }
+        
+        
+        for pView in selectPeriodStack.arrangedSubviews {
+            if let periodView = pView as? PeriodView {
+                selectPeriodStack.removeArrangedSubview(periodView)
+                periodView.removeFromSuperview()
+            }
+        }
+        
+        for period in selectedPeriod {
+            let periodView = PeriodView(period: period)
+            periodView.delegate = self
+            selectPeriodStack.addArrangedSubview(periodView)
+        }
+        
+        periodTextView.alwaysShowFloatingLabel = true
+        selectPeriodView.isHidden = true
+        addTimeView.isHidden = false
+    }
+}
+
+extension PCProfileViewController: PeriodViewDelegate {
+    func remove(period: SelectPeriod) {
+        if let i = period.index {
+            selectedPeriod.remove(at: i)
+            let view = selectPeriodStack.subviews[i + 1]
+            selectPeriodStack.removeArrangedSubview(view)
+            view.removeFromSuperview()
+            
+            for (index, period) in selectedPeriod.enumerated() {
+                period.index = index
+            }
+            
+            if selectedPeriod.isEmpty {
+                addTimeView.isHidden = true
+                selectPeriodView.isHidden = false
+                periodTextView.alwaysShowFloatingLabel = false
+            }
+        }
+    }
+    
+    func editPeriod(period: SelectPeriod) {
+        if let periodVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCPeriodViewController") as? PCPeriodViewController {
+            periodVC.delegate = self
+            var periods: [PeriodModel?] = []
+            
+            if period.repeatMode == kHwRepeatModeNone {
+                periods.append(PeriodModel(with: ["repeatMode": kHwRepeatModeNone]))
+            } else {
+                if let dayWeek = period.dayOfWeeks {
+                    for day in dayWeek {
+                        periods.append(PeriodModel(with: ["repeatMode": period.repeatMode, "type": day]))
+                    }
+                }
+            }
+            
+            if let selectPeriod = periods as? [PeriodModel] {
+                periodVC.selectedPeriod = selectPeriod
+            }
+            periodVC.repeatMode = period.repeatMode
+            periodVC.index = period.index
+            periodVC.startH = Int(period.startTime?.components(separatedBy: ":")[0] ?? "0") ?? 0
+            periodVC.startM = Int(period.startTime?.components(separatedBy: ":")[1] ?? "0") ?? 0
+            periodVC.endH = Int(period.endTime?.components(separatedBy: ":")[0] ?? "0") ?? 0
+            periodVC.endM = Int(period.endTime?.components(separatedBy: ":")[1] ?? "0") ?? 0
+            self.presentNavigation(periodVC, animated: true)
         }
     }
 }

@@ -138,7 +138,7 @@ public extension HuaweiHelper {
         }
     }
     
-    func getAttachParentalControlTemplateList(completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void) {
+    func getAttachParentalControlTemplateList(completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void,  error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let tplList = value as? [HwAttachParentControlTemplate] {
@@ -146,7 +146,7 @@ public extension HuaweiHelper {
             }
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
-            print(exception?.errorCode ?? "")
+            error(exception)
         }
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
@@ -170,7 +170,7 @@ public extension HuaweiHelper {
         }
     }
     
-    func getParentControlTemplateDetailList(templateNames: [String], completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void) {
+    func getParentControlTemplateDetailList(templateNames: [String], completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void,  error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let data = value as? [HwAttachParentControlTemplate] {
@@ -178,7 +178,7 @@ public extension HuaweiHelper {
             }
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
-            print(exception?.errorCode ?? "")
+            error(exception)
         }
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
@@ -186,7 +186,7 @@ public extension HuaweiHelper {
         }
     }
     
-    func setAttachParentControlTemplate(ctrlTemplate: HwAttachParentControlTemplate, completion: @escaping(_ result: HwSetAttachParentControlTemplateResult) -> Void) {
+    func setAttachParentControlTemplate(ctrlTemplate: HwAttachParentControlTemplate, completion: @escaping(_ result: HwSetAttachParentControlTemplateResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let data = value as? HwSetAttachParentControlTemplateResult {
@@ -194,11 +194,27 @@ public extension HuaweiHelper {
             }
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
-            print(exception?.errorCode ?? "")
+            error(exception)
         }
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.setAttachParentControlTemplate(AccountController.shared.gatewayDevId ?? "", withParentControl: ctrlTemplate, with: callBackAdapter)
+        }
+    }
+    
+    func deleteAttachParentControlTemplate(name: String, completion: @escaping(_ result: HwDeleteAttachParentControlTemplateResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwDeleteAttachParentControlTemplateResult {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.deleteAttachParentControlTemplate(AccountController.shared.gatewayDevId ?? "", withName: name, with: callBackAdapter)
         }
     }
     
@@ -217,6 +233,22 @@ public extension HuaweiHelper {
             service.setAttachParentControl(AccountController.shared.gatewayDevId ?? "", with: attachParentCtrl, with: callBackAdapter)
         }
     }
+    
+    func deleteAttachParentControl(attachParentCtrl: HwAttachParentControl, completion: @escaping(_ result: HwDeleteAttachParentControlResult ) -> Void) {
+           let callBackAdapter = HwCallbackAdapter()
+           callBackAdapter.handle = {value in
+               if let data = value as? HwDeleteAttachParentControlResult {
+                   completion(data)
+               }
+           }
+           callBackAdapter.exception = {(exception: HwActionException?) in
+               print(exception?.errorCode ?? "")
+           }
+           
+           if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+               service.deleteAttachParentControl(AccountController.shared.gatewayDevId ?? "", with: attachParentCtrl, with: callBackAdapter)
+           }
+       }
     
     func queryLanDeviceListEx(completion: @escaping(_ result: [HwLanDevice] ) -> Void) {
         let callBackAdapter = HwCallbackAdapter()

@@ -219,11 +219,11 @@ access</string>
                                     <constraint firstAttribute="width" priority="750" constant="150" id="ffq-J0-5Qq"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0cw-2M-sSc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0cw-2M-sSc">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="templateCell" id="QO3-Kj-DZ0" customClass="PCTemplateTableViewCell" customModule="TimeSelfCare" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="templateCell" id="QO3-Kj-DZ0" customClass="PCTemplateTableViewCell" customModule="TimeSelfCare" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="57.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QO3-Kj-DZ0" id="83W-rR-yox">
@@ -323,25 +323,40 @@ access</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="806"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjw-As-waR">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="524.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="539.33333333333337"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new user profile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZB3-5Q-gbu">
-                                                <rect key="frame" x="35" y="20" width="344" height="18.666666666666671"/>
-                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Internet access period and block websites on your device(s)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFJ-EQ-TH0">
-                                                <rect key="frame" x="35" y="43.666666666666664" width="344" height="14.666666666666664"/>
-                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="rqt-Uu-crv">
-                                                <rect key="frame" x="35" y="108.33333333333331" width="344" height="386"/>
+                                                <rect key="frame" x="35" y="19.999999999999972" width="344" height="489.33333333333326"/>
                                                 <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZG-M4-C6L">
+                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="88.333333333333329"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new user profile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArE-My-3zo">
+                                                                <rect key="frame" x="0.0" y="0.0" width="344" height="18.666666666666668"/>
+                                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Internet access period and block websites on your device(s)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9H2-cY-J3L">
+                                                                <rect key="frame" x="0.0" y="23.666666666666664" width="344" height="14.666666666666664"/>
+                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="9H2-cY-J3L" secondAttribute="trailing" id="b8z-gE-ls4"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ArE-My-3zo" secondAttribute="trailing" id="g1e-g4-vls"/>
+                                                            <constraint firstItem="9H2-cY-J3L" firstAttribute="top" secondItem="ArE-My-3zo" secondAttribute="bottom" constant="5" id="kTH-an-60U"/>
+                                                            <constraint firstAttribute="bottom" secondItem="9H2-cY-J3L" secondAttribute="bottom" constant="50" id="qJv-pg-PSA"/>
+                                                            <constraint firstItem="ArE-My-3zo" firstAttribute="leading" secondItem="jZG-M4-C6L" secondAttribute="leading" id="skb-jb-muR"/>
+                                                            <constraint firstItem="ArE-My-3zo" firstAttribute="top" secondItem="jZG-M4-C6L" secondAttribute="top" id="x0X-jW-nRb"/>
+                                                            <constraint firstItem="9H2-cY-J3L" firstAttribute="leading" secondItem="jZG-M4-C6L" secondAttribute="leading" id="zVx-Pn-2kV"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeZ-cr-m9o">
-                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="59"/>
+                                                        <rect key="frame" x="0.0" y="103.33333333333331" width="344" height="59"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1iG-Xk-zsh" userLabel="Separator">
                                                                 <rect key="frame" x="0.0" y="58.000000000000014" width="344" height="1"/>
@@ -379,7 +394,7 @@ access</string>
                                                         </constraints>
                                                     </view>
                                                     <view userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wev-Zp-dU2">
-                                                        <rect key="frame" x="0.0" y="74.000000000000014" width="344" height="65.999999999999986"/>
+                                                        <rect key="frame" x="0.0" y="177.33333333333334" width="344" height="66"/>
                                                         <subviews>
                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2N-1v-TB1" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="0.0" width="324" height="50"/>
@@ -423,7 +438,7 @@ access</string>
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SSq-qg-i1W" userLabel="Separator">
-                                                                <rect key="frame" x="0.0" y="65" width="344" height="1"/>
+                                                                <rect key="frame" x="0.0" y="64.999999999999972" width="344" height="1"/>
                                                                 <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="xqe-iJ-dOO"/>
@@ -443,8 +458,8 @@ access</string>
                                                             <constraint firstAttribute="bottom" secondItem="SSq-qg-i1W" secondAttribute="bottom" id="mae-yI-Dr9"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLo-Na-Too">
-                                                        <rect key="frame" x="0.0" y="155" width="344" height="65"/>
+                                                    <view userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLo-Na-Too">
+                                                        <rect key="frame" x="0.0" y="258.33333333333331" width="344" height="65"/>
                                                         <subviews>
                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iG-y6-cyv" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="0.0" width="324" height="50"/>
@@ -509,7 +524,7 @@ access</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSS-NT-O6s" customClass="UIControl">
-                                                        <rect key="frame" x="0.0" y="235" width="344" height="34"/>
+                                                        <rect key="frame" x="0.0" y="338.33333333333331" width="344" height="34"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_add-template" translatesAutoresizingMaskIntoConstraints="NO" id="Jpy-go-aKP">
                                                                 <rect key="frame" x="10" y="0.0" width="24" height="24"/>
@@ -538,8 +553,8 @@ access</string>
                                                             <action selector="actPeriodSelect:" destination="8Ku-7O-Md6" eventType="touchUpInside" id="5R5-h3-oPj"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-IL-3Vq">
-                                                        <rect key="frame" x="0.0" y="284" width="344" height="53"/>
+                                                    <view userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-IL-3Vq">
+                                                        <rect key="frame" x="0.0" y="387.33333333333331" width="344" height="53"/>
                                                         <subviews>
                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOQ-oZ-dEI" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="0.0" width="324" height="50"/>
@@ -577,7 +592,7 @@ access</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaX-eP-iOo" customClass="UIControl">
-                                                        <rect key="frame" x="0.0" y="352" width="344" height="34"/>
+                                                        <rect key="frame" x="0.0" y="455.33333333333331" width="344" height="34"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_add-template" translatesAutoresizingMaskIntoConstraints="NO" id="rf2-2Y-bCT">
                                                                 <rect key="frame" x="10" y="0.0" width="24" height="24"/>
@@ -611,15 +626,9 @@ access</string>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="WFJ-EQ-TH0" firstAttribute="leading" secondItem="kjw-As-waR" secondAttribute="leading" constant="35" id="EgM-ai-QW0"/>
-                                            <constraint firstItem="rqt-Uu-crv" firstAttribute="top" secondItem="WFJ-EQ-TH0" secondAttribute="bottom" constant="50" id="Gdm-EH-CnZ"/>
-                                            <constraint firstItem="WFJ-EQ-TH0" firstAttribute="top" secondItem="ZB3-5Q-gbu" secondAttribute="bottom" constant="5" id="PzI-Oj-TYP"/>
+                                            <constraint firstItem="rqt-Uu-crv" firstAttribute="top" secondItem="kjw-As-waR" secondAttribute="top" constant="20" id="Rx8-Ik-Odm"/>
                                             <constraint firstAttribute="bottom" secondItem="rqt-Uu-crv" secondAttribute="bottom" constant="30" id="W5F-Hy-hy8"/>
-                                            <constraint firstAttribute="trailing" secondItem="WFJ-EQ-TH0" secondAttribute="trailing" constant="35" id="WHh-V6-1XA"/>
-                                            <constraint firstAttribute="trailing" secondItem="ZB3-5Q-gbu" secondAttribute="trailing" constant="35" id="Wh3-Y2-qhn"/>
                                             <constraint firstAttribute="trailing" secondItem="rqt-Uu-crv" secondAttribute="trailing" constant="35" id="dYr-8R-jq6"/>
-                                            <constraint firstItem="ZB3-5Q-gbu" firstAttribute="top" secondItem="kjw-As-waR" secondAttribute="top" constant="20" id="oZQ-wD-lTk"/>
-                                            <constraint firstItem="ZB3-5Q-gbu" firstAttribute="leading" secondItem="kjw-As-waR" secondAttribute="leading" constant="35" id="rB6-Od-ixz"/>
                                             <constraint firstItem="rqt-Uu-crv" firstAttribute="leading" secondItem="kjw-As-waR" secondAttribute="leading" constant="35" id="rdV-Sc-5I9"/>
                                         </constraints>
                                     </view>
@@ -640,7 +649,7 @@ access</string>
                                     <constraint firstAttribute="width" priority="750" constant="150" id="fFt-Bc-K4S"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQE-gC-xP1" customClass="UIControl">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQE-gC-xP1" customClass="UIControl">
                                 <rect key="frame" x="35" y="816" width="344" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE PROFILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vU4-7i-Xxr">
@@ -650,14 +659,14 @@ access</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="vU4-7i-Xxr" firstAttribute="centerY" secondItem="qQE-gC-xP1" secondAttribute="centerY" constant="3" id="KR4-Ji-HPZ"/>
                                     <constraint firstAttribute="height" constant="50" id="WZL-y3-BfQ"/>
                                     <constraint firstItem="vU4-7i-Xxr" firstAttribute="centerX" secondItem="qQE-gC-xP1" secondAttribute="centerX" id="eAr-cM-0qF"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="actSetup:" destination="hpT-sP-uWF" eventType="touchUpInside" id="gvr-tq-lDz"/>
+                                    <action selector="actCreateProfile:" destination="8Ku-7O-Md6" eventType="touchUpInside" id="IBS-fl-YCT"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -680,6 +689,9 @@ access</string>
                         <outlet property="addWebsiteView" destination="EaX-eP-iOo" id="nuB-Fm-yxD"/>
                         <outlet property="blockWebsiteStack" destination="93M-zz-Lrc" id="6GD-NG-VIG"/>
                         <outlet property="blockWebsiteTextView" destination="jOQ-oZ-dEI" id="xQn-zQ-0Rl"/>
+                        <outlet property="blockWebsiteView" destination="GCe-IL-3Vq" id="hTs-xf-jP3"/>
+                        <outlet property="createProfile" destination="qQE-gC-xP1" id="GkE-wj-G8K"/>
+                        <outlet property="descView" destination="jZG-M4-C6L" id="sJ6-5m-8FN"/>
                         <outlet property="deviceSeperator" destination="SSq-qg-i1W" id="UC5-Js-YA3"/>
                         <outlet property="deviceTextView" destination="K2N-1v-TB1" id="jgB-xZ-uDA"/>
                         <outlet property="deviceView" destination="wev-Zp-dU2" id="zga-H0-kSY"/>
@@ -708,7 +720,7 @@ access</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTf-fU-2MQ" customClass="UIControl">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTf-fU-2MQ" customClass="UIControl">
                                 <rect key="frame" x="35" y="816" width="344" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONFIRM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9z7-eP-w0o">
@@ -718,7 +730,7 @@ access</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="9z7-eP-w0o" firstAttribute="centerY" secondItem="pTf-fU-2MQ" secondAttribute="centerY" constant="3" id="6SF-3V-nCN"/>
                                     <constraint firstItem="9z7-eP-w0o" firstAttribute="centerX" secondItem="pTf-fU-2MQ" secondAttribute="centerX" id="8mP-Pl-FuK"/>
@@ -857,6 +869,7 @@ access</string>
                         <viewLayoutGuide key="safeArea" id="emk-oA-4po"/>
                     </view>
                     <connections>
+                        <outlet property="confirmView" destination="pTf-fU-2MQ" id="yib-af-ApO"/>
                         <outlet property="tableView" destination="Pbf-Gw-KbR" id="dIh-yx-e59"/>
                     </connections>
                 </viewController>
@@ -961,7 +974,7 @@ access</string>
                                         </connections>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTJ-NF-XhL">
-                                        <rect key="frame" x="198.66666666666666" y="105" width="17" height="46"/>
+                                        <rect key="frame" x="199.66666666666666" y="105.99999999999999" width="15" height="44.333333333333329"/>
                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="38"/>
                                         <color key="textColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>

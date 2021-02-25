@@ -8,6 +8,7 @@
 
 import UIKit
 import HwMobileSDK
+import MBProgressHUD
 
 class PCTemplateListViewController: UIViewController {
     
@@ -29,19 +30,33 @@ class PCTemplateListViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.getParentalControl), for: .valueChanged)
         tableView.addSubview(refreshControl)
         
+        HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
+            if tplList.isEmpty {
+                let parentalControlVC: PCMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController()
+                parentalControlVC.hasData = false
+                self.navigationController?.pushViewController(parentalControlVC, animated: true)
+            }
+        }) { _ in
+            
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         getParentalControl()
-        // Do any additional setup after loading the view.
     }
     
     @objc
     func goToMainView() {
         let parentalControlVC: PCMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController()
-        self.presentNavigation(parentalControlVC, animated: true)
+        parentalControlVC.hasData = true
+        self.navigationController?.pushViewController(parentalControlVC, animated: true)
     }
     
     @objc
     func goToAddTemplate() {
         if let profileVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCProfileViewController") as? PCProfileViewController {
+            profileVC.isEdit = true
             self.navigationController?.pushViewController(profileVC, animated: true)
         }
     }
@@ -49,17 +64,25 @@ class PCTemplateListViewController: UIViewController {
     @objc
     func getParentalControl() {
         templateList.removeAll()
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
         
-        HuaweiHelper.shared.getAttachParentalControlTemplateList { tplList in
+        HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
             let names = tplList.map { template -> String in
                 return template.name
             }
             
-            HuaweiHelper.shared.getParentControlTemplateDetailList(templateNames: names) { arrData in
+            HuaweiHelper.shared.getParentControlTemplateDetailList(templateNames: names, completion: { arrData in
+                hud.hide(animated: true)
                 self.templateList = arrData
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
+            }) { _ in
+                
             }
+            
+        }) { _ in
+            
         }
     }
 }
@@ -76,6 +99,7 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
         
         let template = templateList[indexPath.row]
         cell.delegate = self
+        cell.selectionStyle = .none
         cell.name.text = template.aliasName
         cell.numDevice.text = "\(template.macList.count) \(template.macList.count == 1 ? "device" : "devices")"
         cell.status.text = template.enable ? "Activated" : "Not Activated"
@@ -91,13 +115,57 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // handle delete (by removing the data from your array and updating the tableview)
+            
+            let template = templateList[indexPath.row]
+            self.showAlertMessage(
+                title: NSLocalizedString("Delete Profile", comment: ""),
+                message: NSLocalizedString("Are you sure want to remove from the list?", comment: ""),
+                actions: [
+                    UIAlertAction(title: NSLocalizedString("Confirm", comment: ""), style: .destructive) { _ in
+                        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+                        hud.label.text = NSLocalizedString("Loading...", comment: "")
+                        
+                        HuaweiHelper.shared.getAttachParentControlList { arrAttachPC in
+                            let controlledDev = arrAttachPC.filter { $0.templateName == template.name }.map { $0.mac }
+                            
+                            let group = DispatchGroup()
+                            for dev in controlledDev {
+                                group.enter()
+                                let pcControl = HwAttachParentControl()
+                                pcControl.mac = dev
+                                pcControl.templateName = template.name
+                                HuaweiHelper.shared.deleteAttachParentControl(attachParentCtrl: pcControl) { _ in
+                                    group.leave()
+                                }
+                            }
+                            
+                            group.notify(queue: .main) {
+                                HuaweiHelper.shared.deleteAttachParentControlTemplate(name: template.name, completion: { _ in
+                                    hud.hide(animated: true)
+                                    self.getParentalControl()
+                                }) { _ in
+                                    hud.hide(animated: true)
+                                }
+                            }
+                        }
+                    },
+                    UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)])
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let template = templateList[indexPath.row]
+        
+        if let profileVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCProfileViewController") as? PCProfileViewController {
+            profileVC.isView = true
+            profileVC.template = template
+            self.navigationController?.pushViewController(profileVC, animated: true)
         }
     }
 }
 
 extension PCTemplateListViewController: PCTemplateTableViewCellDelegate {
     func templateUpdated() {
-       getParentalControl()
+        getParentalControl()
     }
 }

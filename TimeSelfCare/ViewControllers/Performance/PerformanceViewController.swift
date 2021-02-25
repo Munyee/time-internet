@@ -118,16 +118,8 @@ class PerformanceViewController: BaseViewController {
     }
     
     @IBAction func actParentalControl(_ sender: Any) {
-        HuaweiHelper.shared.getAttachParentalControlTemplateList { tplList in
-            if tplList.isEmpty {
-                let parentalControlVC: PCMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController()
-                self.presentNavigation(parentalControlVC, animated: true)
-            } else {
-                if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCTemplateListViewController") as? PCTemplateListViewController {
-                    self.presentNavigation(templateVC, animated: true)
-                }
-                
-            }
+        if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCTemplateListViewController") as? PCTemplateListViewController {
+            self.presentNavigation(templateVC, animated: true)
         }
     }
     

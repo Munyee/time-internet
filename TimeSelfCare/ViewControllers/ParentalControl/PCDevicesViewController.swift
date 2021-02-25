@@ -19,7 +19,10 @@ class PCDevicesViewController: UIViewController {
     var arrDeviceTypes: [HwDeviceTypeInfo] = []
     var selectedDevices: [HwLanDevice] = []
     var delegate: PCDevicesViewControllerDelegate?
+    var template: HwAttachParentControlTemplate?
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var confirmView: UIControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,11 @@ class PCDevicesViewController: UIViewController {
     
     func queryDevices() {
         HuaweiHelper.shared.getAttachParentControlList { arrAttachPC in
-            let controlledDev = arrAttachPC.map { $0.mac }
+            var attPC = arrAttachPC
+            if self.template != nil {
+                attPC = attPC.filter { $0.templateName != self.template?.name }
+            }
+            let controlledDev = attPC.map { $0.mac }
             
             HuaweiHelper.shared.queryLanDeviceListEx { devices in
                 self.arrDevices = devices.filter { !$0.isAp }
@@ -47,6 +54,16 @@ class PCDevicesViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+    
+    func checkConfirmButton() {
+        if selectedDevices.isEmpty {
+            confirmView.backgroundColor = UIColor(hex: "C6C6C6")
+            confirmView.isUserInteractionEnabled = false
+        } else {
+            confirmView.backgroundColor = .primary
+            confirmView.isUserInteractionEnabled = true
         }
     }
     
@@ -80,7 +97,7 @@ extension PCDevicesViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath) as? PCDeviceTableViewCell
         
         let device = arrDevices[indexPath.row]
-        let chosenIndex = selectedDevices.index(of: device) ?? -1
+        let chosenIndex = selectedDevices.firstIndex(where: { $0.mac == device.mac }) ?? -1
         
         if chosenIndex >= 0 {
             selectedDevices.remove(at: chosenIndex)
@@ -89,6 +106,8 @@ extension PCDevicesViewController: UITableViewDelegate, UITableViewDataSource {
             selectedDevices.append(device)
             cell?.setChosen(chosen: true)
         }
+        
+        checkConfirmButton()
 
     }
 }

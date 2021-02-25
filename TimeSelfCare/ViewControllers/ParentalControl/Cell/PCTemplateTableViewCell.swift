@@ -38,8 +38,9 @@ class PCTemplateTableViewCell: UITableViewCell {
         let template = ctrlTemplate ?? HwAttachParentControlTemplate()
         template.enable = templateSwitch.isOn
         
-        HuaweiHelper.shared.setAttachParentControlTemplate(ctrlTemplate: template) { _ in
-            self.delegate?.templateUpdated()
+        HuaweiHelper.shared.setAttachParentControlTemplate(ctrlTemplate: template, completion: { _ in
+             self.delegate?.templateUpdated()
+        }) { _ in
         }
     }
     

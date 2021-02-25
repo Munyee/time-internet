@@ -8,12 +8,14 @@
 
 import UIKit
 import HwMobileSDK
+import MBProgressHUD
 
 class PCProfileViewController: UIViewController {
     
     var selectedDevices: [HwLanDevice] = []
     var selectedPeriod: [SelectPeriod] = []
-
+    
+    @IBOutlet weak var descView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
@@ -31,12 +33,20 @@ class PCProfileViewController: UIViewController {
     @IBOutlet weak var periodTextView: FloatLabeledTextView!
     @IBOutlet weak var selectPeriodStack: UIStackView!
     @IBOutlet weak var selectPeriodView: UIControl!
-
+    
+    @IBOutlet weak var blockWebsiteView: UIView!
     @IBOutlet weak var blockWebsiteStack: UIStackView!
     @IBOutlet weak var blockWebsiteTextView: FloatLabeledTextView!
-        
+    
     @IBOutlet weak var addTimeView: UIView!
     @IBOutlet weak var addWebsiteView: UIView!
+    
+    @IBOutlet weak var createProfile: UIControl!
+    
+    var isView: Bool = false
+    var isEdit: Bool = false
+    var template: HwAttachParentControlTemplate?
+    private var name = "\(Date().timeIntervalSince1970)"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +56,7 @@ class PCProfileViewController: UIViewController {
         
         self.title = NSLocalizedString("PARENTAL CONTROLS", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
+        
         self.liveChatView.isHidden = false
         addTimeView.isHidden = true
         addWebsiteView.isHidden = true
@@ -53,6 +64,13 @@ class PCProfileViewController: UIViewController {
         setupDevice()
         setupPeriod()
         setupBlockWebsite()
+        
+        if isView {
+            descView.isHidden = true
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(self.edit))
+        }
+        
+        updateTemplateView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,7 +80,15 @@ class PCProfileViewController: UIViewController {
     
     @objc
     func popBack() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc
+    func edit() {
+        descView.isHidden = false
+        isEdit = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(self.save))
+        updateTemplateView()
     }
     
     override func viewWillLayoutSubviews() {
@@ -102,13 +128,153 @@ class PCProfileViewController: UIViewController {
     }
     
     func setupBlockWebsite() {
-        insertBlockWebsiteInput(allowRemove:false, isPrimary: true)
+        insertBlockWebsiteInput(allowRemove:false, isPrimary: true, isEdit: true)
         blockWebsiteTextView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         blockWebsiteTextView.animateEvenIfNotFirstResponder = true
     }
     
-    func insertBlockWebsiteInput(allowRemove: Bool, isPrimary: Bool) {
-        let blockWebsiteView = BlockWebsiteView(allowRemove: allowRemove, isPrimary: isPrimary)
+    // swiftlint:disable cyclomatic_complexity
+    func updateTemplateView() {
+        if let temp = template {
+            name = temp.name
+            HuaweiHelper.shared.getAttachParentControlList { arrAttachPC in
+                let controlledDev = arrAttachPC.filter { $0.templateName == temp.name }.map { $0.mac }
+                
+                HuaweiHelper.shared.queryLanDeviceListEx { devices in
+                    self.selectedDevices = devices.filter { !$0.isAp }.filter { controlledDev.contains($0.mac) }
+                    self.updateDeviceList()
+                }
+            }
+            
+            profileTextView.text = temp.aliasName
+            profileSeperator.isHidden = !isEdit
+            deviceView.alpha = 1
+            deviceView.isUserInteractionEnabled = isEdit
+            deviceSeperator.isHidden = !isEdit
+            
+            clearPeriodStack()
+            selectedPeriod.removeAll()
+            
+            for item in temp.controlList {
+                if let control = item as? HwControlSegment {
+                    var days: [kHwDayOfWeek] = []
+                    
+                    if control.repeatMode == kHwRepeatModeNone {
+                        if let period = SelectPeriod(with: [
+                            "index": selectedPeriod.count,
+                            "startTime": control.startTime,
+                            "endTime": control.endTime,
+                            "repeatMode": control.repeatMode
+                        ]) {
+                            selectedPeriod.append(period)
+                        }
+                    } else {
+                        if let daysString = control.dayOfWeeks.allObjects as? [String] {
+                            for day in daysString {
+                                switch day {
+                                case "1":
+                                    days.append(kHwDayOfWeekMon)
+                                case "2":
+                                    days.append(kHwDayOfWeekTue)
+                                case "3":
+                                    days.append(kHwDayOfWeekWed)
+                                case "4":
+                                    days.append(kHwDayOfWeekTus)
+                                case "5":
+                                    days.append(kHwDayOfWeekFri)
+                                case "6":
+                                    days.append(kHwDayOfWeekSat)
+                                case "7":
+                                    days.append(kHwDayOfWeekSun)
+                                default:
+                                    return
+                                }
+                            }
+                        }
+                        
+                        if let period = SelectPeriod(with: [
+                            "index": selectedPeriod.count,
+                            "startTime": control.startTime,
+                            "endTime": control.endTime,
+                            "dayOfWeeks": days,
+                            "repeatMode": control.repeatMode
+                        ]) {
+                            selectedPeriod.append(period)
+                        }
+                    }
+                }
+            }
+            
+            addPeriodStack(isEdit: isEdit)
+            
+            if !selectedPeriod.isEmpty {
+                selectPeriodView.isHidden = true
+                periodTextView.alwaysShowFloatingLabel = true
+            }
+            
+            periodView.alpha = 1
+            periodView.isUserInteractionEnabled = isEdit
+            
+            clearBlockWebsite()
+            
+            if let arrUrl = temp.urlFilterList as? [String] {
+                for url in arrUrl {
+                    let blockWebsiteView = BlockWebsiteView(text: url, isEdit: isEdit)
+                    blockWebsiteView.delegate = self
+                    blockWebsiteStack.addArrangedSubview(blockWebsiteView)
+                }
+                
+                if !arrUrl.isEmpty {
+                    blockWebsiteTextView.alwaysShowFloatingLabel = true
+                } else {
+                    let blockWebsiteView = BlockWebsiteView(allowRemove: false, isPrimary: true, isEdit: isEdit)
+                    blockWebsiteView.delegate = self
+                    blockWebsiteStack.addArrangedSubview(blockWebsiteView)
+                }
+                
+                if isEdit {
+                    addTimeView.isHidden = selectedPeriod.isEmpty ? true : false
+                    addWebsiteView.isHidden = arrUrl.isEmpty ? true : false
+                }
+            }
+            
+            if isEdit {
+                addTimeView.isHidden = selectedPeriod.isEmpty ? true : false
+            }
+            
+            blockWebsiteView.alpha = 1
+            blockWebsiteView.isUserInteractionEnabled = isEdit
+        }
+    }
+    
+    func clearPeriodStack() {
+        for pView in selectPeriodStack.arrangedSubviews {
+            if let periodView = pView as? PeriodView {
+                selectPeriodStack.removeArrangedSubview(periodView)
+                periodView.removeFromSuperview()
+            }
+        }
+    }
+    
+    func addPeriodStack(isEdit: Bool) {
+        for period in selectedPeriod {
+            let periodView = PeriodView(period: period, isEdit: isEdit)
+            periodView.delegate = self
+            selectPeriodStack.addArrangedSubview(periodView)
+        }
+    }
+    
+    func clearBlockWebsite() {
+        for item in blockWebsiteStack.arrangedSubviews {
+            if let view = item as? BlockWebsiteView {
+                blockWebsiteStack.removeArrangedSubview(view)
+                view.removeFromSuperview()
+            }
+        }
+    }
+    
+    func insertBlockWebsiteInput(allowRemove: Bool, isPrimary: Bool, isEdit: Bool) {
+        let blockWebsiteView = BlockWebsiteView(allowRemove: allowRemove, isPrimary: isPrimary, isEdit: isEdit)
         blockWebsiteView.delegate = self
         blockWebsiteStack.addArrangedSubview(blockWebsiteView)
     }
@@ -145,9 +311,24 @@ class PCProfileViewController: UIViewController {
         scrollView.scrollIndicatorInsets = contentInsets
     }
     
+    func checkConfirmButton() {
+        if isEdit || template == nil {
+            if selectedDevices.isEmpty || selectedPeriod.isEmpty || profileTextView.text == "" {
+                self.createProfile.backgroundColor = UIColor(hex: "C6C6C6")
+                self.createProfile.isUserInteractionEnabled = false
+            } else {
+                self.createProfile.backgroundColor = .primary
+                self.createProfile.isUserInteractionEnabled = true
+            }
+        }
+    }
+    
     @IBAction func actDeviceSelect(_ sender: Any) {
         if let devicesVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCDevicesViewController") as? PCDevicesViewController {
             devicesVC.delegate = self
+            if self.template != nil {
+                devicesVC.template = self.template
+            }
             self.presentNavigation(devicesVC, animated: true)
         }
     }
@@ -160,9 +341,111 @@ class PCProfileViewController: UIViewController {
     }
     
     @IBAction func actAddWebsite(_ sender: Any) {
-        insertBlockWebsiteInput(allowRemove: true, isPrimary: false)
+        insertBlockWebsiteInput(allowRemove: true, isPrimary: false, isEdit: true)
     }
     
+    @IBAction func actCreateProfile(_ sender: Any) {
+        save()
+    }
+    
+    @objc
+    func save() {
+        
+        if profileTextView.text == "" {
+            self.showAlertMessage(title: "Error", message: "Please fill in profile name", dismissTitle: "Ok")
+            return
+        } else if selectedPeriod.isEmpty {
+            self.showAlertMessage(title: "Error", message: "Please select access period", dismissTitle: "Ok")
+            return
+        }
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        
+        HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
+            let names = tplList.filter { $0.name != self.template?.name }.map { $0.name }
+            
+            if let arrNames = names as? [String] {
+                HuaweiHelper.shared.getParentControlTemplateDetailList(templateNames: arrNames, completion: { arrData in
+                    
+                    hud.hide(animated: true)
+                    let arrName = arrData.map { $0.aliasName }
+                    if arrName.contains(where: { $0 == self.profileTextView.text }) {
+                        hud.hide(animated: true)
+                        self.showAlertMessage(title: "Error", message: "Existing profile name", dismissTitle: "Ok")
+                        return
+                    } else {
+                        let template = HwAttachParentControlTemplate()
+                        template.name = self.name
+                        template.aliasName = self.profileTextView.text
+                        template.enable = true
+                        
+                        let controlList: NSMutableArray? = []
+                        
+                        for period in self.selectedPeriod {
+                            let controlSegment = HwControlSegment()
+                            controlSegment.enable = true
+                            controlSegment.repeatMode = period.repeatMode ?? kHwRepeatModeNone
+                            controlSegment.startTime = period.startTime
+                            controlSegment.endTime = period.endTime
+                            if let days = period.dayOfWeeks {
+                                let periods = NSMutableSet(array: days.map { $0.rawValue })
+                                controlSegment.dayOfWeeks = periods
+                            }
+                            controlList?.add(controlSegment)
+                        }
+                        
+                        template.controlList = controlList
+                        
+                        var urlList: [String] = []
+                        
+                        for list in self.blockWebsiteStack.arrangedSubviews {
+                            if let blockView = list as? BlockWebsiteView {
+                                if let url = blockView.textField.text {
+                                    if url != "" {
+                                        urlList.append(url)
+                                    }
+                                }
+                            }
+                        }
+                        
+                        if !urlList.isEmpty {
+                            template.urlFilterEnable = false
+                            template.urlFilterList = NSMutableArray(array: urlList)
+                        }
+                        
+                        HuaweiHelper.shared.setAttachParentControlTemplate(ctrlTemplate: template, completion: { _ in
+                            let group = DispatchGroup()
+                            for device in self.selectedDevices {
+                                group.enter()
+                                let attachPC = HwAttachParentControl()
+                                attachPC.mac = device.mac
+                                attachPC.templateName = self.name
+                                HuaweiHelper.shared.setAttachParentControl(attachParentCtrl: attachPC) { _ in
+                                    group.leave()
+                                }
+                            }
+                            
+                            group.notify(queue: .main) {
+                                hud.hide(animated: true)
+                                self.popBack()
+                            }
+                        }) { exception in
+                            hud.hide(animated: true)
+                            self.showAlertMessage(message: exception?.description ?? "")
+                        }
+                    }
+                    
+                }) { exception in
+                    hud.hide(animated: true)
+                    self.showAlertMessage(message: exception?.description ?? "")
+                }
+            }
+        }) { exception in
+            hud.hide(animated: true)
+            self.showAlertMessage(message: exception?.description ?? "")
+        }
+    }
 }
 
 extension PCProfileViewController: BlockWebsiteViewDelegate {
@@ -186,6 +469,13 @@ extension PCProfileViewController: BlockWebsiteViewDelegate {
     func delete(view: UIView) {
         blockWebsiteStack.removeArrangedSubview(view)
         view.removeFromSuperview()
+        
+        if !blockWebsiteStack.arrangedSubviews.contains(where: { $0 is BlockWebsiteView }) {
+            insertBlockWebsiteInput(allowRemove:false, isPrimary: true, isEdit: true)
+            addWebsiteView.isHidden = true
+            blockWebsiteTextView.text = ""
+            blockWebsiteTextView.alwaysShowFloatingLabel = false
+        }
     }
 }
 
@@ -200,6 +490,7 @@ extension PCProfileViewController: UITextViewDelegate {
         profileSeperator.backgroundColor = UIColor(hex: "D9D9D9")
         
         if textView == profileTextView {
+            checkConfirmButton()
             if !deviceView.isUserInteractionEnabled && profileTextView.text != "" {
                 UIView.animate(withDuration: 0.5) {
                     self.deviceView.isUserInteractionEnabled = true
@@ -236,7 +527,7 @@ extension PCProfileViewController: PCDevicesViewControllerDelegate {
             selectDeviceView.isHidden = false
             deviceTextView.alwaysShowFloatingLabel = false
         } else {
-            if !periodView.isUserInteractionEnabled {
+            if !periodView.isUserInteractionEnabled && isEdit {
                 UIView.animate(withDuration: 0.5) {
                     self.periodView.isUserInteractionEnabled = true
                     self.periodView.alpha = 1
@@ -246,11 +537,13 @@ extension PCProfileViewController: PCDevicesViewControllerDelegate {
             selectDeviceView.isHidden = true
             deviceTextView.alwaysShowFloatingLabel = true
             for device in selectedDevices {
-                let deviceView = DeviceView(device: device)
+                let deviceView = DeviceView(device: device, isEdit: template != nil ? isEdit : true)
                 deviceView.delegate = self
                 selectDeviceStack.addArrangedSubview(deviceView)
             }
         }
+        
+        checkConfirmButton()
     }
 }
 
@@ -267,6 +560,7 @@ extension PCProfileViewController: DeviceViewDelegate {
                 selectDeviceView.isHidden = false
                 deviceTextView.alwaysShowFloatingLabel = false
             }
+            checkConfirmButton()
         }
     }
     
@@ -274,6 +568,9 @@ extension PCProfileViewController: DeviceViewDelegate {
         if let devicesVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCDevicesViewController") as? PCDevicesViewController {
             devicesVC.delegate = self
             devicesVC.selectedDevices = selectedDevices
+            if self.template != nil {
+                devicesVC.template = self.template
+            }
             self.presentNavigation(devicesVC, animated: true)
         }
     }
@@ -281,7 +578,6 @@ extension PCProfileViewController: DeviceViewDelegate {
 
 extension PCProfileViewController: PCPeriodViewControllerDelegate {
     func selected(period: SelectPeriod) {
-        
         if period.index == nil {
             period.index = selectedPeriod.count
             selectedPeriod.append(period)
@@ -291,28 +587,31 @@ extension PCProfileViewController: PCPeriodViewControllerDelegate {
             }
         }
         
-        
-        for pView in selectPeriodStack.arrangedSubviews {
-            if let periodView = pView as? PeriodView {
-                selectPeriodStack.removeArrangedSubview(periodView)
-                periodView.removeFromSuperview()
-            }
-        }
+        clearPeriodStack()
         
         for period in selectedPeriod {
-            let periodView = PeriodView(period: period)
+            let periodView = PeriodView(period: period, isEdit: true)
             periodView.delegate = self
             selectPeriodStack.addArrangedSubview(periodView)
+        }
+        
+        if !blockWebsiteView.isUserInteractionEnabled {
+            UIView.animate(withDuration: 0.5) {
+                self.blockWebsiteView.isUserInteractionEnabled = true
+                self.blockWebsiteView.alpha = 1
+            }
         }
         
         periodTextView.alwaysShowFloatingLabel = true
         selectPeriodView.isHidden = true
         addTimeView.isHidden = false
+        checkConfirmButton()
     }
 }
 
 extension PCProfileViewController: PeriodViewDelegate {
     func remove(period: SelectPeriod) {
+        
         if let i = period.index {
             selectedPeriod.remove(at: i)
             let view = selectPeriodStack.subviews[i + 1]
@@ -328,6 +627,8 @@ extension PCProfileViewController: PeriodViewDelegate {
                 selectPeriodView.isHidden = false
                 periodTextView.alwaysShowFloatingLabel = false
             }
+            
+            checkConfirmButton()
         }
     }
     

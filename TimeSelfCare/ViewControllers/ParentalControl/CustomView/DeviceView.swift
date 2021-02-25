@@ -20,6 +20,7 @@ class DeviceView: UIView {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mac: UILabel!
     @IBOutlet weak var deviceImg: UIImageView!
+    @IBOutlet weak var closeView: UIControl!
     
     var device: HwLanDevice?
     var delegate: DeviceViewDelegate?
@@ -33,12 +34,13 @@ class DeviceView: UIView {
         super.init(coder: aDecoder)
     }
     
-    required init(device: HwLanDevice) {
+    required init(device: HwLanDevice, isEdit: Bool) {
         super.init(frame: .zero)
         commonInit()
         self.device = device
         name.text = device.name
         mac.text = device.mac
+        closeView.isHidden = !isEdit
         
         HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: [device.mac]) { deviceTypeInfo in
             if let deviceInfo = deviceTypeInfo.first(where: { $0.mac == device.mac }) {

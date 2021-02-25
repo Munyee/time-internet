@@ -18,6 +18,9 @@ class PeriodView: UIView {
     
     @IBOutlet var contentView: UIControl!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var closeView: UIControl!
+    @IBOutlet weak var separator: UIView!
+    
     var period: SelectPeriod?
     
     var delegate: PeriodViewDelegate?
@@ -31,10 +34,12 @@ class PeriodView: UIView {
         super.init(coder: aDecoder)
     }
     
-    required init(period: SelectPeriod) {
+    required init(period: SelectPeriod, isEdit: Bool) {
         super.init(frame: .zero)
         commonInit()
         self.period = period
+        closeView.isHidden = !isEdit
+        separator.isHidden = !isEdit
         
         var days = ""
         

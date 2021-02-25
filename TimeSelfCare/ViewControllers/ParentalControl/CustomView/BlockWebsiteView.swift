@@ -35,13 +35,24 @@ class BlockWebsiteView: UIView {
         super.init(coder: aDecoder)
     }
     
-    required init(allowRemove: Bool, isPrimary: Bool) {
+    required init(allowRemove: Bool, isPrimary: Bool, isEdit: Bool) {
         super.init(frame: .zero)
         commonInit()
         addDoneKeyboard()
         textField.delegate = self
         primary = isPrimary
         closeView.isHidden = !allowRemove
+        separator.isHidden = !isEdit
+    }
+    
+    required init(text: String, isEdit: Bool) {
+        super.init(frame: .zero)
+        commonInit()
+        addDoneKeyboard()
+        textField.delegate = self
+        textField.text = text
+        closeView.isHidden = !isEdit
+        separator.isHidden = !isEdit
     }
     
     func addDoneKeyboard() {
@@ -81,5 +92,6 @@ extension BlockWebsiteView: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.didEndEdit(separator: separator)
+        closeView.isHidden = false
     }
 }

@@ -649,38 +649,56 @@ access</string>
                                     <constraint firstAttribute="width" priority="750" constant="150" id="fFt-Bc-K4S"/>
                                 </constraints>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQE-gC-xP1" customClass="UIControl">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SZI-5p-yqe">
                                 <rect key="frame" x="35" y="816" width="344" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE PROFILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vU4-7i-Xxr">
-                                        <rect key="frame" x="111.66666666666666" y="16" width="120.66666666666666" height="24"/>
-                                        <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uci-Te-syE" customClass="UIControl">
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE PROFILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tK5-LJ-bsM">
+                                                <rect key="frame" x="111.66666666666666" y="16" width="120.66666666666666" height="24"/>
+                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="24"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="tK5-LJ-bsM" firstAttribute="centerY" secondItem="uci-Te-syE" secondAttribute="centerY" constant="3" id="8iy-ty-xPp"/>
+                                            <constraint firstItem="tK5-LJ-bsM" firstAttribute="centerX" secondItem="uci-Te-syE" secondAttribute="centerX" id="SHO-2X-PP2"/>
+                                            <constraint firstAttribute="height" constant="50" placeholder="YES" id="VpM-Tq-ErB"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="actCreateProfile:" destination="8Ku-7O-Md6" eventType="touchUpInside" id="23O-VP-ySE"/>
+                                        </connections>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZY-jw-myB">
+                                        <rect key="frame" x="0.0" y="50" width="344" height="0.0"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="Delete Profile">
+                                            <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actDeleteProfile:" destination="8Ku-7O-Md6" eventType="touchUpInside" id="D4c-Ye-hy6"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="vU4-7i-Xxr" firstAttribute="centerY" secondItem="qQE-gC-xP1" secondAttribute="centerY" constant="3" id="KR4-Ji-HPZ"/>
-                                    <constraint firstAttribute="height" constant="50" id="WZL-y3-BfQ"/>
-                                    <constraint firstItem="vU4-7i-Xxr" firstAttribute="centerX" secondItem="qQE-gC-xP1" secondAttribute="centerX" id="eAr-cM-0qF"/>
+                                    <constraint firstAttribute="height" constant="50" id="BwM-rp-6Us"/>
                                 </constraints>
-                                <connections>
-                                    <action selector="actCreateProfile:" destination="8Ku-7O-Md6" eventType="touchUpInside" id="IBS-fl-YCT"/>
-                                </connections>
-                            </view>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="kox-ze-vcc" firstAttribute="top" secondItem="qVi-xq-fgU" secondAttribute="top" id="Ivt-j2-4FX"/>
-                            <constraint firstAttribute="bottom" secondItem="qQE-gC-xP1" secondAttribute="bottom" constant="30" id="SHa-bd-8rG"/>
+                            <constraint firstAttribute="bottom" secondItem="SZI-5p-yqe" secondAttribute="bottom" constant="30" id="Jo8-yn-cNB"/>
                             <constraint firstItem="kox-ze-vcc" firstAttribute="trailing" secondItem="VQV-co-Iyv" secondAttribute="trailing" id="Uiy-mW-JYL"/>
-                            <constraint firstItem="qQE-gC-xP1" firstAttribute="top" secondItem="kox-ze-vcc" secondAttribute="bottom" constant="10" id="YTn-IC-omS"/>
                             <constraint firstAttribute="bottom" secondItem="bHZ-Fb-Rff" secondAttribute="bottom" constant="32" id="b3N-7P-1FR"/>
-                            <constraint firstItem="VQV-co-Iyv" firstAttribute="trailing" secondItem="qQE-gC-xP1" secondAttribute="trailing" constant="35" id="ev0-kF-Ecc"/>
-                            <constraint firstItem="qQE-gC-xP1" firstAttribute="leading" secondItem="VQV-co-Iyv" secondAttribute="leading" constant="35" id="teA-TA-cJV"/>
+                            <constraint firstItem="SZI-5p-yqe" firstAttribute="leading" secondItem="VQV-co-Iyv" secondAttribute="leading" constant="35" id="bgU-Ax-xha"/>
+                            <constraint firstItem="VQV-co-Iyv" firstAttribute="trailing" secondItem="SZI-5p-yqe" secondAttribute="trailing" constant="35" id="mOY-eY-SH0"/>
                             <constraint firstItem="kox-ze-vcc" firstAttribute="leading" secondItem="VQV-co-Iyv" secondAttribute="leading" id="uzg-Yr-xWc"/>
                             <constraint firstItem="bHZ-Fb-Rff" firstAttribute="leading" secondItem="VQV-co-Iyv" secondAttribute="leading" constant="-125" id="xL2-Lg-Oha"/>
+                            <constraint firstItem="SZI-5p-yqe" firstAttribute="top" secondItem="kox-ze-vcc" secondAttribute="bottom" constant="10" id="yAc-O0-GDQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VQV-co-Iyv"/>
                     </view>
@@ -690,7 +708,8 @@ access</string>
                         <outlet property="blockWebsiteStack" destination="93M-zz-Lrc" id="6GD-NG-VIG"/>
                         <outlet property="blockWebsiteTextView" destination="jOQ-oZ-dEI" id="xQn-zQ-0Rl"/>
                         <outlet property="blockWebsiteView" destination="GCe-IL-3Vq" id="hTs-xf-jP3"/>
-                        <outlet property="createProfile" destination="qQE-gC-xP1" id="GkE-wj-G8K"/>
+                        <outlet property="createProfile" destination="uci-Te-syE" id="8vy-m0-y9W"/>
+                        <outlet property="deleteProfile" destination="tZY-jw-myB" id="1Sd-QS-66p"/>
                         <outlet property="descView" destination="jZG-M4-C6L" id="sJ6-5m-8FN"/>
                         <outlet property="deviceSeperator" destination="SSq-qg-i1W" id="UC5-Js-YA3"/>
                         <outlet property="deviceTextView" destination="K2N-1v-TB1" id="jgB-xZ-uDA"/>
@@ -974,7 +993,7 @@ access</string>
                                         </connections>
                                     </pickerView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTJ-NF-XhL">
-                                        <rect key="frame" x="199.66666666666666" y="105.99999999999999" width="15" height="44.333333333333329"/>
+                                        <rect key="frame" x="199" y="105" width="16.333333333333343" height="46"/>
                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="38"/>
                                         <color key="textColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>

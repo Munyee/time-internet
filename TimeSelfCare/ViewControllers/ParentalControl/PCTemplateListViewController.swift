@@ -78,11 +78,13 @@ class PCTemplateListViewController: UIViewController {
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }) { _ in
-                
+                hud.hide(animated: true)
+                self.dismissVC()
             }
             
         }) { _ in
-            
+            hud.hide(animated: true)
+            self.dismissVC()
         }
     }
 }

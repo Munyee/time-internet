@@ -42,6 +42,7 @@ class PCProfileViewController: UIViewController {
     @IBOutlet weak var addWebsiteView: UIView!
     
     @IBOutlet weak var createProfile: UIControl!
+    @IBOutlet weak var deleteProfile: UIButton!
     
     var isView: Bool = false
     var isEdit: Bool = false
@@ -245,6 +246,9 @@ class PCProfileViewController: UIViewController {
             blockWebsiteView.alpha = 1
             blockWebsiteView.isUserInteractionEnabled = isEdit
         }
+        
+        deleteProfile.isHidden = template == nil || !isEdit
+        createProfile.isHidden = template != nil
     }
     
     func clearPeriodStack() {
@@ -346,6 +350,42 @@ class PCProfileViewController: UIViewController {
     
     @IBAction func actCreateProfile(_ sender: Any) {
         save()
+    }
+    
+    @IBAction func actDeleteProfile(_ sender: Any) {
+        self.showAlertMessage(
+                title: NSLocalizedString("Delete Profile", comment: ""),
+                message: NSLocalizedString("Are you sure want to remove from the list?", comment: ""),
+                actions: [
+                    UIAlertAction(title: NSLocalizedString("Confirm", comment: ""), style: .destructive) { _ in
+                        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+                        hud.label.text = NSLocalizedString("Loading...", comment: "")
+                        
+                        HuaweiHelper.shared.getAttachParentControlList { arrAttachPC in
+                            let controlledDev = arrAttachPC.filter { $0.templateName == self.name }.map { $0.mac }
+                            
+                            let group = DispatchGroup()
+                            for dev in controlledDev {
+                                group.enter()
+                                let pcControl = HwAttachParentControl()
+                                pcControl.mac = dev
+                                pcControl.templateName = self.name
+                                HuaweiHelper.shared.deleteAttachParentControl(attachParentCtrl: pcControl) { _ in
+                                    group.leave()
+                                }
+                            }
+                            
+                            group.notify(queue: .main) {
+                                HuaweiHelper.shared.deleteAttachParentControlTemplate(name: self.name, completion: { _ in
+                                    hud.hide(animated: true)
+                                    self.popBack()
+                                }) { _ in
+                                    hud.hide(animated: true)
+                                }
+                            }
+                        }
+                    },
+                    UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)])
     }
     
     @objc

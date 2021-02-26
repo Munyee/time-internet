@@ -36,6 +36,7 @@ internal class SidebarTableViewController: UIViewController {
     @IBOutlet private weak var nameInitialLabel: UILabel!
     @IBOutlet private var versionLabel: UILabel!
     @IBOutlet var viewProfileButton: RoundedButton!
+    @IBOutlet var logoutButton: UIButton!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -44,6 +45,7 @@ internal class SidebarTableViewController: UIViewController {
         self.nameInitialLabel.font = UIFont(name: "DINCondensed-Bold", size: 50)
         tableView.backgroundColor = .white
         self.viewProfileButton.titleLabel?.textAlignment = .center
+        self.logoutButton.titleLabel?.textAlignment = .center
     }
 
     override func viewWillAppear(_ animated: Bool) {

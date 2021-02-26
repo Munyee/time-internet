@@ -95,7 +95,7 @@ internal class PaymentSummaryViewController: TimeBaseViewController {
         parameters["upgw"] = "yes"
         parameters["session_id"] = AccountController.shared.sessionId
         paymentVC.parameters = parameters
-        paymentVC.title = NSLocalizedString("Make Payment", comment: "")
+        paymentVC.title = NSLocalizedString("Make Payment", comment: "").uppercased()
         self.presentNavigation(paymentVC, animated: true)
     }
 

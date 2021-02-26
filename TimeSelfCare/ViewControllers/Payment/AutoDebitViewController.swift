@@ -27,7 +27,7 @@ internal class AutoDebitViewController: TimeBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = NSLocalizedString("AUTO DEBIT", comment: "")
+        self.title = NSLocalizedString("AUTO DEBIT", comment: "").uppercased()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(self.back))
     }
 
@@ -148,7 +148,7 @@ extension AutoDebitViewController {
             return
         }
 
-        paymentVC.title = NSLocalizedString("Register Auto Debit", comment: "")
+        paymentVC.title = NSLocalizedString("Register Auto Debit", comment: "").uppercased()
 
         let billAmount = BillDataController.shared.getBills(account: AccountController.shared.selectedAccount).first?.totalOutstanding
 
@@ -168,7 +168,7 @@ extension AutoDebitViewController {
             return
         }
 
-        paymentVC.title = NSLocalizedString("Modify Auto Debit", comment: "")
+        paymentVC.title = NSLocalizedString("Modify Auto Debit", comment: "").uppercased()
 
         self.presentNavigation(paymentVC, animated: true)
     }

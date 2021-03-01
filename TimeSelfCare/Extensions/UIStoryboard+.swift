@@ -25,6 +25,7 @@ enum TimeSelfCareStoryboard: String, Storyboard {
     case hookup
     case shop
     case parentalcontrol
+    case bindgateway
 
     var filename: String {
         return rawValue.capitalizedFirstLetter

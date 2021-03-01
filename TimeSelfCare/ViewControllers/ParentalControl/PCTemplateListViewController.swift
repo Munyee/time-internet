@@ -29,16 +29,6 @@ class PCTemplateListViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.getParentalControl), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
-        HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
-            if tplList.isEmpty {
-                let parentalControlVC: PCMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController()
-                parentalControlVC.hasData = false
-                self.navigationController?.pushViewController(parentalControlVC, animated: true)
-            }
-        }) { _ in
-            
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,6 +58,13 @@ class PCTemplateListViewController: UIViewController {
         hud.label.text = NSLocalizedString("Loading...", comment: "")
         
         HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
+            
+            if tplList.isEmpty {
+                let parentalControlVC: PCMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController()
+                parentalControlVC.hasData = false
+                self.navigationController?.pushViewController(parentalControlVC, animated: true)
+            }
+            
             let names = tplList.map { template -> String in
                 return template.name
             }

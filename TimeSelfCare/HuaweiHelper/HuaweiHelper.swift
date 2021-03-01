@@ -68,12 +68,6 @@ public extension HuaweiHelper {
         HwNetopenMobileSDK.isLogined(callBackAdapter)
     }
     
-    func loginInfo(result: HwLoginInfo?) {
-        if let gateway = result?.gatewayInfoList.firstObject as? HwGatewayInfo {
-            AccountController.shared.gatewayDevId = gateway.deviceId
-        }
-    }
-    
     func queryGateway(completion: @escaping(_ result: HwSystemInfo) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
@@ -90,6 +84,92 @@ public extension HuaweiHelper {
         }
     }
     
+    func queryUserBindGateway(completion: @escaping(_ result: [HwUserBindedGateway]) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let gateways = value as? [HwUserBindedGateway] {
+                completion(gateways)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwUserService {
+            service.queryUserBindGateway(callBackAdapter)
+        }
+    }
+
+    func searchGateway(completion: @escaping(_ result: [HwSearchedUserGateway]) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let gateway = value as? [HwSearchedUserGateway] {
+                completion(gateway)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwUserService {
+            service.searchGateway(callBackAdapter)
+        }
+    }
+    
+    func getONTRegisterStatus(devId: String, completion: @escaping(_ result: HwONTRegisterStatus) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let gateway = value as? HwONTRegisterStatus {
+                completion(gateway)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwUserService {
+            service.getONTRegisterStatus(devId, with: callBackAdapter)
+        }
+    }
+    
+    func getFamilyRegisterInfoOnCloud(devId: String, completion: @escaping(_ result: HwFamilyRegisterInfo) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let family = value as? HwFamilyRegisterInfo {
+                completion(family)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwUserService {
+            service.getFamilyRegisterInfo(onCloud: devId, with: callBackAdapter)
+        }
+    }
+    
+    func bindGateway(deviceMac: String, gatewayNickname: String, completion: @escaping(_ result: HwUserBindedGateway) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let gateway = value as? HwUserBindedGateway {
+                completion(gateway)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        let params = HwBindGatewayParam()
+        params.deviceMAC = deviceMac
+        params.adminAccount = ""
+        params.adminPassword = ""
+        params.gatewayNickName = gatewayNickname
+        
+        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwUserService {
+            service.bindGateway(params, withCallBack: callBackAdapter)
+        }
+    }
+
     func getGatewaySpeed(completion: @escaping(_ result: HwGatewaySpeed) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in

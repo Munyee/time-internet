@@ -113,11 +113,8 @@ class SummaryContainerViewController: TimeBaseViewController {
                         HuaweiHelper.shared.initHwSdk {
                             HuaweiHelper.shared.checkIsLogin { result in
                                 if !result.isLogined {
-                                    HuaweiHelper.shared.login { loginInfo in
-                                        HuaweiHelper.shared.loginInfo(result: loginInfo)
+                                    HuaweiHelper.shared.login { _ in
                                     }
-                                } else {
-                                    HuaweiHelper.shared.loginInfo(result: result.loginInfo)
                                 }
                             }
                         }

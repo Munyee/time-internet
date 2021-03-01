@@ -28,11 +28,19 @@ class PerformanceViewController: BaseViewController {
     @IBOutlet weak var downByte: UILabel!
     @IBOutlet weak var upSpeed: UILabel!
     @IBOutlet weak var upByte: UILabel!
+    @IBOutlet weak var connectionStackView: UIStackView!
+    @IBOutlet weak var nceFeatureView: UIStackView!
+    @IBOutlet weak var nceFeatureSmallView: UIView!
+    
+    let kIsSetupNCE = "is_setup_nce"
     
     var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.connectionStackView.isHidden = false
+        self.nceFeatureSmallView.isHidden = true
+        self.nceFeatureView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,21 +52,42 @@ class PerformanceViewController: BaseViewController {
         
         timer?.invalidate()
         
-        HuaweiHelper.shared.queryGateway { gateway in
-            HuaweiHelper.shared.queryLanDeviceCount { result in
-                self.numberOfDevice.text = "\(result.lanDeviceCount)"
-            }
-            self.speedTestView.isHidden = false
-            self.nceView.isHidden = false
-            
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in
-                    let (downSpeed, downByte) = Units(kBytes: Int64(gatewaySpeed.downSpeed)).getReadableUnit()
-                    let (upSpeed, upByte) = Units(kBytes: Int64(gatewaySpeed.upSpeed)).getReadableUnit()
-                    self.downSpeed.text = "\(downSpeed)"
-                    self.downByte.text = "\(downByte)"
-                    self.upSpeed.text = "\(upSpeed)"
-                    self.upByte.text = "\(upByte)"
+        let showAddnce = UserDefaults.standard.bool(forKey: self.kIsSetupNCE)
+        
+        HuaweiHelper.shared.queryUserBindGateway { gateways in
+            if !gateways.isEmpty {
+                AccountController.shared.gatewayDevId = gateways.first?.deviceId
+                self.nceFeatureView.isHidden = true
+                
+                HuaweiHelper.shared.queryGateway { _ in
+                    
+                    HuaweiHelper.shared.queryLanDeviceCount { result in
+                        self.numberOfDevice.text = "\(result.lanDeviceCount)"
+                    }
+                    self.speedTestView.isHidden = true
+                    self.nceView.isHidden = true
+                    self.nceFeatureSmallView.isHidden = false
+                    //            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                    //                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in
+                    //                    let (downSpeed, downByte) = Units(kBytes: Int64(gatewaySpeed.downSpeed)).getReadableUnit()
+                    //                    let (upSpeed, upByte) = Units(kBytes: Int64(gatewaySpeed.upSpeed)).getReadableUnit()
+                    //                    self.downSpeed.text = "\(downSpeed)"
+                    //                    self.downByte.text = "\(downByte)"
+                    //                    self.upSpeed.text = "\(upSpeed)"
+                    //                    self.upByte.text = "\(upByte)"
+                    //                }
+                    //            }
+                }
+            } else {
+                AccountController.shared.gatewayDevId = ""
+                if !showAddnce {
+                    self.connectionStackView.isHidden = true
+                    self.nceFeatureSmallView.isHidden = true
+                    self.nceView.isHidden = false
+                } else {
+                    self.connectionStackView.isHidden = false
+                    self.nceFeatureSmallView.isHidden = false
+                    self.nceView.isHidden = false
                 }
             }
         }
@@ -90,7 +119,7 @@ class PerformanceViewController: BaseViewController {
             self.animationView.loopAnimation = false
             self.animationView.play()
             
-            if (isConnected) {
+            if isConnected {
                 self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is good.", boldString: "good", color: UIColor.green, font: self.statusLabel.font)
             } else {
                 self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is down.\n Connection issue detected", boldString: "down", color: UIColor.red, font: self.statusLabel.font)
@@ -123,4 +152,16 @@ class PerformanceViewController: BaseViewController {
         }
     }
     
+    @IBAction func bindGateway(_ sender: Any) {
+        if let bindVC = UIStoryboard(name: TimeSelfCareStoryboard.bindgateway.filename, bundle: nil).instantiateViewController(withIdentifier: "GetConnectViewController") as? GetConnectViewController {
+            self.presentNavigation(bindVC, animated: true)
+        }
+    }
+    
+    @IBAction func actUseCurrentVersion(_ sender: Any) {
+        connectionStackView.isHidden = false
+        nceFeatureView.isHidden = true
+        nceFeatureSmallView.isHidden = false
+        UserDefaults.standard.set(true, forKey: kIsSetupNCE)
+    }
 }

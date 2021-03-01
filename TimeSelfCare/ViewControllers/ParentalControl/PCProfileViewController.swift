@@ -34,7 +34,6 @@ class PCProfileViewController: UIViewController {
     @IBOutlet weak var selectPeriodStack: UIStackView!
     @IBOutlet weak var selectPeriodView: UIControl!
     
-    @IBOutlet weak var blockWebsiteView: UIView!
     @IBOutlet weak var blockWebsiteStack: UIStackView!
     @IBOutlet weak var blockWebsiteTextView: FloatLabeledTextView!
     
@@ -43,7 +42,7 @@ class PCProfileViewController: UIViewController {
     
     @IBOutlet weak var createProfile: UIControl!
     @IBOutlet weak var deleteProfile: UIButton!
-    
+        
     var isView: Bool = false
     var isEdit: Bool = false
     var template: HwAttachParentControlTemplate?
@@ -69,9 +68,11 @@ class PCProfileViewController: UIViewController {
         if isView {
             descView.isHidden = true
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(self.edit))
+            updateTemplateView()
         }
-        
-        updateTemplateView()
+    
+        deleteProfile.isHidden = template == nil || !isEdit
+        createProfile.isHidden = template != nil
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -129,8 +130,11 @@ class PCProfileViewController: UIViewController {
     }
     
     func setupBlockWebsite() {
+        blockWebsiteTextView.alpha = 0
+        blockWebsiteTextView.alwaysShowFloatingLabel = false
+        blockWebsiteStack.alpha = 0.4
+        blockWebsiteStack.isUserInteractionEnabled = false
         insertBlockWebsiteInput(allowRemove:false, isPrimary: true, isEdit: true)
-        blockWebsiteTextView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         blockWebsiteTextView.animateEvenIfNotFirstResponder = true
     }
     
@@ -226,6 +230,7 @@ class PCProfileViewController: UIViewController {
                 }
                 
                 if !arrUrl.isEmpty {
+                    blockWebsiteTextView.alpha = 1
                     blockWebsiteTextView.alwaysShowFloatingLabel = true
                 } else {
                     let blockWebsiteView = BlockWebsiteView(allowRemove: false, isPrimary: true, isEdit: isEdit)
@@ -239,12 +244,13 @@ class PCProfileViewController: UIViewController {
                 }
             }
             
+            blockWebsiteStack.alpha = 1
+            blockWebsiteStack.isUserInteractionEnabled = isEdit
+            
             if isEdit {
                 addTimeView.isHidden = selectedPeriod.isEmpty ? true : false
             }
             
-            blockWebsiteView.alpha = 1
-            blockWebsiteView.isUserInteractionEnabled = isEdit
         }
         
         deleteProfile.isHidden = template == nil || !isEdit
@@ -403,13 +409,13 @@ class PCProfileViewController: UIViewController {
         hud.label.text = NSLocalizedString("Loading...", comment: "")
         
         HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
-            let names = tplList.filter { $0.name != self.template?.name }.map { $0.name }
+            let names = tplList.map { $0.name }
             
             if let arrNames = names as? [String] {
                 HuaweiHelper.shared.getParentControlTemplateDetailList(templateNames: arrNames, completion: { arrData in
                     
                     hud.hide(animated: true)
-                    let arrName = arrData.map { $0.aliasName }
+                    let arrName = arrData.filter { $0.name != self.template?.name }.map { $0.aliasName }
                     if arrName.contains(where: { $0 == self.profileTextView.text }) {
                         hud.hide(animated: true)
                         self.showAlertMessage(title: "Error", message: "Existing profile name", dismissTitle: "Ok")
@@ -635,10 +641,11 @@ extension PCProfileViewController: PCPeriodViewControllerDelegate {
             selectPeriodStack.addArrangedSubview(periodView)
         }
         
-        if !blockWebsiteView.isUserInteractionEnabled {
+        if !blockWebsiteStack.isUserInteractionEnabled {
             UIView.animate(withDuration: 0.5) {
-                self.blockWebsiteView.isUserInteractionEnabled = true
-                self.blockWebsiteView.alpha = 1
+                self.blockWebsiteStack.isUserInteractionEnabled = true
+                self.blockWebsiteStack.alpha = 1
+                self.blockWebsiteTextView.alpha = 1
             }
         }
         

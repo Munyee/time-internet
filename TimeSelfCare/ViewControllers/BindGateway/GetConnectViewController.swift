@@ -40,8 +40,8 @@ class GetConnectViewController: UIViewController {
                 let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                 hud.label.text = NSLocalizedString("Loading...", comment: "")
                 HuaweiHelper.shared.bindGateway(deviceMac: deviceMac, gatewayNickname: ssidName, completion: { _ in
-                    self.dismissVC()
                     hud.hide(animated: true)
+                    self.dismissVC()
                 }) { _ in
                     self.gateway = nil
                     self.notConnected()
@@ -134,18 +134,9 @@ extension GetConnectViewController: CLLocationManagerDelegate {
             self.tryAgainButton.setTitle("TRY AGAIN", for: .normal)
         }
     } else if status == .denied {
-        let alertActions: [UIAlertAction] = [
-            UIAlertAction(title: NSLocalizedString("Open Settings", comment: ""), style: .default, handler: { _ in
-                if let url = URL(string:UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url)
-                }
-            }),
-            UIAlertAction(title: NSLocalizedString("Later", comment: ""), style: .cancel, handler: { _ in
-                self.dismissVC()
-            })
-        ]
-        
-        self.showAlertMessage(title: "Error", message: "Please go to Settings and turn on location permission", actions: alertActions)
+        if let openSettingVC = UIStoryboard(name: TimeSelfCareStoryboard.bindgateway.filename, bundle: nil).instantiateViewController(withIdentifier: "OpenSettingViewController") as? OpenSettingViewController {
+            self.presentNavigation(openSettingVC, animated: true)
+        }
     }
   }
 }

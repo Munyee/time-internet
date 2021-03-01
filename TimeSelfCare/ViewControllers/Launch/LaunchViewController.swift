@@ -270,11 +270,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
 
     private func launchAuthMenu(with action: AuthMenuViewController.AuthenticationAction? = nil) {
-//        guard let landingVC = UIStoryboard(name: "AuthMenu", bundle: nil).instantiateInitialViewController() else {
-//            return
-//        }
-        
-        guard let landingVC = UIStoryboard(name: TimeSelfCareStoryboard.bindgateway.filename, bundle: nil).instantiateViewController(withIdentifier: "GetConnectViewController") as? GetConnectViewController else {
+        guard let landingVC = UIStoryboard(name: "AuthMenu", bundle: nil).instantiateInitialViewController() else {
             return
         }
 

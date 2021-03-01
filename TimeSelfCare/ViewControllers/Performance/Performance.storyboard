@@ -25,13 +25,13 @@
                                 <rect key="frame" x="0.0" y="10" width="375" height="657"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SiV-e4-LRx">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1155.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1188.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JCb-eP-XxF">
-                                                <rect key="frame" x="0.0" y="10" width="375" height="1135.5"/>
+                                                <rect key="frame" x="0.0" y="10" width="375" height="1168.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6mc-4P-bKG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="448"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="481"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oa-dd-HhH">
                                                                 <rect key="frame" x="76" y="0.0" width="223" height="33.5"/>
@@ -130,20 +130,22 @@
                                                                 </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upb-aU-euo">
-                                                                <rect key="frame" x="20" y="338" width="335" height="70"/>
+                                                                <rect key="frame" x="68" y="338" width="239" height="103"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RqY-Gv-vcd" customClass="UIControl">
-                                                                        <rect key="frame" x="86.5" y="0.0" width="162" height="70"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="109.5" height="103"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_parental_control" translatesAutoresizingMaskIntoConstraints="NO" id="HBx-0I-owa">
-                                                                                <rect key="frame" x="0.0" y="10" width="50" height="50"/>
+                                                                                <rect key="frame" x="30" y="10" width="50" height="50"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="50" id="DhL-LS-zSK"/>
                                                                                     <constraint firstAttribute="width" secondItem="HBx-0I-owa" secondAttribute="height" multiplier="1:1" id="Qit-E0-FS4"/>
                                                                                 </constraints>
                                                                             </imageView>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parental Controls" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="myY-oo-vRo">
-                                                                                <rect key="frame" x="65" y="28" width="87" height="14"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoR-UC-sQq">
+                                                                                <rect key="frame" x="10" y="65" width="89.5" height="28"/>
+                                                                                <string key="text">Parental 
+Controls</string>
                                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -151,32 +153,63 @@
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="HBx-0I-owa" firstAttribute="leading" secondItem="RqY-Gv-vcd" secondAttribute="leading" id="3ss-5r-Z6Q"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="myY-oo-vRo" secondAttribute="trailing" constant="10" id="CUh-1W-nQ8"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="HBx-0I-owa" secondAttribute="bottom" constant="10" id="FQ3-iX-R66"/>
                                                                             <constraint firstItem="HBx-0I-owa" firstAttribute="top" secondItem="RqY-Gv-vcd" secondAttribute="top" constant="10" id="FWR-oe-3GJ"/>
-                                                                            <constraint firstItem="myY-oo-vRo" firstAttribute="leading" secondItem="HBx-0I-owa" secondAttribute="trailing" constant="15" id="hR6-Ut-g38"/>
-                                                                            <constraint firstItem="myY-oo-vRo" firstAttribute="centerY" secondItem="HBx-0I-owa" secondAttribute="centerY" id="uok-Sb-V3w"/>
+                                                                            <constraint firstItem="ZoR-UC-sQq" firstAttribute="top" secondItem="HBx-0I-owa" secondAttribute="bottom" constant="5" id="H7h-pP-bmK"/>
+                                                                            <constraint firstItem="HBx-0I-owa" firstAttribute="centerX" secondItem="RqY-Gv-vcd" secondAttribute="centerX" id="RQa-S2-MPO"/>
+                                                                            <constraint firstItem="ZoR-UC-sQq" firstAttribute="leading" secondItem="RqY-Gv-vcd" secondAttribute="leading" constant="10" id="UjH-M4-zGO"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="ZoR-UC-sQq" secondAttribute="bottom" constant="10" id="Vqp-HX-Ppn"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="ZoR-UC-sQq" secondAttribute="trailing" constant="10" id="ZBh-Jo-Z1t"/>
                                                                         </constraints>
                                                                         <connections>
                                                                             <action selector="actParentalControl:" destination="k5v-hv-hWL" eventType="touchUpInside" id="vhp-PV-hCs"/>
                                                                         </connections>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjW-iv-sdQ" customClass="UIControl">
+                                                                        <rect key="frame" x="119.5" y="0.0" width="109.5" height="103"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wifi_conf" translatesAutoresizingMaskIntoConstraints="NO" id="9Yr-5N-8N0">
+                                                                                <rect key="frame" x="30" y="10" width="50" height="50"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="50" id="2cS-yX-jEY"/>
+                                                                                    <constraint firstAttribute="width" secondItem="9Yr-5N-8N0" secondAttribute="height" multiplier="1:1" id="fYU-dD-6sU"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhW-PN-Un1">
+                                                                                <rect key="frame" x="10" y="65" width="89.5" height="28"/>
+                                                                                <string key="text">Wifi 
+Configuration</string>
+                                                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="jhW-PN-Un1" firstAttribute="top" secondItem="9Yr-5N-8N0" secondAttribute="bottom" constant="5" id="0vn-Oe-hMy"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="jhW-PN-Un1" secondAttribute="trailing" constant="10" id="3bS-ZW-vLg"/>
+                                                                            <constraint firstItem="9Yr-5N-8N0" firstAttribute="top" secondItem="RjW-iv-sdQ" secondAttribute="top" constant="10" id="PRt-qV-bVa"/>
+                                                                            <constraint firstItem="jhW-PN-Un1" firstAttribute="leading" secondItem="RjW-iv-sdQ" secondAttribute="leading" constant="10" id="eUI-qs-OvO"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="jhW-PN-Un1" secondAttribute="bottom" constant="10" id="fkC-xe-eQE"/>
+                                                                            <constraint firstItem="9Yr-5N-8N0" firstAttribute="centerX" secondItem="RjW-iv-sdQ" secondAttribute="centerX" id="iXD-gN-OKy"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                 <constraints>
+                                                                    <constraint firstItem="RjW-iv-sdQ" firstAttribute="top" secondItem="RqY-Gv-vcd" secondAttribute="top" id="N7z-2q-mJ3"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="RjW-iv-sdQ" secondAttribute="trailing" constant="10" id="RjM-sJ-C9V"/>
+                                                                    <constraint firstItem="RjW-iv-sdQ" firstAttribute="leading" secondItem="RqY-Gv-vcd" secondAttribute="trailing" id="So5-Lz-oX4"/>
                                                                     <constraint firstItem="RqY-Gv-vcd" firstAttribute="top" secondItem="Upb-aU-euo" secondAttribute="top" id="UqQ-48-w8U"/>
                                                                     <constraint firstAttribute="bottom" secondItem="RqY-Gv-vcd" secondAttribute="bottom" id="Y7E-WK-b0W"/>
-                                                                    <constraint firstItem="RqY-Gv-vcd" firstAttribute="centerX" secondItem="Upb-aU-euo" secondAttribute="centerX" id="ZQQ-Cm-Si4"/>
-                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RqY-Gv-vcd" secondAttribute="trailing" constant="10" id="ivB-ej-rpa"/>
-                                                                    <constraint firstItem="RqY-Gv-vcd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Upb-aU-euo" secondAttribute="leading" constant="10" id="s5o-6x-JQa"/>
+                                                                    <constraint firstItem="RqY-Gv-vcd" firstAttribute="width" secondItem="RjW-iv-sdQ" secondAttribute="width" id="dle-PX-5VE"/>
+                                                                    <constraint firstItem="RqY-Gv-vcd" firstAttribute="leading" secondItem="Upb-aU-euo" secondAttribute="leading" constant="10" id="s5o-6x-JQa"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="20" bottom="40" trailing="20"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aoc-IM-WYh">
-                                                        <rect key="frame" x="0.0" y="448" width="375" height="515"/>
+                                                        <rect key="frame" x="0.0" y="481" width="375" height="515"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nce_new" translatesAutoresizingMaskIntoConstraints="NO" id="GO5-wp-A6b">
                                                                 <rect key="frame" x="108.5" y="0.0" width="158" height="199"/>
@@ -228,7 +261,7 @@ new features for you!</string>
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="36" bottom="40" trailing="36"/>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYu-RL-RRk">
-                                                        <rect key="frame" x="0.0" y="963" width="375" height="172.5"/>
+                                                        <rect key="frame" x="0.0" y="996" width="375" height="172.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nce_new" translatesAutoresizingMaskIntoConstraints="NO" id="opb-o2-IFs">
                                                                 <rect key="frame" x="25" y="34" width="69" height="85"/>
@@ -574,6 +607,7 @@ new features for you!</string>
         <image name="ic_ssid" width="60" height="60"/>
         <image name="ic_visibility" width="24" height="24"/>
         <image name="icon_parental_control" width="47" height="44"/>
+        <image name="icon_wifi_conf" width="54" height="44"/>
         <image name="nce_new" width="158" height="199"/>
     </resources>
 </document>

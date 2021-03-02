@@ -163,7 +163,7 @@ class AccountSummaryViewController: BaseViewController {
                 }
             }
             
-            self.showAlertMessage(title: NSLocalizedString("TIME SelfCare", comment: ""), message: NSLocalizedString("Do you want to register for Auto Debit?", comment: ""), actions: [continueAction, setupAction])
+            self.showAlertMessage(title: NSLocalizedString("Get RM2 off your monthly subscription", comment: ""), message: NSLocalizedString("When you pay with Auto Debit", comment: ""), actions: [setupAction, continueAction])
         }
     }
 

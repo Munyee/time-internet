@@ -11,6 +11,7 @@ import UIKit
 import HwMobileSDK
 import SystemConfiguration.CaptiveNetwork
 import MBProgressHUD
+import Alamofire
 
 protocol ChangeWifiViewControllerDelegate {
     func changeSuccess()
@@ -27,10 +28,11 @@ class ChangeWifiViewController: TimeBaseViewController {
     
     @IBOutlet weak var tryAgainButton: UIButton!
     @IBOutlet var ssidText: UILabel!
+    @IBOutlet weak var errorMsg: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        errorMsg.text = ""
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_close_magenta"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
         searchGateway()
     }
@@ -40,32 +42,48 @@ class ChangeWifiViewController: TimeBaseViewController {
     }
     
     @IBAction func actRetry(_ sender: Any) {
-        if ssidName != "" && gateway != nil {
-            if let deviceMac = self.gateway?.deviceMac, let oldGateway = self.oldGatewayId {
-
-                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                hud.label.text = NSLocalizedString("Loading...", comment: "")
-                HuaweiHelper.shared.replaceGateway(oldDeviceMac: oldGateway, deviceMac: deviceMac, completion: { replaceGateway in
-                    AccountController.shared.gatewayDevId = replaceGateway.deviceId
-                    HuaweiHelper.shared.setGatewayNickname(deviceId: replaceGateway.deviceId, gatewayName: self.ssidName, completion: { _ in
-                        self.delegate?.changeSuccess()
-                        self.dismissVC()
-                    }) { _ in
-                        self.delegate?.changeSuccess()
-                        self.dismissVC()
+        self.errorMsg.text = ""
+        if NetworkReachabilityManager()!.isReachable {
+            if ssidName != "" && gateway != nil {
+                if let deviceMac = self.gateway?.deviceMac, let oldGateway = self.oldGatewayId {
+                    
+                    let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+                    hud.label.text = NSLocalizedString("Loading...", comment: "")
+                    
+                    if gateway?.deviceMac == oldGateway {
+                        HuaweiHelper.shared.setGatewayNickname(deviceId: oldGateway, gatewayName: self.ssidName, completion: { _ in
+                            self.delegate?.changeSuccess()
+                            self.dismissVC()
+                        }) { _ in
+                            self.delegate?.changeSuccess()
+                            self.dismissVC()
+                        }
+                    } else {
+                        HuaweiHelper.shared.replaceGateway(oldDeviceMac: oldGateway, deviceMac: deviceMac, completion: { replaceGateway in
+                            AccountController.shared.gatewayDevId = replaceGateway.deviceId
+                            HuaweiHelper.shared.setGatewayNickname(deviceId: replaceGateway.deviceId, gatewayName: self.ssidName, completion: { _ in
+                                self.delegate?.changeSuccess()
+                                self.dismissVC()
+                            }) { _ in
+                                self.delegate?.changeSuccess()
+                                self.dismissVC()
+                            }
+                        }) { _ in
+                            self.gateway = nil
+                            self.failed()
+                            hud.hide(animated: true)
+                        }
                     }
-                }) { _ in
+                } else {
                     self.gateway = nil
                     self.notConnected()
-                    hud.hide(animated: true)
                 }
-
             } else {
-                self.gateway = nil
-                self.notConnected()
+                searchGateway()
             }
         } else {
-            searchGateway()
+            self.errorMsg.text = "You are not connected to any WiFi."
+            notConnected()
         }
     }
     
@@ -76,6 +94,13 @@ class ChangeWifiViewController: TimeBaseViewController {
     
     func notConnected() {
         ssidText.text = "Not Connected"
+        ssidText.textColor = UIColor(hex: "E50707")
+        self.tryAgainButton.setTitle("TRY AGAIN", for: .normal)
+    }
+    
+    func failed() {
+        self.errorMsg.text = ""
+        ssidText.text = "Failed"
         ssidText.textColor = UIColor(hex: "E50707")
         self.tryAgainButton.setTitle("TRY AGAIN", for: .normal)
     }
@@ -105,29 +130,34 @@ class ChangeWifiViewController: TimeBaseViewController {
         checkingSSID()
         HuaweiHelper.shared.searchGateway(completion: { gateways in
             self.gateway = gateways.first
-            if let deviceMac = self.gateway?.deviceMac {
+            if let deviceMac = self.gateway?.deviceMac, let oldGateway = self.oldGatewayId {
                 HuaweiHelper.shared.getONTRegisterStatus(devId: deviceMac, completion: { _ in
                     HuaweiHelper.shared.getFamilyRegisterInfoOnCloud(devId: deviceMac, completion: { familyRegInfo in
-                        if !familyRegInfo.isJoinFamily {
+                        self.showAlertMessage(message: familyRegInfo.familyName)
+                        if !familyRegInfo.isJoinFamily || self.gateway?.deviceMac == oldGateway {
                             self.locationManager = CLLocationManager()
                             self.locationManager?.delegate = self
                             self.locationManager?.requestWhenInUseAuthorization()
                         } else {
                             self.gateway = nil
                             self.notConnected()
+                            self.errorMsg.text = "The added features have already been activated on another account on this WiFi network."
                         }
                     }) { _ in
                         self.gateway = nil
                         self.notConnected()
+                        self.errorMsg.text = "This network's router does not support the added features."
                     }
                 }) { _ in
                     self.gateway = nil
                     self.notConnected()
+                    self.errorMsg.text = "This network's router does not support the added features."
                 }
             }
         }) { _ in
             DispatchQueue.main.async {
                 self.gateway = nil
+                self.errorMsg.text = "This network's router does not support the added features."
                 self.notConnected()
             }
         }

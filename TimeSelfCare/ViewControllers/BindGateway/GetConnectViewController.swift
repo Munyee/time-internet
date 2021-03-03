@@ -11,6 +11,7 @@ import UIKit
 import HwMobileSDK
 import SystemConfiguration.CaptiveNetwork
 import MBProgressHUD
+import Alamofire
 
 protocol GetConnectViewControllerDelegate {
     func bindSuccessful()
@@ -26,6 +27,7 @@ class GetConnectViewController: UIViewController {
     
     @IBOutlet weak var tryAgainButton: UIButton!
     @IBOutlet var ssidText: UILabel!
+    @IBOutlet weak var errorMsg: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,27 +42,32 @@ class GetConnectViewController: UIViewController {
     }
     
     @IBAction func actRetry(_ sender: Any) {
-        if ssidName != "" && gateway != nil {
-            if let deviceMac = self.gateway?.deviceMac {
-                
-                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                hud.label.text = NSLocalizedString("Loading...", comment: "")
-                HuaweiHelper.shared.bindGateway(deviceMac: deviceMac, gatewayNickname: ssidName, completion: { _ in
-                    hud.hide(animated: true)
-                    self.delegate?.bindSuccessful()
-                    self.dismissVC()
-                }) { _ in
+        if NetworkReachabilityManager()!.isReachable {
+            if ssidName != "" && gateway != nil {
+                if let deviceMac = self.gateway?.deviceMac {
+                    
+                    let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+                    hud.label.text = NSLocalizedString("Loading...", comment: "")
+                    HuaweiHelper.shared.bindGateway(deviceMac: deviceMac, gatewayNickname: ssidName, completion: { _ in
+                        hud.hide(animated: true)
+                        self.delegate?.bindSuccessful()
+                        self.dismissVC()
+                    }) { _ in
+                        self.gateway = nil
+                        self.failed()
+                        hud.hide(animated: true)
+                    }
+                    
+                } else {
                     self.gateway = nil
                     self.notConnected()
-                    hud.hide(animated: true)
                 }
-                
             } else {
-                self.gateway = nil
-                self.notConnected()
+                searchGateway()
             }
         } else {
-            searchGateway()
+            self.errorMsg.text = "You are not connected to any WiFi."
+            notConnected()
         }
     }
     
@@ -71,6 +78,13 @@ class GetConnectViewController: UIViewController {
     
     func notConnected() {
         ssidText.text = "Not Connected"
+        ssidText.textColor = UIColor(hex: "E50707")
+        self.tryAgainButton.setTitle("TRY AGAIN", for: .normal)
+    }
+    
+    func failed() {
+        self.errorMsg.text = ""
+        ssidText.text = "Failed"
         ssidText.textColor = UIColor(hex: "E50707")
         self.tryAgainButton.setTitle("TRY AGAIN", for: .normal)
     }
@@ -110,20 +124,24 @@ class GetConnectViewController: UIViewController {
                         } else {
                             self.gateway = nil
                             self.notConnected()
+                            self.errorMsg.text = "The added features have already been activated on another account on this WiFi network."
                         }
                     }) { _ in
                         self.gateway = nil
                         self.notConnected()
+                        self.errorMsg.text = "This network's router does not support the added features."
                     }
                 }) { _ in
                     self.gateway = nil
                     self.notConnected()
+                    self.errorMsg.text = "This network's router does not support the added features."
                 }
             }
         }) { _ in
             DispatchQueue.main.async {
                 self.gateway = nil
                 self.notConnected()
+                self.errorMsg.text = "This network's router does not support the added features."
             }
         }
     }

@@ -605,12 +605,106 @@ new features for you!</string>
             </objects>
             <point key="canvasLocation" x="482" y="150"/>
         </scene>
+        <!--Not Available View Controller-->
+        <scene sceneID="ox6-gH-ucl">
+            <objects>
+                <viewController storyboardIdentifier="NotAvailableViewController" id="iNU-Eq-AIg" customClass="NotAvailableViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EZQ-wg-WEG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZD-Xv-DXY">
+                                <rect key="frame" x="0.0" y="10" width="375" height="657"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gto-Uh-go2">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="548"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RaC-qf-afa">
+                                                <rect key="frame" x="0.0" y="10" width="375" height="528"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="UQW-gW-GGP">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nce_error" translatesAutoresizingMaskIntoConstraints="NO" id="GtS-ts-nag">
+                                                                <rect key="frame" x="108.5" y="80" width="158" height="221"/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your added features are unavailable." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSV-YJ-0Lt">
+                                                                <rect key="frame" x="62" y="321" width="251" height="66"/>
+                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="33"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ensure your router is turned on. It may take up to 15 minutes for the features to appear." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znP-H7-mcU">
+                                                                <rect key="frame" x="57" y="407" width="261.5" height="51"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="261.5" id="BAU-nY-esy"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJr-lI-gQ5">
+                                                                <rect key="frame" x="47.5" y="478" width="280" height="50"/>
+                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="280" id="6Dg-51-CJa"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="zBB-SS-HLE"/>
+                                                                </constraints>
+                                                                <directionalEdgeInsets key="directionalLayoutMargins" top="20" leading="0.0" bottom="0.0" trailing="0.0"/>
+                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="24"/>
+                                                                <inset key="titleEdgeInsets" minX="0.0" minY="7" maxX="0.0" maxY="0.0"/>
+                                                                <state key="normal" title="BACK">
+                                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="actBack:" destination="iNU-Eq-AIg" eventType="touchUpInside" id="Vjo-fm-Tcy"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <directionalEdgeInsets key="directionalLayoutMargins" top="80" leading="36" bottom="0.0" trailing="36"/>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="RaC-qf-afa" secondAttribute="bottom" constant="10" id="MlT-pd-Wtt"/>
+                                            <constraint firstItem="RaC-qf-afa" firstAttribute="top" secondItem="Gto-Uh-go2" secondAttribute="top" constant="10" id="knh-dp-B4I"/>
+                                            <constraint firstItem="RaC-qf-afa" firstAttribute="leading" secondItem="Gto-Uh-go2" secondAttribute="leading" id="vz1-BC-CL8"/>
+                                            <constraint firstAttribute="trailing" secondItem="RaC-qf-afa" secondAttribute="trailing" id="yE9-jk-wPD"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Gto-Uh-go2" firstAttribute="width" secondItem="gZD-Xv-DXY" secondAttribute="width" id="FCn-av-euL"/>
+                                    <constraint firstItem="Gto-Uh-go2" firstAttribute="top" secondItem="gZD-Xv-DXY" secondAttribute="top" id="QGl-rR-e4a"/>
+                                    <constraint firstAttribute="bottom" secondItem="Gto-Uh-go2" secondAttribute="bottom" id="bB6-oH-7Qf"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gto-Uh-go2" secondAttribute="trailing" id="bBQ-2w-ZPO"/>
+                                    <constraint firstItem="Gto-Uh-go2" firstAttribute="leading" secondItem="gZD-Xv-DXY" secondAttribute="leading" id="po4-aU-LVD"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gZD-Xv-DXY" firstAttribute="bottom" secondItem="bfG-X4-v4c" secondAttribute="bottom" id="7xq-uf-Cy3"/>
+                            <constraint firstItem="gZD-Xv-DXY" firstAttribute="trailing" secondItem="bfG-X4-v4c" secondAttribute="trailing" id="VeZ-Au-azi"/>
+                            <constraint firstItem="gZD-Xv-DXY" firstAttribute="top" secondItem="bfG-X4-v4c" secondAttribute="top" constant="10" id="bFT-KO-1bu"/>
+                            <constraint firstItem="gZD-Xv-DXY" firstAttribute="leading" secondItem="bfG-X4-v4c" secondAttribute="leading" id="hJv-59-CCN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bfG-X4-v4c"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Gu-ri-aOY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1228" y="150"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ic_ssid" width="60" height="60"/>
         <image name="ic_visibility" width="24" height="24"/>
         <image name="icon_parental_control" width="47" height="44"/>
         <image name="icon_wifi_conf" width="54" height="44"/>
+        <image name="nce_error" width="158" height="221"/>
         <image name="nce_new" width="158" height="199"/>
     </resources>
 </document>

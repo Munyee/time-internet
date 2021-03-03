@@ -51,6 +51,15 @@ public class AccountController {
             UserDefaults.standard.set(value, forKey: "gatewayDevId")
         }
     }
+    
+    public var noOfGateway: Int? {
+        get {
+            return UserDefaults.standard.integer(forKey: "noOfGateway")
+        }
+        set(value) {
+            UserDefaults.standard.set(value, forKey: "noOfGateway")
+        }
+    }
 
     public var profile: Profile! { // swiftlint:disable:this implicitly_unwrapped_optional
         return AuthUser.current?.person as? Profile

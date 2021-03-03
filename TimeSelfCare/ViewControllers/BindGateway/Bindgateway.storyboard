@@ -42,7 +42,7 @@ home WiFi?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8w-tG-iuk">
-                                <rect key="frame" x="67" y="462" width="280" height="50"/>
+                                <rect key="frame" x="67" y="479" width="280" height="50"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="M9o-S9-FPg"/>
@@ -58,7 +58,7 @@ home WiFi?</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxa-cu-kAI">
-                                <rect key="frame" x="185.5" y="552" width="43" height="29"/>
+                                <rect key="frame" x="185.5" y="569" width="43" height="29"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -73,13 +73,21 @@ home WiFi?</string>
                                 <color key="textColor" red="0.89803921568627454" green="0.027450980392156862" blue="0.027450980392156862" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(error msg)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acG-ZV-HoM">
+                                <rect key="frame" x="35" y="362" width="344" height="17"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
+                                <color key="textColor" red="0.8980392157" green="0.027450980390000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="M8w-tG-iuk" firstAttribute="top" secondItem="acG-ZV-HoM" secondAttribute="bottom" constant="100" id="1ih-Yy-toU"/>
                             <constraint firstItem="yqK-2P-ed8" firstAttribute="leading" secondItem="eoc-YA-G4X" secondAttribute="leading" constant="40" id="3Jx-W3-HGF"/>
-                            <constraint firstItem="M8w-tG-iuk" firstAttribute="top" secondItem="1vB-wP-Eh9" secondAttribute="bottom" constant="120" id="FVK-jY-1Co"/>
+                            <constraint firstItem="acG-ZV-HoM" firstAttribute="leading" secondItem="eoc-YA-G4X" secondAttribute="leading" constant="35" id="D82-Qf-iqG"/>
                             <constraint firstItem="yqK-2P-ed8" firstAttribute="top" secondItem="Ij5-cF-B86" secondAttribute="bottom" constant="5" id="GEQ-MW-CR2"/>
                             <constraint firstItem="Ij5-cF-B86" firstAttribute="leading" secondItem="IXx-eA-nAr" secondAttribute="leading" constant="10" id="GbB-OU-fVY"/>
+                            <constraint firstAttribute="trailing" secondItem="acG-ZV-HoM" secondAttribute="trailing" constant="35" id="HE8-wp-cFM"/>
                             <constraint firstItem="y7w-sK-ys1" firstAttribute="top" secondItem="yqK-2P-ed8" secondAttribute="bottom" constant="60" id="LFS-rM-dMj"/>
                             <constraint firstAttribute="trailing" secondItem="Ij5-cF-B86" secondAttribute="trailing" constant="10" id="Zjw-nU-SSR"/>
                             <constraint firstItem="Ij5-cF-B86" firstAttribute="top" secondItem="IXx-eA-nAr" secondAttribute="top" constant="105" id="bZo-Nu-KU8"/>
@@ -89,11 +97,13 @@ home WiFi?</string>
                             <constraint firstItem="sxa-cu-kAI" firstAttribute="centerX" secondItem="M8w-tG-iuk" secondAttribute="centerX" id="fLS-76-Q08"/>
                             <constraint firstItem="1vB-wP-Eh9" firstAttribute="centerX" secondItem="y7w-sK-ys1" secondAttribute="centerX" id="hYb-C4-7a1"/>
                             <constraint firstAttribute="trailing" secondItem="yqK-2P-ed8" secondAttribute="trailing" constant="40" id="t5Z-ie-Oq6"/>
+                            <constraint firstItem="acG-ZV-HoM" firstAttribute="top" secondItem="1vB-wP-Eh9" secondAttribute="bottom" constant="20" id="vKY-MB-hDn"/>
                             <constraint firstItem="y7w-sK-ys1" firstAttribute="centerX" secondItem="yqK-2P-ed8" secondAttribute="centerX" id="y5z-7V-yrO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eoc-YA-G4X"/>
                     </view>
                     <connections>
+                        <outlet property="errorMsg" destination="acG-ZV-HoM" id="sZw-wz-aTh"/>
                         <outlet property="ssidText" destination="1vB-wP-Eh9" id="ZpK-JR-xA3"/>
                         <outlet property="tryAgainButton" destination="M8w-tG-iuk" id="ydw-Jk-OSa"/>
                     </connections>

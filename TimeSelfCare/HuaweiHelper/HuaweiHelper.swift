@@ -68,7 +68,7 @@ public extension HuaweiHelper {
         HwNetopenMobileSDK.isLogined(callBackAdapter)
     }
     
-    func queryGateway(completion: @escaping(_ result: HwSystemInfo) -> Void) {
+    func queryGateway(completion: @escaping(_ result: HwSystemInfo) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let gateway = value as? HwSystemInfo {
@@ -76,7 +76,7 @@ public extension HuaweiHelper {
             }
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
-            print(exception?.errorCode ?? "")
+            error(exception)
         }
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {

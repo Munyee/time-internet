@@ -33,6 +33,7 @@ class PerformanceViewController: BaseViewController {
     @IBOutlet weak var nceFeatureSmallView: UIView!
     
     var gateway: HwUserBindedGateway?
+    var isGatewayOnline: Bool = true
     
     let kIsSetupNCE = "is_setup_nce"
     
@@ -112,15 +113,23 @@ class PerformanceViewController: BaseViewController {
     }
     
     @IBAction func actParentalControl(_ sender: Any) {
-        if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCTemplateListViewController") as? PCTemplateListViewController {
-            self.presentNavigation(templateVC, animated: true)
+        if isGatewayOnline {
+            if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCTemplateListViewController") as? PCTemplateListViewController {
+                self.presentNavigation(templateVC, animated: true)
+            }
+        } else {
+            self.showNotAvailable()
         }
     }
     
     @IBAction func actWifiConfiguration(_ sender: Any) {
-        if let wifiConfVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiConfigurationViewController") as? WifiConfigurationViewController {
-            wifiConfVC.gateway = self.gateway
-            self.presentNavigation(wifiConfVC, animated: true)
+        if isGatewayOnline {
+            if let wifiConfVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiConfigurationViewController") as? WifiConfigurationViewController {
+                wifiConfVC.gateway = self.gateway
+                self.presentNavigation(wifiConfVC, animated: true)
+            }
+        } else {
+            self.showNotAvailable()
         }
     }
     
@@ -139,6 +148,12 @@ class PerformanceViewController: BaseViewController {
         UserDefaults.standard.set(true, forKey: kIsSetupNCE)
     }
     
+    func showNotAvailable() {
+        if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.performance.filename, bundle: nil).instantiateViewController(withIdentifier: "NotAvailableViewController") as? NotAvailableViewController {
+            self.presentNavigation(templateVC, animated: true)
+        }
+    }
+    
     func queryBindGateway() {
         let showAddnce = !UserDefaults.standard.bool(forKey: self.kIsSetupNCE)
 
@@ -148,15 +163,15 @@ class PerformanceViewController: BaseViewController {
                 self.gateway = gateways.first
                 self.connectionStackView.isHidden = false
                 self.nceFeatureView.isHidden = true
+                self.nceView.isHidden = false
+                self.speedTestView.isHidden = false
+                self.nceFeatureSmallView.isHidden = true
                 
-                HuaweiHelper.shared.queryGateway { _ in
-                    
+                HuaweiHelper.shared.queryGateway(completion: { _ in
+                    self.isGatewayOnline = true
                     HuaweiHelper.shared.queryLanDeviceCount { result in
                         self.numberOfDevice.text = "\(result.lanDeviceCount)"
                     }
-                    self.speedTestView.isHidden = false
-                    self.nceView.isHidden = false
-                    self.nceFeatureSmallView.isHidden = true
                     //            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                     //                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in
                     //                    let (downSpeed, downByte) = Units(kBytes: Int64(gatewaySpeed.downSpeed)).getReadableUnit()
@@ -167,21 +182,31 @@ class PerformanceViewController: BaseViewController {
                     //                    self.upByte.text = "\(upByte)"
                     //                }
                     //            }
+                }) { _ in
+                    self.isGatewayOnline = false
                 }
             } else {
-                AccountController.shared.gatewayDevId = ""
-                if showAddnce {
-                    self.speedTestView.isHidden = true
-                    self.nceFeatureView.isHidden = false
-                    self.connectionStackView.isHidden = true
-                    self.nceFeatureSmallView.isHidden = true
-                    self.nceView.isHidden = true
-                } else {
-                    self.speedTestView.isHidden = true
-                    self.nceFeatureView.isHidden = true
+                if AccountController.shared.noOfGateway! > 0 {
                     self.connectionStackView.isHidden = false
-                    self.nceFeatureSmallView.isHidden = false
-                    self.nceView.isHidden = true
+                    self.nceFeatureView.isHidden = true
+                    self.nceView.isHidden = false
+                    self.speedTestView.isHidden = false
+                    self.nceFeatureSmallView.isHidden = true
+                } else {
+                    AccountController.shared.gatewayDevId = ""
+                    if showAddnce {
+                        self.speedTestView.isHidden = true
+                        self.nceFeatureView.isHidden = false
+                        self.connectionStackView.isHidden = true
+                        self.nceFeatureSmallView.isHidden = true
+                        self.nceView.isHidden = true
+                    } else {
+                        self.speedTestView.isHidden = true
+                        self.nceFeatureView.isHidden = true
+                        self.connectionStackView.isHidden = false
+                        self.nceFeatureSmallView.isHidden = false
+                        self.nceView.isHidden = true
+                    }
                 }
             }
         }

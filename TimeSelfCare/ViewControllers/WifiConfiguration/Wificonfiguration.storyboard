@@ -248,7 +248,7 @@ change your WiFi network?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHi-Uj-InS">
-                                <rect key="frame" x="67" y="462" width="280" height="50"/>
+                                <rect key="frame" x="67" y="479" width="280" height="50"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="lMd-Xd-BaB"/>
@@ -264,7 +264,7 @@ change your WiFi network?</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCQ-dh-tHj">
-                                <rect key="frame" x="185.5" y="552" width="43" height="29"/>
+                                <rect key="frame" x="185.5" y="569" width="43" height="29"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -279,27 +279,38 @@ change your WiFi network?</string>
                                 <color key="textColor" red="0.8980392157" green="0.027450980390000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(error msg)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksE-M2-14o">
+                                <rect key="frame" x="35" y="362" width="344" height="17"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
+                                <color key="textColor" red="0.8980392157" green="0.027450980390000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="4xR-pD-NBm" firstAttribute="leading" secondItem="JDs-Mt-qGD" secondAttribute="leading" constant="10" id="460-D6-xeR"/>
                             <constraint firstItem="aUJ-ZQ-N52" firstAttribute="top" secondItem="4xR-pD-NBm" secondAttribute="bottom" constant="5" id="4L8-cE-7Ab"/>
-                            <constraint firstItem="eHi-Uj-InS" firstAttribute="top" secondItem="Lbs-Je-sBd" secondAttribute="bottom" constant="120" id="H2W-jR-8DO"/>
+                            <constraint firstItem="ksE-M2-14o" firstAttribute="leading" secondItem="RpV-Ny-Tvc" secondAttribute="leading" constant="35" id="IZ9-Jy-IJn"/>
                             <constraint firstItem="eHi-Uj-InS" firstAttribute="centerX" secondItem="Lbs-Je-sBd" secondAttribute="centerX" id="JW2-xT-dpa"/>
                             <constraint firstItem="Lbs-Je-sBd" firstAttribute="centerX" secondItem="S4J-xu-qLj" secondAttribute="centerX" id="LyC-vu-rI0"/>
+                            <constraint firstItem="eHi-Uj-InS" firstAttribute="top" secondItem="ksE-M2-14o" secondAttribute="bottom" constant="100" id="NaZ-gL-5yq"/>
                             <constraint firstItem="Lbs-Je-sBd" firstAttribute="top" secondItem="S4J-xu-qLj" secondAttribute="bottom" constant="22" id="XSa-4v-UEO"/>
                             <constraint firstItem="S4J-xu-qLj" firstAttribute="centerX" secondItem="aUJ-ZQ-N52" secondAttribute="centerX" id="Xxi-gj-F7d"/>
+                            <constraint firstItem="ksE-M2-14o" firstAttribute="centerX" secondItem="Lbs-Je-sBd" secondAttribute="centerX" id="YKd-WN-b10"/>
                             <constraint firstItem="eCQ-dh-tHj" firstAttribute="centerX" secondItem="eHi-Uj-InS" secondAttribute="centerX" id="a9L-EH-NgN"/>
                             <constraint firstItem="eCQ-dh-tHj" firstAttribute="top" secondItem="eHi-Uj-InS" secondAttribute="bottom" constant="40" id="ajj-3h-Bg3"/>
                             <constraint firstAttribute="trailing" secondItem="aUJ-ZQ-N52" secondAttribute="trailing" constant="40" id="j9H-M8-pyy"/>
                             <constraint firstItem="aUJ-ZQ-N52" firstAttribute="leading" secondItem="RpV-Ny-Tvc" secondAttribute="leading" constant="40" id="jvE-xw-ak3"/>
+                            <constraint firstItem="ksE-M2-14o" firstAttribute="top" secondItem="Lbs-Je-sBd" secondAttribute="bottom" constant="20" id="l5S-U5-EJe"/>
                             <constraint firstItem="S4J-xu-qLj" firstAttribute="top" secondItem="aUJ-ZQ-N52" secondAttribute="bottom" constant="60" id="m1I-gh-LnD"/>
                             <constraint firstAttribute="trailing" secondItem="4xR-pD-NBm" secondAttribute="trailing" constant="10" id="nnV-wx-MQX"/>
+                            <constraint firstItem="RpV-Ny-Tvc" firstAttribute="trailing" secondItem="ksE-M2-14o" secondAttribute="trailing" constant="35" id="pt7-ae-OpR"/>
                             <constraint firstItem="4xR-pD-NBm" firstAttribute="top" secondItem="JDs-Mt-qGD" secondAttribute="top" constant="105" id="vr1-x3-4Va"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RpV-Ny-Tvc"/>
                     </view>
                     <connections>
+                        <outlet property="errorMsg" destination="ksE-M2-14o" id="1BD-6A-nxW"/>
                         <outlet property="ssidText" destination="Lbs-Je-sBd" id="Uij-r3-Bte"/>
                         <outlet property="tryAgainButton" destination="eHi-Uj-InS" id="ri7-17-chz"/>
                     </connections>

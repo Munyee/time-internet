@@ -81,8 +81,13 @@ class PCProfileViewController: UIViewController {
     }
     
     @objc
-    func popBack() {
+    func popToRoot() {
         self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @objc
+    func popBack() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc
@@ -384,7 +389,7 @@ class PCProfileViewController: UIViewController {
                             group.notify(queue: .main) {
                                 HuaweiHelper.shared.deleteAttachParentControlTemplate(name: self.name, completion: { _ in
                                     hud.hide(animated: true)
-                                    self.popBack()
+                                    self.popToRoot()
                                 }) { _ in
                                     hud.hide(animated: true)
                                 }

@@ -32,6 +32,8 @@ class PerformanceViewController: BaseViewController {
     @IBOutlet weak var nceFeatureView: UIStackView!
     @IBOutlet weak var nceFeatureSmallView: UIView!
     
+    var gateway: HwUserBindedGateway?
+    
     let kIsSetupNCE = "is_setup_nce"
     
     var timer: Timer?
@@ -51,46 +53,8 @@ class PerformanceViewController: BaseViewController {
         nceView.isHidden = true
         
         timer?.invalidate()
-        
-        let showAddnce = UserDefaults.standard.bool(forKey: self.kIsSetupNCE)
-        
-        HuaweiHelper.shared.queryUserBindGateway { gateways in
-            if !gateways.isEmpty {
-                AccountController.shared.gatewayDevId = gateways.first?.deviceId
-                self.nceFeatureView.isHidden = true
                 
-                HuaweiHelper.shared.queryGateway { _ in
-                    
-                    HuaweiHelper.shared.queryLanDeviceCount { result in
-                        self.numberOfDevice.text = "\(result.lanDeviceCount)"
-                    }
-                    self.speedTestView.isHidden = true
-                    self.nceView.isHidden = false
-                    self.nceFeatureSmallView.isHidden = true
-                    //            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-                    //                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in
-                    //                    let (downSpeed, downByte) = Units(kBytes: Int64(gatewaySpeed.downSpeed)).getReadableUnit()
-                    //                    let (upSpeed, upByte) = Units(kBytes: Int64(gatewaySpeed.upSpeed)).getReadableUnit()
-                    //                    self.downSpeed.text = "\(downSpeed)"
-                    //                    self.downByte.text = "\(downByte)"
-                    //                    self.upSpeed.text = "\(upSpeed)"
-                    //                    self.upByte.text = "\(upByte)"
-                    //                }
-                    //            }
-                }
-            } else {
-                AccountController.shared.gatewayDevId = ""
-                if !showAddnce {
-                    self.connectionStackView.isHidden = true
-                    self.nceFeatureSmallView.isHidden = true
-                    self.nceView.isHidden = false
-                } else {
-                    self.connectionStackView.isHidden = false
-                    self.nceFeatureSmallView.isHidden = false
-                    self.nceView.isHidden = false
-                }
-            }
-        }
+        queryBindGateway()
     }
     
     @objc
@@ -129,6 +93,7 @@ class PerformanceViewController: BaseViewController {
             self.runDiagnosticsButton.backgroundColor = self.runDiagnosticsButton.isEnabled ? .primary : .grey2
             NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
         }
+        queryBindGateway()
     }
     
     @IBAction func runDiagnosticsCheck(_ sender: Any) {
@@ -152,8 +117,17 @@ class PerformanceViewController: BaseViewController {
         }
     }
     
+    @IBAction func actWifiConfiguration(_ sender: Any) {
+        if let wifiConfVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiConfigurationViewController") as? WifiConfigurationViewController {
+            wifiConfVC.gateway = self.gateway
+            self.presentNavigation(wifiConfVC, animated: true)
+        }
+    }
+    
     @IBAction func bindGateway(_ sender: Any) {
+        UserDefaults.standard.set(true, forKey: kIsSetupNCE)
         if let bindVC = UIStoryboard(name: TimeSelfCareStoryboard.bindgateway.filename, bundle: nil).instantiateViewController(withIdentifier: "GetConnectViewController") as? GetConnectViewController {
+            bindVC.delegate = self
             self.presentNavigation(bindVC, animated: true)
         }
     }
@@ -163,5 +137,59 @@ class PerformanceViewController: BaseViewController {
         nceFeatureView.isHidden = true
         nceFeatureSmallView.isHidden = false
         UserDefaults.standard.set(true, forKey: kIsSetupNCE)
+    }
+    
+    func queryBindGateway() {
+        let showAddnce = !UserDefaults.standard.bool(forKey: self.kIsSetupNCE)
+
+        HuaweiHelper.shared.queryUserBindGateway { gateways in
+            if !gateways.isEmpty {
+                AccountController.shared.gatewayDevId = gateways.first?.deviceId
+                self.gateway = gateways.first
+                self.connectionStackView.isHidden = false
+                self.nceFeatureView.isHidden = true
+                
+                HuaweiHelper.shared.queryGateway { _ in
+                    
+                    HuaweiHelper.shared.queryLanDeviceCount { result in
+                        self.numberOfDevice.text = "\(result.lanDeviceCount)"
+                    }
+                    self.speedTestView.isHidden = false
+                    self.nceView.isHidden = false
+                    self.nceFeatureSmallView.isHidden = true
+                    //            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                    //                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in
+                    //                    let (downSpeed, downByte) = Units(kBytes: Int64(gatewaySpeed.downSpeed)).getReadableUnit()
+                    //                    let (upSpeed, upByte) = Units(kBytes: Int64(gatewaySpeed.upSpeed)).getReadableUnit()
+                    //                    self.downSpeed.text = "\(downSpeed)"
+                    //                    self.downByte.text = "\(downByte)"
+                    //                    self.upSpeed.text = "\(upSpeed)"
+                    //                    self.upByte.text = "\(upByte)"
+                    //                }
+                    //            }
+                }
+            } else {
+                AccountController.shared.gatewayDevId = ""
+                if showAddnce {
+                    self.speedTestView.isHidden = true
+                    self.nceFeatureView.isHidden = false
+                    self.connectionStackView.isHidden = true
+                    self.nceFeatureSmallView.isHidden = true
+                    self.nceView.isHidden = true
+                } else {
+                    self.speedTestView.isHidden = true
+                    self.nceFeatureView.isHidden = true
+                    self.connectionStackView.isHidden = false
+                    self.nceFeatureSmallView.isHidden = false
+                    self.nceView.isHidden = true
+                }
+            }
+        }
+    }
+}
+
+extension PerformanceViewController: GetConnectViewControllerDelegate {
+    func bindSuccessful() {
+        queryBindGateway()
     }
 }

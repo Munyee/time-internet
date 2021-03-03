@@ -113,6 +113,10 @@
 		9EE0B965246520FD0073288B /* ExpandableLiveChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0B963246520FD0073288B /* ExpandableLiveChatView.swift */; };
 		9EE0B966246520FD0073288B /* ExpandableLiveChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EE0B964246520FD0073288B /* ExpandableLiveChatView.xib */; };
 		9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF3C4A8243EB924007C22DC /* ContactUsViewController.swift */; };
+		9EFC438225EE132C009AF8C2 /* Wificonfiguration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EFC438125EE132C009AF8C2 /* Wificonfiguration.storyboard */; };
+		9EFC438425EE135B009AF8C2 /* WifiConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC438325EE135B009AF8C2 /* WifiConfigurationViewController.swift */; };
+		9EFC438625EE2CB0009AF8C2 /* ConnectedWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC438525EE2CB0009AF8C2 /* ConnectedWifiViewController.swift */; };
+		9EFC438825EE3526009AF8C2 /* ChangeWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC438725EE3526009AF8C2 /* ChangeWifiViewController.swift */; };
 		BAB777B1B66FD28B3E660A15 /* Pods_TimeSelfCareDataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34E733A60BA295729D0F9C3 /* Pods_TimeSelfCareDataTests.framework */; };
 		DAB87017C3B94A15F4436D20 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBFC4B4383EEC1C068E0A9D /* BuddyBuildSDK.framework */; };
 		E203036223617F8200F27028 /* TestAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E203036123617F8200F27028 /* TestAppDelegate.swift */; };
@@ -417,6 +421,10 @@
 		9EE0B963246520FD0073288B /* ExpandableLiveChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableLiveChatView.swift; sourceTree = "<group>"; };
 		9EE0B964246520FD0073288B /* ExpandableLiveChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableLiveChatView.xib; sourceTree = "<group>"; };
 		9EF3C4A8243EB924007C22DC /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		9EFC438125EE132C009AF8C2 /* Wificonfiguration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wificonfiguration.storyboard; sourceTree = "<group>"; };
+		9EFC438325EE135B009AF8C2 /* WifiConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConfigurationViewController.swift; sourceTree = "<group>"; };
+		9EFC438525EE2CB0009AF8C2 /* ConnectedWifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedWifiViewController.swift; sourceTree = "<group>"; };
+		9EFC438725EE3526009AF8C2 /* ChangeWifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWifiViewController.swift; sourceTree = "<group>"; };
 		9F604557CEE62B598F117893 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A3B303BB0EC99E23F04A02A9 /* Pods-TimeSelfCareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.release.xcconfig"; sourceTree = "<group>"; };
 		A57787C266D674FD16DB376F /* Pods-TimeSelfCareDataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -623,6 +631,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9EFC438025EE127F009AF8C2 /* WifiConfiguration */,
 				9E5437ED25E8E16400195623 /* BindGateway */,
 				9E59AF6125DE31AD00FF427A /* ParentalControl */,
 				9E8FC9AD25357255008936D2 /* HookUp */,
@@ -1080,6 +1089,17 @@
 			path = ExpandableLiveChat;
 			sourceTree = "<group>";
 		};
+		9EFC438025EE127F009AF8C2 /* WifiConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				9EFC438125EE132C009AF8C2 /* Wificonfiguration.storyboard */,
+				9EFC438325EE135B009AF8C2 /* WifiConfigurationViewController.swift */,
+				9EFC438525EE2CB0009AF8C2 /* ConnectedWifiViewController.swift */,
+				9EFC438725EE3526009AF8C2 /* ChangeWifiViewController.swift */,
+			);
+			path = WifiConfiguration;
+			sourceTree = "<group>";
+		};
 		E20A717A1FD4A7BE00938766 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1504,6 +1524,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EFC438225EE132C009AF8C2 /* Wificonfiguration.storyboard in Resources */,
 				E22050E41FCD4D17004D5B10 /* DIN-Light.ttf in Resources */,
 				9E0252E2255E8E2D001CF6FC /* D-DIN-Italic.ttf in Resources */,
 				E2F7225220CA47D800C5204D /* anim_notification_bell.json in Resources */,
@@ -1868,6 +1889,7 @@
 				9E8FC9C325357255008936D2 /* ReferViewController.swift in Sources */,
 				9E36BB4425E356F500E5575F /* PCTemplateTableViewCell.swift in Sources */,
 				E2DE28691FBD404E00E3CC1E /* ForgetPasswordViewController.swift in Sources */,
+				9EFC438825EE3526009AF8C2 /* ChangeWifiViewController.swift in Sources */,
 				9ECA46462436C7AE00EB0DB8 /* VoucherLabel.swift in Sources */,
 				9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */,
 				9EAB2C09249CB9ED00F12A3C /* PopUpViewController.swift in Sources */,
@@ -1939,8 +1961,10 @@
 				9E36BB4925E3EF4700E5575F /* PCDeviceTableViewCell.swift in Sources */,
 				E2FDB2D520AAB490002F0A66 /* NotificationSettingsViewController.swift in Sources */,
 				E21CF7311FC6906800F13FAF /* CreateAutoDebitViewController.swift in Sources */,
+				9EFC438625EE2CB0009AF8C2 /* ConnectedWifiViewController.swift in Sources */,
 				E2A8E8461FCE3D9900EA5DF2 /* ProfileDetailViewController.swift in Sources */,
 				E274AD66210711F700E62A42 /* TicketCell.swift in Sources */,
+				9EFC438425EE135B009AF8C2 /* WifiConfigurationViewController.swift in Sources */,
 				9E8FC9C225357255008936D2 /* ReferralViewController.swift in Sources */,
 				E20451DE2212A5B700847AE4 /* SideBarTableViewController.swift in Sources */,
 				E274AD64210711F700E62A42 /* AddAttachmentCell.swift in Sources */,

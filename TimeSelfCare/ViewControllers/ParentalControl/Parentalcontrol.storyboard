@@ -332,13 +332,13 @@ access</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="344" height="101.66666666666667"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new user profile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArE-My-3zo">
-                                                                <rect key="frame" x="0.0" y="0.0" width="344" height="18.666666666666668"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="344" height="32"/>
                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Internet access period and block websites on your device(s)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9H2-cY-J3L">
-                                                                <rect key="frame" x="0.0" y="23.666666666666664" width="344" height="28"/>
+                                                                <rect key="frame" x="0.0" y="37" width="344" height="14.666666666666664"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -535,7 +535,7 @@ access</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ka7-dD-mJT">
-                                                                <rect key="frame" x="46.000000000000007" y="4" width="86.666666666666686" height="16.333333333333332"/>
+                                                                <rect key="frame" x="46.000000000000007" y="3.6666666666666288" width="83.666666666666686" height="17"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -603,7 +603,7 @@ access</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXQ-iP-qHM">
-                                                                <rect key="frame" x="46" y="4" width="108" height="16.333333333333332"/>
+                                                                <rect key="frame" x="46" y="3.6666666666666288" width="103" height="17"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -641,14 +641,6 @@ access</string>
                                     <constraint firstAttribute="trailing" secondItem="kjw-As-waR" secondAttribute="trailing" id="qN1-kY-dfG"/>
                                 </constraints>
                             </scrollView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-Fb-Rff" customClass="ExpandableLiveChatView" customModule="TimeSelfCare" customModuleProvider="target">
-                                <rect key="frame" x="-125" y="814" width="150" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="E9L-fi-I95"/>
-                                    <constraint firstAttribute="width" priority="750" constant="150" id="fFt-Bc-K4S"/>
-                                </constraints>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SZI-5p-yqe">
                                 <rect key="frame" x="35" y="816" width="344" height="50"/>
                                 <subviews>
@@ -687,6 +679,14 @@ access</string>
                                     <constraint firstAttribute="height" constant="50" id="BwM-rp-6Us"/>
                                 </constraints>
                             </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHZ-Fb-Rff" customClass="ExpandableLiveChatView" customModule="TimeSelfCare" customModuleProvider="target">
+                                <rect key="frame" x="-125" y="814" width="150" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="E9L-fi-I95"/>
+                                    <constraint firstAttribute="width" priority="750" constant="150" id="fFt-Bc-K4S"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>

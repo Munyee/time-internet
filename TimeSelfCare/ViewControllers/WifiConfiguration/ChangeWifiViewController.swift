@@ -1,8 +1,8 @@
 //
-//  GetConnectViewController.swift
+//  ChangeWifiViewController.swift
 //  TimeSelfCare
 //
-//  Created by Chan Mun Yee on 26/02/2021.
+//  Created by Chan Mun Yee on 02/03/2021.
 //  Copyright © 2021 Apptivity Lab. All rights reserved.
 //
 
@@ -12,17 +12,18 @@ import HwMobileSDK
 import SystemConfiguration.CaptiveNetwork
 import MBProgressHUD
 
-protocol GetConnectViewControllerDelegate {
-    func bindSuccessful()
+protocol ChangeWifiViewControllerDelegate {
+    func changeSuccess()
 }
 
-class GetConnectViewController: UIViewController {
+class ChangeWifiViewController: TimeBaseViewController {
     
     var locationManager: CLLocationManager?
+    var oldGatewayId: String?
     var gateway: HwSearchedUserGateway?
     var ssidName: String = ""
     
-    var delegate: GetConnectViewControllerDelegate?
+    var delegate: ChangeWifiViewControllerDelegate?
     
     @IBOutlet weak var tryAgainButton: UIButton!
     @IBOutlet var ssidText: UILabel!
@@ -30,7 +31,6 @@ class GetConnectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = NSLocalizedString("GET CONNECT", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_close_magenta"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
         searchGateway()
     }
@@ -41,20 +41,25 @@ class GetConnectViewController: UIViewController {
     
     @IBAction func actRetry(_ sender: Any) {
         if ssidName != "" && gateway != nil {
-            if let deviceMac = self.gateway?.deviceMac {
-                
+            if let deviceMac = self.gateway?.deviceMac, let oldGateway = self.oldGatewayId {
+
                 let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                 hud.label.text = NSLocalizedString("Loading...", comment: "")
-                HuaweiHelper.shared.bindGateway(deviceMac: deviceMac, gatewayNickname: ssidName, completion: { _ in
-                    hud.hide(animated: true)
-                    self.delegate?.bindSuccessful()
-                    self.dismissVC()
+                HuaweiHelper.shared.replaceGateway(oldDeviceMac: oldGateway, deviceMac: deviceMac, completion: { replaceGateway in
+                    AccountController.shared.gatewayDevId = replaceGateway.deviceId
+                    HuaweiHelper.shared.setGatewayNickname(deviceId: replaceGateway.deviceId, gatewayName: self.ssidName, completion: { _ in
+                        self.delegate?.changeSuccess()
+                        self.dismissVC()
+                    }) { _ in
+                        self.delegate?.changeSuccess()
+                        self.dismissVC()
+                    }
                 }) { _ in
                     self.gateway = nil
                     self.notConnected()
                     hud.hide(animated: true)
                 }
-                
+
             } else {
                 self.gateway = nil
                 self.notConnected()
@@ -127,23 +132,24 @@ class GetConnectViewController: UIViewController {
             }
         }
     }
+    
 }
 
-extension GetConnectViewController: CLLocationManagerDelegate {
-  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    if status != .denied && status != .notDetermined {
-        if let ssid = self.getWiFiName() {
-            ssidName = ssid
-            connectedTo(wifiName: ssid)
-            self.tryAgainButton.setTitle("CONFIRM", for: .normal)
-        } else {
-            notConnected()
-            self.tryAgainButton.setTitle("TRY AGAIN", for: .normal)
-        }
-    } else if status == .denied {
-        if let openSettingVC = UIStoryboard(name: TimeSelfCareStoryboard.bindgateway.filename, bundle: nil).instantiateViewController(withIdentifier: "OpenSettingViewController") as? OpenSettingViewController {
-            self.presentNavigation(openSettingVC, animated: true)
+extension ChangeWifiViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status != .denied && status != .notDetermined {
+            if let ssid = self.getWiFiName() {
+                ssidName = ssid
+                connectedTo(wifiName: ssid)
+                self.tryAgainButton.setTitle("CONFIRM", for: .normal)
+            } else {
+                notConnected()
+                self.tryAgainButton.setTitle("TRY AGAIN", for: .normal)
+            }
+        } else if status == .denied {
+            if let openSettingVC = UIStoryboard(name: TimeSelfCareStoryboard.bindgateway.filename, bundle: nil).instantiateViewController(withIdentifier: "OpenSettingViewController") as? OpenSettingViewController {
+                self.presentNavigation(openSettingVC, animated: true)
+            }
         }
     }
-  }
 }

@@ -169,6 +169,27 @@ public extension HuaweiHelper {
             service.bindGateway(params, withCallBack: callBackAdapter)
         }
     }
+    
+    func replaceGateway(oldDeviceMac: String, deviceMac: String, completion: @escaping(_ result: HwReplaceGatewayResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let gateway = value as? HwReplaceGatewayResult {
+                completion(gateway)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        let params = HwReplaceGatewayParam()
+        params.deviceMAC = deviceMac
+        params.gatewayAdminAccount = ""
+        params.gatewayAdminPassword = ""
+        
+        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwUserService {
+            service.replaceGateway(oldDeviceMac, with: params, withCallBack: callBackAdapter)
+        }
+    }
 
     func getGatewaySpeed(completion: @escaping(_ result: HwGatewaySpeed) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
@@ -218,7 +239,7 @@ public extension HuaweiHelper {
         }
     }
     
-    func getAttachParentalControlTemplateList(completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void,  error: @escaping(_ result: HwActionException?) -> Void) {
+    func getAttachParentalControlTemplateList(completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let tplList = value as? [HwAttachParentControlTemplate] {
@@ -250,7 +271,7 @@ public extension HuaweiHelper {
         }
     }
     
-    func getParentControlTemplateDetailList(templateNames: [String], completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void,  error: @escaping(_ result: HwActionException?) -> Void) {
+    func getParentControlTemplateDetailList(templateNames: [String], completion: @escaping(_ result: [HwAttachParentControlTemplate]) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let data = value as? [HwAttachParentControlTemplate] {
@@ -373,7 +394,7 @@ public extension HuaweiHelper {
             error(exception)
         }
         
-        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwUserService  {
+        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwUserService {
             service.setGatewayNickname(deviceId, withGatewayNickname: gatewayName, withCallBack: callBackAdapter)
         }
     }

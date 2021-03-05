@@ -138,32 +138,40 @@ class AccountSummaryViewController: BaseViewController {
 
     @IBAction func makePayment(_ sender: Any) {
         
-        if isAutoDebit {
-            let storyboard = UIStoryboard(name: "Payment", bundle: nil)
-            guard let autoDebitVC = storyboard.instantiateViewController(withIdentifier: "AutoDebitViewController") as? AutoDebitViewController
-                else {
-                    return
-            }
-            self.presentNavigation(autoDebitVC, animated: true)
-        } else {
-            let setupAction = UIAlertAction(title: NSLocalizedString("SETUP NOW", comment: ""), style: .default) { _ in
+        if AccountController.shared.selectedAccount?.custSegment == .residential && self.autoDebitButton.isHidden == false {
+            if isAutoDebit {
                 let storyboard = UIStoryboard(name: "Payment", bundle: nil)
                 guard let autoDebitVC = storyboard.instantiateViewController(withIdentifier: "AutoDebitViewController") as? AutoDebitViewController
                     else {
                         return
                 }
                 self.presentNavigation(autoDebitVC, animated: true)
-            }
-            
-            let continueAction = UIAlertAction(title: NSLocalizedString("CONTINUE PAYMENT", comment: ""), style: .default) { _ in
-                let storyboard = UIStoryboard(name: "Payment", bundle: nil)
-                if let paymentSummaryVC = storyboard.instantiateInitialViewController() {
-                    paymentSummaryVC.modalPresentationStyle = .fullScreen
-                    self.present(paymentSummaryVC, animated: true, completion: nil)
+            } else {
+                let setupAction = UIAlertAction(title: NSLocalizedString("SETUP NOW", comment: ""), style: .default) { _ in
+                    let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+                    guard let autoDebitVC = storyboard.instantiateViewController(withIdentifier: "AutoDebitViewController") as? AutoDebitViewController
+                        else {
+                            return
+                    }
+                    self.presentNavigation(autoDebitVC, animated: true)
                 }
+                
+                let continueAction = UIAlertAction(title: NSLocalizedString("CONTINUE PAYMENT", comment: ""), style: .default) { _ in
+                    let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+                    if let paymentSummaryVC = storyboard.instantiateInitialViewController() {
+                        paymentSummaryVC.modalPresentationStyle = .fullScreen
+                        self.present(paymentSummaryVC, animated: true, completion: nil)
+                    }
+                }
+                
+                self.showAlertMessage(title: NSLocalizedString("Get RM2 off your monthly subscription", comment: ""), message: NSLocalizedString("When you pay with Auto Debit", comment: ""), actions: [setupAction, continueAction])
             }
-            
-            self.showAlertMessage(title: NSLocalizedString("Get RM2 off your monthly subscription", comment: ""), message: NSLocalizedString("When you pay with Auto Debit", comment: ""), actions: [setupAction, continueAction])
+        } else {
+            let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+            if let paymentSummaryVC = storyboard.instantiateInitialViewController() {
+                paymentSummaryVC.modalPresentationStyle = .fullScreen
+                self.present(paymentSummaryVC, animated: true, completion: nil)
+            }
         }
     }
 

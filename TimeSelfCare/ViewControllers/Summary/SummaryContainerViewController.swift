@@ -97,36 +97,30 @@ class SummaryContainerViewController: TimeBaseViewController {
                 return
         }
         
-//        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-//        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
         
-//        if account.custSegment == .residential {
-//            AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
-//                hud.hide(animated: true)
-//                guard error == nil else {
-//                    return
-//                }
-//
-//                if let result = data {
-//                    let huaweiDevice = IsHuaweiDevice(with: result)
-//                    if huaweiDevice?.status == "ok" {
-//                        HuaweiHelper.shared.initHwSdk {
-//                            HuaweiHelper.shared.checkIsLogin { result in
-//                                if !result.isLogined {
-//                                    HuaweiHelper.shared.login { _ in
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-        
-        HuaweiHelper.shared.initHwSdk {
-            HuaweiHelper.shared.checkIsLogin { result in
-                if !result.isLogined {
-                    HuaweiHelper.shared.login { _ in
+        if account.custSegment == .residential {
+            AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
+                hud.hide(animated: true)
+                guard error == nil else {
+                    return
+                }
+
+                if let result = data {
+                    let huaweiDevice = IsHuaweiDevice(with: result)
+                    if huaweiDevice?.status == "ok" {
+                        HuaweiHelper.shared.initHwSdk {
+                            HuaweiHelper.shared.checkIsLogin { result in
+                                if !result.isLogined {
+                                    HuaweiHelper.shared.login { _ in
+                                        HuaweiHelper.shared.registerErrorMessageHandle { msg in
+                                            self.showAlertMessage(message: "Error: \(msg.errorCode)")
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

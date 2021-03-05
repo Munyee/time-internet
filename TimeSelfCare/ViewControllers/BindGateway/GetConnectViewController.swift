@@ -53,7 +53,6 @@ class GetConnectViewController: UIViewController {
                         self.delegate?.bindSuccessful()
                         self.dismissVC()
                     }) { _ in
-                        self.gateway = nil
                         self.failed()
                         hud.hide(animated: true)
                     }
@@ -63,6 +62,7 @@ class GetConnectViewController: UIViewController {
                     self.notConnected()
                 }
             } else {
+                self.failed()
                 searchGateway()
             }
         } else {
@@ -83,7 +83,8 @@ class GetConnectViewController: UIViewController {
     }
     
     func failed() {
-        self.errorMsg.text = ""
+        self.gateway = nil
+        self.errorMsg.text = "Your connection may have been interrupted."
         ssidText.text = "Failed"
         ssidText.textColor = UIColor(hex: "E50707")
         self.tryAgainButton.setTitle("TRY AGAIN", for: .normal)

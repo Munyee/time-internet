@@ -69,7 +69,6 @@ class ChangeWifiViewController: TimeBaseViewController {
                                 self.dismissVC()
                             }
                         }) { _ in
-                            self.gateway = nil
                             self.failed()
                             hud.hide(animated: true)
                         }
@@ -99,7 +98,8 @@ class ChangeWifiViewController: TimeBaseViewController {
     }
     
     func failed() {
-        self.errorMsg.text = ""
+        self.gateway = nil
+        self.errorMsg.text = "Your connection may have been interrupted."
         ssidText.text = "Failed"
         ssidText.textColor = UIColor(hex: "E50707")
         self.tryAgainButton.setTitle("TRY AGAIN", for: .normal)

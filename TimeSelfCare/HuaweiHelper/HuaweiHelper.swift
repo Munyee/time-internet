@@ -54,6 +54,15 @@ public extension HuaweiHelper {
         HwNetopenMobileSDK.login(loginParam, with: callBackAdapter)
     }
     
+    func registerErrorMessageHandle(completion: @escaping(_ result: HwNotificationMessage) -> Void) {
+        let service = HwMessageService()
+        service.registerErrorMessageHandle { value in
+            if let result = value as? HwNotificationMessage {
+                completion(result)
+            }
+        }
+    }
+    
     func checkIsLogin(completion: @escaping(_ result: HwIsLoginedResult) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in

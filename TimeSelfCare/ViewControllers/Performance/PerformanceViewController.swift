@@ -9,6 +9,7 @@
 import UIKit
 import Lottie
 import HwMobileSDK
+import MBProgressHUD
 
 public extension NSNotification.Name {
     static let ConnectionStatusDidUpdate: NSNotification.Name = NSNotification.Name(rawValue: "ConnectionStatusDidUpdate")
@@ -33,7 +34,6 @@ class PerformanceViewController: BaseViewController {
     @IBOutlet weak var nceFeatureSmallView: UIView!
     
     var gateway: HwUserBindedGateway?
-    var isGatewayOnline: Bool = true
     
     let kIsSetupNCE = "is_setup_nce"
     
@@ -54,7 +54,7 @@ class PerformanceViewController: BaseViewController {
         nceView.isHidden = true
         
         timer?.invalidate()
-                
+        
         queryBindGateway()
     }
     
@@ -113,22 +113,30 @@ class PerformanceViewController: BaseViewController {
     }
     
     @IBAction func actParentalControl(_ sender: Any) {
-        if isGatewayOnline {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        HuaweiHelper.shared.queryGateway(completion: { _ in
+            hud.hide(animated: true)
             if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCTemplateListViewController") as? PCTemplateListViewController {
                 self.presentNavigation(templateVC, animated: true)
             }
-        } else {
+        }) { _ in
+            hud.hide(animated: true)
             self.showNotAvailable()
         }
     }
     
     @IBAction func actWifiConfiguration(_ sender: Any) {
-        if isGatewayOnline {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        HuaweiHelper.shared.queryGateway(completion: { _ in
+            hud.hide(animated: true)
             if let wifiConfVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiConfigurationViewController") as? WifiConfigurationViewController {
                 wifiConfVC.gateway = self.gateway
                 self.presentNavigation(wifiConfVC, animated: true)
             }
-        } else {
+        }) { _ in
+            hud.hide(animated: true)
             self.showNotAvailable()
         }
     }
@@ -156,7 +164,7 @@ class PerformanceViewController: BaseViewController {
     
     func queryBindGateway() {
         let showAddnce = !UserDefaults.standard.bool(forKey: self.kIsSetupNCE)
-
+        
         HuaweiHelper.shared.queryUserBindGateway { gateways in
             if !gateways.isEmpty {
                 AccountController.shared.gatewayDevId = gateways.first?.deviceId
@@ -168,7 +176,6 @@ class PerformanceViewController: BaseViewController {
                 self.nceFeatureSmallView.isHidden = true
                 
                 HuaweiHelper.shared.queryGateway(completion: { _ in
-                    self.isGatewayOnline = true
                     HuaweiHelper.shared.queryLanDeviceCount { result in
                         self.numberOfDevice.text = "\(result.lanDeviceCount)"
                     }
@@ -183,7 +190,6 @@ class PerformanceViewController: BaseViewController {
                     //                }
                     //            }
                 }) { _ in
-                    self.isGatewayOnline = false
                 }
             } else {
                 if AccountController.shared.noOfGateway! > 0 {

@@ -184,6 +184,18 @@ public extension AccountDataController {
         }
     }
     
+    func getMacAddress(account: Account, service: Service, completion: @escaping SimpleRequestListener) {
+        let path = "get_mac_address"
+        var body: [String: Any] = [:]
+        body["account_no"] = account.accountNo
+        body["username"] = account.profileUsername
+        body["service_id"] = service.serviceId
+
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
+        }
+    }
+    
     func getHuaeInfo(account: Account, completion: @escaping SimpleRequestListener) {
         let path = "get_huae_info"
         var body: [String: Any] = [:]

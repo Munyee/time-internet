@@ -34,6 +34,7 @@ class WifiConfigurationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.liveChatView.isHidden = false
         HuaweiHelper.shared.queryUserBindGateway { gateways in
             if !gateways.isEmpty {
                 self.gateway = gateways.first
@@ -54,6 +55,12 @@ class WifiConfigurationViewController: UIViewController {
         if let connectedWifiVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "ConnectedWifiViewController") as? ConnectedWifiViewController {
             connectedWifiVC.gateway = self.gateway
             self.navigationController?.pushViewController(connectedWifiVC, animated: true)
+        }
+    }
+    
+    @IBAction func actWifiSettings(_ sender: Any) {
+        if let wifiSettingsVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiSettingsViewController") as? WifiSettingsViewController {
+            self.navigationController?.pushViewController(wifiSettingsVC, animated: true)
         }
     }
 }

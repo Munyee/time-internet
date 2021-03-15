@@ -407,4 +407,101 @@ public extension HuaweiHelper {
             service.setGatewayNickname(deviceId, withGatewayNickname: gatewayName, withCallBack: callBackAdapter)
         }
     }
+    
+    func getWifiInfoAll(completion: @escaping(_ result: HwWifiInfoAll) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwWifiInfoAll {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getWifiInfoAll(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+    
+    func setWifiInfoList(wifiInfos: [HwWifiInfo], completion: @escaping(_ result: HwSetWifiInfoListResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter.init()
+        callBackAdapter.handle = {(value) in
+            if let data = value as? HwSetWifiInfoListResult  {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.setWifiInfoList(AccountController.shared.gatewayDevId ?? "", withWifiInfos: wifiInfos, with: callBackAdapter)
+        }
+    }
+    
+    func getWifiInfo(ssidIndex: Int32, completion: @escaping(_ result: HwWifiInfo) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwWifiInfo {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getWifiInfo(AccountController.shared.gatewayDevId ?? "", withSsidIndex: ssidIndex, with: callBackAdapter)
+        }
+    }
+    
+    func getGuestWifiInfo(completion: @escaping(_ result: HwGuestWifiInfo) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwGuestWifiInfo {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getGuestWifiInfo(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+
+    func getWifiTimer(completion: @escaping(_ result: HwWifiTimer) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwWifiTimer {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getWifiTimer(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+    
+    func setWifiTimer(timer: HwWifiTimer, completion: @escaping(_ result: HwSetWifiTimerResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwSetWifiTimerResult {
+                completion(data)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.setWifiTimer(AccountController.shared.gatewayDevId ?? "", with: timer, with: callBackAdapter)
+        }
+    }
 }

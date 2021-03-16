@@ -113,38 +113,57 @@ class GetConnectViewController: UIViewController {
     
     func searchGateway() {
         checkingSSID()
+        let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
+        guard
+            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+            else {
+                return
+        }
+        
         HuaweiHelper.shared.searchGateway(completion: { gateways in
             self.gateway = gateways.first
             if let deviceMac = self.gateway?.deviceMac {
-                HuaweiHelper.shared.getONTRegisterStatus(devId: deviceMac, completion: { _ in
-                    HuaweiHelper.shared.getFamilyRegisterInfoOnCloud(devId: deviceMac, completion: { familyRegInfo in
-                        if !familyRegInfo.isJoinFamily {
-                            self.locationManager = CLLocationManager()
-                            self.locationManager?.delegate = self
-                            self.locationManager?.requestWhenInUseAuthorization()
-                        } else {
-                            self.gateway = nil
-                            self.notConnected()
-                            self.errorMsg.text = "The added features have already been activated on another account on this WiFi network."
+                HuaweiHelper.shared.getONTRegisterStatus(devId: deviceMac, completion: { ontRegisterStatus in
+                    AccountDataController.shared.getMacAddress(account: account, service: service) { data, error in
+                        guard error == nil else {
+                            self.failed()
+                            return
                         }
-                    }) { _ in
-                        self.gateway = nil
-                        self.notConnected()
-                        self.errorMsg.text = "This network's router does not support the added features."
+                        
+                        if let result = data {
+                            let macAddress = MacAddress(with: result)
+                            if ontRegisterStatus.mac == macAddress?.mac_address {
+                                HuaweiHelper.shared.getFamilyRegisterInfoOnCloud(devId: deviceMac, completion: { familyRegInfo in
+                                    if !familyRegInfo.isJoinFamily {
+                                        self.locationManager = CLLocationManager()
+                                        self.locationManager?.delegate = self
+                                        self.locationManager?.requestWhenInUseAuthorization()
+                                    } else {
+                                        self.gateway = nil
+                                        self.notConnected()
+                                        self.errorMsg.text = "The added features have already been activated on another account on this WiFi network."
+                                    }
+                                }, error: { _ in
+                                    self.gateway = nil
+                                    self.notConnected()
+                                    self.errorMsg.text = "This network's router does not support the added features."
+                                })
+                            }
+                        }
                     }
-                }) { _ in
+                }, error: { _ in
                     self.gateway = nil
                     self.notConnected()
                     self.errorMsg.text = "This network's router does not support the added features."
-                }
+                })
             }
-        }) { _ in
+        }, error: { _ in
             DispatchQueue.main.async {
                 self.gateway = nil
                 self.notConnected()
                 self.errorMsg.text = "This network's router does not support the added features."
             }
-        }
+        })
     }
 }
 

@@ -22,6 +22,7 @@ class ChangeWifiNameViewController: UIViewController {
     @IBOutlet private weak var ssidPassword: FloatLabeledTextView!
     @IBOutlet private weak var ssidPasswordSeparator: UIView!
     @IBOutlet private weak var visiblePassword: UIButton!
+    @IBOutlet private weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,9 @@ class ChangeWifiNameViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
         setUpTextField(textField: ssidName)
         setUpTextField(textField: ssidPassword)
+        
+        saveButton.backgroundColor = .gray
+        saveButton.isUserInteractionEnabled = false
         
         if let firstWifiInfo = wifiInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
             return "\(wifiInfoA?.ssidIndex)".compare("\(wifiInfoB?.ssidIndex)", options: .numeric) == .orderedAscending
@@ -162,6 +166,14 @@ extension ChangeWifiNameViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView == ssidPassword && !visiblePassword.isSelected {
             textView.text = String(repeating: "*", count: (textView.text ?? "").count)
+        }
+        
+        if ssidName.text == "" || ssidPassword.text == "" {
+            saveButton.backgroundColor = .gray
+            saveButton.isUserInteractionEnabled = false
+        } else {
+            saveButton.backgroundColor = .primary
+            saveButton.isUserInteractionEnabled = true
         }
     }
 }

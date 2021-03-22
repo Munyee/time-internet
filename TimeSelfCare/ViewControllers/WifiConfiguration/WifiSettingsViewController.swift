@@ -268,9 +268,19 @@ class WifiSettingsViewController: UIViewController {
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             hud.label.text = NSLocalizedString("Loading...", comment: "")
             
-            for wifiInfo in dataInfos {
-                wifiInfo.enable = switchWifi.isOn
+            let sortedArr = dataInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
+                return "\(wifiInfoA.ssidIndex)".compare("\(wifiInfoB.ssidIndex)", options: .numeric) == .orderedAscending
+            })
+            
+            if (switchWifi.isOn) {
+                sortedArr.first(where: {$0.radioType == "2.4G"})?.enable = true
+                sortedArr.first(where: {$0.radioType == "5G"})?.enable = true
+            } else {
+                for wifiInfo in dataInfos {
+                    wifiInfo.enable = false
+                }
             }
+            
             
             HuaweiHelper.shared.setWifiInfoList(wifiInfos: dataInfos, completion: { _ in
                 DispatchQueue.main.async {

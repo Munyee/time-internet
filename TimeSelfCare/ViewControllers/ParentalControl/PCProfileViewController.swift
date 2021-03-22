@@ -77,12 +77,12 @@ class PCProfileViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.liveChatView.isHidden = false
+        self.liveChatView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.liveChatView.isHidden = true
+        self.liveChatView.isHidden = false
     }
     
     @objc

@@ -103,24 +103,22 @@ class SummaryContainerViewController: TimeBaseViewController {
         if account.custSegment == .residential {
             AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
                 hud.hide(animated: true)
-                let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
-                print("UUID: \(UUIDValue)")
+
                 guard error == nil else {
                     print(error.debugDescription)
                     return
                 }
                 
                 if let result = data {
-                    print(result)
                     let huaweiDevice = IsHuaweiDevice(with: result)
                     if huaweiDevice?.status == "yes" {
                         HuaweiHelper.shared.initHwSdk {
                             HuaweiHelper.shared.checkIsLogin { result in
-                                if !result.isLogined {
+//                                if !result.isLogined {
                                     self.HuaweiLogin()
-                                } else {
-                                   self.checkIsKick()
-                                }
+//                                } else {
+//                                    self.checkIsKick()
+//                                }
                             }
                         }
                     }
@@ -130,9 +128,36 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     func HuaweiLogin() {
-        HuaweiHelper.shared.login { _ in
-            HuaweiHelper.shared.registerErrorMessageHandle { msg in
-                self.checkIsKick()
+//        HuaweiHelper.shared.login { _ in
+//            HuaweiHelper.shared.registerErrorMessageHandle { msg in
+//                self.checkIsKick()
+//            }
+//        }
+        
+        let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
+        
+        guard
+            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+            else {
+                return
+        }
+        
+        let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
+        AccountDataController.shared.getHuaweiSSOAuthCode(mobileId: UUIDValue, account: account, service: service) { data, error in
+            guard error == nil else {
+                print(error.debugDescription)
+                return
+            }
+
+            if let result = data {
+                if let authCode = result["authcode"] as? String {
+                    print(authCode)
+                    HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { data in
+                        self.checkIsKick()
+                    }, error: { _ in
+
+                    })
+                }
             }
         }
     }

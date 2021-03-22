@@ -26,7 +26,8 @@ class ScheduleViewController: PopUpViewController {
     var delegate: ScheduleViewControllerDelegate?
     
     @IBOutlet private weak var pickerView: UIPickerView!
-    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var popupView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

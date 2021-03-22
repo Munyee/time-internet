@@ -54,8 +54,6 @@ class PerformanceViewController: BaseViewController {
         nceView.isHidden = true
         
         timer?.invalidate()
-        
-        queryBindGateway()
     }
     
     @objc
@@ -77,6 +75,22 @@ class PerformanceViewController: BaseViewController {
                 return
         }
         
+        if account.custSegment == .residential {
+            AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
+                guard error == nil else {
+                    print(error.debugDescription)
+                    return
+                }
+                
+                if let result = data {
+                    let huaweiDevice = IsHuaweiDevice(with: result)
+                    if huaweiDevice?.status == "yes" {
+                        self.queryBindGateway()
+                    }
+                }
+            }
+        }
+        
         self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
         AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
             let isConnected: Bool = error == nil
@@ -94,7 +108,6 @@ class PerformanceViewController: BaseViewController {
             self.runDiagnosticsButton.backgroundColor = self.runDiagnosticsButton.isEnabled ? .primary : .grey2
             NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
         }
-        queryBindGateway()
     }
     
     @IBAction func runDiagnosticsCheck(_ sender: Any) {
@@ -120,10 +133,10 @@ class PerformanceViewController: BaseViewController {
             if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCTemplateListViewController") as? PCTemplateListViewController {
                 self.presentNavigation(templateVC, animated: true)
             }
-        }) { _ in
+        }, error: { _ in
             hud.hide(animated: true)
             self.showNotAvailable()
-        }
+        })
     }
     
     @IBAction func actWifiConfiguration(_ sender: Any) {
@@ -135,10 +148,10 @@ class PerformanceViewController: BaseViewController {
                 wifiConfVC.gateway = self.gateway
                 self.presentNavigation(wifiConfVC, animated: true)
             }
-        }) { _ in
+        }, error: { _ in
             hud.hide(animated: true)
             self.showNotAvailable()
-        }
+        })
     }
     
     @IBAction func bindGateway(_ sender: Any) {
@@ -166,6 +179,7 @@ class PerformanceViewController: BaseViewController {
         let showAddnce = !UserDefaults.standard.bool(forKey: self.kIsSetupNCE)
         
         HuaweiHelper.shared.queryUserBindGateway { gateways in
+            print(gateways)
             if !gateways.isEmpty {
                 AccountController.shared.gatewayDevId = gateways.first?.deviceId
                 self.gateway = gateways.first
@@ -181,7 +195,7 @@ class PerformanceViewController: BaseViewController {
                     }
                     //            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                     //                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in
-                    //                    let (downSpeed, downByte) = Units(kBytes: Int64(gatewaySpeed.downSpeed)).getReadableUnit()
+                    //                    let (downSpeed, downByte) = Units(kBytes: Int64(gatewaySpeed.downSpeed)).getReadable
                     //                    let (upSpeed, upByte) = Units(kBytes: Int64(gatewaySpeed.upSpeed)).getReadableUnit()
                     //                    self.downSpeed.text = "\(downSpeed)"
                     //                    self.downByte.text = "\(downByte)"
@@ -189,8 +203,9 @@ class PerformanceViewController: BaseViewController {
                     //                    self.upByte.text = "\(upByte)"
                     //                }
                     //            }
-                }) { _ in
-                }
+                }, error: { exception in
+                    self.showAlertMessage(message: exception?.errorMessage ?? "")
+                })
             } else {
                 if AccountController.shared.noOfGateway! > 0 {
                     self.connectionStackView.isHidden = false

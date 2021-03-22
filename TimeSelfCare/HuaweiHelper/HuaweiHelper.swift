@@ -30,15 +30,30 @@ public extension HuaweiHelper {
         
         let param = HwAppAuthInitParam() // swiftlint:disable:this
         param.ip = "nce.time.com.my"
-        param.port = 30110 // swiftlint:disable:this
+        param.port = 30_110 // swiftlint:disable:this
         param.locale = NSLocale.system
         HwNetopenMobileSDK.initWithHwAuth(param, with: callBackAdapter)
     }
     
-    func login(completion: @escaping(_ result: HwLoginInfo) -> Void) {
+    func logout(completion: @escaping(_ result: HwLogoutResult) -> Void) {
+           let callBackAdapter = HwCallbackAdapter()
+           callBackAdapter.handle = {value in
+               if let result = value as? HwLogoutResult {
+                   completion(result)
+               }
+           }
+           callBackAdapter.exception = {(exception: HwActionException?) in
+               print(exception?.errorCode ?? "")
+           }
+           
+           HwNetopenMobileSDK.logout(callBackAdapter)
+    }
+    
+    func initWithAppAuth(token: String, username: String, completion: @escaping(_ result: HwAppAuthInitResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
-            if let result = value as? HwLoginInfo {
+            if let result = value as? HwAppAuthInitResult {
                 completion(result)
             }
         }
@@ -46,12 +61,21 @@ public extension HuaweiHelper {
             print(exception?.errorCode ?? "")
         }
         
-        let loginParam = HwLoginParam()
-        //        loginParam.account = "timence2"
-        //        loginParam.password = "timence2@"
-        loginParam.account = "timetestnce"
-        loginParam.password = "Time123"
-        HwNetopenMobileSDK.login(loginParam, with: callBackAdapter)
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print("Init App Auth Error: \(exception?.errorCode ?? "")")
+            error(exception)
+        }
+        
+        let initParam = HwAppAuthInitParam()
+        initParam.userName = username
+        initParam.ip = "nce.time.com.my"
+        initParam.port = 30_110 // swiftlint:disable:this
+        initParam.locale = NSLocale.system
+        initParam.getTokenHandle = {
+            return token
+        }
+
+        HwNetopenMobileSDK.initWithAppAuth(initParam, with: callBackAdapter)
     }
     
     func registerErrorMessageHandle(completion: @escaping(_ result: HwNotificationMessage) -> Void) {
@@ -425,9 +449,9 @@ public extension HuaweiHelper {
     }
     
     func setWifiInfoList(wifiInfos: [HwWifiInfo], completion: @escaping(_ result: HwSetWifiInfoListResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
-        let callBackAdapter = HwCallbackAdapter.init()
-        callBackAdapter.handle = {(value) in
-            if let data = value as? HwSetWifiInfoListResult  {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = { value in
+            if let data = value as? HwSetWifiInfoListResult {
                 completion(data)
             }
         }
@@ -502,6 +526,40 @@ public extension HuaweiHelper {
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.setWifiTimer(AccountController.shared.gatewayDevId ?? "", with: timer, with: callBackAdapter)
+        }
+    }
+    
+    func getPortMappingInfoWithDeviceId(deviceId: String, completion: @escaping(_ result: [HwPortMappingInfo]) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? [HwPortMappingInfo] {
+                completion(data)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getPortMappingInfo(withDeviceId: deviceId, callback: callBackAdapter)
+        }
+    }
+    
+    func getPPPoEAccount(deviceId: String, wanName: String, completion: @escaping(_ result: HwPPPoEAccount) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwPPPoEAccount {
+                completion(data)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getPPPoEAccount(deviceId, withWanName: wanName, with: callBackAdapter)
         }
     }
 }

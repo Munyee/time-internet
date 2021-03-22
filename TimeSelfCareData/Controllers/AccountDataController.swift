@@ -206,4 +206,17 @@ public extension AccountDataController {
             completion(response, error)
         }
     }
+    
+    func getHuaweiSSOAuthCode(mobileId: String, account: Account, service: Service, completion: @escaping SimpleRequestListener) {
+        let path = "get_huawei_sso_authcode"
+        var body: [String: Any] = [:]
+        body["account_no"] = account.accountNo
+        body["username"] = account.profileUsername
+        body["service_id"] = service.serviceId
+        body["mobile_id"] = mobileId
+        
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
+        }
+    }
 }

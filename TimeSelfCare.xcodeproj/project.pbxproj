@@ -115,6 +115,7 @@
 		9EE0B95D246513290073288B /* LiveChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0B95C246513290073288B /* LiveChatView.swift */; };
 		9EE0B965246520FD0073288B /* ExpandableLiveChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0B963246520FD0073288B /* ExpandableLiveChatView.swift */; };
 		9EE0B966246520FD0073288B /* ExpandableLiveChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EE0B964246520FD0073288B /* ExpandableLiveChatView.xib */; };
+		9EE460DA260044160040D8CE /* Deviceinstallation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EE460D9260044160040D8CE /* Deviceinstallation.storyboard */; };
 		9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF3C4A8243EB924007C22DC /* ContactUsViewController.swift */; };
 		9EF69F2F25F89168003D11F6 /* WifiSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF69F2E25F89168003D11F6 /* WifiSettingsViewController.swift */; };
 		9EF69F3125F8AB22003D11F6 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF69F3025F8AB22003D11F6 /* ScheduleViewController.swift */; };
@@ -428,6 +429,7 @@
 		9EE0B95C246513290073288B /* LiveChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatView.swift; sourceTree = "<group>"; };
 		9EE0B963246520FD0073288B /* ExpandableLiveChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableLiveChatView.swift; sourceTree = "<group>"; };
 		9EE0B964246520FD0073288B /* ExpandableLiveChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpandableLiveChatView.xib; sourceTree = "<group>"; };
+		9EE460D9260044160040D8CE /* Deviceinstallation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Deviceinstallation.storyboard; sourceTree = "<group>"; };
 		9EF3C4A8243EB924007C22DC /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		9EF69F2E25F89168003D11F6 /* WifiSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiSettingsViewController.swift; sourceTree = "<group>"; };
 		9EF69F3025F8AB22003D11F6 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9EE460D8260043F70040D8CE /* DeviceInstallation */,
 				9EFC438025EE127F009AF8C2 /* WifiConfiguration */,
 				9E5437ED25E8E16400195623 /* BindGateway */,
 				9E59AF6125DE31AD00FF427A /* ParentalControl */,
@@ -1098,6 +1101,14 @@
 				9EE0B964246520FD0073288B /* ExpandableLiveChatView.xib */,
 			);
 			path = ExpandableLiveChat;
+			sourceTree = "<group>";
+		};
+		9EE460D8260043F70040D8CE /* DeviceInstallation */ = {
+			isa = PBXGroup;
+			children = (
+				9EE460D9260044160040D8CE /* Deviceinstallation.storyboard */,
+			);
+			path = DeviceInstallation;
 			sourceTree = "<group>";
 		};
 		9EFC438025EE127F009AF8C2 /* WifiConfiguration */ = {
@@ -1567,6 +1578,7 @@
 				E2626D5020A923F700891953 /* Activity.storyboard in Resources */,
 				9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */,
 				E2A8E84B1FCE6A4B00EA5DF2 /* Common.storyboard in Resources */,
+				9EE460DA260044160040D8CE /* Deviceinstallation.storyboard in Resources */,
 				E2AD92C91FC3AE2700138334 /* Summary.storyboard in Resources */,
 				9EAB2C0B249CBB0500F12A3C /* LiveChatAlert.storyboard in Resources */,
 				E2E84FE71FCEA87E0014CEAA /* DINCondensed-Bold.ttf in Resources */,

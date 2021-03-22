@@ -11,6 +11,8 @@ import UIKit
 class AccountSummaryViewController: BaseViewController {
 
     static var didAnimate: Bool = false
+    
+    var isAutoDebit: Bool = false
 
     private var service: Service?
 
@@ -27,6 +29,7 @@ class AccountSummaryViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.priceLabel.font = UIFont(name: "DINCondensed-Bold", size: 80)
+        self.payButton.titleLabel?.textAlignment = .center
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
     }
 
@@ -99,13 +102,16 @@ class AccountSummaryViewController: BaseViewController {
         CreditCardDataController.shared.loadCreditCards(account: account) { (creditCards: [CreditCard], _: Error?) in
             let creditCard = creditCards.first
             if creditCard == nil {
+                self.isAutoDebit = false
                 self.autoDebitButton.setTitle(NSLocalizedString("Register for Auto Debit", comment: ""), for: .normal)
                 self.autoDebitButton.setTitleColor(.primary, for: .normal)
             } else {
                 if creditCard!.ccExist == true {
+                    self.isAutoDebit = true
                     self.autoDebitButton.setTitle(NSLocalizedString("You are on Auto Debit.", comment: ""), for: .normal)
                     self.autoDebitButton.setTitleColor(.grey2, for: .normal)
                 } else {
+                    self.isAutoDebit = false
                     self.autoDebitButton.setTitle(NSLocalizedString("Register for Auto Debit", comment: ""), for: .normal)
                     self.autoDebitButton.setTitleColor(.primary, for: .normal)
                 }
@@ -131,11 +137,41 @@ class AccountSummaryViewController: BaseViewController {
     }
 
     @IBAction func makePayment(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
-
-        if let paymentSummaryVC = storyboard.instantiateInitialViewController() {
-            paymentSummaryVC.modalPresentationStyle = .fullScreen
-            self.present(paymentSummaryVC, animated: true, completion: nil)
+        
+        if AccountController.shared.selectedAccount?.custSegment == .residential && self.autoDebitButton.isHidden == false {
+            if isAutoDebit {
+                let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+                guard let autoDebitVC = storyboard.instantiateViewController(withIdentifier: "AutoDebitViewController") as? AutoDebitViewController
+                    else {
+                        return
+                }
+                self.presentNavigation(autoDebitVC, animated: true)
+            } else {
+                let setupAction = UIAlertAction(title: NSLocalizedString("SETUP NOW", comment: ""), style: .default) { _ in
+                    let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+                    guard let autoDebitVC = storyboard.instantiateViewController(withIdentifier: "AutoDebitViewController") as? AutoDebitViewController
+                        else {
+                            return
+                    }
+                    self.presentNavigation(autoDebitVC, animated: true)
+                }
+                
+                let continueAction = UIAlertAction(title: NSLocalizedString("CONTINUE PAYMENT", comment: ""), style: .default) { _ in
+                    let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+                    if let paymentSummaryVC = storyboard.instantiateInitialViewController() {
+                        paymentSummaryVC.modalPresentationStyle = .fullScreen
+                        self.present(paymentSummaryVC, animated: true, completion: nil)
+                    }
+                }
+                
+                self.showAlertMessage(title: NSLocalizedString("Get RM2 off your monthly subscription", comment: ""), message: NSLocalizedString("When you pay with Auto Debit", comment: ""), actions: [setupAction, continueAction])
+            }
+        } else {
+            let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+            if let paymentSummaryVC = storyboard.instantiateInitialViewController() {
+                paymentSummaryVC.modalPresentationStyle = .fullScreen
+                self.present(paymentSummaryVC, animated: true, completion: nil)
+            }
         }
     }
 

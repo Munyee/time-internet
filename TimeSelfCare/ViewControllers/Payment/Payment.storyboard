@@ -13,7 +13,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Make Payment-->
+        <!--MAKE PAYMENT-->
         <scene sceneID="hxD-CF-Ouk">
             <objects>
                 <viewController storyboardIdentifier="PaymentSummaryViewController" id="WF5-Dr-Nyh" customClass="PaymentSummaryViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="RDA-pM-i8P">
-                                        <rect key="frame" x="0.0" y="16" width="375" height="344.5"/>
+                                        <rect key="frame" x="0.0" y="16" width="375" height="341.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Cha-PA-8uI">
                                                 <rect key="frame" x="20" y="8" width="335" height="43.5"/>
@@ -62,25 +62,25 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="i8a-Vn-V6g">
-                                                <rect key="frame" x="20" y="81.5" width="335" height="79"/>
+                                                <rect key="frame" x="20" y="81.5" width="335" height="76"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TdX-xp-DLl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="73"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="70"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Your Payment Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGb-uD-zM3">
-                                                                <rect key="frame" x="0.0" y="0.0" width="177.5" height="73"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="175.5" height="70"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                 <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="RM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPV-QN-D8j">
-                                                                <rect key="frame" x="182.5" y="0.0" width="32.5" height="73"/>
+                                                                <rect key="frame" x="180.5" y="0.0" width="32.5" height="70"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0.00" placeholder="0.00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SiR-2p-i9f">
-                                                                <rect key="frame" x="220" y="0.0" width="115" height="73"/>
+                                                                <rect key="frame" x="218" y="0.0" width="117" height="70"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="mcZ-R6-VPq"/>
                                                                 </constraints>
@@ -94,14 +94,14 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WDW-sw-I13" userLabel="Separator">
-                                                        <rect key="frame" x="0.0" y="78" width="335" height="1"/>
+                                                        <rect key="frame" x="0.0" y="75" width="335" height="1"/>
                                                         <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="u2p-ze-Lc9"/>
                                                         </constraints>
                                                     </view>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLS-Ot-VFi" userLabel="Error Label">
-                                                        <rect key="frame" x="0.0" y="79" width="335" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="76" width="335" height="0.0"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <color key="textColor" red="0.81568627449999997" green="0.0078431372550000003" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -109,7 +109,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B8j-qm-94P">
-                                                <rect key="frame" x="20" y="190.5" width="335" height="114"/>
+                                                <rect key="frame" x="20" y="187.5" width="335" height="114"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Eiu-ic-3KW">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
@@ -191,7 +191,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4KI-bY-qsM"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Make Payment" id="Rdh-29-JIr">
+                    <navigationItem key="navigationItem" title="MAKE PAYMENT" id="Rdh-29-JIr">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="TMg-5g-kBp">
                             <connections>
                                 <action selector="cancelPayment:" destination="WF5-Dr-Nyh" id="u4s-ys-uNn"/>

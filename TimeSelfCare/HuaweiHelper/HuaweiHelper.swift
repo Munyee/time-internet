@@ -21,6 +21,7 @@ public extension HuaweiHelper {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let _ = value as? HwAuthInitResult {
+                print("Init completed")
                 completion()
             }
         }
@@ -54,11 +55,9 @@ public extension HuaweiHelper {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let result = value as? HwAppAuthInitResult {
+                print("Init App Auth completed")
                 completion(result)
             }
-        }
-        callBackAdapter.exception = {(exception: HwActionException?) in
-            print(exception?.errorCode ?? "")
         }
         
         callBackAdapter.exception = {(exception: HwActionException?) in
@@ -256,7 +255,7 @@ public extension HuaweiHelper {
         }
     }
     
-    func getAttachParentControlList(completion: @escaping(_ result: [HwAttachParentControl]) -> Void) {
+    func getAttachParentControlList(completion: @escaping(_ result: [HwAttachParentControl]) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let tplList = value as? [HwAttachParentControl] {
@@ -265,6 +264,7 @@ public extension HuaweiHelper {
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
             print(exception?.errorCode ?? "")
+            error(exception)
         }
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
@@ -560,6 +560,23 @@ public extension HuaweiHelper {
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.getPPPoEAccount(deviceId, withWanName: wanName, with: callBackAdapter)
+        }
+    }
+    
+    func enableWifiHardwareSwitch(radioType: String, completion: @escaping(_ result: HwSetWiFiRadioSwtichResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwSetWiFiRadioSwtichResult {
+                completion(data)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.setWifiHardwareSwitch(AccountController.shared.gatewayDevId ?? "", withRadioType: radioType, withEnableState: true, withCallBack: callBackAdapter)
         }
     }
 }

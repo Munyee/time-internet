@@ -152,15 +152,16 @@ class PCProfileViewController: UIViewController {
     func updateTemplateView() {
         if let temp = template {
             name = temp.name
-            HuaweiHelper.shared.getAttachParentControlList { arrAttachPC in
+            HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
                 let controlledDev = arrAttachPC.filter { $0.templateName == temp.name }.map { $0.mac }
                 
                 HuaweiHelper.shared.queryLanDeviceListEx { devices in
                     self.selectedDevices = devices.filter { !$0.isAp }.filter { controlledDev.contains($0.mac) }
                     self.updateDeviceList()
                 }
-            }
-            
+            }, error: { _ in
+                
+            })
             profileTextView.text = temp.aliasName
             profileSeperator.isHidden = !isEdit
             deviceView.alpha = 1
@@ -377,7 +378,7 @@ class PCProfileViewController: UIViewController {
                         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                         hud.label.text = NSLocalizedString("Loading...", comment: "")
                         
-                        HuaweiHelper.shared.getAttachParentControlList { arrAttachPC in
+                        HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
                             let controlledDev = arrAttachPC.filter { $0.templateName == self.name }.map { $0.mac }
                             
                             let group = DispatchGroup()
@@ -395,11 +396,13 @@ class PCProfileViewController: UIViewController {
                                 HuaweiHelper.shared.deleteAttachParentControlTemplate(name: self.name, completion: { _ in
                                     hud.hide(animated: true)
                                     self.popToRoot()
-                                }) { _ in
+                                }, error: { _ in
                                     hud.hide(animated: true)
-                                }
+                                })
                             }
-                        }
+                        }, error: { _ in
+                            
+                        })
                     },
                     UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)])
     }
@@ -484,23 +487,23 @@ class PCProfileViewController: UIViewController {
                             
                             group.notify(queue: .main) {
                                 hud.hide(animated: true)
-                                self.popBack()
+                                self.popToRoot()
                             }
-                        }) { exception in
+                        }, error: { exception in
                             hud.hide(animated: true)
                             self.showAlertMessage(message: exception?.description ?? "")
-                        }
+                        })
                     }
                     
-                }) { exception in
+                }, error: { exception in
                     hud.hide(animated: true)
                     self.showAlertMessage(message: exception?.description ?? "")
-                }
+                })
             }
-        }) { exception in
+        }, error: { exception in
             hud.hide(animated: true)
             self.showAlertMessage(message: exception?.description ?? "")
-        }
+        })
     }
 }
 

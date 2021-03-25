@@ -75,7 +75,12 @@ class PerformanceViewController: BaseViewController {
                 return
         }
         
-        if account.custSegment == .residential {
+        var isCustSegments = account.custSegment == .residential
+        #if DEBUG
+            isCustSegments = account.custSegment == .residential || account.custSegment == .business
+        #endif
+
+        if isCustSegments {
             AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
                 guard error == nil else {
                     print(error.debugDescription)
@@ -203,8 +208,7 @@ class PerformanceViewController: BaseViewController {
                     //                    self.upByte.text = "\(upByte)"
                     //                }
                     //            }
-                }, error: { exception in
-                    self.showAlertMessage(message: exception?.errorMessage ?? "")
+                }, error: { _ in
                 })
             } else {
                 if AccountController.shared.noOfGateway! > 0 {

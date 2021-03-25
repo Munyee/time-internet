@@ -124,7 +124,7 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
                         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                         hud.label.text = NSLocalizedString("Loading...", comment: "")
                         
-                        HuaweiHelper.shared.getAttachParentControlList { arrAttachPC in
+                        HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
                             let controlledDev = arrAttachPC.filter { $0.templateName == template.name }.map { $0.mac }
                             
                             let group = DispatchGroup()
@@ -142,11 +142,13 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
                                 HuaweiHelper.shared.deleteAttachParentControlTemplate(name: template.name, completion: { _ in
                                     hud.hide(animated: true)
                                     self.getParentalControl()
-                                }) { _ in
+                                }, error: { _ in
                                     hud.hide(animated: true)
-                                }
+                                })
                             }
-                        }
+                        }, error: { _ in
+                            
+                        })
                     },
                     UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)])
         }

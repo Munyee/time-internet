@@ -8,6 +8,7 @@
 
 import UIKit
 import HwMobileSDK
+import MBProgressHUD
 
 protocol PCDevicesViewControllerDelegate {
     func selected(devices: [HwLanDevice])
@@ -34,7 +35,12 @@ class PCDevicesViewController: UIViewController {
     }
     
     func queryDevices() {
-        HuaweiHelper.shared.getAttachParentControlList { arrAttachPC in
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+
+        HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
+            hud.hide(animated: true)
             var attPC = arrAttachPC
             if self.template != nil {
                 attPC = attPC.filter { $0.templateName != self.template?.name }
@@ -45,6 +51,7 @@ class PCDevicesViewController: UIViewController {
                 self.arrDevices = devices.filter { !$0.isAp }
                 self.arrDevices = self.arrDevices.filter { !controlledDev.contains($0.mac) }
                 self.arrDevices = self.arrDevices.sorted { $0.onLine && !$1.onLine }
+                self.tableView.reloadData()
                 
                 let arrMac = self.arrDevices.map { $0.mac }
                 if let macList = arrMac as? [String] {
@@ -52,9 +59,18 @@ class PCDevicesViewController: UIViewController {
                         self.arrDeviceTypes = deviceTypeInfo
                         self.tableView.reloadData()
                     }
+                } else {
+                    self.tableView.reloadData()
                 }
             }
-        }
+        }, error: { _ in
+            hud.hide(animated: true)
+            self.showAlertMessage(message: "Something Went Wrong", actions: [
+                UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
+                    self.dismissVC()
+                }
+            ])
+        })
     }
     
     func checkConfirmButton() {

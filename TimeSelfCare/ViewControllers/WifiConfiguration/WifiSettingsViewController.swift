@@ -330,6 +330,11 @@ class WifiSettingsViewController: UIViewController {
                     hud.hide(animated: true)
                 }
             })
+            
+            if !switchScheduling.isOn {
+                HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "2.4G", completion: { _ in }, error: { _ in })
+                HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "5G", completion: { _ in }, error: { _ in })
+            }
         }
     }
     

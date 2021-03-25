@@ -143,24 +143,24 @@ class ChangeWifiViewController: TimeBaseViewController {
                             self.notConnected()
                             self.errorMsg.text = "The added features have already been activated on another account on this WiFi network."
                         }
-                    }) { _ in
+                    }, error: { _ in
                         self.gateway = nil
                         self.notConnected()
                         self.errorMsg.text = "This network's router does not support the added features."
-                    }
-                }) { _ in
+                    })
+                }, error: { _ in
                     self.gateway = nil
                     self.notConnected()
                     self.errorMsg.text = "This network's router does not support the added features."
-                }
+                })
             }
-        }) { _ in
+        }, error: { _ in
             DispatchQueue.main.async {
                 self.gateway = nil
                 self.errorMsg.text = "This network's router does not support the added features."
                 self.notConnected()
             }
-        }
+        })
     }
     
 }

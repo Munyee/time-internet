@@ -58,7 +58,7 @@ class DeviceView: UIView {
     
     @IBAction func actRemoveDevice(_ sender: Any) {
         if let dev = device {
-            delegate?.removeDevice(device: self.device!)
+            delegate?.removeDevice(device: dev)
         }
     }
     

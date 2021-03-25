@@ -97,10 +97,14 @@ class SummaryContainerViewController: TimeBaseViewController {
                 return
         }
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        
-        if account.custSegment == .residential {
+        var isCustSegments = account.custSegment == .residential
+        #if DEBUG
+            isCustSegments = account.custSegment == .residential || account.custSegment == .business
+        #endif
+
+        if isCustSegments {
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.label.text = NSLocalizedString("Loading...", comment: "")
             AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
                 hud.hide(animated: true)
 
@@ -170,7 +174,6 @@ class SummaryContainerViewController: TimeBaseViewController {
             }
         }
     }
-    
     
     @objc
     private func updatePageControl() {

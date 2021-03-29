@@ -67,6 +67,7 @@
 		9E36BB5825E539BB00E5575F /* SelectPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB5725E539BB00E5575F /* SelectPeriod.swift */; };
 		9E36BB5A25E542D600E5575F /* PeriodView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E36BB5925E542D600E5575F /* PeriodView.xib */; };
 		9E36BB5C25E5430000E5575F /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB5B25E5430000E5575F /* PeriodView.swift */; };
+		9E41A39C260D7458000CECE7 /* DeviceInstallationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41A39B260D7458000CECE7 /* DeviceInstallationHelper.swift */; };
 		9E4AB95225DFA79000F1DEFE /* IsHuaweiDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */; };
 		9E4AB95A25DFF97B00F1DEFE /* FunctionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; };
 		9E4AB95B25DFF97B00F1DEFE /* FunctionSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -379,6 +380,7 @@
 		9E36BB5925E542D600E5575F /* PeriodView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeriodView.xib; sourceTree = "<group>"; };
 		9E36BB5B25E5430000E5575F /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
 		9E38767725C028590015A514 /* Smartlook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Smartlook.framework; path = "System/Library/Frameworks/Smartlook.xcframework/ios-arm64_i386_x86_64-simulator/Smartlook.framework"; sourceTree = SDKROOT; };
+		9E41A39B260D7458000CECE7 /* DeviceInstallationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInstallationHelper.swift; sourceTree = "<group>"; };
 		9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsHuaweiDevice.swift; sourceTree = "<group>"; };
 		9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuaweiHelper.swift; sourceTree = "<group>"; };
 		9E4AB96025E00EE600F1DEFE /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
@@ -960,6 +962,7 @@
 			children = (
 				9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */,
 				9E4AB96025E00EE600F1DEFE /* Units.swift */,
+				9E41A39B260D7458000CECE7 /* DeviceInstallationHelper.swift */,
 			);
 			path = HuaweiHelper;
 			sourceTree = "<group>";
@@ -1887,6 +1890,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E41A39C260D7458000CECE7 /* DeviceInstallationHelper.swift in Sources */,
 				9EBA8B7C24B579690021B6AB /* EditProfileViewController.swift in Sources */,
 				E25E3825230B956E0013CEFD /* RewardOutletsCell.swift in Sources */,
 				9E9CAD5325F9F3F9001F3860 /* ChangeWifiNameViewController.swift in Sources */,

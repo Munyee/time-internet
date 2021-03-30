@@ -202,6 +202,22 @@ public extension HuaweiHelper {
         }
     }
     
+    func unbindGateway(completion: @escaping(_ result: HwUnbindGatewayResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let gateway = value as? HwUnbindGatewayResult {
+                completion(gateway)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwUserService {
+            service.unbindGateway(AccountController.shared.gatewayDevId, withCallBack: callBackAdapter)
+        }
+    }
+    
     func replaceGateway(oldDeviceMac: String, deviceMac: String, completion: @escaping(_ result: HwReplaceGatewayResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in

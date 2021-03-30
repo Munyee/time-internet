@@ -201,16 +201,29 @@
                                     <action selector="actChangeNetwork:" destination="2IT-ad-u2f" eventType="touchUpInside" id="MHS-U6-GhR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-6u-JZn">
+                                <rect key="frame" x="140.5" y="237" width="133" height="29"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
+                                <state key="normal" title="Remove Wifi Network">
+                                    <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="actCancel:" destination="gHb-7i-Bc7" eventType="touchUpInside" id="WFL-tF-SFl"/>
+                                    <action selector="actRemoveWifiNetwork:" destination="2IT-ad-u2f" eventType="touchUpInside" id="rxn-KM-Wqn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Ye-rq-IMB" firstAttribute="top" secondItem="Vmv-BR-Jdg" secondAttribute="bottom" constant="10" id="1fi-7X-rYC"/>
                             <constraint firstItem="sDS-ZU-Vle" firstAttribute="top" secondItem="6Ye-rq-IMB" secondAttribute="bottom" constant="60" id="3h2-yS-4Us"/>
+                            <constraint firstItem="HV0-6u-JZn" firstAttribute="top" secondItem="sDS-ZU-Vle" secondAttribute="bottom" constant="40" id="4X2-Pv-YHw"/>
                             <constraint firstItem="Vmv-BR-Jdg" firstAttribute="top" secondItem="dyA-yG-gGY" secondAttribute="top" constant="40" id="A6w-Se-hcZ"/>
                             <constraint firstItem="Vmv-BR-Jdg" firstAttribute="leading" secondItem="u8L-Gl-ImO" secondAttribute="leading" constant="36" id="O46-OU-D8m"/>
                             <constraint firstItem="6Ye-rq-IMB" firstAttribute="leading" secondItem="Vmv-BR-Jdg" secondAttribute="leading" id="m2Y-Kq-DLY"/>
                             <constraint firstItem="u8L-Gl-ImO" firstAttribute="trailing" secondItem="sDS-ZU-Vle" secondAttribute="trailing" constant="36" id="my5-3N-Wlj"/>
                             <constraint firstItem="sDS-ZU-Vle" firstAttribute="leading" secondItem="u8L-Gl-ImO" secondAttribute="leading" constant="36" id="oJU-Pg-Ujo"/>
+                            <constraint firstItem="HV0-6u-JZn" firstAttribute="centerX" secondItem="sDS-ZU-Vle" secondAttribute="centerX" id="saV-Kh-dc0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="u8L-Gl-ImO"/>
                     </view>

@@ -194,7 +194,7 @@ class PerformanceViewController: BaseViewController {
                 self.speedTestView.isHidden = false
                 self.nceFeatureSmallView.isHidden = true
                 
-                HuaweiHelper.shared.queryGateway(completion: { _ in
+                HuaweiHelper.shared.queryGateway(completion: { gateway in
                     HuaweiHelper.shared.queryLanDeviceCount { result in
                         self.numberOfDevice.text = "\(result.lanDeviceCount)"
                     }

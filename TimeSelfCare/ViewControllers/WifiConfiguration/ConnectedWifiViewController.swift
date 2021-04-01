@@ -34,6 +34,25 @@ class ConnectedWifiViewController: UIViewController {
             self.presentNavigation(changeWifiVC, animated: true)
         }
     }
+    
+    @IBAction func actRemoveWifiNetwork(_ sender: Any) {
+           self.showAlertMessage(title: "Remove WiFi Network", message: "Are you sure you want to remove this WiFi network? You will no longer be able to enjoy the additional features.", actions: [
+                UIAlertAction(title: NSLocalizedString("YES", comment: ""), style: .destructive) { _ in
+                    self.unbindGateway()
+                },
+                UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+                }
+            ])
+        }
+
+
+    func unbindGateway() {
+            HuaweiHelper.shared.unbindGateway(completion: { _ in
+                self.HuaweiLogin()
+            }, error: { _ in
+                self.HuaweiLogin()
+            })
+        }
 }
 
 extension ConnectedWifiViewController: ChangeWifiViewControllerDelegate {

@@ -59,7 +59,7 @@ class PCProfileViewController: UIViewController {
         
         self.liveChatView.isHidden = false
         addTimeView.isHidden = true
-        addWebsiteView.isHidden = true
+//        addWebsiteView.isHidden = true
         setupProfileName()
         setupDevice()
         setupPeriod()
@@ -251,7 +251,7 @@ class PCProfileViewController: UIViewController {
                 
                 if isEdit {
                     addTimeView.isHidden = selectedPeriod.isEmpty ? true : false
-                    addWebsiteView.isHidden = arrUrl.isEmpty ? true : false
+//                    addWebsiteView.isHidden = arrUrl.isEmpty ? true : false
                 }
             }
             
@@ -518,7 +518,7 @@ extension PCProfileViewController: BlockWebsiteViewDelegate {
         separator.backgroundColor = UIColor(hex: "D9D9D9")
         blockWebsiteTextView.floatingLabelTextColor = .grey
         blockWebsiteTextView.layoutSubviews()
-        addWebsiteView.isHidden = false
+//        addWebsiteView.isHidden = false
     }
     
     func didEditChange(textField: UITextField) {
@@ -531,7 +531,7 @@ extension PCProfileViewController: BlockWebsiteViewDelegate {
         
         if !blockWebsiteStack.arrangedSubviews.contains(where: { $0 is BlockWebsiteView }) {
             insertBlockWebsiteInput(allowRemove:false, isPrimary: true, isEdit: true)
-            addWebsiteView.isHidden = true
+//            addWebsiteView.isHidden = true
             blockWebsiteTextView.text = ""
             blockWebsiteTextView.alwaysShowFloatingLabel = false
         }

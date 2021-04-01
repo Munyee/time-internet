@@ -24,14 +24,14 @@ class PerformanceViewController: BaseViewController {
     @IBOutlet private weak var runDiagnosticsButton: UIButton!
     @IBOutlet private weak var speedTestView: UIView!
     @IBOutlet private weak var nceView: UIView!
-    @IBOutlet weak var numberOfDevice: UILabel!
-    @IBOutlet weak var downSpeed: UILabel!
-    @IBOutlet weak var downByte: UILabel!
-    @IBOutlet weak var upSpeed: UILabel!
-    @IBOutlet weak var upByte: UILabel!
-    @IBOutlet weak var connectionStackView: UIStackView!
-    @IBOutlet weak var nceFeatureView: UIStackView!
-    @IBOutlet weak var nceFeatureSmallView: UIView!
+    @IBOutlet private weak var numberOfDevice: UILabel!
+    @IBOutlet private weak var downSpeed: UILabel!
+    @IBOutlet private weak var downByte: UILabel!
+    @IBOutlet private weak var upSpeed: UILabel!
+    @IBOutlet private weak var upByte: UILabel!
+    @IBOutlet private weak var connectionStackView: UIStackView!
+    @IBOutlet private weak var nceFeatureView: UIStackView!
+    @IBOutlet private weak var nceFeatureSmallView: UIView!
     
     var gateway: HwUserBindedGateway?
     
@@ -44,14 +44,14 @@ class PerformanceViewController: BaseViewController {
         self.connectionStackView.isHidden = false
         self.nceFeatureSmallView.isHidden = true
         self.nceFeatureView.isHidden = true
+        speedTestView.isHidden = true
+        nceView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.checkConnectionStatus()
         
-        speedTestView.isHidden = true
-        nceView.isHidden = true
         
         timer?.invalidate()
     }

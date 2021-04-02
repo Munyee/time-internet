@@ -130,20 +130,20 @@
                                                                 </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upb-aU-euo">
-                                                                <rect key="frame" x="68" y="338" width="239" height="103"/>
+                                                                <rect key="frame" x="20" y="338" width="335" height="103"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RqY-Gv-vcd" customClass="UIControl">
-                                                                        <rect key="frame" x="10" y="0.0" width="109.5" height="103"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="157.5" height="103"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_parental_control" translatesAutoresizingMaskIntoConstraints="NO" id="HBx-0I-owa">
-                                                                                <rect key="frame" x="30" y="10" width="50" height="50"/>
+                                                                                <rect key="frame" x="54" y="10" width="50" height="50"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="50" id="DhL-LS-zSK"/>
                                                                                     <constraint firstAttribute="width" secondItem="HBx-0I-owa" secondAttribute="height" multiplier="1:1" id="Qit-E0-FS4"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoR-UC-sQq">
-                                                                                <rect key="frame" x="10" y="65" width="89.5" height="28"/>
+                                                                                <rect key="frame" x="10" y="65" width="137.5" height="28"/>
                                                                                 <string key="text">Parental 
 Controls</string>
                                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
@@ -165,17 +165,17 @@ Controls</string>
                                                                         </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjW-iv-sdQ" customClass="UIControl">
-                                                                        <rect key="frame" x="119.5" y="0.0" width="109.5" height="103"/>
+                                                                        <rect key="frame" x="167.5" y="0.0" width="157.5" height="103"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wifi_conf" translatesAutoresizingMaskIntoConstraints="NO" id="9Yr-5N-8N0">
-                                                                                <rect key="frame" x="30" y="10" width="50" height="50"/>
+                                                                                <rect key="frame" x="54" y="10" width="50" height="50"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="50" id="2cS-yX-jEY"/>
                                                                                     <constraint firstAttribute="width" secondItem="9Yr-5N-8N0" secondAttribute="height" multiplier="1:1" id="fYU-dD-6sU"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhW-PN-Un1">
-                                                                                <rect key="frame" x="10" y="65" width="89.5" height="28"/>
+                                                                                <rect key="frame" x="10" y="65" width="137.5" height="28"/>
                                                                                 <string key="text">Wifi 
 Configuration</string>
                                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
@@ -201,10 +201,10 @@ Configuration</string>
                                                                 <constraints>
                                                                     <constraint firstItem="RjW-iv-sdQ" firstAttribute="top" secondItem="RqY-Gv-vcd" secondAttribute="top" id="N7z-2q-mJ3"/>
                                                                     <constraint firstAttribute="trailing" secondItem="RjW-iv-sdQ" secondAttribute="trailing" constant="10" id="RjM-sJ-C9V"/>
+                                                                    <constraint firstItem="RjW-iv-sdQ" firstAttribute="width" secondItem="RqY-Gv-vcd" secondAttribute="width" id="SNg-Gl-cNp"/>
                                                                     <constraint firstItem="RjW-iv-sdQ" firstAttribute="leading" secondItem="RqY-Gv-vcd" secondAttribute="trailing" id="So5-Lz-oX4"/>
                                                                     <constraint firstItem="RqY-Gv-vcd" firstAttribute="top" secondItem="Upb-aU-euo" secondAttribute="top" id="UqQ-48-w8U"/>
                                                                     <constraint firstAttribute="bottom" secondItem="RqY-Gv-vcd" secondAttribute="bottom" id="Y7E-WK-b0W"/>
-                                                                    <constraint firstItem="RqY-Gv-vcd" firstAttribute="width" secondItem="RjW-iv-sdQ" secondAttribute="width" id="dle-PX-5VE"/>
                                                                     <constraint firstItem="RqY-Gv-vcd" firstAttribute="leading" secondItem="Upb-aU-euo" secondAttribute="leading" constant="10" id="s5o-6x-JQa"/>
                                                                 </constraints>
                                                             </view>

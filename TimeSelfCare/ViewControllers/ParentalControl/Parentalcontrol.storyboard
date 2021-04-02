@@ -37,15 +37,14 @@ access</string>
                                     <constraint firstAttribute="width" priority="750" constant="150" id="uWm-6A-rBr"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcA-rl-sVO">
-                                <rect key="frame" x="35" y="155" width="329" height="43.666666666666657"/>
-                                <string key="text">This function allows you to set a time period for Internet access and filters websites to ensure the safety of your children online.</string>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This function allows you to set a time period for Internet access to ensure the safety of your children online." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcA-rl-sVO">
+                                <rect key="frame" x="35" y="155" width="329" height="29"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="crI-Qr-IKn">
-                                <rect key="frame" x="40" y="228.66666666666663" width="334" height="362"/>
+                                <rect key="frame" x="40" y="214" width="334" height="284"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOv-DL-5hQ">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
@@ -58,7 +57,7 @@ access</string>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a profile name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIr-13-leP">
-                                                <rect key="frame" x="69.999999999999986" y="15.666666666666687" width="143.66666666666663" height="18.666666666666671"/>
+                                                <rect key="frame" x="69.999999999999986" y="15.666666666666659" width="143.66666666666663" height="18.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -75,7 +74,7 @@ access</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Zu-yj-iXp">
-                                        <rect key="frame" x="0.0" y="78.000000000000028" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="78" width="334" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_adddevice" translatesAutoresizingMaskIntoConstraints="NO" id="JMd-yG-2NU">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -85,7 +84,7 @@ access</string>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add devices" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gy9-pa-2Ay">
-                                                <rect key="frame" x="70" y="15.666666666666631" width="80.333333333333314" height="18.666666666666671"/>
+                                                <rect key="frame" x="70" y="15.666666666666687" width="80.333333333333314" height="18.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -102,7 +101,7 @@ access</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZiS-VT-xgh">
-                                        <rect key="frame" x="0.0" y="156.00000000000003" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="156" width="334" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_access_period" translatesAutoresizingMaskIntoConstraints="NO" id="7r6-uD-WNT">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -112,7 +111,7 @@ access</string>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Internet access period" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CcS-Kv-fHb">
-                                                <rect key="frame" x="69.999999999999986" y="15.666666666666631" width="173.66666666666663" height="18.666666666666671"/>
+                                                <rect key="frame" x="69.999999999999986" y="15.666666666666687" width="173.66666666666663" height="18.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -128,8 +127,8 @@ access</string>
                                             <constraint firstItem="CcS-Kv-fHb" firstAttribute="centerY" secondItem="ZiS-VT-xgh" secondAttribute="centerY" id="wd5-SM-NKy"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxu-j8-Ayi">
-                                        <rect key="frame" x="0.0" y="234" width="334" height="50"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxu-j8-Ayi">
+                                        <rect key="frame" x="0.0" y="220" width="334" height="50"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_block_website" translatesAutoresizingMaskIntoConstraints="NO" id="fY6-QQ-yZq">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -139,7 +138,7 @@ access</string>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add blocked websites" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1u-PY-paP">
-                                                <rect key="frame" x="69.999999999999986" y="15.666666666666631" width="145.66666666666663" height="18.666666666666671"/>
+                                                <rect key="frame" x="69.999999999999986" y="15.666666666666687" width="145.66666666666663" height="18.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -156,7 +155,7 @@ access</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jal-Np-c0f" customClass="UIControl">
-                                        <rect key="frame" x="0.0" y="312" width="334" height="50"/>
+                                        <rect key="frame" x="0.0" y="234" width="334" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SET UP NOW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKj-Hu-r1z">
                                                 <rect key="frame" x="121.66666666666666" y="16" width="90.666666666666657" height="24"/>
@@ -323,10 +322,10 @@ access</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="806"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjw-As-waR">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="552.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="435.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="rqt-Uu-crv">
-                                                <rect key="frame" x="35" y="20.000000000000028" width="344" height="502.66666666666674"/>
+                                                <rect key="frame" x="35" y="20" width="344" height="385.66666666666669"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZG-M4-C6L">
                                                         <rect key="frame" x="0.0" y="0.0" width="344" height="101.66666666666667"/>
@@ -337,7 +336,7 @@ access</string>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Internet access period and block websites on your device(s)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9H2-cY-J3L">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Internet access period on your device(s)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9H2-cY-J3L">
                                                                 <rect key="frame" x="0.0" y="37" width="344" height="14.666666666666664"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                 <nil key="textColor"/>
@@ -553,10 +552,10 @@ access</string>
                                                             <action selector="actPeriodSelect:" destination="8Ku-7O-Md6" eventType="touchUpInside" id="5R5-h3-oPj"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-IL-3Vq">
-                                                        <rect key="frame" x="0.0" y="400.66666666666669" width="344" height="53"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-IL-3Vq">
+                                                        <rect key="frame" x="0.0" y="385.66666666666669" width="344" height="53"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOQ-oZ-dEI" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
+                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOQ-oZ-dEI" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="0.0" width="324" height="50"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                 <constraints>
@@ -572,7 +571,7 @@ access</string>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Blocked website(s)"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <stackView opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="93M-zz-Lrc">
+                                                            <stackView hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="93M-zz-Lrc">
                                                                 <rect key="frame" x="0.0" y="18" width="344" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" placeholder="YES" id="gsf-CQ-SGa"/>
@@ -591,8 +590,8 @@ access</string>
                                                             <constraint firstItem="93M-zz-Lrc" firstAttribute="top" secondItem="GCe-IL-3Vq" secondAttribute="top" constant="18" id="wxf-U1-EbW"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaX-eP-iOo" customClass="UIControl">
-                                                        <rect key="frame" x="0.0" y="468.66666666666669" width="344" height="34"/>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaX-eP-iOo" customClass="UIControl">
+                                                        <rect key="frame" x="0.0" y="385.66666666666669" width="344" height="34"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_add-template" translatesAutoresizingMaskIntoConstraints="NO" id="rf2-2Y-bCT">
                                                                 <rect key="frame" x="10" y="0.0" width="24" height="24"/>

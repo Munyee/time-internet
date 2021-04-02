@@ -37,7 +37,7 @@ class ConnectedWifiViewController: UIViewController {
     }
     
     @IBAction func actRemoveWifiNetwork(_ sender: Any) {
-       self.showAlertMessage(title: "Remove WiFi Network", message: "Are you sure you want to remove this WiFi network? You will no longer be able to enjoy the additional features.", actions: [
+        self.showAlertMessage(title: "Remove WiFi Network", message: "Are you sure you want to remove this WiFi network? You will no longer be able to enjoy the additional features.", actions: [
             UIAlertAction(title: NSLocalizedString("YES", comment: ""), style: .destructive) { _ in
                 self.unbindGateway()
             },
@@ -86,6 +86,7 @@ class ConnectedWifiViewController: UIViewController {
             }
         }
     }
+    
 }
 
 extension ConnectedWifiViewController: ChangeWifiViewControllerDelegate {

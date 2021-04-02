@@ -1,0 +1,11 @@
+framework module HwMobileSDK {
+  umbrella header "HwMobileSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module HwMobileSDK.Swift {
+    header "HwMobileSDK-Swift.h"
+    requires objc
+}

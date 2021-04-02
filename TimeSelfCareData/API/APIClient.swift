@@ -216,12 +216,13 @@ public class APIClient {
             }
 
             if let json: [String: Any] = responseValue as? [String: Any] {
-                if let statusValue: String = json["status"] as? String, (statusValue != "ok" && statusValue != "password_expired") {
-                    throw NSError(domain: "Time Self Care", code: 500, userInfo: [
-                        NSLocalizedDescriptionKey: json["message"] ?? NSLocalizedString("An unexpected server error has occured. Please try again later.", comment: ""),
-                        TimeSelfCareDomainErrorCodeKey: 500
-                        ])
-                } else if let errorJSON = json["error"] as? [String: Any],
+//                if let statusValue: String = json["status"] as? String, (statusValue != "ok" && statusValue != "password_expired") {
+//                    throw NSError(domain: "Time Self Care", code: 500, userInfo: [
+//                        NSLocalizedDescriptionKey: json["message"] ?? NSLocalizedString("An unexpected server error has occured. Please try again later.", comment: ""),
+//                        TimeSelfCareDomainErrorCodeKey: 500
+//                        ])
+//                } else
+                if let errorJSON = json["error"] as? [String: Any],
                     let errorCode = errorJSON["code"] as? String,
                     let errorMessage = errorJSON["message"] as? String {
                     throw NSError(domain: "Time Self Care", code: response.response?.statusCode ?? 500, userInfo: [

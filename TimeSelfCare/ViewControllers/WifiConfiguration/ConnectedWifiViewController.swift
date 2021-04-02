@@ -8,6 +8,7 @@
 
 import UIKit
 import HwMobileSDK
+import MBProgressHUD
 
 class ConnectedWifiViewController: UIViewController {
 
@@ -36,23 +37,56 @@ class ConnectedWifiViewController: UIViewController {
     }
     
     @IBAction func actRemoveWifiNetwork(_ sender: Any) {
-           self.showAlertMessage(title: "Remove WiFi Network", message: "Are you sure you want to remove this WiFi network? You will no longer be able to enjoy the additional features.", actions: [
-                UIAlertAction(title: NSLocalizedString("YES", comment: ""), style: .destructive) { _ in
-                    self.unbindGateway()
-                },
-                UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-                }
-            ])
-        }
-
-
+        self.showAlertMessage(title: "Remove WiFi Network", message: "Are you sure you want to remove this WiFi network? You will no longer be able to enjoy the additional features.", actions: [
+            UIAlertAction(title: NSLocalizedString("YES", comment: ""), style: .destructive) { _ in
+                self.unbindGateway()
+            },
+            UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+            }
+        ])
+    }
+    
     func unbindGateway() {
-            HuaweiHelper.shared.unbindGateway(completion: { _ in
-                self.HuaweiLogin()
-            }, error: { _ in
-                self.HuaweiLogin()
-            })
+        HuaweiHelper.shared.unbindGateway(completion: { _ in
+            self.HuaweiLogin()
+        }, error: { _ in
+            self.HuaweiLogin()
+        })
+    }
+    
+    func HuaweiLogin() {
+        let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
+        
+        guard
+            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+            else {
+                return
         }
+        
+        let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        AccountDataController.shared.getHuaweiSSOAuthCode(mobileId: UUIDValue, account: account, service: service) { data, error in
+            guard error == nil else {
+                hud.hide(animated: true)
+                self.showAlertMessage(message: error.debugDescription)
+                return
+            }
+            
+            if let result = data {
+                if let authCode = result["authcode"] as? String {
+                    HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
+                        hud.hide(animated: true)
+                        self.dismissVC()
+                    }, error: { exception in
+                        hud.hide(animated: true)
+                        self.showAlertMessage(message: exception?.errorMessage ?? "")
+                    })
+                }
+            }
+        }
+    }
+    
 }
 
 extension ConnectedWifiViewController: ChangeWifiViewControllerDelegate {

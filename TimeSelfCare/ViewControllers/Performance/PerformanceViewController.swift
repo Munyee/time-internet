@@ -186,7 +186,7 @@ class PerformanceViewController: BaseViewController {
         HuaweiHelper.shared.queryUserBindGateway { gateways in
             print(gateways)
             if !gateways.isEmpty {
-                AccountController.shared.gatewayDevId = gateways.first?.deviceId
+                AccountController.shared.gatewayDevId = gateways.first(where: { !$0.deviceId.isEmpty })?.deviceId
                 self.gateway = gateways.first
                 self.connectionStackView.isHidden = false
                 self.nceFeatureView.isHidden = true

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4mz-tN-3qf">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="DIN-Light.ttf">
+            <string>DIN-Light</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Get Connect View Controller-->
+        <scene sceneID="0EE-bU-78m">
+            <objects>
+                <viewController storyboardIdentifier="GetConnectViewController" id="4mz-tN-3qf" customClass="GetConnectViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IXx-eA-nAr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij5-cF-B86">
+                                <rect key="frame" x="10" y="105" width="394" height="66"/>
+                                <string key="text">Are you connected to your 
+home WiFi?</string>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="33"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will need to connect to your home WiFi to access extra tools to manage your connection." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqK-2P-ed8">
+                                <rect key="frame" x="40" y="176" width="334" height="34"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You’re connected to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7w-sK-ys1">
+                                <rect key="frame" x="146.5" y="270" width="121.5" height="17"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8w-tG-iuk">
+                                <rect key="frame" x="67" y="479" width="280" height="50"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="M9o-S9-FPg"/>
+                                    <constraint firstAttribute="width" constant="280" id="TdW-dB-TGB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="7" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="TRY AGAIN">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="actRetry:" destination="4mz-tN-3qf" eventType="touchUpInside" id="RjP-cw-Rls"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxa-cu-kAI">
+                                <rect key="frame" x="185.5" y="569" width="43" height="29"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="actCancel:" destination="4mz-tN-3qf" eventType="touchUpInside" id="axJ-xF-0fv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Connected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vB-wP-Eh9">
+                                <rect key="frame" x="133.5" y="309" width="147.5" height="33"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="33"/>
+                                <color key="textColor" red="0.89803921568627454" green="0.027450980392156862" blue="0.027450980392156862" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checking" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acG-ZV-HoM">
+                                <rect key="frame" x="35" y="362" width="344" height="17"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
+                                <color key="textColor" red="0.8980392157" green="0.027450980390000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="M8w-tG-iuk" firstAttribute="top" secondItem="acG-ZV-HoM" secondAttribute="bottom" constant="100" id="1ih-Yy-toU"/>
+                            <constraint firstItem="yqK-2P-ed8" firstAttribute="leading" secondItem="eoc-YA-G4X" secondAttribute="leading" constant="40" id="3Jx-W3-HGF"/>
+                            <constraint firstItem="acG-ZV-HoM" firstAttribute="leading" secondItem="eoc-YA-G4X" secondAttribute="leading" constant="35" id="D82-Qf-iqG"/>
+                            <constraint firstItem="yqK-2P-ed8" firstAttribute="top" secondItem="Ij5-cF-B86" secondAttribute="bottom" constant="5" id="GEQ-MW-CR2"/>
+                            <constraint firstItem="Ij5-cF-B86" firstAttribute="leading" secondItem="IXx-eA-nAr" secondAttribute="leading" constant="10" id="GbB-OU-fVY"/>
+                            <constraint firstAttribute="trailing" secondItem="acG-ZV-HoM" secondAttribute="trailing" constant="35" id="HE8-wp-cFM"/>
+                            <constraint firstItem="y7w-sK-ys1" firstAttribute="top" secondItem="yqK-2P-ed8" secondAttribute="bottom" constant="60" id="LFS-rM-dMj"/>
+                            <constraint firstAttribute="trailing" secondItem="Ij5-cF-B86" secondAttribute="trailing" constant="10" id="Zjw-nU-SSR"/>
+                            <constraint firstItem="Ij5-cF-B86" firstAttribute="top" secondItem="IXx-eA-nAr" secondAttribute="top" constant="105" id="bZo-Nu-KU8"/>
+                            <constraint firstItem="sxa-cu-kAI" firstAttribute="top" secondItem="M8w-tG-iuk" secondAttribute="bottom" constant="40" id="baC-1m-NTi"/>
+                            <constraint firstItem="1vB-wP-Eh9" firstAttribute="top" secondItem="y7w-sK-ys1" secondAttribute="bottom" constant="22" id="coF-k4-rbt"/>
+                            <constraint firstItem="M8w-tG-iuk" firstAttribute="centerX" secondItem="1vB-wP-Eh9" secondAttribute="centerX" id="doq-EW-Xmi"/>
+                            <constraint firstItem="sxa-cu-kAI" firstAttribute="centerX" secondItem="M8w-tG-iuk" secondAttribute="centerX" id="fLS-76-Q08"/>
+                            <constraint firstItem="1vB-wP-Eh9" firstAttribute="centerX" secondItem="y7w-sK-ys1" secondAttribute="centerX" id="hYb-C4-7a1"/>
+                            <constraint firstAttribute="trailing" secondItem="yqK-2P-ed8" secondAttribute="trailing" constant="40" id="t5Z-ie-Oq6"/>
+                            <constraint firstItem="acG-ZV-HoM" firstAttribute="top" secondItem="1vB-wP-Eh9" secondAttribute="bottom" constant="20" id="vKY-MB-hDn"/>
+                            <constraint firstItem="y7w-sK-ys1" firstAttribute="centerX" secondItem="yqK-2P-ed8" secondAttribute="centerX" id="y5z-7V-yrO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eoc-YA-G4X"/>
+                    </view>
+                    <connections>
+                        <outlet property="errorMsg" destination="acG-ZV-HoM" id="sZw-wz-aTh"/>
+                        <outlet property="ssidText" destination="1vB-wP-Eh9" id="ZpK-JR-xA3"/>
+                        <outlet property="tryAgainButton" destination="M8w-tG-iuk" id="ydw-Jk-OSa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LIE-s0-8nr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="162.31884057971016" y="53.571428571428569"/>
+        </scene>
+        <!--Open Setting View Controller-->
+        <scene sceneID="Vgo-ho-TKX">
+            <objects>
+                <viewController storyboardIdentifier="OpenSettingViewController" id="Scd-wo-pkV" customClass="OpenSettingViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aG6-fy-Epw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nce_error" translatesAutoresizingMaskIntoConstraints="NO" id="anS-xA-KlE">
+                                <rect key="frame" x="128" y="80" width="158" height="220"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="4bp-Q6-UPq"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no access to added features." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhd-rQ-KLQ">
+                                <rect key="frame" x="25" y="360" width="364" height="66"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="33"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please allow the app to access your device’s location to use the extra tools." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGY-3r-vds">
+                                <rect key="frame" x="50" y="431" width="314" height="34"/>
+                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0o-EW-8j1">
+                                <rect key="frame" x="67" y="510" width="280" height="50"/>
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="AKT-k4-fNF"/>
+                                    <constraint firstAttribute="height" constant="50" id="ef4-gK-9Yt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="7" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="OPEN SETTINGS">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="actOpenSetting:" destination="Scd-wo-pkV" eventType="touchUpInside" id="2dY-PU-V3Y"/>
+                                    <action selector="actRetry:" destination="4mz-tN-3qf" eventType="touchUpInside" id="nzR-d4-iYi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Vun-u1-OlP" firstAttribute="trailing" secondItem="yhd-rQ-KLQ" secondAttribute="trailing" constant="25" id="Alh-R2-v6A"/>
+                            <constraint firstItem="yhd-rQ-KLQ" firstAttribute="centerX" secondItem="anS-xA-KlE" secondAttribute="centerX" id="GPz-on-IpB"/>
+                            <constraint firstItem="yhd-rQ-KLQ" firstAttribute="top" secondItem="anS-xA-KlE" secondAttribute="bottom" constant="60" id="WrX-KI-J0B"/>
+                            <constraint firstItem="yhd-rQ-KLQ" firstAttribute="leading" secondItem="Vun-u1-OlP" secondAttribute="leading" constant="25" id="bL6-Rs-EvN"/>
+                            <constraint firstItem="anS-xA-KlE" firstAttribute="top" secondItem="aG6-fy-Epw" secondAttribute="top" constant="80" id="isK-zO-60v"/>
+                            <constraint firstItem="sGY-3r-vds" firstAttribute="leading" secondItem="aG6-fy-Epw" secondAttribute="leading" constant="50" id="l3L-81-kEh"/>
+                            <constraint firstAttribute="trailing" secondItem="sGY-3r-vds" secondAttribute="trailing" constant="50" id="py5-Mp-iDx"/>
+                            <constraint firstItem="sGY-3r-vds" firstAttribute="centerX" secondItem="yhd-rQ-KLQ" secondAttribute="centerX" id="rXe-Tp-OvP"/>
+                            <constraint firstItem="V0o-EW-8j1" firstAttribute="top" secondItem="sGY-3r-vds" secondAttribute="bottom" constant="45" id="sue-Ht-6kl"/>
+                            <constraint firstItem="anS-xA-KlE" firstAttribute="centerX" secondItem="Vun-u1-OlP" secondAttribute="centerX" id="wdE-9L-fCd"/>
+                            <constraint firstItem="V0o-EW-8j1" firstAttribute="centerX" secondItem="sGY-3r-vds" secondAttribute="centerX" id="y9a-cI-XA8"/>
+                            <constraint firstItem="sGY-3r-vds" firstAttribute="top" secondItem="yhd-rQ-KLQ" secondAttribute="bottom" constant="5" id="ziG-K5-csa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vun-u1-OlP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ok9-0b-Fop" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1009" y="54"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="nce_error" width="158" height="221"/>
+    </resources>
+</document>

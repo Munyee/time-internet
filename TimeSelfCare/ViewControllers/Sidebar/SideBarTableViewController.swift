@@ -66,7 +66,7 @@ internal class SidebarTableViewController: UIViewController {
             hud.label.text = NSLocalizedString("Logging out...", comment: "")
 
             AccountSummaryViewController.didAnimate = false
-
+            
             AuthUser.current?.logout { _ in
                 hud.hide(animated: true)
                 let storyboard = UIStoryboard(name: "Common", bundle: nil)
@@ -79,6 +79,8 @@ internal class SidebarTableViewController: UIViewController {
                     self.present(confirmationVC, animated: true, completion: nil)
                 }
             }
+            
+            HuaweiHelper.shared.logout { _ in }
         }
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
         self.showAlertMessage(title: NSLocalizedString("Logout from TIME Self Care", comment: ""), message: NSLocalizedString("Proceed to logout?", comment: ""), actions: [cancelAction, yesAction])

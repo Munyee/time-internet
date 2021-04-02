@@ -172,12 +172,49 @@ public extension AccountDataController {
         }
     }
     
+    func isUsingHuaweiDevice(account: Account, service: Service, completion: @escaping SimpleRequestListener) {
+        let path = "is_using_huawei_device"
+        var body: [String: Any] = [:]
+        body["account_no"] = account.accountNo
+        body["username"] = account.profileUsername
+        body["service_id"] = service.serviceId
+
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
+        }
+    }
+    
+    func getMacAddress(account: Account, service: Service, completion: @escaping SimpleRequestListener) {
+        let path = "get_mac_address"
+        var body: [String: Any] = [:]
+        body["account_no"] = account.accountNo
+        body["username"] = account.profileUsername
+        body["service_id"] = service.serviceId
+
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
+        }
+    }
+    
     func getHuaeInfo(account: Account, completion: @escaping SimpleRequestListener) {
         let path = "get_huae_info"
         var body: [String: Any] = [:]
         body["account_no"] = account.accountNo
         body["username"] = account.profileUsername
 
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
+        }
+    }
+    
+    func getHuaweiSSOAuthCode(mobileId: String, account: Account, service: Service, completion: @escaping SimpleRequestListener) {
+        let path = "get_huawei_sso_authcode"
+        var body: [String: Any] = [:]
+        body["account_no"] = account.accountNo
+        body["username"] = account.profileUsername
+        body["service_id"] = service.serviceId
+        body["mobile_id"] = mobileId
+        
         APIClient.shared.postRequest(path: path, body: body) { response, error in
             completion(response, error)
         }

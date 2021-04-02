@@ -12,6 +12,7 @@ import TimeSelfCareData
 import UserNotifications
 import Firebase
 import Smartlook
+import HwMobileSDK
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -49,7 +50,7 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         self.applyAppearance()
-
+        
         return true
     }
 
@@ -65,6 +66,28 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+//        HuaweiHelper.shared.checkIsLogin { result in
+//            if !result.isLogined {
+//                self.HuaweiLogin()
+//            }
+//        }
+    }
+    
+//    func HuaweiLogin() {
+//        HuaweiHelper.shared.login { _ in
+//            HuaweiHelper.shared.registerErrorMessageHandle { msg in
+//                self.checkIsKick()
+//            }
+//        }
+//    }
+    
+    func checkIsKick() {
+        HuaweiHelper.shared.registerErrorMessageHandle { msg in
+            print(msg.errorCode)
+            if msg.errorCode == "403" {
+//                self.HuaweiLogin()
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

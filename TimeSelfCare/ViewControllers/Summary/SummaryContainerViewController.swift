@@ -416,7 +416,7 @@ extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
             self.pageTitleLabel.text = NSLocalizedString("Voice Line", comment: "")
             hideFloatingActionButton()
         case .performanceStatusSummary:
-            self.pageTitleLabel.text = NSLocalizedString("Performance", comment: "")
+            self.pageTitleLabel.text = NSLocalizedString("Network Management", comment: "")
             hideFloatingActionButton()
             //            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false {
             //                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))

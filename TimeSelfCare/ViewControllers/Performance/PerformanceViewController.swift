@@ -187,13 +187,13 @@ class PerformanceViewController: BaseViewController {
             print(gateways)
             if !gateways.isEmpty {
                 AccountController.shared.gatewayDevId = gateways.first(where: { !$0.deviceId.isEmpty })?.deviceId
-                self.gateway = gateways.first
+                self.gateway = gateways.first(where: { !$0.deviceId.isEmpty })
+                
                 self.connectionStackView.isHidden = false
                 self.nceFeatureView.isHidden = true
                 self.nceView.isHidden = false
                 self.speedTestView.isHidden = false
                 self.nceFeatureSmallView.isHidden = true
-                
                 HuaweiHelper.shared.queryGateway(completion: { gateway in
                     HuaweiHelper.shared.queryLanDeviceCount { result in
                         self.numberOfDevice.text = "\(result.lanDeviceCount)"

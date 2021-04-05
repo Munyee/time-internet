@@ -124,6 +124,10 @@
 		9EFC438425EE135B009AF8C2 /* WifiConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC438325EE135B009AF8C2 /* WifiConfigurationViewController.swift */; };
 		9EFC438625EE2CB0009AF8C2 /* ConnectedWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC438525EE2CB0009AF8C2 /* ConnectedWifiViewController.swift */; };
 		9EFC438825EE3526009AF8C2 /* ChangeWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC438725EE3526009AF8C2 /* ChangeWifiViewController.swift */; };
+		9EFF0FDE261AAD5D00685FE9 /* DeviceInstallationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF0FDD261AAD5D00685FE9 /* DeviceInstallationListViewController.swift */; };
+		9EFF0FE0261AB1E300685FE9 /* AddDeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF0FDF261AB1E300685FE9 /* AddDeviceListViewController.swift */; };
+		9EFF0FE2261B06FF00685FE9 /* GettingDeviceReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF0FE1261B06FF00685FE9 /* GettingDeviceReadyViewController.swift */; };
+		9EFF0FE4261B0A4D00685FE9 /* AlmostThereViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF0FE3261B0A4D00685FE9 /* AlmostThereViewController.swift */; };
 		BAB777B1B66FD28B3E660A15 /* Pods_TimeSelfCareDataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34E733A60BA295729D0F9C3 /* Pods_TimeSelfCareDataTests.framework */; };
 		DAB87017C3B94A15F4436D20 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBFC4B4383EEC1C068E0A9D /* BuddyBuildSDK.framework */; };
 		E203036223617F8200F27028 /* TestAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E203036123617F8200F27028 /* TestAppDelegate.swift */; };
@@ -439,6 +443,10 @@
 		9EFC438325EE135B009AF8C2 /* WifiConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConfigurationViewController.swift; sourceTree = "<group>"; };
 		9EFC438525EE2CB0009AF8C2 /* ConnectedWifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedWifiViewController.swift; sourceTree = "<group>"; };
 		9EFC438725EE3526009AF8C2 /* ChangeWifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWifiViewController.swift; sourceTree = "<group>"; };
+		9EFF0FDD261AAD5D00685FE9 /* DeviceInstallationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInstallationListViewController.swift; sourceTree = "<group>"; };
+		9EFF0FDF261AB1E300685FE9 /* AddDeviceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceListViewController.swift; sourceTree = "<group>"; };
+		9EFF0FE1261B06FF00685FE9 /* GettingDeviceReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingDeviceReadyViewController.swift; sourceTree = "<group>"; };
+		9EFF0FE3261B0A4D00685FE9 /* AlmostThereViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlmostThereViewController.swift; sourceTree = "<group>"; };
 		9F604557CEE62B598F117893 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A3B303BB0EC99E23F04A02A9 /* Pods-TimeSelfCareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.release.xcconfig"; sourceTree = "<group>"; };
 		A57787C266D674FD16DB376F /* Pods-TimeSelfCareDataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1110,6 +1118,10 @@
 			isa = PBXGroup;
 			children = (
 				9EE460D9260044160040D8CE /* Deviceinstallation.storyboard */,
+				9EFF0FDD261AAD5D00685FE9 /* DeviceInstallationListViewController.swift */,
+				9EFF0FDF261AB1E300685FE9 /* AddDeviceListViewController.swift */,
+				9EFF0FE1261B06FF00685FE9 /* GettingDeviceReadyViewController.swift */,
+				9EFF0FE3261B0A4D00685FE9 /* AlmostThereViewController.swift */,
 			);
 			path = DeviceInstallation;
 			sourceTree = "<group>";
@@ -1901,6 +1913,7 @@
 				9E8FC9C425357255008936D2 /* HookupViewController.swift in Sources */,
 				E2DD467D21181B180010D84A /* ConversationFooterView.swift in Sources */,
 				9E36BB4B25E3EFB400E5575F /* PCDevicesViewController.swift in Sources */,
+				9EFF0FE0261AB1E300685FE9 /* AddDeviceListViewController.swift in Sources */,
 				E2730B8B2097032600A140F1 /* BillingInfoDetailViewController.swift in Sources */,
 				E2FDB2D720AACC37002F0A66 /* UIStoryboard+.swift in Sources */,
 				E274AD6A210711F700E62A42 /* TicketFormViewController.swift in Sources */,
@@ -1912,6 +1925,7 @@
 				41A79D2B24403EA0002A9C4B /* AppVersionModal.swift in Sources */,
 				E20A71821FD4F8DC00938766 /* BillsViewController.swift in Sources */,
 				E2DE28A71FBEACBF00E3CC1E /* BaseAuthViewController.swift in Sources */,
+				9EFF0FE2261B06FF00685FE9 /* GettingDeviceReadyViewController.swift in Sources */,
 				9EAB2C0D249CBDF300F12A3C /* LiveChatPopUpViewController.swift in Sources */,
 				9E21C0E625DE9EB6008B3824 /* BlockWebsiteView.swift in Sources */,
 				E219AD9E1FB3D23900A896FE /* WalkthroughViewController.swift in Sources */,
@@ -1934,6 +1948,7 @@
 				E27A883A22CEF81400C00F63 /* RewardConfirmationViewController.swift in Sources */,
 				E2DE286B1FBD67B400E3CC1E /* ChangeEmailViewController.swift in Sources */,
 				9E59AF6525DE32AE00FF427A /* PCMainViewController.swift in Sources */,
+				9EFF0FDE261AAD5D00685FE9 /* DeviceInstallationListViewController.swift in Sources */,
 				E21AA70320B3E795008851F1 /* FloatLabeledTextView.swift in Sources */,
 				E2626D5220A9241E00891953 /* ActivityViewController.swift in Sources */,
 				E261DD2D1FD7BF3000DEEDBA /* HomeForwardDetailViewController.swift in Sources */,
@@ -1956,6 +1971,7 @@
 				E274AD68210711F700E62A42 /* LeftConversationCell.swift in Sources */,
 				5A478FFE1FA972080074B5D4 /* AppDelegate.swift in Sources */,
 				E2E2FF701FC3F5C700125566 /* VoicePlanCell.swift in Sources */,
+				9EFF0FE4261B0A4D00685FE9 /* AlmostThereViewController.swift in Sources */,
 				9E9EB76824D7988700D0D342 /* UIImageView+.swift in Sources */,
 				9E36BB5625E52DDE00E5575F /* PeriodModel.swift in Sources */,
 				E203036223617F8200F27028 /* TestAppDelegate.swift in Sources */,

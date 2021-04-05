@@ -180,6 +180,24 @@ public extension HuaweiHelper {
         }
     }
     
+    func factoryReset(deviceMac: String, completion: @escaping(_ result: HwFactoryResetResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let result = value as? HwFactoryResetResult {
+                completion(result)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+            print(exception?.errorMessage ?? "")
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.factoryReset(deviceMac, with: callBackAdapter)
+        }
+    }
+    
     func bindGateway(deviceMac: String, gatewayNickname: String, completion: @escaping(_ result: HwUserBindedGateway) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in

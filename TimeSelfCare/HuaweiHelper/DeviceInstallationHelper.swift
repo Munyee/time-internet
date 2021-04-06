@@ -28,7 +28,7 @@ public extension DeviceInstallationHelper {
             error(exception)
         }
         
-        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwControllerService {
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.getLanDeviceOKCList(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
         }
     }
@@ -44,7 +44,7 @@ public extension DeviceInstallationHelper {
             error(exception)
         }
         
-        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwControllerService {
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.getOKCWhiteList(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
         }
     }
@@ -60,7 +60,7 @@ public extension DeviceInstallationHelper {
             error(exception)
         }
         
-        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwControllerService {
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.deleteOKCWhiteList(AccountController.shared.gatewayDevId ?? "",withList: list, with: callBackAdapter)
         }
     }
@@ -76,7 +76,7 @@ public extension DeviceInstallationHelper {
             error(exception)
         }
         
-        if let service = HwNetopenMobileSDK.getService(HwUserService.self) as? HwControllerService {
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.addOKCWhiteList(AccountController.shared.gatewayDevId ?? "", withList: list, with: callBackAdapter)
         }
     }

@@ -613,4 +613,24 @@ public extension HuaweiHelper {
             service.setWifiHardwareSwitch(AccountController.shared.gatewayDevId ?? "", withRadioType: radioType, withEnableState: true, withCallBack: callBackAdapter)
         }
     }
+    
+    func removeOfflineDevList(lanMac: String, completion: @escaping(_ result: HwResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwResult {
+                completion(data)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        let lanDevice = HwLanDevice()
+        lanDevice.mac = lanMac
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.removeOfflineDevList(AccountController.shared.gatewayDevId ?? "", withLanDevice: [lanDevice], with: callBackAdapter)
+        }
+    }
 }

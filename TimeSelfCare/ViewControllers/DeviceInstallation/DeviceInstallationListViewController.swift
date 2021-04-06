@@ -41,10 +41,11 @@ class DeviceInstallationListViewController: UIViewController {
             self.apDevices = devices.filter { $0.isAp }
             for apDevice in self.apDevices {
                 print(apDevice.mac)
-                HuaweiHelper.shared.factoryReset(deviceMac: apDevice.mac, completion: { _ in
+                HuaweiHelper.shared.removeOfflineDevList(lanMac: apDevice.mac, completion: { _ in
                     print("Device reset")
                 }, error: { exception in
-                    print(exception?.detailMessage ?? "")
+                    print(exception?.errorCode ?? "")
+                    print(exception?.errorMessage ?? "")
                 })
             }
         }

@@ -79,6 +79,8 @@
 		9E5437F125E8E1A200195623 /* GetConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5437F025E8E1A200195623 /* GetConnectViewController.swift */; };
 		9E59AF6325DE325A00FF427A /* Parentalcontrol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */; };
 		9E59AF6525DE32AE00FF427A /* PCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */; };
+		9E5BA0B6261EA07B0025C2AF /* ApDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BA0B5261EA07B0025C2AF /* ApDeviceTableViewCell.swift */; };
+		9E5BA0B8261ED8790025C2AF /* PairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BA0B7261ED8790025C2AF /* PairingViewController.swift */; };
 		9E8FC9BA25357255008936D2 /* HowItWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9AE25357255008936D2 /* HowItWorkViewController.swift */; };
 		9E8FC9BB25357255008936D2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9AF25357255008936D2 /* ShareViewController.swift */; };
 		9E8FC9BC25357255008936D2 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9B125357255008936D2 /* BannerCollectionViewCell.swift */; };
@@ -107,6 +109,10 @@
 		9EC1356B241B6E1200E59C44 /* APTSidebarNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13566241B6E1200E59C44 /* APTSidebarNavigationController.m */; };
 		9EC1356C241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13568241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m */; };
 		9EC1356D241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EC13569241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m */; };
+		9EC94E512620236C00E5271E /* NoDeviceFoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC94E502620236C00E5271E /* NoDeviceFoundViewController.swift */; };
+		9EC94E5326202DCB00E5271E /* ResetDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC94E5226202DCB00E5271E /* ResetDeviceViewController.swift */; };
+		9EC94E55262032A900E5271E /* TurnOnDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC94E54262032A900E5271E /* TurnOnDeviceViewController.swift */; };
+		9EC94E5726204FA800E5271E /* WifiDisableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC94E5626204FA800E5271E /* WifiDisableViewController.swift */; };
 		9ECA46402436C79F00EB0DB8 /* EVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA463E2436C79F00EB0DB8 /* EVoucherView.swift */; };
 		9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */; };
 		9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */; };
@@ -392,6 +398,8 @@
 		9E5437F025E8E1A200195623 /* GetConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConnectViewController.swift; sourceTree = "<group>"; };
 		9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Parentalcontrol.storyboard; sourceTree = "<group>"; };
 		9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCMainViewController.swift; sourceTree = "<group>"; };
+		9E5BA0B5261EA07B0025C2AF /* ApDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApDeviceTableViewCell.swift; sourceTree = "<group>"; };
+		9E5BA0B7261ED8790025C2AF /* PairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewController.swift; sourceTree = "<group>"; };
 		9E5F789925D40C0200C4D388 /* FunctionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FunctionSDK.framework; sourceTree = "<group>"; };
 		9E5F789A25D40C0400C4D388 /* HwMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HwMobileSDK.framework; sourceTree = "<group>"; };
 		9E8FC9AE25357255008936D2 /* HowItWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowItWorkViewController.swift; sourceTree = "<group>"; };
@@ -426,6 +434,10 @@
 		9EC13567241B6E1200E59C44 /* APTSidebarContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTSidebarContentSegue.h; sourceTree = "<group>"; };
 		9EC13568241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+APTSidebarNavigation.m"; sourceTree = "<group>"; };
 		9EC13569241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APTSidebarNavigationControllerPushSegue.m; sourceTree = "<group>"; };
+		9EC94E502620236C00E5271E /* NoDeviceFoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDeviceFoundViewController.swift; sourceTree = "<group>"; };
+		9EC94E5226202DCB00E5271E /* ResetDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetDeviceViewController.swift; sourceTree = "<group>"; };
+		9EC94E54262032A900E5271E /* TurnOnDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnOnDeviceViewController.swift; sourceTree = "<group>"; };
+		9EC94E5626204FA800E5271E /* WifiDisableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiDisableViewController.swift; sourceTree = "<group>"; };
 		9ECA463E2436C79F00EB0DB8 /* EVoucherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EVoucherView.swift; sourceTree = "<group>"; };
 		9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVoucherView.xib; sourceTree = "<group>"; };
 		9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherLabel.xib; sourceTree = "<group>"; };
@@ -1001,6 +1013,14 @@
 			path = ParentalControl;
 			sourceTree = "<group>";
 		};
+		9E5BA0B4261EA0570025C2AF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BA0B5261EA07B0025C2AF /* ApDeviceTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		9E8FC9AD25357255008936D2 /* HookUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1117,11 +1137,17 @@
 		9EE460D8260043F70040D8CE /* DeviceInstallation */ = {
 			isa = PBXGroup;
 			children = (
+				9E5BA0B4261EA0570025C2AF /* Cell */,
 				9EE460D9260044160040D8CE /* Deviceinstallation.storyboard */,
 				9EFF0FDD261AAD5D00685FE9 /* DeviceInstallationListViewController.swift */,
 				9EFF0FDF261AB1E300685FE9 /* AddDeviceListViewController.swift */,
 				9EFF0FE1261B06FF00685FE9 /* GettingDeviceReadyViewController.swift */,
 				9EFF0FE3261B0A4D00685FE9 /* AlmostThereViewController.swift */,
+				9E5BA0B7261ED8790025C2AF /* PairingViewController.swift */,
+				9EC94E502620236C00E5271E /* NoDeviceFoundViewController.swift */,
+				9EC94E5226202DCB00E5271E /* ResetDeviceViewController.swift */,
+				9EC94E54262032A900E5271E /* TurnOnDeviceViewController.swift */,
+				9EC94E5626204FA800E5271E /* WifiDisableViewController.swift */,
 			);
 			path = DeviceInstallation;
 			sourceTree = "<group>";
@@ -1861,6 +1887,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/Pulsator/Pulsator.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -1882,6 +1909,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulsator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -1940,6 +1968,7 @@
 				9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */,
 				9EAB2C09249CB9ED00F12A3C /* PopUpViewController.swift in Sources */,
 				E21CF72F1FC674E900F13FAF /* AutoDebitViewController.swift in Sources */,
+				9EC94E55262032A900E5271E /* TurnOnDeviceViewController.swift in Sources */,
 				5A20BF431FE98EFC00ECFF78 /* TimeBaseViewController.swift in Sources */,
 				E2AD92C51FC3A58C00138334 /* AddOnViewController.swift in Sources */,
 				E2A8E8481FCE543400EA5DF2 /* ChangePasswordViewController.swift in Sources */,
@@ -1948,18 +1977,22 @@
 				E27A883A22CEF81400C00F63 /* RewardConfirmationViewController.swift in Sources */,
 				E2DE286B1FBD67B400E3CC1E /* ChangeEmailViewController.swift in Sources */,
 				9E59AF6525DE32AE00FF427A /* PCMainViewController.swift in Sources */,
+				9EC94E5726204FA800E5271E /* WifiDisableViewController.swift in Sources */,
 				9EFF0FDE261AAD5D00685FE9 /* DeviceInstallationListViewController.swift in Sources */,
 				E21AA70320B3E795008851F1 /* FloatLabeledTextView.swift in Sources */,
 				E2626D5220A9241E00891953 /* ActivityViewController.swift in Sources */,
 				E261DD2D1FD7BF3000DEEDBA /* HomeForwardDetailViewController.swift in Sources */,
 				0A3DA9F91FE3CEBB004E304A /* TIMEWebViewController.swift in Sources */,
 				E274AD69210711F700E62A42 /* TicketListViewController.swift in Sources */,
+				9EC94E512620236C00E5271E /* NoDeviceFoundViewController.swift in Sources */,
+				9EC94E5326202DCB00E5271E /* ResetDeviceViewController.swift in Sources */,
 				E26CC2DD210F039F00FF7875 /* SelectedImageCell.swift in Sources */,
 				E2FB110F22CC95EC000FED93 /* RewardViewController.swift in Sources */,
 				E20A71841FD5008100938766 /* InvoiceCell.swift in Sources */,
 				E2480B3F2112A3CF00555A19 /* ConversationAttachmentCell.swift in Sources */,
 				E27CE9FE22CCBF2200DD9340 /* RewardCell.swift in Sources */,
 				9E8FC9BE25357255008936D2 /* ReferralTableViewCell.swift in Sources */,
+				9E5BA0B6261EA07B0025C2AF /* ApDeviceTableViewCell.swift in Sources */,
 				E20A717E1FD4E75000938766 /* FABViewController.swift in Sources */,
 				E2626D5920A972BD00891953 /* ActivityTableViewCell.swift in Sources */,
 				E219ADA01FB3D3D500A896FE /* WalkthroughCell.swift in Sources */,
@@ -1993,6 +2026,7 @@
 				9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */,
 				9E36BB5825E539BB00E5575F /* SelectPeriod.swift in Sources */,
 				9E8FC9BA25357255008936D2 /* HowItWorkViewController.swift in Sources */,
+				9E5BA0B8261ED8790025C2AF /* PairingViewController.swift in Sources */,
 				9EE0B95D246513290073288B /* LiveChatView.swift in Sources */,
 				0A8E01F71FA9B50B00CA27A9 /* LaunchViewController.swift in Sources */,
 				E20C8ED41FB55A1900D6190F /* AccountSidebarCell.swift in Sources */,

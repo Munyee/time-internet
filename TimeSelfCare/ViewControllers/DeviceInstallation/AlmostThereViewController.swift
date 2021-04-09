@@ -21,4 +21,19 @@ class AlmostThereViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    @IBAction func actNext(_ sender: Any) {
+        if var topVc = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topVc.presentedViewController {
+                topVc = presentedViewController
+            }
+            
+            if topVc.children[0].isKind(of: NoDeviceFoundViewController.self) {
+                self.dismissVC()
+            } else {
+                if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "PairingViewController") as? PairingViewController {
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        }
+    }
 }

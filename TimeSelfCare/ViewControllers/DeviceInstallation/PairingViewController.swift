@@ -39,12 +39,12 @@ class PairingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         pulsator.start()
-        totalTime = 5
+        totalTime = 240
         self.timerLabel.text = timeFormatted(totalTime)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
            UIView.transition(with: self.startImgView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-                self.startImgView.image = UIImage(named: "icon_done")
+            self.startImgView.image = #imageLiteral(resourceName: "icon_pending")
             }, completion: nil)
         }
         
@@ -55,7 +55,7 @@ class PairingViewController: UIViewController {
                 self.view.layoutIfNeeded()
             }, completion: { _ in
                 UIView.transition(with: self.connectedImgView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-                    self.connectedImgView.image = UIImage(named: "icon_done")
+                    self.connectedImgView.image = #imageLiteral(resourceName: "icon_done")
                 }, completion: nil)
             })
            
@@ -67,6 +67,7 @@ class PairingViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         pulsator.stop()
     }
     

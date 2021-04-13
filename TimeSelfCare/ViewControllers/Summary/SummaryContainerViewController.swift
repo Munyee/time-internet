@@ -27,6 +27,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var activityButton: UIButton!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    var showFloatingButton = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +117,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                 if let result = data {
                     let huaweiDevice = IsHuaweiDevice(with: result)
                     if huaweiDevice?.status == "yes" {
+                        self.showFloatingButton = false
                         HuaweiHelper.shared.initHwSdk {
                             HuaweiHelper.shared.checkIsLogin { result in
 //                                if !result.isLogined {
@@ -125,6 +127,8 @@ class SummaryContainerViewController: TimeBaseViewController {
 //                                }
                             }
                         }
+                    } else {
+                        self.showFloatingButton = true
                     }
                 }
             }
@@ -384,7 +388,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                 return
         }
         
-        if isConnected {
+        if isConnected && self.showFloatingButton {
             self.showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
         } else {
             self.hideFloatingActionButton()
@@ -417,12 +421,11 @@ extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
             hideFloatingActionButton()
         case .performanceStatusSummary:
             self.pageTitleLabel.text = NSLocalizedString("Network Management", comment: "")
-            hideFloatingActionButton()
-            //            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false {
-            //                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
-            //            } else {
-            //                hideFloatingActionButton()
-            //            }
+            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false && self.showFloatingButton {
+                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
+            } else {
+                hideFloatingActionButton()
+            }
         }
     }
 }

@@ -184,7 +184,6 @@ class PerformanceViewController: BaseViewController {
         let showAddnce = !UserDefaults.standard.bool(forKey: self.kIsSetupNCE)
         
         HuaweiHelper.shared.queryUserBindGateway { gateways in
-            print(gateways)
             if !gateways.isEmpty {
                 AccountController.shared.gatewayDevId = gateways.first(where: { !$0.deviceId.isEmpty })?.deviceId
                 self.gateway = gateways.first(where: { !$0.deviceId.isEmpty })

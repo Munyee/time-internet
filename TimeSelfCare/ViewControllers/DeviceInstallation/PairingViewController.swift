@@ -8,6 +8,7 @@
 
 import UIKit
 import Pulsator
+import HwMobileSDK
 
 class PairingViewController: UIViewController {
     
@@ -18,7 +19,17 @@ class PairingViewController: UIViewController {
     @IBOutlet private weak var startImgView: UIImageView!
     @IBOutlet private weak var connectedImgView: UIImageView!
     @IBOutlet private weak var onlineImgView: UIImageView!
-    let status: String? = ""
+    
+    var apMac: String?
+    
+    var okcTimer: Timer?
+    var okcWhiteTimer: Timer?
+    var okcQueryLanDevice: Timer?
+
+    var apType: String?
+    var apList: [HwOKCWhiteInfo?] = []
+
+    var status: String? = ""
     let pulsator = Pulsator()
 
     var timer: Timer?
@@ -34,6 +45,16 @@ class PairingViewController: UIViewController {
         pulsator.animationDuration = 1
         pulsator.backgroundColor = UIColor.primary.cgColor
         UserDefaults.standard.set(0, forKey: "NO_DEVICE_FOUND")
+        getOKCList()
+        okcTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(getOKCList), userInfo: nil, repeats: true)
+        
+        HuaweiHelper.shared.registerMessageHandle(completion: { message in
+            if let message = message.msgContentDic.value(forKey: "msgEvent") as? String {
+                self.status = message
+            }
+        }, error: { _ in
+            print("----Error----")
+        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,33 +63,42 @@ class PairingViewController: UIViewController {
         totalTime = 240
         self.timerLabel.text = timeFormatted(totalTime)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-           UIView.transition(with: self.startImgView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-            self.startImgView.image = #imageLiteral(resourceName: "icon_pending")
-            }, completion: nil)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.view.layoutIfNeeded()
-            UIView.animate(withDuration: 1.0, animations: {
-                self.progressWitdh.constant = (self.view.frame.size.width - 120) / 2
-                self.view.layoutIfNeeded()
-            }, completion: { _ in
-                UIView.transition(with: self.connectedImgView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-                    self.connectedImgView.image = #imageLiteral(resourceName: "icon_done")
-                }, completion: nil)
-            })
-           
-        }
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.startImgView.image = #imageLiteral(resourceName: "icon_pending")
+        self.connectedImgView.image = #imageLiteral(resourceName: "icon_pending")
+        self.onlineImgView.image = #imageLiteral(resourceName: "icon_pending")
+        self.progressWitdh.constant = 0
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        DeviceInstallationHelper.shared.getOKCWhiteList(completion: { arrList in
+            let arrApMac = arrList.map { (item) -> String in
+                return item.macAddr
+            }
+            
+            if let controller = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 3] {
+                DeviceInstallationHelper.shared.deleteOKCWhiteList(list: arrApMac, completion: { _ in
+                    self.navigationController?.popToViewController(controller, animated: true)
+                }, error: { _ in })
+            }
+            
+            
+        }, error: { _ in })
+        
         pulsator.stop()
+        self.timer?.invalidate()
+        self.okcTimer?.invalidate()
+        self.okcWhiteTimer?.invalidate()
+        self.okcQueryLanDevice?.invalidate()
     }
     
     @objc
@@ -89,8 +119,12 @@ class PairingViewController: UIViewController {
             
             switch status {
             case "WLAN_OKC_FOUND":
+                self.start()
+                self.okcTimer?.invalidate()
+                self.getOKCWhiteList()
                 break
             case "WLAN_OKC_SUCCESS", "EXTERNAP_ONLINE":
+                self.checkOKCWhiteList()
                 break
             default:
                 if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "NoDeviceFoundViewController") as? NoDeviceFoundViewController {
@@ -101,10 +135,138 @@ class PairingViewController: UIViewController {
         }
     }
     
+    @objc
+    func getOKCList() {
+        DeviceInstallationHelper.shared.getLanDeviceOKCList(completion: { arrList in
+            print("-----OKC List Data-----")
+            self.apList = arrList.filter({ (item) -> Bool in
+                return item.type == self.apType
+            })
+            
+            let foundAp = arrList.contains { (item) -> Bool in
+                return item.type == self.apType
+            }
+            
+            if foundAp {
+                self.start()
+                self.okcTimer?.invalidate()
+                self.getOKCWhiteList()
+            }
+        }, error: { _ in
+        })
+    }
+    
+    @objc
+    func getOKCWhiteList() {
+        DeviceInstallationHelper.shared.getOKCWhiteList(completion: { arrList in
+            print("-----OKC White List Data-----")
+            
+            let apList = arrList.filter { (item) -> Bool in
+                return item.status != "starting"
+            }
+            
+            let arrApMac = apList.map { (item) -> String in
+                return item.macAddr
+            }
+            
+            self.deleteWhiteList(arrAp: arrApMac)
+            
+            if arrList.isEmpty {
+                if let ap = self.apList.first as? HwOKCWhiteInfo {
+                    self.addWhiteList(apInfo: ap)
+                    self.checkOKCWhiteList()
+                    self.okcWhiteTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.checkOKCWhiteList), userInfo: nil, repeats: true)
+                }
+            }
+        }, error: { _ in
+            print("error")
+        })
+    }
+    
+    @objc
+    func checkOKCWhiteList() {
+        DeviceInstallationHelper.shared.getOKCWhiteList(completion: { arrList in
+            print("-----OKC White List Data-----")
+            
+            if !arrList.isEmpty {
+                if let ap = arrList.first {
+                    if ap.status == "success" {
+                        self.connected()
+                        self.okcWhiteTimer?.invalidate()
+                        self.deleteWhiteList(arrAp: [ap.macAddr])
+                        self.queryLanDevices()
+                        self.okcQueryLanDevice = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.queryLanDevices), userInfo: nil, repeats: true)
+                    }
+                }
+            }
+        }, error: { _ in
+            print("error")
+        })
+    }
+    
+    @objc
+    func queryLanDevices() {
+        HuaweiHelper.shared.queryLanDeviceListEx { devices in
+            print("-----AP List Data-----")
+            let arrAp = devices.filter { dev -> Bool in
+                return dev.isAp
+            }
+            
+            if arrAp.contains(where: { dev -> Bool in
+                return dev.lanMac == self.apMac && dev.onLine
+            }) {
+                self.alreadyOnline()
+            }
+        }
+    }
+    
+    func addWhiteList(apInfo: HwOKCWhiteInfo) {
+        apMac = apInfo.macAddr
+        DeviceInstallationHelper.shared.addOKCWhiteList(list: [apInfo], completion: { _ in
+        }, error: { _ in })
+    }
+    
+    func deleteWhiteList(arrAp: [String]) {
+        DeviceInstallationHelper.shared.deleteOKCWhiteList(list: arrAp, completion: { _ in
+        }, error: { _ in })
+    }
+    
     func timeFormatted(_ totalSeconds: Int) -> String {
         let seconds: Int = totalSeconds % 60
         let minutes: Int = (totalSeconds / 60) % 60
         return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
+    func start() {
+        UIView.transition(with: self.startImgView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+            self.startImgView.image = #imageLiteral(resourceName: "icon_done")
+        }, completion: nil)
+    }
+    
+    func connected() {
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 1.0, animations: {
+            self.progressWitdh.constant = (self.view.frame.size.width - 120) / 2
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            UIView.transition(with: self.connectedImgView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+                self.connectedImgView.image = #imageLiteral(resourceName: "icon_done")
+            }, completion: nil)
+        })
+    }
+    
+    func alreadyOnline() {
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 1.0, animations: {
+            self.progressWitdh.constant = (self.view.frame.size.width - 120)
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            UIView.transition(with: self.onlineImgView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+                self.onlineImgView.image = #imageLiteral(resourceName: "icon_done")
+            }, completion: { _ in
+                // TODO
+            })
+        })
     }
 }
 

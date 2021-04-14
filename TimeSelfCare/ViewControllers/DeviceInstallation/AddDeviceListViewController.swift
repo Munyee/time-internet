@@ -24,6 +24,7 @@ class AddDeviceListViewController: UIViewController {
     
     @IBAction func actStartInstallation(_ sender: Any) {
         if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "GettingDeviceReadyViewController") as? GettingDeviceReadyViewController {
+            vc.apType = "WA8021V5"
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

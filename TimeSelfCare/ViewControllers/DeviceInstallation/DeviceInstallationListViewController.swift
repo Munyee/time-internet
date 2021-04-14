@@ -93,7 +93,7 @@ extension DeviceInstallationListViewController: UITableViewDelegate, UITableView
         cell?.apImage.image = UIImage(named: ap.name)
         cell?.apName.text = ap.name
         cell?.lanMac.text = "MAC:\(ap.lanMac ?? "-")"
-        cell?.dateAndTime.text = ap.onLine ? Date(timeIntervalSinceNow: TimeInterval(ap.onlineTime)).string(usingFormat: "dd/MM/YYYY HH:mm") : ""
+        cell?.dateAndTime.text = ap.onLine ? Date(timeIntervalSince1970: TimeInterval(ap.lastOnlineTime)).string(usingFormat: "dd/MM/YYYY HH:mm") : "\(Date(timeIntervalSince1970: TimeInterval(ap.lastOfflineTime)).string(usingFormat: "dd/MM/YYYY HH:mm")) Offline"
         return cell ?? UITableViewCell()
     }
 }

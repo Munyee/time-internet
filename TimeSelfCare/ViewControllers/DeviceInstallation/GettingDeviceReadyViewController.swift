@@ -10,6 +10,8 @@ import UIKit
 
 class GettingDeviceReadyViewController: UIViewController {
 
+    var apType: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("DEVICE INSTALLATION", comment: "")
@@ -23,6 +25,7 @@ class GettingDeviceReadyViewController: UIViewController {
     
     @IBAction func actNext(_ sender: Any) {
         if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "AlmostThereViewController") as? AlmostThereViewController {
+            vc.apType = self.apType
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

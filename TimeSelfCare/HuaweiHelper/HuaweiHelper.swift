@@ -633,4 +633,21 @@ public extension HuaweiHelper {
             service.removeOfflineDevList(AccountController.shared.gatewayDevId ?? "", withLanDevice: [lanDevice], with: callBackAdapter)
         }
     }
+    
+    func registerMessageHandle(completion: @escaping(_ result: HwMessageData) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwMessageHandleAdapter()
+        callBackAdapter.handle = {value in
+            if let message = value {
+                completion(message)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwMessageService.self) as? HwMessageService {
+            service.registerMessageHandle(callBackAdapter)
+        }
+    }
 }

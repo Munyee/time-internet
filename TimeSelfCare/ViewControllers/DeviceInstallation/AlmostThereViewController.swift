@@ -10,6 +10,8 @@ import UIKit
 
 class AlmostThereViewController: UIViewController {
 
+    var apType: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("DEVICE INSTALLATION", comment: "")
@@ -31,6 +33,7 @@ class AlmostThereViewController: UIViewController {
                 self.dismissVC()
             } else {
                 if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "PairingViewController") as? PairingViewController {
+                    vc.apType = self.apType
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }

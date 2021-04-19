@@ -8,6 +8,7 @@
 
 import UIKit
 import HwMobileSDK
+import MBProgressHUD
 
 class DeviceInstallationListViewController: UIViewController {
 
@@ -36,7 +37,9 @@ class DeviceInstallationListViewController: UIViewController {
     func fetchAPList() {
         HuaweiHelper.shared.queryLanDeviceListEx { devices in
             self.refreshControl.endRefreshing()
-            self.apDevices = devices.filter { $0.isAp }
+            self.apDevices = devices.filter { $0.isAp }.sorted(by: { (devA, devB) -> Bool in
+                return devA.onLine && !devB.onLine
+            })
             self.tableView.reloadData()
             
             if !self.apDevices.isEmpty {
@@ -67,7 +70,13 @@ class DeviceInstallationListViewController: UIViewController {
     
     @objc
     func goToAddDevice() {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         HuaweiHelper.shared.getWifiInfoAll(completion: { wifiInfoAll in
+            hud.hide(animated: true)
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
             if wifiInfoAll.hardwareSwitch2p4G == "true" || wifiInfoAll.hardwareSwitch5G == "true" {
                 if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "AddDeviceListViewController") as? AddDeviceListViewController {
                     self.navigationController?.pushViewController(vc, animated: true)
@@ -78,7 +87,10 @@ class DeviceInstallationListViewController: UIViewController {
                     self.presentNavigation(vc, animated: true)
                 }
             }
-        }, error: { _ in })
+        }, error: { _ in
+            hud.hide(animated: true)
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        })
     }
 }
 
@@ -93,7 +105,8 @@ extension DeviceInstallationListViewController: UITableViewDelegate, UITableView
         cell?.apImage.image = UIImage(named: ap.name)
         cell?.apName.text = ap.name
         cell?.lanMac.text = "MAC:\(ap.lanMac ?? "-")"
-        cell?.dateAndTime.text = ap.onLine ? Date(timeIntervalSince1970: TimeInterval(ap.lastOnlineTime)).string(usingFormat: "dd/MM/YYYY HH:mm") : "\(Date(timeIntervalSince1970: TimeInterval(ap.lastOfflineTime)).string(usingFormat: "dd/MM/YYYY HH:mm")) Offline"
+//        cell?.dateAndTime.text = ap.onLine ? Date(timeIntervalSince1970: TimeInterval(ap.lastOnlineTime)).string(usingFormat: "dd/MM/YYYY HH:mm") : "\(Date(timeIntervalSince1970: TimeInterval(ap.lastOfflineTime)).string(usingFormat: "dd/MM/YYYY HH:mm")) Offline"
+        cell?.dateAndTime.text = ap.onLine ? "Online" : "Offline"
         return cell ?? UITableViewCell()
     }
 }

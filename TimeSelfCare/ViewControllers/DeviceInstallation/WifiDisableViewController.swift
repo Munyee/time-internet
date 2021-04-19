@@ -38,7 +38,7 @@ class WifiDisableViewController: UIViewController {
                 self.dismiss(animated: true) {
                     self.delegate?.wifiEnabled()
                 }
-            }, error: { _ in })
-        }, error: { _ in })
+            }, error: { _ in hud.hide(animated: true) })
+        }, error: { _ in hud.hide(animated: true) })
     }
 }

@@ -38,7 +38,7 @@ class PairingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("DEVICE INSTALLATION", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.stopInstallation))
         self.pulseView.layer.insertSublayer(pulsator, below: timerView.layer)
         pulsator.position = CGPoint(x: self.pulseView.bounds.width / 2, y: self.pulseView.bounds.height / 2)
         pulsator.radius = 100
@@ -102,8 +102,33 @@ class PairingViewController: UIViewController {
     }
     
     @objc
+    func stopInstallation() {
+        self.showAlertMessage(title: "Stop installation", message: "The installation is in progress. Are you sure you want to quit?", actions: [
+            UIAlertAction(title: NSLocalizedString("YES", comment: ""), style: .destructive) { _ in
+                self.popBack()
+            },
+            UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+            }
+        ])
+    }
+    
+    @objc
+    func hangInstallation() {
+        self.showAlertMessage(title: "Installation stalled", message: "An error has occurred. Would you like to restart the installation?", actions: [
+            UIAlertAction(title: NSLocalizedString("YES", comment: ""), style: .destructive) { _ in
+                if let controller = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 4] {
+                    self.navigationController?.popToViewController(controller, animated: true)
+                }
+            },
+            UIAlertAction(title: NSLocalizedString("NO", comment: ""), style: .cancel) { _ in
+                self.popBack()
+            }
+        ])
+    }
+    
+    @objc
     func popBack() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc
@@ -116,15 +141,10 @@ class PairingViewController: UIViewController {
                 timer.invalidate()
                 self.timer = nil
             }
-            
+                        
             switch status {
-            case "WLAN_OKC_FOUND":
-                self.start()
-                self.okcTimer?.invalidate()
-                self.getOKCWhiteList()
-                break
-            case "WLAN_OKC_SUCCESS", "EXTERNAP_ONLINE":
-                self.checkOKCWhiteList()
+            case "WLAN_OKC_FOUND", "WLAN_OKC_SUCCESS", "EXTERNAP_ONLINE":
+                self.hangInstallation()
                 break
             default:
                 if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "NoDeviceFoundViewController") as? NoDeviceFoundViewController {
@@ -132,6 +152,17 @@ class PairingViewController: UIViewController {
                     self.presentNavigation(vc, animated: true)
                 }
             }
+        }
+        
+        switch status {
+        case "WLAN_OKC_FOUND":
+            self.start()
+            self.okcTimer?.invalidate()
+            self.getOKCWhiteList()
+        case "WLAN_OKC_SUCCESS", "EXTERNAP_ONLINE":
+            self.checkOKCWhiteList()
+        default:
+            break
         }
     }
     
@@ -264,9 +295,16 @@ class PairingViewController: UIViewController {
             UIView.transition(with: self.onlineImgView, duration: 1.0, options: .transitionCrossDissolve, animations: {
                 self.onlineImgView.image = #imageLiteral(resourceName: "icon_done")
             }, completion: { _ in
-                // TODO
+                if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "PairingSuccessViewController") as? PairingSuccessViewController {
+                    vc.apType = self.apType
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             })
         })
+    }
+    
+    @IBAction func actStopInstallation(_ sender: Any) {
+        self.stopInstallation()
     }
 }
 

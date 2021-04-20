@@ -26,7 +26,8 @@ class WifiSettingsViewController: UIViewController {
     @IBOutlet private weak var switch5g: UISwitch!
     @IBOutlet private weak var switchHideWifi: UISwitch!
     @IBOutlet private weak var switchScheduling: UISwitch!
-    
+    @IBOutlet private weak var switchTurnOffWifi: UISwitch!
+
     // Label
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var closeLabel: UILabel!
@@ -87,6 +88,23 @@ class WifiSettingsViewController: UIViewController {
     
     @IBAction func actWifiHetwork(_ sender: Any) {
         toggleHideWifiNetwork()
+    }
+    
+    @IBAction func actTurnOfWifi(_ sender: Any) {
+        if switchTurnOffWifi.isOn {
+            self.showAlertMessage(title: "Are you sure?", message: "Turning your WiFi off will disable your network.", actions: [
+                UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
+                    self.turnWifiOnOff(band: "2.4G", switchWifi: self.switchTurnOffWifi)
+                    self.turnWifiOnOff(band: "5G", switchWifi: self.switchTurnOffWifi)
+                },
+                UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+                    self.switchTurnOffWifi.isOn = false
+                }
+            ])
+        } else {
+            self.turnWifiOnOff(band: "2.4G", switchWifi: self.switchTurnOffWifi)
+            self.turnWifiOnOff(band: "5G", switchWifi: self.switchTurnOffWifi)
+        }
     }
     
     @IBAction func actToggle2p4g(_ sender: Any) {
@@ -273,6 +291,37 @@ class WifiSettingsViewController: UIViewController {
             })
             
             if (switchWifi.isOn) {
+                sortedArr.first(where: {$0.radioType == "2.4G"})?.enable = true
+                sortedArr.first(where: {$0.radioType == "5G"})?.enable = true
+            } else {
+                for wifiInfo in dataInfos {
+                    wifiInfo.enable = false
+                }
+            }
+            
+            
+            HuaweiHelper.shared.setWifiInfoList(wifiInfos: dataInfos, completion: { _ in
+                DispatchQueue.main.async {
+                    hud.hide(animated: true)
+                }
+            }, error: { _ in
+                DispatchQueue.main.async {
+                    hud.hide(animated: true)
+                }
+            })
+        }
+    }
+    
+    func turnWifiOnOff(band: String, switchWifi: UISwitch) {
+        if let dataInfos = wifiInfos.filter({ $0?.radioType == band }) as? [HwWifiInfo] {
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.label.text = NSLocalizedString("Loading...", comment: "")
+            
+            let sortedArr = dataInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
+                return "\(wifiInfoA.ssidIndex)".compare("\(wifiInfoB.ssidIndex)", options: .numeric) == .orderedAscending
+            })
+            
+            if (!switchWifi.isOn) {
                 sortedArr.first(where: {$0.radioType == "2.4G"})?.enable = true
                 sortedArr.first(where: {$0.radioType == "5G"})?.enable = true
             } else {

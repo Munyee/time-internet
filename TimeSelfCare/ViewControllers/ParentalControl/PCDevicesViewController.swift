@@ -32,6 +32,7 @@ class PCDevicesViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_close_magenta"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
         
         queryDevices()
+        checkConfirmButton()
     }
     
     func queryDevices() {

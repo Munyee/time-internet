@@ -16,6 +16,7 @@ class NoDeviceFoundViewController: UIViewController {
 
     var delegate: NoDeviceFoundViewControllerDelegate?
     var noDeviceCount = 0
+    @IBOutlet weak var descLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,14 @@ class NoDeviceFoundViewController: UIViewController {
         if let noDeviceFoundCount = UserDefaults.standard.value(forKey: "NO_DEVICE_FOUND") as? Int {
             noDeviceCount = noDeviceFoundCount
             UserDefaults.standard.set(noDeviceFoundCount + 1, forKey: "NO_DEVICE_FOUND")
+        }
+        
+        if noDeviceCount >= 2 {
+            self.descLabel.text = "Please reset your device and try again."
+        } else if noDeviceCount == 1 {
+            self.descLabel.text = "Please ensure your device is turned on."
+        } else {
+            self.descLabel.text = "Please restart your router and device."
         }
 
         // Do any additional setup after loading the view.

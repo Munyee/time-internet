@@ -46,6 +46,7 @@ class PairingViewController: UIViewController {
         pulsator.backgroundColor = UIColor.primary.cgColor
         UserDefaults.standard.set(0, forKey: "NO_DEVICE_FOUND")
         getOKCList()
+//        getOKCWhiteList()
         okcTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(getOKCList), userInfo: nil, repeats: true)
         
         HuaweiHelper.shared.registerMessageHandle(completion: { message in
@@ -191,6 +192,7 @@ class PairingViewController: UIViewController {
     func getOKCWhiteList() {
         DeviceInstallationHelper.shared.getOKCWhiteList(completion: { arrList in
             print("-----OKC White List Data-----")
+            print(arrList)
             
             let apList = arrList.filter { (item) -> Bool in
                 return item.status != "starting"
@@ -275,6 +277,19 @@ class PairingViewController: UIViewController {
     }
     
     func connected() {
+        DeviceInstallationHelper.shared.getOKCWhiteList(completion: { arrList in
+            let arrApMac = arrList.map { (item) -> String in
+                return item.macAddr
+            }
+            
+            if let controller = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 3] {
+                DeviceInstallationHelper.shared.deleteOKCWhiteList(list: arrApMac, completion: { _ in
+                    self.navigationController?.popToViewController(controller, animated: true)
+                }, error: { _ in })
+            }
+            
+            
+        }, error: { _ in })
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: 1.0, animations: {
             self.progressWitdh.constant = (self.view.frame.size.width - 120) / 2
@@ -295,7 +310,7 @@ class PairingViewController: UIViewController {
             UIView.transition(with: self.onlineImgView, duration: 1.0, options: .transitionCrossDissolve, animations: {
                 self.onlineImgView.image = #imageLiteral(resourceName: "icon_done")
             }, completion: { _ in
-                if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "PairingSuccessViewController") as? PairingSuccessViewController {
+                if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "PairingDoneViewController") as? PairingSuccessViewController {
                     vc.apType = self.apType
                     self.navigationController?.pushViewController(vc, animated: true)
                 }

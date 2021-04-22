@@ -20,13 +20,17 @@ class DeviceInstallationListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchAPList()
 
         self.title = NSLocalizedString("DEVICE INSTALLATION", comment: "")
 
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.getAPList), for: .valueChanged)
         tableView.addSubview(refreshControl)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchAPList()
     }
     
     @objc
@@ -102,7 +106,7 @@ extension DeviceInstallationListViewController: UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "apDeviceCell", for: indexPath) as? ApDeviceTableViewCell
         let ap = self.apDevices[indexPath.row]
-        cell?.apImage.image = UIImage(named: ap.name)
+        cell?.apImage.image = UIImage(named: ap.name.lowercased())
         cell?.apName.text = ap.name
         cell?.lanMac.text = "MAC:\(ap.lanMac ?? "-")"
 //        cell?.dateAndTime.text = ap.onLine ? Date(timeIntervalSince1970: TimeInterval(ap.lastOnlineTime)).string(usingFormat: "dd/MM/YYYY HH:mm") : "\(Date(timeIntervalSince1970: TimeInterval(ap.lastOfflineTime)).string(usingFormat: "dd/MM/YYYY HH:mm")) Offline"

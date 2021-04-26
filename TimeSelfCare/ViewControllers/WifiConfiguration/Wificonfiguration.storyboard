@@ -25,10 +25,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEn-cy-tGW">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bXR-Pe-kU7">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="155"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkz-TL-LF1" customClass="UIControl">
                                                         <rect key="frame" x="35" y="59" width="344" height="81"/>
@@ -77,24 +77,24 @@
                                                             <action selector="actConnectedWifi:" destination="qct-ec-vFD" eventType="touchUpInside" id="6KG-4L-6NF"/>
                                                         </connections>
                                                     </view>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aoj-lG-i9i" customClass="UIControl">
-                                                        <rect key="frame" x="35" y="0.0" width="344" height="61"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aoj-lG-i9i" customClass="UIControl">
+                                                        <rect key="frame" x="35" y="140" width="344" height="81"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WqK-94-ubF">
-                                                                <rect key="frame" x="0.0" y="60" width="344" height="1"/>
+                                                                <rect key="frame" x="0.0" y="80" width="344" height="1"/>
                                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="XZ3-LY-hzA"/>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WiFi Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T10-GM-3zN">
-                                                                <rect key="frame" x="0.0" y="30" width="80.5" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="30" width="80.5" height="20"/>
                                                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="nuQ-Or-b5W">
-                                                                <rect key="frame" x="325" y="17.5" width="19" height="20"/>
+                                                                <rect key="frame" x="325" y="27.5" width="19" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="dH4-HS-enZ"/>
                                                                 </constraints>
@@ -247,10 +247,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxF-YF-hCe">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="532.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="547"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IuR-2s-XTK">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="532.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="547"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GtR-Uz-ueU" customClass="UIControl">
                                                         <rect key="frame" x="24" y="59" width="366" height="81"/>
@@ -420,17 +420,17 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c05-If-zrj" customClass="UIControl">
-                                                        <rect key="frame" x="24" y="140" width="366" height="100.5"/>
+                                                        <rect key="frame" x="24" y="140" width="366" height="115"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIq-G0-2nE">
-                                                                <rect key="frame" x="0.0" y="99.5" width="366" height="1"/>
+                                                                <rect key="frame" x="0.0" y="114" width="366" height="1"/>
                                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="pGf-Eq-HfT"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will disable your network." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpB-Pt-jjU">
-                                                                <rect key="frame" x="12" y="55" width="243" height="14.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will enable/disable your entire WiFi network." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpB-Pt-jjU">
+                                                                <rect key="frame" x="12" y="55" width="243" height="29"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -442,7 +442,7 @@
                                                                     <action selector="actTurnOfWifi:" destination="X7z-3g-s63" eventType="valueChanged" id="80k-Lf-xXs"/>
                                                                 </connections>
                                                             </switch>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn Off WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJn-ge-kAk">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn On/Off WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJn-ge-kAk">
                                                                 <rect key="frame" x="12" y="30" width="283" height="20"/>
                                                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                                                 <nil key="textColor"/>
@@ -469,7 +469,7 @@
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aL9-gD-G0d" customClass="UIControl">
-                                                        <rect key="frame" x="24" y="240.5" width="366" height="115"/>
+                                                        <rect key="frame" x="24" y="255" width="366" height="115"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYq-gL-Tdr">
                                                                 <rect key="frame" x="0.0" y="114" width="366" height="1"/>
@@ -518,7 +518,7 @@
                                                         </connections>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UWv-EC-tk2">
-                                                        <rect key="frame" x="24" y="355.5" width="366" height="162"/>
+                                                        <rect key="frame" x="24" y="370" width="366" height="162"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0a-nM-4Xq">
                                                                 <rect key="frame" x="0.0" y="0.0" width="366" height="80"/>
@@ -691,6 +691,7 @@
                     </view>
                     <connections>
                         <outlet property="closeLabel" destination="0M0-Zl-IIS" id="u6t-7H-dew"/>
+                        <outlet property="hideWifiView" destination="aL9-gD-G0d" id="dFN-IA-hfy"/>
                         <outlet property="liveChatConstraint" destination="Brg-ta-T5M" id="B9Y-jr-KaZ"/>
                         <outlet property="liveChatView" destination="Fib-MX-4au" id="73S-e7-uS2"/>
                         <outlet property="schedulingView" destination="976-4T-2Xt" id="4Iv-BH-JMR"/>
@@ -703,6 +704,7 @@
                         <outlet property="switchHideWifi" destination="nfs-Na-637" id="SRe-O2-TmJ"/>
                         <outlet property="switchScheduling" destination="WLJ-5n-2KR" id="NFx-0K-bM6"/>
                         <outlet property="switchTurnOffWifi" destination="KiQ-HZ-Amh" id="zDD-el-xix"/>
+                        <outlet property="wifiSchedulingView" destination="UWv-EC-tk2" id="leY-Sb-wlD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfP-M4-Tzv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

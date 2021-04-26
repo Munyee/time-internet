@@ -28,6 +28,8 @@ class WifiSettingsViewController: UIViewController {
     @IBOutlet private weak var switchScheduling: UISwitch!
     @IBOutlet private weak var switchTurnOffWifi: UISwitch!
 
+    @IBOutlet weak var hideWifiView: UIControl!
+    @IBOutlet weak var wifiSchedulingView: UIStackView!
     // Label
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var closeLabel: UILabel!
@@ -91,19 +93,31 @@ class WifiSettingsViewController: UIViewController {
     }
     
     @IBAction func actTurnOfWifi(_ sender: Any) {
-        if switchTurnOffWifi.isOn {
+        if !switchTurnOffWifi.isOn {
             self.showAlertMessage(title: "Are you sure?", message: "Turning your WiFi off will disable your network.", actions: [
                 UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
-                    self.turnWifiOnOff(band: "2.4G", switchWifi: self.switchTurnOffWifi)
-                    self.turnWifiOnOff(band: "5G", switchWifi: self.switchTurnOffWifi)
+                    self.toggleWifiEnabled(band: "2.4G", switchWifi: self.switchTurnOffWifi)
+                    self.toggleWifiEnabled(band: "5G", switchWifi: self.switchTurnOffWifi)
+                    self.hideWifiView.alpha = 0.3
+                    self.wifiSchedulingView.alpha = 0.3
+                    self.hideWifiView.isUserInteractionEnabled = false
+                    self.wifiSchedulingView.isUserInteractionEnabled = false
                 },
                 UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
                     self.switchTurnOffWifi.isOn = false
+                    self.hideWifiView.alpha = 1
+                    self.wifiSchedulingView.alpha = 1
+                    self.hideWifiView.isUserInteractionEnabled = true
+                    self.wifiSchedulingView.isUserInteractionEnabled = true
                 }
             ])
         } else {
-            self.turnWifiOnOff(band: "2.4G", switchWifi: self.switchTurnOffWifi)
-            self.turnWifiOnOff(band: "5G", switchWifi: self.switchTurnOffWifi)
+            self.toggleWifiEnabled(band: "2.4G", switchWifi: self.switchTurnOffWifi)
+            self.toggleWifiEnabled(band: "5G", switchWifi: self.switchTurnOffWifi)
+            self.hideWifiView.alpha = 1
+            self.wifiSchedulingView.alpha = 1
+            self.hideWifiView.isUserInteractionEnabled = true
+            self.wifiSchedulingView.isUserInteractionEnabled = true
         }
     }
     
@@ -215,13 +229,31 @@ class WifiSettingsViewController: UIViewController {
                         return wifiInfo?.isSsidAdvertisementEnabled == true
                     })
                     
-                    self.switch2p4g.isOn = self.wifiInfos.filter { $0?.radioType == "2.4G"}.contains(where: { wifiInfo -> Bool in
+                    self.switchTurnOffWifi.isOn = self.wifiInfos.filter { $0?.radioType == "2.4G"}.contains(where: { wifiInfo -> Bool in
+                        return wifiInfo?.enable == true
+                    }) || self.wifiInfos.filter { $0?.radioType == "5G"}.contains(where: { wifiInfo -> Bool in
                         return wifiInfo?.enable == true
                     })
                     
-                    self.switch5g.isOn = self.wifiInfos.filter { $0?.radioType == "5G"}.contains(where: { wifiInfo -> Bool in
-                        return wifiInfo?.enable == true
-                    })
+                    if self.switchTurnOffWifi.isOn {
+                        self.hideWifiView.alpha = 1
+                        self.wifiSchedulingView.alpha = 1
+                        self.hideWifiView.isUserInteractionEnabled = true
+                        self.wifiSchedulingView.isUserInteractionEnabled = true
+                    } else {
+                        self.hideWifiView.alpha = 0.3
+                        self.wifiSchedulingView.alpha = 0.3
+                        self.hideWifiView.isUserInteractionEnabled = false
+                        self.wifiSchedulingView.isUserInteractionEnabled = false
+                    }
+                    
+//                    self.switch2p4g.isOn = self.wifiInfos.filter { $0?.radioType == "2.4G"}.contains(where: { wifiInfo -> Bool in
+//                        return wifiInfo?.enable == true
+//                    })
+//
+//                    self.switch5g.isOn = self.wifiInfos.filter { $0?.radioType == "5G"}.contains(where: { wifiInfo -> Bool in
+//                        return wifiInfo?.enable == true
+//                    })
                 }
             }, error: { _ -> Void in
                 hud.hide(animated: true)
@@ -291,37 +323,6 @@ class WifiSettingsViewController: UIViewController {
             })
             
             if (switchWifi.isOn) {
-                sortedArr.first(where: {$0.radioType == "2.4G"})?.enable = true
-                sortedArr.first(where: {$0.radioType == "5G"})?.enable = true
-            } else {
-                for wifiInfo in dataInfos {
-                    wifiInfo.enable = false
-                }
-            }
-            
-            
-            HuaweiHelper.shared.setWifiInfoList(wifiInfos: dataInfos, completion: { _ in
-                DispatchQueue.main.async {
-                    hud.hide(animated: true)
-                }
-            }, error: { _ in
-                DispatchQueue.main.async {
-                    hud.hide(animated: true)
-                }
-            })
-        }
-    }
-    
-    func turnWifiOnOff(band: String, switchWifi: UISwitch) {
-        if let dataInfos = wifiInfos.filter({ $0?.radioType == band }) as? [HwWifiInfo] {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
-            
-            let sortedArr = dataInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
-                return "\(wifiInfoA.ssidIndex)".compare("\(wifiInfoB.ssidIndex)", options: .numeric) == .orderedAscending
-            })
-            
-            if (!switchWifi.isOn) {
                 sortedArr.first(where: {$0.radioType == "2.4G"})?.enable = true
                 sortedArr.first(where: {$0.radioType == "5G"})?.enable = true
             } else {

@@ -595,4 +595,52 @@ public extension HuaweiHelper {
             service.setWifiHardwareSwitch(AccountController.shared.gatewayDevId ?? "", withRadioType: radioType, withEnableState: true, withCallBack: callBackAdapter)
         }
     }
+    
+    func getLanDeviceBlackList(completion: @escaping(_ result: [HwLanDevice]) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? [HwLanDevice] {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getLanDeviceBlackList(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+    
+    func setLanDeviceToBlackList(list: [HwLanDevice], isAdd: Bool, completion: @escaping(_ result: HwResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwResult {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.setLanDeviceToBlackList(AccountController.shared.gatewayDevId ?? "", withList: list, isAdd: isAdd, with: callBackAdapter)
+        }
+    }
+    
+    func deleteLanDeviceFromBlackList(lanDevice: HwLanDevice, completion: @escaping(_ result: HwResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwResult {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.deleteLanDevice(fromBlackList: AccountController.shared.gatewayDevId ?? "", with: lanDevice, with: callBackAdapter)
+        }
+    }
 }

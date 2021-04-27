@@ -81,6 +81,12 @@ class PairingViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
+        pulsator.stop()
+        self.timer?.invalidate()
+        self.okcTimer?.invalidate()
+        self.okcWhiteTimer?.invalidate()
+        self.okcQueryLanDevice?.invalidate()
+        
         DeviceInstallationHelper.shared.getOKCWhiteList(completion: { arrList in
             let arrApMac = arrList.map { (item) -> String in
                 return item.macAddr
@@ -91,15 +97,7 @@ class PairingViewController: UIViewController {
                     self.navigationController?.popToViewController(controller, animated: true)
                 }, error: { _ in })
             }
-            
-            
         }, error: { _ in })
-        
-        pulsator.stop()
-        self.timer?.invalidate()
-        self.okcTimer?.invalidate()
-        self.okcWhiteTimer?.invalidate()
-        self.okcQueryLanDevice?.invalidate()
     }
     
     @objc
@@ -287,8 +285,6 @@ class PairingViewController: UIViewController {
                     self.navigationController?.popToViewController(controller, animated: true)
                 }, error: { _ in })
             }
-            
-            
         }, error: { _ in })
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: 1.0, animations: {

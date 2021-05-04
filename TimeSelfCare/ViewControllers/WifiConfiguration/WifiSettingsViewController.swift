@@ -94,7 +94,7 @@ class WifiSettingsViewController: UIViewController {
     
     @IBAction func actTurnOfWifi(_ sender: Any) {
         if !switchTurnOffWifi.isOn {
-            self.showAlertMessage(title: "Are you sure?", message: "Turning your WiFi off will disable your network.", actions: [
+            self.showAlertMessage(title: "Are you sure?", message: "Turning off your WiFi will disable your entire network and disconnect all devices on it.", actions: [
                 UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
                     self.toggleWifiEnabled(band: "2.4G", switchWifi: self.switchTurnOffWifi)
                     self.toggleWifiEnabled(band: "5G", switchWifi: self.switchTurnOffWifi)

@@ -229,7 +229,9 @@ class TicketDetailViewController: UIViewController {
 
     @objc
     private func popViewController() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     @IBAction func addAttachment(_ sender: Any?) {

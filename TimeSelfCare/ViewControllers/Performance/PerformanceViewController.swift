@@ -194,8 +194,11 @@ class PerformanceViewController: BaseViewController {
                 self.speedTestView.isHidden = false
                 self.nceFeatureSmallView.isHidden = true
                 HuaweiHelper.shared.queryGateway(completion: { gateway in
-                    HuaweiHelper.shared.queryLanDeviceCount { result in
-                        self.numberOfDevice.text = "\(result.lanDeviceCount)"
+                    HuaweiHelper.shared.queryLanDeviceListEx { devices in
+                        let arrDev = devices.filter { dev -> Bool in
+                            return !dev.isAp && dev.onLine
+                        }
+                        self.numberOfDevice.text = "\(arrDev.count)"
                     }
                     //            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                     //                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in

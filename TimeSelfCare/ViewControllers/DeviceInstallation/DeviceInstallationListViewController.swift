@@ -22,7 +22,7 @@ class DeviceInstallationListViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("DEVICE INSTALLATION", comment: "")
-
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.getAPList), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -48,7 +48,6 @@ class DeviceInstallationListViewController: UIViewController {
             
             if !self.apDevices.isEmpty {
                 self.noApFound.isHidden = true
-                self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
                 let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
                 spacer.width = 10
                 self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "ic_add"), style: .done, target: self, action: #selector(self.goToAddDevice)), spacer]

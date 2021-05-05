@@ -77,19 +77,81 @@ class DeviceInstallationListViewController: UIViewController {
         hud.label.text = NSLocalizedString("Loading...", comment: "")
 
         self.navigationItem.rightBarButtonItem?.isEnabled = false
-        HuaweiHelper.shared.getWifiInfoAll(completion: { wifiInfoAll in
-            hud.hide(animated: true)
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-            if wifiInfoAll.hardwareSwitch2p4G == "true" || wifiInfoAll.hardwareSwitch5G == "true" {
-                if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "AddDeviceListViewController") as? AddDeviceListViewController {
-                    self.navigationController?.pushViewController(vc, animated: true)
+        
+//        HuaweiHelper.shared.getGuestWifiInfo(completion: { guestWifi in
+//            HuaweiHelper.shared.getWifiInfoAll(completion: { wifiInfoAll in
+//                hud.hide(animated: true)
+//                self.stackView.isHidden = false
+//                self.switchDualBand.isOn = wifiInfoAll.dualbandCombine
+//                self.singleBandView.isHidden = wifiInfoAll.dualbandCombine
+//
+//                let arrData = wifiInfoAll.infoList.filter { wifiInfo -> Bool in
+//                    return wifiInfo.ssidIndex != guestWifi.ssidIndex && wifiInfo.ssidIndex != guestWifi.ssidIndex5G
+//                }
+//
+//                let group = DispatchGroup()
+//                hud.show(animated: true)
+//                for infoItem in arrData {
+//                    group.enter()
+//                    HuaweiHelper.shared.getWifiInfo(ssidIndex: infoItem.ssidIndex, completion: { info in
+//                        self.wifiInfos.append(info)
+//                        group.leave()
+//                    }, error: { _ -> Void in
+//                        hud.hide(animated: true)
+//                    })
+//                }
+//
+//                group.notify(queue: .main) {
+//                    hud.hide(animated: true)
+//                    self.switchHideWifi.isOn = !self.wifiInfos.contains(where: { wifiInfo -> Bool in
+//                        return wifiInfo?.isSsidAdvertisementEnabled == true
+//                    })
+//
+//                    self.switch2p4g.isOn = self.wifiInfos.filter { $0?.radioType == "2.4G"}.contains(where: { wifiInfo -> Bool in
+//                        return wifiInfo?.enable == true
+//                    })
+//
+//                    self.switch5g.isOn = self.wifiInfos.filter { $0?.radioType == "5G"}.contains(where: { wifiInfo -> Bool in
+//                        return wifiInfo?.enable == true
+//                    })
+//                }
+//            }, error: { _ -> Void in
+//                hud.hide(animated: true)
+//            })
+//        }, error: { _ in
+//            hud.hide(animated: true)
+//        })
+        HuaweiHelper.shared.getGuestWifiInfo(completion: { guestWifi in
+            HuaweiHelper.shared.getWifiInfoAll(completion: { wifiInfoAll in
+                hud.hide(animated: true)
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                let arrData = wifiInfoAll.infoList.filter { wifiInfo -> Bool in
+                    wifiInfo.ssidIndex != guestWifi.ssidIndex && wifiInfo.ssidIndex != guestWifi.ssidIndex5G
                 }
-            } else {
-                if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiDisableViewController") as? WifiDisableViewController {
-                    vc.delegate = self
-                    self.presentNavigation(vc, animated: true)
+                
+                let wifi2p4gOn = arrData.filter { $0.radioType == "2.4G"}.contains(where: { wifiInfo -> Bool in
+                    wifiInfo.enable == true
+                })
+                
+                let wifi5gOn = arrData.filter { $0.radioType == "5G"}.contains(where: { wifiInfo -> Bool in
+                    wifiInfo.enable == true
+                })
+                
+                if (wifiInfoAll.hardwareSwitch2p4G == "true" || wifiInfoAll.hardwareSwitch5G == "true") && (wifi2p4gOn || wifi5gOn) {
+                    if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "AddDeviceListViewController") as? AddDeviceListViewController {
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                } else {
+                    if let vc = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiDisableViewController") as? WifiDisableViewController {
+                        vc.delegate = self
+                        vc.wifiInfos = arrData
+                        self.presentNavigation(vc, animated: true)
+                    }
                 }
-            }
+            }, error: { _ in
+                hud.hide(animated: true)
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+            })
         }, error: { _ in
             hud.hide(animated: true)
             self.navigationItem.rightBarButtonItem?.isEnabled = true

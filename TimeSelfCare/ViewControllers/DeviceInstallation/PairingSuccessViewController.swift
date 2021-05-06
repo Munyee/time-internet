@@ -18,7 +18,7 @@ class PairingSuccessViewController: UIViewController {
         self.title = NSLocalizedString("DEVICE INSTALLATION", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
         if let ap = apType {
-            apImage.image = UIImage(named: "success_pairing_\(ap.lowercased())")
+            apImage.image = UIImage(named: "successpairing_\(ap.lowercased())")
         }
     }
     

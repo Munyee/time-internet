@@ -241,6 +241,10 @@ typedef enum
 
 - (NSString *)getAppStyle;
 
+/**
+ *  @brief 是否是巴林版本
+ */
+- (BOOL)isBatelcoVersion;
 
 - (BOOL)setBarStyle:(NSDictionary *)param;
 

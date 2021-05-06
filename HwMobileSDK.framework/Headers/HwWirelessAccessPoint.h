@@ -84,5 +84,11 @@ typedef NS_ENUM(NSInteger, HwApType)
 /** 设备是否在线 */
 @property (nonatomic , assign) BOOL onLineState;
 
+/** unlinkRadioType */
+@property(nonatomic, copy) NSString *uplinkRadioType;
+
+/** wifiBands */
+@property(nonatomic, copy) NSString *wifiBands;
+
 @end
 

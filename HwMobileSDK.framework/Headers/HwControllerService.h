@@ -326,6 +326,14 @@ typedef enum
         withCallback:(id<HwCallback>)callback;
 
 /**
+*
+*  @param callback HwResult
+*  @brief 是否是近端登录网关
+*
+*/
+- (void)isLocalLogin:(NSString *)deviceId withCallback:(id<HwCallback>)callback;
+
+/**
  *  
  *
  *  @brief 退出登录网关(log out to the gateway in near-end mode)

@@ -103,6 +103,7 @@ extension AppDelegate {
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         var userInfo = userInfo
+        print(userInfo)
         if var activityJson = userInfo["activity"] as? [String: Any] {
             activityJson["account_no"] = AccountController.shared.selectedAccount?.accountNo
             guard let username = AccountController.shared.profile?.username else {

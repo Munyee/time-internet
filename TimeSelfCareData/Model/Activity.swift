@@ -34,6 +34,7 @@ public class Activity: JsonRecord {
         case voicePlan = "Voice Plan"
         case huae = "HOOK UP & EARN"
         case reDirectMsg = "Redirect Msg"
+        case launchExternalApp = "LaunchExternalApp"
     }
 
     public var id: Int
@@ -43,6 +44,7 @@ public class Activity: JsonRecord {
     public var status: String?
     public var isNew: Bool = false
     public var click: String?
+    public var url: String?
 
     public var isActionable: Bool {
         switch self.type {
@@ -52,7 +54,8 @@ public class Activity: JsonRecord {
              .billing,
              .addOns,
              .huae,
-             .reDirectMsg:
+             .reDirectMsg,
+             .launchExternalApp:
            return true
         default:
             return false
@@ -82,6 +85,7 @@ public class Activity: JsonRecord {
         self.accountNo = json["account_no"] as? String
         self.profileUsername = ""
         self.click = json["click"] as? String
+        self.url = json["url"] as? String
     }
 
 }

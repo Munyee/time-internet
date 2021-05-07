@@ -8,13 +8,18 @@
 
 import UIKit
 import HwMobileSDK
+import MBProgressHUD
 
 class WifiConfigurationViewController: UIViewController {
     
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var guestWifiStatus: UILabel!
     @IBOutlet weak var familyName: UILabel!
+    var remainingTime: Int32 = 0
+    var timer: Timer?
+
     var gateway: HwUserBindedGateway?
     
     override func viewDidLoad() {
@@ -30,6 +35,7 @@ class WifiConfigurationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.liveChatView.isHidden = true
+        timer?.invalidate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +46,7 @@ class WifiConfigurationViewController: UIViewController {
                 self.gateway = gateways.first
             }
         }
+        queryGuestWifi()
     }
     
     override func viewWillLayoutSubviews() {
@@ -49,6 +56,46 @@ class WifiConfigurationViewController: UIViewController {
         } else {
             liveChatConstraint.constant = -125
         }
+    }
+    
+    func queryGuestWifi() {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        HuaweiHelper.shared.getGuestWifiInfo { info in
+            hud.hide(animated: true)
+            if info.enabled {
+                self.remainingTime = info.remainSec
+                if info.duration == 0 {
+                    self.guestWifiStatus.text = "ON"
+                } else {
+                    self.guestWifiStatus.text = "ON (\(self.secondsToHoursMinutesSeconds(seconds: self.remainingTime)))"
+                    self.timerCount()
+                }
+                self.guestWifiStatus.textColor = #colorLiteral(red: 0.07450980392, green: 0.8470588235, blue: 0.1058823529, alpha: 1)
+            } else {
+                self.guestWifiStatus.text = "OFF"
+                self.guestWifiStatus.textColor = #colorLiteral(red: 0.8980392157, green: 0.02745098039, blue: 0.02745098039, alpha: 1)
+            }
+        } error: { _ in
+            hud.hide(animated: true)
+        }
+    }
+    
+    func timerCount() {
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            if self.remainingTime > 0 {
+                self.remainingTime -= 1
+            } else {
+                self.timer?.invalidate()
+                self.guestWifiStatus.text = "OFF"
+                self.guestWifiStatus.textColor = #colorLiteral(red: 0.8980392157, green: 0.02745098039, blue: 0.02745098039, alpha: 1)
+            }
+            self.guestWifiStatus.text = "ON (\(self.secondsToHoursMinutesSeconds(seconds: self.remainingTime)))"
+        }
+    }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int32) -> (String) {
+        "\(String(format: "%02d", Int(seconds / 3_600 / 24))):\(String(format: "%02d", (seconds / 3_600) % 24)):\(String(format: "%02d", (seconds % 3_600) / 60)):\(String(format: "%02d", seconds % 60))"
     }
     
     @IBAction func actConnectedWifi(_ sender: Any) {
@@ -61,6 +108,12 @@ class WifiConfigurationViewController: UIViewController {
     @IBAction func actWifiSettings(_ sender: Any) {
         if let wifiSettingsVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiSettingsViewController") as? WifiSettingsViewController {
             self.navigationController?.pushViewController(wifiSettingsVC, animated: true)
+        }
+    }
+    
+    @IBAction func actGuestWifi(_ sender: Any) {
+        if let vc = UIStoryboard(name: TimeSelfCareStoryboard.guestwifi.filename, bundle: nil).instantiateViewController(withIdentifier: "GuestWifiViewController") as? GuestWifiViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

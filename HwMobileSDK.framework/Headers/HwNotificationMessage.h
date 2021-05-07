@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *errorCode;
 /** 错误信息 */
 @property (nonatomic, copy)NSString *errorMessage;
+/** 失效状态：近端true，远端false */
+@property (nonatomic, assign)BOOL isLocalInvalid;
 @end
 
 NS_ASSUME_NONNULL_END

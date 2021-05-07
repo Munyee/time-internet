@@ -55,6 +55,8 @@
 		9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21C0E025DE45AF008B3824 /* PCProfileViewController.swift */; };
 		9E21C0E425DE9EA3008B3824 /* BlockWebsiteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E21C0E325DE9EA3008B3824 /* BlockWebsiteView.xib */; };
 		9E21C0E625DE9EB6008B3824 /* BlockWebsiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */; };
+		9E2C94392644C376002B5049 /* Guestwifi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E2C94382644C376002B5049 /* Guestwifi.storyboard */; };
+		9E2C943B2644C39A002B5049 /* GuestWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C943A2644C39A002B5049 /* GuestWifiViewController.swift */; };
 		9E36BB4125E3569D00E5575F /* PCTemplateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4025E3569D00E5575F /* PCTemplateListViewController.swift */; };
 		9E36BB4425E356F500E5575F /* PCTemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4325E356F500E5575F /* PCTemplateTableViewCell.swift */; };
 		9E36BB4925E3EF4700E5575F /* PCDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */; };
@@ -367,6 +369,8 @@
 		9E21C0E025DE45AF008B3824 /* PCProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCProfileViewController.swift; sourceTree = "<group>"; };
 		9E21C0E325DE9EA3008B3824 /* BlockWebsiteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockWebsiteView.xib; sourceTree = "<group>"; };
 		9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockWebsiteView.swift; sourceTree = "<group>"; };
+		9E2C94382644C376002B5049 /* Guestwifi.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Guestwifi.storyboard; sourceTree = "<group>"; };
+		9E2C943A2644C39A002B5049 /* GuestWifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestWifiViewController.swift; sourceTree = "<group>"; };
 		9E36BB4025E3569D00E5575F /* PCTemplateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCTemplateListViewController.swift; sourceTree = "<group>"; };
 		9E36BB4325E356F500E5575F /* PCTemplateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCTemplateTableViewCell.swift; sourceTree = "<group>"; };
 		9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCDeviceTableViewCell.swift; sourceTree = "<group>"; };
@@ -645,6 +649,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9E2C94372644C366002B5049 /* GuestWifi */,
 				9EE460D8260043F70040D8CE /* DeviceInstallation */,
 				9EFC438025EE127F009AF8C2 /* WifiConfiguration */,
 				9E5437ED25E8E16400195623 /* BindGateway */,
@@ -936,6 +941,15 @@
 				9E36BB5B25E5430000E5575F /* PeriodView.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		9E2C94372644C366002B5049 /* GuestWifi */ = {
+			isa = PBXGroup;
+			children = (
+				9E2C94382644C376002B5049 /* Guestwifi.storyboard */,
+				9E2C943A2644C39A002B5049 /* GuestWifiViewController.swift */,
+			);
+			path = GuestWifi;
 			sourceTree = "<group>";
 		};
 		9E36BB4225E356D500E5575F /* Cell */ = {
@@ -1597,6 +1611,7 @@
 				E22050E61FCD4EE4004D5B10 /* DIN.plist in Resources */,
 				E23844B2210EDEDE00EB6E40 /* TimeImagePickerCell.xib in Resources */,
 				0A8E01F61FA9B50B00CA27A9 /* Launch.storyboard in Resources */,
+				9E2C94392644C376002B5049 /* Guestwifi.storyboard in Resources */,
 				E22D054720BBE40300C38B54 /* GoodConnection.json in Resources */,
 				9E5437EF25E8E17E00195623 /* Bindgateway.storyboard in Resources */,
 			);
@@ -1952,6 +1967,7 @@
 				E2AD69DC20AD1845001D104E /* ChangeSSIDViewController.swift in Sources */,
 				E274AD6B210711F700E62A42 /* TicketDetailViewController.swift in Sources */,
 				E203036423617FE500F27028 /* main.swift in Sources */,
+				9E2C943B2644C39A002B5049 /* GuestWifiViewController.swift in Sources */,
 				9E8FC9BB25357255008936D2 /* ShareViewController.swift in Sources */,
 				E274AD68210711F700E62A42 /* LeftConversationCell.swift in Sources */,
 				5A478FFE1FA972080074B5D4 /* AppDelegate.swift in Sources */,

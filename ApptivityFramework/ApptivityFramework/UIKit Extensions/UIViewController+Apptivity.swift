@@ -198,6 +198,18 @@ public extension UIViewController {
         return image!
     }
 
+    
+    public func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     @IBAction public func shareScreenshot(_ sender: Any) {
         let activityController = UIActivityViewController(activityItems: [self.takeScreenshot()], applicationActivities: nil)
         self.present(activityController, animated: true, completion: nil)

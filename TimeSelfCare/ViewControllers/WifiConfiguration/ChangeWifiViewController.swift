@@ -54,24 +54,24 @@ class ChangeWifiViewController: TimeBaseViewController {
                         HuaweiHelper.shared.setGatewayNickname(deviceId: oldGateway, gatewayName: self.ssidName, completion: { _ in
                             self.delegate?.changeSuccess()
                             self.dismissVC()
-                        }) { _ in
+                        }, error: { _ in
                             self.delegate?.changeSuccess()
                             self.dismissVC()
-                        }
+                        })
                     } else {
                         HuaweiHelper.shared.replaceGateway(oldDeviceMac: oldGateway, deviceMac: deviceMac, completion: { replaceGateway in
                             AccountController.shared.gatewayDevId = replaceGateway.deviceId
                             HuaweiHelper.shared.setGatewayNickname(deviceId: replaceGateway.deviceId, gatewayName: self.ssidName, completion: { _ in
                                 self.delegate?.changeSuccess()
                                 self.dismissVC()
-                            }) { _ in
+                            }, error: { _ in
                                 self.delegate?.changeSuccess()
                                 self.dismissVC()
-                            }
-                        }) { _ in
+                            })
+                        }, error: { _ in
                             self.failed()
                             hud.hide(animated: true)
-                        }
+                        })
                     }
                 } else {
                     self.gateway = nil

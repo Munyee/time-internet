@@ -511,6 +511,22 @@ public extension HuaweiHelper {
             service.getGuestWifiInfo(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
         }
     }
+    
+    func setGuestWifiInfo(guestWifiInfo: HwGuestWifiInfo, completion: @escaping(_ result: HwSetGuestWifiInfoResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwSetGuestWifiInfoResult {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.setGuestWifiInfo(AccountController.shared.gatewayDevId ?? "", with: guestWifiInfo, with: callBackAdapter)
+        }
+    }
 
     func getWifiTimer(completion: @escaping(_ result: HwWifiTimer) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()

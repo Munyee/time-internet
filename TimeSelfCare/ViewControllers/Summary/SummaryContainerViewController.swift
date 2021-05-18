@@ -17,6 +17,8 @@ class SummaryContainerViewController: TimeBaseViewController {
     
     private var pages: [Page] = []
     
+    private var showGuestWifi = false
+    
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var pageTitleLabel: UILabel!
@@ -25,8 +27,8 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var profileFullNameLabel: UILabel!
     @IBOutlet private weak var floatingActionButton: UIButton!
     @IBOutlet private weak var activityButton: UIButton!
-    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
-    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var liveChatView: ExpandableLiveChatView!
+    @IBOutlet private weak var liveChatConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +40,12 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.floatingActionButton.layer.shadowOpacity = 0.8
         self.floatingActionButton.layer.shadowRadius = 4
         
-        didUpdatePage(with: 0)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleGuestWifiDidNotify), name: NSNotification.Name.GuestWifiDidNotify, object: nil)
+        
+        didUpdatePage(with: 0)
         
         self.updatePages()
     }
@@ -77,6 +80,11 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.updatePages()
     }
     
+    @objc
+    private func handleGuestWifiDidNotify() {
+        self.showGuestWifi = true
+    }
+    
     private func updatePages() {
         self.pages = [.accountSummary, .addOnSummary]
         
@@ -94,6 +102,7 @@ class SummaryContainerViewController: TimeBaseViewController {
         guard
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
             else {
+            updatePages()
                 return
         }
         
@@ -157,6 +166,15 @@ class SummaryContainerViewController: TimeBaseViewController {
                 if let authCode = result["authcode"] as? String {
                     print(authCode)
                     HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
+                        if self.showGuestWifi {
+                            let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.guestwifi.filename, bundle: nil)
+
+                            guard let vc = storyboard.instantiateViewController(withIdentifier: "GuestWifiViewController") as? GuestWifiViewController else {
+                                return
+                            }
+                            self.presentNavigation(vc, animated: true)
+                            self.showGuestWifi = false
+                        }
                         self.checkIsKick()
                     }, error: { _ in
 

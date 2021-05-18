@@ -34,6 +34,7 @@ public class Activity: JsonRecord {
         case voicePlan = "Voice Plan"
         case huae = "HOOK UP & EARN"
         case reDirectMsg = "Redirect Msg"
+        case guestWifi = "Guest Wifi"
     }
 
     public var id: Int
@@ -52,7 +53,8 @@ public class Activity: JsonRecord {
              .billing,
              .addOns,
              .huae,
-             .reDirectMsg:
+             .reDirectMsg,
+             .guestWifi:
            return true
         default:
             return false

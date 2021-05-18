@@ -13,6 +13,10 @@ import UserNotifications
 import FirebaseRemoteConfig
 import FirebaseCrashlytics
 
+public extension NSNotification.Name {
+    static let GuestWifiDidNotify: NSNotification.Name = NSNotification.Name(rawValue: "GuestWifiDidNotify")
+}
+
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
 internal let dontAskAgainFlag: String = "dontAskAgain"
 
@@ -429,6 +433,9 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 currentViewController.presentNavigation(addOnVC, animated: true)
                 completionHandler()
             }
+        case .guestWifi:
+            NotificationCenter.default.post(name: NSNotification.Name.GuestWifiDidNotify, object: nil)
+            completionHandler()
         default:
             openActivity()
             completionHandler()

@@ -26,7 +26,7 @@ class WifiConfigurationViewController: UIViewController {
         super.viewDidLoad()
         self.liveChatView.isHidden = false
         
-        self.title = NSLocalizedString("PARENTAL CONTROLS", comment: "")
+        self.title = NSLocalizedString("WIFI CONFIGURATION", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
         
         familyName.text = gateway?.gatewayNickname
@@ -35,7 +35,6 @@ class WifiConfigurationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.liveChatView.isHidden = true
-        timer?.invalidate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +45,11 @@ class WifiConfigurationViewController: UIViewController {
                 self.gateway = gateways.first
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        timer?.invalidate()
         queryGuestWifi()
     }
     

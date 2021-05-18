@@ -20,6 +20,8 @@ class GuestWifiViewController: UIViewController {
     @IBOutlet private weak var username: UILabel!
     @IBOutlet private weak var password: UILabel!
     @IBOutlet private weak var buttonLabel: UILabel!
+    @IBOutlet private weak var connectedDevicesLabel: UILabel!
+    @IBOutlet private weak var connectedDeviceStackView: UIStackView!
     
     var guestInfo: HwGuestWifiInfo!
     
@@ -42,8 +44,17 @@ class GuestWifiViewController: UIViewController {
     
     @objc
     func popBack() {
-        self.navigationController?.popViewController(animated: true)
-        self.dismissVC()
+        if let viewControllers = self.navigationController?.viewControllers {
+            if viewControllers.contains(where: {
+                $0 is WifiConfigurationViewController
+            }) {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                self.dismissVC()
+            }
+        } else {
+            self.dismissVC()
+        }
     }
     
     func queryGuestWifi() {
@@ -115,8 +126,50 @@ class GuestWifiViewController: UIViewController {
                 let center = UNUserNotificationCenter.current()
                 center.removeAllPendingNotificationRequests()
             }
+            
+            self.queryLanDevices()
         } error: { _ in
             hud.hide(animated: true)
+        }
+    }
+    
+    func queryLanDevices() {
+        
+        self.connectedDevicesLabel.text = "Connected devices (0)"
+        
+        for view in self.connectedDeviceStackView.subviews {
+            self.connectedDeviceStackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
+        }
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        
+        var arrDevice: [HwLanDevice] = []
+        HuaweiHelper.shared.queryLanDeviceListEx { devices in
+            arrDevice = devices.filter { $0.connectInterface == "SSID\(self.guestInfo.ssidIndex)" && $0.onLine }
+
+            let arrMac = arrDevice.map { $0.mac }
+            if let macList = arrMac as? [String] {
+                HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: macList) { deviceTypeInfo in
+                    hud.hide(animated: true)
+
+                    self.connectedDevicesLabel.text = "Connected devices (\(arrDevice.count))"
+                    
+                    for device in arrDevice {
+                        let deviceType = deviceTypeInfo.first(where: { $0.mac == device.mac })
+
+                        if let connectedDevice = ConnectedDevice(device: device, deviceTypeInfo: deviceType ?? HwDeviceTypeInfo()) {
+                            self.connectedDeviceStackView.addArrangedSubview(connectedDevice)
+                        }
+                    }
+                } error: { _ in
+                    hud.hide(animated: true)
+                }
+
+            } else {
+                hud.hide(animated: true)
+            }
         }
     }
     

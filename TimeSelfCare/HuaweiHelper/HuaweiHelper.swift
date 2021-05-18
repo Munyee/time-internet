@@ -432,6 +432,22 @@ public extension HuaweiHelper {
         }
     }
     
+    func queryLanDeviceManufacturingInfoList(macList: [String], completion: @escaping(_ result: [HwDeviceTypeInfo] ) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? [HwDeviceTypeInfo] {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.queryLanDeviceManufacturingInfoList(AccountController.shared.gatewayDevId ?? "", macList: macList, callback: callBackAdapter)
+        }
+    }
+    
     func setGatewayNickname(deviceId: String, gatewayName: String, completion: @escaping(_ result: HwSetGatewayNicknameResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in

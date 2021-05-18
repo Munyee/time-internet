@@ -57,6 +57,8 @@
 		9E21C0E625DE9EB6008B3824 /* BlockWebsiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */; };
 		9E2C94392644C376002B5049 /* Guestwifi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E2C94382644C376002B5049 /* Guestwifi.storyboard */; };
 		9E2C943B2644C39A002B5049 /* GuestWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2C943A2644C39A002B5049 /* GuestWifiViewController.swift */; };
+		9E3544EB265360640069781F /* ConnectedDevice.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E3544EA265360640069781F /* ConnectedDevice.xib */; };
+		9E3544ED265360730069781F /* ConnectedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3544EC265360730069781F /* ConnectedDevice.swift */; };
 		9E36BB4125E3569D00E5575F /* PCTemplateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4025E3569D00E5575F /* PCTemplateListViewController.swift */; };
 		9E36BB4425E356F500E5575F /* PCTemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4325E356F500E5575F /* PCTemplateTableViewCell.swift */; };
 		9E36BB4925E3EF4700E5575F /* PCDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */; };
@@ -373,6 +375,8 @@
 		9E21C0E525DE9EB6008B3824 /* BlockWebsiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockWebsiteView.swift; sourceTree = "<group>"; };
 		9E2C94382644C376002B5049 /* Guestwifi.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Guestwifi.storyboard; sourceTree = "<group>"; };
 		9E2C943A2644C39A002B5049 /* GuestWifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestWifiViewController.swift; sourceTree = "<group>"; };
+		9E3544EA265360640069781F /* ConnectedDevice.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectedDevice.xib; sourceTree = "<group>"; };
+		9E3544EC265360730069781F /* ConnectedDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedDevice.swift; sourceTree = "<group>"; };
 		9E36BB4025E3569D00E5575F /* PCTemplateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCTemplateListViewController.swift; sourceTree = "<group>"; };
 		9E36BB4325E356F500E5575F /* PCTemplateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCTemplateTableViewCell.swift; sourceTree = "<group>"; };
 		9E36BB4825E3EF4600E5575F /* PCDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCDeviceTableViewCell.swift; sourceTree = "<group>"; };
@@ -950,12 +954,22 @@
 		9E2C94372644C366002B5049 /* GuestWifi */ = {
 			isa = PBXGroup;
 			children = (
+				9E3544E9265360350069781F /* CustomViews */,
 				9E2C94382644C376002B5049 /* Guestwifi.storyboard */,
 				9E2C943A2644C39A002B5049 /* GuestWifiViewController.swift */,
 				9EA2D0B22649028E0035CA49 /* EditGuestWifiViewController.swift */,
 				9EA2D0B4264940D60035CA49 /* DurationViewController.swift */,
 			);
 			path = GuestWifi;
+			sourceTree = "<group>";
+		};
+		9E3544E9265360350069781F /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				9E3544EA265360640069781F /* ConnectedDevice.xib */,
+				9E3544EC265360730069781F /* ConnectedDevice.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		9E36BB4225E356D500E5575F /* Cell */ = {
@@ -1596,6 +1610,7 @@
 				9E36BB5A25E542D600E5575F /* PeriodView.xib in Resources */,
 				9E9EB76424D797FE00D0D342 /* Diagnostics.storyboard in Resources */,
 				E2FB110D22CC9492000FED93 /* Reward.storyboard in Resources */,
+				9E3544EB265360640069781F /* ConnectedDevice.xib in Resources */,
 				E2A8E8441FCE3D6E00EA5DF2 /* Profile.storyboard in Resources */,
 				E2E84FED1FCEB4FB0014CEAA /* DIN Alternate Regular.otf in Resources */,
 				E2626D5020A923F700891953 /* Activity.storyboard in Resources */,
@@ -1995,6 +2010,7 @@
 				9E36BB4F25E4D9C800E5575F /* DeviceView.swift in Sources */,
 				0A8E01FB1FA9B50B00CA27A9 /* LoginViewController.swift in Sources */,
 				E27DCC981FE0E60300A82769 /* UIView+.swift in Sources */,
+				9E3544ED265360730069781F /* ConnectedDevice.swift in Sources */,
 				9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */,
 				9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */,
 				9E36BB5825E539BB00E5575F /* SelectPeriod.swift in Sources */,

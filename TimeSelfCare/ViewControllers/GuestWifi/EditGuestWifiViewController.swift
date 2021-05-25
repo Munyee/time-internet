@@ -138,6 +138,7 @@ class EditGuestWifiViewController: UIViewController {
         guestWifi.ssid = wifiName.text
         guestWifi.duration = wifiDuration ?? 0
         guestWifi.serviceEnable = true
+        guestWifi.radioType = HwRadioType(rawValue: 3)
         if passwordSwitch.isOn {
             guestWifi.encrypt = HwGuestWifiInfoEncryptMode.mixdWPA2WPAPSK
             guestWifi.password = ssidPassword.text

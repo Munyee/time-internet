@@ -289,6 +289,21 @@ NS_ASSUME_NONNULL_BEGIN
               withCallback:(id<HwCallback>)callback;
 
 /**
+*
+*
+*  @brief 查询指定AP信息(Query the AP information.)
+*
+*  @param deviceId 网关的设备ID(gateway device ID)
+*  @param callback callback
+*
+*  @since 3.0
+*/
+- (void)getSpecifiedAPList:(NSString *)deviceId
+           isNeedRadoiInfo:(BOOL)isNeedRadoiInfo
+             withApMacList:(NSArray *)apMacList
+              withCallback:(id<HwCallback>)callback;
+
+/**
  *
  *
  *  @brief 设置同步WiFi开关到外置AP(Configure to synchronize Wi-Fi switch setting to an external AP.)

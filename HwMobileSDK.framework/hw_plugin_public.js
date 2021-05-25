@@ -215,6 +215,169 @@ var _getFrameName = function(){
     return frameName;
 }
 
+window.AppJsBridge.service.acceptanceService = {
+    saveTestReport: function (data) {
+        var callback = regesterCallback(data)
+        _init();
+        _saveTestReport(data, callback.success, callback.error);
+    },
+    getTestReportList: function (data) {
+        var callback = regesterCallback(data)
+        _init();
+        _getTestReportList(data, callback.success, callback.error);
+    },
+    getTestReportDetail: function (data) {
+        var callback = regesterCallback(data)
+        _init();
+        _getTestReportDetail(data, callback.success, callback.error);
+    },
+    deleteTestReport: function (data) {
+        var callback = regesterCallback(data)
+        _init();
+        _deleteTestReport(data, callback.success, callback.error);
+    }
+}
+
+var _saveTestReport = function (data, success, error) {
+    if (isAndroid) {
+        // android请求。
+        var frameName = "";
+        try {
+            if (getUrlParams(location.href).frameName) {
+                frameName = decodeURIComponent(getUrlParams(location.href).frameName)
+            } else {
+                frameName = "";
+            }
+
+        } catch (e) {
+            frameName = "";
+        }
+        _currentBridge.saveTestReport(JSON.stringify(data.record), frameName, success, error);
+    }
+    else if (isIOS) {
+        // IOS请求。
+        var _successCallback = function (jsbReturnObjString) {
+            // 由于JS框架不能传多个回调，所以这里再来重新划分
+            _iOSResponseDispatch("JSON", jsbReturnObjString, success, error);
+        };
+
+        _failCallback = error;
+        // IOS请求。
+        // 调用原生。
+        var param = {};
+        param.data = data.record;
+        param.request = "acceptanceService.saveTestReport";
+        initBridge(function () {
+            _currentBridge.callHandler(objcRegisterHandlerName, param, _successCallback);
+        });
+    }
+}
+
+var _getTestReportList = function (data, success, error) {
+    if (isAndroid) {
+        // android请求。
+        var frameName = "";
+        try {
+            if (getUrlParams(location.href).frameName) {
+                frameName = decodeURIComponent(getUrlParams(location.href).frameName)
+            } else {
+                frameName = "";
+            }
+
+        } catch (e) {
+            frameName = "";
+        }
+        _currentBridge.getTestReportList(JSON.stringify(data.filter), frameName, success, error);
+    }
+    else if (isIOS) {
+        // IOS请求。
+        var _successCallback = function (jsbReturnObjString) {
+            // 由于JS框架不能传多个回调，所以这里再来重新划分
+            _iOSResponseDispatch("JSON", jsbReturnObjString, success, error);
+        };
+
+        _failCallback = error;
+        // IOS请求。
+        // 调用原生。
+        var param = {};
+        param.data = data.filter;
+        param.request = "acceptanceService.getTestReportList";
+        initBridge(function () {
+            _currentBridge.callHandler(objcRegisterHandlerName, param, _successCallback);
+        });
+    }
+}
+
+var _getTestReportDetail = function (data, success, error) {
+    if (isAndroid) {
+        // android请求。
+        var frameName = "";
+        try {
+            if (getUrlParams(location.href).frameName) {
+                frameName = decodeURIComponent(getUrlParams(location.href).frameName)
+            } else {
+                frameName = "";
+            }
+
+        } catch (e) {
+            frameName = "";
+        }
+        _currentBridge.getTestReportDetail(JSON.stringify(data.recordId), frameName, success, error);
+    }
+    else if (isIOS) {
+        // IOS请求。
+        var _successCallback = function (jsbReturnObjString) {
+            // 由于JS框架不能传多个回调，所以这里再来重新划分
+            _iOSResponseDispatch("JSON", jsbReturnObjString, success, error);
+        };
+
+        _failCallback = error;
+        // IOS请求。
+        // 调用原生。
+        var param = {};
+        param.data = data.recordId;
+        param.request = "acceptanceService.getTestReportDetail";
+        initBridge(function () {
+            _currentBridge.callHandler(objcRegisterHandlerName, param, _successCallback);
+        });
+    }
+}
+
+var _deleteTestReport = function (data, success, error) {
+    if (isAndroid) {
+        // android请求。
+        var frameName = "";
+        try {
+            if (getUrlParams(location.href).frameName) {
+                frameName = decodeURIComponent(getUrlParams(location.href).frameName)
+            } else {
+                frameName = "";
+            }
+
+        } catch (e) {
+            frameName = "";
+        }
+        _currentBridge.deleteTestReport(JSON.stringify(data.deleteIds), frameName, success, error);
+    }
+    else if (isIOS) {
+        // IOS请求。
+        var _successCallback = function (jsbReturnObjString) {
+            // 由于JS框架不能传多个回调，所以这里再来重新划分
+            _iOSResponseDispatch("JSON", jsbReturnObjString, success, error);
+        };
+
+        _failCallback = error;
+        // IOS请求。
+        // 调用原生。
+        var param = {};
+        param.data = data.deleteIds;
+        param.request = "acceptanceService.deleteTestReport";
+        initBridge(function () {
+            _currentBridge.callHandler(objcRegisterHandlerName, param, _successCallback);
+        });
+    }
+}
+
 window.AppJsBridge.service.deviceFeatureService = {
    getFeatureList:function(data){
         var callback = regesterCallback(data)
@@ -229,6 +392,11 @@ window.AppJsBridge.service.localeService = {
         var callback = regesterCallback(data)
         _init();
         _getResource(window.location.href,callback.success);
+    },
+    isBatelcoVersion:function(data){
+        var callback = regesterCallback(data)
+        _init();
+        _isBatelcoVersion(window.location.href,callback.success);
     }
 }
 
@@ -3495,6 +3663,25 @@ var _getResource = function(url,success){
     }
 }
 
+var _isBatelcoVersion = function(url,success){
+    if(isAndroid){
+        _currentBridge.isBatelcoVersion(success);
+    }
+    else if(isIOS){
+        var param = {};
+        param.request = "isBatelcoVersion";
+        
+        initBridge(function(){
+            _currentBridge.callHandler(objcRegisterHandlerName, param,eval(success));
+        })
+        
+    }
+    else
+    {
+        _currentBridge.getResource(url,eval(success));
+    }
+}
+
 var _showTitleBar = function(){
     if(isAndroid){
         _currentBridge.showTitleBar();
@@ -4316,6 +4503,16 @@ window.AppJsBridge.service.accessInsightService = {
          }
         _getQualityStatistics(qualityStatisticsFilter,callback.success,callback.error);
      },
+     getOntPowerData : function(data){
+        var callback = regesterCallback(data);
+        _init();
+       var filter = data.filter;
+        if (isIOS) {
+            // IOS请求。
+            callback = data;
+        }
+       _getOntPowerData(filter,callback.success,callback.error);
+    },
 }
 window.AppJsBridge.service.gatewayService = {
     queryWifiDeviceList : function(data){
@@ -4384,6 +4581,28 @@ window.AppJsBridge.service.gatewayService = {
             callback = data;
         }
         _getWifiInfo(data.ssidIndex,callback.success,callback.error);
+
+    },
+    getWiFiInfoAll : function(data){
+        var callback = regesterCallback(data);
+        _init();
+
+        if (isIOS) {
+            // IOS请求。
+            callback = data;
+        }
+        _getWiFiInfoAll(callback.success,callback.error);
+
+    },
+    getUplinkInfo : function(data){
+        var callback = regesterCallback(data);
+        _init();
+
+        if (isIOS) {
+            // IOS请求。
+            callback = data;
+        }
+        _getUplinkInfo(callback.success,callback.error);
 
     },
     setWifiInfo : function(data){
@@ -5763,6 +5982,80 @@ var _getWifiInfo = function(ssidIndex, success, error)
                    _currentBridge.callHandler(objcRegisterHandlerName, param, _successCallback);
                    });
         
+    } else {
+    }
+}
+
+var _getWiFiInfoAll = function(success, error)
+{
+    if (isAndroid) {
+        // android请求。
+        var frameName = "";
+        try {
+            if(getUrlParams(location.href).frameName){
+                frameName = decodeURIComponent(getUrlParams(location.href).frameName)
+            }else{
+                frameName = "";
+            }
+
+        } catch (e) {
+            frameName = "";
+        }
+        _currentBridge.getWiFiInfoAll(frameName,success, error);
+
+    } else if (isIOS) {
+        // IOS请求。
+        _successCallback = function(jsbReturnObjString) {
+            // 由于JS框架不能传多个回调，所以这里再来重新划分
+            _iOSResponseDispatch("JSON", jsbReturnObjString, success, error);
+        };
+
+        _failCallback = error;
+        // IOS请求。
+        // 调用原生。
+        var param = {};
+        param.request = "gatewayService.getWiFiInfoAll";
+        initBridge(function(){
+                   _currentBridge.callHandler(objcRegisterHandlerName, param, _successCallback);
+                   });
+
+    } else {
+    }
+}
+
+var _getUplinkInfo = function(success, error)
+{
+    if (isAndroid) {
+        // android请求。
+        var frameName = "";
+        try {
+            if(getUrlParams(location.href).frameName){
+                frameName = decodeURIComponent(getUrlParams(location.href).frameName)
+            }else{
+                frameName = "";
+            }
+
+        } catch (e) {
+            frameName = "";
+        }
+        _currentBridge.getUplinkInfo(frameName,success, error);
+
+    } else if (isIOS) {
+        // IOS请求。
+        _successCallback = function(jsbReturnObjString) {
+            // 由于JS框架不能传多个回调，所以这里再来重新划分
+            _iOSResponseDispatch("JSON", jsbReturnObjString, success, error);
+        };
+
+        _failCallback = error;
+        // IOS请求。
+        // 调用原生。
+        var param = {};
+        param.request = "gatewayService.getUplinkInfo";
+        initBridge(function(){
+                   _currentBridge.callHandler(objcRegisterHandlerName, param, _successCallback);
+                   });
+
     } else {
     }
 }
@@ -8581,6 +8874,38 @@ var _getQualityStatistics = function(qualityStatisticsFilter,success,error){
         var param = {};
         param.request = "accessInsightService.getUserQualityStatistics";
         param.data = qualityStatisticsFilter;
+
+        initBridge(function(){
+                   _currentBridge.callHandler(objcRegisterHandlerName, param, successCallbackTem);
+                   });
+    }
+}
+
+var _getOntPowerData = function(filter,success,error){
+    if (isAndroid) {
+        // android请求。
+        var frameName = "";
+        try {
+            if(getUrlParams(location.href).frameName){
+                frameName = decodeURIComponent(getUrlParams(location.href).frameName)
+            }else{
+                frameName = "";
+            }
+
+        } catch (e) {
+            frameName = "";
+        }
+        _currentBridge.getOntPowerData(JSON.stringify(filter),frameName,success, error);
+    } else if (isIOS) {
+        var successCallbackTem = function(jsbReturnObjString) {
+            _iOSResponseDispatch("JSON", jsbReturnObjString, success, error);
+        };
+
+        _failCallback = error;
+
+        var param = {};
+        param.request = "accessInsightService.getOntPowerData";
+        param.data = filter;
 
         initBridge(function(){
                    _currentBridge.callHandler(objcRegisterHandlerName, param, successCallbackTem);

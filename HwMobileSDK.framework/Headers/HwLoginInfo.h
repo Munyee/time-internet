@@ -3,6 +3,17 @@
 
 @class HwGatewayInfo;
 
+@interface HwMultiFactor : NSObject
+
+/** 多因素开关 */
+@property (nonatomic, copy) NSString *enable;
+/** 多因素类型 SMS */
+@property (nonatomic, copy) NSString *type;
+/** 多因素类型对应的取值 */
+@property (nonatomic, copy) NSString *value;
+
+@end
+
 /**
  *  
  *
@@ -32,4 +43,7 @@
 
 /** 备机ip*/
 @property(nonatomic, copy) NSString *backupServerIp;
+
+/** 多因素认证*/
+@property(nonatomic, strong) HwMultiFactor *multiFactorAuthentication;
 @end

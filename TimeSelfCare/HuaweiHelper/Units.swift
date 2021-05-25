@@ -13,11 +13,11 @@ public struct Units {
     public let kilobytes: Int64
     
     public var megabytes: Double {
-        return Double(kilobytes / 1_024)
+        Double(kilobytes / 1_024)
     }
     
     public var gigabytes: Double {
-        return megabytes / 1_024
+        megabytes / 1_024
     }
     
     public init(kBytes: Int64) {

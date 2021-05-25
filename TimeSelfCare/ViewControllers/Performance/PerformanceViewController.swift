@@ -46,13 +46,12 @@ class PerformanceViewController: BaseViewController {
         self.nceFeatureView.isHidden = true
         speedTestView.isHidden = true
         nceView.isHidden = true
+        print(Units(kBytes: Int64(LinkRate.getRouterLinkSpeed() / 1_024)).getReadableUnit())
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.checkConnectionStatus()
-        
-        
         timer?.invalidate()
     }
     

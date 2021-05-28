@@ -432,10 +432,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         case .launchExternalApp:
             if activity.click == "WebBrowser" {
                 if let urlString = activity.url {
-                    let timeWebView = TIMEWebViewController()
-                    let url = URL(string: urlString)
-                    timeWebView.url = url
-                    currentViewController.presentNavigation(timeWebView, animated: true)
+//                    let timeWebView = TIMEWebViewController()
+//                    let url = URL(string: urlString)
+//                    timeWebView.url = url
+//                    currentViewController.presentNavigation(timeWebView, animated: true)
+                    openURL(withURLString: urlString)
                     completionHandler()
                 }
             }

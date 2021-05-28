@@ -39,6 +39,7 @@ public class Activity: JsonRecord {
 
     public var id: Int
     public var type: ActivityType
+    public var title: String?
     public var line1: String?
     public var line2: String?
     public var status: String?
@@ -78,6 +79,7 @@ public class Activity: JsonRecord {
 
         self.id = Int(id)!
         self.type = activityType
+        self.title = json["title"] as? String
         self.line1 = json["line1"] as? String
         self.line2 = json["line2"] as? String
         self.status = json["status"] as? String

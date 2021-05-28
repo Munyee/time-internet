@@ -126,11 +126,12 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
         case .launchExternalApp:
             if activity.click == "WebBrowser" {
                 if let urlString = activity.url {
-                    let timeWebView = TIMEWebViewController()
-                    let urlString = urlString
-                    let url = URL(string: urlString)
-                    timeWebView.url = url
-                    self.navigationController?.pushViewController(timeWebView, animated: true)
+//                    let timeWebView = TIMEWebViewController()
+//                    let urlString = urlString
+//                    let url = URL(string: urlString)
+//                    timeWebView.url = url
+//                    self.navigationController?.pushViewController(timeWebView, animated: true)
+                    openURL(withURLString: urlString)
                 }
             }
         default:

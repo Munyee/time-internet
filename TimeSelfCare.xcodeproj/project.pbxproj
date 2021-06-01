@@ -80,6 +80,8 @@
 		9E59AF6325DE325A00FF427A /* Parentalcontrol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */; };
 		9E59AF6525DE32AE00FF427A /* PCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */; };
 		9E75EFF6265CE08600D811BD /* LinkRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E75EFF5265CE08600D811BD /* LinkRate.m */; };
+		9E8CE0852666103C005217EB /* SwiftyPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8CE0842666103C005217EB /* SwiftyPing.swift */; };
+		9E8CE087266621BE005217EB /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8CE086266621BE005217EB /* NetworkExtension.framework */; };
 		9E8FC9BA25357255008936D2 /* HowItWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9AE25357255008936D2 /* HowItWorkViewController.swift */; };
 		9E8FC9BB25357255008936D2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9AF25357255008936D2 /* ShareViewController.swift */; };
 		9E8FC9BC25357255008936D2 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9B125357255008936D2 /* BannerCollectionViewCell.swift */; };
@@ -393,6 +395,8 @@
 		9E5F789A25D40C0400C4D388 /* HwMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HwMobileSDK.framework; sourceTree = "<group>"; };
 		9E75EFF4265CE08500D811BD /* LinkRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkRate.h; sourceTree = "<group>"; };
 		9E75EFF5265CE08600D811BD /* LinkRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkRate.m; sourceTree = "<group>"; };
+		9E8CE0842666103C005217EB /* SwiftyPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPing.swift; sourceTree = "<group>"; };
+		9E8CE086266621BE005217EB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		9E8FC9AE25357255008936D2 /* HowItWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowItWorkViewController.swift; sourceTree = "<group>"; };
 		9E8FC9AF25357255008936D2 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		9E8FC9B125357255008936D2 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -605,6 +609,7 @@
 				E7405981203C439B5ACD9CE9 /* CoreMedia.framework in Frameworks */,
 				4D0A9757D0386117A572CDEA /* CoreVideo.framework in Frameworks */,
 				4D47E5CADA854258D4F72E40 /* Pods_TimeSelfCare.framework in Frameworks */,
+				9E8CE087266621BE005217EB /* NetworkExtension.framework in Frameworks */,
 				9E4AB95A25DFF97B00F1DEFE /* FunctionSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,6 +788,7 @@
 		363F2934D6C94723CE2B23CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E8CE086266621BE005217EB /* NetworkExtension.framework */,
 				9E38767725C028590015A514 /* Smartlook.framework */,
 				E25E9C5F20ECAAAC00CFB707 /* Photos.framework */,
 				EBBFC4B4383EEC1C068E0A9D /* BuddyBuildSDK.framework */,
@@ -968,6 +974,7 @@
 				9E41A39B260D7458000CECE7 /* DeviceInstallationHelper.swift */,
 				9E75EFF4265CE08500D811BD /* LinkRate.h */,
 				9E75EFF5265CE08600D811BD /* LinkRate.m */,
+				9E8CE0842666103C005217EB /* SwiftyPing.swift */,
 			);
 			path = HuaweiHelper;
 			sourceTree = "<group>";
@@ -1989,6 +1996,7 @@
 				9E8FC9BC25357255008936D2 /* BannerCollectionViewCell.swift in Sources */,
 				E294990420995E09006468D0 /* BillingInfoFormViewController.swift in Sources */,
 				E27CE9FA22CCB6BA00DD9340 /* RewardHeaderView.swift in Sources */,
+				9E8CE0852666103C005217EB /* SwiftyPing.swift in Sources */,
 				E22050E81FCD50E9004D5B10 /* UIFont+.swift in Sources */,
 				E2610F7B1FC5579900959D85 /* PaymentViewController.swift in Sources */,
 				E2B6C2CB1FB42A8500F65B05 /* SidebarNavigationController.swift in Sources */,

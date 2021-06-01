@@ -47,6 +47,13 @@ class PerformanceViewController: BaseViewController {
         speedTestView.isHidden = true
         nceView.isHidden = true
         print(Units(kBytes: Int64(LinkRate.getRouterLinkSpeed() / 1_024)).getReadableUnit())
+        print(HuaweiHelper.shared.getRSSISignal())
+        let pinger = try? SwiftyPing(host: "start.highfive.com", configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
+        pinger?.observer = { response in
+            let duration = response.duration * 1_000
+            print(duration)
+        }
+        try? pinger?.startPinging()
     }
     
     override func viewWillAppear(_ animated: Bool) {

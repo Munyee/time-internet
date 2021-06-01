@@ -595,4 +595,42 @@ public extension HuaweiHelper {
             service.setWifiHardwareSwitch(AccountController.shared.gatewayDevId ?? "", withRadioType: radioType, withEnableState: true, withCallBack: callBackAdapter)
         }
     }
+    
+    func getRSSISignal() -> Int {
+        if #available(iOS 13.0, *) {
+            if let statusBarManager = UIApplication.shared.keyWindow?.windowScene?.statusBarManager,
+               let localStatusBar = statusBarManager.value(forKey: "createLocalStatusBar") as? NSObject,
+               let statusBar = localStatusBar.value(forKey: "statusBar") as? NSObject,
+               let _statusBar = statusBar.value(forKey: "_statusBar") as? UIView,
+               let currentData = _statusBar.value(forKey: "currentData") as? NSObject,
+               let celluar = currentData.value(forKey: "wifiEntry") as? NSObject,
+               let signalStrength = celluar.value(forKey: "displayValue") as? Int {
+                return signalStrength
+            } else {
+                return -1
+            }
+        } else {
+            var signalStrength = -1
+            let application = UIApplication.shared
+            let statusBarView = application.value(forKey: "statusBar") as? UIView
+            let foregroundView = statusBarView!.value(forKey: "foregroundView") as? UIView
+            let foregroundViewSubviews = foregroundView!.subviews
+            var dataNetworkItemView: UIView!
+            for subview in foregroundViewSubviews {
+                if subview.isKind(of: NSClassFromString("UIStatusBarDataNetworkItemView")!) {
+                    dataNetworkItemView = subview
+                    break
+                } else {
+                    signalStrength = -1
+                }
+            }
+            signalStrength = (dataNetworkItemView.value(forKey: "wifiStrengthBars") as? Int)!
+            if signalStrength == -1 {
+                return -1
+            } else {
+                return signalStrength
+            }
+        }
+        return -1
+    }
 }

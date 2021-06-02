@@ -19,9 +19,19 @@
 @property (nonatomic, copy) NSString *stateOrProvinceName;
 /** 组织单位 */
 @property (nonatomic, copy) NSString *organizationalUnitName;
-/** 常用名称 */
-@property (nonatomic, copy) NSString *commonName;
 /** 电子邮件地址 */
 @property (nonatomic, copy) NSString *emailAddress;
+/** 颁发者 */
+@property (nonatomic, copy) NSString *commonName;
+/** 使用者 */
+@property (nonatomic, copy) NSString *subjectName;
+/** 过期时间 */
+@property (nonatomic, strong) NSDate *expiryDate;
+/** 生效时间 */
+@property (nonatomic, strong) NSDate *signDate;
+/** sha1 */
+@property (nonatomic, copy) NSString *sha1;
+/** 二进制流 */
+@property (nonatomic, strong) NSData *data;
 
 @end

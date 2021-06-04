@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qct-ec-vFD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qct-ec-vFD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -59,7 +60,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="aRg-J1-Z1y" firstAttribute="centerY" secondItem="Rkz-TL-LF1" secondAttribute="centerY" constant="-3" id="8Er-4u-Kp9"/>
                                                             <constraint firstItem="jzh-St-VHe" firstAttribute="top" secondItem="Rkz-TL-LF1" secondAttribute="top" constant="30" id="JWm-lE-Ha3"/>
@@ -100,7 +101,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="nuQ-Or-b5W" firstAttribute="centerY" secondItem="Aoj-lG-i9i" secondAttribute="centerY" constant="-3" id="16o-dj-LDv"/>
                                                             <constraint firstAttribute="trailing" secondItem="WqK-94-ubF" secondAttribute="trailing" id="DQ8-NE-lvz"/>
@@ -119,7 +120,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="15" leading="35" bottom="15" trailing="35"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="bXR-Pe-kU7" secondAttribute="bottom" id="9Mv-rP-7Zy"/>
                                             <constraint firstItem="bXR-Pe-kU7" firstAttribute="top" secondItem="BEn-cy-tGW" secondAttribute="top" id="AES-6j-WiV"/>
@@ -145,7 +146,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="fYq-6M-cc8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="lrL-ka-HLm" secondAttribute="bottom" constant="32" id="OIh-W0-gZ0"/>
                             <constraint firstItem="SrM-WS-R0H" firstAttribute="leading" secondItem="xgf-oI-Dnj" secondAttribute="leading" id="ZJq-tP-Bih"/>
@@ -154,7 +156,6 @@
                             <constraint firstAttribute="bottom" secondItem="SrM-WS-R0H" secondAttribute="bottom" id="nzr-y2-pFB"/>
                             <constraint firstItem="lrL-ka-HLm" firstAttribute="leading" secondItem="xgf-oI-Dnj" secondAttribute="leading" constant="-125" id="q0g-d6-Wzr"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="fYq-6M-cc8"/>
                     </view>
                     <connections>
                         <outlet property="familyName" destination="gFx-I9-4KL" id="rhC-65-vi3"/>
@@ -186,7 +187,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDS-ZU-Vle">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDS-ZU-Vle">
                                 <rect key="frame" x="36" y="147" width="342" height="50"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -201,7 +202,7 @@
                                     <action selector="actChangeNetwork:" destination="2IT-ad-u2f" eventType="touchUpInside" id="MHS-U6-GhR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-6u-JZn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-6u-JZn">
                                 <rect key="frame" x="140.5" y="237" width="133" height="29"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <state key="normal" title="Remove Wifi Network">
@@ -213,7 +214,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="u8L-Gl-ImO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Ye-rq-IMB" firstAttribute="top" secondItem="Vmv-BR-Jdg" secondAttribute="bottom" constant="10" id="1fi-7X-rYC"/>
                             <constraint firstItem="sDS-ZU-Vle" firstAttribute="top" secondItem="6Ye-rq-IMB" secondAttribute="bottom" constant="60" id="3h2-yS-4Us"/>
@@ -225,7 +227,6 @@
                             <constraint firstItem="sDS-ZU-Vle" firstAttribute="leading" secondItem="u8L-Gl-ImO" secondAttribute="leading" constant="36" id="oJU-Pg-Ujo"/>
                             <constraint firstItem="HV0-6u-JZn" firstAttribute="centerX" secondItem="sDS-ZU-Vle" secondAttribute="centerX" id="saV-Kh-dc0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="u8L-Gl-ImO"/>
                     </view>
                     <connections>
                         <outlet property="familyName" destination="6Ye-rq-IMB" id="dR1-fd-nVW"/>
@@ -247,10 +248,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxF-YF-hCe">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="595.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="739.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IuR-2s-XTK">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="595.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="739.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GtR-Uz-ueU" customClass="UIControl">
                                                         <rect key="frame" x="24" y="59" width="366" height="81"/>
@@ -275,7 +276,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="3LI-8J-9PJ" secondAttribute="trailing" constant="12" id="3Bp-NG-PkR"/>
                                                             <constraint firstItem="S56-VV-Nqf" firstAttribute="top" secondItem="GtR-Uz-ueU" secondAttribute="top" constant="30" id="IIU-rj-JPo"/>
@@ -291,24 +292,211 @@
                                                             <action selector="actChangeWifiName:" destination="X7z-3g-s63" eventType="touchUpInside" id="IeB-sw-dKr"/>
                                                         </connections>
                                                     </view>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-PZ-tOJ" customClass="UIControl">
-                                                        <rect key="frame" x="24" y="140" width="366" height="122"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aL9-gD-G0d" customClass="UIControl">
+                                                        <rect key="frame" x="24" y="140" width="366" height="129.5"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYq-gL-Tdr">
+                                                                <rect key="frame" x="0.0" y="128.5" width="366" height="1"/>
+                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="yOg-sO-WQH"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide WiFi network" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixq-ae-iss">
+                                                                <rect key="frame" x="12" y="30" width="283" height="20"/>
+                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will make your WiFi network undiscoverable to any device that is not connected to it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpv-YI-ch5">
+                                                                <rect key="frame" x="12" y="55" width="243" height="43.5"/>
+                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nfs-Na-637">
+                                                                <rect key="frame" x="305" y="30" width="51" height="31"/>
+                                                                <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <connections>
+                                                                    <action selector="actWifiHetwork:" destination="X7z-3g-s63" eventType="valueChanged" id="gAh-sU-Ws0"/>
+                                                                </connections>
+                                                            </switch>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="uYq-gL-Tdr" firstAttribute="leading" secondItem="aL9-gD-G0d" secondAttribute="leading" id="8U7-Kz-nn7"/>
+                                                            <constraint firstItem="nfs-Na-637" firstAttribute="top" secondItem="Ixq-ae-iss" secondAttribute="top" id="9rE-le-5ZQ"/>
+                                                            <constraint firstItem="nfs-Na-637" firstAttribute="leading" secondItem="xpv-YI-ch5" secondAttribute="trailing" constant="50" id="9vE-fp-2jg"/>
+                                                            <constraint firstItem="xpv-YI-ch5" firstAttribute="leading" secondItem="Ixq-ae-iss" secondAttribute="leading" id="D0W-Mn-q4b"/>
+                                                            <constraint firstItem="Ixq-ae-iss" firstAttribute="leading" secondItem="aL9-gD-G0d" secondAttribute="leading" constant="12" id="FCD-db-eR3"/>
+                                                            <constraint firstAttribute="trailing" secondItem="nfs-Na-637" secondAttribute="trailing" constant="12" id="FoU-66-pFE"/>
+                                                            <constraint firstItem="xpv-YI-ch5" firstAttribute="top" secondItem="Ixq-ae-iss" secondAttribute="bottom" constant="5" id="Lis-u9-QnG"/>
+                                                            <constraint firstItem="uYq-gL-Tdr" firstAttribute="top" secondItem="xpv-YI-ch5" secondAttribute="bottom" constant="30" id="W71-ct-Web"/>
+                                                            <constraint firstAttribute="bottom" secondItem="uYq-gL-Tdr" secondAttribute="bottom" id="gvw-M2-8Aj"/>
+                                                            <constraint firstItem="nfs-Na-637" firstAttribute="leading" secondItem="Ixq-ae-iss" secondAttribute="trailing" constant="10" id="td7-XF-kvc"/>
+                                                            <constraint firstItem="Ixq-ae-iss" firstAttribute="top" secondItem="aL9-gD-G0d" secondAttribute="top" constant="30" id="xsr-k7-vuO"/>
+                                                            <constraint firstAttribute="trailing" secondItem="uYq-gL-Tdr" secondAttribute="trailing" id="zDh-kD-VWV"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="actConnectedWifi:" destination="qct-ec-vFD" eventType="touchUpInside" id="CRd-Hl-sUZ"/>
+                                                        </connections>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UWv-EC-tk2">
+                                                        <rect key="frame" x="24" y="269.5" width="366" height="177"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0a-nM-4Xq">
+                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="80"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WiFi Scheduling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pX1-Wu-ikK">
+                                                                        <rect key="frame" x="12" y="30" width="283" height="20"/>
+                                                                        <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-5n-2KR">
+                                                                        <rect key="frame" x="305" y="24" width="51" height="31"/>
+                                                                        <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <connections>
+                                                                            <action selector="actWifiScheduling:" destination="X7z-3g-s63" eventType="valueChanged" id="dCz-Zc-5YK"/>
+                                                                        </connections>
+                                                                    </switch>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="top" secondItem="pX1-Wu-ikK" secondAttribute="top" constant="-6" id="0Fl-ze-Lqd"/>
+                                                                    <constraint firstItem="pX1-Wu-ikK" firstAttribute="leading" secondItem="C0a-nM-4Xq" secondAttribute="leading" constant="12" id="5Qf-vb-gHS"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="pX1-Wu-ikK" secondAttribute="bottom" constant="30" id="LYH-hD-B2N"/>
+                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="leading" secondItem="pX1-Wu-ikK" secondAttribute="trailing" constant="10" id="b9w-z4-scB"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="WLJ-5n-2KR" secondAttribute="trailing" constant="12" id="pcN-rR-IWP"/>
+                                                                    <constraint firstItem="pX1-Wu-ikK" firstAttribute="top" secondItem="C0a-nM-4Xq" secondAttribute="top" constant="30" id="sQH-We-L3x"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="976-4T-2Xt">
+                                                                <rect key="frame" x="0.0" y="80" width="366" height="97"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvp-Uu-BwZ">
+                                                                        <rect key="frame" x="12" y="37" width="342" height="1"/>
+                                                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="1" id="6JP-4e-hME"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="10h-hb-eZ0" customClass="UIControl">
+                                                                        <rect key="frame" x="12" y="0.0" width="342" height="37"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEz-MO-1Hl">
+                                                                                <rect key="frame" x="13" y="8" width="39.5" height="14"/>
+                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="Mu7-P0-Dso">
+                                                                                <rect key="frame" x="323" y="5" width="19" height="20"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="20" id="dr4-FY-dNh"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5U-YF-ak8">
+                                                                                <rect key="frame" x="284.5" y="8" width="28.5" height="14.5"/>
+                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="bEz-MO-1Hl" secondAttribute="bottom" constant="15" id="AbI-m6-vEC"/>
+                                                                            <constraint firstItem="bEz-MO-1Hl" firstAttribute="centerY" secondItem="Mu7-P0-Dso" secondAttribute="centerY" id="GuS-WI-evS"/>
+                                                                            <constraint firstItem="Mu7-P0-Dso" firstAttribute="leading" secondItem="m5U-YF-ak8" secondAttribute="trailing" constant="10" id="Kbt-fQ-CB4"/>
+                                                                            <constraint firstItem="Mu7-P0-Dso" firstAttribute="top" secondItem="bEz-MO-1Hl" secondAttribute="top" constant="-3" id="NIo-h4-t7V"/>
+                                                                            <constraint firstItem="m5U-YF-ak8" firstAttribute="centerY" secondItem="Mu7-P0-Dso" secondAttribute="centerY" id="R80-jJ-mcs"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="Mu7-P0-Dso" secondAttribute="trailing" id="hAB-aS-ob8"/>
+                                                                            <constraint firstItem="bEz-MO-1Hl" firstAttribute="top" secondItem="10h-hb-eZ0" secondAttribute="top" constant="8" id="msw-Nq-SlW"/>
+                                                                            <constraint firstItem="bEz-MO-1Hl" firstAttribute="leading" secondItem="10h-hb-eZ0" secondAttribute="leading" constant="13" id="xY2-A7-n4y"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <action selector="actStartAt:" destination="X7z-3g-s63" eventType="touchUpInside" id="PYh-mk-K7W"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-kE-HHl" customClass="UIControl">
+                                                                        <rect key="frame" x="12" y="38" width="342" height="59"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezW-1L-jV7">
+                                                                                <rect key="frame" x="13" y="15" width="34" height="14"/>
+                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="0mR-IH-aKE">
+                                                                                <rect key="frame" x="323" y="12" width="19" height="20"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="20" id="Kgg-YQ-12C"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0M0-Zl-IIS">
+                                                                                <rect key="frame" x="284.5" y="15" width="28.5" height="14.5"/>
+                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="0mR-IH-aKE" firstAttribute="leading" secondItem="0M0-Zl-IIS" secondAttribute="trailing" constant="10" id="56q-2d-5Wi"/>
+                                                                            <constraint firstItem="ezW-1L-jV7" firstAttribute="centerY" secondItem="0mR-IH-aKE" secondAttribute="centerY" id="BB1-nD-8js"/>
+                                                                            <constraint firstItem="ezW-1L-jV7" firstAttribute="leading" secondItem="wxO-kE-HHl" secondAttribute="leading" constant="13" id="DZt-Sb-cIT"/>
+                                                                            <constraint firstItem="ezW-1L-jV7" firstAttribute="top" secondItem="wxO-kE-HHl" secondAttribute="top" constant="15" id="Qbj-Tx-qCy"/>
+                                                                            <constraint firstItem="0M0-Zl-IIS" firstAttribute="centerY" secondItem="0mR-IH-aKE" secondAttribute="centerY" id="VEw-Lr-F0s"/>
+                                                                            <constraint firstItem="0mR-IH-aKE" firstAttribute="top" secondItem="ezW-1L-jV7" secondAttribute="top" constant="-3" id="eQh-24-cnk"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="0mR-IH-aKE" secondAttribute="trailing" id="r2x-g5-8TB"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="ezW-1L-jV7" secondAttribute="bottom" constant="30" id="w8r-cs-095"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <action selector="actCloseAt:" destination="X7z-3g-s63" eventType="touchUpInside" id="pGc-9h-AhS"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="Uvp-Uu-BwZ" firstAttribute="leading" secondItem="976-4T-2Xt" secondAttribute="leading" constant="12" id="Mab-Dz-Gtn"/>
+                                                                    <constraint firstItem="Uvp-Uu-BwZ" firstAttribute="top" secondItem="10h-hb-eZ0" secondAttribute="bottom" id="Tli-Zy-GRN"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="wxO-kE-HHl" secondAttribute="trailing" constant="12" id="Y6K-Iw-naL"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="10h-hb-eZ0" secondAttribute="trailing" constant="12" id="cSF-lQ-Spv"/>
+                                                                    <constraint firstItem="wxO-kE-HHl" firstAttribute="top" secondItem="Uvp-Uu-BwZ" secondAttribute="bottom" id="dku-3x-cKZ"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Uvp-Uu-BwZ" secondAttribute="trailing" constant="12" id="dsS-CD-Kpi"/>
+                                                                    <constraint firstItem="wxO-kE-HHl" firstAttribute="leading" secondItem="976-4T-2Xt" secondAttribute="leading" constant="12" id="ljy-KL-MP4"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="wxO-kE-HHl" secondAttribute="bottom" id="pKA-9D-Bib"/>
+                                                                    <constraint firstItem="10h-hb-eZ0" firstAttribute="leading" secondItem="976-4T-2Xt" secondAttribute="leading" constant="12" id="qqV-1a-dbP"/>
+                                                                    <constraint firstItem="10h-hb-eZ0" firstAttribute="top" secondItem="976-4T-2Xt" secondAttribute="top" id="yqs-t2-3LI"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXd-nw-N40">
+                                                        <rect key="frame" x="24" y="446.5" width="366" height="1"/>
+                                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="mqN-rW-tXj"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-PZ-tOJ" customClass="UIControl">
+                                                        <rect key="frame" x="24" y="447.5" width="366" height="277"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEx-yD-S21">
-                                                                <rect key="frame" x="0.0" y="121" width="366" height="1"/>
+                                                                <rect key="frame" x="0.0" y="276" width="366" height="1"/>
                                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="MbP-gP-6Gj"/>
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-Yc-UF2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="122"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="277"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3C-Uj-BUA">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="65"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="277"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dual-band WiFi (2.4G and 5G)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyb-by-2Sw">
-                                                                                <rect key="frame" x="12" y="30" width="283" height="0.0"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn On/Off WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyb-by-2Sw">
+                                                                                <rect key="frame" x="12" y="30" width="283" height="183"/>
                                                                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -318,16 +506,17 @@
                                                                                 <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <connections>
                                                                                     <action selector="actToggleDualBand:" destination="X7z-3g-s63" eventType="valueChanged" id="fUn-ou-cFZ"/>
+                                                                                    <action selector="actTurnOfWifi:" destination="X7z-3g-s63" eventType="valueChanged" id="0x5-AZ-20U"/>
                                                                                 </connections>
                                                                             </switch>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable this to automatically switch to whichever is the faster band." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-wB-6iy">
-                                                                                <rect key="frame" x="12" y="35" width="243" height="0.0"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will enable/disable your entire WiFi network." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-wB-6iy">
+                                                                                <rect key="frame" x="12" y="218" width="243" height="29"/>
                                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstItem="SZo-wB-6iy" firstAttribute="leading" secondItem="Gyb-by-2Sw" secondAttribute="leading" id="6s3-dg-yuH"/>
                                                                             <constraint firstItem="SZo-wB-6iy" firstAttribute="top" secondItem="Gyb-by-2Sw" secondAttribute="bottom" constant="5" id="AS7-hA-8sX"/>
@@ -340,8 +529,8 @@
                                                                             <constraint firstItem="Gyb-by-2Sw" firstAttribute="leading" secondItem="s3C-Uj-BUA" secondAttribute="leading" constant="12" id="uZG-Bi-v5W"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CgK-OT-G8g">
-                                                                        <rect key="frame" x="0.0" y="65" width="366" height="56"/>
+                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CgK-OT-G8g">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="56"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.4G" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdC-s3-9zI">
                                                                                 <rect key="frame" x="12" y="0.0" width="27.5" height="20"/>
@@ -377,7 +566,7 @@
                                                                                 </connections>
                                                                             </switch>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="bottom" secondItem="wHq-U7-QaX" secondAttribute="bottom" constant="20" id="2l0-bR-qmF"/>
                                                                             <constraint firstItem="nW2-9Z-PCo" firstAttribute="top" secondItem="cMa-sQ-zJ9" secondAttribute="bottom" constant="20" id="3ps-z6-NU9"/>
@@ -395,17 +584,10 @@
                                                                             <constraint firstItem="cMa-sQ-zJ9" firstAttribute="top" secondItem="SdC-s3-9zI" secondAttribute="top" constant="-5" id="rkd-0I-vob"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSh-H3-4k7">
-                                                                        <rect key="frame" x="0.0" y="121" width="366" height="1"/>
-                                                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="1" id="4dN-7f-ezR"/>
-                                                                        </constraints>
-                                                                    </view>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="pEx-yD-S21" secondAttribute="bottom" id="24V-lk-IBQ"/>
                                                             <constraint firstAttribute="bottom" secondItem="mBX-Yc-UF2" secondAttribute="bottom" id="BVo-dC-O9w"/>
@@ -419,249 +601,11 @@
                                                             <action selector="actWifiSettings:" destination="qct-ec-vFD" eventType="touchUpInside" id="zYE-Ge-YWx"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aL9-gD-G0d" customClass="UIControl">
-                                                        <rect key="frame" x="24" y="140" width="366" height="129.5"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYq-gL-Tdr">
-                                                                <rect key="frame" x="0.0" y="128.5" width="366" height="1"/>
-                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="yOg-sO-WQH"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide WiFi network" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixq-ae-iss">
-                                                                <rect key="frame" x="12" y="30" width="283" height="20"/>
-                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will make your WiFi network undiscoverable to any device that is not connected to it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpv-YI-ch5">
-                                                                <rect key="frame" x="12" y="55" width="243" height="43.5"/>
-                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nfs-Na-637">
-                                                                <rect key="frame" x="305" y="30" width="51" height="31"/>
-                                                                <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <connections>
-                                                                    <action selector="actWifiHetwork:" destination="X7z-3g-s63" eventType="valueChanged" id="gAh-sU-Ws0"/>
-                                                                </connections>
-                                                            </switch>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <constraints>
-                                                            <constraint firstItem="uYq-gL-Tdr" firstAttribute="leading" secondItem="aL9-gD-G0d" secondAttribute="leading" id="8U7-Kz-nn7"/>
-                                                            <constraint firstItem="nfs-Na-637" firstAttribute="top" secondItem="Ixq-ae-iss" secondAttribute="top" id="9rE-le-5ZQ"/>
-                                                            <constraint firstItem="nfs-Na-637" firstAttribute="leading" secondItem="xpv-YI-ch5" secondAttribute="trailing" constant="50" id="9vE-fp-2jg"/>
-                                                            <constraint firstItem="xpv-YI-ch5" firstAttribute="leading" secondItem="Ixq-ae-iss" secondAttribute="leading" id="D0W-Mn-q4b"/>
-                                                            <constraint firstItem="Ixq-ae-iss" firstAttribute="leading" secondItem="aL9-gD-G0d" secondAttribute="leading" constant="12" id="FCD-db-eR3"/>
-                                                            <constraint firstAttribute="trailing" secondItem="nfs-Na-637" secondAttribute="trailing" constant="12" id="FoU-66-pFE"/>
-                                                            <constraint firstItem="xpv-YI-ch5" firstAttribute="top" secondItem="Ixq-ae-iss" secondAttribute="bottom" constant="5" id="Lis-u9-QnG"/>
-                                                            <constraint firstItem="uYq-gL-Tdr" firstAttribute="top" secondItem="xpv-YI-ch5" secondAttribute="bottom" constant="30" id="W71-ct-Web"/>
-                                                            <constraint firstAttribute="bottom" secondItem="uYq-gL-Tdr" secondAttribute="bottom" id="gvw-M2-8Aj"/>
-                                                            <constraint firstItem="nfs-Na-637" firstAttribute="leading" secondItem="Ixq-ae-iss" secondAttribute="trailing" constant="10" id="td7-XF-kvc"/>
-                                                            <constraint firstItem="Ixq-ae-iss" firstAttribute="top" secondItem="aL9-gD-G0d" secondAttribute="top" constant="30" id="xsr-k7-vuO"/>
-                                                            <constraint firstAttribute="trailing" secondItem="uYq-gL-Tdr" secondAttribute="trailing" id="zDh-kD-VWV"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <action selector="actConnectedWifi:" destination="qct-ec-vFD" eventType="touchUpInside" id="CRd-Hl-sUZ"/>
-                                                        </connections>
-                                                    </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UWv-EC-tk2">
-                                                        <rect key="frame" x="24" y="269.5" width="366" height="196"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0a-nM-4Xq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="114"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WiFi Scheduling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pX1-Wu-ikK">
-                                                                        <rect key="frame" x="12" y="30" width="283" height="20"/>
-                                                                        <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-5n-2KR">
-                                                                        <rect key="frame" x="305" y="30" width="51" height="31"/>
-                                                                        <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <connections>
-                                                                            <action selector="actWifiScheduling:" destination="X7z-3g-s63" eventType="valueChanged" id="dCz-Zc-5YK"/>
-                                                                        </connections>
-                                                                    </switch>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a time frame for your WiFi to turn on and allow devices to connect to it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hst-QM-W1l">
-                                                                        <rect key="frame" x="12" y="55" width="243" height="29"/>
-                                                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
-                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="top" secondItem="pX1-Wu-ikK" secondAttribute="top" id="0Fl-ze-Lqd"/>
-                                                                    <constraint firstItem="pX1-Wu-ikK" firstAttribute="leading" secondItem="C0a-nM-4Xq" secondAttribute="leading" constant="12" id="5Qf-vb-gHS"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="hst-QM-W1l" secondAttribute="bottom" constant="30" id="MTR-Ml-abn"/>
-                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="leading" secondItem="pX1-Wu-ikK" secondAttribute="trailing" constant="10" id="b9w-z4-scB"/>
-                                                                    <constraint firstItem="hst-QM-W1l" firstAttribute="leading" secondItem="pX1-Wu-ikK" secondAttribute="leading" id="bXs-eS-8Pf"/>
-                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="leading" secondItem="hst-QM-W1l" secondAttribute="trailing" constant="50" id="hqa-Wu-HgS"/>
-                                                                    <constraint firstItem="hst-QM-W1l" firstAttribute="top" secondItem="pX1-Wu-ikK" secondAttribute="bottom" constant="5" id="neD-K8-xkx"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="WLJ-5n-2KR" secondAttribute="trailing" constant="12" id="pcN-rR-IWP"/>
-                                                                    <constraint firstItem="pX1-Wu-ikK" firstAttribute="top" secondItem="C0a-nM-4Xq" secondAttribute="top" constant="30" id="sQH-We-L3x"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="976-4T-2Xt">
-                                                                <rect key="frame" x="0.0" y="114" width="366" height="82"/>
-                                                                <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvp-Uu-BwZ">
-                                                                        <rect key="frame" x="12" y="37" width="342" height="1"/>
-                                                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="1" id="6JP-4e-hME"/>
-                                                                        </constraints>
-                                                                    </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="10h-hb-eZ0" customClass="UIControl">
-                                                                        <rect key="frame" x="12" y="0.0" width="342" height="37"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEz-MO-1Hl">
-                                                                                <rect key="frame" x="13" y="8" width="39.5" height="14"/>
-                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="Mu7-P0-Dso">
-                                                                                <rect key="frame" x="323" y="5" width="19" height="20"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="20" id="dr4-FY-dNh"/>
-                                                                                </constraints>
-                                                                            </imageView>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5U-YF-ak8">
-                                                                                <rect key="frame" x="284.5" y="8" width="28.5" height="14.5"/>
-                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="bottom" secondItem="bEz-MO-1Hl" secondAttribute="bottom" constant="15" id="AbI-m6-vEC"/>
-                                                                            <constraint firstItem="bEz-MO-1Hl" firstAttribute="centerY" secondItem="Mu7-P0-Dso" secondAttribute="centerY" id="GuS-WI-evS"/>
-                                                                            <constraint firstItem="Mu7-P0-Dso" firstAttribute="leading" secondItem="m5U-YF-ak8" secondAttribute="trailing" constant="10" id="Kbt-fQ-CB4"/>
-                                                                            <constraint firstItem="Mu7-P0-Dso" firstAttribute="top" secondItem="bEz-MO-1Hl" secondAttribute="top" constant="-3" id="NIo-h4-t7V"/>
-                                                                            <constraint firstItem="m5U-YF-ak8" firstAttribute="centerY" secondItem="Mu7-P0-Dso" secondAttribute="centerY" id="R80-jJ-mcs"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="Mu7-P0-Dso" secondAttribute="trailing" id="hAB-aS-ob8"/>
-                                                                            <constraint firstItem="bEz-MO-1Hl" firstAttribute="top" secondItem="10h-hb-eZ0" secondAttribute="top" constant="8" id="msw-Nq-SlW"/>
-                                                                            <constraint firstItem="bEz-MO-1Hl" firstAttribute="leading" secondItem="10h-hb-eZ0" secondAttribute="leading" constant="13" id="xY2-A7-n4y"/>
-                                                                        </constraints>
-                                                                        <connections>
-                                                                            <action selector="actStartAt:" destination="X7z-3g-s63" eventType="touchUpInside" id="PYh-mk-K7W"/>
-                                                                        </connections>
-                                                                    </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-kE-HHl" customClass="UIControl">
-                                                                        <rect key="frame" x="12" y="38" width="342" height="44"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezW-1L-jV7">
-                                                                                <rect key="frame" x="13" y="15" width="34" height="14"/>
-                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="0mR-IH-aKE">
-                                                                                <rect key="frame" x="323" y="12" width="19" height="20"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="20" id="Kgg-YQ-12C"/>
-                                                                                </constraints>
-                                                                            </imageView>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0M0-Zl-IIS">
-                                                                                <rect key="frame" x="284.5" y="15" width="28.5" height="14.5"/>
-                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                        <constraints>
-                                                                            <constraint firstItem="0mR-IH-aKE" firstAttribute="leading" secondItem="0M0-Zl-IIS" secondAttribute="trailing" constant="10" id="56q-2d-5Wi"/>
-                                                                            <constraint firstItem="ezW-1L-jV7" firstAttribute="centerY" secondItem="0mR-IH-aKE" secondAttribute="centerY" id="BB1-nD-8js"/>
-                                                                            <constraint firstItem="ezW-1L-jV7" firstAttribute="leading" secondItem="wxO-kE-HHl" secondAttribute="leading" constant="13" id="DZt-Sb-cIT"/>
-                                                                            <constraint firstItem="ezW-1L-jV7" firstAttribute="top" secondItem="wxO-kE-HHl" secondAttribute="top" constant="15" id="Qbj-Tx-qCy"/>
-                                                                            <constraint firstItem="0M0-Zl-IIS" firstAttribute="centerY" secondItem="0mR-IH-aKE" secondAttribute="centerY" id="VEw-Lr-F0s"/>
-                                                                            <constraint firstItem="0mR-IH-aKE" firstAttribute="top" secondItem="ezW-1L-jV7" secondAttribute="top" constant="-3" id="eQh-24-cnk"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="0mR-IH-aKE" secondAttribute="trailing" id="r2x-g5-8TB"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="ezW-1L-jV7" secondAttribute="bottom" constant="15" id="w8r-cs-095"/>
-                                                                        </constraints>
-                                                                        <connections>
-                                                                            <action selector="actCloseAt:" destination="X7z-3g-s63" eventType="touchUpInside" id="pGc-9h-AhS"/>
-                                                                        </connections>
-                                                                    </view>
-                                                                </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="Uvp-Uu-BwZ" firstAttribute="leading" secondItem="976-4T-2Xt" secondAttribute="leading" constant="12" id="Mab-Dz-Gtn"/>
-                                                                    <constraint firstItem="Uvp-Uu-BwZ" firstAttribute="top" secondItem="10h-hb-eZ0" secondAttribute="bottom" id="Tli-Zy-GRN"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="wxO-kE-HHl" secondAttribute="trailing" constant="12" id="Y6K-Iw-naL"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="10h-hb-eZ0" secondAttribute="trailing" constant="12" id="cSF-lQ-Spv"/>
-                                                                    <constraint firstItem="wxO-kE-HHl" firstAttribute="top" secondItem="Uvp-Uu-BwZ" secondAttribute="bottom" id="dku-3x-cKZ"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="Uvp-Uu-BwZ" secondAttribute="trailing" constant="12" id="dsS-CD-Kpi"/>
-                                                                    <constraint firstItem="wxO-kE-HHl" firstAttribute="leading" secondItem="976-4T-2Xt" secondAttribute="leading" constant="12" id="ljy-KL-MP4"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="wxO-kE-HHl" secondAttribute="bottom" id="pKA-9D-Bib"/>
-                                                                    <constraint firstItem="10h-hb-eZ0" firstAttribute="leading" secondItem="976-4T-2Xt" secondAttribute="leading" constant="12" id="qqV-1a-dbP"/>
-                                                                    <constraint firstItem="10h-hb-eZ0" firstAttribute="top" secondItem="976-4T-2Xt" secondAttribute="top" id="yqs-t2-3LI"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c05-If-zrj" customClass="UIControl">
-                                                        <rect key="frame" x="24" y="465.5" width="366" height="115"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIq-G0-2nE">
-                                                                <rect key="frame" x="0.0" y="114" width="366" height="1"/>
-                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="pGf-Eq-HfT"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will enable/disable your entire WiFi network." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpB-Pt-jjU">
-                                                                <rect key="frame" x="12" y="55" width="243" height="29"/>
-                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KiQ-HZ-Amh">
-                                                                <rect key="frame" x="305" y="30" width="51" height="31"/>
-                                                                <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <connections>
-                                                                    <action selector="actTurnOfWifi:" destination="X7z-3g-s63" eventType="valueChanged" id="80k-Lf-xXs"/>
-                                                                </connections>
-                                                            </switch>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn On/Off WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJn-ge-kAk">
-                                                                <rect key="frame" x="12" y="30" width="283" height="20"/>
-                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                        <constraints>
-                                                            <constraint firstItem="KiQ-HZ-Amh" firstAttribute="leading" secondItem="IpB-Pt-jjU" secondAttribute="trailing" constant="50" id="6GX-AT-1KL"/>
-                                                            <constraint firstItem="KiQ-HZ-Amh" firstAttribute="leading" secondItem="xJn-ge-kAk" secondAttribute="trailing" constant="10" id="EHd-XL-HyA"/>
-                                                            <constraint firstItem="IpB-Pt-jjU" firstAttribute="top" secondItem="xJn-ge-kAk" secondAttribute="bottom" constant="5" id="IB5-Hd-13V"/>
-                                                            <constraint firstAttribute="bottom" secondItem="nIq-G0-2nE" secondAttribute="bottom" id="OUn-LY-hjo"/>
-                                                            <constraint firstAttribute="trailing" secondItem="nIq-G0-2nE" secondAttribute="trailing" id="TEe-E8-Xaz"/>
-                                                            <constraint firstAttribute="trailing" secondItem="KiQ-HZ-Amh" secondAttribute="trailing" constant="12" id="aN4-mm-sVY"/>
-                                                            <constraint firstItem="nIq-G0-2nE" firstAttribute="leading" secondItem="c05-If-zrj" secondAttribute="leading" id="aTy-ET-E5V"/>
-                                                            <constraint firstItem="xJn-ge-kAk" firstAttribute="top" secondItem="c05-If-zrj" secondAttribute="top" constant="30" id="djt-zv-x0y"/>
-                                                            <constraint firstItem="IpB-Pt-jjU" firstAttribute="leading" secondItem="xJn-ge-kAk" secondAttribute="leading" id="hXA-Mf-UXG"/>
-                                                            <constraint firstItem="KiQ-HZ-Amh" firstAttribute="top" secondItem="xJn-ge-kAk" secondAttribute="top" id="rWF-Lg-NqG"/>
-                                                            <constraint firstItem="xJn-ge-kAk" firstAttribute="leading" secondItem="c05-If-zrj" secondAttribute="leading" constant="12" id="soJ-Se-I6C"/>
-                                                            <constraint firstItem="nIq-G0-2nE" firstAttribute="top" secondItem="IpB-Pt-jjU" secondAttribute="bottom" constant="30" id="zlM-9X-OrW"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <action selector="actConnectedWifi:" destination="qct-ec-vFD" eventType="touchUpInside" id="Rls-hT-ijS"/>
-                                                        </connections>
-                                                    </view>
                                                 </subviews>
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="15" leading="24" bottom="15" trailing="24"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="IuR-2s-XTK" secondAttribute="bottom" id="38E-lt-iYH"/>
                                             <constraint firstItem="IuR-2s-XTK" firstAttribute="leading" secondItem="cxF-YF-hCe" secondAttribute="leading" id="4mo-bv-zfk"/>
@@ -687,7 +631,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="sSh-xD-Ev7"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Fib-MX-4au" firstAttribute="leading" secondItem="37v-I4-xZE" secondAttribute="leading" constant="-125" id="Brg-ta-T5M"/>
                             <constraint firstItem="QHd-VO-9sM" firstAttribute="top" secondItem="37v-I4-xZE" secondAttribute="top" id="GCt-yz-njG"/>
@@ -696,11 +641,10 @@
                             <constraint firstAttribute="bottom" secondItem="Fib-MX-4au" secondAttribute="bottom" constant="32" id="rd9-gZ-sD4"/>
                             <constraint firstAttribute="trailing" secondItem="QHd-VO-9sM" secondAttribute="trailing" id="vUn-bL-ewb"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="sSh-xD-Ev7"/>
                     </view>
                     <connections>
                         <outlet property="closeLabel" destination="0M0-Zl-IIS" id="u6t-7H-dew"/>
-                        <outlet property="hideWifiView" destination="aL9-gD-G0d" id="dFN-IA-hfy"/>
+                        <outlet property="hideWifiView" destination="aL9-gD-G0d" id="wj5-4F-JsY"/>
                         <outlet property="liveChatConstraint" destination="Brg-ta-T5M" id="B9Y-jr-KaZ"/>
                         <outlet property="liveChatView" destination="Fib-MX-4au" id="73S-e7-uS2"/>
                         <outlet property="schedulingView" destination="976-4T-2Xt" id="4Iv-BH-JMR"/>
@@ -712,8 +656,8 @@
                         <outlet property="switchDualBand" destination="jsI-Nk-H7y" id="cyA-rh-zvO"/>
                         <outlet property="switchHideWifi" destination="nfs-Na-637" id="SRe-O2-TmJ"/>
                         <outlet property="switchScheduling" destination="WLJ-5n-2KR" id="NFx-0K-bM6"/>
-                        <outlet property="switchTurnOffWifi" destination="KiQ-HZ-Amh" id="zDD-el-xix"/>
-                        <outlet property="wifiSchedulingView" destination="UWv-EC-tk2" id="leY-Sb-wlD"/>
+                        <outlet property="switchTurnOffWifi" destination="jsI-Nk-H7y" id="6hS-06-x5g"/>
+                        <outlet property="wifiSchedulingView" destination="UWv-EC-tk2" id="P7R-6m-9Jf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfP-M4-Tzv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -738,7 +682,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="6au-Co-qnx" secondAttribute="trailing" id="3if-5m-Ez2"/>
                                             <constraint firstAttribute="height" constant="40" id="4j3-Fi-BQb"/>
@@ -757,7 +701,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5E4-ZU-Sbr">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5E4-ZU-Sbr">
                                         <rect key="frame" x="36" y="278" width="342" height="50"/>
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -780,7 +724,7 @@
                                         </connections>
                                     </pickerView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="WI4-ZO-wOR" firstAttribute="centerX" secondItem="uS5-do-4sC" secondAttribute="centerX" id="4Aq-n5-QGK"/>
                                     <constraint firstAttribute="trailing" secondItem="8tK-Hb-DPd" secondAttribute="trailing" constant="20" id="4xF-Gt-d09"/>
@@ -796,13 +740,13 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="3gY-59-kLM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uS5-do-4sC" firstAttribute="leading" secondItem="3gY-59-kLM" secondAttribute="leading" id="IuY-yR-D9v"/>
                             <constraint firstAttribute="bottom" secondItem="uS5-do-4sC" secondAttribute="bottom" id="Qv1-QO-sNe"/>
                             <constraint firstItem="uS5-do-4sC" firstAttribute="trailing" secondItem="3gY-59-kLM" secondAttribute="trailing" id="qXa-eJ-gin"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="3gY-59-kLM"/>
                     </view>
                     <connections>
                         <outlet property="headerLabel" destination="WI4-ZO-wOR" id="eJK-Ph-WBy"/>
@@ -842,7 +786,7 @@ change your WiFi network?</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHi-Uj-InS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHi-Uj-InS">
                                 <rect key="frame" x="67" y="479" width="280" height="50"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -858,7 +802,7 @@ change your WiFi network?</string>
                                     <action selector="actRetry:" destination="gHb-7i-Bc7" eventType="touchUpInside" id="uPH-jL-4xc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCQ-dh-tHj">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCQ-dh-tHj">
                                 <rect key="frame" x="185.5" y="569" width="43" height="29"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <state key="normal" title="Cancel">
@@ -881,7 +825,8 @@ change your WiFi network?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="RpV-Ny-Tvc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4xR-pD-NBm" firstAttribute="leading" secondItem="JDs-Mt-qGD" secondAttribute="leading" constant="10" id="460-D6-xeR"/>
                             <constraint firstItem="aUJ-ZQ-N52" firstAttribute="top" secondItem="4xR-pD-NBm" secondAttribute="bottom" constant="5" id="4L8-cE-7Ab"/>
@@ -902,7 +847,6 @@ change your WiFi network?</string>
                             <constraint firstItem="RpV-Ny-Tvc" firstAttribute="trailing" secondItem="ksE-M2-14o" secondAttribute="trailing" constant="35" id="pt7-ae-OpR"/>
                             <constraint firstItem="4xR-pD-NBm" firstAttribute="top" secondItem="JDs-Mt-qGD" secondAttribute="top" constant="105" id="vr1-x3-4Va"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="RpV-Ny-Tvc"/>
                     </view>
                     <connections>
                         <outlet property="errorMsg" destination="ksE-M2-14o" id="1BD-6A-nxW"/>
@@ -955,7 +899,7 @@ change your WiFi network?</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="Exm-fM-NOL" firstAttribute="top" secondItem="UqB-pG-1Tm" secondAttribute="bottom" constant="5" id="3q7-za-qlF"/>
                                                             <constraint firstAttribute="trailing" secondItem="UqB-pG-1Tm" secondAttribute="trailing" id="6mJ-qf-4Wa"/>
@@ -981,7 +925,7 @@ change your WiFi network?</string>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJA-0M-L69" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="0.0" width="344" height="50"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="q5a-0h-721"/>
                                                                 </constraints>
@@ -999,7 +943,7 @@ change your WiFi network?</string>
                                                                 </connections>
                                                             </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="oYq-0g-LaX" firstAttribute="top" secondItem="HJA-0M-L69" secondAttribute="bottom" constant="8" id="4G1-Cs-fSL"/>
                                                             <constraint firstItem="oYq-0g-LaX" firstAttribute="leading" secondItem="7Wc-G1-veE" secondAttribute="leading" id="Kmc-Q0-5oT"/>
@@ -1022,7 +966,7 @@ change your WiFi network?</string>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s33-E7-5hA" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="0.0" width="290" height="50"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="MUS-VY-dSa"/>
                                                                 </constraints>
@@ -1052,7 +996,7 @@ change your WiFi network?</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="s33-E7-5hA" firstAttribute="leading" secondItem="PWC-E1-StY" secondAttribute="leading" constant="10" id="5eQ-Gt-Gg7"/>
                                                             <constraint firstItem="ygD-HY-FBL" firstAttribute="top" secondItem="s33-E7-5hA" secondAttribute="bottom" constant="8" id="GD1-ts-rif"/>
@@ -1065,7 +1009,7 @@ change your WiFi network?</string>
                                                             <constraint firstItem="s33-E7-5hA" firstAttribute="top" secondItem="PWC-E1-StY" secondAttribute="top" id="wTP-QT-tB1"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJi-iR-sUF">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJi-iR-sUF">
                                                         <rect key="frame" x="35" y="330" width="364" height="50"/>
                                                         <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -1084,7 +1028,7 @@ change your WiFi network?</string>
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="15" leading="35" bottom="15" trailing="15"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="UEv-4G-B1Z" secondAttribute="trailing" id="A1W-EJ-jpm"/>
                                             <constraint firstAttribute="bottom" secondItem="UEv-4G-B1Z" secondAttribute="bottom" id="bWU-1L-M2j"/>
@@ -1102,7 +1046,8 @@ change your WiFi network?</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rhN-It-svU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vBW-pV-AhW" firstAttribute="leading" secondItem="odd-mv-ffb" secondAttribute="leading" constant="-125" id="ACf-AS-W86"/>
                             <constraint firstItem="rhN-It-svU" firstAttribute="trailing" secondItem="yxb-re-UcO" secondAttribute="trailing" id="LoP-Uz-fw4"/>
@@ -1111,7 +1056,6 @@ change your WiFi network?</string>
                             <constraint firstAttribute="bottom" secondItem="vBW-pV-AhW" secondAttribute="bottom" constant="32" id="c4u-AG-3qZ"/>
                             <constraint firstAttribute="bottom" secondItem="yxb-re-UcO" secondAttribute="bottom" id="xFO-eB-KIn"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="rhN-It-svU"/>
                     </view>
                     <connections>
                         <outlet property="liveChatView" destination="vBW-pV-AhW" id="54N-Vf-dli"/>
@@ -1133,5 +1077,8 @@ change your WiFi network?</string>
         <image name="ic_hide_visibility" width="24" height="24"/>
         <image name="ic_next" width="19" height="33"/>
         <image name="ic_visibility" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

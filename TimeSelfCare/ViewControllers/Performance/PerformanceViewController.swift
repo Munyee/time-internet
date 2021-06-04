@@ -144,6 +144,20 @@ class PerformanceViewController: BaseViewController {
         })
     }
     
+    @IBAction func actDeviceInstallation(_ sender: Any) {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        HuaweiHelper.shared.queryGateway(completion: { _ in
+            hud.hide(animated: true)
+            if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "DeviceInstallationListViewController") as? DeviceInstallationListViewController {
+                self.presentNavigation(templateVC, animated: true)
+            }
+        }, error: { _ in
+            hud.hide(animated: true)
+            self.showNotAvailable()
+        })
+    }
+    
     @IBAction func actWifiConfiguration(_ sender: Any) {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Loading...", comment: "")

@@ -180,6 +180,24 @@ public extension HuaweiHelper {
         }
     }
     
+    func factoryReset(deviceMac: String, completion: @escaping(_ result: HwFactoryResetResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let result = value as? HwFactoryResetResult {
+                completion(result)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+            print(exception?.errorMessage ?? "")
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.factoryReset(deviceMac, with: callBackAdapter)
+        }
+    }
+    
     func bindGateway(deviceMac: String, gatewayNickname: String, completion: @escaping(_ result: HwUserBindedGateway) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
@@ -593,6 +611,43 @@ public extension HuaweiHelper {
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.setWifiHardwareSwitch(AccountController.shared.gatewayDevId ?? "", withRadioType: radioType, withEnableState: true, withCallBack: callBackAdapter)
+        }
+    }
+    
+    func removeOfflineDevList(lanMac: String, completion: @escaping(_ result: HwResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwResult {
+                completion(data)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        let lanDevice = HwLanDevice()
+        lanDevice.mac = lanMac
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.removeOfflineDevList(AccountController.shared.gatewayDevId ?? "", withLanDevice: [lanDevice], with: callBackAdapter)
+        }
+    }
+    
+    func registerMessageHandle(completion: @escaping(_ result: HwMessageData) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwMessageHandleAdapter()
+        callBackAdapter.handle = {value in
+            if let message = value {
+                completion(message)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwMessageService.self) as? HwMessageService {
+            service.registerMessageHandle(callBackAdapter)
         }
     }
 }

@@ -28,11 +28,11 @@ class WifiSettingsViewController: UIViewController {
     @IBOutlet private weak var switchScheduling: UISwitch!
     @IBOutlet private weak var switchTurnOffWifi: UISwitch!
 
-    @IBOutlet weak var hideWifiView: UIControl!
-    @IBOutlet weak var wifiSchedulingView: UIStackView!
+    @IBOutlet private weak var hideWifiView: UIControl!
+    @IBOutlet private weak var wifiSchedulingView: UIStackView!
     // Label
-    @IBOutlet weak var startLabel: UILabel!
-    @IBOutlet weak var closeLabel: UILabel!
+    @IBOutlet private weak var startLabel: UILabel!
+    @IBOutlet private weak var closeLabel: UILabel!
     
     var wifiInfos: [HwWifiInfo?] = []
     var timer: HwWifiTimer?
@@ -42,6 +42,7 @@ class WifiSettingsViewController: UIViewController {
         self.liveChatView.isHidden = false
         self.title = NSLocalizedString("WIFI SETTINGS", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
+        self.singleBandView.isHidden = true
     }
     
     @objc
@@ -71,17 +72,17 @@ class WifiSettingsViewController: UIViewController {
     
     @IBAction func actToggleDualBand(_ sender: UISwitch) {
         if sender.isOn {
-            self.singleBandView.isHidden = true
+//            self.singleBandView.isHidden = true
             toggleDualBand()
         } else {
             self.showAlertMessage(title: "Are you sure?", message: "We recommend using dual-band WiFi for the best connectivity experience.", actions: [
                 UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
                     self.toggleDualBand()
-                    self.singleBandView.isHidden = false
+//                    self.singleBandView.isHidden = false
                 },
                 UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
                     sender.isOn = true
-                    self.singleBandView.isHidden = true
+//                    self.singleBandView.isHidden = true
                 }
             ])
         }
@@ -205,7 +206,7 @@ class WifiSettingsViewController: UIViewController {
                 hud.hide(animated: true)
                 self.stackView.isHidden = false
                 self.switchDualBand.isOn = wifiInfoAll.dualbandCombine
-                self.singleBandView.isHidden = wifiInfoAll.dualbandCombine
+//                self.singleBandView.isHidden = wifiInfoAll.dualbandCombine
                 
                 let arrData = wifiInfoAll.infoList.filter { wifiInfo -> Bool in
                     return wifiInfo.ssidIndex != guestWifi.ssidIndex && wifiInfo.ssidIndex != guestWifi.ssidIndex5G
@@ -322,7 +323,7 @@ class WifiSettingsViewController: UIViewController {
                 return "\(wifiInfoA.ssidIndex)".compare("\(wifiInfoB.ssidIndex)", options: .numeric) == .orderedAscending
             })
             
-            if (switchWifi.isOn) {
+            if switchWifi.isOn {
                 sortedArr.first(where: {$0.radioType == "2.4G"})?.enable = true
                 sortedArr.first(where: {$0.radioType == "5G"})?.enable = true
             } else {
@@ -330,8 +331,7 @@ class WifiSettingsViewController: UIViewController {
                     wifiInfo.enable = false
                 }
             }
-            
-            
+
             HuaweiHelper.shared.setWifiInfoList(wifiInfos: dataInfos, completion: { _ in
                 DispatchQueue.main.async {
                     hud.hide(animated: true)

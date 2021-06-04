@@ -37,4 +37,8 @@ public struct Units {
             return ("\(kilobytes)", "Kbit/s")
         }
     }
+    
+    public func getRateInMbps() -> Double {
+        return megabytes
+    }
 }

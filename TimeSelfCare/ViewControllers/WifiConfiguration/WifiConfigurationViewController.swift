@@ -63,4 +63,10 @@ class WifiConfigurationViewController: UIViewController {
             self.navigationController?.pushViewController(wifiSettingsVC, animated: true)
         }
     }
+    
+    @IBAction func actWifiQualityAssessment(_ sender: Any) {
+        if let wifiQualityVC = UIStoryboard(name: TimeSelfCareStoryboard.wifiqualityassessment.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiQualityAssessmentViewController") as? WifiQualityAssessmentViewController {
+            self.navigationController?.pushViewController(wifiQualityVC, animated: true)
+        }
+    }
 }

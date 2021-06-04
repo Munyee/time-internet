@@ -168,6 +168,16 @@
 + (void)trustAllServerCertificate:(BOOL)trust;
 
 /**
+*
+*
+*  @brief 设置本地证书路径
+*
+*  @param 证书路径集合
+*
+*/
++ (void)setDefaultCertificate:(NSSet<NSString *> *)paths;
+
+/**
  是否需要强制升级
 
  @param callback 回调 | HwIsNeedAppForceUpdateResult

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger , HwPeriod) {
     kHwPeriodDAY,
     kHwPeriodWEEK,
+    kHwPeriodYESTERDAY,
 };
 
 #pragma mark 在线时长模型最外层

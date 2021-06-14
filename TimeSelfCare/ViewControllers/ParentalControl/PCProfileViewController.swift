@@ -152,16 +152,29 @@ class PCProfileViewController: UIViewController {
     func updateTemplateView() {
         if let temp = template {
             name = temp.name
-            HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
-                let controlledDev = arrAttachPC.filter { $0.templateName == temp.name }.map { $0.mac }
-                
+//            HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
+//                let controlledDev = arrAttachPC.filter { $0.templateName == temp.name }.map { $0.mac }
+//
+//                HuaweiHelper.shared.queryLanDeviceListEx { devices in
+//                    print(devices.map({ (device) -> String in
+//                        device.mac
+//                    }))
+//
+//                    print(arrAttachPC)
+//                    self.selectedDevices = devices.filter { !$0.isAp }.filter { controlledDev.contains($0.mac) }
+//                    self.updateDeviceList()
+//                }
+//            }, error: { _ in
+//
+//            })
+            
+            if let controlledDev = template?.macList as? [String] {
                 HuaweiHelper.shared.queryLanDeviceListEx { devices in
                     self.selectedDevices = devices.filter { !$0.isAp }.filter { controlledDev.contains($0.mac) }
                     self.updateDeviceList()
                 }
-            }, error: { _ in
-                
-            })
+            }
+            
             profileTextView.text = temp.aliasName
             profileSeperator.isHidden = !isEdit
             deviceView.alpha = 1

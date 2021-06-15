@@ -61,7 +61,7 @@ class DeviceInstallationListViewController: UIViewController {
 //                    print("Device reset")
 //                }, error: { exception in
 //                    print(exception?.errorCode ?? "")
-//                    print(exception?.errorMessage ?? "")
+//                    print(exception?.description ?? "")
 //                })
 //            }
         }

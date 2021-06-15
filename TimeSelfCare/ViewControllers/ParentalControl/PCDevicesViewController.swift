@@ -64,9 +64,9 @@ class PCDevicesViewController: UIViewController {
                     self.tableView.reloadData()
                 }
             }
-        }, error: { _ in
+        }, error: { exception in
             hud.hide(animated: true)
-            self.showAlertMessage(message: "Something Went Wrong", actions: [
+            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
                 UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
                     self.dismissVC()
                 }

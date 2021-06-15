@@ -121,8 +121,9 @@ class ChangeWifiNameViewController: UIViewController {
                             hud.hide(animated: true)
                             self.popBack()
                         }
-                    }, error: { _ in
+                    }, error: { exception in
                         DispatchQueue.main.async {
+                            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                             hud.hide(animated: true)
                         }
                     })

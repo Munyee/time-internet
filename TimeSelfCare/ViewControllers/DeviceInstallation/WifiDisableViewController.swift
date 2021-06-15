@@ -39,12 +39,22 @@ class WifiDisableViewController: UIViewController {
         group.enter()
         HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "2.4G", completion: { _ in
             group.leave()
-        }, error: { _ in hud.hide(animated: true) })
+        }, error: { exception in
+            DispatchQueue.main.async {
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                hud.hide(animated: true)
+            }
+        })
         
         group.enter()
         HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "5G", completion: { _ in
             group.leave()
-        }, error: { _ in hud.hide(animated: true) })
+        }, error: { exception in
+            DispatchQueue.main.async {
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                hud.hide(animated: true)
+            }
+        })
         
         if let dataInfos = wifiInfos as? [HwWifiInfo] {
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -60,8 +70,11 @@ class WifiDisableViewController: UIViewController {
             group.enter()
             HuaweiHelper.shared.setWifiInfoList(wifiInfos: dataInfos, completion: { _ in
                 group.leave()
-            }, error: { _ in
-                hud.hide(animated: true)
+            }, error: { exception in
+                DispatchQueue.main.async {
+                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                    hud.hide(animated: true)
+                }
             })
         }
         

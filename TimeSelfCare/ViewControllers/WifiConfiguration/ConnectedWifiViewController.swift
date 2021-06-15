@@ -80,7 +80,7 @@ class ConnectedWifiViewController: UIViewController {
                         self.dismissVC()
                     }, error: { exception in
                         hud.hide(animated: true)
-                        self.showAlertMessage(message: exception?.errorMessage ?? "")
+                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                     })
                 }
             }

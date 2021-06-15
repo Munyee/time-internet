@@ -224,7 +224,10 @@ class PerformanceViewController: BaseViewController {
                     //                    self.upByte.text = "\(upByte)"
                     //                }
                     //            }
-                }, error: { _ in
+                }, error: { exception in
+                    DispatchQueue.main.async {
+                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? "") ?? "")
+                    }
                 })
             } else {
                 if AccountController.shared.noOfGateway! > 0 {

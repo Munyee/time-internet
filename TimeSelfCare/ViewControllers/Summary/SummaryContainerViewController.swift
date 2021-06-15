@@ -157,8 +157,10 @@ class SummaryContainerViewController: TimeBaseViewController {
                         print(authCode)
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
                             self.checkIsKick()
-                        }, error: { _ in
-
+                        }, error: { exception in
+                            DispatchQueue.main.async {
+                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? "") ?? "")
+                            }
                         })
                     }
                 }

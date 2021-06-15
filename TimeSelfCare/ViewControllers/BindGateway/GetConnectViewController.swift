@@ -210,12 +210,12 @@ class GetConnectViewController: UIViewController {
                     
                     HuaweiHelper.shared.getPPPoEAccount(deviceId: devId, wanName: wanName, completion: { pppoeAccount in
                     }, error: { exception in
-                        self.errorMsg.text = "Get PPPOE Account Failed - \(exception?.errorCode ?? "")"
+                        self.errorMsg.text = "Get PPPOE Account Failed - \(HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))"
                     })
                 }
             }
         }, error: { exception in
-            self.errorMsg.text = "Device Port Mapping Failed - \(exception?.errorCode ?? "")"
+            self.errorMsg.text = "Device Port Mapping Failed - \(HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))"
         })
     }
 }

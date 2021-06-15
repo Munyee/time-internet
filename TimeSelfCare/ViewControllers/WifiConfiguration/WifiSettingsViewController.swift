@@ -65,7 +65,7 @@ class WifiSettingsViewController: UIViewController {
     @IBAction func actChangeWifiName(_ sender: Any) {
         if let changeWifiNameVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "ChangeWifiNameViewController") as? ChangeWifiNameViewController {
             changeWifiNameVC.wifiInfos = self.wifiInfos
-            changeWifiNameVC.isDualband = self.switchDualBand.isOn
+            changeWifiNameVC.isDualband = true
             self.navigationController?.pushViewController(changeWifiNameVC, animated: true)
         }
     }
@@ -99,13 +99,15 @@ class WifiSettingsViewController: UIViewController {
                 UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
                     self.toggleWifiEnabled(band: "2.4G", switchWifi: self.switchTurnOffWifi)
                     self.toggleWifiEnabled(band: "5G", switchWifi: self.switchTurnOffWifi)
+                    HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "2.4G", completion: { _ in }, error: { _ in })
+                    HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "5G", completion: { _ in }, error: { _ in })
                     self.hideWifiView.alpha = 0.3
                     self.wifiSchedulingView.alpha = 0.3
                     self.hideWifiView.isUserInteractionEnabled = false
                     self.wifiSchedulingView.isUserInteractionEnabled = false
                 },
                 UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-                    self.switchTurnOffWifi.isOn = false
+                    self.switchTurnOffWifi.isOn = true
                     self.hideWifiView.alpha = 1
                     self.wifiSchedulingView.alpha = 1
                     self.hideWifiView.isUserInteractionEnabled = true
@@ -115,6 +117,8 @@ class WifiSettingsViewController: UIViewController {
         } else {
             self.toggleWifiEnabled(band: "2.4G", switchWifi: self.switchTurnOffWifi)
             self.toggleWifiEnabled(band: "5G", switchWifi: self.switchTurnOffWifi)
+            HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "2.4G", completion: { _ in }, error: { _ in })
+            HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "5G", completion: { _ in }, error: { _ in })
             self.hideWifiView.alpha = 1
             self.wifiSchedulingView.alpha = 1
             self.hideWifiView.isUserInteractionEnabled = true
@@ -205,7 +209,7 @@ class WifiSettingsViewController: UIViewController {
             HuaweiHelper.shared.getWifiInfoAll(completion: { wifiInfoAll in
                 hud.hide(animated: true)
                 self.stackView.isHidden = false
-                self.switchDualBand.isOn = wifiInfoAll.dualbandCombine
+//                self.switchDualBand.isOn = wifiInfoAll.dualbandCombine
 //                self.singleBandView.isHidden = wifiInfoAll.dualbandCombine
                 
                 let arrData = wifiInfoAll.infoList.filter { wifiInfo -> Bool in
@@ -219,8 +223,11 @@ class WifiSettingsViewController: UIViewController {
                     HuaweiHelper.shared.getWifiInfo(ssidIndex: infoItem.ssidIndex, completion: { info in
                         self.wifiInfos.append(info)
                         group.leave()
-                    }, error: { _ -> Void in
-                        hud.hide(animated: true)
+                    }, error: { exception -> Void in
+                        DispatchQueue.main.async {
+                            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                            hud.hide(animated: true)
+                        }
                     })
                 }
                 
@@ -230,11 +237,11 @@ class WifiSettingsViewController: UIViewController {
                         return wifiInfo?.isSsidAdvertisementEnabled == true
                     })
                     
-                    self.switchTurnOffWifi.isOn = self.wifiInfos.filter { $0?.radioType == "2.4G"}.contains(where: { wifiInfo -> Bool in
+                    self.switchTurnOffWifi.isOn = (self.wifiInfos.filter {$0?.radioType == "2.4G"}.contains(where: { wifiInfo -> Bool in
                         return wifiInfo?.enable == true
-                    }) || self.wifiInfos.filter { $0?.radioType == "5G"}.contains(where: { wifiInfo -> Bool in
+                    }) || self.wifiInfos.filter {$0?.radioType == "5G"}.contains(where: { wifiInfo -> Bool in
                         return wifiInfo?.enable == true
-                    })
+                    })) && (wifiInfoAll.hardwareSwitch2p4G == "true" || wifiInfoAll.hardwareSwitch5G == "true")
                     
                     if self.switchTurnOffWifi.isOn {
                         self.hideWifiView.alpha = 1
@@ -256,11 +263,18 @@ class WifiSettingsViewController: UIViewController {
 //                        return wifiInfo?.enable == true
 //                    })
                 }
-            }, error: { _ -> Void in
-                hud.hide(animated: true)
+            }, error: { exception -> Void in
+                DispatchQueue.main.async {
+                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                    hud.hide(animated: true)
+                }
+                
             })
-        }, error: { _ in
-            hud.hide(animated: true)
+        }, error: { exception in
+            DispatchQueue.main.async {
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                hud.hide(animated: true)
+            }
         })
     }
     
@@ -281,8 +295,9 @@ class WifiSettingsViewController: UIViewController {
                 self.closeLabel.text = utcCloseDate
             }
             
-        }, error: { _ -> Void in
+        }, error: { exception -> Void in
             DispatchQueue.main.async {
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                 hud.hide(animated: true)
             }
         })
@@ -306,8 +321,9 @@ class WifiSettingsViewController: UIViewController {
                     hud.hide(animated: true)
                     self.wifiInfos = dataInfos
                 }
-            }, error: { _ in
+            }, error: { exception in
                 DispatchQueue.main.async {
+                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                     hud.hide(animated: true)
                 }
             })
@@ -336,8 +352,9 @@ class WifiSettingsViewController: UIViewController {
                 DispatchQueue.main.async {
                     hud.hide(animated: true)
                 }
-            }, error: { _ in
+            }, error: { exception in
                 DispatchQueue.main.async {
+                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                     hud.hide(animated: true)
                 }
             })
@@ -357,8 +374,9 @@ class WifiSettingsViewController: UIViewController {
                     hud.hide(animated: true)
                     self.wifiInfos = dataInfos
                 }
-            }, error: { _ in
+            }, error: { exception in
                 DispatchQueue.main.async {
+                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                     hud.hide(animated: true)
                 }
             })
@@ -370,13 +388,14 @@ class WifiSettingsViewController: UIViewController {
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             hud.label.text = NSLocalizedString("Loading...", comment: "")
             newTimer.enabled = switchScheduling.isOn
-
             HuaweiHelper.shared.setWifiTimer(timer: newTimer, completion: { _ in
                 self.timer = newTimer
                 self.schedulingView.isHidden = !self.switchScheduling.isOn
                 hud.hide(animated: true)
-            }, error: { _ in
+            }, error: { exception in
                 DispatchQueue.main.async {
+                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                    self.switchScheduling.isOn = !self.switchScheduling.isOn
                     hud.hide(animated: true)
                 }
             })
@@ -403,8 +422,11 @@ class WifiSettingsViewController: UIViewController {
                             }
                         }
                         group.leave()
-                    }, error: { _ in
-                        hud.hide(animated: true)
+                    }, error: { exception in
+                        DispatchQueue.main.async {
+                            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                            hud.hide(animated: true)
+                        }
                     })
                 }
             }
@@ -468,7 +490,7 @@ extension WifiSettingsViewController: ScheduleViewControllerDelegate {
                     hud.hide(animated: true)
                 }, error: { exception in
                     DispatchQueue.main.async {
-                        self.showAlertMessage(message: exception?.errorCode ?? "")
+                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                         hud.hide(animated: true)
                     }
                 })
@@ -489,7 +511,7 @@ extension WifiSettingsViewController: ScheduleViewControllerDelegate {
                     hud.hide(animated: true)
                 }, error: { exception in
                     DispatchQueue.main.async {
-                        self.showAlertMessage(message: exception?.errorCode ?? "")
+                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                         hud.hide(animated: true)
                     }
                 })

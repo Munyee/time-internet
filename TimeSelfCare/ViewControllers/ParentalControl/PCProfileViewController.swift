@@ -409,12 +409,18 @@ class PCProfileViewController: UIViewController {
                                 HuaweiHelper.shared.deleteAttachParentControlTemplate(name: self.name, completion: { _ in
                                     hud.hide(animated: true)
                                     self.popToRoot()
-                                }, error: { _ in
-                                    hud.hide(animated: true)
+                                }, error: { exception in
+                                    DispatchQueue.main.async {
+                                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                                        hud.hide(animated: true)
+                                    }
                                 })
                             }
-                        }, error: { _ in
-                            
+                        }, error: { exception in
+                            DispatchQueue.main.async {
+                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                                hud.hide(animated: true)
+                            }
                         })
                     },
                     UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)])
@@ -504,18 +510,18 @@ class PCProfileViewController: UIViewController {
                             }
                         }, error: { exception in
                             hud.hide(animated: true)
-                            self.showAlertMessage(message: exception?.description ?? "")
+                            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                         })
                     }
                     
                 }, error: { exception in
                     hud.hide(animated: true)
-                    self.showAlertMessage(message: exception?.description ?? "")
+                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                 })
             }
         }, error: { exception in
             hud.hide(animated: true)
-            self.showAlertMessage(message: exception?.description ?? "")
+            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
         })
     }
 }

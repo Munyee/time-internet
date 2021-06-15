@@ -140,8 +140,11 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
                                 HuaweiHelper.shared.deleteAttachParentControlTemplate(name: template.name, completion: { _ in
                                     hud.hide(animated: true)
                                     self.getParentalControl()
-                                }, error: { _ in
-                                    hud.hide(animated: true)
+                                }, error: { exception in
+                                    DispatchQueue.main.async {
+                                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                                        hud.hide(animated: true)
+                                    }
                                 })
                             }
                         }

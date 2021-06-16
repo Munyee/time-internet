@@ -225,9 +225,9 @@ class PerformanceViewController: BaseViewController {
                     //                }
                     //            }
                 }, error: { exception in
-                    DispatchQueue.main.async {
-                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? "") ?? "")
-                    }
+//                    DispatchQueue.main.async {
+//                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? "") ?? "")
+//                    }
                 })
             } else {
                 if AccountController.shared.noOfGateway! > 0 {

@@ -40,30 +40,47 @@ class PCDevicesViewController: UIViewController {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Loading...", comment: "")
 
-        HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
-            hud.hide(animated: true)
-            var attPC = arrAttachPC
-            if self.template != nil {
-                attPC = attPC.filter { $0.templateName != self.template?.name }
-            }
-            let controlledDev = attPC.map { $0.mac }
+        HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
+            let names = tplList.map { template -> String in template.name }
             
-            HuaweiHelper.shared.queryLanDeviceListEx { devices in
-                self.arrDevices = devices.filter { !$0.isAp }
-                self.arrDevices = self.arrDevices.filter { !controlledDev.contains($0.mac) }
-                self.arrDevices = self.arrDevices.sorted { $0.onLine && !$1.onLine }
-                self.tableView.reloadData()
+            HuaweiHelper.shared.getParentControlTemplateDetailList(templateNames: names, completion: { arrData in
+                var macList: [[String]] = []
                 
-                let arrMac = self.arrDevices.map { $0.mac }
-                if let macList = arrMac as? [String] {
-                    HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: macList) { deviceTypeInfo in
-                        self.arrDeviceTypes = deviceTypeInfo
+                for data in arrData.filter({ $0.name != self.template?.name }) {
+                    if let macs = data.macList as? [String] {
+                        macList.append(macs)
+                    }
+                }
+                
+                let controlledDev = macList.flatMap { $0 }
+                
+                HuaweiHelper.shared.queryLanDeviceListEx { devices in
+                    self.arrDevices = devices.filter { !$0.isAp }
+                    self.arrDevices = self.arrDevices.filter { !controlledDev.contains($0.mac) }
+                    self.arrDevices = self.arrDevices.sorted { $0.onLine && !$1.onLine }
+                    self.tableView.reloadData()
+
+                    let arrMac = self.arrDevices.map { $0.mac }
+                    if let macList = arrMac as? [String] {
+                        HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: macList) { deviceTypeInfo in
+                            self.arrDeviceTypes = deviceTypeInfo
+                            self.tableView.reloadData()
+                        }
+                    } else {
                         self.tableView.reloadData()
                     }
-                } else {
-                    self.tableView.reloadData()
                 }
-            }
+                
+                hud.hide(animated: true)
+            }, error: { exception in
+                hud.hide(animated: true)
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
+                    UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
+                        self.dismissVC()
+                    }
+                ])
+            })
+            
         }, error: { exception in
             hud.hide(animated: true)
             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
@@ -72,6 +89,39 @@ class PCDevicesViewController: UIViewController {
                 }
             ])
         })
+        
+//        HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
+//            hud.hide(animated: true)
+//            var attPC = arrAttachPC
+//            if self.template != nil {
+//                attPC = attPC.filter { $0.templateName != self.template?.name }
+//            }
+//            let controlledDev = attPC.map { $0.mac }
+//
+//            HuaweiHelper.shared.queryLanDeviceListEx { devices in
+//                self.arrDevices = devices.filter { !$0.isAp }
+//                self.arrDevices = self.arrDevices.filter { !controlledDev.contains($0.mac) }
+//                self.arrDevices = self.arrDevices.sorted { $0.onLine && !$1.onLine }
+//                self.tableView.reloadData()
+//
+//                let arrMac = self.arrDevices.map { $0.mac }
+//                if let macList = arrMac as? [String] {
+//                    HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: macList) { deviceTypeInfo in
+//                        self.arrDeviceTypes = deviceTypeInfo
+//                        self.tableView.reloadData()
+//                    }
+//                } else {
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }, error: { exception in
+//            hud.hide(animated: true)
+//            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
+//                UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
+//                    self.dismissVC()
+//                }
+//            ])
+//        })
     }
     
     func checkConfirmButton() {

@@ -651,6 +651,7 @@ public extension HuaweiHelper {
         }
     }
     
+    // swiftlint:disable cyclomatic_complexity
     func mapErrorMsg(_ errorCode: String) -> String {
         switch errorCode {
         case "-10":

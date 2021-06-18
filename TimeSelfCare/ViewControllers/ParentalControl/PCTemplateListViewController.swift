@@ -96,15 +96,17 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
             return UITableViewCell()
         }
         
-        let template = templateList[indexPath.row]
-        cell.delegate = self
-        cell.selectionStyle = .none
-        cell.name.text = template.aliasName
-        cell.numDevice.text = "\(template.macList.count) \(template.macList.count == 1 ? "device" : "devices")"
-        cell.status.text = template.enable ? "Activated" : "Not Activated"
-        cell.status.textColor = template.enable ? UIColor(hex: "21B406") : UIColor(hex: "E50707")
-        cell.templateSwitch.isOn = template.enable
-        cell.ctrlTemplate = template
+        DispatchQueue.main.async {
+            let template = self.templateList[indexPath.row]
+            cell.delegate = self
+            cell.selectionStyle = .none
+            cell.name.text = template.aliasName
+            cell.numDevice.text = "\(template.macList.count) \(template.macList.count == 1 ? "device" : "devices")"
+            cell.status.text = template.enable ? "Activated" : "Not Activated"
+            cell.status.textColor = template.enable ? UIColor(hex: "21B406") : UIColor(hex: "E50707")
+            cell.templateSwitch.isOn = template.enable
+            cell.ctrlTemplate = template
+        }
         return cell
     }
     

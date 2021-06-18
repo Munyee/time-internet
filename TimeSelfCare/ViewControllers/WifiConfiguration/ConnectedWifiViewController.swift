@@ -25,7 +25,9 @@ class ConnectedWifiViewController: UIViewController {
     
     @objc
     func popBack() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func actChangeNetwork(_ sender: Any) {

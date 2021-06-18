@@ -92,7 +92,9 @@ class PCProfileViewController: UIViewController {
     
     @objc
     func popBack() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc
@@ -391,37 +393,34 @@ class PCProfileViewController: UIViewController {
                         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                         hud.label.text = NSLocalizedString("Loading...", comment: "")
                         
-                        HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
-                            let controlledDev = arrAttachPC.filter { $0.templateName == self.name }.map { $0.mac }
-                            
-                            let group = DispatchGroup()
-                            for dev in controlledDev {
-                                group.enter()
-                                let pcControl = HwAttachParentControl()
-                                pcControl.mac = dev
-                                pcControl.templateName = self.name
-                                HuaweiHelper.shared.deleteAttachParentControl(attachParentCtrl: pcControl) { _ in
-                                    group.leave()
-                                }
+                        guard let controlledDev = self.template?.macList as? [String] else {
+                            hud.hide(animated: true)
+                            self.popToRoot()
+                            return
+                        }
+                        
+                        let group = DispatchGroup()
+                        for dev in controlledDev {
+                            group.enter()
+                            let pcControl = HwAttachParentControl()
+                            pcControl.mac = dev
+                            pcControl.templateName = self.name
+                            HuaweiHelper.shared.deleteAttachParentControl(attachParentCtrl: pcControl) { _ in
+                                group.leave()
                             }
-                            
-                            group.notify(queue: .main) {
-                                HuaweiHelper.shared.deleteAttachParentControlTemplate(name: self.name, completion: { _ in
-                                    hud.hide(animated: true)
-                                    self.popToRoot()
-                                }, error: { exception in
-                                    DispatchQueue.main.async {
-                                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                                        hud.hide(animated: true)
-                                    }
-                                })
-                            }
-                        }, error: { exception in
-                            DispatchQueue.main.async {
-                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                        }
+                        
+                        group.notify(queue: .main) {
+                            HuaweiHelper.shared.deleteAttachParentControlTemplate(name: self.name, completion: { _ in
                                 hud.hide(animated: true)
-                            }
-                        })
+                                self.popToRoot()
+                            }, error: { exception in
+                                DispatchQueue.main.async {
+                                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                                    hud.hide(animated: true)
+                                }
+                            })
+                        }
                     },
                     UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)])
     }

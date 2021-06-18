@@ -24,7 +24,9 @@ class PairingSuccessViewController: UIViewController {
     
     @objc
     func popBack() {
-        self.navigationController?.popToRootViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func actDone(_ sender: Any) {

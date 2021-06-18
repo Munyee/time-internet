@@ -70,7 +70,9 @@ class ChangeWifiNameViewController: UIViewController {
     
     @objc
     func popBack() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

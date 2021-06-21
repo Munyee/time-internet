@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "HwCertificate.h"
 
-typedef void(^HwServerTrustServiceCallback)(id certInfo);
+typedef void(^HwServerTrustServiceCallback)(HwCertificate *certInfo);
 
 extern NSString * const HLCAFNetworkingTrustServerCertificateKey;
 
@@ -31,6 +31,10 @@ extern NSString * const HLCAFNetworkingTrustServerCertificateKey;
  是否信任被吊销的证书
  */
 @property (nonatomic, assign) BOOL trustRevokedCertificate;
+/**
+ 默认证书路径
+ */
+@property (nonatomic, copy) NSSet <NSString *>*defaultCertPaths;
 
 /**
  单例初始化
@@ -38,11 +42,6 @@ extern NSString * const HLCAFNetworkingTrustServerCertificateKey;
  @return 单例对象
  */
 + (HwServerTrustService *)sharedService;
-
-+(instancetype) alloc __attribute__((unavailable("call sharedService instead")));
-+(instancetype) new __attribute__((unavailable("call sharedService instead")));
--(instancetype) copy __attribute__((unavailable("call sharedService instead")));
--(instancetype) mutableCopy __attribute__((unavailable("call sharedService instead")));
 
 /**
  注册不受信任的证书回调
@@ -82,4 +81,11 @@ extern NSString * const HLCAFNetworkingTrustServerCertificateKey;
  @return true需要做RCRL验证，false不需要做CRL验证
  */
 - (BOOL)getNeedCRLRevokedVerifyIsLocal:(BOOL)isLocal;
+
+/**
+信任指定证书
+
+@param cert 证书对象
+*/
++ (void)trustCertificate:(HwCertificate *)cert;
 @end

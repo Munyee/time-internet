@@ -70,7 +70,9 @@ class ChangeWifiNameViewController: UIViewController {
     
     @objc
     func popBack() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,47 +86,54 @@ class ChangeWifiNameViewController: UIViewController {
     }
 
     @IBAction func actSave(_ sender: Any) {
-        var arrWifiInfo: [HwWifiInfo?] = []
-        
-        if let wifiInfo5g = wifiInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
-            return "\(String(describing: wifiInfoA?.ssidIndex))".compare("\(String(describing: wifiInfoB?.ssidIndex))", options: .numeric) == .orderedAscending
-        }).first(where: { $0?.radioType == "5G" }) {
-            arrWifiInfo.append(wifiInfo5g)
-        }
-        
-        if let wifiInfo2p4g = wifiInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
-            return "\(String(describing: wifiInfoA?.ssidIndex))".compare("\(String(describing: wifiInfoB?.ssidIndex))", options: .numeric) == .orderedAscending
-        }).first(where: { $0?.radioType == "2.4G" }) {
-            arrWifiInfo.append(wifiInfo2p4g)
-        }
-        
-        for wifiInfo in arrWifiInfo {
-            if isDualband! {
-                wifiInfo?.ssid = ssidName.text
-            } else {
-                if wifiInfo?.radioType == "5G" {
-                    wifiInfo?.ssid = ssidName.text
-                } else {
-                    wifiInfo?.ssid = "\(ssidName.text ?? "")_2.4G"
+        self.showAlertMessage(title: "Change WiFi Login", message: "All your devices will be disconnected. Please reconnect with your new WiFi name and/or password.", actions: [
+            UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .destructive) { _ in
+                var arrWifiInfo: [HwWifiInfo?] = []
+                
+                if let wifiInfo5g = self.wifiInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
+                    return "\(String(describing: wifiInfoA?.ssidIndex))".compare("\(String(describing: wifiInfoB?.ssidIndex))", options: .numeric) == .orderedAscending
+                }).first(where: { $0?.radioType == "5G" }) {
+                    arrWifiInfo.append(wifiInfo5g)
                 }
+                
+                if let wifiInfo2p4g = self.wifiInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
+                    return "\(String(describing: wifiInfoA?.ssidIndex))".compare("\(String(describing: wifiInfoB?.ssidIndex))", options: .numeric) == .orderedAscending
+                }).first(where: { $0?.radioType == "2.4G" }) {
+                    arrWifiInfo.append(wifiInfo2p4g)
+                }
+                
+                for wifiInfo in arrWifiInfo {
+                    if self.isDualband! {
+                        wifiInfo?.ssid = self.ssidName.text
+                    } else {
+                        if wifiInfo?.radioType == "5G" {
+                            wifiInfo?.ssid = self.ssidName.text
+                        } else {
+                            wifiInfo?.ssid = "\(self.ssidName.text ?? "")_2.4G"
+                        }
+                    }
+                    wifiInfo?.password = self.originalPassword
+                }
+                
+                if let wifiInfos = arrWifiInfo as? [HwWifiInfo] {
+                    let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+                    hud.label.text = NSLocalizedString("Loading...", comment: "")
+                    HuaweiHelper.shared.setWifiInfoList(wifiInfos: wifiInfos, completion: { _ in
+                        DispatchQueue.main.async {
+                            hud.hide(animated: true)
+                            self.popBack()
+                        }
+                    }, error: { exception in
+                        DispatchQueue.main.async {
+                            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                            hud.hide(animated: true)
+                        }
+                    })
+                }
+            },
+            UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
             }
-            wifiInfo?.password = originalPassword
-        }
-        
-        if let wifiInfos = arrWifiInfo as? [HwWifiInfo] {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
-            HuaweiHelper.shared.setWifiInfoList(wifiInfos: wifiInfos, completion: { _ in
-                DispatchQueue.main.async {
-                    hud.hide(animated: true)
-                    self.popBack()
-                }
-            }, error: { _ in
-                DispatchQueue.main.async {
-                    hud.hide(animated: true)
-                }
-            })
-        }
+        ])
     }
     
     @IBAction func toggleVisibility(_ sender: UIButton) {

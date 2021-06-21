@@ -85,4 +85,6 @@ typedef enum
 /** 时区移秒数，东经为正，西经为负，如东八区为8*3600=28800 */
 @property(nonatomic,copy) NSString *timeZoneOffset;
 
+/**  是否支持uni*/
+@property(nonatomic,copy) NSString *supportedUniPorts;
 @end

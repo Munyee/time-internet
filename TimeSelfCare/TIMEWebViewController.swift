@@ -40,7 +40,9 @@ internal class TIMEWebViewController: UIViewController, WKUIDelegate {
 
     @objc
     func navigateBack() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     @objc

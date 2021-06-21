@@ -58,6 +58,10 @@
  */
 - (void) searchGatewayForNear:(id<HwCallback>)callback;
 
+/// 快速校验网关，1s返回结果
+/// @param callback 回调
+- (void)checkOnt:(id<HwCallback>)callback;
+
 /**
  *
  *
@@ -337,4 +341,19 @@ withTranferAdminRightsParam:(HwTransferAdminRightsParam *)param
  @param callback 回调
  */
 - (void)queryOMMessage:(HwQueryOMMessageParam *)param withCallback:(id<HwCallback>)callback;
+
+/**
+ 获取多因素认证的验证码
+
+ @param callback 回调
+*/
+- (void)getMultiFactorCode:(id<HwCallback>)callback;
+
+/**
+ 校验多因素验证码
+
+ @param code 验证码
+ @param callback 回调
+*/
+- (void)checkMultiFactorCode:(NSString *)code withCallback:(id<HwCallback>)callback;
 @end

@@ -27,6 +27,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var activityButton: UIButton!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    var showFloatingButton = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +117,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                 if let result = data {
                     let huaweiDevice = IsHuaweiDevice(with: result)
                     if huaweiDevice?.status == "yes" {
+                        self.showFloatingButton = false
                         HuaweiHelper.shared.initHwSdk {
                             HuaweiHelper.shared.checkIsLogin { result in
 //                                if !result.isLogined {
@@ -125,6 +127,8 @@ class SummaryContainerViewController: TimeBaseViewController {
 //                                }
                             }
                         }
+                    } else {
+                        self.showFloatingButton = true
                     }
                 }
             }
@@ -132,35 +136,33 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     func HuaweiLogin() {
-//        HuaweiHelper.shared.login { _ in
-//            HuaweiHelper.shared.registerErrorMessageHandle { msg in
-//                self.checkIsKick()
-//            }
-//        }
-        
-        let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
-        
-        guard
-            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
-            else {
-                return
-        }
-        
-        let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
-        AccountDataController.shared.getHuaweiSSOAuthCode(mobileId: UUIDValue, account: account, service: service) { data, error in
-            guard error == nil else {
-                print(error.debugDescription)
-                return
+        DispatchQueue.main.async {
+            let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
+            
+            guard
+                let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+                else {
+                    return
             }
+            
+            let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
+            AccountDataController.shared.getHuaweiSSOAuthCode(mobileId: UUIDValue, account: account, service: service) { data, error in
+                guard error == nil else {
+                    print(error.debugDescription)
+                    return
+                }
 
-            if let result = data {
-                if let authCode = result["authcode"] as? String {
-                    print(authCode)
-                    HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
-                        self.checkIsKick()
-                    }, error: { _ in
-
-                    })
+                if let result = data {
+                    if let authCode = result["authcode"] as? String {
+                        print(authCode)
+                        HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
+                            self.checkIsKick()
+                        }, error: { exception in
+                            DispatchQueue.main.async {
+                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? "") ?? "")
+                            }
+                        })
+                    }
                 }
             }
         }
@@ -384,7 +386,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                 return
         }
         
-        if isConnected {
+        if isConnected && self.showFloatingButton {
             self.showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
         } else {
             self.hideFloatingActionButton()
@@ -417,12 +419,11 @@ extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
             hideFloatingActionButton()
         case .performanceStatusSummary:
             self.pageTitleLabel.text = NSLocalizedString("Network Management", comment: "")
-            hideFloatingActionButton()
-            //            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false {
-            //                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
-            //            } else {
-            //                hideFloatingActionButton()
-            //            }
+            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false && self.showFloatingButton {
+                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
+            } else {
+                hideFloatingActionButton()
+            }
         }
     }
 }

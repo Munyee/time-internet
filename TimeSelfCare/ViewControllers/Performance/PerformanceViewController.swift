@@ -144,6 +144,20 @@ class PerformanceViewController: BaseViewController {
         })
     }
     
+    @IBAction func actDeviceInstallation(_ sender: Any) {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        HuaweiHelper.shared.queryGateway(completion: { _ in
+            hud.hide(animated: true)
+            if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "DeviceInstallationListViewController") as? DeviceInstallationListViewController {
+                self.presentNavigation(templateVC, animated: true)
+            }
+        }, error: { _ in
+            hud.hide(animated: true)
+            self.showNotAvailable()
+        })
+    }
+    
     @IBAction func actWifiConfiguration(_ sender: Any) {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Loading...", comment: "")
@@ -184,7 +198,6 @@ class PerformanceViewController: BaseViewController {
         let showAddnce = !UserDefaults.standard.bool(forKey: self.kIsSetupNCE)
         
         HuaweiHelper.shared.queryUserBindGateway { gateways in
-            print(gateways)
             if !gateways.isEmpty {
                 AccountController.shared.gatewayDevId = gateways.first(where: { !$0.deviceId.isEmpty })?.deviceId
                 self.gateway = gateways.first(where: { !$0.deviceId.isEmpty })
@@ -195,8 +208,11 @@ class PerformanceViewController: BaseViewController {
                 self.speedTestView.isHidden = false
                 self.nceFeatureSmallView.isHidden = true
                 HuaweiHelper.shared.queryGateway(completion: { gateway in
-                    HuaweiHelper.shared.queryLanDeviceCount { result in
-                        self.numberOfDevice.text = "\(result.lanDeviceCount)"
+                    HuaweiHelper.shared.queryLanDeviceListEx { devices in
+                        let arrDev = devices.filter { dev -> Bool in
+                            return !dev.isAp && dev.onLine
+                        }
+                        self.numberOfDevice.text = "\(arrDev.count)"
                     }
                     //            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                     //                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in
@@ -208,7 +224,10 @@ class PerformanceViewController: BaseViewController {
                     //                    self.upByte.text = "\(upByte)"
                     //                }
                     //            }
-                }, error: { _ in
+                }, error: { exception in
+//                    DispatchQueue.main.async {
+//                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? "") ?? "")
+//                    }
                 })
             } else {
                 if AccountController.shared.noOfGateway! > 0 {

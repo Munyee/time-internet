@@ -158,56 +158,58 @@ class TicketDetailViewController: UIViewController {
     }
 
     @IBAction func sendMessage(_ sender: Any) {
-        guard
-            let account = AccountController.shared.selectedAccount,
-            !self.textView.text.isEmpty
-        else {
-            return
-        }
-        self.view.endEditing(false)
-        self.imageSelectionContainerView.isHidden = true
-
-        let newConversation = Conversation(ticket: self.ticket)
-        newConversation.body = self.textView.text
-        newConversation.fullname = account.profile?.fullname
-        newConversation.datetime = Date().string(usingFormat: "dd/MM/YYYY h:mma")
-        newConversation.status = .sending
-
-        let images: [UIImage] = self.selectedImageInfos.compactMap {
-            guard var image = $0[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
-                return nil
-            }
-            return image
-        }
-        newConversation.images = images
-
-        self.conversations.append(newConversation)
-
-        self.tableView.beginUpdates()
-        let indexSet = IndexSet(integer: self.conversations.count - 1)
-        self.tableView.insertSections(indexSet, with: .fade)
-
-        var indexPaths: [IndexPath] = []
-        for i in 0..<newConversation.images.count + 1 {
-            indexPaths.append(IndexPath(row: i, section: self.conversations.count - 1))
-        }
-
-        self.tableView.insertRows(at: indexPaths, with: .fade)
-        self.tableView.endUpdates()
-        self.tableView.scrollToRow(at: indexPaths.last!, at: .top, animated: false) // swiftlint:disable:this force_unwrapping
-        self.textView.text = String()
-
-        for info in self.selectedImageInfos {
-            guard let identifier = info["localIdentifier"]  as? String else {
+        DispatchQueue.main.async {
+            guard
+                let account = AccountController.shared.selectedAccount,
+                !self.textView.text.isEmpty
+            else {
                 return
             }
-//            Crashlytics.crashlytics().
-            self.imagePickerVC?.deselectItem(for: identifier)
-        }
-        self.selectedImageInfos = []
-        self.selectedImageCollectionView.reloadData()
+            self.view.endEditing(false)
+            self.imageSelectionContainerView.isHidden = true
 
-        self.send(newConversation)
+            let newConversation = Conversation(ticket: self.ticket)
+            newConversation.body = self.textView.text
+            newConversation.fullname = account.profile?.fullname
+            newConversation.datetime = Date().string(usingFormat: "dd/MM/YYYY h:mma")
+            newConversation.status = .sending
+
+            let images: [UIImage] = self.selectedImageInfos.compactMap {
+                guard var image = $0[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
+                    return nil
+                }
+                return image
+            }
+            newConversation.images = images
+
+            self.conversations.append(newConversation)
+
+            self.tableView.beginUpdates()
+            let indexSet = IndexSet(integer: self.conversations.count - 1)
+            self.tableView.insertSections(indexSet, with: .fade)
+
+            var indexPaths: [IndexPath] = []
+            for i in 0..<newConversation.images.count + 1 {
+                indexPaths.append(IndexPath(row: i, section: self.conversations.count - 1))
+            }
+
+            self.tableView.insertRows(at: indexPaths, with: .fade)
+            self.tableView.endUpdates()
+            self.tableView.scrollToRow(at: indexPaths.last!, at: .top, animated: false) // swiftlint:disable:this force_unwrapping
+            self.textView.text = String()
+
+            for info in self.selectedImageInfos {
+                guard let identifier = info["localIdentifier"]  as? String else {
+                    return
+                }
+    //            Crashlytics.crashlytics().
+                self.imagePickerVC?.deselectItem(for: identifier)
+            }
+            self.selectedImageInfos = []
+            self.selectedImageCollectionView.reloadData()
+
+            self.send(newConversation)
+        }
     }
 
     private func send(_ conversation: Conversation) {
@@ -229,7 +231,9 @@ class TicketDetailViewController: UIViewController {
 
     @objc
     private func popViewController() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     @IBAction func addAttachment(_ sender: Any?) {

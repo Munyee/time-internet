@@ -118,7 +118,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     }
                 } else {
                     self.showNext()
-                    Crashlytics.crashlytics().record(error: error!)
+//                    Crashlytics.crashlytics().record(error: error!)
                     print("Config not fetched")
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 }

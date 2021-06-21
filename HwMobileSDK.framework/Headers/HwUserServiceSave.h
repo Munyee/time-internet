@@ -170,5 +170,6 @@
  */
 - (void)verifyPassword:(HwVerifyPasswordParam *)param
           withCallBack:(id<HwCallback>)callback;
+
 @end
 

@@ -182,10 +182,12 @@ public extension UIViewController {
     }
     
     @IBAction public func dismissVC(_ sender: AnyObject? = nil) {
-        if self.presentingViewController != nil {
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
-        } else if self.navigationController != nil {
-            _ = self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            if self.presentingViewController != nil {
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            } else if self.navigationController != nil {
+                _ = self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 

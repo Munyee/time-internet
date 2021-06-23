@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qct-ec-vFD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qct-ec-vFD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -248,10 +248,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxF-YF-hCe">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="739.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="788"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IuR-2s-XTK">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="739.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="788"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GtR-Uz-ueU" customClass="UIControl">
                                                         <rect key="frame" x="24" y="59" width="366" height="81"/>
@@ -342,10 +342,10 @@
                                                         </connections>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UWv-EC-tk2">
-                                                        <rect key="frame" x="24" y="269.5" width="366" height="177"/>
+                                                        <rect key="frame" x="24" y="269.5" width="366" height="225.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0a-nM-4Xq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="80"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="128.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WiFi Scheduling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pX1-Wu-ikK">
                                                                         <rect key="frame" x="12" y="30" width="283" height="20"/>
@@ -354,25 +354,34 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-5n-2KR">
-                                                                        <rect key="frame" x="305" y="24" width="51" height="31"/>
+                                                                        <rect key="frame" x="305" y="30" width="51" height="31"/>
                                                                         <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <connections>
                                                                             <action selector="actWifiScheduling:" destination="X7z-3g-s63" eventType="valueChanged" id="mpw-WX-oD6"/>
                                                                         </connections>
                                                                     </switch>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will make your WiFi network undiscoverable to any device that is not connected to it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pV-nt-c8t">
+                                                                        <rect key="frame" x="12" y="55" width="243" height="43.5"/>
+                                                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="top" secondItem="pX1-Wu-ikK" secondAttribute="top" constant="-6" id="0Fl-ze-Lqd"/>
+                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="top" secondItem="pX1-Wu-ikK" secondAttribute="top" id="0Fl-ze-Lqd"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="9pV-nt-c8t" secondAttribute="bottom" constant="30" id="1E4-Qu-wWA"/>
                                                                     <constraint firstItem="pX1-Wu-ikK" firstAttribute="leading" secondItem="C0a-nM-4Xq" secondAttribute="leading" constant="12" id="5Qf-vb-gHS"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="pX1-Wu-ikK" secondAttribute="bottom" constant="30" id="LYH-hD-B2N"/>
+                                                                    <constraint firstItem="9pV-nt-c8t" firstAttribute="leading" secondItem="pX1-Wu-ikK" secondAttribute="leading" id="Wke-Cl-3SW"/>
                                                                     <constraint firstItem="WLJ-5n-2KR" firstAttribute="leading" secondItem="pX1-Wu-ikK" secondAttribute="trailing" constant="10" id="b9w-z4-scB"/>
+                                                                    <constraint firstItem="9pV-nt-c8t" firstAttribute="top" secondItem="pX1-Wu-ikK" secondAttribute="bottom" constant="5" id="h44-2b-pXC"/>
                                                                     <constraint firstAttribute="trailing" secondItem="WLJ-5n-2KR" secondAttribute="trailing" constant="12" id="pcN-rR-IWP"/>
+                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="leading" secondItem="9pV-nt-c8t" secondAttribute="trailing" constant="50" id="sKy-Ix-WeT"/>
                                                                     <constraint firstItem="pX1-Wu-ikK" firstAttribute="top" secondItem="C0a-nM-4Xq" secondAttribute="top" constant="30" id="sQH-We-L3x"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="976-4T-2Xt">
-                                                                <rect key="frame" x="0.0" y="80" width="366" height="97"/>
+                                                                <rect key="frame" x="0.0" y="128.5" width="366" height="97"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvp-Uu-BwZ">
                                                                         <rect key="frame" x="12" y="37" width="342" height="1"/>
@@ -473,14 +482,14 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXd-nw-N40">
-                                                        <rect key="frame" x="24" y="446.5" width="366" height="1"/>
+                                                        <rect key="frame" x="24" y="495" width="366" height="1"/>
                                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="mqN-rW-tXj"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-PZ-tOJ" customClass="UIControl">
-                                                        <rect key="frame" x="24" y="447.5" width="366" height="277"/>
+                                                        <rect key="frame" x="24" y="496" width="366" height="277"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEx-yD-S21">
                                                                 <rect key="frame" x="0.0" y="276" width="366" height="1"/>

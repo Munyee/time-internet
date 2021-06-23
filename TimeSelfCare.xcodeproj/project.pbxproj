@@ -90,6 +90,9 @@
 		9E5437F125E8E1A200195623 /* GetConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5437F025E8E1A200195623 /* GetConnectViewController.swift */; };
 		9E59AF6325DE325A00FF427A /* Parentalcontrol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */; };
 		9E59AF6525DE32AE00FF427A /* PCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */; };
+		9E8BB097268076820091D4D3 /* BlacklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB094268076810091D4D3 /* BlacklistViewController.swift */; };
+		9E8BB098268076820091D4D3 /* AddBlacklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB095268076810091D4D3 /* AddBlacklistViewController.swift */; };
+		9E8BB099268076820091D4D3 /* Blacklist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8BB096268076810091D4D3 /* Blacklist.storyboard */; };
 		9E8FC9BA25357255008936D2 /* HowItWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9AE25357255008936D2 /* HowItWorkViewController.swift */; };
 		9E8FC9BB25357255008936D2 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9AF25357255008936D2 /* ShareViewController.swift */; };
 		9E8FC9BC25357255008936D2 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9B125357255008936D2 /* BannerCollectionViewCell.swift */; };
@@ -417,6 +420,9 @@
 		9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCMainViewController.swift; sourceTree = "<group>"; };
 		9E5F789925D40C0200C4D388 /* FunctionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FunctionSDK.framework; sourceTree = "<group>"; };
 		9E5F789A25D40C0400C4D388 /* HwMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HwMobileSDK.framework; sourceTree = "<group>"; };
+		9E8BB094268076810091D4D3 /* BlacklistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlacklistViewController.swift; sourceTree = "<group>"; };
+		9E8BB095268076810091D4D3 /* AddBlacklistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBlacklistViewController.swift; sourceTree = "<group>"; };
+		9E8BB096268076810091D4D3 /* Blacklist.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Blacklist.storyboard; sourceTree = "<group>"; };
 		9E8FC9AE25357255008936D2 /* HowItWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowItWorkViewController.swift; sourceTree = "<group>"; };
 		9E8FC9AF25357255008936D2 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		9E8FC9B125357255008936D2 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -668,6 +674,7 @@
 			isa = PBXGroup;
 			children = (
 				9EE460D8260043F70040D8CE /* DeviceInstallation */,
+				9E8BB093268076810091D4D3 /* Blacklist */,
 				9EFC438025EE127F009AF8C2 /* WifiConfiguration */,
 				9E5437ED25E8E16400195623 /* BindGateway */,
 				9E59AF6125DE31AD00FF427A /* ParentalControl */,
@@ -1021,6 +1028,16 @@
 				9E36BB4C25E3F0C100E5575F /* PCPeriodViewController.swift */,
 			);
 			path = ParentalControl;
+			sourceTree = "<group>";
+		};
+		9E8BB093268076810091D4D3 /* Blacklist */ = {
+			isa = PBXGroup;
+			children = (
+				9E8BB094268076810091D4D3 /* BlacklistViewController.swift */,
+				9E8BB095268076810091D4D3 /* AddBlacklistViewController.swift */,
+				9E8BB096268076810091D4D3 /* Blacklist.storyboard */,
+			);
+			path = Blacklist;
 			sourceTree = "<group>";
 		};
 		9E8FC9AD25357255008936D2 /* HookUp */ = {
@@ -1601,6 +1618,7 @@
 				E22A5B5322C5A4E600C99ED2 /* GoogleService-Info.plist in Resources */,
 				9E9BBA092465516D00F2514D /* FCTheme.plist in Resources */,
 				E2AD69D820AD12CB001D104E /* Performance.storyboard in Resources */,
+				9E8BB099268076820091D4D3 /* Blacklist.storyboard in Resources */,
 				9E59AF6325DE325A00FF427A /* Parentalcontrol.storyboard in Resources */,
 				9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */,
 				5A4790051FA972080074B5D4 /* Assets.xcassets in Resources */,
@@ -2027,6 +2045,7 @@
 				9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */,
 				9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */,
 				9E36BB5825E539BB00E5575F /* SelectPeriod.swift in Sources */,
+				9E8BB097268076820091D4D3 /* BlacklistViewController.swift in Sources */,
 				9E8FC9BA25357255008936D2 /* HowItWorkViewController.swift in Sources */,
 				9EE0B95D246513290073288B /* LiveChatView.swift in Sources */,
 				9E183ACF266A17D200CB923B /* PairingViewController.swift in Sources */,
@@ -2060,6 +2079,7 @@
 				0A9433801FAAB9CA00AA0DFF /* SummaryPageViewController.swift in Sources */,
 				9EF69F2F25F89168003D11F6 /* WifiSettingsViewController.swift in Sources */,
 				9E36BB5C25E5430000E5575F /* PeriodView.swift in Sources */,
+				9E8BB098268076820091D4D3 /* AddBlacklistViewController.swift in Sources */,
 				9EE0B965246520FD0073288B /* ExpandableLiveChatView.swift in Sources */,
 				0A9433831FAAC5E000AA0DFF /* CentredImageButton.swift in Sources */,
 				E2AD92C31FC3A41F00138334 /* AccountSummaryViewController.swift in Sources */,
@@ -2318,7 +2338,7 @@
 				CODE_SIGN_ENTITLEMENTS = TimeSelfCare/TimeSelfCare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 831;
+				CURRENT_PROJECT_VERSION = 832;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				ENABLE_BITCODE = NO;
@@ -2329,7 +2349,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 4.7.2;
+				MARKETING_VERSION = 5.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2351,7 +2371,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 831;
+				CURRENT_PROJECT_VERSION = 832;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2361,7 +2381,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 4.7.2;
+				MARKETING_VERSION = 5.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2609,7 +2629,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 831;
+				CURRENT_PROJECT_VERSION = 832;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2619,7 +2639,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 4.7.2;
+				MARKETING_VERSION = 5.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";

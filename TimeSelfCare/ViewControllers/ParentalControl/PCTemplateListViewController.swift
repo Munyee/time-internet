@@ -96,15 +96,17 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
             return UITableViewCell()
         }
         
-        let template = templateList[indexPath.row]
-        cell.delegate = self
-        cell.selectionStyle = .none
-        cell.name.text = template.aliasName
-        cell.numDevice.text = "\(template.macList.count) \(template.macList.count == 1 ? "device" : "devices")"
-        cell.status.text = template.enable ? "Activated" : "Not Activated"
-        cell.status.textColor = template.enable ? UIColor(hex: "21B406") : UIColor(hex: "E50707")
-        cell.templateSwitch.isOn = template.enable
-        cell.ctrlTemplate = template
+        DispatchQueue.main.async {
+            let template = self.templateList[indexPath.row]
+            cell.delegate = self
+            cell.selectionStyle = .none
+            cell.name.text = template.aliasName
+            cell.numDevice.text = "\(template.macList.count) \(template.macList.count == 1 ? "device" : "devices")"
+            cell.status.text = template.enable ? "Activated" : "Not Activated"
+            cell.status.textColor = template.enable ? UIColor(hex: "21B406") : UIColor(hex: "E50707")
+            cell.templateSwitch.isOn = template.enable
+            cell.ctrlTemplate = template
+        }
         return cell
     }
     
@@ -123,10 +125,8 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
                     UIAlertAction(title: NSLocalizedString("Confirm", comment: ""), style: .destructive) { _ in
                         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                         hud.label.text = NSLocalizedString("Loading...", comment: "")
-                        
-                        HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
-                            let controlledDev = arrAttachPC.filter { $0.templateName == template.name }.map { $0.mac }
-                            
+                                                
+                        if let controlledDev = template.macList as? [String] {
                             let group = DispatchGroup()
                             for dev in controlledDev {
                                 group.enter()
@@ -142,13 +142,14 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
                                 HuaweiHelper.shared.deleteAttachParentControlTemplate(name: template.name, completion: { _ in
                                     hud.hide(animated: true)
                                     self.getParentalControl()
-                                }, error: { _ in
-                                    hud.hide(animated: true)
+                                }, error: { exception in
+                                    DispatchQueue.main.async {
+                                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                                        hud.hide(animated: true)
+                                    }
                                 })
                             }
-                        }, error: { _ in
-                            
-                        })
+                        }
                     },
                     UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)])
         }

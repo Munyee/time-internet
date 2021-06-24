@@ -26,10 +26,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEn-cy-tGW">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="317"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bXR-Pe-kU7">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="317"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkz-TL-LF1" customClass="UIControl">
                                                         <rect key="frame" x="35" y="59" width="344" height="81"/>
@@ -114,6 +114,44 @@
                                                         </constraints>
                                                         <connections>
                                                             <action selector="actWifiSettings:" destination="qct-ec-vFD" eventType="touchUpInside" id="dI1-YM-H0y"/>
+                                                        </connections>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0M-SY-yBe" customClass="UIControl">
+                                                        <rect key="frame" x="35" y="221" width="344" height="81"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7fP-eB-J2q">
+                                                                <rect key="frame" x="0.0" y="80" width="344" height="1"/>
+                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="J3c-nt-e5e"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WIFI Strength Check" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSD-J8-Osn">
+                                                                <rect key="frame" x="0.0" y="30" width="126" height="20"/>
+                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="5Uy-hn-uKB">
+                                                                <rect key="frame" x="325" y="27.5" width="19" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="20" id="90R-FC-uUb"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="7fP-eB-J2q" secondAttribute="trailing" id="PJo-2G-BxA"/>
+                                                            <constraint firstItem="sSD-J8-Osn" firstAttribute="leading" secondItem="s0M-SY-yBe" secondAttribute="leading" id="UZb-Il-kn7"/>
+                                                            <constraint firstAttribute="bottom" secondItem="7fP-eB-J2q" secondAttribute="bottom" id="dum-MB-EYc"/>
+                                                            <constraint firstItem="7fP-eB-J2q" firstAttribute="top" secondItem="sSD-J8-Osn" secondAttribute="bottom" constant="30" id="eok-Qp-dXr"/>
+                                                            <constraint firstAttribute="trailing" secondItem="5Uy-hn-uKB" secondAttribute="trailing" id="kWW-cG-q39"/>
+                                                            <constraint firstItem="7fP-eB-J2q" firstAttribute="leading" secondItem="s0M-SY-yBe" secondAttribute="leading" id="oba-f6-SdG"/>
+                                                            <constraint firstItem="sSD-J8-Osn" firstAttribute="top" secondItem="s0M-SY-yBe" secondAttribute="top" constant="30" id="upw-JN-itB"/>
+                                                            <constraint firstItem="5Uy-hn-uKB" firstAttribute="centerY" secondItem="s0M-SY-yBe" secondAttribute="centerY" constant="-3" id="wE7-1z-XJo"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="actWifiQualityAssessment:" destination="qct-ec-vFD" eventType="touchUpInside" id="dEA-6N-dhg"/>
                                                         </connections>
                                                     </view>
                                                 </subviews>

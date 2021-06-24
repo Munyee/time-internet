@@ -10,29 +10,28 @@ import UIKit
 
 class WifiQualityAssessmentViewController: UIViewController {
 
-    let pinger = try? SwiftyPing(host: "1.1.1.1", configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
+    @IBOutlet private weak var linkRateFormula: UILabel!
+    @IBOutlet private weak var linkRate: UILabel!
+    @IBOutlet private weak var rssiFormula: UILabel!
+    @IBOutlet private weak var rssi: UILabel!
+    @IBOutlet private weak var latencyFormula: UILabel!
+    @IBOutlet private weak var latency: UILabel!
+    @IBOutlet private weak var finalScore: UILabel!
+    @IBOutlet private weak var hostTextField: UITextField!
+    
+    var pinger = try? SwiftyPing(host: "1.1.1.1", configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupToHideKeyboardOnTapOnView()
         
         self.title = NSLocalizedString("WIFI QUALITY ASSESSMENT", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
 
 //        print(Units(kBytes: Int64(LinkRate.getRouterLinkSpeed() / 1_024)).getReadableUnit())
        
-        pinger?.observer = { response in
-            let duration = response.duration * 1_000
-            
-            let linkrate = ceil(self.calculateLinkRate(Units(kBytes: Int64(LinkRate.getRouterLinkSpeed() / 1_024)).getRateInMbps()))
-            let rssi = ceil(self.calculateRSSIScore(HuaweiHelper.shared.getRSSISignal()))
-            let latency = ceil(self.calculateLatecyScore(duration))
-            print("-------Latest LinkRate/RSSI/Latency-------")
-            print("Link Rate: \(linkrate) * 30% = \(linkrate * 30 / 100)")
-            print("RSSI: \(rssi) * 30% = \(rssi * 30 / 100)")
-            print("Latency: \(latency) * 40% = \(latency * 40 / 100)")
-            print("Final Score: \(ceil((linkrate * 30 / 100)) + ceil(rssi * 30 / 100) + ceil(latency * 40 / 100))")
-        }
-        try? pinger?.startPinging()
+        startPing()
     }
     
     @objc
@@ -81,5 +80,34 @@ class WifiQualityAssessmentViewController: UIViewController {
         } else {
             return 0
         }
+    }
+    
+    func startPing() {
+        pinger?.observer = { response in
+            let duration = response.duration * 1_000
+            
+            let linkrate = ceil(self.calculateLinkRate(Units(kBytes: Int64(LinkRate.getRouterLinkSpeed() / 1_024)).getRateInMbps()))
+            let rssi = ceil(self.calculateRSSIScore(HuaweiHelper.shared.getRSSISignal()))
+            let latency = ceil(self.calculateLatecyScore(duration))
+            print("-------Latest LinkRate/RSSI/Latency-------")
+            print("Link Rate: \(linkrate) * 30% = \(linkrate * 30 / 100)")
+            print("RSSI: \(rssi) * 30% = \(rssi * 30 / 100)")
+            print("Latency: \(latency) * 40% = \(latency * 40 / 100)")
+            print("Final Score: \(ceil((linkrate * 30 / 100)) + ceil(rssi * 30 / 100) + ceil(latency * 40 / 100))")
+            self.linkRateFormula.text = "\(linkrate) * 30%"
+            self.linkRate.text = "\(linkrate * 30 / 100)"
+            self.rssiFormula.text = "\(rssi) * 30%"
+            self.rssi.text = "\(rssi * 30 / 100)"
+            self.latencyFormula.text = "\(String(format: "%.f", duration))ms - \(latency) * 40%"
+            self.latency.text = "\(latency * 40 / 100)"
+            self.finalScore.text = "\(ceil((linkrate * 30 / 100)) + ceil(rssi * 30 / 100) + ceil(latency * 40 / 100))"
+        }
+        try? pinger?.startPinging()
+    }
+    
+    @IBAction func textFieldEndEdit(_ sender: UITextField) {
+        pinger?.stopPinging()
+        pinger = try? SwiftyPing(host: sender.text ?? "1.1.1.1", configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
+        startPing()
     }
 }

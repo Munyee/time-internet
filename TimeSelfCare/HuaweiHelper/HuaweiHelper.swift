@@ -630,10 +630,14 @@ public extension HuaweiHelper {
         } else {
             var signalStrength = -1
             let application = UIApplication.shared
-            let statusBarView = application.value(forKey: "statusBar") as? UIView
-            let foregroundView = statusBarView!.value(forKey: "foregroundView") as? UIView
-            let foregroundViewSubviews = foregroundView!.subviews
-            var dataNetworkItemView: UIView!
+            guard let statusBarView = application.value(forKey: "statusBar") as? UIView else {
+                return -1
+            }
+            guard let foregroundView = statusBarView.value(forKey: "foregroundView") as? UIView else {
+                return -1
+            }
+            let foregroundViewSubviews = foregroundView.subviews
+            var dataNetworkItemView: UIView?
             for subview in foregroundViewSubviews {
                 if subview.isKind(of: NSClassFromString("UIStatusBarDataNetworkItemView")!) {
                     dataNetworkItemView = subview
@@ -642,7 +646,10 @@ public extension HuaweiHelper {
                     signalStrength = -1
                 }
             }
-            signalStrength = (dataNetworkItemView.value(forKey: "wifiStrengthBars") as? Int)!
+            guard let strength = dataNetworkItemView?.value(forKey: "wifiStrengthRaw") as? Int else {
+                return -1
+            }
+            signalStrength = strength
             if signalStrength == -1 {
                 return -1
             } else {

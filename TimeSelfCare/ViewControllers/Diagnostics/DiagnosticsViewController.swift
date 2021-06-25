@@ -76,8 +76,7 @@ class DiagnosisViewController: TimeBaseViewController {
                 let linkrate = ceil(self.calculateLinkRate(Units(kBytes: Int64(LinkRate.getRouterLinkSpeed() / 1_024)).getRateInMbps()))
                 let rssi = ceil(self.calculateRSSIScore(HuaweiHelper.shared.getRSSISignal()))
                 let latency = ceil(self.calculateLatecyScore(duration))
-//                let score = ceil((linkrate * 30 / 100)) + ceil(rssi * 30 / 100) + ceil(latency * 40 / 100)
-                let score = ceil((linkrate * 30 / 100)) + ceil(0 * 30 / 100) + ceil(latency * 40 / 100)
+                let score = ceil((linkrate * 30 / 100)) + ceil(rssi * 30 / 100) + ceil(latency * 40 / 100)
                 guard let currentCount = self.pinger?.currentCount else {
                     return
                 }

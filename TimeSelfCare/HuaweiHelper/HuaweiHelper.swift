@@ -639,7 +639,7 @@ public extension HuaweiHelper {
             let foregroundViewSubviews = foregroundView.subviews
             var dataNetworkItemView: UIView?
             for subview in foregroundViewSubviews {
-                if subview.isKind(of: NSClassFromString("UIStatusBarDataNetworkItemView")!) {
+                if let statusBarDataNetworkItemView = NSClassFromString("UIStatusBarDataNetworkItemView"), subview.isKind(of: statusBarDataNetworkItemView) {
                     dataNetworkItemView = subview
                     break
                 } else {

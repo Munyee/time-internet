@@ -33,11 +33,14 @@
             
             if (cursor->ifa_addr->sa_family == AF_LINK)
             {
-                if ([name hasPrefix:@"en"])
+                if ([name isEqualToString:@"en0"])
                 {
                     networkStatisc = (const struct if_data *) cursor->ifa_data;
                     linkSpeed = networkStatisc->ifi_baudrate;
-                    break;
+                    
+                    if (linkSpeed) {
+                        break;
+                    }
                 }
             }
             cursor = cursor->ifa_next;

@@ -137,7 +137,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     
     func HuaweiLogin() {
         DispatchQueue.main.async {
-            let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
+            guard let account = AccountController.shared.selectedAccount else { return }
             
             guard
                 let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
@@ -159,7 +159,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                             self.checkIsKick()
                         }, error: { exception in
                             DispatchQueue.main.async {
-                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? "") ?? "")
+                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                             }
                         })
                     }

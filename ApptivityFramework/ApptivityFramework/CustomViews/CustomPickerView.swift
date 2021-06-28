@@ -97,17 +97,23 @@ open class CustomPickerView: UIView {
     }
 
     public func selectRow(_ row: Int, inComponent component: Int, animated: Bool) {
-        self.pickerView.selectRow(row, inComponent: component, animated: animated)
+        DispatchQueue.main.async {
+            self.pickerView.selectRow(row, inComponent: component, animated: animated)
+        }
     }
 
     @objc func doneButtonTapped(sender: AnyObject?) {
-        if sender != nil {
-            self.delegate?.pickerView(pickerView: self, didConfirmSelectionOfRowWithTitle: self.getSelectedRows())
+        DispatchQueue.main.async {
+            if sender != nil {
+                self.delegate?.pickerView(pickerView: self, didConfirmSelectionOfRowWithTitle: self.getSelectedRows())
+            }
         }
     }
 
     @objc func cancelButtonTapped(sender: AnyObject?) {
-        self.delegate?.pickerViewDidCancel(pickerView: self)
+        DispatchQueue.main.async {
+            self.delegate?.pickerViewDidCancel(pickerView: self)
+        }
     }
 }
 

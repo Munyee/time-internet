@@ -63,4 +63,10 @@ class WifiConfigurationViewController: UIViewController {
             self.navigationController?.pushViewController(wifiSettingsVC, animated: true)
         }
     }
+    
+    @IBAction func actBlacklist(_ sender: Any) {
+        if let vc = UIStoryboard(name: TimeSelfCareStoryboard.blacklist.filename, bundle: nil).instantiateViewController(withIdentifier: "BlacklistViewController") as? BlacklistViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

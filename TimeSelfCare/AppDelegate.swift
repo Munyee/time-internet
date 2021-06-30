@@ -27,12 +27,12 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         var appId = "e7b242c4-d7f0-4442-ac69-14af0b14ff91"
         var appKey = "8c2c04e4-0080-44ba-b4de-dc0fa8af2cc2"
 
-        if (isStagingMode) {
+        if isStagingMode {
             appId = "23bb7b7f-0da4-4837-b4c4-a233c251adad"
             appKey = "590e83e4-c424-4f02-9cd0-e7dab8db8320"
         }
 
-        let freshchatConfig: FreshchatConfig = FreshchatConfig.init(appID: appId, andAppKey: appKey)
+        let freshchatConfig: FreshchatConfig = FreshchatConfig(appID: appId, andAppKey: appKey)
         Freshchat.sharedInstance().initWith(freshchatConfig)
 
         FirebaseApp.configure()
@@ -46,7 +46,8 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
 
         #else
-            Smartlook.setupAndStartRecording(key: "73e0b72d49d303d9c7e365bbfbcffde6e0e5dabc")
+            let smartlookConfig = Smartlook.SetupConfiguration(key: "73e0b72d49d303d9c7e365bbfbcffde6e0e5dabc")
+            Smartlook.setupAndStartRecording(configuration: smartlookConfig)
         #endif
         
         self.applyAppearance()

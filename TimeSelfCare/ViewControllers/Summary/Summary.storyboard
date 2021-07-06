@@ -223,10 +223,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Jq9-Ca-Jpp">
-                                        <rect key="frame" x="0.0" y="24" width="375" height="324"/>
+                                        <rect key="frame" x="0.0" y="24" width="375" height="310.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SJD-VT-ahA">
-                                                <rect key="frame" x="134" y="0.0" width="107.5" height="84"/>
+                                                <rect key="frame" x="134" y="0.0" width="107.5" height="74"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Acount Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e50-4i-h7y">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.5" height="18"/>
@@ -241,7 +241,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACTIVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tob-G2-jci" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                        <rect key="frame" x="26" y="60.5" width="55" height="23.5"/>
+                                                        <rect key="frame" x="34" y="60.5" width="39" height="13.5"/>
                                                         <color key="backgroundColor" red="0.0" green="0.76470588240000004" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -267,13 +267,13 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="dmo-tl-J0k">
-                                                <rect key="frame" x="131" y="124" width="113.5" height="110"/>
+                                                <rect key="frame" x="131.5" y="114" width="112" height="106.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="d6D-Rj-S6E">
-                                                        <rect key="frame" x="0.0" y="0.0" width="113.5" height="97"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="112" height="93.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwA-Q7-FQa" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                                <rect key="frame" x="0.0" y="48.5" width="41" height="48.5"/>
+                                                                <rect key="frame" x="0.0" y="60" width="41" height="33.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                                 <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -293,7 +293,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="bottom" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bX-MJ-QWa" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                                <rect key="frame" x="45" y="0.0" width="68.5" height="97"/>
+                                                                <rect key="frame" x="45" y="0.0" width="67" height="93.5"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Bold" family="DIN-Bold" pointSize="80"/>
                                                                 <color key="textColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -315,7 +315,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgq-ZC-ifU">
-                                                        <rect key="frame" x="41.5" y="92" width="30.5" height="18"/>
+                                                        <rect key="frame" x="41" y="88.5" width="30.5" height="18"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -323,7 +323,7 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCB-ix-T1g">
-                                                <rect key="frame" x="87.5" y="274" width="200" height="50"/>
+                                                <rect key="frame" x="87.5" y="260.5" width="200" height="50"/>
                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="Pay"/>
                                                 <constraints>
@@ -340,7 +340,7 @@
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rco-xt-4B8">
-                                                <rect key="frame" x="101" y="324" width="173" height="0.0"/>
+                                                <rect key="frame" x="101" y="310.5" width="173" height="0.0"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <state key="normal" title="Register for Auto Debit">
                                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -453,16 +453,16 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7D2-rR-fGj">
-                                                                    <rect key="frame" x="20" y="29" width="280.5" height="43.5"/>
+                                                                    <rect key="frame" x="20" y="29" width="296.5" height="43.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19p-tw-AiX">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="280.5" height="14.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19p-tw-AiX">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="296.5" height="14.5"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydO-sR-Jeh">
-                                                                            <rect key="frame" x="0.0" y="19.5" width="280.5" height="24"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Model Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydO-sR-Jeh">
+                                                                            <rect key="frame" x="0.0" y="19.5" width="296.5" height="24"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -470,7 +470,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6M-i2-vh8" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                                    <rect key="frame" x="310.5" y="39" width="44.5" height="23.5"/>
+                                                                    <rect key="frame" x="326.5" y="44" width="28.5" height="13.5"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.76470588240000004" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -662,7 +662,7 @@
                                                 <rect key="frame" x="20" y="236" width="335" height="24"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Model Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQS-6f-pvw">
-                                                        <rect key="frame" x="0.0" y="0.0" width="270" height="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="286" height="24"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -682,7 +682,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="Status" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92u-nn-vBf" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                        <rect key="frame" x="285" y="0.0" width="50" height="24"/>
+                                                        <rect key="frame" x="301" y="0.0" width="34" height="24"/>
                                                         <color key="backgroundColor" red="0.0" green="0.76470588240000004" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -918,7 +918,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voice Plan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBn-6r-Hm3" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                            <rect key="frame" x="62.5" y="20" width="85" height="24.5"/>
+                                                            <rect key="frame" x="62.5" y="20" width="55" height="24.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                             <color key="textColor" red="0.0" green="0.76470588240000004" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -947,7 +947,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqg-IB-zjK">
-                                                            <rect key="frame" x="152.5" y="20" width="202.5" height="24.5"/>
+                                                            <rect key="frame" x="122.5" y="20" width="232.5" height="24.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                             <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1014,7 +1014,7 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="nXs-9A-tvv">
                                         <rect key="frame" x="20" y="141" width="335" height="62.5"/>
-                                        <string key="text">Launch The Home Forward app and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
+                                        <string key="text">Launch the TIME VOICE app and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1087,7 +1087,7 @@
                                                     <rect key="frame" x="0.0" y="16" width="375" height="115"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="etb-RA-wim">
-                                                            <rect key="frame" x="67.5" y="0.0" width="240" height="24"/>
+                                                            <rect key="frame" x="117" y="0.0" width="141" height="24"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_home_forward" translatesAutoresizingMaskIntoConstraints="NO" id="yXg-nn-lOm">
                                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -1096,8 +1096,8 @@
                                                                         <constraint firstAttribute="height" constant="24" id="NtQ-QK-01X"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME HOME FORWARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdS-td-fUx">
-                                                                    <rect key="frame" x="34" y="0.0" width="206" height="24"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME VOICE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdS-td-fUx">
+                                                                    <rect key="frame" x="34" y="0.0" width="107" height="24"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -1113,8 +1113,8 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="eRu-TS-Wwe">
-                                                            <rect key="frame" x="59.5" y="73" width="256.5" height="0.0"/>
-                                                            <string key="text">Launch The Home Forward app and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
+                                                            <rect key="frame" x="50" y="73" width="275" height="0.0"/>
+                                                            <string key="text">Launch the TIME VOICE app and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                             <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1210,19 +1210,19 @@
             <size key="intrinsicContentSize" width="68.5" height="97"/>
         </designable>
         <designable name="92u-nn-vBf">
-            <size key="intrinsicContentSize" width="50" height="23.5"/>
+            <size key="intrinsicContentSize" width="34" height="13.5"/>
         </designable>
         <designable name="CBn-6r-Hm3">
-            <size key="intrinsicContentSize" width="85" height="23.5"/>
+            <size key="intrinsicContentSize" width="55" height="13.5"/>
         </designable>
         <designable name="Tob-G2-jci">
-            <size key="intrinsicContentSize" width="55" height="23.5"/>
+            <size key="intrinsicContentSize" width="39" height="13.5"/>
         </designable>
         <designable name="kwA-Q7-FQa">
-            <size key="intrinsicContentSize" width="41" height="48.5"/>
+            <size key="intrinsicContentSize" width="41" height="33.5"/>
         </designable>
         <designable name="s6M-i2-vh8">
-            <size key="intrinsicContentSize" width="44.5" height="23.5"/>
+            <size key="intrinsicContentSize" width="28.5" height="13.5"/>
         </designable>
     </designables>
     <resources>

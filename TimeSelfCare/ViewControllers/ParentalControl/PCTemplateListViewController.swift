@@ -96,9 +96,10 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
             return UITableViewCell()
         }
         
-        DispatchQueue.main.async {
-            let template = self.templateList[indexPath.row]
-            cell.delegate = self
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            let template = strongSelf.templateList[indexPath.row]
+            cell.delegate = strongSelf
             cell.selectionStyle = .none
             cell.name.text = template.aliasName
             cell.numDevice.text = "\(template.macList.count) \(template.macList.count == 1 ? "device" : "devices")"

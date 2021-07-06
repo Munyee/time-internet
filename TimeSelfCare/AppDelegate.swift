@@ -173,7 +173,6 @@ extension AppDelegate {
             backgroundImage = #imageLiteral(resourceName: "bg_navbar_64")
         }
         
-
         UINavigationBar.appearance().setBackgroundImage(backgroundImage.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
 
         if let subheadlineFont = UIFont.getCustomFont(family: "DIN", style: .subheadline) {

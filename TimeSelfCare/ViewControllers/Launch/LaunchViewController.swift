@@ -20,7 +20,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     var appVersionConfig: AppVersionModal!
     var remoteConfig: RemoteConfig!
     var message = ""
-    var timer: Timer?
 
      private var hasShownWalkthrough: Bool {
          return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
@@ -59,8 +58,15 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.versionUpdateView.layer.borderWidth = 1
         self.versionUpdateView.layer.borderColor = UIColor.black.cgColor
         
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: false)
+        progressImageView.animationImages = self.animatedImages(for: "PreloadBarFrames")
+        progressImageView.contentMode = .scaleAspectFill
+        progressImageView.animationDuration = 1
+        progressImageView.animationRepeatCount = 1
+        progressImageView.image = self.progressImageView.animationImages?.last
+        progressImageView.startAnimating()
         
+        getFirebaseAppVersion()
+
         appLogoImgView.animationImages = self.animatedLogoImages(for: "TIME_AnimationFrame")
         appLogoImgView.contentMode = .scaleAspectFill
         appLogoImgView.animationDuration = 1.0
@@ -114,7 +120,13 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     }
                     self.remoteConfig.activate { _, _ in
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
-                        DispatchQueue.main.async { self.checkAppVersion() }
+                        DispatchQueue.main.async { [weak self] in
+                            guard let strongSelf = self else {
+                                self?.showNext()
+                                return
+                            }
+                            strongSelf.checkAppVersion()
+                        }
                     }
                 } else {
                     self.showNext()
@@ -362,17 +374,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     private func handlingInvalidSession() {
         AuthUser.current?.logout()
         self.showNext()
-    }
-    
-    @objc func startTimer() {
-        progressImageView.animationImages = self.animatedImages(for: "PreloadBarFrames")
-        progressImageView.contentMode = .scaleAspectFill
-        progressImageView.animationDuration = 1
-        progressImageView.animationRepeatCount = 1
-        progressImageView.image = self.progressImageView.animationImages?.last
-        progressImageView.startAnimating()
-        
-        getFirebaseAppVersion()
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

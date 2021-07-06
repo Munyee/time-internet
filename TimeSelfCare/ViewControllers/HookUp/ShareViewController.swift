@@ -26,7 +26,7 @@ class ShareViewController: UIViewController {
     
     func initView() {
        // titleLabel.text = data?.title ?? ""
-        desc.text = data?.description ?? ""
+        desc.text = data?.description?.htmlAttributdString()?.string ?? ""
         
         if data?.title != nil {
             collectionView.isHidden = false
@@ -39,7 +39,6 @@ class ShareViewController: UIViewController {
         }
     }
 
-    
     func showTnc() {
             let timeWebView = TIMEWebViewController()
             let urlString = "https://www.time.com.my/terms-and-conditions?link=personal&title=HookUpAndEarn"
@@ -75,13 +74,13 @@ class ShareViewController: UIViewController {
 
 extension ShareViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.bounds.width - 40, height: 220)
+        CGSize(width: self.view.bounds.width - 40, height: 220)
     }
 }
 
 extension ShareViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -44,7 +44,9 @@ target 'TimeSelfCare' do
   pod 'FreshchatSDK'
   pod 'Smartlook'
   pod "Pulsator"
-
+  pod 'Firebase/Analytics'
+  pod 'Firebase/DynamicLinks'
+  
   target 'TimeSelfCareTests' do
     inherit! :search_paths
     # Pods for testing

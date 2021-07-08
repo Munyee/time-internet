@@ -13,6 +13,7 @@ import UserNotifications
 import Firebase
 import Smartlook
 import HwMobileSDK
+import AppTrackingTransparency
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -23,6 +24,10 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { _ in }
+        }
+        
         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
         var appId = "e7b242c4-d7f0-4442-ac69-14af0b14ff91"
         var appKey = "8c2c04e4-0080-44ba-b4de-dc0fa8af2cc2"

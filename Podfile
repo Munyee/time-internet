@@ -46,6 +46,7 @@ target 'TimeSelfCare' do
   pod "Pulsator"
   pod 'Firebase/Analytics'
   pod 'Firebase/DynamicLinks'
+  pod 'FBSDKCoreKit'
   
   target 'TimeSelfCareTests' do
     inherit! :search_paths

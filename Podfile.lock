@@ -3,6 +3,13 @@ PODS:
   - ApptivityFramework (0.0.1)
   - CardIO (5.4.1)
   - EasyTipView (1.0)
+  - FBSDKCoreKit (11.0.1):
+    - FBSDKCoreKit/Core (= 11.0.1)
+  - FBSDKCoreKit/Core (11.0.1):
+    - FBSDKCoreKit_Basics (~> 11.0.1)
+  - FBSDKCoreKit_Basics (11.0.1):
+    - FBSDKCoreKit_Basics/Basics (= 11.0.1)
+  - FBSDKCoreKit_Basics/Basics (11.0.1)
   - Firebase/Analytics (8.2.0):
     - Firebase/Core
   - Firebase/Core (8.2.0):
@@ -126,6 +133,7 @@ DEPENDENCIES:
   - ApptivityFramework (from `./ApptivityFramework`)
   - CardIO
   - "EasyTipView (from `git@10.60.81.57:BSS/EasyTipView.git`)"
+  - FBSDKCoreKit
   - Firebase/Analytics
   - Firebase/Core
   - Firebase/Crashlytics
@@ -145,6 +153,8 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - CardIO
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -185,6 +195,8 @@ SPEC CHECKSUMS:
   ApptivityFramework: bf72dd9f3824e6d8861e201459f7ac5fe489fc14
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   EasyTipView: 5d3f5561de06ac81c118fa298bf42a2595c776bb
+  FBSDKCoreKit: 38c9e29a3f1436362acacff6486d3a28628c288f
+  FBSDKCoreKit_Basics: 06780a4a12e16596bde8406add02c6aa1bf38616
   Firebase: 12c568897b807321964e89d2b263ef4c6cff3db6
   FirebaseABTesting: 5f37131c5eceea579c471c915f7a0f8cad484d1f
   FirebaseAnalytics: 7a744b1e7dc50125cb37714c6bdaea167e412082
@@ -209,6 +221,6 @@ SPEC CHECKSUMS:
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: dd48788c36e18724a00f78fded3b7a8668e351f2
+PODFILE CHECKSUM: fa9e1e695edb8dfcba84e5edd7f730b7ab183291
 
 COCOAPODS: 1.10.1

@@ -10579,36 +10579,6 @@
 			};
 			name = Debug;
 		};
-		25EB4C938724D5F4483B406D1C9D320A /* Staging */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A305F5E7A2CCC8378D49CCA247DF041A /* FreshchatSDK.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Staging;
-		};
-		28E1478861CCD044A7785F357D29B136 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A305F5E7A2CCC8378D49CCA247DF041A /* FreshchatSDK.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		295CB8A1665B28FE813540172F1FC37B /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 13CBED35624F6CE366C324E1CB4F06A3 /* SDWebImage.release.xcconfig */;
@@ -10853,6 +10823,21 @@
 			};
 			name = Release;
 		};
+		317C7E65E37EFB7C887744BBBFCAEEE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A305F5E7A2CCC8378D49CCA247DF041A /* FreshchatSDK.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		330A2EABA11FF7420565FC58C9D660B9 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19105BC0D83115E481D55459A457665F /* FirebaseAnalytics.release.xcconfig */;
@@ -11014,20 +10999,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Staging;
-		};
-		40CC0C7C15A33B19FF3BA59CC10BD385 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53F321C1DA46EE7D5DC03B5095B76A58 /* FreshchatSDK.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
 		};
 		41502AD3FCC78D939CC14BE7D005BC48 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -12054,6 +12025,21 @@
 			};
 			name = Debug;
 		};
+		9E51C5A2EBAA02C07BB6072BA04AFCAE /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A305F5E7A2CCC8378D49CCA247DF041A /* FreshchatSDK.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Staging;
+		};
 		AB82738E60C566C55E2E0E5737B526D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9397D06CEF1713BC7B1520BFCC2F1A86 /* FirebaseCrashlytics.debug.xcconfig */;
@@ -13017,6 +13003,20 @@
 			};
 			name = Staging;
 		};
+		E736B873855CEE5B09E7C825AB69A10D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53F321C1DA46EE7D5DC03B5095B76A58 /* FreshchatSDK.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		F039D12586498A684BD1BE2FC4A608DA /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 38BA02846288D29249574FDA48F4FF91 /* PromisesObjC.release.xcconfig */;
@@ -13483,9 +13483,9 @@
 		AC1A94CF2F24697F56A683B207103B74 /* Build configuration list for PBXAggregateTarget "FreshchatSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				40CC0C7C15A33B19FF3BA59CC10BD385 /* Debug */,
-				28E1478861CCD044A7785F357D29B136 /* Release */,
-				25EB4C938724D5F4483B406D1C9D320A /* Staging */,
+				E736B873855CEE5B09E7C825AB69A10D /* Debug */,
+				317C7E65E37EFB7C887744BBBFCAEEE2 /* Release */,
+				9E51C5A2EBAA02C07BB6072BA04AFCAE /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

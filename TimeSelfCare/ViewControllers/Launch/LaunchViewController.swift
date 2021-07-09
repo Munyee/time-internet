@@ -136,11 +136,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 }
             }
         } else {
-            let alert = UIAlertController(title: "", message: "No Internet Connection", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "RETRY", style: .cancel, handler: { (_) in
-                self.getFirebaseAppVersion()
-            }))
-            self.present(alert, animated: true, completion: nil)
+            self.showAlertMessage(title: "", message: "No Internet Connection", actions: [
+                UIAlertAction(title: "RETRY", style: .cancel, handler: { _ in
+                    self.getFirebaseAppVersion()
+                })
+            ])
         }
     }
     
@@ -221,7 +221,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.showNext()
     }
     
-    @IBAction private func showNext() { // swiftlint:disable:this cyclomatic_complexity
+    @IBAction private func showNext() {
         guard
             let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,
             let currentInstalledVersion = Int(bundleVersion),

@@ -97,7 +97,9 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         DispatchQueue.main.async { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let strongSelf = self else {
+                return
+            }
             let template = strongSelf.templateList[indexPath.row]
             cell.delegate = strongSelf
             cell.selectionStyle = .none

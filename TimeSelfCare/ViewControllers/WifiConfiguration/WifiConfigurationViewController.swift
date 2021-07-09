@@ -64,9 +64,9 @@ class WifiConfigurationViewController: UIViewController {
         }
     }
     
-    @IBAction func actWifiQualityAssessment(_ sender: Any) {
-        if let wifiQualityVC = UIStoryboard(name: TimeSelfCareStoryboard.wifiqualityassessment.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiQualityAssessmentViewController") as? WifiQualityAssessmentViewController {
-            self.navigationController?.pushViewController(wifiQualityVC, animated: true)
+    @IBAction func actBlacklist(_ sender: Any) {
+        if let vc = UIStoryboard(name: TimeSelfCareStoryboard.blacklist.filename, bundle: nil).instantiateViewController(withIdentifier: "BlacklistViewController") as? BlacklistViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

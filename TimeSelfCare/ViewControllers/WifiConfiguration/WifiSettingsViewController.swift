@@ -454,6 +454,7 @@ class WifiSettingsViewController: UIViewController {
     
     func getUTCDate(stringDate: String) -> Date {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         if let date = dateFormatter.date(from: stringDate) {
@@ -465,6 +466,7 @@ class WifiSettingsViewController: UIViewController {
     
     func getDate(stringDate: String) -> Date {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"
         if let date = dateFormatter.date(from: stringDate) {
             return date

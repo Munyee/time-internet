@@ -161,7 +161,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                             self.checkIsKick()
                         }, error: { exception in
                             DispatchQueue.main.async {
-                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? "") ?? "")
+                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                             }
                         })
                     }

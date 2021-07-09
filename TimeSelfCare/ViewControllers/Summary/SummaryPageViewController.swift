@@ -140,11 +140,13 @@ extension SummaryPageViewController: UIPageViewControllerDataSource, UIPageViewC
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-        guard let viewController = pendingViewControllers.first,
-            let index = orderedViewControllers.index(of: viewController) else {
-                return
+        DispatchQueue.main.async {
+            guard let viewController = pendingViewControllers.first,
+                  let index = self.orderedViewControllers.index(of: viewController) else {
+                    return
+            }
+            self.pendingIndex = index
         }
-        self.pendingIndex = index
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {

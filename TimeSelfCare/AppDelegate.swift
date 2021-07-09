@@ -22,33 +22,28 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
-        var appId = "e7b242c4-d7f0-4442-ac69-14af0b14ff91"
-        var appKey = "8c2c04e4-0080-44ba-b4de-dc0fa8af2cc2"
-
-        if isStagingMode {
-            appId = "23bb7b7f-0da4-4837-b4c4-a233c251adad"
-            appKey = "590e83e4-c424-4f02-9cd0-e7dab8db8320"
-        }
-
-        let freshchatConfig: FreshchatConfig = FreshchatConfig(appID: appId, andAppKey: appKey)
-        Freshchat.sharedInstance().initWith(freshchatConfig)
-
         FirebaseApp.configure()
-
+        
         AuthUser.authDelegate = AccountController.shared
         AuthUser.enableAnonymousUser(with: LocalAnonymousProvider())
         AuthUser.enableProfiles(with: AccountController.shared)
 
         application.setupRemoteNotifications()
         APNSController.shared.dataDelegate = self
-        #if DEBUG
+        
+        var appId = "e7b242c4-d7f0-4442-ac69-14af0b14ff91"
+        var appKey = "8c2c04e4-0080-44ba-b4de-dc0fa8af2cc2"
 
+        #if DEBUG
+            appId = "23bb7b7f-0da4-4837-b4c4-a233c251adad"
+            appKey = "590e83e4-c424-4f02-9cd0-e7dab8db8320"
         #else
             let smartlookConfig = Smartlook.SetupConfiguration(key: "73e0b72d49d303d9c7e365bbfbcffde6e0e5dabc")
             Smartlook.setupAndStartRecording(configuration: smartlookConfig)
         #endif
+
+        let freshchatConfig: FreshchatConfig = FreshchatConfig(appID: appId, andAppKey: appKey)
+        Freshchat.sharedInstance().initWith(freshchatConfig)
         
         self.applyAppearance()
         

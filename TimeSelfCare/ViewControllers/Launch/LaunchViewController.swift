@@ -103,7 +103,9 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         if NetworkReachabilityManager()!.isReachable {
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
+            #if DEBUG
             settings.minimumFetchInterval = 0
+            #endif
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
             remoteConfig.fetch(withExpirationDuration: 0) { status, error -> Void in
@@ -210,25 +212,25 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
     
     @IBAction private func showNext() { // swiftlint:disable:this cyclomatic_complexity
-        guard
-            let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,
-            let currentInstalledVersion = Int(bundleVersion),
-            let remoteVersion = VersionDataController.shared.getVersion() else {
-            VersionDataController.shared.loadVersion { (version: Int?, error: Error?) in
-                if let version = version,
-                    error == nil {
-                    self.showNext()
-                } else {
-                    self.showAlertMessage(title: NSLocalizedString("Error", comment: "Error"), message: error?.localizedDescription ?? "", actions: [
-                        UIAlertAction(title: "RETRY", style: .cancel, handler: { _ in
-                            self.showNext()
-                        })
-                    ])
-                }
-            }
-            return
-        }
-
+//        guard
+//            let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,
+//            let currentInstalledVersion = Int(bundleVersion),
+//            let remoteVersion = VersionDataController.shared.getVersion() else {
+//            VersionDataController.shared.loadVersion { (version: Int?, error: Error?) in
+//                if let version = version,
+//                    error == nil {
+//                    self.showNext()
+//                } else {
+//                    self.showAlertMessage(title: NSLocalizedString("Error", comment: "Error"), message: error?.localizedDescription ?? "", actions: [
+//                        UIAlertAction(title: "RETRY", style: .cancel, handler: { _ in
+//                            self.showNext()
+//                        })
+//                    ])
+//                }
+//            }
+//            return
+//        }
+        
         guard let profile = AccountController.shared.profile else {
             self.launchAuthMenu()
             return

@@ -17,6 +17,7 @@ target 'TimeSelfCareData' do
   pod 'SDWebImage'
   pod 'EasyTipView', :git => 'git@10.60.81.57:BSS/EasyTipView.git'
   pod 'JVFloatLabeledTextField'
+  pod 'Firebase/Crashlytics'
 
   target 'TimeSelfCareDataTests' do
     inherit! :search_paths

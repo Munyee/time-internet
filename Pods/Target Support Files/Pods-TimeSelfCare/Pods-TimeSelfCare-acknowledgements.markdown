@@ -219,6 +219,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
    limitations under the License.
 
 
+## FirebaseAnalytics
+
+Copyright 2020 Google
+
 ## FirebaseCore
 
 
@@ -1070,6 +1074,10 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    See the License for the specific language governing permissions and
    limitations under the License.
 
+
+## GoogleAppMeasurement
+
+Copyright 2020 Google
 
 ## GoogleDataTransport
 
@@ -1964,10 +1972,6 @@ redistribute it freely, subject to the following restrictions:
    limitations under the License.
 
 
-## FirebaseAnalytics
-
-Copyright 2020 Google
-
 ## FirebaseRemoteConfig
 
 
@@ -2177,10 +2181,6 @@ Copyright 2020 Google
 ## FreshchatSDK
 
 See https://www.freshworks.com/terms
-
-## GoogleAppMeasurement
-
-Copyright 2020 Google
 
 ## MBProgressHUD
 

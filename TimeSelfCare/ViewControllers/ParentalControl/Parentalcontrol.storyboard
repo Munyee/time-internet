@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hpT-sP-uWF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hpT-sP-uWF">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -323,10 +323,10 @@ access</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="806"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjw-As-waR">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="435.66666666666669"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="503.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="rqt-Uu-crv">
-                                                <rect key="frame" x="35" y="20" width="344" height="385.66666666666669"/>
+                                                <rect key="frame" x="35" y="20" width="344" height="453.66666666666669"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZG-M4-C6L">
                                                         <rect key="frame" x="0.0" y="0.0" width="344" height="101.66666666666667"/>
@@ -553,10 +553,10 @@ access</string>
                                                             <action selector="actPeriodSelect:" destination="8Ku-7O-Md6" eventType="touchUpInside" id="5R5-h3-oPj"/>
                                                         </connections>
                                                     </view>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-IL-3Vq">
-                                                        <rect key="frame" x="0.0" y="385.66666666666669" width="344" height="53"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCe-IL-3Vq">
+                                                        <rect key="frame" x="0.0" y="400.66666666666669" width="344" height="53"/>
                                                         <subviews>
-                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOQ-oZ-dEI" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOQ-oZ-dEI" customClass="FloatLabeledTextView" customModule="TimeSelfCare" customModuleProvider="target">
                                                                 <rect key="frame" x="10" y="0.0" width="324" height="50"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
@@ -572,7 +572,7 @@ access</string>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Blocked website(s)"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <stackView hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="93M-zz-Lrc">
+                                                            <stackView opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="93M-zz-Lrc">
                                                                 <rect key="frame" x="0.0" y="18" width="344" height="35"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="35" placeholder="YES" id="gsf-CQ-SGa"/>
@@ -592,7 +592,7 @@ access</string>
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EaX-eP-iOo" customClass="UIControl">
-                                                        <rect key="frame" x="0.0" y="385.66666666666669" width="344" height="34"/>
+                                                        <rect key="frame" x="0.0" y="453.66666666666669" width="344" height="34"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_add-template" translatesAutoresizingMaskIntoConstraints="NO" id="rf2-2Y-bCT">
                                                                 <rect key="frame" x="10" y="0.0" width="24" height="24"/>

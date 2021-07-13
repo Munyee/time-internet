@@ -28,7 +28,15 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
         if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { _ in }
+            ATTrackingManager.requestTrackingAuthorization { status in
+                if status == .authorized {
+                    Analytics.setAnalyticsCollectionEnabled(true)
+                    Settings.setAdvertiserTrackingEnabled(true)
+                } else {
+                    Analytics.setAnalyticsCollectionEnabled(false)
+                    Settings.setAdvertiserTrackingEnabled(false)
+                }
+            }
         }
         
         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)

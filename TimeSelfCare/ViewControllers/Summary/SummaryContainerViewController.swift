@@ -79,56 +79,58 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     private func updatePages() {
-        self.pages = [.accountSummary, .addOnSummary]
-        
-        let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
-        
-        let shouldShowVoiceScreen: Bool = ServiceDataController.shared.getServices(account: account).first { $0.category == .voice } != nil
-        if shouldShowVoiceScreen {
-            self.pages.append(.voiceLineSummary)
-        }
-        
-        self.pages.append(.performanceStatusSummary)
-        
-        self.updatePageControl()
-        
-        guard
-            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+        DispatchQueue.main.async {
+            self.pages = [.accountSummary, .addOnSummary]
+            
+            let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
+            
+            let shouldShowVoiceScreen: Bool = ServiceDataController.shared.getServices(account: account).first { $0.category == .voice } != nil
+            if shouldShowVoiceScreen {
+                self.pages.append(.voiceLineSummary)
+            }
+            
+            self.pages.append(.performanceStatusSummary)
+            
+            self.updatePageControl()
+            
+            guard
+                let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
             else {
                 return
-        }
-        
-        var isCustSegments = account.custSegment == .residential
-        #if DEBUG
+            }
+            
+            var isCustSegments = account.custSegment == .residential
+            #if DEBUG
             isCustSegments = account.custSegment == .residential || account.custSegment == .business
-        #endif
-
-        if isCustSegments {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
-            AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
-                hud.hide(animated: true)
-
-                guard error == nil else {
-                    print(error.debugDescription)
-                    return
-                }
-                
-                if let result = data {
-                    let huaweiDevice = IsHuaweiDevice(with: result)
-                    if huaweiDevice?.status == "yes" {
-                        self.showFloatingButton = false
-                        HuaweiHelper.shared.initHwSdk {
-                            HuaweiHelper.shared.checkIsLogin { result in
-//                                if !result.isLogined {
+            #endif
+            
+            if isCustSegments {
+                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+                hud.label.text = NSLocalizedString("Loading...", comment: "")
+                AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
+                    hud.hide(animated: true)
+                    
+                    guard error == nil else {
+                        print(error.debugDescription)
+                        return
+                    }
+                    
+                    if let result = data {
+                        let huaweiDevice = IsHuaweiDevice(with: result)
+                        if huaweiDevice?.status == "yes" {
+                            self.showFloatingButton = false
+                            HuaweiHelper.shared.initHwSdk {
+                                HuaweiHelper.shared.checkIsLogin { result in
+                                    //                                if !result.isLogined {
                                     self.HuaweiLogin()
-//                                } else {
-//                                    self.checkIsKick()
-//                                }
+                                    //                                } else {
+                                    //                                    self.checkIsKick()
+                                    //                                }
+                                }
                             }
+                        } else {
+                            self.showFloatingButton = true
                         }
-                    } else {
-                        self.showFloatingButton = true
                     }
                 }
             }
@@ -141,8 +143,8 @@ class SummaryContainerViewController: TimeBaseViewController {
             
             guard
                 let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
-                else {
-                    return
+            else {
+                return
             }
             
             let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
@@ -151,7 +153,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                     print(error.debugDescription)
                     return
                 }
-
+                
                 if let result = data {
                     if let authCode = result["authcode"] as? String {
                         print(authCode)
@@ -323,8 +325,8 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBAction func showInvoices(_ sender: Any?) {
         let storyboard = UIStoryboard(name: "Payment", bundle: nil)
         guard let invoicesVC = storyboard.instantiateViewController(withIdentifier: "BillsViewController") as? BillsViewController
-            else {
-                return
+        else {
+            return
         }
         self.presentNavigation(invoicesVC, animated: true)
     }
@@ -346,8 +348,8 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBAction func registerAutoDebit(_ sender: Any?) {
         let storyboard = UIStoryboard(name: "Payment", bundle: nil)
         guard let autoDebitVC = storyboard.instantiateViewController(withIdentifier: "AutoDebitViewController") as? AutoDebitViewController
-            else {
-                return
+        else {
+            return
         }
         self.presentNavigation(autoDebitVC, animated: true)
     }
@@ -382,8 +384,8 @@ class SummaryContainerViewController: TimeBaseViewController {
         guard
             self.pageControl.currentPage == self.pages.index(where: { $0 == .performanceStatusSummary }),
             isSsidChangeEnabled
-            else {
-                return
+        else {
+            return
         }
         
         if isConnected && self.showFloatingButton {

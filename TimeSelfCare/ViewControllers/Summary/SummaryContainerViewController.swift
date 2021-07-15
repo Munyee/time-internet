@@ -57,6 +57,11 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.updateNotificationIndicator()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         if liveChatView.isExpand {

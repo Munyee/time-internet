@@ -124,6 +124,7 @@ public class APIClient {
             parameters: parameters,
             encoding: JSONEncoding.default)
             .responseJSON { (response: DataResponse<Any>) in
+                print("path: \(path), time: \(response.timeline.requestDuration)")
                 do {
                     let json = try APIClient.shared.JSONFromResponse(response: response)
                     completion?(json, nil)

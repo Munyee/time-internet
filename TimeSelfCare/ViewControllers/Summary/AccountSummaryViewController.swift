@@ -36,7 +36,6 @@ class AccountSummaryViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.refresh()
-
         if !AccountSummaryViewController.didAnimate {
             let animationTargets: [UIView] = [self.accountLabel, self.speedLabel, self.statusLabel, self.amountDueStackView, self.dueLabel, self.payButton, self.autoDebitButton]
             animationTargets.forEach { (view: UIView) in
@@ -44,7 +43,11 @@ class AccountSummaryViewController: BaseViewController {
                 view.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 16)
             }
         }
-
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 
     private func animateViews() {

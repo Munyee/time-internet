@@ -76,6 +76,11 @@ internal class SummaryPageViewController: UIPageViewController {
         self.updateDataSet(items: nil)
         self.refresh()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
 
     private func updatePageViewController() {
         self.orderedViewControllers = [accountSummaryVC, addonVC]

@@ -24,6 +24,7 @@ class PerformanceViewController: BaseViewController {
     @IBOutlet private weak var runDiagnosticsButton: UIButton!
     @IBOutlet private weak var speedTestView: UIView!
     @IBOutlet private weak var nceView: UIView!
+    @IBOutlet private weak var nonNceView: UIView!
     @IBOutlet private weak var numberOfDevice: UILabel!
     @IBOutlet private weak var downSpeed: UILabel!
     @IBOutlet private weak var downByte: UILabel!
@@ -46,6 +47,7 @@ class PerformanceViewController: BaseViewController {
         self.nceFeatureView.isHidden = true
         speedTestView.isHidden = true
         nceView.isHidden = true
+        nonNceView.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,10 +64,39 @@ class PerformanceViewController: BaseViewController {
     }
     
     @IBAction private func checkConnectionStatus() {
+        self.queryHuaweiRouter()
+
         animationView.setAnimation(named: "Loading")
         animationView.loopAnimation = true
         animationView.play()
         
+        guard
+            let account = AccountController.shared.selectedAccount,
+            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+            else {
+                return
+        }
+        
+        self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
+        AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
+            let isConnected: Bool = error == nil
+            self.animationView.setAnimation(named: isConnected ? "GoodConnection" : "BadConnection")
+            self.animationView.loopAnimation = false
+            self.animationView.play()
+            
+            if isConnected {
+                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is good.", boldString: "good", color: UIColor.green, font: self.statusLabel.font)
+            } else {
+                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is down.\n Connection issue detected", boldString: "down", color: UIColor.red, font: self.statusLabel.font)
+            }
+            
+            self.runDiagnosticsButton.isEnabled = true
+            self.runDiagnosticsButton.backgroundColor = self.runDiagnosticsButton.isEnabled ? .primary : .grey2
+            NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
+        }
+    }
+    
+    func queryHuaweiRouter() {
         guard
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
@@ -89,27 +120,11 @@ class PerformanceViewController: BaseViewController {
                     let huaweiDevice = IsHuaweiDevice(with: result)
                     if huaweiDevice?.status == "yes" {
                         self.queryBindGateway()
+                    } else {
+                        self.nonNceView.isHidden = false
                     }
                 }
             }
-        }
-        
-        self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
-        AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
-            let isConnected: Bool = error == nil
-            self.animationView.setAnimation(named: isConnected ? "GoodConnection" : "BadConnection")
-            self.animationView.loopAnimation = false
-            self.animationView.play()
-            
-            if isConnected {
-                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is good.", boldString: "good", color: UIColor.green, font: self.statusLabel.font)
-            } else {
-                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is down.\n Connection issue detected", boldString: "down", color: UIColor.red, font: self.statusLabel.font)
-            }
-            
-            self.runDiagnosticsButton.isEnabled = true
-            self.runDiagnosticsButton.backgroundColor = self.runDiagnosticsButton.isEnabled ? .primary : .grey2
-            NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
         }
     }
     
@@ -203,6 +218,7 @@ class PerformanceViewController: BaseViewController {
                 self.connectionStackView.isHidden = false
                 self.nceFeatureView.isHidden = true
                 self.nceView.isHidden = false
+                self.nonNceView.isHidden = true
                 self.speedTestView.isHidden = false
                 self.nceFeatureSmallView.isHidden = true
                 HuaweiHelper.shared.queryGateway(completion: { gateway in
@@ -232,6 +248,7 @@ class PerformanceViewController: BaseViewController {
                     self.connectionStackView.isHidden = false
                     self.nceFeatureView.isHidden = true
                     self.nceView.isHidden = false
+                    self.nonNceView.isHidden = true
                     self.speedTestView.isHidden = false
                     self.nceFeatureSmallView.isHidden = true
                 } else {
@@ -242,12 +259,14 @@ class PerformanceViewController: BaseViewController {
                         self.connectionStackView.isHidden = true
                         self.nceFeatureSmallView.isHidden = true
                         self.nceView.isHidden = true
+                        self.nonNceView.isHidden = true
                     } else {
                         self.speedTestView.isHidden = true
                         self.nceFeatureView.isHidden = true
                         self.connectionStackView.isHidden = false
                         self.nceFeatureSmallView.isHidden = false
                         self.nceView.isHidden = true
+                        self.nonNceView.isHidden = true
                     }
                 }
             }

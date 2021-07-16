@@ -148,6 +148,19 @@ class PerformanceViewController: BaseViewController {
         return attributedString
     }
     
+    @IBAction func changeSsid(_ sender: Any?) {
+        let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.performance.filename, bundle: nil)
+        
+        let changeSsidVC: ChangeSSIDViewController = storyboard.instantiateViewController()
+        self.presentNavigation(changeSsidVC, animated: true)
+    }
+    
+    @IBAction func actpppoe(_ sender: Any) {
+        let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.pppoe.filename, bundle: nil)
+        let pppoe: PppoeViewController = storyboard.instantiateViewController()
+        self.presentNavigation(pppoe, animated: true)
+    }
+    
     @IBAction func actParentalControl(_ sender: Any) {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Loading...", comment: "")

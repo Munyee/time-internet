@@ -277,7 +277,7 @@ Controls</string>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
-                                                                            <action selector="actDeviceInstallation:" destination="k5v-hv-hWL" eventType="touchUpInside" id="9uE-m9-D5p"/>
+                                                                            <action selector="actpppoe:" destination="k5v-hv-hWL" eventType="touchUpInside" id="jw3-ul-reH"/>
                                                                         </connections>
                                                                     </view>
                                                                 </subviews>
@@ -335,7 +335,7 @@ Controls</string>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
-                                                                            <action selector="actWifiConfiguration:" destination="k5v-hv-hWL" eventType="touchUpInside" id="gwM-7X-eRg"/>
+                                                                            <action selector="changeSsid:" destination="k5v-hv-hWL" eventType="touchUpInside" id="NVg-u8-kW5"/>
                                                                         </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8HJ-2D-kwp" customClass="UIControl">
@@ -370,7 +370,7 @@ Controls</string>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                         <connections>
-                                                                            <action selector="actDeviceInstallation:" destination="k5v-hv-hWL" eventType="touchUpInside" id="hDz-Gs-p74"/>
+                                                                            <action selector="actpppoe:" destination="k5v-hv-hWL" eventType="touchUpInside" id="PTP-65-zdc"/>
                                                                         </connections>
                                                                     </view>
                                                                 </subviews>
@@ -796,13 +796,13 @@ new features for you!</string>
                                 <rect key="frame" x="0.0" y="10" width="375" height="657"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gto-Uh-go2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="546"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="548"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RaC-qf-afa">
-                                                <rect key="frame" x="0.0" y="10" width="375" height="526"/>
+                                                <rect key="frame" x="0.0" y="10" width="375" height="528"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="UQW-gW-GGP">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="526"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nce_error" translatesAutoresizingMaskIntoConstraints="NO" id="GtS-ts-nag">
                                                                 <rect key="frame" x="108.5" y="80" width="158" height="221"/>
@@ -814,7 +814,7 @@ new features for you!</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ensure your router is turned on. It may take up to 15 minutes for the features to appear." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znP-H7-mcU">
-                                                                <rect key="frame" x="57" y="407" width="261.5" height="49"/>
+                                                                <rect key="frame" x="57" y="407" width="261.5" height="51"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="261.5" id="BAU-nY-esy"/>
                                                                 </constraints>
@@ -823,7 +823,7 @@ new features for you!</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJr-lI-gQ5">
-                                                                <rect key="frame" x="47.5" y="476" width="280" height="50"/>
+                                                                <rect key="frame" x="47.5" y="478" width="280" height="50"/>
                                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="280" id="6Dg-51-CJa"/>

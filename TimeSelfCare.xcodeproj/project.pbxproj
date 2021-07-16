@@ -88,6 +88,8 @@
 		9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB96025E00EE600F1DEFE /* Units.swift */; };
 		9E5437EF25E8E17E00195623 /* Bindgateway.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E5437EE25E8E17E00195623 /* Bindgateway.storyboard */; };
 		9E5437F125E8E1A200195623 /* GetConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5437F025E8E1A200195623 /* GetConnectViewController.swift */; };
+		9E57837826A18284005D446E /* Pppoe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E57837726A18284005D446E /* Pppoe.storyboard */; };
+		9E57837A26A18327005D446E /* PppoeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E57837926A18327005D446E /* PppoeViewController.swift */; };
 		9E59AF6325DE325A00FF427A /* Parentalcontrol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */; };
 		9E59AF6525DE32AE00FF427A /* PCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */; };
 		9E8BB097268076820091D4D3 /* BlacklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB094268076810091D4D3 /* BlacklistViewController.swift */; };
@@ -411,6 +413,8 @@
 		9E4AB96025E00EE600F1DEFE /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
 		9E5437EE25E8E17E00195623 /* Bindgateway.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bindgateway.storyboard; sourceTree = "<group>"; };
 		9E5437F025E8E1A200195623 /* GetConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConnectViewController.swift; sourceTree = "<group>"; };
+		9E57837726A18284005D446E /* Pppoe.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pppoe.storyboard; sourceTree = "<group>"; };
+		9E57837926A18327005D446E /* PppoeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PppoeViewController.swift; sourceTree = "<group>"; };
 		9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Parentalcontrol.storyboard; sourceTree = "<group>"; };
 		9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCMainViewController.swift; sourceTree = "<group>"; };
 		9E5F789925D40C0200C4D388 /* FunctionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FunctionSDK.framework; sourceTree = "<group>"; };
@@ -672,6 +676,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9E57837626A18273005D446E /* PPPOE */,
 				9EE460D8260043F70040D8CE /* DeviceInstallation */,
 				9E8BB093268076810091D4D3 /* Blacklist */,
 				9EFC438025EE127F009AF8C2 /* WifiConfiguration */,
@@ -1010,6 +1015,15 @@
 				9EDFA8B225ECE25F00C18ED0 /* OpenSettingViewController.swift */,
 			);
 			path = BindGateway;
+			sourceTree = "<group>";
+		};
+		9E57837626A18273005D446E /* PPPOE */ = {
+			isa = PBXGroup;
+			children = (
+				9E57837726A18284005D446E /* Pppoe.storyboard */,
+				9E57837926A18327005D446E /* PppoeViewController.swift */,
+			);
+			path = PPPOE;
 			sourceTree = "<group>";
 		};
 		9E59AF6125DE31AD00FF427A /* ParentalControl */ = {
@@ -1636,6 +1650,7 @@
 				E2A8E8441FCE3D6E00EA5DF2 /* Profile.storyboard in Resources */,
 				E2E84FED1FCEB4FB0014CEAA /* DIN Alternate Regular.otf in Resources */,
 				E2626D5020A923F700891953 /* Activity.storyboard in Resources */,
+				9E57837826A18284005D446E /* Pppoe.storyboard in Resources */,
 				9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */,
 				E2A8E84B1FCE6A4B00EA5DF2 /* Common.storyboard in Resources */,
 				9EE460DA260044160040D8CE /* Deviceinstallation.storyboard in Resources */,
@@ -2069,6 +2084,7 @@
 				9E8FC9C225357255008936D2 /* ReferralViewController.swift in Sources */,
 				E20451DE2212A5B700847AE4 /* SideBarTableViewController.swift in Sources */,
 				E274AD64210711F700E62A42 /* AddAttachmentCell.swift in Sources */,
+				9E57837A26A18327005D446E /* PppoeViewController.swift in Sources */,
 				E22050D81FCCF984004D5B10 /* AddOnCell.swift in Sources */,
 				9E016BC42519896400877A62 /* ShopViewController.swift in Sources */,
 				E2AD69DA20AD12E2001D104E /* PerformanceViewController.swift in Sources */,

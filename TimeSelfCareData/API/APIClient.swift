@@ -10,6 +10,7 @@
 import Foundation
 import Alamofire
 import ApptivityFramework
+import FirebasePerformance
 
 public let TimeSelfCareDomainErrorCodeKey: String = "TimeSelfCareAPIErrorCode" // swiftlint:disable:this identifier_name
 
@@ -87,7 +88,7 @@ public class APIClient {
     }
 
     func request(
-        method: HTTPMethod,
+        method: Alamofire.HTTPMethod,
         parameters: [String: Any]? = nil,
         additionalHeaders: [String: String]? = nil,
         encoding: ParameterEncoding = JSONEncoding.default) -> DataRequest {
@@ -119,14 +120,22 @@ public class APIClient {
 
         parameters["session_id"] = AccountController.shared.sessionId
         print(parameters)
+        
+        let trace = Performance.startTrace(name: "API")
+        trace?.setValue(path, forAttribute: "action")
+        
         self.request(
             method: .post,
             parameters: parameters,
             encoding: JSONEncoding.default)
             .responseJSON { (response: DataResponse<Any>) in
+                if let statusCode = response.response?.statusCode {
+                    trace?.setValue("\(statusCode)", forAttribute: "statusCode")
+                }
                 print("path: \(path), time: \(response.timeline.requestDuration)")
                 do {
                     let json = try APIClient.shared.JSONFromResponse(response: response)
+                    trace?.stop()
                     completion?(json, nil)
                 } catch {
                     if (error as? NSError)?.code == 403 {
@@ -134,6 +143,7 @@ public class APIClient {
                         return
                     }
                     completion?([:], error)
+                    trace?.stop()
                 }
             }
     }

@@ -23,6 +23,9 @@ PODS:
   - Firebase/DynamicLinks (8.2.0):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (~> 8.2.0)
+  - Firebase/Performance (8.2.0):
+    - Firebase/CoreOnly
+    - FirebasePerformance (~> 8.2.0)
   - Firebase/RemoteConfig (8.2.0):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 8.2.0)
@@ -68,6 +71,15 @@ PODS:
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
     - PromisesObjC (~> 1.2)
+  - FirebasePerformance (8.2.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - FirebaseRemoteConfig (~> 8.0)
+    - GoogleDataTransport (~> 9.0)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/ISASwizzler (~> 7.4)
+    - GoogleUtilities/MethodSwizzler (~> 7.4)
+    - Protobuf (~> 3.15)
   - FirebaseRemoteConfig (8.2.0):
     - FirebaseABTesting (~> 8.0)
     - FirebaseCore (~> 8.0)
@@ -98,6 +110,7 @@ PODS:
     - GoogleUtilities/Network
   - GoogleUtilities/Environment (7.4.3):
     - PromisesObjC (~> 1.2)
+  - GoogleUtilities/ISASwizzler (7.4.3)
   - GoogleUtilities/Logger (7.4.3):
     - GoogleUtilities/Environment
   - GoogleUtilities/MethodSwizzler (7.4.3):
@@ -120,6 +133,7 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - Protobuf (3.17.0)
   - Pulsator (0.6.0)
   - SDWebImage (5.9.4):
     - SDWebImage/Core (= 5.9.4)
@@ -138,6 +152,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Crashlytics
   - Firebase/DynamicLinks
+  - Firebase/Performance
   - Firebase/RemoteConfig
   - FreshchatSDK
   - JVFloatLabeledTextField
@@ -163,6 +178,7 @@ SPEC REPOS:
     - FirebaseCrashlytics
     - FirebaseDynamicLinks
     - FirebaseInstallations
+    - FirebasePerformance
     - FirebaseRemoteConfig
     - FreshchatSDK
     - GoogleAppMeasurement
@@ -173,6 +189,7 @@ SPEC REPOS:
     - MBProgressHUD
     - nanopb
     - PromisesObjC
+    - Protobuf
     - Pulsator
     - SDWebImage
     - Smartlook
@@ -205,6 +222,7 @@ SPEC CHECKSUMS:
   FirebaseCrashlytics: 935dbdb043a286ca92a22d15e5780802403ea0ea
   FirebaseDynamicLinks: 5a527c9f84d334c6e53aa933cdf0fcc04a156c29
   FirebaseInstallations: 9394ea09e242bf0816e95ac30e56a9214cc86ced
+  FirebasePerformance: fe501d202ae945c4a457fc49e9ad9785b51ba6f8
   FirebaseRemoteConfig: 6695557b3dac704527c952502e799586941d399e
   FreshchatSDK: db7d7b6ac9e7a7456c8514509ac4cd2e97ba4a26
   GoogleAppMeasurement: b52eafc9dff542d580700e708216568bd2fbf168
@@ -215,12 +233,13 @@ SPEC CHECKSUMS:
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  Protobuf: 7327d4444215b5f18e560a97f879ff5503c4581c
   Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
   SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
   Smartlook: cdab844eb0a22a337319a9f1a93a69729b28edb5
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: fa9e1e695edb8dfcba84e5edd7f730b7ab183291
+PODFILE CHECKSUM: 6908db6862d1be05311054d230dc25e44631891d
 
 COCOAPODS: 1.10.1

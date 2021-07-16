@@ -43,6 +43,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
         UNUserNotificationCenter.current().delegate = self
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
 
     deinit {
         appVersionConfig = nil

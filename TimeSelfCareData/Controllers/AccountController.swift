@@ -68,6 +68,10 @@ public class AccountController {
     init() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     @objc
     public func applicationDidBecomeActive() {

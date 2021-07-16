@@ -286,6 +286,12 @@ class WifiSettingsViewController: UIViewController {
         HuaweiHelper.shared.getWifiTimer(completion: { timer in
             DispatchQueue.main.async {
                 hud.hide(animated: true)
+                if timer.startTime == "" {
+                    timer.startTime = "01:00"
+                }
+                if timer.endTime == "" {
+                    timer.endTime = "15:00"
+                }
                 self.timer = timer
                 self.switchScheduling.isOn = timer.enabled
                 self.schedulingView.isHidden = !timer.enabled

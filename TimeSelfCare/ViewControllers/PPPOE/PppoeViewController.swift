@@ -12,9 +12,10 @@ class PppoeViewController: UIViewController {
 
     @IBOutlet private weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet private weak var liveChatConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pppoeUsername: UILabel!
-    @IBOutlet weak var pppoePassword: UILabel!
-
+    @IBOutlet private weak var pppoeUsername: UILabel!
+    @IBOutlet private weak var pppoePassword: UILabel!
+    @IBOutlet private weak var passwordButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.liveChatView.isHidden = false
@@ -41,4 +42,12 @@ class PppoeViewController: UIViewController {
         }
     }
     
+    @IBAction func actPasswordButton(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected {
+            pppoePassword.text = "ksg176077g"
+        } else {
+            pppoePassword.text = "••••••••"
+        }
+    }
 }

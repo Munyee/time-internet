@@ -71,6 +71,9 @@
                                                 </constraints>
                                                 <state key="normal" image="icon_eyeclose"/>
                                                 <state key="selected" image="icon_eyeopen"/>
+                                                <connections>
+                                                    <action selector="actPasswordButton:" destination="9Us-CU-ju1" eventType="touchUpInside" id="tYR-Zx-H8s"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JhQ-J3-beC">
                                                 <rect key="frame" x="35" y="247" width="344" height="94"/>
@@ -98,8 +101,8 @@
                                                     <constraint firstItem="JBd-dM-VoV" firstAttribute="top" secondItem="JhQ-J3-beC" secondAttribute="top" constant="20" id="vDz-fe-MU3"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUs-gI-x4q">
-                                                <rect key="frame" x="45" y="187" width="83" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="••••••••" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUs-gI-x4q">
+                                                <rect key="frame" x="45" y="187" width="80" height="20"/>
                                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -150,6 +153,8 @@
                     <connections>
                         <outlet property="liveChatConstraint" destination="sE9-ml-NLM" id="JHx-yf-g5C"/>
                         <outlet property="liveChatView" destination="9xE-zR-8t3" id="mY9-T0-Ml5"/>
+                        <outlet property="passwordButton" destination="ExH-PL-scX" id="Mho-wW-z4u"/>
+                        <outlet property="pppoePassword" destination="oUs-gI-x4q" id="jYE-4V-Tlg"/>
                         <outlet property="pppoeUsername" destination="x9u-sd-F19" id="Eit-rD-dQ3"/>
                     </connections>
                 </viewController>

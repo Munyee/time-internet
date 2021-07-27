@@ -46,7 +46,7 @@ class PeriodView: UIView {
         if period.repeatMode == kHwRepeatModeNone {
            days = "Once"
         } else {
-            for item in period.dayOfWeeks ?? [] {
+            for item in period.dayOfWeeks?.sorted(by: { $0.rawValue < $1.rawValue }) ?? [] {
                 if let day = item as? kHwDayOfWeek {
                     
                     if days != "" {
@@ -54,31 +54,31 @@ class PeriodView: UIView {
                     }
                     
                     if day == kHwDayOfWeekMon {
-                        days = "Monday"
+                        days = "Mon"
                     }
                     
                     if day == kHwDayOfWeekTue {
-                        days = "\(days)Tuesday"
+                        days = "\(days)Tue"
                     }
                     
                     if day == kHwDayOfWeekWed {
-                        days = "\(days)Wednesday"
+                        days = "\(days)Wed"
                     }
                     
                     if day == kHwDayOfWeekTus {
-                        days = "\(days)Thursday"
+                        days = "\(days)Thu"
                     }
                     
                     if day == kHwDayOfWeekFri {
-                        days = "\(days)Friday"
+                        days = "\(days)Fri"
                     }
                     
                     if day == kHwDayOfWeekSat {
-                        days = "\(days)Saturday"
+                        days = "\(days)Sat"
                     }
                     
                     if day == kHwDayOfWeekSun {
-                        days = "\(days)Sunday"
+                        days = "\(days)Sun"
                     }
                 }
             }

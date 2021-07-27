@@ -128,12 +128,14 @@ open class ImagePickerViewController: UIViewController {
     }
 
     public func deselectItem(for identifier: String) {
-        guard let index: Int = {
-            return Array(0...self.assetsController.assetsFetchResults.count - 1).first { self.assetsController.assetsFetchResults[$0].localIdentifier == identifier }
-        }() else {
-            return
+        DispatchQueue.main.async {
+            guard let index: Int = {
+                return Array(0...self.assetsController.assetsFetchResults.count - 1).first { self.assetsController.assetsFetchResults[$0].localIdentifier == identifier }
+            }() else {
+                return
+            }
+            self.assetsCollectionView.deselectItem(at: IndexPath(item: index, section: 0), animated: true)
         }
-        self.assetsCollectionView.deselectItem(at: IndexPath(item: index, section: 0), animated: true)
     }
 }
 

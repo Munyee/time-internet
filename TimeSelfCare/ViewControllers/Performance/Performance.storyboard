@@ -134,17 +134,17 @@
                                                                 <rect key="frame" x="20" y="338" width="335" height="103"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RqY-Gv-vcd" customClass="UIControl">
-                                                                        <rect key="frame" x="10" y="0.0" width="157.5" height="103"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="98.5" height="103"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_parental_control" translatesAutoresizingMaskIntoConstraints="NO" id="HBx-0I-owa">
-                                                                                <rect key="frame" x="54" y="10" width="50" height="50"/>
+                                                                                <rect key="frame" x="24" y="10" width="50" height="50"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="50" id="DhL-LS-zSK"/>
                                                                                     <constraint firstAttribute="width" secondItem="HBx-0I-owa" secondAttribute="height" multiplier="1:1" id="Qit-E0-FS4"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoR-UC-sQq">
-                                                                                <rect key="frame" x="10" y="65" width="137.5" height="28"/>
+                                                                                <rect key="frame" x="10" y="65" width="78.5" height="28"/>
                                                                                 <string key="text">Parental 
 Controls</string>
                                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
@@ -165,18 +165,48 @@ Controls</string>
                                                                             <action selector="actParentalControl:" destination="k5v-hv-hWL" eventType="touchUpInside" id="vhp-PV-hCs"/>
                                                                         </connections>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViO-9f-NDf" customClass="UIControl">
+                                                                        <rect key="frame" x="118.5" y="0.0" width="98" height="103"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_device_installation" translatesAutoresizingMaskIntoConstraints="NO" id="mCn-qg-WXw">
+                                                                                <rect key="frame" x="24" y="10" width="50" height="50"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="50" id="4Jg-7f-rmA"/>
+                                                                                    <constraint firstAttribute="width" secondItem="mCn-qg-WXw" secondAttribute="height" multiplier="1:1" id="Hka-Xr-gPc"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device Installation" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkc-4R-RGC">
+                                                                                <rect key="frame" x="10" y="65" width="78" height="28"/>
+                                                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="mCn-qg-WXw" firstAttribute="top" secondItem="ViO-9f-NDf" secondAttribute="top" constant="10" id="7Wo-Y7-fAc"/>
+                                                                            <constraint firstItem="hkc-4R-RGC" firstAttribute="top" secondItem="mCn-qg-WXw" secondAttribute="bottom" constant="5" id="8ig-Zg-d8r"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="hkc-4R-RGC" secondAttribute="bottom" constant="10" id="AcS-XD-em0"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="hkc-4R-RGC" secondAttribute="trailing" constant="10" id="HJs-Q0-G21"/>
+                                                                            <constraint firstItem="hkc-4R-RGC" firstAttribute="leading" secondItem="ViO-9f-NDf" secondAttribute="leading" constant="10" id="neZ-6X-6j8"/>
+                                                                            <constraint firstItem="mCn-qg-WXw" firstAttribute="centerX" secondItem="ViO-9f-NDf" secondAttribute="centerX" id="pGx-Jc-aGU"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <action selector="actDeviceInstallation:" destination="k5v-hv-hWL" eventType="touchUpInside" id="918-0u-fGc"/>
+                                                                        </connections>
+                                                                    </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjW-iv-sdQ" customClass="UIControl">
-                                                                        <rect key="frame" x="167.5" y="0.0" width="157.5" height="103"/>
+                                                                        <rect key="frame" x="226.5" y="0.0" width="98.5" height="103"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wifi_conf" translatesAutoresizingMaskIntoConstraints="NO" id="9Yr-5N-8N0">
-                                                                                <rect key="frame" x="54" y="10" width="50" height="50"/>
+                                                                                <rect key="frame" x="24.5" y="10" width="50" height="50"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="50" id="2cS-yX-jEY"/>
                                                                                     <constraint firstAttribute="width" secondItem="9Yr-5N-8N0" secondAttribute="height" multiplier="1:1" id="fYU-dD-6sU"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhW-PN-Un1">
-                                                                                <rect key="frame" x="10" y="65" width="137.5" height="28"/>
+                                                                                <rect key="frame" x="10" y="65" width="78.5" height="28"/>
                                                                                 <string key="text">Wifi 
 Configuration</string>
                                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
@@ -200,12 +230,16 @@ Configuration</string>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
+                                                                    <constraint firstItem="ViO-9f-NDf" firstAttribute="leading" secondItem="RqY-Gv-vcd" secondAttribute="trailing" constant="10" id="4mH-Nd-WvU"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="ViO-9f-NDf" secondAttribute="bottom" id="JSk-3Y-5bn"/>
                                                                     <constraint firstItem="RjW-iv-sdQ" firstAttribute="top" secondItem="RqY-Gv-vcd" secondAttribute="top" id="N7z-2q-mJ3"/>
                                                                     <constraint firstAttribute="trailing" secondItem="RjW-iv-sdQ" secondAttribute="trailing" constant="10" id="RjM-sJ-C9V"/>
                                                                     <constraint firstItem="RjW-iv-sdQ" firstAttribute="width" secondItem="RqY-Gv-vcd" secondAttribute="width" id="SNg-Gl-cNp"/>
-                                                                    <constraint firstItem="RjW-iv-sdQ" firstAttribute="leading" secondItem="RqY-Gv-vcd" secondAttribute="trailing" id="So5-Lz-oX4"/>
+                                                                    <constraint firstItem="ViO-9f-NDf" firstAttribute="width" secondItem="RjW-iv-sdQ" secondAttribute="width" id="UBo-dh-I0D"/>
                                                                     <constraint firstItem="RqY-Gv-vcd" firstAttribute="top" secondItem="Upb-aU-euo" secondAttribute="top" id="UqQ-48-w8U"/>
                                                                     <constraint firstAttribute="bottom" secondItem="RqY-Gv-vcd" secondAttribute="bottom" id="Y7E-WK-b0W"/>
+                                                                    <constraint firstItem="ViO-9f-NDf" firstAttribute="top" secondItem="Upb-aU-euo" secondAttribute="top" id="ZUp-DP-kBf"/>
+                                                                    <constraint firstItem="RjW-iv-sdQ" firstAttribute="leading" secondItem="ViO-9f-NDf" secondAttribute="trailing" constant="10" id="jmB-h4-lmK"/>
                                                                     <constraint firstItem="RqY-Gv-vcd" firstAttribute="leading" secondItem="Upb-aU-euo" secondAttribute="leading" constant="10" id="s5o-6x-JQa"/>
                                                                 </constraints>
                                                             </view>
@@ -714,6 +748,7 @@ new features for you!</string>
     <resources>
         <image name="ic_ssid" width="60" height="60"/>
         <image name="ic_visibility" width="24" height="24"/>
+        <image name="icon_device_installation" width="38" height="38"/>
         <image name="icon_parental_control" width="47" height="44"/>
         <image name="icon_wifi_conf" width="54" height="44"/>
         <image name="nce_error" width="158" height="221"/>

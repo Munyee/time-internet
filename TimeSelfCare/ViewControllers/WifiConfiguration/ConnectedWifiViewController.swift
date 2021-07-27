@@ -25,7 +25,9 @@ class ConnectedWifiViewController: UIViewController {
     
     @objc
     func popBack() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func actChangeNetwork(_ sender: Any) {
@@ -80,7 +82,7 @@ class ConnectedWifiViewController: UIViewController {
                         self.dismissVC()
                     }, error: { exception in
                         hud.hide(animated: true)
-                        self.showAlertMessage(message: exception?.errorMessage ?? "")
+                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                     })
                 }
             }

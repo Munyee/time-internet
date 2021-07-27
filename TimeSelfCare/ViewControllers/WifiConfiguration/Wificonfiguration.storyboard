@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qct-ec-vFD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qct-ec-vFD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,10 +26,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEn-cy-tGW">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="317"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bXR-Pe-kU7">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="236"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="317"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkz-TL-LF1" customClass="UIControl">
                                                         <rect key="frame" x="35" y="59" width="344" height="81"/>
@@ -54,7 +54,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(mac name)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFx-I9-4KL">
-                                                                <rect key="frame" x="252.5" y="30" width="62.5" height="14.5"/>
+                                                                <rect key="frame" x="252.5" y="30" width="62.5" height="14"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -78,71 +78,24 @@
                                                             <action selector="actConnectedWifi:" destination="qct-ec-vFD" eventType="touchUpInside" id="6KG-4L-6NF"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GK1-iz-bOB" customClass="UIControl">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aoj-lG-i9i" customClass="UIControl">
                                                         <rect key="frame" x="35" y="140" width="344" height="81"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONg-1Y-717">
-                                                                <rect key="frame" x="0.0" y="80" width="344" height="1"/>
-                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="4Rb-9d-YMg"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcS-cs-5ls">
-                                                                <rect key="frame" x="0.0" y="30" width="65" height="20"/>
-                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="hcp-YR-pBE">
-                                                                <rect key="frame" x="325" y="27.5" width="19" height="20"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="20" id="XC7-h2-1HN"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(status)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qD-Eh-aNu">
-                                                                <rect key="frame" x="277.5" y="30" width="37.5" height="14"/>
-                                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
-                                                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="ONg-1Y-717" secondAttribute="trailing" id="866-uz-wbh"/>
-                                                            <constraint firstItem="hcp-YR-pBE" firstAttribute="leading" secondItem="1qD-Eh-aNu" secondAttribute="trailing" constant="10" id="E6U-T3-oLb"/>
-                                                            <constraint firstItem="ONg-1Y-717" firstAttribute="leading" secondItem="GK1-iz-bOB" secondAttribute="leading" id="E9Z-sa-KiZ"/>
-                                                            <constraint firstItem="hcp-YR-pBE" firstAttribute="centerY" secondItem="GK1-iz-bOB" secondAttribute="centerY" constant="-3" id="WAd-Jr-Xn5"/>
-                                                            <constraint firstItem="1qD-Eh-aNu" firstAttribute="centerY" secondItem="PcS-cs-5ls" secondAttribute="centerY" constant="-3" id="XPV-aJ-Y3S"/>
-                                                            <constraint firstItem="PcS-cs-5ls" firstAttribute="leading" secondItem="GK1-iz-bOB" secondAttribute="leading" id="b3x-2A-Dsj"/>
-                                                            <constraint firstAttribute="bottom" secondItem="ONg-1Y-717" secondAttribute="bottom" id="bnB-F4-xmn"/>
-                                                            <constraint firstAttribute="trailing" secondItem="hcp-YR-pBE" secondAttribute="trailing" id="f4o-m2-Vn1"/>
-                                                            <constraint firstItem="PcS-cs-5ls" firstAttribute="top" secondItem="GK1-iz-bOB" secondAttribute="top" constant="30" id="rCi-Bm-zTP"/>
-                                                            <constraint firstItem="ONg-1Y-717" firstAttribute="top" secondItem="PcS-cs-5ls" secondAttribute="bottom" constant="30" id="tYt-ei-Ub3"/>
-                                                            <constraint firstItem="1qD-Eh-aNu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PcS-cs-5ls" secondAttribute="trailing" constant="10" id="z8d-jP-SZY"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <action selector="actGuestWifi:" destination="qct-ec-vFD" eventType="touchUpInside" id="PbJ-6E-CAb"/>
-                                                        </connections>
-                                                    </view>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aoj-lG-i9i" customClass="UIControl">
-                                                        <rect key="frame" x="35" y="221" width="344" height="61"/>
-                                                        <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WqK-94-ubF">
-                                                                <rect key="frame" x="0.0" y="60" width="344" height="1"/>
+                                                                <rect key="frame" x="0.0" y="80" width="344" height="1"/>
                                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="XZ3-LY-hzA"/>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WiFi Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T10-GM-3zN">
-                                                                <rect key="frame" x="0.0" y="30" width="80.5" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="30" width="80.5" height="20"/>
                                                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="nuQ-Or-b5W">
-                                                                <rect key="frame" x="325" y="17.5" width="19" height="20"/>
+                                                                <rect key="frame" x="325" y="27.5" width="19" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="dH4-HS-enZ"/>
                                                                 </constraints>
@@ -161,6 +114,44 @@
                                                         </constraints>
                                                         <connections>
                                                             <action selector="actWifiSettings:" destination="qct-ec-vFD" eventType="touchUpInside" id="dI1-YM-H0y"/>
+                                                        </connections>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHi-zm-P3j" customClass="UIControl">
+                                                        <rect key="frame" x="35" y="221" width="344" height="81"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7C-qn-pcw">
+                                                                <rect key="frame" x="0.0" y="80" width="344" height="1"/>
+                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="g1I-g3-Hpx"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blacklist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csf-Xd-XBd">
+                                                                <rect key="frame" x="0.0" y="30" width="53.5" height="20"/>
+                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-aO-f8l">
+                                                                <rect key="frame" x="325" y="27.5" width="19" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="20" id="Q2m-3Q-RVe"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="o7C-qn-pcw" firstAttribute="leading" secondItem="DHi-zm-P3j" secondAttribute="leading" id="087-E5-riP"/>
+                                                            <constraint firstAttribute="trailing" secondItem="1fA-aO-f8l" secondAttribute="trailing" id="CRd-iV-JTr"/>
+                                                            <constraint firstAttribute="bottom" secondItem="o7C-qn-pcw" secondAttribute="bottom" id="HWa-Nh-5Gt"/>
+                                                            <constraint firstItem="csf-Xd-XBd" firstAttribute="leading" secondItem="DHi-zm-P3j" secondAttribute="leading" id="LY2-DE-fu3"/>
+                                                            <constraint firstAttribute="trailing" secondItem="o7C-qn-pcw" secondAttribute="trailing" id="Pf5-8H-QLP"/>
+                                                            <constraint firstItem="o7C-qn-pcw" firstAttribute="top" secondItem="csf-Xd-XBd" secondAttribute="bottom" constant="30" id="uoe-zd-DdY"/>
+                                                            <constraint firstItem="csf-Xd-XBd" firstAttribute="top" secondItem="DHi-zm-P3j" secondAttribute="top" constant="30" id="v23-MH-Yj1"/>
+                                                            <constraint firstItem="1fA-aO-f8l" firstAttribute="centerY" secondItem="DHi-zm-P3j" secondAttribute="centerY" constant="-3" id="v6b-ow-HsL"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="actBlacklist:" destination="qct-ec-vFD" eventType="touchUpInside" id="2mu-UB-50Q"/>
                                                         </connections>
                                                     </view>
                                                 </subviews>
@@ -206,7 +197,6 @@
                     </view>
                     <connections>
                         <outlet property="familyName" destination="gFx-I9-4KL" id="rhC-65-vi3"/>
-                        <outlet property="guestWifiStatus" destination="1qD-Eh-aNu" id="Rqd-Ti-x0U"/>
                         <outlet property="liveChatConstraint" destination="q0g-d6-Wzr" id="viG-s9-RJg"/>
                         <outlet property="liveChatView" destination="lrL-ka-HLm" id="yBk-2L-aW1"/>
                     </connections>
@@ -224,7 +214,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vmv-BR-Jdg">
-                                <rect key="frame" x="36" y="40" width="96" height="17"/>
+                                <rect key="frame" x="36" y="40" width="100.5" height="17"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -251,7 +241,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-6u-JZn">
-                                <rect key="frame" x="140.5" y="237" width="133" height="29"/>
+                                <rect key="frame" x="139" y="237" width="136" height="29"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <state key="normal" title="Remove Wifi Network">
                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -296,10 +286,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxF-YF-hCe">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="709"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="773.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IuR-2s-XTK">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="709"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="773.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GtR-Uz-ueU" customClass="UIControl">
                                                         <rect key="frame" x="24" y="59" width="366" height="81"/>
@@ -340,136 +330,11 @@
                                                             <action selector="actChangeWifiName:" destination="X7z-3g-s63" eventType="touchUpInside" id="IeB-sw-dKr"/>
                                                         </connections>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-PZ-tOJ" customClass="UIControl">
-                                                        <rect key="frame" x="24" y="140" width="366" height="277"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEx-yD-S21">
-                                                                <rect key="frame" x="0.0" y="276" width="366" height="1"/>
-                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="MbP-gP-6Gj"/>
-                                                                </constraints>
-                                                            </view>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-Yc-UF2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="277"/>
-                                                                <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3C-Uj-BUA">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="158"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dual-band WiFi (2.4G and 5G)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyb-by-2Sw">
-                                                                                <rect key="frame" x="12" y="30" width="283" height="64"/>
-                                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jsI-Nk-H7y">
-                                                                                <rect key="frame" x="305" y="30" width="51" height="31"/>
-                                                                                <connections>
-                                                                                    <action selector="actToggleDualBand:" destination="X7z-3g-s63" eventType="valueChanged" id="fUn-ou-cFZ"/>
-                                                                                </connections>
-                                                                            </switch>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable this to automatically switch to whichever is the faster band." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-wB-6iy">
-                                                                                <rect key="frame" x="12" y="99" width="243" height="29"/>
-                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
-                                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                                        <constraints>
-                                                                            <constraint firstItem="SZo-wB-6iy" firstAttribute="leading" secondItem="Gyb-by-2Sw" secondAttribute="leading" id="6s3-dg-yuH"/>
-                                                                            <constraint firstItem="SZo-wB-6iy" firstAttribute="top" secondItem="Gyb-by-2Sw" secondAttribute="bottom" constant="5" id="AS7-hA-8sX"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="jsI-Nk-H7y" secondAttribute="trailing" constant="12" id="HxO-NG-owy"/>
-                                                                            <constraint firstItem="jsI-Nk-H7y" firstAttribute="leading" secondItem="Gyb-by-2Sw" secondAttribute="trailing" constant="10" id="Idw-Ii-O3x"/>
-                                                                            <constraint firstItem="Gyb-by-2Sw" firstAttribute="top" secondItem="s3C-Uj-BUA" secondAttribute="top" constant="30" id="OdX-PA-htQ"/>
-                                                                            <constraint firstItem="jsI-Nk-H7y" firstAttribute="top" secondItem="Gyb-by-2Sw" secondAttribute="top" id="aXW-j8-Sh2"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="SZo-wB-6iy" secondAttribute="bottom" constant="30" id="hao-Zx-yBy"/>
-                                                                            <constraint firstItem="jsI-Nk-H7y" firstAttribute="leading" secondItem="SZo-wB-6iy" secondAttribute="trailing" constant="50" id="jcn-BA-4fe"/>
-                                                                            <constraint firstItem="Gyb-by-2Sw" firstAttribute="leading" secondItem="s3C-Uj-BUA" secondAttribute="leading" constant="12" id="uZG-Bi-v5W"/>
-                                                                        </constraints>
-                                                                    </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CgK-OT-G8g">
-                                                                        <rect key="frame" x="0.0" y="158" width="366" height="118"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.4G" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdC-s3-9zI">
-                                                                                <rect key="frame" x="12" y="0.0" width="27.5" height="20"/>
-                                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW2-9Z-PCo">
-                                                                                <rect key="frame" x="12" y="46" width="342" height="1"/>
-                                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="1" id="1CE-hd-jTG"/>
-                                                                                </constraints>
-                                                                            </view>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5G" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3I-17-DRq">
-                                                                                <rect key="frame" x="12" y="72" width="16" height="20"/>
-                                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wHq-U7-QaX">
-                                                                                <rect key="frame" x="305" y="67" width="51" height="31"/>
-                                                                                <connections>
-                                                                                    <action selector="actToggle5g:" destination="X7z-3g-s63" eventType="valueChanged" id="DWL-93-CMO"/>
-                                                                                </connections>
-                                                                            </switch>
-                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMa-sQ-zJ9">
-                                                                                <rect key="frame" x="305" y="-5" width="51" height="31"/>
-                                                                                <connections>
-                                                                                    <action selector="actToggle2p4g:" destination="X7z-3g-s63" eventType="valueChanged" id="MLs-hz-he4"/>
-                                                                                </connections>
-                                                                            </switch>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="bottom" secondItem="wHq-U7-QaX" secondAttribute="bottom" constant="20" id="2l0-bR-qmF"/>
-                                                                            <constraint firstItem="nW2-9Z-PCo" firstAttribute="top" secondItem="cMa-sQ-zJ9" secondAttribute="bottom" constant="20" id="3ps-z6-NU9"/>
-                                                                            <constraint firstItem="wHq-U7-QaX" firstAttribute="top" secondItem="g3I-17-DRq" secondAttribute="top" constant="-5" id="5bs-KA-P1b"/>
-                                                                            <constraint firstItem="nW2-9Z-PCo" firstAttribute="trailing" secondItem="cMa-sQ-zJ9" secondAttribute="trailing" id="A7C-3l-afl"/>
-                                                                            <constraint firstItem="g3I-17-DRq" firstAttribute="leading" secondItem="CgK-OT-G8g" secondAttribute="leading" constant="12" id="Hfu-S6-L6H"/>
-                                                                            <constraint firstItem="cMa-sQ-zJ9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SdC-s3-9zI" secondAttribute="trailing" constant="10" id="M3B-bI-Pe5"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="cMa-sQ-zJ9" secondAttribute="trailing" constant="12" id="NA0-Dz-tzP"/>
-                                                                            <constraint firstItem="nW2-9Z-PCo" firstAttribute="leading" secondItem="SdC-s3-9zI" secondAttribute="leading" id="NlW-sS-xoi"/>
-                                                                            <constraint firstItem="wHq-U7-QaX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="g3I-17-DRq" secondAttribute="trailing" constant="10" id="Tzs-Gj-UhN"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="wHq-U7-QaX" secondAttribute="trailing" constant="12" id="fKF-zR-Afy"/>
-                                                                            <constraint firstItem="wHq-U7-QaX" firstAttribute="top" secondItem="nW2-9Z-PCo" secondAttribute="bottom" constant="20" id="gFk-15-VUx"/>
-                                                                            <constraint firstItem="SdC-s3-9zI" firstAttribute="top" secondItem="CgK-OT-G8g" secondAttribute="top" id="iis-I1-Vka"/>
-                                                                            <constraint firstItem="SdC-s3-9zI" firstAttribute="leading" secondItem="CgK-OT-G8g" secondAttribute="leading" constant="12" id="jY7-WI-gU3"/>
-                                                                            <constraint firstItem="cMa-sQ-zJ9" firstAttribute="top" secondItem="SdC-s3-9zI" secondAttribute="top" constant="-5" id="rkd-0I-vob"/>
-                                                                        </constraints>
-                                                                    </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSh-H3-4k7">
-                                                                        <rect key="frame" x="0.0" y="276" width="366" height="1"/>
-                                                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="1" id="4dN-7f-ezR"/>
-                                                                        </constraints>
-                                                                    </view>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="pEx-yD-S21" secondAttribute="bottom" id="24V-lk-IBQ"/>
-                                                            <constraint firstAttribute="bottom" secondItem="mBX-Yc-UF2" secondAttribute="bottom" id="BVo-dC-O9w"/>
-                                                            <constraint firstItem="mBX-Yc-UF2" firstAttribute="leading" secondItem="ljA-PZ-tOJ" secondAttribute="leading" id="FzD-8Q-TBT"/>
-                                                            <constraint firstAttribute="trailing" secondItem="pEx-yD-S21" secondAttribute="trailing" id="MPB-BB-gjx"/>
-                                                            <constraint firstAttribute="trailing" secondItem="mBX-Yc-UF2" secondAttribute="trailing" id="Sxp-ag-vFS"/>
-                                                            <constraint firstItem="mBX-Yc-UF2" firstAttribute="top" secondItem="ljA-PZ-tOJ" secondAttribute="top" id="cd9-7r-g6l"/>
-                                                            <constraint firstItem="pEx-yD-S21" firstAttribute="leading" secondItem="ljA-PZ-tOJ" secondAttribute="leading" id="p9q-IH-uYN"/>
-                                                        </constraints>
-                                                        <connections>
-                                                            <action selector="actWifiSettings:" destination="qct-ec-vFD" eventType="touchUpInside" id="zYE-Ge-YWx"/>
-                                                        </connections>
-                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aL9-gD-G0d" customClass="UIControl">
-                                                        <rect key="frame" x="24" y="417" width="366" height="115"/>
+                                                        <rect key="frame" x="24" y="140" width="366" height="129.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYq-gL-Tdr">
-                                                                <rect key="frame" x="0.0" y="114" width="366" height="1"/>
+                                                                <rect key="frame" x="0.0" y="128.5" width="366" height="1"/>
                                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="yOg-sO-WQH"/>
@@ -481,14 +346,15 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable this to automatically switch to whichever is the faster band." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpv-YI-ch5">
-                                                                <rect key="frame" x="12" y="55" width="243" height="29"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will make your WiFi network undiscoverable to any device that is not connected to it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpv-YI-ch5">
+                                                                <rect key="frame" x="12" y="55" width="243" height="43.5"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nfs-Na-637">
                                                                 <rect key="frame" x="305" y="30" width="51" height="31"/>
+                                                                <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <connections>
                                                                     <action selector="actWifiHetwork:" destination="X7z-3g-s63" eventType="valueChanged" id="gAh-sU-Ws0"/>
                                                                 </connections>
@@ -514,10 +380,10 @@
                                                         </connections>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UWv-EC-tk2">
-                                                        <rect key="frame" x="24" y="532" width="366" height="162"/>
+                                                        <rect key="frame" x="24" y="269.5" width="366" height="211"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0a-nM-4Xq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="80"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="114"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WiFi Scheduling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pX1-Wu-ikK">
                                                                         <rect key="frame" x="12" y="30" width="283" height="20"/>
@@ -526,24 +392,34 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLJ-5n-2KR">
-                                                                        <rect key="frame" x="305" y="24" width="51" height="31"/>
+                                                                        <rect key="frame" x="305" y="30" width="51" height="31"/>
+                                                                        <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <connections>
-                                                                            <action selector="actWifiScheduling:" destination="X7z-3g-s63" eventType="valueChanged" id="dCz-Zc-5YK"/>
+                                                                            <action selector="actWifiScheduling:" destination="X7z-3g-s63" eventType="valueChanged" id="mpw-WX-oD6"/>
                                                                         </connections>
                                                                     </switch>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set a time frame for your WiFi to turn on and allow devices to connect to it." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpf-1A-GD8">
+                                                                        <rect key="frame" x="12" y="55" width="243" height="29"/>
+                                                                        <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="top" secondItem="pX1-Wu-ikK" secondAttribute="top" constant="-6" id="0Fl-ze-Lqd"/>
+                                                                    <constraint firstItem="kpf-1A-GD8" firstAttribute="leading" secondItem="pX1-Wu-ikK" secondAttribute="leading" id="00X-2b-KFF"/>
+                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="top" secondItem="pX1-Wu-ikK" secondAttribute="top" id="0Fl-ze-Lqd"/>
                                                                     <constraint firstItem="pX1-Wu-ikK" firstAttribute="leading" secondItem="C0a-nM-4Xq" secondAttribute="leading" constant="12" id="5Qf-vb-gHS"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="pX1-Wu-ikK" secondAttribute="bottom" constant="30" id="LYH-hD-B2N"/>
+                                                                    <constraint firstItem="kpf-1A-GD8" firstAttribute="top" secondItem="pX1-Wu-ikK" secondAttribute="bottom" constant="5" id="GwL-02-w1U"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="kpf-1A-GD8" secondAttribute="bottom" constant="30" id="IWx-qV-9yN"/>
+                                                                    <constraint firstItem="WLJ-5n-2KR" firstAttribute="leading" secondItem="kpf-1A-GD8" secondAttribute="trailing" constant="50" id="OYL-nD-e2f"/>
                                                                     <constraint firstItem="WLJ-5n-2KR" firstAttribute="leading" secondItem="pX1-Wu-ikK" secondAttribute="trailing" constant="10" id="b9w-z4-scB"/>
                                                                     <constraint firstAttribute="trailing" secondItem="WLJ-5n-2KR" secondAttribute="trailing" constant="12" id="pcN-rR-IWP"/>
                                                                     <constraint firstItem="pX1-Wu-ikK" firstAttribute="top" secondItem="C0a-nM-4Xq" secondAttribute="top" constant="30" id="sQH-We-L3x"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="976-4T-2Xt">
-                                                                <rect key="frame" x="0.0" y="80" width="366" height="82"/>
+                                                                <rect key="frame" x="0.0" y="114" width="366" height="97"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvp-Uu-BwZ">
                                                                         <rect key="frame" x="12" y="37" width="342" height="1"/>
@@ -590,7 +466,7 @@
                                                                         </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-kE-HHl" customClass="UIControl">
-                                                                        <rect key="frame" x="12" y="38" width="342" height="44"/>
+                                                                        <rect key="frame" x="12" y="38" width="342" height="59"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End at" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezW-1L-jV7">
                                                                                 <rect key="frame" x="13" y="15" width="34" height="14"/>
@@ -620,7 +496,7 @@
                                                                             <constraint firstItem="0M0-Zl-IIS" firstAttribute="centerY" secondItem="0mR-IH-aKE" secondAttribute="centerY" id="VEw-Lr-F0s"/>
                                                                             <constraint firstItem="0mR-IH-aKE" firstAttribute="top" secondItem="ezW-1L-jV7" secondAttribute="top" constant="-3" id="eQh-24-cnk"/>
                                                                             <constraint firstAttribute="trailing" secondItem="0mR-IH-aKE" secondAttribute="trailing" id="r2x-g5-8TB"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="ezW-1L-jV7" secondAttribute="bottom" constant="15" id="w8r-cs-095"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="ezW-1L-jV7" secondAttribute="bottom" constant="30" id="w8r-cs-095"/>
                                                                         </constraints>
                                                                         <connections>
                                                                             <action selector="actCloseAt:" destination="X7z-3g-s63" eventType="touchUpInside" id="pGc-9h-AhS"/>
@@ -643,6 +519,134 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXd-nw-N40">
+                                                        <rect key="frame" x="24" y="480.5" width="366" height="1"/>
+                                                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="mqN-rW-tXj"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-PZ-tOJ" customClass="UIControl">
+                                                        <rect key="frame" x="24" y="481.5" width="366" height="277"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEx-yD-S21">
+                                                                <rect key="frame" x="0.0" y="276" width="366" height="1"/>
+                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="MbP-gP-6Gj"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-Yc-UF2">
+                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="277"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3C-Uj-BUA">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="277"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn On/Off WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyb-by-2Sw">
+                                                                                <rect key="frame" x="12" y="30" width="283" height="183"/>
+                                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jsI-Nk-H7y">
+                                                                                <rect key="frame" x="305" y="30" width="51" height="31"/>
+                                                                                <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <connections>
+                                                                                    <action selector="actTurnOfWifi:" destination="X7z-3g-s63" eventType="valueChanged" id="0x5-AZ-20U"/>
+                                                                                </connections>
+                                                                            </switch>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will enable/disable your entire WiFi network." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-wB-6iy">
+                                                                                <rect key="frame" x="12" y="218" width="243" height="29"/>
+                                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="SZo-wB-6iy" firstAttribute="leading" secondItem="Gyb-by-2Sw" secondAttribute="leading" id="6s3-dg-yuH"/>
+                                                                            <constraint firstItem="SZo-wB-6iy" firstAttribute="top" secondItem="Gyb-by-2Sw" secondAttribute="bottom" constant="5" id="AS7-hA-8sX"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="jsI-Nk-H7y" secondAttribute="trailing" constant="12" id="HxO-NG-owy"/>
+                                                                            <constraint firstItem="jsI-Nk-H7y" firstAttribute="leading" secondItem="Gyb-by-2Sw" secondAttribute="trailing" constant="10" id="Idw-Ii-O3x"/>
+                                                                            <constraint firstItem="Gyb-by-2Sw" firstAttribute="top" secondItem="s3C-Uj-BUA" secondAttribute="top" constant="30" id="OdX-PA-htQ"/>
+                                                                            <constraint firstItem="jsI-Nk-H7y" firstAttribute="top" secondItem="Gyb-by-2Sw" secondAttribute="top" id="aXW-j8-Sh2"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="SZo-wB-6iy" secondAttribute="bottom" constant="30" id="hao-Zx-yBy"/>
+                                                                            <constraint firstItem="jsI-Nk-H7y" firstAttribute="leading" secondItem="SZo-wB-6iy" secondAttribute="trailing" constant="50" id="jcn-BA-4fe"/>
+                                                                            <constraint firstItem="Gyb-by-2Sw" firstAttribute="leading" secondItem="s3C-Uj-BUA" secondAttribute="leading" constant="12" id="uZG-Bi-v5W"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CgK-OT-G8g">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="56"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.4G" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SdC-s3-9zI">
+                                                                                <rect key="frame" x="12" y="0.0" width="27.5" height="20"/>
+                                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nW2-9Z-PCo">
+                                                                                <rect key="frame" x="12" y="15" width="342" height="1"/>
+                                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="1" id="1CE-hd-jTG"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5G" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3I-17-DRq">
+                                                                                <rect key="frame" x="12" y="41" width="16" height="20"/>
+                                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wHq-U7-QaX">
+                                                                                <rect key="frame" x="305" y="36" width="51" height="0.0"/>
+                                                                                <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <connections>
+                                                                                    <action selector="actToggle5g:" destination="X7z-3g-s63" eventType="valueChanged" id="DWL-93-CMO"/>
+                                                                                </connections>
+                                                                            </switch>
+                                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMa-sQ-zJ9">
+                                                                                <rect key="frame" x="305" y="-5" width="51" height="0.0"/>
+                                                                                <color key="onTintColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <connections>
+                                                                                    <action selector="actToggle2p4g:" destination="X7z-3g-s63" eventType="valueChanged" id="MLs-hz-he4"/>
+                                                                                </connections>
+                                                                            </switch>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="wHq-U7-QaX" secondAttribute="bottom" constant="20" id="2l0-bR-qmF"/>
+                                                                            <constraint firstItem="nW2-9Z-PCo" firstAttribute="top" secondItem="cMa-sQ-zJ9" secondAttribute="bottom" constant="20" id="3ps-z6-NU9"/>
+                                                                            <constraint firstItem="wHq-U7-QaX" firstAttribute="top" secondItem="g3I-17-DRq" secondAttribute="top" constant="-5" id="5bs-KA-P1b"/>
+                                                                            <constraint firstItem="nW2-9Z-PCo" firstAttribute="trailing" secondItem="cMa-sQ-zJ9" secondAttribute="trailing" id="A7C-3l-afl"/>
+                                                                            <constraint firstItem="g3I-17-DRq" firstAttribute="leading" secondItem="CgK-OT-G8g" secondAttribute="leading" constant="12" id="Hfu-S6-L6H"/>
+                                                                            <constraint firstItem="cMa-sQ-zJ9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SdC-s3-9zI" secondAttribute="trailing" constant="10" id="M3B-bI-Pe5"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="cMa-sQ-zJ9" secondAttribute="trailing" constant="12" id="NA0-Dz-tzP"/>
+                                                                            <constraint firstItem="nW2-9Z-PCo" firstAttribute="leading" secondItem="SdC-s3-9zI" secondAttribute="leading" id="NlW-sS-xoi"/>
+                                                                            <constraint firstItem="wHq-U7-QaX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="g3I-17-DRq" secondAttribute="trailing" constant="10" id="Tzs-Gj-UhN"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="wHq-U7-QaX" secondAttribute="trailing" constant="12" id="fKF-zR-Afy"/>
+                                                                            <constraint firstItem="wHq-U7-QaX" firstAttribute="top" secondItem="nW2-9Z-PCo" secondAttribute="bottom" constant="20" id="gFk-15-VUx"/>
+                                                                            <constraint firstItem="SdC-s3-9zI" firstAttribute="top" secondItem="CgK-OT-G8g" secondAttribute="top" id="iis-I1-Vka"/>
+                                                                            <constraint firstItem="SdC-s3-9zI" firstAttribute="leading" secondItem="CgK-OT-G8g" secondAttribute="leading" constant="12" id="jY7-WI-gU3"/>
+                                                                            <constraint firstItem="cMa-sQ-zJ9" firstAttribute="top" secondItem="SdC-s3-9zI" secondAttribute="top" constant="-5" id="rkd-0I-vob"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="pEx-yD-S21" secondAttribute="bottom" id="24V-lk-IBQ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="mBX-Yc-UF2" secondAttribute="bottom" id="BVo-dC-O9w"/>
+                                                            <constraint firstItem="mBX-Yc-UF2" firstAttribute="leading" secondItem="ljA-PZ-tOJ" secondAttribute="leading" id="FzD-8Q-TBT"/>
+                                                            <constraint firstAttribute="trailing" secondItem="pEx-yD-S21" secondAttribute="trailing" id="MPB-BB-gjx"/>
+                                                            <constraint firstAttribute="trailing" secondItem="mBX-Yc-UF2" secondAttribute="trailing" id="Sxp-ag-vFS"/>
+                                                            <constraint firstItem="mBX-Yc-UF2" firstAttribute="top" secondItem="ljA-PZ-tOJ" secondAttribute="top" id="cd9-7r-g6l"/>
+                                                            <constraint firstItem="pEx-yD-S21" firstAttribute="leading" secondItem="ljA-PZ-tOJ" secondAttribute="leading" id="p9q-IH-uYN"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="actWifiSettings:" destination="qct-ec-vFD" eventType="touchUpInside" id="zYE-Ge-YWx"/>
+                                                        </connections>
+                                                    </view>
                                                 </subviews>
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="15" leading="24" bottom="15" trailing="24"/>
                                             </stackView>
@@ -686,6 +690,7 @@
                     </view>
                     <connections>
                         <outlet property="closeLabel" destination="0M0-Zl-IIS" id="u6t-7H-dew"/>
+                        <outlet property="hideWifiView" destination="aL9-gD-G0d" id="wj5-4F-JsY"/>
                         <outlet property="liveChatConstraint" destination="Brg-ta-T5M" id="B9Y-jr-KaZ"/>
                         <outlet property="liveChatView" destination="Fib-MX-4au" id="73S-e7-uS2"/>
                         <outlet property="schedulingView" destination="976-4T-2Xt" id="4Iv-BH-JMR"/>
@@ -694,9 +699,10 @@
                         <outlet property="startLabel" destination="m5U-YF-ak8" id="4pB-kL-MXb"/>
                         <outlet property="switch2p4g" destination="cMa-sQ-zJ9" id="u2E-Ov-MB2"/>
                         <outlet property="switch5g" destination="wHq-U7-QaX" id="Cwx-bR-e0E"/>
-                        <outlet property="switchDualBand" destination="jsI-Nk-H7y" id="cyA-rh-zvO"/>
                         <outlet property="switchHideWifi" destination="nfs-Na-637" id="SRe-O2-TmJ"/>
                         <outlet property="switchScheduling" destination="WLJ-5n-2KR" id="NFx-0K-bM6"/>
+                        <outlet property="switchTurnOffWifi" destination="jsI-Nk-H7y" id="6hS-06-x5g"/>
+                        <outlet property="wifiSchedulingView" destination="UWv-EC-tk2" id="P7R-6m-9Jf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfP-M4-Tzv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -814,19 +820,19 @@ change your WiFi network?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to the WiFi network below to access extra tools to manage your connection." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUJ-ZQ-N52">
-                                <rect key="frame" x="40" y="176" width="334" height="34"/>
+                                <rect key="frame" x="40" y="176" width="334" height="33"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You’re connected to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4J-xu-qLj">
-                                <rect key="frame" x="146.5" y="270" width="121.5" height="17"/>
+                                <rect key="frame" x="144" y="269" width="126" height="16.5"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHi-Uj-InS">
-                                <rect key="frame" x="67" y="479" width="280" height="50"/>
+                                <rect key="frame" x="67" y="477" width="280" height="50"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="lMd-Xd-BaB"/>
@@ -842,7 +848,7 @@ change your WiFi network?</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCQ-dh-tHj">
-                                <rect key="frame" x="185.5" y="569" width="43" height="29"/>
+                                <rect key="frame" x="185" y="567" width="44" height="29"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -852,13 +858,13 @@ change your WiFi network?</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Connected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbs-Je-sBd">
-                                <rect key="frame" x="133.5" y="309" width="147.5" height="33"/>
+                                <rect key="frame" x="133.5" y="307.5" width="147.5" height="33"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="33"/>
                                 <color key="textColor" red="0.8980392157" green="0.027450980390000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checking" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksE-M2-14o">
-                                <rect key="frame" x="35" y="362" width="344" height="17"/>
+                                <rect key="frame" x="35" y="360.5" width="344" height="16.5"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <color key="textColor" red="0.8980392157" green="0.027450980390000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -926,13 +932,13 @@ change your WiFi network?</string>
                                                         <rect key="frame" x="35" y="59" width="364" height="93"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change your WiFi name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqB-pG-1Tm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="364" height="29"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="364" height="30"/>
                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your new WiFi Network Name (SSID) and new password." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exm-fM-NOL">
-                                                                <rect key="frame" x="0.0" y="34" width="364" height="29"/>
+                                                                <rect key="frame" x="0.0" y="35" width="364" height="28"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>

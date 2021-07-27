@@ -59,7 +59,7 @@ class PCProfileViewController: UIViewController {
         
         self.liveChatView.isHidden = false
         addTimeView.isHidden = true
-//        addWebsiteView.isHidden = true
+        addWebsiteView.isHidden = true
         setupProfileName()
         setupDevice()
         setupPeriod()
@@ -92,7 +92,9 @@ class PCProfileViewController: UIViewController {
     
     @objc
     func popBack() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc
@@ -152,16 +154,29 @@ class PCProfileViewController: UIViewController {
     func updateTemplateView() {
         if let temp = template {
             name = temp.name
-            HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
-                let controlledDev = arrAttachPC.filter { $0.templateName == temp.name }.map { $0.mac }
-                
+//            HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
+//                let controlledDev = arrAttachPC.filter { $0.templateName == temp.name }.map { $0.mac }
+//
+//                HuaweiHelper.shared.queryLanDeviceListEx { devices in
+//                    print(devices.map({ (device) -> String in
+//                        device.mac
+//                    }))
+//
+//                    print(arrAttachPC)
+//                    self.selectedDevices = devices.filter { !$0.isAp }.filter { controlledDev.contains($0.mac) }
+//                    self.updateDeviceList()
+//                }
+//            }, error: { _ in
+//
+//            })
+            
+            if let controlledDev = template?.macList as? [String] {
                 HuaweiHelper.shared.queryLanDeviceListEx { devices in
                     self.selectedDevices = devices.filter { !$0.isAp }.filter { controlledDev.contains($0.mac) }
                     self.updateDeviceList()
                 }
-            }, error: { _ in
-                
-            })
+            }
+            
             profileTextView.text = temp.aliasName
             profileSeperator.isHidden = !isEdit
             deviceView.alpha = 1
@@ -251,7 +266,7 @@ class PCProfileViewController: UIViewController {
                 
                 if isEdit {
                     addTimeView.isHidden = selectedPeriod.isEmpty ? true : false
-//                    addWebsiteView.isHidden = arrUrl.isEmpty ? true : false
+                    addWebsiteView.isHidden = arrUrl.isEmpty ? true : false
                 }
             }
             
@@ -378,31 +393,34 @@ class PCProfileViewController: UIViewController {
                         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
                         hud.label.text = NSLocalizedString("Loading...", comment: "")
                         
-                        HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
-                            let controlledDev = arrAttachPC.filter { $0.templateName == self.name }.map { $0.mac }
-                            
-                            let group = DispatchGroup()
-                            for dev in controlledDev {
-                                group.enter()
-                                let pcControl = HwAttachParentControl()
-                                pcControl.mac = dev
-                                pcControl.templateName = self.name
-                                HuaweiHelper.shared.deleteAttachParentControl(attachParentCtrl: pcControl) { _ in
-                                    group.leave()
+                        guard let controlledDev = self.template?.macList as? [String] else {
+                            hud.hide(animated: true)
+                            self.popToRoot()
+                            return
+                        }
+                        
+                        let group = DispatchGroup()
+                        for dev in controlledDev {
+                            group.enter()
+                            let pcControl = HwAttachParentControl()
+                            pcControl.mac = dev
+                            pcControl.templateName = self.name
+                            HuaweiHelper.shared.deleteAttachParentControl(attachParentCtrl: pcControl) { _ in
+                                group.leave()
+                            }
+                        }
+                        
+                        group.notify(queue: .main) {
+                            HuaweiHelper.shared.deleteAttachParentControlTemplate(name: self.name, completion: { _ in
+                                hud.hide(animated: true)
+                                self.popToRoot()
+                            }, error: { exception in
+                                DispatchQueue.main.async {
+                                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                                    hud.hide(animated: true)
                                 }
-                            }
-                            
-                            group.notify(queue: .main) {
-                                HuaweiHelper.shared.deleteAttachParentControlTemplate(name: self.name, completion: { _ in
-                                    hud.hide(animated: true)
-                                    self.popToRoot()
-                                }, error: { _ in
-                                    hud.hide(animated: true)
-                                })
-                            }
-                        }, error: { _ in
-                            
-                        })
+                            })
+                        }
                     },
                     UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)])
     }
@@ -491,18 +509,18 @@ class PCProfileViewController: UIViewController {
                             }
                         }, error: { exception in
                             hud.hide(animated: true)
-                            self.showAlertMessage(message: exception?.description ?? "")
+                            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                         })
                     }
                     
                 }, error: { exception in
                     hud.hide(animated: true)
-                    self.showAlertMessage(message: exception?.description ?? "")
+                    self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                 })
             }
         }, error: { exception in
             hud.hide(animated: true)
-            self.showAlertMessage(message: exception?.description ?? "")
+            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
         })
     }
 }
@@ -518,7 +536,7 @@ extension PCProfileViewController: BlockWebsiteViewDelegate {
         separator.backgroundColor = UIColor(hex: "D9D9D9")
         blockWebsiteTextView.floatingLabelTextColor = .grey
         blockWebsiteTextView.layoutSubviews()
-//        addWebsiteView.isHidden = false
+        addWebsiteView.isHidden = false
     }
     
     func didEditChange(textField: UITextField) {
@@ -531,7 +549,7 @@ extension PCProfileViewController: BlockWebsiteViewDelegate {
         
         if !blockWebsiteStack.arrangedSubviews.contains(where: { $0 is BlockWebsiteView }) {
             insertBlockWebsiteInput(allowRemove:false, isPrimary: true, isEdit: true)
-//            addWebsiteView.isHidden = true
+            addWebsiteView.isHidden = true
             blockWebsiteTextView.text = ""
             blockWebsiteTextView.alwaysShowFloatingLabel = false
         }

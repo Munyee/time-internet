@@ -17,8 +17,6 @@ class SummaryContainerViewController: TimeBaseViewController {
     
     private var pages: [Page] = []
     
-    private var showGuestWifi = false
-    
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var pageTitleLabel: UILabel!
@@ -27,8 +25,9 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var profileFullNameLabel: UILabel!
     @IBOutlet private weak var floatingActionButton: UIButton!
     @IBOutlet private weak var activityButton: UIButton!
-    @IBOutlet private weak var liveChatView: ExpandableLiveChatView!
-    @IBOutlet private weak var liveChatConstraint: NSLayoutConstraint!
+    @IBOutlet weak var liveChatView: ExpandableLiveChatView!
+    @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    var showFloatingButton = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +39,11 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.floatingActionButton.layer.shadowOpacity = 0.8
         self.floatingActionButton.layer.shadowRadius = 4
         
+        didUpdatePage(with: 0)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleGuestWifiDidNotify), name: NSNotification.Name.GuestWifiDidNotify, object: nil)
-        
-        didUpdatePage(with: 0)
         
         self.updatePages()
     }
@@ -80,11 +78,6 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.updatePages()
     }
     
-    @objc
-    private func handleGuestWifiDidNotify() {
-        self.showGuestWifi = true
-    }
-    
     private func updatePages() {
         self.pages = [.accountSummary, .addOnSummary]
         
@@ -102,7 +95,6 @@ class SummaryContainerViewController: TimeBaseViewController {
         guard
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
             else {
-            updatePages()
                 return
         }
         
@@ -125,6 +117,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                 if let result = data {
                     let huaweiDevice = IsHuaweiDevice(with: result)
                     if huaweiDevice?.status == "yes" {
+                        self.showFloatingButton = false
                         HuaweiHelper.shared.initHwSdk {
                             HuaweiHelper.shared.checkIsLogin { result in
 //                                if !result.isLogined {
@@ -134,6 +127,8 @@ class SummaryContainerViewController: TimeBaseViewController {
 //                                }
                             }
                         }
+                    } else {
+                        self.showFloatingButton = true
                     }
                 }
             }
@@ -141,44 +136,33 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     func HuaweiLogin() {
-//        HuaweiHelper.shared.login { _ in
-//            HuaweiHelper.shared.registerErrorMessageHandle { msg in
-//                self.checkIsKick()
-//            }
-//        }
-        
-        let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
-        
-        guard
-            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
-            else {
-                return
-        }
-        
-        let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
-        AccountDataController.shared.getHuaweiSSOAuthCode(mobileId: UUIDValue, account: account, service: service) { data, error in
-            guard error == nil else {
-                print(error.debugDescription)
-                return
+        DispatchQueue.main.async {
+            guard let account = AccountController.shared.selectedAccount else { return }
+            
+            guard
+                let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+                else {
+                    return
             }
+            
+            let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
+            AccountDataController.shared.getHuaweiSSOAuthCode(mobileId: UUIDValue, account: account, service: service) { data, error in
+                guard error == nil else {
+                    print(error.debugDescription)
+                    return
+                }
 
-            if let result = data {
-                if let authCode = result["authcode"] as? String {
-                    print(authCode)
-                    HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
-                        if self.showGuestWifi {
-                            let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.guestwifi.filename, bundle: nil)
-
-                            guard let vc = storyboard.instantiateViewController(withIdentifier: "GuestWifiViewController") as? GuestWifiViewController else {
-                                return
+                if let result = data {
+                    if let authCode = result["authcode"] as? String {
+                        print(authCode)
+                        HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
+                            self.checkIsKick()
+                        }, error: { exception in
+                            DispatchQueue.main.async {
+                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                             }
-                            self.presentNavigation(vc, animated: true)
-                            self.showGuestWifi = false
-                        }
-                        self.checkIsKick()
-                    }, error: { _ in
-
-                    })
+                        })
+                    }
                 }
             }
         }
@@ -402,7 +386,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                 return
         }
         
-        if isConnected {
+        if isConnected && self.showFloatingButton {
             self.showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
         } else {
             self.hideFloatingActionButton()
@@ -435,12 +419,11 @@ extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
             hideFloatingActionButton()
         case .performanceStatusSummary:
             self.pageTitleLabel.text = NSLocalizedString("Network Management", comment: "")
-            hideFloatingActionButton()
-            //            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false {
-            //                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
-            //            } else {
-            //                hideFloatingActionButton()
-            //            }
+            if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false && self.showFloatingButton {
+                showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
+            } else {
+                hideFloatingActionButton()
+            }
         }
     }
 }

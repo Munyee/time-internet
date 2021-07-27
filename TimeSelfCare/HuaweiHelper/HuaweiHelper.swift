@@ -180,6 +180,24 @@ public extension HuaweiHelper {
         }
     }
     
+    func factoryReset(deviceMac: String, completion: @escaping(_ result: HwFactoryResetResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let result = value as? HwFactoryResetResult {
+                completion(result)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            print(exception?.errorCode ?? "")
+            print(HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.factoryReset(deviceMac, with: callBackAdapter)
+        }
+    }
+    
     func bindGateway(deviceMac: String, gatewayNickname: String, completion: @escaping(_ result: HwUserBindedGateway) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
@@ -625,6 +643,173 @@ public extension HuaweiHelper {
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.setWifiHardwareSwitch(AccountController.shared.gatewayDevId ?? "", withRadioType: radioType, withEnableState: true, withCallBack: callBackAdapter)
+        }
+    }
+    
+    func removeOfflineDevList(lanMac: String, completion: @escaping(_ result: HwResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwResult {
+                completion(data)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        let lanDevice = HwLanDevice()
+        lanDevice.mac = lanMac
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.removeOfflineDevList(AccountController.shared.gatewayDevId ?? "", withLanDevice: [lanDevice], with: callBackAdapter)
+        }
+    }
+    
+    func registerMessageHandle(completion: @escaping(_ result: HwMessageData) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwMessageHandleAdapter()
+        callBackAdapter.handle = {value in
+            if let message = value {
+                completion(message)
+            }
+        }
+        
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwMessageService.self) as? HwMessageService {
+            service.registerMessageHandle(callBackAdapter)
+        }
+    }
+    
+    func getLanDeviceBlackList(completion: @escaping(_ result: [HwLanDevice]) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? [HwLanDevice] {
+                completion(data)
+            }
+        }
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.getLanDeviceBlackList(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+    
+    func setLanDeviceToBlackList(list: [HwLanDevice], isAdd: Bool, completion: @escaping(_ result: HwResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwResult {
+                completion(data)
+            }
+        }
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.setLanDeviceToBlackList(AccountController.shared.gatewayDevId ?? "", withList: list, isAdd: isAdd, with: callBackAdapter)
+        }
+    }
+    
+    func deleteLanDeviceFromBlackList(lanDevice: HwLanDevice, completion: @escaping(_ result: HwResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwResult {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.deleteLanDevice(fromBlackList: AccountController.shared.gatewayDevId ?? "", with: lanDevice, with: callBackAdapter)
+        }
+    }
+    
+    // swiftlint:disable cyclomatic_complexity
+    func mapErrorMsg(_ errorCode: String) -> String {
+        switch errorCode {
+        case "-10":
+            return "A service interface is invoked before the login() or isLogined() method is invoked."
+        case "-9":
+            return "A service interface is invoked before the HwNetopenMobile.initWith***() method is invoked."
+        case "-8":
+            return "The method is temporarily not implemented by the SDK."
+        case "-7":
+            return "The SDK has a java runtime exception such as JSONException."
+        case "-6":
+            return "The server end returns a message that does not carry any parameter."
+        case "-5":
+            return "Incorrect input parameter."
+        case "-4":
+            return "The gateway returns a message that does not carry any parameter."
+        case "-3":
+            return "A network connection fails."
+        case "-2":
+            return "A network request times out."
+        case "-1":
+            return "Operation failed."
+        case "0":
+            return "Operation succeeded."
+        case "012":
+            return "The token is invalid."
+        case "014":
+            return "The number of terminals bound to the current user already reaches the upper limit."
+        case "015":
+            return "The number of users bound to the terminal already reaches the upper limit."
+        case "016":
+            return "The terminal MAC address is invalid."
+        case "027":
+            return "The clientID value cannot be empty."
+        case "028":
+            return "The clientID value is invalid."
+        case "035":
+            return "A plug-in list query fails."
+        case "050":
+            return "The parameter is invalid."
+        case "086":
+            return "The device has been bound to the room."
+        case "106":
+            return "The user token cannot be empty."
+        case "132":
+            return "The phone number is not bound yet."
+        case "139":
+            return "The user does not have this permission."
+        case "147":
+            return "Upgrading the gateway..."
+        case "149":
+            return "The room name already exists."
+        case "168":
+            return "Starting the plug-in..."
+        case "169":
+            return "Starting the plug-in..."
+        case "170":
+            return "Removing the plug-in..."
+        case "189":
+            return "This MAC address access is unauthorized."
+        case "190":
+            return "This home information access is unauthorized."
+        case "231":
+            return "The verification code expires."
+        case "999":
+            return "A server internal error occurs."
+        case "2001":
+            return "The input parameter is null."
+        case "2002":
+            return "The room does not exist."
+        case "2003":
+            return "The device SN does not exist."
+        case "2004":
+            return "The device is already added."
+        case "2005":
+            return "No such device service is purchased."
+        case "2006":
+            return "The package is not activated."
+        case "2007":
+            return "The number of devices exceeds the limit of package."
+        case "2008":
+            return "The device name already exists."
+        case "2009":
+            return "Failed to query the package status."
+        default:
+            return "An SDK internal error occurs."
         }
     }
 }

@@ -176,6 +176,12 @@
                                                                     <constraint firstAttribute="height" constant="20" id="Pnm-Pv-0Y8"/>
                                                                 </constraints>
                                                             </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(status)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLh-GK-JLp">
+                                                                <rect key="frame" x="275.5" y="30.5" width="39.5" height="14.5"/>
+                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
@@ -185,11 +191,13 @@
                                                             <constraint firstItem="ewy-Oz-XMd" firstAttribute="top" secondItem="AB2-pn-4bV" secondAttribute="bottom" constant="30" id="Ni0-MG-XJ6"/>
                                                             <constraint firstItem="ewy-Oz-XMd" firstAttribute="leading" secondItem="etf-mQ-qgx" secondAttribute="leading" id="YyU-IN-FoK"/>
                                                             <constraint firstAttribute="bottom" secondItem="ewy-Oz-XMd" secondAttribute="bottom" id="daM-4k-jck"/>
+                                                            <constraint firstItem="1vr-HI-iiE" firstAttribute="leading" secondItem="KLh-GK-JLp" secondAttribute="trailing" constant="10" id="jAJ-qA-b6t"/>
                                                             <constraint firstItem="1vr-HI-iiE" firstAttribute="centerY" secondItem="etf-mQ-qgx" secondAttribute="centerY" constant="-3" id="kyk-Xj-fpj"/>
                                                             <constraint firstItem="AB2-pn-4bV" firstAttribute="leading" secondItem="etf-mQ-qgx" secondAttribute="leading" id="mhR-Ml-14a"/>
+                                                            <constraint firstItem="KLh-GK-JLp" firstAttribute="centerY" secondItem="1vr-HI-iiE" secondAttribute="centerY" id="rBX-eK-Kg6"/>
                                                         </constraints>
                                                         <connections>
-                                                            <action selector="actBlacklist:" destination="qct-ec-vFD" eventType="touchUpInside" id="sKG-La-fng"/>
+                                                            <action selector="actGuestWifi:" destination="qct-ec-vFD" eventType="touchUpInside" id="mQd-Li-vnr"/>
                                                         </connections>
                                                     </view>
                                                 </subviews>
@@ -235,6 +243,7 @@
                     </view>
                     <connections>
                         <outlet property="familyName" destination="gFx-I9-4KL" id="rhC-65-vi3"/>
+                        <outlet property="guestWifiStatus" destination="KLh-GK-JLp" id="xo4-TK-kJ0"/>
                         <outlet property="liveChatConstraint" destination="q0g-d6-Wzr" id="viG-s9-RJg"/>
                         <outlet property="liveChatView" destination="lrL-ka-HLm" id="yBk-2L-aW1"/>
                     </connections>

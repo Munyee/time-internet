@@ -71,30 +71,32 @@ class DiagnosisViewController: TimeBaseViewController {
     }
 
     @IBAction func raiseTicket(_ sender: UIButton) {
-        let ticket = Ticket(id: "")
-        ticket.categoryOptions = TicketDataController.shared.categoryOptions
-        ticket.displayCategory = TicketDataController.shared.categoryOptions["conn"]
-        ticket.subject = self.diagnostics?.subject
-        ticket.description = ""
-        ticket.accountNo = AccountController.shared.selectedAccount?.accountNo
+        TicketDataController.shared.loadTickets(account: AccountController.shared.selectedAccount) { (_ , error: Error?) in
+            let ticket = Ticket(id: "")
+            ticket.categoryOptions = TicketDataController.shared.categoryOptions
+            ticket.displayCategory = TicketDataController.shared.categoryOptions[self.diagnostics?.category ?? "con"]
+            ticket.subject = self.diagnostics?.subject
+            ticket.description = self.diagnostics?.message
+            ticket.accountNo = AccountController.shared.selectedAccount?.accountNo
 
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Creating ticket...", comment: "")
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.label.text = NSLocalizedString("Creating ticket...", comment: "")
 
-        TicketDataController.shared.createTicket(ticket, account: AccountController.shared.selectedAccount, attachments: []) { _, error in
-            hud.hide(animated: true)
-            if let error = error {
-                self.showAlertMessage(with: error)
-                return
+            TicketDataController.shared.createTicket(ticket, account: AccountController.shared.selectedAccount, attachments: []) { _, error in
+                hud.hide(animated: true)
+                if let error = error {
+                    self.showAlertMessage(with: error)
+                    return
+                }
+
+                let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
+                confirmationVC.mode = .ticketSubmitted
+                confirmationVC.actionBlock = {
+                    self.dismissVC()
+                }
+                confirmationVC.modalPresentationStyle = .fullScreen
+                self.present(confirmationVC, animated: true, completion: nil)
             }
-
-            let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
-            confirmationVC.mode = .ticketSubmitted
-            confirmationVC.actionBlock = {
-                self.dismissVC()
-            }
-            confirmationVC.modalPresentationStyle = .fullScreen
-            self.present(confirmationVC, animated: true, completion: nil)
         }
     }
 

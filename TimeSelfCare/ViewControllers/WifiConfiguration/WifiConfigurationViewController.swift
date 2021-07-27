@@ -21,7 +21,7 @@ class WifiConfigurationViewController: UIViewController {
         super.viewDidLoad()
         self.liveChatView.isHidden = false
         
-        self.title = NSLocalizedString("PARENTAL CONTROLS", comment: "")
+        self.title = NSLocalizedString("WIFI CONFIGURATION", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
         
         familyName.text = gateway?.gatewayNickname

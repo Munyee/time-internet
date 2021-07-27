@@ -95,6 +95,7 @@ internal class LoginViewController: BaseAuthViewController {
                     self.showAlertMessage(title: alertTitle, message: alertMessage, actions: [resetPasswordAction, cancelAction])
                 }
             } else {
+                AccountSummaryViewController.didAnimate = false
                 HUD.hide(animated: true)
                 self.dismissVC()
             }

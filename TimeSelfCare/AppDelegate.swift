@@ -25,18 +25,25 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
+        ApplicationDelegate.initialize()
         if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization { status in
                 if status == .authorized {
                     Analytics.setAnalyticsCollectionEnabled(true)
                     Settings.setAdvertiserTrackingEnabled(true)
+                    Settings.isAutoLogAppEventsEnabled = true
+                    Settings.isAdvertiserIDCollectionEnabled = true
                 } else {
                     Analytics.setAnalyticsCollectionEnabled(false)
                     Settings.setAdvertiserTrackingEnabled(false)
                 }
             }
+        } else {
+            Analytics.setAnalyticsCollectionEnabled(true)
+            Settings.setAdvertiserTrackingEnabled(true)
+            Settings.isAutoLogAppEventsEnabled = true
+            Settings.isAdvertiserIDCollectionEnabled = true
         }
 
         AuthUser.authDelegate = AccountController.shared
@@ -126,8 +133,12 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let url = URLContexts.first?.url else {
             return
         }
-
         ApplicationDelegate.shared.application(UIApplication.shared, open: url, sourceApplication: nil, annotation: [UIApplication.OpenURLOptionsKey.annotation])
+        ApplicationDelegate.initialize()
+        Analytics.setAnalyticsCollectionEnabled(true)
+        Settings.setAdvertiserTrackingEnabled(true)
+        Settings.isAutoLogAppEventsEnabled = true
+        Settings.isAdvertiserIDCollectionEnabled = true
     }
 }
 

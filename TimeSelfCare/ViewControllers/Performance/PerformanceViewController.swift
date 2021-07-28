@@ -54,6 +54,11 @@ class PerformanceViewController: BaseViewController {
         timer?.invalidate()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc
     func didTappedAttributedLabel(gesture: UITapGestureRecognizer) {
         let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil)

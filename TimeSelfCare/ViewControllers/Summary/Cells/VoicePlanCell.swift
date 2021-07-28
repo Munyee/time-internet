@@ -34,7 +34,7 @@ internal class VoicePlanCell: UITableViewCell {
         }
 
         if service.thfQrcodeGenCount != nil && service.thfQrcodeGenCount! <= THF_MAX_GENCOUNT {     // swiftlint:disable:this force_unwrapping
-            self.descriptionLabel.text = NSLocalizedString("Launch the TIME Home Forward app and scan the code above to activate your service. To add more devices, click on REGENERATE QR CODE. Connect up to 6 devices.", comment: "")
+            self.descriptionLabel.text = NSLocalizedString("Launch the TIME HOME Forward app and scan the code above to activate your service. To add more devices, click on REGENERATE QR CODE. Connect up to 6 devices.", comment: "")
             self.regenerateButton.isEnabled = true
         } else {
             self.descriptionLabel.text = NSLocalizedString("You may generate QR codes for up to 6 devices.", comment: "")
@@ -49,7 +49,7 @@ internal class VoicePlanCell: UITableViewCell {
     }
 
     @IBAction func downloadApp(_ sender: Any) {
-        guard let url: URL = URL(string: "https://itunes.apple.com/my/app/time-home-forward/id1191337976?mt=8") else {
+        guard let url: URL = URL(string: "https://apps.apple.com/my/app/time-voice-app/id1041966811") else {
             return
         }
         UIApplication.shared.open(url)

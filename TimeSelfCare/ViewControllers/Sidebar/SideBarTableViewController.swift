@@ -53,6 +53,11 @@ internal class SidebarTableViewController: UIViewController {
         self.updateDataSet()
         updateVersionDisplay()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
 
     private func updateDataSet() {
         self.accounts = AccountDataController.shared.getAccounts(profile: AccountController.shared.profile)

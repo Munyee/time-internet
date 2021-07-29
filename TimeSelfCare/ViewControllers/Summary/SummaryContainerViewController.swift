@@ -16,6 +16,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     private var pages: [Page] = []
+    private var showGuestWifi = false
     
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet private weak var containerView: UIView!
@@ -38,12 +39,13 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.floatingActionButton.layer.shadowColor = UIColor.grey.cgColor
         self.floatingActionButton.layer.shadowOpacity = 0.8
         self.floatingActionButton.layer.shadowRadius = 4
-        
-        didUpdatePage(with: 0)
-        
+                
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleGuestWifiDidNotify), name: NSNotification.Name.GuestWifiDidNotify, object: nil)
+        
+        didUpdatePage(with: 0)
         
         self.updatePages()
     }
@@ -55,6 +57,15 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.view.addGestureRecognizer(hideSidebarGesture)
         
         self.updateNotificationIndicator()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if showGuestWifi {
+            HuaweiHelper.shared.checkIsLogin { result in
+                print(result.isLogined)
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,6 +94,11 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.updatePages()
     }
     
+    @objc
+    private func handleGuestWifiDidNotify() {
+        self.showGuestWifi = true
+    }
+
     private func updatePages() {
         DispatchQueue.main.async {
             self.pages = [.accountSummary, .addOnSummary]
@@ -101,6 +117,7 @@ class SummaryContainerViewController: TimeBaseViewController {
             guard
                 let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
             else {
+                self.updatePages()
                 return
             }
             
@@ -163,6 +180,15 @@ class SummaryContainerViewController: TimeBaseViewController {
                     if let authCode = result["authcode"] as? String {
                         print(authCode)
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
+                            if self.showGuestWifi {
+                                let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.guestwifi.filename, bundle: nil)
+
+                                guard let vc = storyboard.instantiateViewController(withIdentifier: "GuestWifiViewController") as? GuestWifiViewController else {
+                                    return
+                                }
+                                self.presentNavigation(vc, animated: true)
+                                self.showGuestWifi = false
+                            }
                             self.checkIsKick()
                         }, error: { exception in
                             DispatchQueue.main.async {

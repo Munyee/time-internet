@@ -419,7 +419,7 @@ public extension HuaweiHelper {
            }
        }
     
-    func queryLanDeviceListEx(completion: @escaping(_ result: [HwLanDevice] ) -> Void) {
+    func queryLanDeviceListEx(completion: @escaping(_ result: [HwLanDevice] ) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let data = value as? [HwLanDevice] {
@@ -427,7 +427,7 @@ public extension HuaweiHelper {
             }
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
-            print(exception?.errorCode ?? "")
+            error(exception)
         }
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
@@ -539,6 +539,7 @@ public extension HuaweiHelper {
             }
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
             print(exception?.errorCode ?? "")
         }
         
@@ -555,6 +556,7 @@ public extension HuaweiHelper {
             }
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
             print(exception?.errorCode ?? "")
         }
         

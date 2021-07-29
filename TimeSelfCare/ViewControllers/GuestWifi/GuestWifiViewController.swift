@@ -24,7 +24,8 @@ class GuestWifiViewController: UIViewController {
     @IBOutlet private weak var connectedDeviceStackView: UIStackView!
     
     var guestInfo: HwGuestWifiInfo!
-    
+    var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+
     var remainingTime: Int32 = 0
     var timer: Timer?
     
@@ -40,6 +41,12 @@ class GuestWifiViewController: UIViewController {
         super.viewDidAppear(animated)
         timer?.invalidate()
         self.queryGuestWifi()
+        NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc
@@ -84,7 +91,7 @@ class GuestWifiViewController: UIViewController {
                 self.timerView.borderColor = #colorLiteral(red: 0.9254901961, green: 0, blue: 0.5490196078, alpha: 1)
                 self.timerLabel.textColor = #colorLiteral(red: 0.9254901961, green: 0, blue: 0.5490196078, alpha: 1)
                 self.buttonLabel.text = "TURN OFF"
-                if info.duration == 0 {
+                if AccountController.shared.guestWifiDuration == 0 {
                     self.timerLabel.isHidden = true
                     self.infinityView.isHidden = false
                     self.infinityView.tintColor = #colorLiteral(red: 0.9254901961, green: 0, blue: 0.5490196078, alpha: 1)
@@ -114,7 +121,7 @@ class GuestWifiViewController: UIViewController {
                 self.timerView.borderColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
                 self.timerLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 self.buttonLabel.text = "TURN ON"
-                if info.duration == 0 {
+                if AccountController.shared.guestWifiDuration == 0 {
                     self.timerLabel.isHidden = true
                     self.infinityView.isHidden = false
                     self.infinityView.tintColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
@@ -158,7 +165,6 @@ class GuestWifiViewController: UIViewController {
                     
                     for device in arrDevice {
                         let deviceType = deviceTypeInfo.first(where: { $0.mac == device.mac })
-
                         if let connectedDevice = ConnectedDevice(device: device, deviceTypeInfo: deviceType ?? HwDeviceTypeInfo()) {
                             self.connectedDeviceStackView.addArrangedSubview(connectedDevice)
                         }
@@ -170,6 +176,8 @@ class GuestWifiViewController: UIViewController {
             } else {
                 hud.hide(animated: true)
             }
+        } error: { _ in
+            hud.hide(animated: true)
         }
     }
     
@@ -211,7 +219,13 @@ class GuestWifiViewController: UIViewController {
     
     func toggleGuestWifi(enable: Bool) {
         var guestWifi = HwGuestWifiInfo()
+        
+        if AccountController.shared.guestWifiDuration != 0 {
+            guestInfo.remainSec = Int32(AccountController.shared.guestWifiDuration ?? 0 * 60)
+        }
+        
         guestWifi = self.guestInfo
+        guestWifi.duration = Int32(AccountController.shared.guestWifiDuration ?? 0)
         guestWifi.enabled = enable
         
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -219,17 +233,25 @@ class GuestWifiViewController: UIViewController {
         HuaweiHelper.shared.setGuestWifiInfo(guestWifiInfo: guestWifi) { _ in
             hud.hide(animated: true)
             self.timer?.invalidate()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.queryGuestWifi()
-            }
             self.timerView.borderColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
             self.infinityView.tintColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
             self.timerLabel.text = "00:00:00:00"
             self.timerLabel.textColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.queryGuestWifi()
+            }
         } error: { exception in
-            hud.hide(animated: true)
-            self.showAlertMessage(message: exception?.errorMessage ?? "Something went wrong")
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+            }
         }
-
+    }
+    
+    @objc
+    func reinstateBackgroundTask() {
+        timer?.invalidate()
+        self.queryGuestWifi()
     }
 }

@@ -89,7 +89,7 @@ class EditGuestWifiViewController: UIViewController {
                 self.passwordView.isHidden = false
             }
             
-            self.wifiDuration = info.duration
+            self.wifiDuration = Int32(AccountController.shared.guestWifiDuration ?? 0)
             if self.wifiDuration == 0 {
                 self.duration.text = "No Limit"
                 self.durationType = .noLimit
@@ -137,9 +137,14 @@ class EditGuestWifiViewController: UIViewController {
         guestWifi.enabled = true
         guestWifi.ssid = wifiName.text
         guestWifi.duration = wifiDuration ?? 0
+        AccountController.shared.guestWifiDuration = Int(wifiDuration ?? 0)
         guestWifi.serviceEnable = true
         guestWifi.radioType = HwRadioType(rawValue: 3)
         if passwordSwitch.isOn {
+            if ssidPassword.text.count < 8 || ssidPassword.text.count > 32 {
+                self.showAlertMessage(message: "Your password must be between 8 and 32 characters and must not contain a comma.")
+                return
+            }
             guestWifi.encrypt = HwGuestWifiInfoEncryptMode.mixdWPA2WPAPSK
             guestWifi.password = ssidPassword.text
         } else {
@@ -153,7 +158,7 @@ class EditGuestWifiViewController: UIViewController {
             self.popBack()
         } error: { exception in
             hud.hide(animated: true)
-            self.showAlertMessage(message: exception?.errorMessage ?? "Something went wrong")
+            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
         }
     }
 }

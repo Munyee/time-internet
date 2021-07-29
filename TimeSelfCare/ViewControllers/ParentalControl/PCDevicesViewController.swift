@@ -69,6 +69,10 @@ class PCDevicesViewController: UIViewController {
                     } else {
                         self.tableView.reloadData()
                     }
+                } error: { exception in
+                    DispatchQueue.main.async {
+                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                    }
                 }
                 
                 hud.hide(animated: true)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ga5-z3-BEa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ga5-z3-BEa">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,6 +36,7 @@
                                 </connections>
                             </containerView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="bmM-Zg-2aU"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="D4t-h6-N96" firstAttribute="bottom" secondItem="AW4-0J-9tR" secondAttribute="bottom" id="4fg-0K-crf"/>
@@ -45,7 +46,6 @@
                             <constraint firstItem="D4t-h6-N96" firstAttribute="leading" secondItem="bmM-Zg-2aU" secondAttribute="leading" id="eOb-C5-Skf"/>
                             <constraint firstItem="8iG-AU-IhQ" firstAttribute="leading" secondItem="bmM-Zg-2aU" secondAttribute="leading" id="yfQ-1M-adM"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="bmM-Zg-2aU"/>
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="shadowsHidden" value="YES"/>
@@ -109,7 +109,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8e-xz-dwF" customClass="RoundedButton" customModule="ApptivityFramework">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8e-xz-dwF" customClass="RoundedButton" customModule="ApptivityFramework">
                                         <rect key="frame" x="65" y="111" width="150" height="30"/>
                                         <accessibility key="accessibilityConfiguration" identifier="ViewProfileButton"/>
                                         <constraints>
@@ -273,6 +273,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="iYK-Tv-yIG"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gqQ-MZ-vKX" firstAttribute="leading" secondItem="iYK-Tv-yIG" secondAttribute="leading" id="0Wy-xx-NRy"/>
@@ -289,7 +290,6 @@
                             <constraint firstItem="5yc-j5-mdK" firstAttribute="leading" secondItem="iYK-Tv-yIG" secondAttribute="leading" constant="5" id="v9P-Ap-9C1"/>
                             <constraint firstItem="gqQ-MZ-vKX" firstAttribute="trailing" secondItem="iYK-Tv-yIG" secondAttribute="trailing" id="vEr-Dw-jTF"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="iYK-Tv-yIG"/>
                     </view>
                     <connections>
                         <outlet property="logoutButton" destination="hVn-4Y-Hsz" id="o2n-LW-zMU"/>
@@ -312,6 +312,14 @@
             <point key="canvasLocation" x="-590" y="-368"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="O8e-xz-dwF">
+            <size key="intrinsicContentSize" width="116" height="33"/>
+        </designable>
+        <designable name="bkK-eb-cQd">
+            <size key="intrinsicContentSize" width="47.5" height="35.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ic_radio_unselect" width="24" height="24"/>
     </resources>

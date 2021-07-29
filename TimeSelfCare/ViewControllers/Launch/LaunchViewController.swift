@@ -131,7 +131,9 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     }
                     self.remoteConfig.activate { _, _ in
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
-                        self.checkAppVersion()
+                        DispatchQueue.main.async {
+                            self.checkAppVersion()
+                        }
                     }
                 } else {
                     self.showNext()
@@ -450,7 +452,13 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 completionHandler()
             }
         case .guestWifi:
-            NotificationCenter.default.post(name: NSNotification.Name.GuestWifiDidNotify, object: nil)
+            AccountController.shared.showGuestWifi = true
+            
+            if let presentedVC = self.presentedViewController?.children[0].presentedViewController {
+                presentedVC.dismiss(animated: true, completion: {
+                    NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+                })
+            }
             completionHandler()
         default:
             openActivity()

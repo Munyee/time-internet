@@ -112,11 +112,13 @@ class GuestWifiViewController: UIViewController {
                     content.sound = UNNotificationSound.default
                     content.userInfo = ["activity": ["id": "999", "activity": "Guest Wifi", "click": "Guest Wifi"]]
 
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval:Double(info.remainSec), repeats: false)
-                    let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
-                    center.add(request) { error in
-                        if error != nil {
-                            print("error \(String(describing: error))")
+                    if self.remainingTime > 0 {
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval:Double(info.remainSec), repeats: false)
+                        let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
+                        center.add(request) { error in
+                            if error != nil {
+                                print("error \(String(describing: error))")
+                            }
                         }
                     }
                 }

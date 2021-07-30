@@ -42,32 +42,27 @@ class AddBlacklistViewController: UIViewController {
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Loading...", comment: "")
         
-        HuaweiHelper.shared.getAttachParentControlList(completion: { arrAttachPC in
+        HuaweiHelper.shared.queryLanDeviceListEx { devices in
             hud.hide(animated: true)
+            self.arrDevices = devices.filter { !$0.isAp }
+            self.arrDevices = self.arrDevices.sorted { $0.onLine && !$1.onLine }
+            self.tableView.reloadData()
             
-            HuaweiHelper.shared.queryLanDeviceListEx { devices in
-                self.arrDevices = devices.filter { !$0.isAp }
-                self.arrDevices = self.arrDevices.sorted { $0.onLine && !$1.onLine }
-                self.tableView.reloadData()
-                
-                let arrMac = self.arrDevices.map { $0.mac }
-                if let macList = arrMac as? [String] {
-                    HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: macList) { deviceTypeInfo in
-                        self.arrDeviceTypes = deviceTypeInfo
-                        self.tableView.reloadData()
-                    }
-                } else {
+            let arrMac = self.arrDevices.map { $0.mac }
+            if let macList = arrMac as? [String] {
+                HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: macList) { deviceTypeInfo in
+                    self.arrDeviceTypes = deviceTypeInfo
                     self.tableView.reloadData()
                 }
+            } else {
+                self.tableView.reloadData()
             }
-        }, error: { _ in
-            hud.hide(animated: true)
-            self.showAlertMessage(message: "Something Went Wrong", actions: [
-                UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
-                    self.dismissVC()
-                }
-            ])
-        })
+        } error: { exception in
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+            }
+        }
     }
     
     func checkConfirmButton() {

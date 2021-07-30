@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -521,7 +521,7 @@
         <scene sceneID="XAT-5K-9lO">
             <objects>
                 <viewController storyboardIdentifier="DurationViewController" id="wNA-Cd-xfp" customClass="DurationViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zR3-s4-F4g">
+                    <view key="view" contentMode="scaleToFill" id="zR3-s4-F4g" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -749,6 +749,9 @@
                             <constraint firstItem="Bfi-uD-acS" firstAttribute="trailing" secondItem="IF4-AI-zBS" secondAttribute="trailing" id="ZMZ-xU-K4D"/>
                             <constraint firstAttribute="bottom" secondItem="Bfi-uD-acS" secondAttribute="bottom" id="z0g-Xb-mNg"/>
                         </constraints>
+                        <connections>
+                            <action selector="actDismiss:" destination="wNA-Cd-xfp" eventType="touchUpInside" id="cRZ-9L-oPr"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="confirmButton" destination="YLh-66-Emj" id="GPk-Ua-JdY"/>

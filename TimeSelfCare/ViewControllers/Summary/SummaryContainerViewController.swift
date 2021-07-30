@@ -166,7 +166,6 @@ class SummaryContainerViewController: TimeBaseViewController {
                 
                 if let result = data {
                     if let authCode = result["authcode"] as? String {
-                        print(authCode)
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
                             DispatchQueue.main.async {
                                 self.showGuestWifi()

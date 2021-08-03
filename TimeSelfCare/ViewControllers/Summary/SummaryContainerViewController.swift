@@ -27,7 +27,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var activityButton: UIButton!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
-    var showFloatingButton = true
+    var showFloatingButton = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +41,6 @@ class SummaryContainerViewController: TimeBaseViewController {
         
         didUpdatePage(with: 0)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
-        
         self.updatePages()
     }
     
@@ -55,6 +51,13 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.view.addGestureRecognizer(hideSidebarGesture)
         
         self.updateNotificationIndicator()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -134,7 +137,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                                 }
                             }
                         } else {
-                            self.showFloatingButton = true
+                            self.showFloatingButton = false
                         }
                     }
                 }

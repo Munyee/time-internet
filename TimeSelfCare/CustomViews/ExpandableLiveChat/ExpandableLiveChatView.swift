@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class ExpandableLiveChatView: UIView {
 
@@ -51,7 +52,11 @@ class ExpandableLiveChatView: UIView {
 
     @IBAction func actClick(_ sender: Any) {
         if (isExpand) {
+            let hud = MBProgressHUD.showAdded(to: (self.parentViewController?.view)!, animated: true)
+            hud.label.text = NSLocalizedString("Loading...", comment: "")
+            
             LiveChatDataController.shared.loadStatus { statusResult in
+                hud.hide(animated: true)
                 if let status = statusResult {
                     if (status == "online") {
                         if let selectedAccount = AccountController.shared.selectedAccount {

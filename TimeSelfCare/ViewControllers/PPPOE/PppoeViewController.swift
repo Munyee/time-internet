@@ -16,11 +16,15 @@ class PppoeViewController: UIViewController {
     @IBOutlet private weak var pppoePassword: UILabel!
     @IBOutlet private weak var passwordButton: UIButton!
     
+    var username = ""
+    var password = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.liveChatView.isHidden = false
         self.title = NSLocalizedString("PPPOE CREDENTIALS", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        pppoeUsername.text = username
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,7 +49,7 @@ class PppoeViewController: UIViewController {
     @IBAction func actPasswordButton(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
-            pppoePassword.text = "ksg176077g"
+            pppoePassword.text = password
         } else {
             pppoePassword.text = "••••••••"
         }

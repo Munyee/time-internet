@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q1D-Vh-GSC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q1D-Vh-GSC">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vN7-WG-odC">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vN7-WG-odC">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="0.0"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <state key="normal" title="OK">
@@ -48,74 +48,68 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O37-fy-qwi">
-                                <rect key="frame" x="40" y="186" width="295" height="295"/>
+                                <rect key="frame" x="40" y="243.5" width="295" height="180.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Update" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6s3-Ms-amT">
-                                        <rect key="frame" x="100" y="20" width="95.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njV-3n-9Jf">
-                                        <rect key="frame" x="53.5" y="194" width="188" height="36"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                        <state key="normal" title="DON'T SHOW AGAIN">
-                                            <color key="titleColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="dontAskAgainButtonTapped:" destination="q1D-Vh-GSC" eventType="touchUpInside" id="s53-fD-yFI"/>
-                                        </connections>
-                                    </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="azM-ld-9wO">
-                                        <rect key="frame" x="10" y="240" width="275" height="50"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JVt-sS-eid">
+                                        <rect key="frame" x="10" y="25" width="275" height="140.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BN3-3z-eRq">
-                                                <rect key="frame" x="0.0" y="0.0" width="132.5" height="50"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Update" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZy-qG-5CQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="275" height="20.5"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mq-HO-4Va">
+                                                <rect key="frame" x="0.0" y="30.5" width="275" height="18"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7KQ-2v-DaX">
+                                                <rect key="frame" x="0.0" y="58.5" width="275" height="36"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                                <state key="normal" title="CANCEL">
-                                                    <color key="titleColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="DON'T SHOW AGAIN">
+                                                    <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="cancelButtonTapped:" destination="q1D-Vh-GSC" eventType="touchUpInside" id="Uni-wl-G2I"/>
+                                                    <action selector="dontAskAgainButtonTapped:" destination="q1D-Vh-GSC" eventType="touchUpInside" id="iXc-Zl-RhU"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Hh-p8-7mY">
-                                                <rect key="frame" x="142.5" y="0.0" width="132.5" height="50"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                                <state key="normal" title="UPDATE">
-                                                    <color key="titleColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="updateButtonTapped:" destination="q1D-Vh-GSC" eventType="touchUpInside" id="4MN-zi-n1e"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="93k-d3-FoO">
+                                                <rect key="frame" x="0.0" y="104.5" width="275" height="36"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yk-Ss-Wau">
+                                                        <rect key="frame" x="0.0" y="0.0" width="132.5" height="36"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                        <state key="normal" title="CANCEL">
+                                                            <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="cancelButtonTapped:" destination="q1D-Vh-GSC" eventType="touchUpInside" id="hL7-AR-suF"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t01-FU-Vdf">
+                                                        <rect key="frame" x="142.5" y="0.0" width="132.5" height="36"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                        <state key="normal" title="UPDATE">
+                                                            <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="updateButtonTapped:" destination="q1D-Vh-GSC" eventType="touchUpInside" id="Z13-1U-ife"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="ACs-YF-jXl"/>
-                                        </constraints>
                                     </stackView>
-                                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEJ-cF-Xla">
-                                        <rect key="frame" x="10" y="60.5" width="275" height="123.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="O37-fy-qwi" secondAttribute="height" multiplier="1:1" id="73a-ph-xZZ"/>
-                                    <constraint firstItem="oEJ-cF-Xla" firstAttribute="leading" secondItem="O37-fy-qwi" secondAttribute="leading" constant="10" id="IK6-7l-fVO"/>
-                                    <constraint firstItem="njV-3n-9Jf" firstAttribute="centerX" secondItem="O37-fy-qwi" secondAttribute="centerX" id="Kaf-6D-7Wf"/>
-                                    <constraint firstItem="azM-ld-9wO" firstAttribute="top" secondItem="njV-3n-9Jf" secondAttribute="bottom" constant="10" id="Lyf-rL-W5H"/>
-                                    <constraint firstItem="azM-ld-9wO" firstAttribute="leading" secondItem="O37-fy-qwi" secondAttribute="leading" constant="10" id="Mwj-Pn-t20"/>
-                                    <constraint firstAttribute="bottom" secondItem="azM-ld-9wO" secondAttribute="bottom" constant="5" id="PDH-z5-fMf"/>
-                                    <constraint firstAttribute="trailing" secondItem="oEJ-cF-Xla" secondAttribute="trailing" constant="10" id="Qw2-aX-KyD"/>
-                                    <constraint firstItem="njV-3n-9Jf" firstAttribute="top" secondItem="oEJ-cF-Xla" secondAttribute="bottom" constant="10" id="SpJ-Qf-fQH"/>
-                                    <constraint firstAttribute="trailing" secondItem="azM-ld-9wO" secondAttribute="trailing" constant="10" id="Y14-N5-fMC"/>
-                                    <constraint firstItem="oEJ-cF-Xla" firstAttribute="top" secondItem="6s3-Ms-amT" secondAttribute="bottom" constant="20" id="YsS-K4-azc"/>
-                                    <constraint firstItem="6s3-Ms-amT" firstAttribute="top" secondItem="O37-fy-qwi" secondAttribute="top" constant="20" id="cKj-9X-huw"/>
-                                    <constraint firstItem="6s3-Ms-amT" firstAttribute="centerX" secondItem="O37-fy-qwi" secondAttribute="centerX" id="x6B-81-fpJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="JVt-sS-eid" secondAttribute="trailing" constant="10" id="51q-tN-4Ri"/>
+                                    <constraint firstItem="JVt-sS-eid" firstAttribute="top" secondItem="O37-fy-qwi" secondAttribute="top" constant="25" id="7Wx-cX-xK5"/>
+                                    <constraint firstItem="JVt-sS-eid" firstAttribute="leading" secondItem="O37-fy-qwi" secondAttribute="leading" constant="10" id="G3n-eB-o2y"/>
+                                    <constraint firstAttribute="bottom" secondItem="JVt-sS-eid" secondAttribute="bottom" constant="15" id="b2H-fA-XL5"/>
+                                    <constraint firstAttribute="width" constant="295" id="bhu-RJ-vVe"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j19-Cg-Ndo">
@@ -125,6 +119,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="c38-DK-s8v"/>
                         <color key="backgroundColor" red="0.84834182262420654" green="0.18184372782707214" blue="0.54119318723678589" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="BZX-yd-ZDY" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="50" id="4kb-wm-iZL"/>
@@ -139,18 +134,17 @@
                             <constraint firstItem="BZX-yd-ZDY" firstAttribute="centerX" secondItem="c38-DK-s8v" secondAttribute="centerX" id="saX-Tp-gdI"/>
                             <constraint firstItem="O37-fy-qwi" firstAttribute="leading" secondItem="c38-DK-s8v" secondAttribute="leading" constant="40" id="zZm-kD-OX6"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="c38-DK-s8v"/>
                     </view>
                     <connections>
-                        <outlet property="alertTitleLabel" destination="6s3-Ms-amT" id="uEY-LC-pHN"/>
+                        <outlet property="alertTitleLabel" destination="RZy-qG-5CQ" id="DWa-0a-y90"/>
                         <outlet property="appLogoImgView" destination="J7N-75-Bhc" id="g6D-eR-TFh"/>
-                        <outlet property="cancelButton" destination="BN3-3z-eRq" id="B9c-EX-2NK"/>
-                        <outlet property="dontShowButton" destination="njV-3n-9Jf" id="87s-gb-qCw"/>
+                        <outlet property="cancelButton" destination="2yk-Ss-Wau" id="vol-Lj-haG"/>
+                        <outlet property="dontShowButton" destination="7KQ-2v-DaX" id="Jo4-y9-66S"/>
                         <outlet property="errorLabel" destination="dct-xd-lMl" id="5kQ-lL-0eY"/>
                         <outlet property="okButton" destination="vN7-WG-odC" id="FAB-ec-vNh"/>
                         <outlet property="progressImageView" destination="j19-Cg-Ndo" id="zOj-1K-HpT"/>
-                        <outlet property="updateInfoTextView" destination="oEJ-cF-Xla" id="V7h-Oh-Qmj"/>
-                        <outlet property="updateOrContinueButton" destination="3Hh-p8-7mY" id="4VF-Bw-whk"/>
+                        <outlet property="updateInfoTextView" destination="0mq-HO-4Va" id="Rr4-Sr-UD8"/>
+                        <outlet property="updateOrContinueButton" destination="t01-FU-Vdf" id="FyB-Pa-XjL"/>
                         <outlet property="versionUpdateView" destination="O37-fy-qwi" id="HQU-r2-bQN"/>
                     </connections>
                 </viewController>

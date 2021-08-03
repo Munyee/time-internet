@@ -236,6 +236,7 @@ public class APIClient {
                         ])
                 } else if let statusMessage = json["status"] as? String, statusMessage == "error" {
                     let errorMessage = json["message"] as? String ?? "Unknown error occured."
+                    let responseCode = json["response"] as? Int ?? -999
                     if ["Session expired.", "Invalid session id.", "Please login first." ].contains(errorMessage) {
                         // handle session expired
                         throw NSError(domain: "Time Self Care", code: 403, userInfo: [
@@ -244,8 +245,9 @@ public class APIClient {
                     }
 
                     throw NSError(domain: "Time Self Care", code: response.response?.statusCode ?? 500, userInfo: [
-                        NSLocalizedDescriptionKey: errorMessage
-                        ])
+                        NSLocalizedDescriptionKey: errorMessage,
+                        "reponseCode": responseCode
+                    ])
                 }
 
                 return json

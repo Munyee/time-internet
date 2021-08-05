@@ -41,11 +41,14 @@ class SummaryContainerViewController: TimeBaseViewController {
         
         didUpdatePage(with: 0)
         
+        self.updatePages()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
-        
-        self.updatePages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -165,9 +168,9 @@ class SummaryContainerViewController: TimeBaseViewController {
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
                             self.checkIsKick()
                         }, error: { exception in
-                            DispatchQueue.main.async {
-                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                            }
+//                            DispatchQueue.main.async {
+//                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+//                            }
                         })
                     }
                 }

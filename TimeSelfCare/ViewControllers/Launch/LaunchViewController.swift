@@ -121,13 +121,16 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
             remoteConfig.fetchAndActivate { status, error -> Void in
                 if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
-                    guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
-                        self.showNext()
-                        return
-                    }
                     self.remoteConfig.activate { _, _ in
+                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+                            self.showNext()
+                            return
+                        }
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
-                        self.showNext()
+                        DispatchQueue.main.async {
+                            self.checkAppVersion()
+                        }
+
                     }
                 } else {
                     self.showNext()

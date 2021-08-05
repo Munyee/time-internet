@@ -34,7 +34,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var updateOrContinueButton: UIButton!
     @IBOutlet private weak var alertTitleLabel: UILabel!
-    @IBOutlet private weak var updateInfoTextView: UITextView!
+    @IBOutlet private weak var updateInfoTextView: UILabel!
     @IBOutlet private var appLogoImgView: UIImageView!
     @IBOutlet private var progressImageView: UIImageView!
     
@@ -130,7 +130,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                         DispatchQueue.main.async {
                             self.checkAppVersion()
                         }
-
                     }
                 } else {
                     self.showNext()
@@ -182,30 +181,36 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
     
     func showAppVersionWithMajorUpdate(messageTitle: String, messageBody:String ) {
-        self.versionUpdateView.isHidden = false
-        self.dontShowButton.isHidden = true
-        self.alertTitleLabel.text = messageTitle
-        self.updateInfoTextView.text = messageBody
+        DispatchQueue.main.async {
+            self.versionUpdateView.isHidden = false
+            self.dontShowButton.isHidden = true
+            self.alertTitleLabel.text = messageTitle
+            self.updateInfoTextView.text = messageBody
+        }
     }
     
     func showAppVersionWithMinorUpdate(messageTitle: String, messageBody:String ) {
-        if UserDefaults.standard.bool(forKey:dontAskAgainFlag) {
-            self.versionUpdateView.isHidden = true
-            self.dontShowButton.isHidden = true
-            self.showNext()
-        } else {
-            self.versionUpdateView.isHidden = false
-            self.dontShowButton.isHidden = false
+        DispatchQueue.main.async {
+            if UserDefaults.standard.bool(forKey:dontAskAgainFlag) {
+                self.versionUpdateView.isHidden = true
+                self.dontShowButton.isHidden = true
+                self.showNext()
+            } else {
+                self.versionUpdateView.isHidden = false
+                self.dontShowButton.isHidden = false
+            }
+            self.alertTitleLabel.text = messageTitle
+            self.updateInfoTextView.text = messageBody
         }
-        self.alertTitleLabel.text = messageTitle
-        self.updateInfoTextView.text = messageBody
     }
     
     func showAppVersionWithLatestUpdate() {
-        self.versionUpdateView.isHidden = false
-        self.dontShowButton.isHidden = true
-        self.alertTitleLabel.text = "New Update Available"
-        self.updateInfoTextView.text = "A newer version of this app is available. Please update the app to continue using it."
+        DispatchQueue.main.async {
+            self.versionUpdateView.isHidden = false
+            self.dontShowButton.isHidden = true
+            self.alertTitleLabel.text = "New Update Available"
+            self.updateInfoTextView.text = "A newer version of this app is available. Please update the app to continue using it."
+        }
     }
     
     @IBAction func dontAskAgainButtonTapped(_ sender: Any) {

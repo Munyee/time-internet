@@ -27,7 +27,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var activityButton: UIButton!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
-    var showFloatingButton = true
+    var showFloatingButton = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,7 +137,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                                 }
                             }
                         } else {
-                            self.showFloatingButton = true
+                            self.showFloatingButton = false
                         }
                     }
                 }
@@ -261,8 +261,8 @@ class SummaryContainerViewController: TimeBaseViewController {
                 menuItems.append(.autoDebit)
             }
             menuItems.append(.billingInfo)
-        case .performanceStatusSummary:
-            menuItems = [.changeSsid, .runDiagnostics]
+        //        case .performanceStatusSummary:
+        //            menuItems = [.changeSsid, .runDiagnostics]
         default:
             break
         }

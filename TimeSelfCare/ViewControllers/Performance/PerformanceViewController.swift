@@ -75,38 +75,9 @@ class PerformanceViewController: BaseViewController {
     }
     
     @IBAction private func checkConnectionStatus() {
-        self.queryHuaweiRouter()
-
         animationView.setAnimation(named: "Loading")
         animationView.loopAnimation = true
         animationView.play()
-        guard
-            let account = AccountController.shared.selectedAccount,
-            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
-            else {
-                return
-        }
-        
-        self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
-        AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
-            let isConnected: Bool = error == nil
-            self.animationView.setAnimation(named: isConnected ? "GoodConnection" : "BadConnection")
-            self.animationView.loopAnimation = false
-            self.animationView.play()
-            
-            if isConnected {
-                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is good.", boldString: "good", color: UIColor.green, font: self.statusLabel.font)
-            } else {
-                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is down.\n Connection issue detected", boldString: "down", color: UIColor.red, font: self.statusLabel.font)
-            }
-            
-            self.runDiagnosticsButton.isEnabled = true
-            self.runDiagnosticsButton.backgroundColor = self.runDiagnosticsButton.isEnabled ? .primary : .grey2
-            NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
-        }
-    }
-    
-    func queryHuaweiRouter() {
         guard
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })

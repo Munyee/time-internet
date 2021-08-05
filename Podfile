@@ -47,7 +47,7 @@ target 'TimeSelfCare' do
   pod "Pulsator"
   pod 'Firebase/Analytics'
   pod 'Firebase/DynamicLinks'
-  pod 'FBSDKCoreKit', '~> 8.2.0'
+  pod 'FBSDKCoreKit'
   pod 'Firebase/Performance'
   
   target 'TimeSelfCareTests' do

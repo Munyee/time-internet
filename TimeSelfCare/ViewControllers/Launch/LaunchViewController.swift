@@ -40,8 +40,12 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
         UNUserNotificationCenter.current().delegate = self
+    } 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,10 +82,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         appLogoImgView.animationRepeatCount = 1
         appLogoImgView.image = appLogoImgView.animationImages?.last
         appLogoImgView.startAnimating()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

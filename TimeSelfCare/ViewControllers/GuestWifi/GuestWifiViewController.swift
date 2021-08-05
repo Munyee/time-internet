@@ -125,6 +125,7 @@ class GuestWifiViewController: UIViewController {
                 
             } else {
                 self.timerView.borderColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
+                self.timerLabel.text = "\(self.secondsToHoursMinutesSeconds(seconds: Int32((AccountController.shared.guestWifiDuration ?? 0) * 60)))"
                 self.timerLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 self.buttonLabel.text = "TURN ON"
                 if AccountController.shared.guestWifiDuration == 0 {
@@ -196,7 +197,7 @@ class GuestWifiViewController: UIViewController {
                 self.buttonLabel.text = "TURN ON"
                 self.timerView.borderColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
                 self.infinityView.tintColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
-                self.timerLabel.text = "00:00:00:00"
+                self.timerLabel.text = "\(self.secondsToHoursMinutesSeconds(seconds: Int32((AccountController.shared.guestWifiDuration ?? 0) * 60)))"
                 self.timerLabel.textColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
             }
             
@@ -225,11 +226,6 @@ class GuestWifiViewController: UIViewController {
     
     func toggleGuestWifi(enable: Bool) {
         var guestWifi = HwGuestWifiInfo()
-        
-        if AccountController.shared.guestWifiDuration != 0 {
-            guestInfo.remainSec = Int32(AccountController.shared.guestWifiDuration ?? 0 * 60)
-        }
-        
         guestWifi = self.guestInfo
         guestWifi.duration = Int32(AccountController.shared.guestWifiDuration ?? 0)
         guestWifi.enabled = enable
@@ -241,9 +237,8 @@ class GuestWifiViewController: UIViewController {
             self.timer?.invalidate()
             self.timerView.borderColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
             self.infinityView.tintColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
-            self.timerLabel.text = "00:00:00:00"
+            self.timerLabel.text = "\(self.secondsToHoursMinutesSeconds(seconds: Int32((AccountController.shared.guestWifiDuration ?? 0) * 60)))"
             self.timerLabel.textColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.queryGuestWifi()
             }

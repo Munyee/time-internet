@@ -129,9 +129,10 @@ class SummaryContainerViewController: TimeBaseViewController {
                             self.showFloatingButton = false
                             HuaweiHelper.shared.initHwSdk {
                                 HuaweiHelper.shared.checkIsLogin { result in
-                                    //                                if !result.isLogined {
-                                    self.HuaweiLogin()
-                                    //                                } else {
+                                    if !result.isLogined {
+                                        self.HuaweiLogin()
+                                    }
+//                                                                        else {
                                     //                                    self.checkIsKick()
                                     //                                }
                                 }

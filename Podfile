@@ -44,6 +44,7 @@ target 'TimeSelfCare' do
   pod 'FreshchatSDK'
   pod 'Smartlook'
   pod "Pulsator"
+  pod 'youtube-ios-player-helper'
 
   target 'TimeSelfCareTests' do
     inherit! :search_paths

@@ -127,7 +127,9 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                             return
                         }
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
-                        self.checkAppVersion()
+                        DispatchQueue.main.async {
+                            self.checkAppVersion()
+                        }
                     }
                 } else {
                     self.showNext()

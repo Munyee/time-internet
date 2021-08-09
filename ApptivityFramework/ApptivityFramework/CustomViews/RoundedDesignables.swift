@@ -42,6 +42,22 @@ public extension UIView  {
             }
         }
     }
+    
+    @IBInspectable
+    var shadowRadius: CGFloat {
+        get {
+            return layer.shadowRadius
+        }
+        set {
+            layer.masksToBounds = false
+            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowOffset = CGSize(width: 0, height: 0)
+            layer.shadowOpacity = 0.1
+            layer.cornerRadius = cornerRadius
+            layer.shadowRadius = newValue
+        }
+    }
+
 }
 
 

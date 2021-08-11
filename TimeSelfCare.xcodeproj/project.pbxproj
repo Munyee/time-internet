@@ -89,8 +89,6 @@
 		9E5437F125E8E1A200195623 /* GetConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5437F025E8E1A200195623 /* GetConnectViewController.swift */; };
 		9E59AF6325DE325A00FF427A /* Parentalcontrol.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E59AF6225DE325A00FF427A /* Parentalcontrol.storyboard */; };
 		9E59AF6525DE32AE00FF427A /* PCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */; };
-		9E840B6B26BF6B9900E40B6E /* YTVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E840B6A26BF6B9800E40B6E /* YTVideoView.xib */; };
-		9E840B6D26BF6C6A00E40B6E /* YTVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E840B6C26BF6C6A00E40B6E /* YTVideoView.swift */; };
 		9E840B7226BF965500E40B6E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E840B7126BF965400E40B6E /* NetworkExtension.framework */; };
 		9E8913D426BD49AC00DBC9A4 /* SupportMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8913D326BD49AC00DBC9A4 /* SupportMainViewController.swift */; };
 		9E8913D626BD7FB300DBC9A4 /* SnakePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8913D526BD7FB300DBC9A4 /* SnakePageControl.swift */; };
@@ -130,6 +128,11 @@
 		9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */; };
 		9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */; };
 		9ECA46462436C7AE00EB0DB8 /* VoucherLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */; };
+		9EDA692926C12C8D0087D1DD /* YTVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA692826C12C8D0087D1DD /* YTVideoTableViewCell.swift */; };
+		9EDA692B26C12D260087D1DD /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA692A26C12D260087D1DD /* VideoListViewController.swift */; };
+		9EDA692D26C134F80087D1DD /* VideoCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA692C26C134F80087D1DD /* VideoCategoryViewController.swift */; };
+		9EDA693026C138D30087D1DD /* VideoCategory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EDA692F26C138D30087D1DD /* VideoCategory.xib */; };
+		9EDA693226C138E50087D1DD /* VideoCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDA693126C138E50087D1DD /* VideoCategory.swift */; };
 		9EDFA8B325ECE25F00C18ED0 /* OpenSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFA8B225ECE25F00C18ED0 /* OpenSettingViewController.swift */; };
 		9EE0B95B246512A80073288B /* LiveChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EE0B95A246512A70073288B /* LiveChatView.xib */; };
 		9EE0B95D246513290073288B /* LiveChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0B95C246513290073288B /* LiveChatView.swift */; };
@@ -424,8 +427,6 @@
 		9E59AF6425DE32AE00FF427A /* PCMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCMainViewController.swift; sourceTree = "<group>"; };
 		9E5F789925D40C0200C4D388 /* FunctionSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FunctionSDK.framework; sourceTree = "<group>"; };
 		9E5F789A25D40C0400C4D388 /* HwMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HwMobileSDK.framework; sourceTree = "<group>"; };
-		9E840B6A26BF6B9800E40B6E /* YTVideoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YTVideoView.xib; sourceTree = "<group>"; };
-		9E840B6C26BF6C6A00E40B6E /* YTVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTVideoView.swift; sourceTree = "<group>"; };
 		9E840B7126BF965400E40B6E /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		9E8913D326BD49AC00DBC9A4 /* SupportMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportMainViewController.swift; sourceTree = "<group>"; };
 		9E8913D526BD7FB300DBC9A4 /* SnakePageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakePageControl.swift; sourceTree = "<group>"; };
@@ -469,6 +470,11 @@
 		9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVoucherView.xib; sourceTree = "<group>"; };
 		9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherLabel.xib; sourceTree = "<group>"; };
 		9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherLabel.swift; sourceTree = "<group>"; };
+		9EDA692826C12C8D0087D1DD /* YTVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YTVideoTableViewCell.swift; sourceTree = "<group>"; };
+		9EDA692A26C12D260087D1DD /* VideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
+		9EDA692C26C134F80087D1DD /* VideoCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCategoryViewController.swift; sourceTree = "<group>"; };
+		9EDA692F26C138D30087D1DD /* VideoCategory.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCategory.xib; sourceTree = "<group>"; };
+		9EDA693126C138E50087D1DD /* VideoCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCategory.swift; sourceTree = "<group>"; };
 		9EDFA8B225ECE25F00C18ED0 /* OpenSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSettingViewController.swift; sourceTree = "<group>"; };
 		9EE0B95A246512A70073288B /* LiveChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveChatView.xib; sourceTree = "<group>"; };
 		9EE0B95C246513290073288B /* LiveChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatView.swift; sourceTree = "<group>"; };
@@ -1145,6 +1151,15 @@
 			path = VoucherLabel;
 			sourceTree = "<group>";
 		};
+		9EDA692E26C138BC0087D1DD /* VideoCategory */ = {
+			isa = PBXGroup;
+			children = (
+				9EDA692F26C138D30087D1DD /* VideoCategory.xib */,
+				9EDA693126C138E50087D1DD /* VideoCategory.swift */,
+			);
+			path = VideoCategory;
+			sourceTree = "<group>";
+		};
 		9EE0B959246512A70073288B /* LiveChat */ = {
 			isa = PBXGroup;
 			children = (
@@ -1306,6 +1321,8 @@
 				9E8913D326BD49AC00DBC9A4 /* SupportMainViewController.swift */,
 				9E8913D526BD7FB300DBC9A4 /* SnakePageControl.swift */,
 				9E8913DB26BD951B00DBC9A4 /* CenteredCollectionViewFlowLayout.swift */,
+				9EDA692A26C12D260087D1DD /* VideoListViewController.swift */,
+				9EDA692C26C134F80087D1DD /* VideoCategoryViewController.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1313,6 +1330,7 @@
 		E274AD55210711F700E62A42 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9EDA692E26C138BC0087D1DD /* VideoCategory */,
 				E274AD58210711F700E62A42 /* AddAttachmentCell.swift */,
 				E274AD59210711F700E62A42 /* RightConversationCell.swift */,
 				E274AD5A210711F700E62A42 /* TicketCell.swift */,
@@ -1323,8 +1341,7 @@
 				E2480B3E2112A3CF00555A19 /* ConversationAttachmentCell.swift */,
 				E2DD467C21181B180010D84A /* ConversationFooterView.swift */,
 				9E8913D726BD833300DBC9A4 /* YTVideoCollectionViewCell.swift */,
-				9E840B6A26BF6B9800E40B6E /* YTVideoView.xib */,
-				9E840B6C26BF6C6A00E40B6E /* YTVideoView.swift */,
+				9EDA692826C12C8D0087D1DD /* YTVideoTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1630,6 +1647,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFC438225EE132C009AF8C2 /* Wificonfiguration.storyboard in Resources */,
+				9EDA693026C138D30087D1DD /* VideoCategory.xib in Resources */,
 				E22050E41FCD4D17004D5B10 /* DIN-Light.ttf in Resources */,
 				9E0252E2255E8E2D001CF6FC /* D-DIN-Italic.ttf in Resources */,
 				E2F7225220CA47D800C5204D /* anim_notification_bell.json in Resources */,
@@ -1668,7 +1686,6 @@
 				E219AD9C1FB3D21E00A896FE /* Walkthrough.storyboard in Resources */,
 				E27CE9FC22CCB6CC00DD9340 /* RewardHeaderView.xib in Resources */,
 				E23844B0210E904800EB6E40 /* TimeImagePickerViewController.xib in Resources */,
-				9E840B6B26BF6B9900E40B6E /* YTVideoView.xib in Resources */,
 				5A4790031FA972080074B5D4 /* Main.storyboard in Resources */,
 				E22050E61FCD4EE4004D5B10 /* DIN.plist in Resources */,
 				E23844B2210EDEDE00EB6E40 /* TimeImagePickerCell.xib in Resources */,
@@ -2045,7 +2062,6 @@
 				9E8913DC26BD951B00DBC9A4 /* CenteredCollectionViewFlowLayout.swift in Sources */,
 				9E8FC9BB25357255008936D2 /* ShareViewController.swift in Sources */,
 				E274AD68210711F700E62A42 /* LeftConversationCell.swift in Sources */,
-				9E840B6D26BF6C6A00E40B6E /* YTVideoView.swift in Sources */,
 				5A478FFE1FA972080074B5D4 /* AppDelegate.swift in Sources */,
 				E2E2FF701FC3F5C700125566 /* VoicePlanCell.swift in Sources */,
 				9E9EB76824D7988700D0D342 /* UIImageView+.swift in Sources */,
@@ -2061,10 +2077,13 @@
 				9E9EB76324D797FE00D0D342 /* DiagnosticsViewController.swift in Sources */,
 				E2FB887E20905EB200DDADC5 /* VoicePlanHeaderView.swift in Sources */,
 				9EDFA8B325ECE25F00C18ED0 /* OpenSettingViewController.swift in Sources */,
+				9EDA692B26C12D260087D1DD /* VideoListViewController.swift in Sources */,
 				E274AD65210711F700E62A42 /* RightConversationCell.swift in Sources */,
+				9EDA692D26C134F80087D1DD /* VideoCategoryViewController.swift in Sources */,
 				9E36BB4F25E4D9C800E5575F /* DeviceView.swift in Sources */,
 				0A8E01FB1FA9B50B00CA27A9 /* LoginViewController.swift in Sources */,
 				E27DCC981FE0E60300A82769 /* UIView+.swift in Sources */,
+				9EDA692926C12C8D0087D1DD /* YTVideoTableViewCell.swift in Sources */,
 				9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */,
 				9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */,
 				9E36BB5825E539BB00E5575F /* SelectPeriod.swift in Sources */,
@@ -2093,6 +2112,7 @@
 				9EFC438425EE135B009AF8C2 /* WifiConfigurationViewController.swift in Sources */,
 				9E8FC9C225357255008936D2 /* ReferralViewController.swift in Sources */,
 				E20451DE2212A5B700847AE4 /* SideBarTableViewController.swift in Sources */,
+				9EDA693226C138E50087D1DD /* VideoCategory.swift in Sources */,
 				E274AD64210711F700E62A42 /* AddAttachmentCell.swift in Sources */,
 				E22050D81FCCF984004D5B10 /* AddOnCell.swift in Sources */,
 				9E016BC42519896400877A62 /* ShopViewController.swift in Sources */,

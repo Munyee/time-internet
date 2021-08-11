@@ -11,10 +11,25 @@ import SwiftyJSON
 
 class SupportMainViewController: UIViewController {
 
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var snakePage: SnakePageControl!
     @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
+    @IBOutlet private weak var yourTicketView: UIView!
+    @IBOutlet private weak var ticketDate: UILabel!
+    @IBOutlet private weak var ticketSubject: UILabel!
+    @IBOutlet private weak var ticketCategory: UILabel!
+    @IBOutlet private weak var statusLabel: UILabel!
+    @IBOutlet private weak var statusBackground: UIView!
     let flowLayout = CenteredCollectionViewFlowLayout()
+    var ticket: Ticket?
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull to refresh", comment: ""))
+        refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        return refreshControl
+    }()
     
     var data = JSON(
         [
@@ -26,13 +41,14 @@ class SupportMainViewController: UIViewController {
 //            ["videoId": "XwTCNn2GGck", "title": "【小孩暗黑真心話！！原來他的心裡是這樣想？！】20161121 綜藝大熱門", "type":"Connectivity"],
 //            ["videoId": "wKhYmzuqMJo", "title": "A-Lin《有一種悲傷 A Kind of Sorrow》Official Music Video - 電影『比悲傷更悲傷的故事 More Than Blue 』主題曲", "type":"Connectivity"],
 //            ["videoId": "Jxpvq068z3s", "title": "A-Lin《有一種悲傷 A Kind of Sorrow》Official Music Video - 電影『比悲傷更悲傷的故事 More Than Blue 』主題曲", "type":"Connectivity"],
-//            ["videoId": "jB3lqaGeb10", "title": "三集一次看，到非洲玩遊戲，誰能比我狂？", "type":"Connectivity"]
         ])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("SUPPORT", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        
+        self.scrollView.addSubview(refreshControl)
         
         collectionView.collectionViewLayout = flowLayout
         collectionView.decelerationRate = .fast
@@ -45,6 +61,72 @@ class SupportMainViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionViewHeight.constant = (view.bounds.width - 72) * 0.563 + 72
         snakePage.pageCount = data.arrayValue.count
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.yourTicketView.isHidden = true
+        loadTickets()
+    }
+    
+    @objc
+    private func refresh() {
+        loadTickets()
+    }
+    
+    func loadTickets() {
+        self.refreshControl.beginRefreshing()
+        
+        TicketDataController.shared.loadTickets(account: AccountController.shared.selectedAccount) { (tickets: [Ticket], error: Error?) in
+            self.refreshControl.endRefreshing()
+            if let error = error {
+                self.showAlertMessage(with: error)
+                return
+            }
+
+            guard let ticket = tickets.sorted(by: { $0.timestamp ?? 0 > $1.timestamp ?? 0 }).first else {
+                self.yourTicketView.isHidden = true
+                return
+            }
+            self.ticket = ticket
+            self.yourTicketView.isHidden = false
+            self.ticketDate.text = ticket.datetime
+            self.ticketSubject.text = ticket.subject
+            self.ticketCategory.text = ticket.category
+            self.statusLabel.text = ticket.statusString
+            self.statusBackground.isHidden = ticket.statusString?.isEmpty ?? true
+            if ["open"].contains(ticket.statusString?.lowercased()) {
+                self.statusBackground.backgroundColor = .positive
+            } else if ["closed"].contains(ticket.statusString?.lowercased()) {
+                self.statusBackground.backgroundColor = .grey2
+            } else {
+                self.statusBackground.backgroundColor = .primary
+            }
+        }
+    }
+    
+    @IBAction func viewAllTicket(_ sender: Any) {
+        let ticketListVC: TicketListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
+        self.presentNavigation(ticketListVC, animated: true)
+    }
+    
+    @IBAction func createTicket(_ sender: Any) {
+        let ticketFormVC: TicketFormViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
+        self.presentNavigation(ticketFormVC, animated: true)
+    }
+    
+    @IBAction func viewTicket(_ sender: Any) {
+        if let ticket = self.ticket {
+            let ticketDetailVC: TicketDetailViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
+            ticketDetailVC.ticket = ticket
+            self.navigationController?.pushViewController(ticketDetailVC, animated: true)
+        }
+    }
+    
+    @IBAction func viewAllVideo(_ sender: Any) {
+        let videoListVC: VideoListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
+        videoListVC.videos = data
+        self.navigationController?.pushViewController(videoListVC, animated: true)
     }
 }
 

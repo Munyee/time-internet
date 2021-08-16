@@ -40,8 +40,12 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
         UNUserNotificationCenter.current().delegate = self
+    } 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,10 +82,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         appLogoImgView.animationRepeatCount = 1
         appLogoImgView.image = appLogoImgView.animationImages?.last
         appLogoImgView.startAnimating()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -121,13 +121,15 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
             remoteConfig.fetchAndActivate { status, error -> Void in
                 if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
-                    guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
-                        self.showNext()
-                        return
-                    }
                     self.remoteConfig.activate { _, _ in
+                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+                            self.showNext()
+                            return
+                        }
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
-                        self.checkAppVersion()
+                        DispatchQueue.main.async {
+                            self.checkAppVersion()
+                        }
                     }
                 } else {
                     self.showNext()
@@ -444,6 +446,17 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 let addOnVC: AddOnViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
                 currentViewController.presentNavigation(addOnVC, animated: true)
                 completionHandler()
+            }
+        case .launchExternalApp:
+            if activity.click == "WebBrowser" {
+                if let urlString = activity.url {
+//                    let timeWebView = TIMEWebViewController()
+//                    let url = URL(string: urlString)
+//                    timeWebView.url = url
+//                    currentViewController.presentNavigation(timeWebView, animated: true)
+                    openURL(withURLString: urlString)
+                    completionHandler()
+                }
             }
         default:
             openActivity()

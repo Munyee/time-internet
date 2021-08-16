@@ -13,6 +13,8 @@ import UserNotifications
 import Firebase
 import Smartlook
 import HwMobileSDK
+import AppTrackingTransparency
+import FBSDKCoreKit
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -23,7 +25,27 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        
+        ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
+        ApplicationDelegate.initialize()
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                if status == .authorized {
+                    Analytics.setAnalyticsCollectionEnabled(true)
+                    Settings.setAdvertiserTrackingEnabled(true)
+                    Settings.isAutoLogAppEventsEnabled = true
+                    Settings.isAdvertiserIDCollectionEnabled = true
+                } else {
+                    Analytics.setAnalyticsCollectionEnabled(false)
+                    Settings.setAdvertiserTrackingEnabled(false)
+                }
+            }
+        } else {
+            Analytics.setAnalyticsCollectionEnabled(true)
+            Settings.setAdvertiserTrackingEnabled(true)
+            Settings.isAutoLogAppEventsEnabled = true
+            Settings.isAdvertiserIDCollectionEnabled = true
+        }
+
         AuthUser.authDelegate = AccountController.shared
         AuthUser.enableAnonymousUser(with: LocalAnonymousProvider())
         AuthUser.enableProfiles(with: AccountController.shared)
@@ -92,6 +114,31 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+        application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: "")
+    }
+
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+            return true
+        }
+        return false
+    }
+
+    @available(iOS 13.0, *)
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else {
+            return
+        }
+        ApplicationDelegate.shared.application(UIApplication.shared, open: url, sourceApplication: nil, annotation: [UIApplication.OpenURLOptionsKey.annotation])
+        ApplicationDelegate.initialize()
+        Analytics.setAnalyticsCollectionEnabled(true)
+        Settings.setAdvertiserTrackingEnabled(true)
+        Settings.isAutoLogAppEventsEnabled = true
+        Settings.isAdvertiserIDCollectionEnabled = true
     }
 }
 

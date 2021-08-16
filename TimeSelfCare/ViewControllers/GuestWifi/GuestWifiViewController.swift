@@ -227,6 +227,8 @@ class GuestWifiViewController: UIViewController {
     func toggleGuestWifi(enable: Bool) {
         var guestWifi = HwGuestWifiInfo()
         guestWifi = self.guestInfo
+        guestWifi.isRaidoTypeEnable = true
+        guestWifi.radioType = HwRadioType(rawValue: 3)
         guestWifi.duration = Int32(AccountController.shared.guestWifiDuration ?? 0)
         guestWifi.enabled = enable
         

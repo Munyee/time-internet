@@ -139,6 +139,7 @@ class EditGuestWifiViewController: UIViewController {
         guestWifi.duration = wifiDuration ?? 0
         AccountController.shared.guestWifiDuration = Int(wifiDuration ?? 0)
         guestWifi.serviceEnable = true
+        guestWifi.isRaidoTypeEnable = true
         guestWifi.radioType = HwRadioType(rawValue: 3)
         if passwordSwitch.isOn {
             if ssidPassword.text.count < 8 || ssidPassword.text.count > 32 {

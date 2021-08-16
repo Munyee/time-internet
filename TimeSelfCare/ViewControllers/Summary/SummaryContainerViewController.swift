@@ -27,7 +27,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var activityButton: UIButton!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
-    var showFloatingButton = true
+    var showFloatingButton = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +41,14 @@ class SummaryContainerViewController: TimeBaseViewController {
         
         didUpdatePage(with: 0)
         
+        self.updatePages()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
-        
-        self.updatePages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,15 +129,16 @@ class SummaryContainerViewController: TimeBaseViewController {
                             self.showFloatingButton = false
                             HuaweiHelper.shared.initHwSdk {
                                 HuaweiHelper.shared.checkIsLogin { result in
-                                    //                                if !result.isLogined {
-                                    self.HuaweiLogin()
-                                    //                                } else {
+                                    if !result.isLogined {
+                                        self.HuaweiLogin()
+                                    }
+//                                                                        else {
                                     //                                    self.checkIsKick()
                                     //                                }
                                 }
                             }
                         } else {
-                            self.showFloatingButton = true
+                            self.showFloatingButton = false
                         }
                     }
                 }
@@ -165,9 +169,9 @@ class SummaryContainerViewController: TimeBaseViewController {
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
                             self.checkIsKick()
                         }, error: { exception in
-                            DispatchQueue.main.async {
-                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                            }
+//                            DispatchQueue.main.async {
+//                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+//                            }
                         })
                     }
                 }
@@ -258,8 +262,8 @@ class SummaryContainerViewController: TimeBaseViewController {
                 menuItems.append(.autoDebit)
             }
             menuItems.append(.billingInfo)
-        case .performanceStatusSummary:
-            menuItems = [.changeSsid, .runDiagnostics]
+        //        case .performanceStatusSummary:
+        //            menuItems = [.changeSsid, .runDiagnostics]
         default:
             break
         }
@@ -425,7 +429,7 @@ extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
             self.pageTitleLabel.text = NSLocalizedString("Voice Line", comment: "")
             hideFloatingActionButton()
         case .performanceStatusSummary:
-            self.pageTitleLabel.text = NSLocalizedString("Network Management", comment: "")
+            self.pageTitleLabel.text = NSLocalizedString("Control Hub", comment: "")
             if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false && self.showFloatingButton {
                 showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
             } else {

@@ -26,13 +26,13 @@
                                 <rect key="frame" x="0.0" y="10" width="375" height="657"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SiV-e4-LRx">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1188.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1415.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JCb-eP-XxF">
-                                                <rect key="frame" x="0.0" y="10" width="375" height="1168.5"/>
+                                                <rect key="frame" x="0.0" y="10" width="375" height="1395.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6mc-4P-bKG">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="481"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="708"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oa-dd-HhH">
                                                                 <rect key="frame" x="76" y="0.0" width="223.5" height="33.5"/>
@@ -131,20 +131,20 @@
                                                                 </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upb-aU-euo">
-                                                                <rect key="frame" x="20" y="338" width="335" height="103"/>
+                                                                <rect key="frame" x="72.5" y="338" width="230" height="210"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RqY-Gv-vcd" customClass="UIControl">
-                                                                        <rect key="frame" x="10" y="0.0" width="98.5" height="103"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="100" height="100"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_parental_control" translatesAutoresizingMaskIntoConstraints="NO" id="HBx-0I-owa">
-                                                                                <rect key="frame" x="24" y="10" width="50" height="50"/>
+                                                                                <rect key="frame" x="32.5" y="14" width="35" height="35"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="50" id="DhL-LS-zSK"/>
+                                                                                    <constraint firstAttribute="height" constant="35" id="DhL-LS-zSK"/>
                                                                                     <constraint firstAttribute="width" secondItem="HBx-0I-owa" secondAttribute="height" multiplier="1:1" id="Qit-E0-FS4"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoR-UC-sQq">
-                                                                                <rect key="frame" x="10" y="65" width="78.5" height="28"/>
+                                                                                <rect key="frame" x="10" y="54" width="80" height="32"/>
                                                                                 <string key="text">Parental 
 Controls</string>
                                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
@@ -154,29 +154,36 @@ Controls</string>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="HBx-0I-owa" firstAttribute="top" secondItem="RqY-Gv-vcd" secondAttribute="top" constant="10" id="FWR-oe-3GJ"/>
+                                                                            <constraint firstAttribute="width" secondItem="RqY-Gv-vcd" secondAttribute="height" multiplier="1:1" id="AnA-4Q-VXe"/>
+                                                                            <constraint firstItem="HBx-0I-owa" firstAttribute="top" secondItem="RqY-Gv-vcd" secondAttribute="top" constant="14" id="FWR-oe-3GJ"/>
                                                                             <constraint firstItem="ZoR-UC-sQq" firstAttribute="top" secondItem="HBx-0I-owa" secondAttribute="bottom" constant="5" id="H7h-pP-bmK"/>
+                                                                            <constraint firstAttribute="width" constant="100" id="Iz9-ky-gGE"/>
                                                                             <constraint firstItem="HBx-0I-owa" firstAttribute="centerX" secondItem="RqY-Gv-vcd" secondAttribute="centerX" id="RQa-S2-MPO"/>
                                                                             <constraint firstItem="ZoR-UC-sQq" firstAttribute="leading" secondItem="RqY-Gv-vcd" secondAttribute="leading" constant="10" id="UjH-M4-zGO"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="ZoR-UC-sQq" secondAttribute="bottom" constant="10" id="Vqp-HX-Ppn"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="ZoR-UC-sQq" secondAttribute="bottom" constant="14" id="Vqp-HX-Ppn"/>
                                                                             <constraint firstAttribute="trailing" secondItem="ZoR-UC-sQq" secondAttribute="trailing" constant="10" id="ZBh-Jo-Z1t"/>
                                                                         </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                                <real key="value" value="3"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="actParentalControl:" destination="k5v-hv-hWL" eventType="touchUpInside" id="vhp-PV-hCs"/>
                                                                         </connections>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViO-9f-NDf" customClass="UIControl">
-                                                                        <rect key="frame" x="118.5" y="0.0" width="98" height="103"/>
+                                                                        <rect key="frame" x="120" y="0.0" width="100" height="100"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_device_installation" translatesAutoresizingMaskIntoConstraints="NO" id="mCn-qg-WXw">
-                                                                                <rect key="frame" x="24" y="10" width="50" height="50"/>
+                                                                                <rect key="frame" x="32.5" y="14" width="35" height="35"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="50" id="4Jg-7f-rmA"/>
+                                                                                    <constraint firstAttribute="height" constant="35" id="4Jg-7f-rmA"/>
                                                                                     <constraint firstAttribute="width" secondItem="mCn-qg-WXw" secondAttribute="height" multiplier="1:1" id="Hka-Xr-gPc"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device Installation" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkc-4R-RGC">
-                                                                                <rect key="frame" x="10" y="65" width="78" height="28"/>
+                                                                                <rect key="frame" x="10" y="54" width="80" height="32"/>
                                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -184,31 +191,36 @@ Controls</string>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="mCn-qg-WXw" firstAttribute="top" secondItem="ViO-9f-NDf" secondAttribute="top" constant="10" id="7Wo-Y7-fAc"/>
+                                                                            <constraint firstItem="mCn-qg-WXw" firstAttribute="top" secondItem="ViO-9f-NDf" secondAttribute="top" constant="14" id="7Wo-Y7-fAc"/>
                                                                             <constraint firstItem="hkc-4R-RGC" firstAttribute="top" secondItem="mCn-qg-WXw" secondAttribute="bottom" constant="5" id="8ig-Zg-d8r"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="hkc-4R-RGC" secondAttribute="bottom" constant="10" id="AcS-XD-em0"/>
+                                                                            <constraint firstAttribute="width" constant="100" id="9ke-ty-iWi"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="hkc-4R-RGC" secondAttribute="bottom" constant="14" id="AcS-XD-em0"/>
                                                                             <constraint firstAttribute="trailing" secondItem="hkc-4R-RGC" secondAttribute="trailing" constant="10" id="HJs-Q0-G21"/>
+                                                                            <constraint firstAttribute="width" secondItem="ViO-9f-NDf" secondAttribute="height" multiplier="1:1" id="Yiq-l0-bKK"/>
                                                                             <constraint firstItem="hkc-4R-RGC" firstAttribute="leading" secondItem="ViO-9f-NDf" secondAttribute="leading" constant="10" id="neZ-6X-6j8"/>
                                                                             <constraint firstItem="mCn-qg-WXw" firstAttribute="centerX" secondItem="ViO-9f-NDf" secondAttribute="centerX" id="pGx-Jc-aGU"/>
                                                                         </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                                <real key="value" value="3"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="actDeviceInstallation:" destination="k5v-hv-hWL" eventType="touchUpInside" id="918-0u-fGc"/>
                                                                         </connections>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjW-iv-sdQ" customClass="UIControl">
-                                                                        <rect key="frame" x="226.5" y="0.0" width="98.5" height="103"/>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bE4-bo-Vnn" customClass="UIControl">
+                                                                        <rect key="frame" x="10" y="110" width="100" height="100"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wifi_conf" translatesAutoresizingMaskIntoConstraints="NO" id="9Yr-5N-8N0">
-                                                                                <rect key="frame" x="24.5" y="10" width="50" height="50"/>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wifi_conf" translatesAutoresizingMaskIntoConstraints="NO" id="Ru1-BC-VMd">
+                                                                                <rect key="frame" x="32.5" y="14" width="35" height="35"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="50" id="2cS-yX-jEY"/>
-                                                                                    <constraint firstAttribute="width" secondItem="9Yr-5N-8N0" secondAttribute="height" multiplier="1:1" id="fYU-dD-6sU"/>
+                                                                                    <constraint firstAttribute="width" secondItem="Ru1-BC-VMd" secondAttribute="height" multiplier="1:1" id="G6p-RT-mE9"/>
+                                                                                    <constraint firstAttribute="height" constant="35" id="jMX-CX-AQK"/>
                                                                                 </constraints>
                                                                             </imageView>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhW-PN-Un1">
-                                                                                <rect key="frame" x="10" y="65" width="78.5" height="28"/>
-                                                                                <string key="text">Wifi 
-Configuration</string>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WiFi Configuration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gq-Ty-Khd">
+                                                                                <rect key="frame" x="10" y="54" width="80" height="32"/>
                                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -216,38 +228,169 @@ Configuration</string>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="jhW-PN-Un1" firstAttribute="top" secondItem="9Yr-5N-8N0" secondAttribute="bottom" constant="5" id="0vn-Oe-hMy"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="jhW-PN-Un1" secondAttribute="trailing" constant="10" id="3bS-ZW-vLg"/>
-                                                                            <constraint firstItem="9Yr-5N-8N0" firstAttribute="top" secondItem="RjW-iv-sdQ" secondAttribute="top" constant="10" id="PRt-qV-bVa"/>
-                                                                            <constraint firstItem="jhW-PN-Un1" firstAttribute="leading" secondItem="RjW-iv-sdQ" secondAttribute="leading" constant="10" id="eUI-qs-OvO"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="jhW-PN-Un1" secondAttribute="bottom" constant="10" id="fkC-xe-eQE"/>
-                                                                            <constraint firstItem="9Yr-5N-8N0" firstAttribute="centerX" secondItem="RjW-iv-sdQ" secondAttribute="centerX" id="iXD-gN-OKy"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="6gq-Ty-Khd" secondAttribute="bottom" constant="14" id="18M-yz-4Fi"/>
+                                                                            <constraint firstItem="Ru1-BC-VMd" firstAttribute="centerX" secondItem="bE4-bo-Vnn" secondAttribute="centerX" id="2Ii-7s-odL"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="6gq-Ty-Khd" secondAttribute="trailing" constant="10" id="CBA-hv-8ZZ"/>
+                                                                            <constraint firstAttribute="width" secondItem="bE4-bo-Vnn" secondAttribute="height" multiplier="1:1" id="Cee-3C-7M3"/>
+                                                                            <constraint firstItem="Ru1-BC-VMd" firstAttribute="top" secondItem="bE4-bo-Vnn" secondAttribute="top" constant="14" id="H3G-BE-Hw6"/>
+                                                                            <constraint firstItem="6gq-Ty-Khd" firstAttribute="top" secondItem="Ru1-BC-VMd" secondAttribute="bottom" constant="5" id="mzl-Q0-db3"/>
+                                                                            <constraint firstItem="6gq-Ty-Khd" firstAttribute="leading" secondItem="bE4-bo-Vnn" secondAttribute="leading" constant="10" id="yyH-j1-g4f"/>
                                                                         </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                                <real key="value" value="3"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
-                                                                            <action selector="actWifiConfiguration:" destination="k5v-hv-hWL" eventType="touchUpInside" id="FSC-Po-4IO"/>
+                                                                            <action selector="actWifiConfiguration:" destination="k5v-hv-hWL" eventType="touchUpInside" id="bLi-7A-ySM"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1TZ-fN-h21" customClass="UIControl">
+                                                                        <rect key="frame" x="120" y="110" width="100" height="100"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pppoe" translatesAutoresizingMaskIntoConstraints="NO" id="LyL-Uw-HNh">
+                                                                                <rect key="frame" x="32.5" y="14" width="35" height="35"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="35" id="i8t-R3-bZK"/>
+                                                                                    <constraint firstAttribute="width" secondItem="LyL-Uw-HNh" secondAttribute="height" multiplier="1:1" id="yXt-ZC-9Sk"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PPPoE Credentials" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ej-wE-E30">
+                                                                                <rect key="frame" x="10" y="54" width="80" height="32"/>
+                                                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="LyL-Uw-HNh" firstAttribute="centerX" secondItem="1TZ-fN-h21" secondAttribute="centerX" id="ChE-Ii-79Y"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="7ej-wE-E30" secondAttribute="bottom" constant="14" id="E90-7S-Me0"/>
+                                                                            <constraint firstItem="7ej-wE-E30" firstAttribute="top" secondItem="LyL-Uw-HNh" secondAttribute="bottom" constant="5" id="Xyr-XQ-wUd"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="7ej-wE-E30" secondAttribute="trailing" constant="10" id="f7H-jM-dQH"/>
+                                                                            <constraint firstItem="7ej-wE-E30" firstAttribute="leading" secondItem="1TZ-fN-h21" secondAttribute="leading" constant="10" id="fKw-ea-yak"/>
+                                                                            <constraint firstItem="LyL-Uw-HNh" firstAttribute="top" secondItem="1TZ-fN-h21" secondAttribute="top" constant="14" id="qZT-0R-OYS"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                                <real key="value" value="3"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="actpppoe:" destination="k5v-hv-hWL" eventType="touchUpInside" id="jw3-ul-reH"/>
                                                                         </connections>
                                                                     </view>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="bE4-bo-Vnn" secondAttribute="bottom" id="3Um-7a-xfm"/>
                                                                     <constraint firstItem="ViO-9f-NDf" firstAttribute="leading" secondItem="RqY-Gv-vcd" secondAttribute="trailing" constant="10" id="4mH-Nd-WvU"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="ViO-9f-NDf" secondAttribute="bottom" id="JSk-3Y-5bn"/>
-                                                                    <constraint firstItem="RjW-iv-sdQ" firstAttribute="top" secondItem="RqY-Gv-vcd" secondAttribute="top" id="N7z-2q-mJ3"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="RjW-iv-sdQ" secondAttribute="trailing" constant="10" id="RjM-sJ-C9V"/>
-                                                                    <constraint firstItem="RjW-iv-sdQ" firstAttribute="width" secondItem="RqY-Gv-vcd" secondAttribute="width" id="SNg-Gl-cNp"/>
-                                                                    <constraint firstItem="ViO-9f-NDf" firstAttribute="width" secondItem="RjW-iv-sdQ" secondAttribute="width" id="UBo-dh-I0D"/>
+                                                                    <constraint firstItem="1TZ-fN-h21" firstAttribute="width" secondItem="1TZ-fN-h21" secondAttribute="height" multiplier="1:1" id="FY2-rn-kFE"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="1TZ-fN-h21" secondAttribute="bottom" id="L4M-yZ-ZZu"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ViO-9f-NDf" secondAttribute="trailing" constant="10" id="NQF-Xq-1Mz"/>
+                                                                    <constraint firstItem="1TZ-fN-h21" firstAttribute="leading" secondItem="bE4-bo-Vnn" secondAttribute="trailing" constant="10" id="PQc-P4-t0V"/>
                                                                     <constraint firstItem="RqY-Gv-vcd" firstAttribute="top" secondItem="Upb-aU-euo" secondAttribute="top" id="UqQ-48-w8U"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="RqY-Gv-vcd" secondAttribute="bottom" id="Y7E-WK-b0W"/>
+                                                                    <constraint firstItem="bE4-bo-Vnn" firstAttribute="leading" secondItem="Upb-aU-euo" secondAttribute="leading" constant="10" id="YQk-iA-bv5"/>
                                                                     <constraint firstItem="ViO-9f-NDf" firstAttribute="top" secondItem="Upb-aU-euo" secondAttribute="top" id="ZUp-DP-kBf"/>
-                                                                    <constraint firstItem="RjW-iv-sdQ" firstAttribute="leading" secondItem="ViO-9f-NDf" secondAttribute="trailing" constant="10" id="jmB-h4-lmK"/>
+                                                                    <constraint firstItem="1TZ-fN-h21" firstAttribute="top" secondItem="ViO-9f-NDf" secondAttribute="bottom" constant="10" id="clw-wU-xFg"/>
+                                                                    <constraint firstItem="bE4-bo-Vnn" firstAttribute="top" secondItem="RqY-Gv-vcd" secondAttribute="bottom" constant="10" id="jBi-ed-LiC"/>
                                                                     <constraint firstItem="RqY-Gv-vcd" firstAttribute="leading" secondItem="Upb-aU-euo" secondAttribute="leading" constant="10" id="s5o-6x-JQa"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="1TZ-fN-h21" secondAttribute="trailing" constant="10" id="z3p-6P-Xn7"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOs-Pj-ark">
+                                                                <rect key="frame" x="72.5" y="568" width="230" height="100"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSr-jg-9LD" customClass="UIControl">
+                                                                        <rect key="frame" x="10" y="0.0" width="100" height="100"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_wifi_conf" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-je-0Gt">
+                                                                                <rect key="frame" x="32.5" y="14" width="35" height="35"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="35" id="3fD-J6-bT4"/>
+                                                                                    <constraint firstAttribute="width" secondItem="5vh-je-0Gt" secondAttribute="height" multiplier="1:1" id="bMM-Xs-sNH"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change SSID" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcz-bb-nLv">
+                                                                                <rect key="frame" x="25" y="54" width="50" height="32"/>
+                                                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="5vh-je-0Gt" firstAttribute="centerX" secondItem="HSr-jg-9LD" secondAttribute="centerX" id="0pp-3k-4g1"/>
+                                                                            <constraint firstAttribute="width" constant="100" id="D3u-4S-YtM"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="Fcz-bb-nLv" secondAttribute="bottom" constant="14" id="NRq-cT-edO"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="Fcz-bb-nLv" secondAttribute="trailing" constant="25" id="ROS-iK-51y"/>
+                                                                            <constraint firstItem="Fcz-bb-nLv" firstAttribute="top" secondItem="5vh-je-0Gt" secondAttribute="bottom" constant="5" id="XO5-de-53J"/>
+                                                                            <constraint firstItem="5vh-je-0Gt" firstAttribute="top" secondItem="HSr-jg-9LD" secondAttribute="top" constant="14" id="g7P-y8-pxA"/>
+                                                                            <constraint firstAttribute="width" secondItem="HSr-jg-9LD" secondAttribute="height" multiplier="1:1" id="jYh-bE-nvS"/>
+                                                                            <constraint firstItem="Fcz-bb-nLv" firstAttribute="leading" secondItem="HSr-jg-9LD" secondAttribute="leading" constant="25" id="l8H-A2-z4r"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                                <real key="value" value="3"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="changeSsid:" destination="k5v-hv-hWL" eventType="touchUpInside" id="NVg-u8-kW5"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8HJ-2D-kwp" customClass="UIControl">
+                                                                        <rect key="frame" x="120" y="0.0" width="100" height="100"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pppoe" translatesAutoresizingMaskIntoConstraints="NO" id="SGT-NK-HHh">
+                                                                                <rect key="frame" x="32.5" y="14" width="35" height="35"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="SGT-NK-HHh" secondAttribute="height" multiplier="1:1" id="SgT-t7-IKN"/>
+                                                                                    <constraint firstAttribute="height" constant="35" id="lNK-6W-ljQ"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PPPoE Credentials" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQw-p3-Ewb">
+                                                                                <rect key="frame" x="10" y="54" width="80" height="32"/>
+                                                                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="SGT-NK-HHh" firstAttribute="top" secondItem="8HJ-2D-kwp" secondAttribute="top" constant="14" id="E8y-XC-SAN"/>
+                                                                            <constraint firstItem="mQw-p3-Ewb" firstAttribute="leading" secondItem="8HJ-2D-kwp" secondAttribute="leading" constant="10" id="OJG-sv-FwY"/>
+                                                                            <constraint firstItem="mQw-p3-Ewb" firstAttribute="top" secondItem="SGT-NK-HHh" secondAttribute="bottom" constant="5" id="ZEY-c4-Mi0"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="mQw-p3-Ewb" secondAttribute="trailing" constant="10" id="js7-Zq-Who"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="mQw-p3-Ewb" secondAttribute="bottom" constant="14" id="r6x-MS-4cQ"/>
+                                                                            <constraint firstItem="SGT-NK-HHh" firstAttribute="centerX" secondItem="8HJ-2D-kwp" secondAttribute="centerX" id="xPP-NE-gQp"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                                <real key="value" value="3"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="actpppoe:" destination="k5v-hv-hWL" eventType="touchUpInside" id="PTP-65-zdc"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="8HJ-2D-kwp" firstAttribute="top" secondItem="oOs-Pj-ark" secondAttribute="top" id="9wz-ks-8vL"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="8HJ-2D-kwp" secondAttribute="trailing" constant="10" id="APx-OB-iPZ"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="HSr-jg-9LD" secondAttribute="bottom" id="HTr-Rb-FKh"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="8HJ-2D-kwp" secondAttribute="bottom" id="LTT-be-vHs"/>
+                                                                    <constraint firstItem="8HJ-2D-kwp" firstAttribute="width" secondItem="8HJ-2D-kwp" secondAttribute="height" multiplier="1:1" id="Nok-v4-ijn"/>
+                                                                    <constraint firstItem="HSr-jg-9LD" firstAttribute="leading" secondItem="oOs-Pj-ark" secondAttribute="leading" constant="10" id="ZPN-Me-0Lq"/>
+                                                                    <constraint firstItem="8HJ-2D-kwp" firstAttribute="leading" secondItem="HSr-jg-9LD" secondAttribute="trailing" constant="10" id="g0Q-BD-Oar"/>
+                                                                    <constraint firstItem="HSr-jg-9LD" firstAttribute="top" secondItem="oOs-Pj-ark" secondAttribute="top" id="wDo-s9-h0p"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="20" bottom="40" trailing="20"/>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aoc-IM-WYh">
-                                                        <rect key="frame" x="0.0" y="481" width="375" height="515"/>
+                                                        <rect key="frame" x="0.0" y="708" width="375" height="515"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nce_new" translatesAutoresizingMaskIntoConstraints="NO" id="GO5-wp-A6b">
                                                                 <rect key="frame" x="108.5" y="0.0" width="158" height="199"/>
@@ -261,7 +404,7 @@ new features for you!</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage your WiFi networks, set parental controls and more. Please ensure you are connected to your home WiFi." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="waO-Lu-LyL">
-                                                                <rect key="frame" x="57" y="305" width="261.5" height="51"/>
+                                                                <rect key="frame" x="57" y="305" width="261.5" height="49"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="261.5" id="AFm-MI-SGI"/>
                                                                 </constraints>
@@ -270,7 +413,7 @@ new features for you!</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIq-f1-OnN">
-                                                                <rect key="frame" x="47.5" y="376" width="280" height="50"/>
+                                                                <rect key="frame" x="47.5" y="374" width="280" height="50"/>
                                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="280" id="0sK-ft-xk7"/>
@@ -286,7 +429,7 @@ new features for you!</string>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtG-KL-8Ta">
-                                                                <rect key="frame" x="122" y="446" width="131" height="29"/>
+                                                                <rect key="frame" x="122.5" y="444" width="130" height="29"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                                                 <state key="normal" title="User Current Version">
                                                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -299,7 +442,7 @@ new features for you!</string>
                                                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="36" bottom="40" trailing="36"/>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYu-RL-RRk">
-                                                        <rect key="frame" x="0.0" y="996" width="375" height="172.5"/>
+                                                        <rect key="frame" x="0.0" y="1223" width="375" height="172.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nce_new" translatesAutoresizingMaskIntoConstraints="NO" id="opb-o2-IFs">
                                                                 <rect key="frame" x="25" y="34" width="69" height="85"/>
@@ -309,13 +452,13 @@ new features for you!</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We’ve added new features for you!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfh-WT-FtJ">
-                                                                <rect key="frame" x="112" y="34" width="238" height="20"/>
+                                                                <rect key="frame" x="112" y="34" width="238" height="21.5"/>
                                                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                                                 <color key="textColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage your WiFi networks, set parental controls and more. Please ensure you are connected to your home WiFi." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69I-OW-Qvd">
-                                                                <rect key="frame" x="112" y="59" width="238" height="43.5"/>
+                                                                <rect key="frame" x="112" y="60.5" width="238" height="42"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -389,6 +532,7 @@ new features for you!</string>
                         <outlet property="nceFeatureSmallView" destination="cYu-RL-RRk" id="QZp-TH-Gpl"/>
                         <outlet property="nceFeatureView" destination="aoc-IM-WYh" id="3tK-Aa-HMI"/>
                         <outlet property="nceView" destination="Upb-aU-euo" id="1cG-2e-EiG"/>
+                        <outlet property="nonNceView" destination="oOs-Pj-ark" id="7yy-EU-K8d"/>
                         <outlet property="numberOfDevice" destination="gzv-SR-jcV" id="nYG-9N-Ufu"/>
                         <outlet property="runDiagnosticsButton" destination="HDL-Tq-kg7" id="L4E-XW-6dA"/>
                         <outlet property="speedTestView" destination="jtD-rr-2kP" id="e58-RZ-SYV"/>
@@ -652,13 +796,13 @@ new features for you!</string>
                                 <rect key="frame" x="0.0" y="10" width="375" height="657"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gto-Uh-go2">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="548"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="546"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RaC-qf-afa">
-                                                <rect key="frame" x="0.0" y="10" width="375" height="528"/>
+                                                <rect key="frame" x="0.0" y="10" width="375" height="526"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="UQW-gW-GGP">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="526"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nce_error" translatesAutoresizingMaskIntoConstraints="NO" id="GtS-ts-nag">
                                                                 <rect key="frame" x="108.5" y="80" width="158" height="221"/>
@@ -670,7 +814,7 @@ new features for you!</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ensure your router is turned on. It may take up to 15 minutes for the features to appear." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znP-H7-mcU">
-                                                                <rect key="frame" x="57" y="407" width="261.5" height="51"/>
+                                                                <rect key="frame" x="57" y="407" width="261.5" height="49"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="261.5" id="BAU-nY-esy"/>
                                                                 </constraints>
@@ -679,7 +823,7 @@ new features for you!</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJr-lI-gQ5">
-                                                                <rect key="frame" x="47.5" y="478" width="280" height="50"/>
+                                                                <rect key="frame" x="47.5" y="476" width="280" height="50"/>
                                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="280" id="6Dg-51-CJa"/>
@@ -750,6 +894,7 @@ new features for you!</string>
         <image name="ic_visibility" width="24" height="24"/>
         <image name="icon_device_installation" width="23.5" height="23.5"/>
         <image name="icon_parental_control" width="47" height="44"/>
+        <image name="icon_pppoe" width="35" height="35"/>
         <image name="icon_wifi_conf" width="54" height="44"/>
         <image name="nce_error" width="158" height="221"/>
         <image name="nce_new" width="158" height="199"/>

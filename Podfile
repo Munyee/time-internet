@@ -17,6 +17,7 @@ target 'TimeSelfCareData' do
   pod 'SDWebImage'
   pod 'EasyTipView', :git => 'git@10.60.81.57:BSS/EasyTipView.git'
   pod 'JVFloatLabeledTextField'
+  pod 'Firebase/Performance'
 
   target 'TimeSelfCareDataTests' do
     inherit! :search_paths
@@ -44,7 +45,11 @@ target 'TimeSelfCare' do
   pod 'FreshchatSDK'
   pod 'Smartlook'
   pod "Pulsator"
-
+  pod 'Firebase/Analytics'
+  pod 'Firebase/DynamicLinks'
+  pod 'FBSDKCoreKit'
+  pod 'Firebase/Performance'
+  
   target 'TimeSelfCareTests' do
     inherit! :search_paths
     # Pods for testing

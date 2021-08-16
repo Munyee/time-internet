@@ -30,6 +30,10 @@ class AccountSummaryViewController: BaseViewController {
         super.viewDidLoad()
         self.priceLabel.font = UIFont(name: "DINCondensed-Bold", size: 80)
         self.payButton.titleLabel?.textAlignment = .center
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
     }
 

@@ -19,7 +19,7 @@ class ActivityTableViewCell: UITableViewCell {
     @IBOutlet var bottomLineLabel: UILabel!
     
     func configure(with activity: Activity) {
-        self.titleLabel.text = String(htmlEncodedString: activity.type.rawValue ?? "")
+        self.titleLabel.text = activity.type == .launchExternalApp ? String(htmlEncodedString: activity.title ?? "") : String(htmlEncodedString: activity.type.rawValue ?? "")
         self.detailLabel.text = String(htmlEncodedString: activity.line1 ?? "")
         self.line2Label.text = String(htmlEncodedString: activity.line2 ?? "")
         self.statusLabel.text = activity.status
@@ -52,7 +52,7 @@ extension Activity.Status {
         case .redeemed, .fullyGrabbed:
             return .turquoise
         default:
-            return .positive
+            return .grey2
         }
     }
 }

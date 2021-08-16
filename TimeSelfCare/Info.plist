@@ -18,8 +18,38 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Bundle ID</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>my.com.time.selfcare.app</string>
+				<string>fb1911215622319787</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<false/>
+	<key>FacebookAppID</key>
+	<string>1911215622319787</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<false/>
+	<key>FacebookClientToken</key>
+	<string>b00ebea964c0757fa19242a5fcfc6388</string>
+	<key>FacebookDisplayName</key>
+	<string>TIME app</string>
+	<key>FirebaseDynamicLinksCustomDomains</key>
+	<array>
+		<string>https://timeselfcare.page.link</string>
+	</array>
+	<key>GOOGLE_ANALYTICS_REGISTRATION_WITH_AD_NETWORK_ENABLED</key>
+	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
@@ -32,6 +62,11 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>selfcare.time.com.my</key>
+			<string></string>
+		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need to access your camera to allow you to upload attachments file.</string>
@@ -39,6 +74,19 @@
 	<string>We need to access your location to allow you to use extra tools to manage your network.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to access your library to allow you to upload attachments file.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier will be used to collect Crash Data and in-app activity in order to improve functionalities and user engagement.</string>
+	<key>SKAdNetworkItems</key>
+	<array>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>v9wttpbfk9.skadnetwork</string>
+		</dict>
+		<dict>
+			<key>SKAdNetworkIdentifier</key>
+			<string>n38lu8286q.skadnetwork</string>
+		</dict>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>D-DIN-Italic.ttf</string>

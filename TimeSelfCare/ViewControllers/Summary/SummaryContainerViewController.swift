@@ -27,7 +27,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var activityButton: UIButton!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
-    var showFloatingButton = true
+    var showFloatingButton = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +38,17 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.floatingActionButton.layer.shadowColor = UIColor.grey.cgColor
         self.floatingActionButton.layer.shadowOpacity = 0.8
         self.floatingActionButton.layer.shadowRadius = 4
-
+        
         didUpdatePage(with: 0)
         
         self.updatePages()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,14 +58,6 @@ class SummaryContainerViewController: TimeBaseViewController {
         self.view.addGestureRecognizer(hideSidebarGesture)
         
         self.updateNotificationIndicator()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -86,7 +85,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     private func handleAccountChange() {
         self.updatePages()
     }
-
+    
     private func updatePages() {
         DispatchQueue.main.async {
             self.pages = [.accountSummary, .addOnSummary]
@@ -105,7 +104,6 @@ class SummaryContainerViewController: TimeBaseViewController {
             guard
                 let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
             else {
-                self.updatePages()
                 return
             }
             
@@ -131,15 +129,16 @@ class SummaryContainerViewController: TimeBaseViewController {
                             self.showFloatingButton = false
                             HuaweiHelper.shared.initHwSdk {
                                 HuaweiHelper.shared.checkIsLogin { result in
-                                    //                                if !result.isLogined {
-                                    self.HuaweiLogin()
-                                    //                                } else {
+                                    if !result.isLogined {
+                                        self.HuaweiLogin()
+                                    }
+//                                                                        else {
                                     //                                    self.checkIsKick()
                                     //                                }
                                 }
                             }
                         } else {
-                            self.showFloatingButton = true
+                            self.showFloatingButton = false
                         }
                     }
                 }
@@ -166,15 +165,13 @@ class SummaryContainerViewController: TimeBaseViewController {
                 
                 if let result = data {
                     if let authCode = result["authcode"] as? String {
+                        print(authCode)
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
-                            DispatchQueue.main.async {
-                                self.showGuestWifi()
-                            }
                             self.checkIsKick()
                         }, error: { exception in
-                            DispatchQueue.main.async {
-                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                            }
+//                            DispatchQueue.main.async {
+//                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+//                            }
                         })
                     }
                 }
@@ -265,8 +262,8 @@ class SummaryContainerViewController: TimeBaseViewController {
                 menuItems.append(.autoDebit)
             }
             menuItems.append(.billingInfo)
-        case .performanceStatusSummary:
-            menuItems = [.changeSsid, .runDiagnostics]
+        //        case .performanceStatusSummary:
+        //            menuItems = [.changeSsid, .runDiagnostics]
         default:
             break
         }
@@ -406,29 +403,6 @@ class SummaryContainerViewController: TimeBaseViewController {
             self.hideFloatingActionButton()
         }
     }
-    
-    @objc
-    func reinstateBackgroundTask() {
-        showGuestWifi()
-    }
-    
-    func showGuestWifi() {
-        if AccountController.shared.showGuestWifi {
-            AccountController.shared.showGuestWifi = false
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
-            HuaweiHelper.shared.queryUserBindGateway { gateways in
-                hud.hide(animated: true)
-                if !gateways.isEmpty {
-                    let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.guestwifi.filename, bundle: nil)
-                    guard let vc = storyboard.instantiateViewController(withIdentifier: "GuestWifiViewController") as? GuestWifiViewController else {
-                        return
-                    }
-                    self.presentNavigation(vc, animated: true)
-                }
-            }
-        }
-    }
 }
 
 extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
@@ -455,7 +429,7 @@ extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
             self.pageTitleLabel.text = NSLocalizedString("Voice Line", comment: "")
             hideFloatingActionButton()
         case .performanceStatusSummary:
-            self.pageTitleLabel.text = NSLocalizedString("Network Management", comment: "")
+            self.pageTitleLabel.text = NSLocalizedString("Control Hub", comment: "")
             if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false && self.showFloatingButton {
                 showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
             } else {

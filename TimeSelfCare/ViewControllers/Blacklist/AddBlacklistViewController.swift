@@ -9,6 +9,7 @@
 import UIKit
 import HwMobileSDK
 import MBProgressHUD
+import FirebaseCrashlytics
 
 protocol AddBlacklistViewControllerDelegate {
     func selected(devices: [HwLanDevice])
@@ -36,7 +37,7 @@ class AddBlacklistViewController: UIViewController {
         checkConfirmButton()
         exDevices = selectedDevices
     }
-    
+
     func queryDevices() {
         
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -81,11 +82,29 @@ class AddBlacklistViewController: UIViewController {
         
         exDevices = self.exDevices.filter { !selectedDevices.contains($0) }
         
+        var keysAndValues = [:] as [String : Any]
+        
+        for (index, device) in selectedDevices.map { item -> String in
+            item.mac
+        }.enumerated() {
+            
+            keysAndValues["selected device-\(index)"] = device
+        }
+        
+        for (index, device) in exDevices.map { item -> String in
+            item.mac
+        }.enumerated() {
+            
+            keysAndValues["remove device-\(index)"] = device
+        }
+        
+        Crashlytics.crashlytics().setCustomKeysAndValues(keysAndValues)
+
         HuaweiHelper.shared.setLanDeviceToBlackList(list: selectedDevices, isAdd: true, completion: { _ in
             if self.exDevices.isEmpty {
+                hud.hide(animated: true)
                 self.dismissVC()
                 self.delegate?.selected(devices: self.selectedDevices)
-                hud.hide(animated: true)
             } else {
                 HuaweiHelper.shared.setLanDeviceToBlackList(list: self.exDevices, isAdd: false, completion: { _ in
                     self.dismissVC()
@@ -111,7 +130,7 @@ extension AddBlacklistViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "deviceCell", for: indexPath) as? PCDeviceTableViewCell
         let device = arrDevices[indexPath.row]
         let deviceType = arrDeviceTypes.first { $0.mac == device.mac }
-        cell?.name.text = device.name != "" ? device.name : " "
+        cell?.name.text = device.name != "" ? device.name : device.mac
         cell?.mac.text = device.mac
         cell?.setDeviceImg(device: deviceType?.deviceType ?? "", isOnline: device.onLine)
         cell?.selectionStyle = .none

@@ -10,6 +10,7 @@
 import Foundation
 import Alamofire
 import ApptivityFramework
+import FirebasePerformance
 
 public let TimeSelfCareDomainErrorCodeKey: String = "TimeSelfCareAPIErrorCode" // swiftlint:disable:this identifier_name
 
@@ -87,7 +88,7 @@ public class APIClient {
     }
 
     func request(
-        method: HTTPMethod,
+        method: Alamofire.HTTPMethod,
         parameters: [String: Any]? = nil,
         additionalHeaders: [String: String]? = nil,
         encoding: ParameterEncoding = JSONEncoding.default) -> DataRequest {
@@ -119,14 +120,22 @@ public class APIClient {
 
         parameters["session_id"] = AccountController.shared.sessionId
         print(parameters)
+        
+        let trace = Performance.startTrace(name: "API")
+        trace?.setValue(path, forAttribute: "action")
+        
         self.request(
             method: .post,
             parameters: parameters,
             encoding: JSONEncoding.default)
             .responseJSON { (response: DataResponse<Any>) in
+                if let statusCode = response.response?.statusCode {
+                    trace?.setValue("\(statusCode)", forAttribute: "statusCode")
+                }
                 print("path: \(path), time: \(response.timeline.requestDuration)")
                 do {
                     let json = try APIClient.shared.JSONFromResponse(response: response)
+                    trace?.stop()
                     completion?(json, nil)
                 } catch {
                     if (error as? NSError)?.code == 403 {
@@ -134,6 +143,7 @@ public class APIClient {
                         return
                     }
                     completion?([:], error)
+                    trace?.stop()
                 }
             }
     }
@@ -236,6 +246,7 @@ public class APIClient {
                         ])
                 } else if let statusMessage = json["status"] as? String, statusMessage == "error" {
                     let errorMessage = json["message"] as? String ?? "Unknown error occured."
+                    let responseCode = json["response"] as? Int ?? -999
                     if ["Session expired.", "Invalid session id.", "Please login first." ].contains(errorMessage) {
                         // handle session expired
                         throw NSError(domain: "Time Self Care", code: 403, userInfo: [
@@ -244,8 +255,9 @@ public class APIClient {
                     }
 
                     throw NSError(domain: "Time Self Care", code: response.response?.statusCode ?? 500, userInfo: [
-                        NSLocalizedDescriptionKey: errorMessage
-                        ])
+                        NSLocalizedDescriptionKey: errorMessage,
+                        "reponseCode": responseCode
+                    ])
                 }
 
                 return json

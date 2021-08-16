@@ -35,15 +35,18 @@ public class Activity: JsonRecord {
         case huae = "HOOK UP & EARN"
         case reDirectMsg = "Redirect Msg"
         case guestWifi = "Guest Wifi"
+        case launchExternalApp = "LaunchExternalApp"
     }
 
     public var id: Int
     public var type: ActivityType
+    public var title: String?
     public var line1: String?
     public var line2: String?
     public var status: String?
     public var isNew: Bool = false
     public var click: String?
+    public var url: String?
 
     public var isActionable: Bool {
         switch self.type {
@@ -54,7 +57,8 @@ public class Activity: JsonRecord {
              .addOns,
              .huae,
              .reDirectMsg,
-             .guestWifi:
+             .guestWifi,
+             .launchExternalApp:
            return true
         default:
             return false
@@ -77,6 +81,7 @@ public class Activity: JsonRecord {
 
         self.id = Int(id)!
         self.type = activityType
+        self.title = json["title"] as? String
         self.line1 = json["line1"] as? String
         self.line2 = json["line2"] as? String
         self.status = json["status"] as? String
@@ -84,6 +89,7 @@ public class Activity: JsonRecord {
         self.accountNo = json["account_no"] as? String
         self.profileUsername = ""
         self.click = json["click"] as? String
+        self.url = json["url"] as? String
     }
 
 }

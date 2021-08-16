@@ -13,10 +13,6 @@ import UserNotifications
 import FirebaseRemoteConfig
 import FirebaseCrashlytics
 
-public extension NSNotification.Name {
-    static let GuestWifiDidNotify: NSNotification.Name = NSNotification.Name(rawValue: "GuestWifiDidNotify")
-}
-
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
 internal let dontAskAgainFlag: String = "dontAskAgain"
 
@@ -44,8 +40,12 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
         UNUserNotificationCenter.current().delegate = self
+    } 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -82,10 +82,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         appLogoImgView.animationRepeatCount = 1
         appLogoImgView.image = appLogoImgView.animationImages?.last
         appLogoImgView.startAnimating()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -125,11 +121,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
             remoteConfig.fetchAndActivate { status, error -> Void in
                 if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
-                    guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
-                        self.showNext()
-                        return
-                    }
                     self.remoteConfig.activate { _, _ in
+                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+                            self.showNext()
+                            return
+                        }
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
                         DispatchQueue.main.async {
                             self.checkAppVersion()
@@ -451,15 +447,17 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 currentViewController.presentNavigation(addOnVC, animated: true)
                 completionHandler()
             }
-        case .guestWifi:
-            AccountController.shared.showGuestWifi = true
-            
-            if let presentedVC = self.presentedViewController?.children[0].presentedViewController {
-                presentedVC.dismiss(animated: true, completion: {
-                    NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
-                })
+        case .launchExternalApp:
+            if activity.click == "WebBrowser" {
+                if let urlString = activity.url {
+//                    let timeWebView = TIMEWebViewController()
+//                    let url = URL(string: urlString)
+//                    timeWebView.url = url
+//                    currentViewController.presentNavigation(timeWebView, animated: true)
+                    openURL(withURLString: urlString)
+                    completionHandler()
+                }
             }
-            completionHandler()
         default:
             openActivity()
             completionHandler()

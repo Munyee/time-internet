@@ -38,7 +38,7 @@ class DeviceView: UIView {
         super.init(frame: .zero)
         commonInit()
         self.device = device
-        name.text = device.name
+        name.text = device.name != "" ? device.name : device.mac
         mac.text = device.mac
         closeView.isHidden = !isEdit
         

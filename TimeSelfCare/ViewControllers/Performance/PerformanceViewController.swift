@@ -10,6 +10,7 @@ import UIKit
 import Lottie
 import HwMobileSDK
 import MBProgressHUD
+import SwiftyJSON
 
 public extension NSNotification.Name {
     static let ConnectionStatusDidUpdate: NSNotification.Name = NSNotification.Name(rawValue: "ConnectionStatusDidUpdate")
@@ -24,6 +25,7 @@ class PerformanceViewController: BaseViewController {
     @IBOutlet private weak var runDiagnosticsButton: UIButton!
     @IBOutlet private weak var speedTestView: UIView!
     @IBOutlet private weak var nceView: UIView!
+    @IBOutlet private weak var nonNceView: UIView!
     @IBOutlet private weak var numberOfDevice: UILabel!
     @IBOutlet private weak var downSpeed: UILabel!
     @IBOutlet private weak var downByte: UILabel!
@@ -46,11 +48,17 @@ class PerformanceViewController: BaseViewController {
         self.nceFeatureView.isHidden = true
         speedTestView.isHidden = true
         nceView.isHidden = true
+        nonNceView.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.checkConnectionStatus()
+        self.getNCE()
         timer?.invalidate()
     }
     
@@ -70,7 +78,33 @@ class PerformanceViewController: BaseViewController {
         animationView.setAnimation(named: "Loading")
         animationView.loopAnimation = true
         animationView.play()
+        guard
+            let account = AccountController.shared.selectedAccount,
+            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+            else {
+                return
+        }
         
+        self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
+        AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
+            let isConnected: Bool = error == nil
+            self.animationView.setAnimation(named: isConnected ? "GoodConnection" : "BadConnection")
+            self.animationView.loopAnimation = false
+            self.animationView.play()
+            
+            if isConnected {
+                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is good.", boldString: "good", color: UIColor.green, font: self.statusLabel.font)
+            } else {
+                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is down.\n Connection issue detected", boldString: "down", color: UIColor.red, font: self.statusLabel.font)
+            }
+            
+            self.runDiagnosticsButton.isEnabled = true
+            self.runDiagnosticsButton.backgroundColor = self.runDiagnosticsButton.isEnabled ? .primary : .grey2
+            NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
+        }
+    }
+    
+    func getNCE() {
         guard
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
@@ -94,27 +128,11 @@ class PerformanceViewController: BaseViewController {
                     let huaweiDevice = IsHuaweiDevice(with: result)
                     if huaweiDevice?.status == "yes" {
                         self.queryBindGateway()
+                    } else {
+                        self.nonNceView.isHidden = false
                     }
                 }
             }
-        }
-        
-        self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
-        AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
-            let isConnected: Bool = error == nil
-            self.animationView.setAnimation(named: isConnected ? "GoodConnection" : "BadConnection")
-            self.animationView.loopAnimation = false
-            self.animationView.play()
-            
-            if isConnected {
-                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is good.", boldString: "good", color: UIColor.green, font: self.statusLabel.font)
-            } else {
-                self.statusLabel.attributedText = self.attributedText(withString: "Your internet connection is down.\n Connection issue detected", boldString: "down", color: UIColor.red, font: self.statusLabel.font)
-            }
-            
-            self.runDiagnosticsButton.isEnabled = true
-            self.runDiagnosticsButton.backgroundColor = self.runDiagnosticsButton.isEnabled ? .primary : .grey2
-            NotificationCenter.default.post(name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil, userInfo: [kIsConnected: isConnected])
         }
     }
     
@@ -131,6 +149,79 @@ class PerformanceViewController: BaseViewController {
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
         attributedString.addAttributes(boldFontAttribute, range: range)
         return attributedString
+    }
+    
+    @IBAction func changeSsid(_ sender: Any?) {
+        
+        if let ssidEnabled = SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled, ssidEnabled {
+            let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.performance.filename, bundle: nil)
+            let changeSsidVC: ChangeSSIDViewController = storyboard.instantiateViewController()
+            self.presentNavigation(changeSsidVC, animated: true)
+        } else {
+            if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                while let presentedViewController = vc.presentedViewController {
+                    vc = presentedViewController
+                }
+                if let alertView = UIStoryboard(name: TimeSelfCareStoryboard.pppoe.filename, bundle: nil).instantiateViewController(withIdentifier: "PppoeAlertViewController") as? PppoeAlertViewController {
+                    alertView.pppoeType = .error
+                    vc.addChild(alertView)
+                    alertView.view.frame = vc.view.frame
+                    vc.view.addSubview(alertView.view)
+                    alertView.didMove(toParent: vc)
+                }
+            }
+        }
+    }
+    
+    @IBAction func actpppoe(_ sender: Any) {
+        let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
+        
+        guard
+            let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
+            else {
+                return
+        }
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        AccountDataController.shared.getPPPOEInfo(account: account, service: service) { data, error in
+            hud.hide(animated: true)
+            guard error == nil else {
+                if let nsError = error as NSError?, let responseCode = nsError.userInfo["reponseCode"] as? Int {
+                    var pppoeType: PppoeAlertType = .error
+                    switch responseCode {
+                    case 3, 4:
+                        pppoeType = .livechat
+                    default:
+                        pppoeType = .error
+                    }
+                    
+                    if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                        while let presentedViewController = vc.presentedViewController {
+                            vc = presentedViewController
+                        }
+                        if let alertView = UIStoryboard(name: TimeSelfCareStoryboard.pppoe.filename, bundle: nil).instantiateViewController(withIdentifier: "PppoeAlertViewController") as? PppoeAlertViewController {
+                            alertView.pppoeType = pppoeType
+                            vc.addChild(alertView)
+                            alertView.view.frame = vc.view.frame
+                            vc.view.addSubview(alertView.view)
+                            alertView.didMove(toParent: vc)
+                        }
+                    }
+                }
+                return
+            }
+            
+            if let result = data {
+                let jsonData = JSON(result["message"])
+                
+                let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.pppoe.filename, bundle: nil)
+                let pppoe: PppoeViewController = storyboard.instantiateViewController()
+                pppoe.username = jsonData["username"].stringValue
+                pppoe.password = jsonData["password"].stringValue
+                self.presentNavigation(pppoe, animated: true)
+            }
+        }
     }
     
     @IBAction func actParentalControl(_ sender: Any) {
@@ -208,6 +299,7 @@ class PerformanceViewController: BaseViewController {
                 self.connectionStackView.isHidden = false
                 self.nceFeatureView.isHidden = true
                 self.nceView.isHidden = false
+                self.nonNceView.isHidden = true
                 self.speedTestView.isHidden = false
                 self.nceFeatureSmallView.isHidden = true
                 HuaweiHelper.shared.queryGateway(completion: { gateway in
@@ -241,6 +333,7 @@ class PerformanceViewController: BaseViewController {
                     self.connectionStackView.isHidden = false
                     self.nceFeatureView.isHidden = true
                     self.nceView.isHidden = false
+                    self.nonNceView.isHidden = true
                     self.speedTestView.isHidden = false
                     self.nceFeatureSmallView.isHidden = true
                 } else {
@@ -251,12 +344,14 @@ class PerformanceViewController: BaseViewController {
                         self.connectionStackView.isHidden = true
                         self.nceFeatureSmallView.isHidden = true
                         self.nceView.isHidden = true
+                        self.nonNceView.isHidden = true
                     } else {
                         self.speedTestView.isHidden = true
                         self.nceFeatureView.isHidden = true
                         self.connectionStackView.isHidden = false
                         self.nceFeatureSmallView.isHidden = false
                         self.nceView.isHidden = true
+                        self.nonNceView.isHidden = true
                     }
                 }
             }

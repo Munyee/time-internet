@@ -30,6 +30,7 @@ enum TimeSelfCareStoryboard: String, Storyboard {
     case guestwifi
     case deviceinstallation
     case blacklist
+    case pppoe
 
     var filename: String {
         return rawValue.capitalizedFirstLetter

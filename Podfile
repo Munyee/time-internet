@@ -19,6 +19,7 @@ target 'TimeSelfCareData' do
   pod 'JVFloatLabeledTextField'
   pod 'Firebase/Core'
   pod 'Firebase/Crashlytics'
+  pod 'Firebase/Performance'
 
   target 'TimeSelfCareDataTests' do
     inherit! :search_paths
@@ -46,7 +47,12 @@ target 'TimeSelfCare' do
   pod 'FreshchatSDK'
   pod 'Smartlook'
   pod "Pulsator"
-
+  pod 'Firebase/Analytics'
+  pod 'Firebase/DynamicLinks'
+  pod 'FBSDKCoreKit'
+  pod 'Firebase/Performance'
+  pod 'IQKeyboardManagerSwift'
+  
   target 'TimeSelfCareTests' do
     inherit! :search_paths
     # Pods for testing

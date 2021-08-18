@@ -150,7 +150,7 @@ extension PCDevicesViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "deviceCell", for: indexPath) as? PCDeviceTableViewCell
         let device = arrDevices[indexPath.row]
         let deviceType = arrDeviceTypes.first { $0.mac == device.mac }
-        cell?.name.text = device.name
+        cell?.name.text = device.name != "" ? device.name : device.mac
         cell?.mac.text = device.mac
         cell?.setDeviceImg(device: deviceType?.deviceType ?? "", isOnline: device.onLine)
         cell?.selectionStyle = .none

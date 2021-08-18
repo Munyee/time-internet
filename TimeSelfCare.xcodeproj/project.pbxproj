@@ -29,10 +29,8 @@
 		1996635A8FA112680F793BA6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F604557CEE62B598F117893 /* CoreText.framework */; };
 		1CD36BF464D398D6CB05155E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F391CEA22DA4E818AC9B2334 /* CoreTelephony.framework */; };
 		20131C3E2EBB8DFFEDF33892 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02BAAA47F5FA637DF163E1F /* SystemConfiguration.framework */; };
-		3665715977F9D1DD4CE17D8A /* Pods_TimeSelfCare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14D80E5761DB47860B2BCB6 /* Pods_TimeSelfCare.framework */; };
-		3FBD5210205ECA07F9456029 /* Pods_TimeSelfCareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FCC1EC61C3BAC6C4E4DD74 /* Pods_TimeSelfCareTests.framework */; };
+		3DDA3A4B042556A541E2C581 /* Pods_TimeSelfCare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAA51A9106DF1DFA52444464 /* Pods_TimeSelfCare.framework */; };
 		41A79D2B24403EA0002A9C4B /* AppVersionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A79D2A24403EA0002A9C4B /* AppVersionModal.swift */; };
-		4243AB81414C7A36D2BB0763 /* Pods_TimeSelfCareData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A7CC3D8B3683F1A685B415 /* Pods_TimeSelfCareData.framework */; };
 		4D0A9757D0386117A572CDEA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2CC50C123745B40460E00F /* CoreVideo.framework */; };
 		5A20BF431FE98EFC00ECFF78 /* TimeBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A20BF421FE98EFC00ECFF78 /* TimeBaseViewController.swift */; };
 		5A478FFE1FA972080074B5D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A478FFD1FA972080074B5D4 /* AppDelegate.swift */; };
@@ -46,7 +44,6 @@
 		5A4790451FA972390074B5D4 /* TimeSelfCareData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4790301FA972390074B5D4 /* TimeSelfCareData.framework */; };
 		5A4790461FA972390074B5D4 /* TimeSelfCareData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4790301FA972390074B5D4 /* TimeSelfCareData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6BC0022120F3B21AE87CEBCA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1E5D5E41834FB29389B370 /* AVFoundation.framework */; };
-		89A08D06BDEA42D08790258D /* Pods_TimeSelfCareDataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD79EFB89FCFF1400762ED0 /* Pods_TimeSelfCareDataTests.framework */; };
 		9558CC222B9AE745B3BC9813 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F301820E7E82ACC89C85B876 /* AssetsLibrary.framework */; };
 		9E016BC32519896400877A62 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E016BC12519896400877A62 /* Shop.storyboard */; };
 		9E016BC42519896400877A62 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E016BC22519896400877A62 /* ShopViewController.swift */; };
@@ -62,6 +59,8 @@
 		9E183AD2266A17D200CB923B /* AddDeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183AC7266A17D100CB923B /* AddDeviceListViewController.swift */; };
 		9E183AD3266A17D200CB923B /* DeviceInstallationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183AC8266A17D100CB923B /* DeviceInstallationListViewController.swift */; };
 		9E183AD4266A17D200CB923B /* WifiDisableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183AC9266A17D100CB923B /* WifiDisableViewController.swift */; };
+		9E1AF93F26CC9DE2005B9FF4 /* LinkRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1AF93D26CC9DE2005B9FF4 /* LinkRate.m */; };
+		9E1AF94026CC9DE2005B9FF4 /* SwiftyPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1AF93E26CC9DE2005B9FF4 /* SwiftyPing.swift */; };
 		9E1DF1B725FEF3CB0015524B /* MacAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1DF1B625FEF3CB0015524B /* MacAddress.swift */; };
 		9E1ED9F025EF8ABD00956138 /* NotAvailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1ED9EF25EF8ABC00956138 /* NotAvailableViewController.swift */; };
 		9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21C0E025DE45AF008B3824 /* PCProfileViewController.swift */; };
@@ -79,8 +78,6 @@
 		9E36BB5825E539BB00E5575F /* SelectPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB5725E539BB00E5575F /* SelectPeriod.swift */; };
 		9E36BB5A25E542D600E5575F /* PeriodView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E36BB5925E542D600E5575F /* PeriodView.xib */; };
 		9E36BB5C25E5430000E5575F /* PeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36BB5B25E5430000E5575F /* PeriodView.swift */; };
-		9E3C6EB22697E5D000072B45 /* SwiftyPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C6EAF2697E5CF00072B45 /* SwiftyPing.swift */; };
-		9E3C6EB32697E5D000072B45 /* LinkRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E3C6EB02697E5CF00072B45 /* LinkRate.m */; };
 		9E41A39C260D7458000CECE7 /* DeviceInstallationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41A39B260D7458000CECE7 /* DeviceInstallationHelper.swift */; };
 		9E4AB95225DFA79000F1DEFE /* IsHuaweiDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */; };
 		9E4AB95A25DFF97B00F1DEFE /* FunctionSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E5F789925D40C0200C4D388 /* FunctionSDK.framework */; };
@@ -110,7 +107,6 @@
 		9E8FC9C6253572C3008936D2 /* HUAE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC9C5253572C3008936D2 /* HUAE.swift */; };
 		9E9BBA092465516D00F2514D /* FCTheme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E9BBA082465516D00F2514D /* FCTheme.plist */; };
 		9E9CAD5325F9F3F9001F3860 /* ChangeWifiNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9CAD5225F9F3F9001F3860 /* ChangeWifiNameViewController.swift */; };
-		9E9D6ABA25ECA75500BF2FA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E9D6AB925ECA75500BF2FA0 /* GoogleService-Info.plist */; };
 		9E9EB76324D797FE00D0D342 /* DiagnosticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9EB76124D797FE00D0D342 /* DiagnosticsViewController.swift */; };
 		9E9EB76424D797FE00D0D342 /* Diagnostics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9EB76224D797FE00D0D342 /* Diagnostics.storyboard */; };
 		9E9EB76624D7985900D0D342 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9EB76524D7985900D0D342 /* Diagnostics.swift */; };
@@ -128,6 +124,9 @@
 		9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */; };
 		9ECA46452436C7AE00EB0DB8 /* VoucherLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */; };
 		9ECA46462436C7AE00EB0DB8 /* VoucherLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */; };
+		9EDE11D126B8F50B00C8850E /* PppoeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE11CF26B8F50B00C8850E /* PppoeViewController.swift */; };
+		9EDE11D226B8F50B00C8850E /* Pppoe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EDE11D026B8F50B00C8850E /* Pppoe.storyboard */; };
+		9EDE11D426B90BF400C8850E /* PppoeAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDE11D326B90BF400C8850E /* PppoeAlertViewController.swift */; };
 		9EDFA8B325ECE25F00C18ED0 /* OpenSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFA8B225ECE25F00C18ED0 /* OpenSettingViewController.swift */; };
 		9EE0B95B246512A80073288B /* LiveChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EE0B95A246512A70073288B /* LiveChatView.xib */; };
 		9EE0B95D246513290073288B /* LiveChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0B95C246513290073288B /* LiveChatView.swift */; };
@@ -141,8 +140,8 @@
 		9EFC438425EE135B009AF8C2 /* WifiConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC438325EE135B009AF8C2 /* WifiConfigurationViewController.swift */; };
 		9EFC438625EE2CB0009AF8C2 /* ConnectedWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC438525EE2CB0009AF8C2 /* ConnectedWifiViewController.swift */; };
 		9EFC438825EE3526009AF8C2 /* ChangeWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC438725EE3526009AF8C2 /* ChangeWifiViewController.swift */; };
-		D4A8819587A917C3067B1D18 /* Pods_TimeSelfCareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CDCBA8EF230CDEBC70D085C /* Pods_TimeSelfCareUITests.framework */; };
 		DAB87017C3B94A15F4436D20 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBFC4B4383EEC1C068E0A9D /* BuddyBuildSDK.framework */; };
+		DFF6C089B0C16AB3A23D00FC /* Pods_TimeSelfCareData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E984B02BA8EC6EAB2EC4942A /* Pods_TimeSelfCareData.framework */; };
 		E203036223617F8200F27028 /* TestAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E203036123617F8200F27028 /* TestAppDelegate.swift */; };
 		E203036423617FE500F27028 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E203036323617FE500F27028 /* main.swift */; };
 		E20451DE2212A5B700847AE4 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20451DD2212A5B700847AE4 /* SideBarTableViewController.swift */; };
@@ -167,7 +166,6 @@
 		E22050E61FCD4EE4004D5B10 /* DIN.plist in Resources */ = {isa = PBXBuildFile; fileRef = E22050E51FCD4EE4004D5B10 /* DIN.plist */; };
 		E22050E81FCD50E9004D5B10 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22050E71FCD50E9004D5B10 /* UIFont+.swift */; };
 		E2217F081FCB250600E9056B /* ScanCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2217F071FCB250600E9056B /* ScanCardViewController.swift */; };
-		E22A5B5322C5A4E600C99ED2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E22A5B5222C5A4E500C99ED2 /* GoogleService-Info.plist */; };
 		E22D054620BBE40300C38B54 /* BadConnection.json in Resources */ = {isa = PBXBuildFile; fileRef = E22D054320BBE40200C38B54 /* BadConnection.json */; };
 		E22D054720BBE40300C38B54 /* GoodConnection.json in Resources */ = {isa = PBXBuildFile; fileRef = E22D054420BBE40200C38B54 /* GoodConnection.json */; };
 		E22D054820BBE40300C38B54 /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = E22D054520BBE40300C38B54 /* Loading.json */; };
@@ -267,7 +265,10 @@
 		E2FDB2D720AACC37002F0A66 /* UIStoryboard+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FDB2D620AACC37002F0A66 /* UIStoryboard+.swift */; };
 		E2FDB2DB20AAD98D002F0A66 /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FDB2DA20AAD98D002F0A66 /* NotificationSetting.swift */; };
 		E2FDB2DD20AAE0BE002F0A66 /* NotificationSettingDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FDB2DC20AAE0BE002F0A66 /* NotificationSettingDataController.swift */; };
+		E4155FE4984832FA1A768384 /* Pods_TimeSelfCareUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 319808984940DC14AB2F28BB /* Pods_TimeSelfCareUITests.framework */; };
+		E44671692BE2A29548B74A8D /* Pods_TimeSelfCareDataTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 285C1FB44C10388B37F5E23C /* Pods_TimeSelfCareDataTests.framework */; };
 		E7405981203C439B5ACD9CE9 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5E86CE51E795643CEC23B7 /* CoreMedia.framework */; };
+		E7F11AEC7F35701BD987A650 /* Pods_TimeSelfCareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7372BC7C420CBFED443DEA /* Pods_TimeSelfCareTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -325,6 +326,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01AA6DE29AB4A6987AF8A931 /* Pods-TimeSelfCareData.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareData.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareData/Pods-TimeSelfCareData.release.xcconfig"; sourceTree = "<group>"; };
 		0A3DA9F81FE3CEBB004E304A /* TIMEWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIMEWebViewController.swift; sourceTree = "<group>"; };
 		0A8E01EE1FA9B50A00CA27A9 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		0A8E01EF1FA9B50A00CA27A9 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -346,14 +348,15 @@
 		0A9433851FAACE2900AA0DFF /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		0D2CC50C123745B40460E00F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		0E1E5D5E41834FB29389B370 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		1CDCBA8EF230CDEBC70D085C /* Pods_TimeSelfCareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		253640C8724C4E50FCF6BF62 /* Pods-TimeSelfCareDataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.debug.xcconfig"; sourceTree = "<group>"; };
-		289CD312C7937E23F6C76AE8 /* Pods-TimeSelfCareData.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareData.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareData/Pods-TimeSelfCareData.release.xcconfig"; sourceTree = "<group>"; };
-		3CD79EFB89FCFF1400762ED0 /* Pods_TimeSelfCareDataTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareDataTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		285C1FB44C10388B37F5E23C /* Pods_TimeSelfCareDataTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareDataTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F1FFAA6776D9ABC83575958 /* Pods-TimeSelfCare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.debug.xcconfig"; sourceTree = "<group>"; };
+		319808984940DC14AB2F28BB /* Pods_TimeSelfCareUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38A23BDCF60205970279DB4A /* Pods-TimeSelfCareData.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareData.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareData/Pods-TimeSelfCareData.staging.xcconfig"; sourceTree = "<group>"; };
+		38E2CB8905A169B9E3A31050 /* Pods-TimeSelfCare.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.staging.xcconfig"; sourceTree = "<group>"; };
 		41A79D2A24403EA0002A9C4B /* AppVersionModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionModal.swift; sourceTree = "<group>"; };
-		4C151B20EF2F1CAA5BDD7C29 /* Pods-TimeSelfCareTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.staging.xcconfig"; sourceTree = "<group>"; };
-		533449446A3BF3B1DAA45308 /* Pods-TimeSelfCareDataTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.staging.xcconfig"; sourceTree = "<group>"; };
-		59B79629D864BA3DDA294DAF /* Pods-TimeSelfCareDataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.release.xcconfig"; sourceTree = "<group>"; };
+		4398D7DCC24D867348F6611D /* Pods-TimeSelfCareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4AB39C0F9A08C33DBEF6E5DF /* Pods-TimeSelfCare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.release.xcconfig"; sourceTree = "<group>"; };
+		4F137F7671C6638E079416F3 /* Pods-TimeSelfCareDataTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5A20BF421FE98EFC00ECFF78 /* TimeBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBaseViewController.swift; sourceTree = "<group>"; };
 		5A478FFA1FA972070074B5D4 /* TimeSelfCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeSelfCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A478FFD1FA972080074B5D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -371,10 +374,9 @@
 		5A4790331FA972390074B5D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A4790381FA972390074B5D4 /* TimeSelfCareDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeSelfCareDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A47903F1FA972390074B5D4 /* TimeSelfCareDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelfCareDataTests.swift; sourceTree = "<group>"; };
-		69A47078622F33E761D81F4D /* Pods-TimeSelfCare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.debug.xcconfig"; sourceTree = "<group>"; };
+		63070DDEA9BA59739E24DE65 /* Pods-TimeSelfCareDataTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.release.xcconfig"; sourceTree = "<group>"; };
 		6D5E86CE51E795643CEC23B7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		6FDBD7549FEB123AB3DF0810 /* Pods-TimeSelfCareData.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareData.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareData/Pods-TimeSelfCareData.staging.xcconfig"; sourceTree = "<group>"; };
-		96FCC1EC61C3BAC6C4E4DD74 /* Pods_TimeSelfCareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F4B79EFEDCC6B2AEED5ADEE /* Pods-TimeSelfCareDataTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareDataTests.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareDataTests/Pods-TimeSelfCareDataTests.staging.xcconfig"; sourceTree = "<group>"; };
 		9E016BC12519896400877A62 /* Shop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
 		9E016BC22519896400877A62 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		9E0252E1255E8C96001CF6FC /* D-DIN-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "D-DIN-Italic.ttf"; sourceTree = "<group>"; };
@@ -389,6 +391,11 @@
 		9E183AC7266A17D100CB923B /* AddDeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDeviceListViewController.swift; sourceTree = "<group>"; };
 		9E183AC8266A17D100CB923B /* DeviceInstallationListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInstallationListViewController.swift; sourceTree = "<group>"; };
 		9E183AC9266A17D100CB923B /* WifiDisableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WifiDisableViewController.swift; sourceTree = "<group>"; };
+		9E19CDFE26B0111100FD9184 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E19CE0026B0111100FD9184 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E1AF93C26CC9DE2005B9FF4 /* LinkRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkRate.h; sourceTree = "<group>"; };
+		9E1AF93D26CC9DE2005B9FF4 /* LinkRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkRate.m; sourceTree = "<group>"; };
+		9E1AF93E26CC9DE2005B9FF4 /* SwiftyPing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyPing.swift; sourceTree = "<group>"; };
 		9E1DF1B625FEF3CB0015524B /* MacAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAddress.swift; sourceTree = "<group>"; };
 		9E1ED9EF25EF8ABC00956138 /* NotAvailableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotAvailableViewController.swift; sourceTree = "<group>"; };
 		9E21C0E025DE45AF008B3824 /* PCProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCProfileViewController.swift; sourceTree = "<group>"; };
@@ -406,9 +413,6 @@
 		9E36BB5725E539BB00E5575F /* SelectPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPeriod.swift; sourceTree = "<group>"; };
 		9E36BB5925E542D600E5575F /* PeriodView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeriodView.xib; sourceTree = "<group>"; };
 		9E36BB5B25E5430000E5575F /* PeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodView.swift; sourceTree = "<group>"; };
-		9E3C6EAF2697E5CF00072B45 /* SwiftyPing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyPing.swift; sourceTree = "<group>"; };
-		9E3C6EB02697E5CF00072B45 /* LinkRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkRate.m; sourceTree = "<group>"; };
-		9E3C6EB12697E5D000072B45 /* LinkRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkRate.h; sourceTree = "<group>"; };
 		9E41A39B260D7458000CECE7 /* DeviceInstallationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInstallationHelper.swift; sourceTree = "<group>"; };
 		9E4AB95125DFA79000F1DEFE /* IsHuaweiDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsHuaweiDevice.swift; sourceTree = "<group>"; };
 		9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuaweiHelper.swift; sourceTree = "<group>"; };
@@ -436,7 +440,6 @@
 		9E8FC9C5253572C3008936D2 /* HUAE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUAE.swift; sourceTree = "<group>"; };
 		9E9BBA082465516D00F2514D /* FCTheme.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FCTheme.plist; sourceTree = "<group>"; };
 		9E9CAD5225F9F3F9001F3860 /* ChangeWifiNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWifiNameViewController.swift; sourceTree = "<group>"; };
-		9E9D6AB925ECA75500BF2FA0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E9EB76124D797FE00D0D342 /* DiagnosticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticsViewController.swift; sourceTree = "<group>"; };
 		9E9EB76224D797FE00D0D342 /* Diagnostics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Diagnostics.storyboard; sourceTree = "<group>"; };
 		9E9EB76524D7985900D0D342 /* Diagnostics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
@@ -458,6 +461,9 @@
 		9ECA463F2436C79F00EB0DB8 /* EVoucherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EVoucherView.xib; sourceTree = "<group>"; };
 		9ECA46432436C7AE00EB0DB8 /* VoucherLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherLabel.xib; sourceTree = "<group>"; };
 		9ECA46442436C7AE00EB0DB8 /* VoucherLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherLabel.swift; sourceTree = "<group>"; };
+		9EDE11CF26B8F50B00C8850E /* PppoeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PppoeViewController.swift; sourceTree = "<group>"; };
+		9EDE11D026B8F50B00C8850E /* Pppoe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pppoe.storyboard; sourceTree = "<group>"; };
+		9EDE11D326B90BF400C8850E /* PppoeAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PppoeAlertViewController.swift; sourceTree = "<group>"; };
 		9EDFA8B225ECE25F00C18ED0 /* OpenSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSettingViewController.swift; sourceTree = "<group>"; };
 		9EE0B95A246512A70073288B /* LiveChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiveChatView.xib; sourceTree = "<group>"; };
 		9EE0B95C246513290073288B /* LiveChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveChatView.swift; sourceTree = "<group>"; };
@@ -471,17 +477,13 @@
 		9EFC438325EE135B009AF8C2 /* WifiConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConfigurationViewController.swift; sourceTree = "<group>"; };
 		9EFC438525EE2CB0009AF8C2 /* ConnectedWifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedWifiViewController.swift; sourceTree = "<group>"; };
 		9EFC438725EE3526009AF8C2 /* ChangeWifiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeWifiViewController.swift; sourceTree = "<group>"; };
+		9F41ABB6B5EEBDF5C13FF8B9 /* Pods-TimeSelfCareUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F604557CEE62B598F117893 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		9FEACD270CEEE69418FF12D6 /* Pods-TimeSelfCareUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.staging.xcconfig"; sourceTree = "<group>"; };
-		A14D80E5761DB47860B2BCB6 /* Pods_TimeSelfCare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF101EFBA11EF2D7B9488446 /* Pods-TimeSelfCareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.release.xcconfig"; sourceTree = "<group>"; };
-		AF1F09903EABCCB914DC8F08 /* Pods-TimeSelfCareUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		B4D52FA58BF565011F4BA1BD /* Pods-TimeSelfCareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B7A59FDB89977F006EA2E37E /* Pods-TimeSelfCareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.release.xcconfig"; sourceTree = "<group>"; };
-		BB71AA91C66DF91C1138E610 /* Pods-TimeSelfCare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.release.xcconfig"; sourceTree = "<group>"; };
-		C76243DB92487F0434C6D345 /* Pods-TimeSelfCare.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCare.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare.staging.xcconfig"; sourceTree = "<group>"; };
-		D1A7CC3D8B3683F1A685B415 /* Pods_TimeSelfCareData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAA51A9106DF1DFA52444464 /* Pods_TimeSelfCare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB9F9993BFE4C2B5DA5724F3 /* Pods-TimeSelfCareTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.staging.xcconfig"; sourceTree = "<group>"; };
+		CEBEBF925F42F3CE69C7846D /* Pods-TimeSelfCareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareTests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareTests/Pods-TimeSelfCareTests.release.xcconfig"; sourceTree = "<group>"; };
 		D74C6D95273E7390F085E945 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D82CA3564275056E26E8D212 /* Pods-TimeSelfCareData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareData.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareData/Pods-TimeSelfCareData.debug.xcconfig"; sourceTree = "<group>"; };
 		E203036123617F8200F27028 /* TestAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppDelegate.swift; sourceTree = "<group>"; };
 		E203036323617FE500F27028 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E20451DD2212A5B700847AE4 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
@@ -507,7 +509,6 @@
 		E22050E51FCD4EE4004D5B10 /* DIN.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DIN.plist; sourceTree = "<group>"; };
 		E22050E71FCD50E9004D5B10 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		E2217F071FCB250600E9056B /* ScanCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCardViewController.swift; sourceTree = "<group>"; };
-		E22A5B5222C5A4E500C99ED2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E22D054320BBE40200C38B54 /* BadConnection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BadConnection.json; sourceTree = "<group>"; };
 		E22D054420BBE40200C38B54 /* GoodConnection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GoodConnection.json; sourceTree = "<group>"; };
 		E22D054520BBE40300C38B54 /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
@@ -609,11 +610,14 @@
 		E2FDB2D620AACC37002F0A66 /* UIStoryboard+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+.swift"; sourceTree = "<group>"; };
 		E2FDB2DA20AAD98D002F0A66 /* NotificationSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSetting.swift; sourceTree = "<group>"; };
 		E2FDB2DC20AAE0BE002F0A66 /* NotificationSettingDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingDataController.swift; sourceTree = "<group>"; };
+		E984B02BA8EC6EAB2EC4942A /* Pods_TimeSelfCareData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBBFC4B4383EEC1C068E0A9D /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		F02BAAA47F5FA637DF163E1F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F301820E7E82ACC89C85B876 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		F391CEA22DA4E818AC9B2334 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		FF06EE3228DD43BD583555BE /* Pods-TimeSelfCareData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareData.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareData/Pods-TimeSelfCareData.debug.xcconfig"; sourceTree = "<group>"; };
+		F8B451646437765279B4B658 /* Pods-TimeSelfCareUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.staging.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.staging.xcconfig"; sourceTree = "<group>"; };
+		F8FE06C58F7857F2BF18FAD9 /* Pods-TimeSelfCareUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareUITests.release.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareUITests/Pods-TimeSelfCareUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FA7372BC7C420CBFED443DEA /* Pods_TimeSelfCareTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCareTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -634,7 +638,7 @@
 				E7405981203C439B5ACD9CE9 /* CoreMedia.framework in Frameworks */,
 				4D0A9757D0386117A572CDEA /* CoreVideo.framework in Frameworks */,
 				9E4AB95A25DFF97B00F1DEFE /* FunctionSDK.framework in Frameworks */,
-				3665715977F9D1DD4CE17D8A /* Pods_TimeSelfCare.framework in Frameworks */,
+				3DDA3A4B042556A541E2C581 /* Pods_TimeSelfCare.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,7 +646,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FBD5210205ECA07F9456029 /* Pods_TimeSelfCareTests.framework in Frameworks */,
+				E7F11AEC7F35701BD987A650 /* Pods_TimeSelfCareTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +654,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4A8819587A917C3067B1D18 /* Pods_TimeSelfCareUITests.framework in Frameworks */,
+				E4155FE4984832FA1A768384 /* Pods_TimeSelfCareUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,7 +662,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4243AB81414C7A36D2BB0763 /* Pods_TimeSelfCareData.framework in Frameworks */,
+				DFF6C089B0C16AB3A23D00FC /* Pods_TimeSelfCareData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,7 +671,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A4790391FA972390074B5D4 /* TimeSelfCareData.framework in Frameworks */,
-				89A08D06BDEA42D08790258D /* Pods_TimeSelfCareDataTests.framework in Frameworks */,
+				E44671692BE2A29548B74A8D /* Pods_TimeSelfCareDataTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +681,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9EDE11CE26B8F50B00C8850E /* PPPOE */,
 				9EE460D8260043F70040D8CE /* DeviceInstallation */,
 				9E8BB093268076810091D4D3 /* Blacklist */,
 				9EFC438025EE127F009AF8C2 /* WifiConfiguration */,
@@ -823,11 +828,11 @@
 				0E1E5D5E41834FB29389B370 /* AVFoundation.framework */,
 				6D5E86CE51E795643CEC23B7 /* CoreMedia.framework */,
 				0D2CC50C123745B40460E00F /* CoreVideo.framework */,
-				A14D80E5761DB47860B2BCB6 /* Pods_TimeSelfCare.framework */,
-				D1A7CC3D8B3683F1A685B415 /* Pods_TimeSelfCareData.framework */,
-				3CD79EFB89FCFF1400762ED0 /* Pods_TimeSelfCareDataTests.framework */,
-				96FCC1EC61C3BAC6C4E4DD74 /* Pods_TimeSelfCareTests.framework */,
-				1CDCBA8EF230CDEBC70D085C /* Pods_TimeSelfCareUITests.framework */,
+				AAA51A9106DF1DFA52444464 /* Pods_TimeSelfCare.framework */,
+				E984B02BA8EC6EAB2EC4942A /* Pods_TimeSelfCareData.framework */,
+				285C1FB44C10388B37F5E23C /* Pods_TimeSelfCareDataTests.framework */,
+				FA7372BC7C420CBFED443DEA /* Pods_TimeSelfCareTests.framework */,
+				319808984940DC14AB2F28BB /* Pods_TimeSelfCareUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -835,21 +840,21 @@
 		4755BDF7B7879FA8A4DACC2B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				69A47078622F33E761D81F4D /* Pods-TimeSelfCare.debug.xcconfig */,
-				BB71AA91C66DF91C1138E610 /* Pods-TimeSelfCare.release.xcconfig */,
-				C76243DB92487F0434C6D345 /* Pods-TimeSelfCare.staging.xcconfig */,
-				FF06EE3228DD43BD583555BE /* Pods-TimeSelfCareData.debug.xcconfig */,
-				289CD312C7937E23F6C76AE8 /* Pods-TimeSelfCareData.release.xcconfig */,
-				6FDBD7549FEB123AB3DF0810 /* Pods-TimeSelfCareData.staging.xcconfig */,
-				253640C8724C4E50FCF6BF62 /* Pods-TimeSelfCareDataTests.debug.xcconfig */,
-				59B79629D864BA3DDA294DAF /* Pods-TimeSelfCareDataTests.release.xcconfig */,
-				533449446A3BF3B1DAA45308 /* Pods-TimeSelfCareDataTests.staging.xcconfig */,
-				B4D52FA58BF565011F4BA1BD /* Pods-TimeSelfCareTests.debug.xcconfig */,
-				B7A59FDB89977F006EA2E37E /* Pods-TimeSelfCareTests.release.xcconfig */,
-				4C151B20EF2F1CAA5BDD7C29 /* Pods-TimeSelfCareTests.staging.xcconfig */,
-				AF1F09903EABCCB914DC8F08 /* Pods-TimeSelfCareUITests.debug.xcconfig */,
-				AF101EFBA11EF2D7B9488446 /* Pods-TimeSelfCareUITests.release.xcconfig */,
-				9FEACD270CEEE69418FF12D6 /* Pods-TimeSelfCareUITests.staging.xcconfig */,
+				2F1FFAA6776D9ABC83575958 /* Pods-TimeSelfCare.debug.xcconfig */,
+				4AB39C0F9A08C33DBEF6E5DF /* Pods-TimeSelfCare.release.xcconfig */,
+				38E2CB8905A169B9E3A31050 /* Pods-TimeSelfCare.staging.xcconfig */,
+				D82CA3564275056E26E8D212 /* Pods-TimeSelfCareData.debug.xcconfig */,
+				01AA6DE29AB4A6987AF8A931 /* Pods-TimeSelfCareData.release.xcconfig */,
+				38A23BDCF60205970279DB4A /* Pods-TimeSelfCareData.staging.xcconfig */,
+				4F137F7671C6638E079416F3 /* Pods-TimeSelfCareDataTests.debug.xcconfig */,
+				63070DDEA9BA59739E24DE65 /* Pods-TimeSelfCareDataTests.release.xcconfig */,
+				8F4B79EFEDCC6B2AEED5ADEE /* Pods-TimeSelfCareDataTests.staging.xcconfig */,
+				4398D7DCC24D867348F6611D /* Pods-TimeSelfCareTests.debug.xcconfig */,
+				CEBEBF925F42F3CE69C7846D /* Pods-TimeSelfCareTests.release.xcconfig */,
+				AB9F9993BFE4C2B5DA5724F3 /* Pods-TimeSelfCareTests.staging.xcconfig */,
+				9F41ABB6B5EEBDF5C13FF8B9 /* Pods-TimeSelfCareUITests.debug.xcconfig */,
+				F8FE06C58F7857F2BF18FAD9 /* Pods-TimeSelfCareUITests.release.xcconfig */,
+				F8B451646437765279B4B658 /* Pods-TimeSelfCareUITests.staging.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -886,7 +891,7 @@
 		5A478FFC1FA972070074B5D4 /* TimeSelfCare */ = {
 			isa = PBXGroup;
 			children = (
-				9EDFA8AF25ECBA2300C18ED0 /* Firebase */,
+				9E19CDFC26B0111000FD9184 /* Firebase */,
 				9E4AB95925DFF8D100F1DEFE /* HuaweiHelper */,
 				9EC13561241B6E1200E59C44 /* APTSidebarNavigationController */,
 				E2626D5520A965A200891953 /* TimeSelfCare.entitlements */,
@@ -965,6 +970,31 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		9E19CDFC26B0111000FD9184 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				9E19CDFD26B0111100FD9184 /* Prod */,
+				9E19CDFF26B0111100FD9184 /* Dev */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		9E19CDFD26B0111100FD9184 /* Prod */ = {
+			isa = PBXGroup;
+			children = (
+				9E19CDFE26B0111100FD9184 /* GoogleService-Info.plist */,
+			);
+			path = Prod;
+			sourceTree = "<group>";
+		};
+		9E19CDFF26B0111100FD9184 /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				9E19CE0026B0111100FD9184 /* GoogleService-Info.plist */,
+			);
+			path = Dev;
+			sourceTree = "<group>";
+		};
 		9E21C0E225DE9E59008B3824 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1000,9 +1030,9 @@
 		9E4AB95925DFF8D100F1DEFE /* HuaweiHelper */ = {
 			isa = PBXGroup;
 			children = (
-				9E3C6EB12697E5D000072B45 /* LinkRate.h */,
-				9E3C6EB02697E5CF00072B45 /* LinkRate.m */,
-				9E3C6EAF2697E5CF00072B45 /* SwiftyPing.swift */,
+				9E1AF93C26CC9DE2005B9FF4 /* LinkRate.h */,
+				9E1AF93D26CC9DE2005B9FF4 /* LinkRate.m */,
+				9E1AF93E26CC9DE2005B9FF4 /* SwiftyPing.swift */,
 				9E4AB95E25DFFA0800F1DEFE /* HuaweiHelper.swift */,
 				9E4AB96025E00EE600F1DEFE /* Units.swift */,
 				9E41A39B260D7458000CECE7 /* DeviceInstallationHelper.swift */,
@@ -1114,29 +1144,14 @@
 			path = VoucherLabel;
 			sourceTree = "<group>";
 		};
-		9EDFA8AF25ECBA2300C18ED0 /* Firebase */ = {
+		9EDE11CE26B8F50B00C8850E /* PPPOE */ = {
 			isa = PBXGroup;
 			children = (
-				9EDFA8B125ECBA3200C18ED0 /* Prod */,
-				9EDFA8B025ECBA2A00C18ED0 /* Dev */,
+				9EDE11CF26B8F50B00C8850E /* PppoeViewController.swift */,
+				9EDE11D026B8F50B00C8850E /* Pppoe.storyboard */,
+				9EDE11D326B90BF400C8850E /* PppoeAlertViewController.swift */,
 			);
-			path = Firebase;
-			sourceTree = "<group>";
-		};
-		9EDFA8B025ECBA2A00C18ED0 /* Dev */ = {
-			isa = PBXGroup;
-			children = (
-				9E9D6AB925ECA75500BF2FA0 /* GoogleService-Info.plist */,
-			);
-			path = Dev;
-			sourceTree = "<group>";
-		};
-		9EDFA8B125ECBA3200C18ED0 /* Prod */ = {
-			isa = PBXGroup;
-			children = (
-				E22A5B5222C5A4E500C99ED2 /* GoogleService-Info.plist */,
-			);
-			path = Prod;
+			path = PPPOE;
 			sourceTree = "<group>";
 		};
 		9EE0B959246512A70073288B /* LiveChat */ = {
@@ -1451,16 +1466,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A4790221FA972080074B5D4 /* Build configuration list for PBXNativeTarget "TimeSelfCare" */;
 			buildPhases = (
-				D51E5FF88D8546917C1A20CE /* [CP] Check Pods Manifest.lock */,
+				6FD78F8747EDFE3D28BEADB9 /* [CP] Check Pods Manifest.lock */,
 				5A478FF61FA972070074B5D4 /* Sources */,
 				5A478FF71FA972070074B5D4 /* Frameworks */,
+				9EDFA8AE25ECB9E100C18ED0 /* Setup Firebase Environment GoogleService-Info.plist */,
 				5A478FF81FA972070074B5D4 /* Resources */,
 				5A47904A1FA972390074B5D4 /* Embed Frameworks */,
 				E296C881208DDD9E003FABED /* SwiftLint */,
 				E22A5B5422C5C43400C99ED2 /* Crashlytics */,
-				9EDFA8AE25ECB9E100C18ED0 /* Setup Firebase Environment GoogleService-Info.plist */,
-				5BFF8CADB0332E648D50A7AD /* [CP] Embed Pods Frameworks */,
-				4AEE337EF2E1C68D63F72640 /* [CP] Copy Pods Resources */,
+				0B9767223D5647DB71DB6A0C /* [CP] Embed Pods Frameworks */,
+				9B981EB17BF629F403B65A48 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1476,7 +1491,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A4790251FA972080074B5D4 /* Build configuration list for PBXNativeTarget "TimeSelfCareTests" */;
 			buildPhases = (
-				CCA0D069C50C2DAE754A8EE8 /* [CP] Check Pods Manifest.lock */,
+				2A0B267FF93160EAECDE3C64 /* [CP] Check Pods Manifest.lock */,
 				5A47900A1FA972080074B5D4 /* Sources */,
 				5A47900B1FA972080074B5D4 /* Frameworks */,
 				5A47900C1FA972080074B5D4 /* Resources */,
@@ -1495,7 +1510,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A4790281FA972080074B5D4 /* Build configuration list for PBXNativeTarget "TimeSelfCareUITests" */;
 			buildPhases = (
-				E63A283D06BFD808D325BD41 /* [CP] Check Pods Manifest.lock */,
+				582D4DB8B8C547785686F992 /* [CP] Check Pods Manifest.lock */,
 				5A4790151FA972080074B5D4 /* Sources */,
 				5A4790161FA972080074B5D4 /* Frameworks */,
 				5A4790171FA972080074B5D4 /* Resources */,
@@ -1514,7 +1529,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A4790471FA972390074B5D4 /* Build configuration list for PBXNativeTarget "TimeSelfCareData" */;
 			buildPhases = (
-				F7CA574B12EF8ECD85F43AB3 /* [CP] Check Pods Manifest.lock */,
+				2712F105A14069B6BEBA0FAC /* [CP] Check Pods Manifest.lock */,
 				5A47902B1FA972390074B5D4 /* Sources */,
 				5A47902C1FA972390074B5D4 /* Frameworks */,
 				5A47902D1FA972390074B5D4 /* Headers */,
@@ -1534,7 +1549,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A47904B1FA972390074B5D4 /* Build configuration list for PBXNativeTarget "TimeSelfCareDataTests" */;
 			buildPhases = (
-				317ABE791BB9F4A769768CF9 /* [CP] Check Pods Manifest.lock */,
+				A32C6F40E76C79444FFD2C8A /* [CP] Check Pods Manifest.lock */,
 				5A4790341FA972390074B5D4 /* Sources */,
 				5A4790351FA972390074B5D4 /* Frameworks */,
 				5A4790361FA972390074B5D4 /* Resources */,
@@ -1621,7 +1636,6 @@
 				E22050E41FCD4D17004D5B10 /* DIN-Light.ttf in Resources */,
 				9E0252E2255E8E2D001CF6FC /* D-DIN-Italic.ttf in Resources */,
 				E2F7225220CA47D800C5204D /* anim_notification_bell.json in Resources */,
-				E22A5B5322C5A4E600C99ED2 /* GoogleService-Info.plist in Resources */,
 				9E9BBA092465516D00F2514D /* FCTheme.plist in Resources */,
 				E2AD69D820AD12CB001D104E /* Performance.storyboard in Resources */,
 				9E8BB099268076820091D4D3 /* Blacklist.storyboard in Resources */,
@@ -1650,10 +1664,10 @@
 				E2AD92C91FC3AE2700138334 /* Summary.storyboard in Resources */,
 				9EAB2C0B249CBB0500F12A3C /* LiveChatAlert.storyboard in Resources */,
 				E2E84FE71FCEA87E0014CEAA /* DINCondensed-Bold.ttf in Resources */,
-				9E9D6ABA25ECA75500BF2FA0 /* GoogleService-Info.plist in Resources */,
 				0A8E01FA1FA9B50B00CA27A9 /* AuthMenu.storyboard in Resources */,
 				E22D054820BBE40300C38B54 /* Loading.json in Resources */,
 				9E21C0E425DE9EA3008B3824 /* BlockWebsiteView.xib in Resources */,
+				9EDE11D226B8F50B00C8850E /* Pppoe.storyboard in Resources */,
 				E274AD6D210711F700E62A42 /* Support.storyboard in Resources */,
 				E219AD9C1FB3D21E00A896FE /* Walkthrough.storyboard in Resources */,
 				E27CE9FC22CCB6CC00DD9340 /* RewardHeaderView.xib in Resources */,
@@ -1713,51 +1727,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
-		317ABE791BB9F4A769768CF9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TimeSelfCareDataTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4AEE337EF2E1C68D63F72640 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare-resources.sh",
-				"${PODS_ROOT}/FreshchatSDK/FreshchatSDK/FCResources.bundle",
-				"${PODS_ROOT}/FreshchatSDK/FreshchatSDK/FreshchatModels.bundle",
-				"${PODS_ROOT}/FreshchatSDK/FreshchatSDK/FCLocalization.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FCResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FreshchatModels.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FCLocalization.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5BFF8CADB0332E648D50A7AD /* [CP] Embed Pods Frameworks */ = {
+		0B9767223D5647DB71DB6A0C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1765,16 +1735,23 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ApptivityFramework/ApptivityFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebasePerformance/FirebasePerformance.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseABTesting/FirebaseABTesting.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig.framework",
+				"${BUILT_PRODUCTS_DIR}/FBAEMKit/FBAEMKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseDynamicLinks/FirebaseDynamicLinks.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Pulsator/Pulsator.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -1787,16 +1764,23 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ApptivityFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebasePerformance.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseABTesting.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseRemoteConfig.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBAEMKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit_Basics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseDynamicLinks.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulsator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -1811,7 +1795,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9EDFA8AE25ECB9E100C18ED0 /* Setup Firebase Environment GoogleService-Info.plist */ = {
+		2712F105A14069B6BEBA0FAC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1819,17 +1803,21 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Setup Firebase Environment GoogleService-Info.plist";
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimeSelfCareData-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist\n\n# Get references to dev and prod versions of the GoogleService-Info.plist\n# NOTE: These should only live on the file system and should NOT be part of the target (since we'll be adding them to the target manually)\nGOOGLESERVICE_INFO_DEV=${PROJECT_DIR}/${TARGET_NAME}/Firebase/Dev/${GOOGLESERVICE_INFO_PLIST}\nGOOGLESERVICE_INFO_PROD=${PROJECT_DIR}/${TARGET_NAME}/Firebase/Prod/${GOOGLESERVICE_INFO_PLIST}\n\n# Make sure the dev version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_DEV}\"\nif [ ! -f $GOOGLESERVICE_INFO_DEV ]\nthen\n    echo \"No Development GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\nPLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\necho \"Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${PLIST_DESTINATION}\"\n\n# Copy over the prod GoogleService-Info.plist for Release builds\nif [ \"${CONFIGURATION}\" == \"Release\" ]\nthen\n    echo \"Using ${GOOGLESERVICE_INFO_PROD}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"Using ${GOOGLESERVICE_INFO_DEV}\"\n    cp \"${GOOGLESERVICE_INFO_DEV}\" \"${PLIST_DESTINATION}\"\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
-		CCA0D069C50C2DAE754A8EE8 /* [CP] Check Pods Manifest.lock */ = {
+		2A0B267FF93160EAECDE3C64 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1851,7 +1839,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D51E5FF88D8546917C1A20CE /* [CP] Check Pods Manifest.lock */ = {
+		582D4DB8B8C547785686F992 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimeSelfCareUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FD78F8747EDFE3D28BEADB9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1867,6 +1877,68 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-TimeSelfCare-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B981EB17BF629F403B65A48 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare-resources.sh",
+				"${PODS_ROOT}/FreshchatSDK/FreshchatSDK/FCResources.bundle",
+				"${PODS_ROOT}/FreshchatSDK/FreshchatSDK/FreshchatModels.bundle",
+				"${PODS_ROOT}/FreshchatSDK/FreshchatSDK/FCLocalization.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FCResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FreshchatModels.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FCLocalization.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TimeSelfCare/Pods-TimeSelfCare-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EDFA8AE25ECB9E100C18ED0 /* Setup Firebase Environment GoogleService-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Setup Firebase Environment GoogleService-Info.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist\n\n# Get references to dev and prod versions of the GoogleService-Info.plist\n# NOTE: These should only live on the file system and should NOT be part of the target (since we'll be adding them to the target manually)\nGOOGLESERVICE_INFO_DEV=${PROJECT_DIR}/${TARGET_NAME}/Firebase/Dev/${GOOGLESERVICE_INFO_PLIST}\nGOOGLESERVICE_INFO_PROD=${PROJECT_DIR}/${TARGET_NAME}/Firebase/Prod/${GOOGLESERVICE_INFO_PLIST}\n\n# Make sure the dev version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_DEV}\"\nif [ ! -f $GOOGLESERVICE_INFO_DEV ]\nthen\n    echo \"No Development GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\nPLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\necho \"Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${PLIST_DESTINATION}\"\n\n# Copy over the prod GoogleService-Info.plist for Release builds\nif [ \"${CONFIGURATION}\" == \"Release\" ]\nthen\n    echo \"Using ${GOOGLESERVICE_INFO_PROD}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"Using ${GOOGLESERVICE_INFO_DEV}\"\n    cp \"${GOOGLESERVICE_INFO_DEV}\" \"${PLIST_DESTINATION}\"\nfi\n";
+		};
+		A32C6F40E76C79444FFD2C8A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TimeSelfCareDataTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1906,50 +1978,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		E63A283D06BFD808D325BD41 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TimeSelfCareUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F7CA574B12EF8ECD85F43AB3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TimeSelfCareData-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1985,6 +2013,7 @@
 				E219AD9E1FB3D23900A896FE /* WalkthroughViewController.swift in Sources */,
 				9EC1356D241B6E1200E59C44 /* APTSidebarNavigationControllerPushSegue.m in Sources */,
 				9E36BB4D25E3F0C100E5575F /* PCPeriodViewController.swift in Sources */,
+				9EDE11D426B90BF400C8850E /* PppoeAlertViewController.swift in Sources */,
 				9E183AD0266A17D200CB923B /* TurnOnDeviceViewController.swift in Sources */,
 				E2217F081FCB250600E9056B /* ScanCardViewController.swift in Sources */,
 				9E8FC9C325357255008936D2 /* ReferViewController.swift in Sources */,
@@ -1999,6 +2028,7 @@
 				E21CF72F1FC674E900F13FAF /* AutoDebitViewController.swift in Sources */,
 				5A20BF431FE98EFC00ECFF78 /* TimeBaseViewController.swift in Sources */,
 				E2AD92C51FC3A58C00138334 /* AddOnViewController.swift in Sources */,
+				9E1AF94026CC9DE2005B9FF4 /* SwiftyPing.swift in Sources */,
 				E2A8E8481FCE543400EA5DF2 /* ChangePasswordViewController.swift in Sources */,
 				E2610F791FC51F8D00959D85 /* PaymentSummaryViewController.swift in Sources */,
 				9ECA46402436C79F00EB0DB8 /* EVoucherView.swift in Sources */,
@@ -2012,11 +2042,9 @@
 				0A3DA9F91FE3CEBB004E304A /* TIMEWebViewController.swift in Sources */,
 				9E183AD3266A17D200CB923B /* DeviceInstallationListViewController.swift in Sources */,
 				E274AD69210711F700E62A42 /* TicketListViewController.swift in Sources */,
-				9E3C6EB22697E5D000072B45 /* SwiftyPing.swift in Sources */,
 				E26CC2DD210F039F00FF7875 /* SelectedImageCell.swift in Sources */,
 				E2FB110F22CC95EC000FED93 /* RewardViewController.swift in Sources */,
 				E20A71841FD5008100938766 /* InvoiceCell.swift in Sources */,
-				9E3C6EB32697E5D000072B45 /* LinkRate.m in Sources */,
 				E2480B3F2112A3CF00555A19 /* ConversationAttachmentCell.swift in Sources */,
 				E27CE9FE22CCBF2200DD9340 /* RewardCell.swift in Sources */,
 				9E8FC9BE25357255008936D2 /* ReferralTableViewCell.swift in Sources */,
@@ -2079,7 +2107,9 @@
 				9E8FC9C225357255008936D2 /* ReferralViewController.swift in Sources */,
 				E20451DE2212A5B700847AE4 /* SideBarTableViewController.swift in Sources */,
 				E274AD64210711F700E62A42 /* AddAttachmentCell.swift in Sources */,
+				9EDE11D126B8F50B00C8850E /* PppoeViewController.swift in Sources */,
 				E22050D81FCCF984004D5B10 /* AddOnCell.swift in Sources */,
+				9E1AF93F26CC9DE2005B9FF4 /* LinkRate.m in Sources */,
 				9E016BC42519896400877A62 /* ShopViewController.swift in Sources */,
 				E2AD69DA20AD12E2001D104E /* PerformanceViewController.swift in Sources */,
 				9E183ACE266A17D200CB923B /* PairingSuccessViewController.swift in Sources */,
@@ -2339,14 +2369,14 @@
 		};
 		5A4790231FA972080074B5D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69A47078622F33E761D81F4D /* Pods-TimeSelfCare.debug.xcconfig */;
+			baseConfigurationReference = 2F1FFAA6776D9ABC83575958 /* Pods-TimeSelfCare.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TimeSelfCare/TimeSelfCare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 834;
+				CURRENT_PROJECT_VERSION = 838;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				ENABLE_BITCODE = NO;
@@ -2357,9 +2387,9 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.0.1;
+				MARKETING_VERSION = 5.1.1;
 				OTHER_CFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeSelfCare/Bridging-Header.h";
@@ -2371,7 +2401,7 @@
 		};
 		5A4790241FA972080074B5D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB71AA91C66DF91C1138E610 /* Pods-TimeSelfCare.release.xcconfig */;
+			baseConfigurationReference = 4AB39C0F9A08C33DBEF6E5DF /* Pods-TimeSelfCare.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2379,7 +2409,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 834;
+				CURRENT_PROJECT_VERSION = 838;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2389,7 +2419,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.0.1;
+				MARKETING_VERSION = 5.1.1;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2403,7 +2433,7 @@
 		};
 		5A4790261FA972080074B5D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4D52FA58BF565011F4BA1BD /* Pods-TimeSelfCareTests.debug.xcconfig */;
+			baseConfigurationReference = 4398D7DCC24D867348F6611D /* Pods-TimeSelfCareTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -2420,7 +2450,7 @@
 		};
 		5A4790271FA972080074B5D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7A59FDB89977F006EA2E37E /* Pods-TimeSelfCareTests.release.xcconfig */;
+			baseConfigurationReference = CEBEBF925F42F3CE69C7846D /* Pods-TimeSelfCareTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -2437,7 +2467,7 @@
 		};
 		5A4790291FA972080074B5D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF1F09903EABCCB914DC8F08 /* Pods-TimeSelfCareUITests.debug.xcconfig */;
+			baseConfigurationReference = 9F41ABB6B5EEBDF5C13FF8B9 /* Pods-TimeSelfCareUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F38KJ6Y8H2;
@@ -2453,7 +2483,7 @@
 		};
 		5A47902A1FA972080074B5D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF101EFBA11EF2D7B9488446 /* Pods-TimeSelfCareUITests.release.xcconfig */;
+			baseConfigurationReference = F8FE06C58F7857F2BF18FAD9 /* Pods-TimeSelfCareUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F38KJ6Y8H2;
@@ -2469,7 +2499,7 @@
 		};
 		5A4790481FA972390074B5D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF06EE3228DD43BD583555BE /* Pods-TimeSelfCareData.debug.xcconfig */;
+			baseConfigurationReference = D82CA3564275056E26E8D212 /* Pods-TimeSelfCareData.debug.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -2503,7 +2533,7 @@
 		};
 		5A4790491FA972390074B5D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 289CD312C7937E23F6C76AE8 /* Pods-TimeSelfCareData.release.xcconfig */;
+			baseConfigurationReference = 01AA6DE29AB4A6987AF8A931 /* Pods-TimeSelfCareData.release.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -2536,7 +2566,7 @@
 		};
 		5A47904C1FA972390074B5D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 253640C8724C4E50FCF6BF62 /* Pods-TimeSelfCareDataTests.debug.xcconfig */;
+			baseConfigurationReference = 4F137F7671C6638E079416F3 /* Pods-TimeSelfCareDataTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2553,7 +2583,7 @@
 		};
 		5A47904D1FA972390074B5D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 59B79629D864BA3DDA294DAF /* Pods-TimeSelfCareDataTests.release.xcconfig */;
+			baseConfigurationReference = 63070DDEA9BA59739E24DE65 /* Pods-TimeSelfCareDataTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2629,7 +2659,7 @@
 		};
 		5A47904F1FA979FC0074B5D4 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C76243DB92487F0434C6D345 /* Pods-TimeSelfCare.staging.xcconfig */;
+			baseConfigurationReference = 38E2CB8905A169B9E3A31050 /* Pods-TimeSelfCare.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2637,7 +2667,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 834;
+				CURRENT_PROJECT_VERSION = 838;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2647,9 +2677,9 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.0.1;
+				MARKETING_VERSION = 5.1.1;
 				OTHER_CFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeSelfCare/Bridging-Header.h";
@@ -2661,7 +2691,7 @@
 		};
 		5A4790501FA979FC0074B5D4 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C151B20EF2F1CAA5BDD7C29 /* Pods-TimeSelfCareTests.staging.xcconfig */;
+			baseConfigurationReference = AB9F9993BFE4C2B5DA5724F3 /* Pods-TimeSelfCareTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -2678,7 +2708,7 @@
 		};
 		5A4790511FA979FC0074B5D4 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FEACD270CEEE69418FF12D6 /* Pods-TimeSelfCareUITests.staging.xcconfig */;
+			baseConfigurationReference = F8B451646437765279B4B658 /* Pods-TimeSelfCareUITests.staging.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F38KJ6Y8H2;
@@ -2694,7 +2724,7 @@
 		};
 		5A4790521FA979FC0074B5D4 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6FDBD7549FEB123AB3DF0810 /* Pods-TimeSelfCareData.staging.xcconfig */;
+			baseConfigurationReference = 38A23BDCF60205970279DB4A /* Pods-TimeSelfCareData.staging.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -2728,7 +2758,7 @@
 		};
 		5A4790531FA979FC0074B5D4 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 533449446A3BF3B1DAA45308 /* Pods-TimeSelfCareDataTests.staging.xcconfig */;
+			baseConfigurationReference = 8F4B79EFEDCC6B2AEED5ADEE /* Pods-TimeSelfCareDataTests.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -65,7 +65,9 @@ internal class ChangePasswordViewController: BaseAuthViewController {
         }
 
         if self.navigationController?.viewControllers.count ?? 0 > 1 {
-            self.navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
         } else {
             self.dismissVC()
         }

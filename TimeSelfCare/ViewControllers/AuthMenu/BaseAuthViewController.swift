@@ -52,6 +52,11 @@ internal class BaseAuthViewController: TimeBaseViewController, UITextFieldDelega
     }
 
     @IBAction func dismiss() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.navigationController?.popViewController(animated: true)
+        }
     }
 }

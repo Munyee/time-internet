@@ -20,7 +20,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     var appVersionConfig: AppVersionModal!
     var remoteConfig: RemoteConfig!
     var message = ""
-    var timer: Timer?
 
      private var hasShownWalkthrough: Bool {
          return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
@@ -35,14 +34,23 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var updateOrContinueButton: UIButton!
     @IBOutlet private weak var alertTitleLabel: UILabel!
-    @IBOutlet private weak var updateInfoTextView: UITextView!
+    @IBOutlet private weak var updateInfoTextView: UILabel!
     @IBOutlet private var appLogoImgView: UIImageView!
     @IBOutlet private var progressImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
         UNUserNotificationCenter.current().delegate = self
+    } 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 
     deinit {
@@ -59,19 +67,21 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.versionUpdateView.layer.borderWidth = 1
         self.versionUpdateView.layer.borderColor = UIColor.black.cgColor
         
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: false)
+        progressImageView.animationImages = self.animatedImages(for: "PreloadBarFrames")
+        progressImageView.contentMode = .scaleAspectFill
+        progressImageView.animationDuration = 1
+        progressImageView.animationRepeatCount = 1
+        progressImageView.image = self.progressImageView.animationImages?.last
+        progressImageView.startAnimating()
         
+        getFirebaseAppVersion()
+
         appLogoImgView.animationImages = self.animatedLogoImages(for: "TIME_AnimationFrame")
         appLogoImgView.contentMode = .scaleAspectFill
         appLogoImgView.animationDuration = 1.0
         appLogoImgView.animationRepeatCount = 1
         appLogoImgView.image = appLogoImgView.animationImages?.last
         appLogoImgView.startAnimating()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // getFirebaseAppVersion()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -103,34 +113,37 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         if NetworkReachabilityManager()!.isReachable {
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
+            settings.fetchTimeout = 30
+            settings.minimumFetchInterval = 3_600
+
             #if DEBUG
-            settings.minimumFetchInterval = 0
             #endif
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-            remoteConfig.fetch(withExpirationDuration: 0) { status, error -> Void in
+            remoteConfig.fetch { status, error in
                 if status == .success {
-                    guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
-                        self.showNext()
-                        return
-                    }
                     self.remoteConfig.activate { _, _ in
+                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+                            self.showNext()
+                            return
+                        }
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
-                        DispatchQueue.main.async { self.checkAppVersion() }
+                        DispatchQueue.main.async {
+                            self.checkAppVersion()
+                        }
                     }
                 } else {
                     self.showNext()
-//                    Crashlytics.crashlytics().record(error: error!)
                     print("Config not fetched")
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 }
             }
         } else {
-            let alert = UIAlertController(title: "", message: "No Internet Connection", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "RETRY", style: .cancel, handler: { (_) in
-                self.getFirebaseAppVersion()
-            }))
-            self.present(alert, animated: true, completion: nil)
+            self.showAlertMessage(title: "", message: "No Internet Connection", actions: [
+                UIAlertAction(title: "RETRY", style: .cancel, handler: { _ in
+                    self.getFirebaseAppVersion()
+                })
+            ])
         }
     }
     
@@ -168,30 +181,36 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
     
     func showAppVersionWithMajorUpdate(messageTitle: String, messageBody:String ) {
-        self.versionUpdateView.isHidden = false
-        self.dontShowButton.isHidden = true
-        self.alertTitleLabel.text = messageTitle
-        self.updateInfoTextView.text = messageBody
+        DispatchQueue.main.async {
+            self.versionUpdateView.isHidden = false
+            self.dontShowButton.isHidden = true
+            self.alertTitleLabel.text = messageTitle
+            self.updateInfoTextView.text = messageBody
+        }
     }
     
     func showAppVersionWithMinorUpdate(messageTitle: String, messageBody:String ) {
-        if UserDefaults.standard.bool(forKey:dontAskAgainFlag) {
-            self.versionUpdateView.isHidden = true
-            self.dontShowButton.isHidden = true
-            self.showNext()
-        } else {
-            self.versionUpdateView.isHidden = false
-            self.dontShowButton.isHidden = false
+        DispatchQueue.main.async {
+            if UserDefaults.standard.bool(forKey:dontAskAgainFlag) {
+                self.versionUpdateView.isHidden = true
+                self.dontShowButton.isHidden = true
+                self.showNext()
+            } else {
+                self.versionUpdateView.isHidden = false
+                self.dontShowButton.isHidden = false
+            }
+            self.alertTitleLabel.text = messageTitle
+            self.updateInfoTextView.text = messageBody
         }
-        self.alertTitleLabel.text = messageTitle
-        self.updateInfoTextView.text = messageBody
     }
     
     func showAppVersionWithLatestUpdate() {
-        self.versionUpdateView.isHidden = false
-        self.dontShowButton.isHidden = true
-        self.alertTitleLabel.text = "New Update Available"
-        self.updateInfoTextView.text = "A newer version of this app is available. Please update the app to continue using it."
+        DispatchQueue.main.async {
+            self.versionUpdateView.isHidden = false
+            self.dontShowButton.isHidden = true
+            self.alertTitleLabel.text = "New Update Available"
+            self.updateInfoTextView.text = "A newer version of this app is available. Please update the app to continue using it."
+        }
     }
     
     @IBAction func dontAskAgainButtonTapped(_ sender: Any) {
@@ -211,7 +230,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         self.showNext()
     }
     
-    @IBAction private func showNext() { // swiftlint:disable:this cyclomatic_complexity
+    @IBAction private func showNext() {
 //        guard
 //            let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,
 //            let currentInstalledVersion = Int(bundleVersion),
@@ -230,7 +249,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
 //            }
 //            return
 //        }
-        
+
         guard let profile = AccountController.shared.profile else {
             self.launchAuthMenu()
             return
@@ -272,22 +291,26 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
 
     private func launchAuthMenu(with action: AuthMenuViewController.AuthenticationAction? = nil) {
-        guard let landingVC = UIStoryboard(name: "AuthMenu", bundle: nil).instantiateInitialViewController() else {
-            return
+        DispatchQueue.main.async {
+            guard let landingVC = UIStoryboard(name: "AuthMenu", bundle: nil).instantiateInitialViewController() else {
+                return
+            }
+            
+            landingVC.modalPresentationStyle = .fullScreen
+            landingVC.modalTransitionStyle = .crossDissolve
+            ((landingVC as? UINavigationController)?.viewControllers.first as? AuthMenuViewController)?.authAction = action
+            self.present(landingVC, animated: true, completion: nil)
         }
-
-        landingVC.modalPresentationStyle = .fullScreen
-        landingVC.modalTransitionStyle = .crossDissolve
-        ((landingVC as? UINavigationController)?.viewControllers.first as? AuthMenuViewController)?.authAction = action
-        self.present(landingVC, animated: true, completion: nil)
     }
 
     private func launchWalkthrough() {
-        guard let walkthroughVC = UIStoryboard(name: "Walkthrough", bundle: nil).instantiateInitialViewController() else {
-            return
+        DispatchQueue.main.async {
+            guard let walkthroughVC = UIStoryboard(name: "Walkthrough", bundle: nil).instantiateInitialViewController() else {
+                return
+            }
+            walkthroughVC.modalPresentationStyle = .fullScreen
+            self.present(walkthroughVC, animated: true, completion: nil)
         }
-        walkthroughVC.modalPresentationStyle = .fullScreen
-        self.present(walkthroughVC, animated: true, completion: nil)
     }
 
     private func launchChangePasswordViewController() {
@@ -296,28 +319,32 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
 
     private func launchUpdateEmailViewController() {
-        let changeMenuVc: ChangeEmailViewController = UIStoryboard(name: TimeSelfCareStoryboard.authMenu.filename, bundle: nil).instantiateViewController()
-        changeMenuVc.modalPresentationStyle = .fullScreen
-        self.present(changeMenuVc, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let changeMenuVc: ChangeEmailViewController = UIStoryboard(name: TimeSelfCareStoryboard.authMenu.filename, bundle: nil).instantiateViewController()
+            changeMenuVc.modalPresentationStyle = .fullScreen
+            self.present(changeMenuVc, animated: true, completion: nil)
+        }
     }
 
     private func launchMain() {
-        guard let initialViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() else {
-            return
-        }
-
-        initialViewController.modalPresentationStyle = .fullScreen
-        initialViewController.modalTransitionStyle = .crossDissolve
-        self.present(initialViewController, animated: true) {
-            if self.shouldOpenActivityController {
-               self.shouldOpenActivityController = false
-                var currentViewController: UIViewController = self
-                while let presentedController = currentViewController.presentedViewController {
-                    currentViewController = presentedController
+        DispatchQueue.main.async {
+            guard let initialViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() else {
+                return
+            }
+            
+            initialViewController.modalPresentationStyle = .fullScreen
+            initialViewController.modalTransitionStyle = .crossDissolve
+            self.present(initialViewController, animated: true) {
+                if self.shouldOpenActivityController {
+                    self.shouldOpenActivityController = false
+                    var currentViewController: UIViewController = self
+                    while let presentedController = currentViewController.presentedViewController {
+                        currentViewController = presentedController
+                    }
+                    
+                    let activityVC: ActivityViewController = UIStoryboard(name: TimeSelfCareStoryboard.activity.filename, bundle: nil).instantiateViewController()
+                    currentViewController.presentNavigation(activityVC, animated: true)
                 }
-
-                let activityVC: ActivityViewController = UIStoryboard(name: TimeSelfCareStoryboard.activity.filename, bundle: nil).instantiateViewController()
-                currentViewController.presentNavigation(activityVC, animated: true)
             }
         }
     }
@@ -364,17 +391,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     private func handlingInvalidSession() {
         AuthUser.current?.logout()
         self.showNext()
-    }
-    
-    @objc func startTimer() {
-        progressImageView.animationImages = self.animatedImages(for: "PreloadBarFrames")
-        progressImageView.contentMode = .scaleAspectFill
-        progressImageView.animationDuration = 1
-        progressImageView.animationRepeatCount = 1
-        progressImageView.image = self.progressImageView.animationImages?.last
-        progressImageView.startAnimating()
-        
-        getFirebaseAppVersion()
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -430,6 +446,17 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 let addOnVC: AddOnViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
                 currentViewController.presentNavigation(addOnVC, animated: true)
                 completionHandler()
+            }
+        case .launchExternalApp:
+            if activity.click == "WebBrowser" {
+                if let urlString = activity.url {
+//                    let timeWebView = TIMEWebViewController()
+//                    let url = URL(string: urlString)
+//                    timeWebView.url = url
+//                    currentViewController.presentNavigation(timeWebView, animated: true)
+                    openURL(withURLString: urlString)
+                    completionHandler()
+                }
             }
         default:
             openActivity()

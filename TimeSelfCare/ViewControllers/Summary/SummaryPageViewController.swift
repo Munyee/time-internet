@@ -44,7 +44,6 @@ internal class SummaryPageViewController: UIPageViewController {
         
         Smartlook.setUserIdentifier(AccountController.shared.profile?.username)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
         self.dataSource = self
         self.delegate = self
         let storyboard = UIStoryboard(name: "Summary", bundle: nil)
@@ -61,6 +60,11 @@ internal class SummaryPageViewController: UIPageViewController {
 
         self.updatePageViewController()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
+    }
 
     @objc
     private func handleAccountChange() {
@@ -75,6 +79,11 @@ internal class SummaryPageViewController: UIPageViewController {
         super.viewWillAppear(animated)
         self.updateDataSet(items: nil)
         self.refresh()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 
     private func updatePageViewController() {

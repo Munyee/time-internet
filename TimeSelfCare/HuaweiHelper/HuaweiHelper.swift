@@ -8,6 +8,7 @@
 
 import Foundation
 import HwMobileSDK
+import FirebaseCrashlytics
 
 public class HuaweiHelper {
     private static let singleton: HuaweiHelper = HuaweiHelper()
@@ -709,6 +710,15 @@ public extension HuaweiHelper {
     
     func setLanDeviceToBlackList(list: [HwLanDevice], isAdd: Bool, completion: @escaping(_ result: HwResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
+        
+        Crashlytics.crashlytics().setUserID(AccountController.shared.profile?.username ?? "")
+        let keysAndValues = [
+            "gatewayId" : AccountController.shared.gatewayDevId ?? "",
+            "isAdd" : isAdd
+        ] as [String : Any]
+
+        Crashlytics.crashlytics().setCustomKeysAndValues(keysAndValues)
+
         callBackAdapter.handle = {value in
             if let data = value as? HwResult {
                 completion(data)

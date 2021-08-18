@@ -33,7 +33,7 @@ internal class HomeForwardDetailViewController: TimeBaseViewController {
         }
 
         if service.thfQrcodeGenCount != nil && service.thfQrcodeGenCount! <= THF_MAX_GENCOUNT {     // swiftlint:disable:this force_unwrapping
-            self.descriptionLabel.text = "Launch The Home Forward app and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices."
+            self.descriptionLabel.text = "Launch the TIME VOICE APP and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices."
             self.regenerateButton.isEnabled = true
         } else {
             self.descriptionLabel.text = "You may generate QR codes for up to 6 devices."
@@ -58,7 +58,7 @@ internal class HomeForwardDetailViewController: TimeBaseViewController {
     }
 
     @IBAction func downloadApp(_ sender: Any) {
-        guard let url: URL = URL(string: "https://itunes.apple.com/my/app/time-home-forward/id1191337976?mt=8") else {
+        guard let url: URL = URL(string: "https://apps.apple.com/my/app/time-voice-app/id1041966811") else {
             return
         }
         UIApplication.shared.open(url)

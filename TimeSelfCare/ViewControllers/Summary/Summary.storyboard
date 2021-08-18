@@ -398,7 +398,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="MuU-ah-YB5">
-                                        <rect key="frame" x="37.5" y="246" width="300" height="175.5"/>
+                                        <rect key="frame" x="37.5" y="274.5" width="300" height="118.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_add_to_cart" translatesAutoresizingMaskIntoConstraints="NO" id="UtN-A5-O8A">
                                                 <rect key="frame" x="110" y="0.0" width="80" height="80"/>
@@ -413,8 +413,8 @@
                                                 <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3a-M7-HYE">
-                                                <rect key="frame" x="62" y="142.5" width="176" height="33"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3a-M7-HYE">
+                                                <rect key="frame" x="62" y="118.5" width="176" height="0.0"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <state key="normal" title="View available add-ons">
                                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -1014,7 +1014,7 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="nXs-9A-tvv">
                                         <rect key="frame" x="20" y="141" width="335" height="62.5"/>
-                                        <string key="text">Launch The Home Forward app and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
+                                        <string key="text">Launch the TIME VOICE APP and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1087,7 +1087,7 @@
                                                     <rect key="frame" x="0.0" y="16" width="375" height="115"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="etb-RA-wim">
-                                                            <rect key="frame" x="67.5" y="0.0" width="240" height="24"/>
+                                                            <rect key="frame" x="96.5" y="0.0" width="182.5" height="24"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_home_forward" translatesAutoresizingMaskIntoConstraints="NO" id="yXg-nn-lOm">
                                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -1096,8 +1096,8 @@
                                                                         <constraint firstAttribute="height" constant="24" id="NtQ-QK-01X"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME HOME FORWARD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdS-td-fUx">
-                                                                    <rect key="frame" x="34" y="0.0" width="206" height="24"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME VOICE APP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdS-td-fUx">
+                                                                    <rect key="frame" x="34" y="0.0" width="148.5" height="24"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -1113,8 +1113,8 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="eRu-TS-Wwe">
-                                                            <rect key="frame" x="59.5" y="73" width="256.5" height="0.0"/>
-                                                            <string key="text">Launch The Home Forward app and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
+                                                            <rect key="frame" x="50" y="73" width="275" height="0.0"/>
+                                                            <string key="text">Launch the TIME VOICE APP and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                             <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1229,7 +1229,7 @@
         <image name="ic_add_to_cart" width="80" height="80"/>
         <image name="ic_close_white" width="40" height="40"/>
         <image name="ic_fab_menu" width="50" height="50"/>
-        <image name="ic_home_forward" width="44" height="44"/>
+        <image name="ic_home_forward" width="66" height="66"/>
         <image name="ic_menu" width="50" height="50"/>
         <image name="ic_notification_highlight_new" width="40" height="40"/>
         <image name="shop_magenta" width="60" height="60"/>

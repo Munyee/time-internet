@@ -30,13 +30,16 @@ class AccountSummaryViewController: BaseViewController {
         super.viewDidLoad()
         self.priceLabel.font = UIFont(name: "DINCondensed-Bold", size: 80)
         self.payButton.titleLabel?.textAlignment = .center
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.refresh()
-
         if !AccountSummaryViewController.didAnimate {
             let animationTargets: [UIView] = [self.accountLabel, self.speedLabel, self.statusLabel, self.amountDueStackView, self.dueLabel, self.payButton, self.autoDebitButton]
             animationTargets.forEach { (view: UIView) in
@@ -44,7 +47,11 @@ class AccountSummaryViewController: BaseViewController {
                 view.transform = CGAffineTransform.identity.translatedBy(x: 0, y: 16)
             }
         }
-
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
     }
 
     private func animateViews() {

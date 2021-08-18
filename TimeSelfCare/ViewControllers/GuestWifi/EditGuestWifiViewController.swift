@@ -48,7 +48,7 @@ class EditGuestWifiViewController: UIViewController {
     func setupView() {
         wifiName.font = UIFont(name: "DINCondensed-Bold", size: 20)
         wifiName.floatingLabelFont = UIFont(name: "DIN-Light", size: 14)
-        wifiName.floatingLabel.text = "Profile name"
+        wifiName.floatingLabel.text = "WiFi name"
         
         ssidPassword.font = UIFont(name: "DINCondensed-Bold", size: 20)
         ssidPassword.floatingLabelFont = UIFont(name: "DIN-Light", size: 14)

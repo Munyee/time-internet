@@ -88,59 +88,9 @@ class GuestWifiViewController: UIViewController {
                 self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "DINAlternate-Bold", size: 18)], for: .normal)
                 self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "DINAlternate-Bold", size: 18)], for: .highlighted)
                 self.timerView.borderWidth = 2
-            }
-            
-            if info.enabled {
-                self.remainingTime = info.remainSec
-                self.timerView.borderColor = #colorLiteral(red: 0.9254901961, green: 0, blue: 0.5490196078, alpha: 1)
-                self.timerLabel.textColor = #colorLiteral(red: 0.9254901961, green: 0, blue: 0.5490196078, alpha: 1)
-                self.buttonLabel.text = "TURN OFF"
-                if AccountController.shared.guestWifiDuration == 0 {
-                    self.timerLabel.isHidden = true
-                    self.infinityView.isHidden = false
-                    self.infinityView.tintColor = #colorLiteral(red: 0.9254901961, green: 0, blue: 0.5490196078, alpha: 1)
-                } else {
-                    self.timerLabel.isHidden = false
-                    self.infinityView.isHidden = true
-                    self.timerLabel.text = "\(self.secondsToHoursMinutesSeconds(seconds: self.remainingTime))"
-                    self.timerCount()
-                    
-                    let center = UNUserNotificationCenter.current()
-                    let content = UNMutableNotificationContent()
-                    content.title = "Your Guest WiFi has expired"
-                    content.body = "Would you like to turn it on again?"
-                    content.sound = UNNotificationSound.default
-                    content.userInfo = ["activity": ["id": "999", "activity": "Guest Wifi", "click": "Guest Wifi"]]
-
-                    if self.remainingTime > 0 {
-                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval:Double(info.remainSec), repeats: false)
-                        let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
-                        center.add(request) { error in
-                            if error != nil {
-                                print("error \(String(describing: error))")
-                            }
-                        }
-                    }
-                }
                 
-            } else {
-                self.timerView.borderColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
-                self.timerLabel.text = "\(self.secondsToHoursMinutesSeconds(seconds: Int32((AccountController.shared.guestWifiDuration ?? 0) * 60)))"
-                self.timerLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                self.buttonLabel.text = "TURN ON"
-                if AccountController.shared.guestWifiDuration == 0 {
-                    self.timerLabel.isHidden = true
-                    self.infinityView.isHidden = false
-                    self.infinityView.tintColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
-                } else {
-                    self.timerLabel.isHidden = false
-                    self.infinityView.isHidden = true
-                }
-                
-                let center = UNUserNotificationCenter.current()
-                center.removeAllPendingNotificationRequests()
+                self.updateGuestWifi(info: info)
             }
-            
             self.queryLanDevices()
         } error: { _ in
             hud.hide(animated: true)
@@ -231,7 +181,8 @@ class GuestWifiViewController: UIViewController {
         guestWifi.radioType = HwRadioType(rawValue: 3)
         guestWifi.duration = Int32(AccountController.shared.guestWifiDuration ?? 0)
         guestWifi.enabled = enable
-        
+        guestWifi.remainSec = Int32((AccountController.shared.guestWifiDuration ?? 0) * 60)
+
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Loading...", comment: "")
         HuaweiHelper.shared.setGuestWifiInfo(guestWifiInfo: guestWifi) { _ in
@@ -241,14 +192,64 @@ class GuestWifiViewController: UIViewController {
             self.infinityView.tintColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
             self.timerLabel.text = "\(self.secondsToHoursMinutesSeconds(seconds: Int32((AccountController.shared.guestWifiDuration ?? 0) * 60)))"
             self.timerLabel.textColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.queryGuestWifi()
-            }
+            self.updateGuestWifi(info: guestWifi)
         } error: { exception in
             DispatchQueue.main.async {
                 hud.hide(animated: true)
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
             }
+        }
+    }
+    
+    func updateGuestWifi(info: HwGuestWifiInfo) {
+        if info.enabled {
+            self.remainingTime = info.remainSec
+            self.timerView.borderColor = #colorLiteral(red: 0.9254901961, green: 0, blue: 0.5490196078, alpha: 1)
+            self.timerLabel.textColor = #colorLiteral(red: 0.9254901961, green: 0, blue: 0.5490196078, alpha: 1)
+            self.buttonLabel.text = "TURN OFF"
+            if AccountController.shared.guestWifiDuration == 0 {
+                self.timerLabel.isHidden = true
+                self.infinityView.isHidden = false
+                self.infinityView.tintColor = #colorLiteral(red: 0.9254901961, green: 0, blue: 0.5490196078, alpha: 1)
+            } else {
+                self.timerLabel.isHidden = false
+                self.infinityView.isHidden = true
+                self.timerLabel.text = "\(self.secondsToHoursMinutesSeconds(seconds: info.remainSec))"
+                self.timerCount()
+                
+                let center = UNUserNotificationCenter.current()
+                let content = UNMutableNotificationContent()
+                content.title = "Your Guest WiFi has expired"
+                content.body = "Would you like to turn it on again?"
+                content.sound = UNNotificationSound.default
+                content.userInfo = ["activity": ["id": "999", "activity": "Guest Wifi", "click": "Guest Wifi"]]
+
+                if self.remainingTime > 0 {
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval:Double(info.remainSec), repeats: false)
+                    let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
+                    center.add(request) { error in
+                        if error != nil {
+                            print("error \(String(describing: error))")
+                        }
+                    }
+                }
+            }
+        } else {
+            self.timerView.borderColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
+            self.timerLabel.text = "\(self.secondsToHoursMinutesSeconds(seconds: Int32((AccountController.shared.guestWifiDuration ?? 0) * 60)))"
+            self.timerLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            self.buttonLabel.text = "TURN ON"
+            if AccountController.shared.guestWifiDuration == 0 {
+                self.timerLabel.isHidden = true
+                self.infinityView.isHidden = false
+                self.infinityView.tintColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
+            } else {
+                self.timerLabel.isHidden = false
+                self.infinityView.isHidden = true
+            }
+            
+            let center = UNUserNotificationCenter.current()
+            center.removeAllPendingNotificationRequests()
         }
     }
     

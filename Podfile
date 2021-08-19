@@ -40,7 +40,7 @@ target 'TimeSelfCare' do
   pod 'SwiftLint'
   pod 'SwiftyJSON'
   pod 'MBProgressHUD', '~> 1.1.0'
-  pod 'lottie-ios', '~> 2.5.3'
+  pod 'lottie-ios'
   pod 'Firebase/Core'
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Crashlytics'
@@ -66,7 +66,7 @@ target 'TimeSelfCare' do
 end
 
 my_project_pods_swift_versions = Hash[
-  "4.0", ["Alamofire", "CardIO", "SDWebImage", "EasyTipView", "JVFloatLabeledTextField", "SwiftLint", "MBProgressHUD", "lottie-ios", "Firebase/Core", "Crashlytics", "ApptivityFramework", "FreshchatSDK"]
+  "4.0", ["Alamofire", "CardIO", "SDWebImage", "EasyTipView", "JVFloatLabeledTextField", "SwiftLint", "MBProgressHUD", "ApptivityFramework"]
 ]
 
 def setup_all_swift_versions(target, pods_swift_versions)

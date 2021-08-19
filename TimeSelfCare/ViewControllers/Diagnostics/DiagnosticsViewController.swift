@@ -8,6 +8,8 @@
 
 import UIKit
 import MBProgressHUD
+import Lottie
+import SwiftyJSON
 
 class DiagnosisViewController: TimeBaseViewController {
 
@@ -19,6 +21,7 @@ class DiagnosisViewController: TimeBaseViewController {
 //    @IBOutlet private weak var updateFirmware: UIButton!
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var iconImageView: UIImageView!
+    @IBOutlet private weak var animationView: AnimationView!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var signalView: UIView!
     @IBOutlet private weak var signalLabel: UILabel!
@@ -43,6 +46,8 @@ class DiagnosisViewController: TimeBaseViewController {
         self.title = NSLocalizedString("DIAGNOSTICS", comment: "")
 
         runDiagnostics()
+        
+        animationView.isHidden = true
     }
 
     func triggerActionButton(action: String) {
@@ -293,7 +298,21 @@ class DiagnosisViewController: TimeBaseViewController {
                 attributedText.addAttributes(attributes, range:  NSRange(location: 0, length: attributedText.mutableString.length))
 
                 self.messageLabel.attributedText = attributedText
-                self.iconImageView.download(from: self.diagnostics?.icon ?? "")
+                if self.diagnostics?.icon?.contains(".json") {
+                    self.iconImageView.isHidden = true
+                    self.animationView.isHidden = false
+                    if let url = URL(string: "https://assets5.lottiefiles.com/packages/lf20_tufwyy1s.json") {
+                        Animation.loadedFrom(url: url, closure: { animation in
+                            self.animationView.animation = animation
+                            self.animationView.loopMode = .playOnce
+                            self.animationView.play()
+                        }, animationCache: LRUAnimationCache.sharedCache)
+                    }
+                } else {
+                    self.animationView.isHidden = true
+                    self.iconImageView.isHidden = false
+                    self.iconImageView.download(from: self.diagnostics?.icon ?? "")
+                }
                 self.triggerActionButton(action: self.diagnostics?.action ?? "")
                 self.action = self.diagnostics?.action ?? ""
             } catch let e as NSError {

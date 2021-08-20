@@ -103,7 +103,7 @@ class DiagnosisViewController: TimeBaseViewController {
                             self.signalLabel.textColor = UIColor(hex: "#3BBFBB")
                             self.signalImageView.image = #imageLiteral(resourceName: "ic_signal_fair")
                             self.problemView.isHidden = false
-                            self.problemLabel.text = "You may be experiencing high latency (>500ms), which can translate to slower video streaming, lag in games and delays in your overall Internet experience."
+                            self.problemLabel.text = "You may be experiencing high latency, which can translate to slower video streaming, lag in games and delays in your overall Internet experience."
                             self.setupSuggestLabel()
                         } else if score < 60 {
                             self.signalLabel.text = "WEAK"
@@ -153,7 +153,7 @@ class DiagnosisViewController: TimeBaseViewController {
         noWifiView.isHidden = true
         
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        hud.label.text = NSLocalizedString("Performing Diagnostics...", comment: "")
         guard
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })

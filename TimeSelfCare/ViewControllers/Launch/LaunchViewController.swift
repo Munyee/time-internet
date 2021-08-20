@@ -458,6 +458,15 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     completionHandler()
                 }
             }
+        case .guestWifi:
+            AccountController.shared.showGuestWifi = true
+            
+            if let presentedVC = self.presentedViewController?.children[0].presentedViewController {
+                presentedVC.dismiss(animated: true, completion: {
+                    NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+                })
+            }
+            completionHandler()
         default:
             openActivity()
             completionHandler()

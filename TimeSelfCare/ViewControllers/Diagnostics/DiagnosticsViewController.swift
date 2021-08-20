@@ -153,7 +153,7 @@ class DiagnosisViewController: TimeBaseViewController {
         noWifiView.isHidden = true
         
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Performing Diagnostics...", comment: "")
+        hud.label.text = NSLocalizedString("Performing diagnostics...", comment: "")
         guard
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
@@ -298,10 +298,10 @@ class DiagnosisViewController: TimeBaseViewController {
                 attributedText.addAttributes(attributes, range:  NSRange(location: 0, length: attributedText.mutableString.length))
 
                 self.messageLabel.attributedText = attributedText
-                if self.diagnostics?.icon?.contains(".json") {
+                if let icon = self.diagnostics?.icon, icon.contains(".json") {
                     self.iconImageView.isHidden = true
                     self.animationView.isHidden = false
-                    if let url = URL(string: "https://assets5.lottiefiles.com/packages/lf20_tufwyy1s.json") {
+                    if let url = URL(string: icon) {
                         Animation.loadedFrom(url: url, closure: { animation in
                             self.animationView.animation = animation
                             self.animationView.loopMode = .playOnce

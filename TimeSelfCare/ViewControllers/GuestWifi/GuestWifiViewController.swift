@@ -181,7 +181,8 @@ class GuestWifiViewController: UIViewController {
         guestWifi.radioType = HwRadioType(rawValue: 3)
         guestWifi.duration = Int32(AccountController.shared.guestWifiDuration ?? 0)
         guestWifi.enabled = enable
-        guestWifi.remainSec = Int32((AccountController.shared.guestWifiDuration ?? 0) * 60)
+        guestWifi.remainSec = enable ? Int32((AccountController.shared.guestWifiDuration ?? 0) * 60) : Int32(0)
+        guestWifi.remaining = enable ? Int32(AccountController.shared.guestWifiDuration ?? 0) : Int32(0)
 
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Loading...", comment: "")

@@ -67,7 +67,7 @@ class WifiConfigurationViewController: UIViewController {
             if info.enabled {
                 self.remainingTime = info.remainSec
                 if info.duration == 0 {
-                    self.guestWifiStatus.text = "ON"
+                    self.guestWifiStatus.text = "ON (No Limit)"
                 } else {
                     self.guestWifiStatus.text = "ON (\(self.secondsToHoursMinutesSeconds(seconds: self.remainingTime)))"
                     self.timerCount()

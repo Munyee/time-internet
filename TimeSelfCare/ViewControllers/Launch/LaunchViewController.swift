@@ -458,6 +458,20 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     completionHandler()
                 }
             }
+        case .strudel:
+            if activity.click == "SelfDiagnostics" {
+                let diagnosticsVC: DiagnosisViewController = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil).instantiateViewController()
+                currentViewController.presentNavigation(diagnosticsVC, animated: true)
+                completionHandler()
+            } else if activity.click == "WebBrowser" {
+                if let urlString = activity.url {
+                    openURL(withURLString: urlString)
+                    completionHandler()
+                }
+            } else {
+                openActivity()
+                completionHandler()
+            }
         default:
             openActivity()
             completionHandler()

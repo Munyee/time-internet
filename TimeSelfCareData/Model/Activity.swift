@@ -35,6 +35,7 @@ public class Activity: JsonRecord {
         case huae = "HOOK UP & EARN"
         case reDirectMsg = "Redirect Msg"
         case launchExternalApp = "LaunchExternalApp"
+        case strudel = "Strudel"
     }
 
     public var id: Int

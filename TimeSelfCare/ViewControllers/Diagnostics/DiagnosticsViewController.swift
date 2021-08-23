@@ -72,8 +72,6 @@ class DiagnosisViewController: TimeBaseViewController {
     
     func startPing() {
         if HuaweiHelper.shared.getRSSISignal() > 0 {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Pinging...", comment: "")
             pinger?.targetCount = pingTarget
             self.finalScore = 0
             pinger?.observer = { response in
@@ -89,7 +87,6 @@ class DiagnosisViewController: TimeBaseViewController {
                 self.finalScore = (self.finalScore + score)
                 
                 if pingCount == self.pingTarget {
-                    hud.hide(animated: true)
                     let score = self.finalScore / Double(self.pingTarget)
                     if self.action == "speed_test" {
                         self.signalView.isHidden = false

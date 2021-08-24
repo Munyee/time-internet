@@ -135,7 +135,9 @@ open class ImagePickerViewController: UIViewController {
             }() else {
                 return
             }
-            strongSelf.assetsCollectionView.deselectItem(at: IndexPath(item: index, section: 0), animated: true)
+            if index >= 0 {
+                strongSelf.assetsCollectionView.deselectItem(at: IndexPath(item: index, section: 0), animated: true)
+            }
         }
     }
 }

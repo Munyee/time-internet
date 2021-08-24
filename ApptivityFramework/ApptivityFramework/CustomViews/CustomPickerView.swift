@@ -103,10 +103,8 @@ open class CustomPickerView: UIView {
     }
 
     @objc func doneButtonTapped(sender: AnyObject?) {
-        DispatchQueue.main.async {
-            if sender != nil {
-                self.delegate?.pickerView(pickerView: self, didConfirmSelectionOfRowWithTitle: self.getSelectedRows())
-            }
+        if sender != nil {
+            self.delegate?.pickerView(pickerView: self, didConfirmSelectionOfRowWithTitle: self.getSelectedRows())
         }
     }
 

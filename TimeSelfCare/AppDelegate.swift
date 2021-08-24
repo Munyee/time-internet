@@ -15,6 +15,7 @@ import Smartlook
 import HwMobileSDK
 import AppTrackingTransparency
 import FBSDKCoreKit
+import IQKeyboardManagerSwift
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -68,6 +69,8 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         Freshchat.sharedInstance().initWith(freshchatConfig)
         
         self.applyAppearance()
+        
+        IQKeyboardManager.shared.enable = false
         
         return true
     }

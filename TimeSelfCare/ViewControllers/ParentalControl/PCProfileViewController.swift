@@ -9,6 +9,7 @@
 import UIKit
 import HwMobileSDK
 import MBProgressHUD
+import IQKeyboardManagerSwift
 
 class PCProfileViewController: UIViewController {
     
@@ -51,6 +52,8 @@ class PCProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        IQKeyboardManager.shared.enable = true
+        
         NotificationCenter.default.addObserver(self, selector: #selector(PCProfileViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(PCProfileViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -78,6 +81,7 @@ class PCProfileViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.liveChatView.isHidden = true
+        IQKeyboardManager.shared.enable = false
         NotificationCenter.default.removeObserver(self)
     }
     

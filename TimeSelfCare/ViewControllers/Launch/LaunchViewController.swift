@@ -114,13 +114,14 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
             settings.fetchTimeout = 30
+            settings.minimumFetchInterval = 3_600
+
             #if DEBUG
-//            settings.minimumFetchInterval = 0
             #endif
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-            remoteConfig.fetchAndActivate { status, error -> Void in
-                if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
+            remoteConfig.fetch { status, error in
+                if status == .success {
                     self.remoteConfig.activate { _, _ in
                         guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
                             self.showNext()
@@ -133,7 +134,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     }
                 } else {
                     self.showNext()
-//                    Crashlytics.crashlytics().record(error: error!)
                     print("Config not fetched")
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 }

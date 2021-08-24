@@ -21,7 +21,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var pageTitleLabel: UILabel!
     
-    @IBOutlet private weak var activityAnimationView: LOTAnimationView!
+    @IBOutlet private weak var activityAnimationView: AnimationView!
     @IBOutlet private weak var profileFullNameLabel: UILabel!
     @IBOutlet private weak var floatingActionButton: UIButton!
     @IBOutlet private weak var activityButton: UIButton!
@@ -148,7 +148,9 @@ class SummaryContainerViewController: TimeBaseViewController {
     
     func HuaweiLogin() {
         DispatchQueue.main.async {
-            guard let account = AccountController.shared.selectedAccount else { return }
+            guard let account = AccountController.shared.selectedAccount else {
+                return
+            }
             
             guard
                 let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
@@ -202,12 +204,12 @@ class SummaryContainerViewController: TimeBaseViewController {
         let hasUnreadActivity: Bool = ActivityDataController.shared.getActivities(account: currentAccount).first{ $0.isNew } != nil || APNSController.shared.unreadBadgeCount() > 0
         let activityButtonImage: UIImage = hasUnreadActivity ? #imageLiteral(resourceName: "ic_notification_highlight_new") : #imageLiteral(resourceName: "ic_notification_filled")
         self.activityButton.setImage(activityButtonImage, for: .normal)
-        self.activityAnimationView.setAnimation(named: "anim_notification_bell")
+        self.activityAnimationView.animation = Animation.named("anim_notification_bell")
         self.activityAnimationView.isHidden = !hasUnreadActivity
         self.activityButton.alpha = hasUnreadActivity ? 0 : 1
         if hasUnreadActivity {
-            self.activityAnimationView.setAnimation(named: "anim_notification_bell")
-            self.activityAnimationView.loopAnimation = false
+            self.activityAnimationView.animation = Animation.named("anim_notification_bell")
+            self.activityAnimationView.loopMode = .playOnce
             self.activityAnimationView.play { (_: Bool) in
                 self.activityButton.alpha = 1
                 self.activityAnimationView.isHidden = true

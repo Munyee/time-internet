@@ -44,25 +44,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     override func viewDidLoad() {
         super.viewDidLoad()
         UNUserNotificationCenter.current().delegate = self
-        
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                if status == .authorized {
-                    Analytics.setAnalyticsCollectionEnabled(true)
-                    Settings.setAdvertiserTrackingEnabled(true)
-                    Settings.isAutoLogAppEventsEnabled = true
-                    Settings.isAdvertiserIDCollectionEnabled = true
-                } else {
-                    Analytics.setAnalyticsCollectionEnabled(false)
-                    Settings.setAdvertiserTrackingEnabled(false)
-                }
-            }
-        } else {
-            Analytics.setAnalyticsCollectionEnabled(true)
-            Settings.setAdvertiserTrackingEnabled(true)
-            Settings.isAutoLogAppEventsEnabled = true
-            Settings.isAdvertiserIDCollectionEnabled = true
-        }
     } 
     
     override func viewDidAppear(_ animated: Bool) {

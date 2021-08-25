@@ -15,6 +15,7 @@ import Smartlook
 import HwMobileSDK
 import AppTrackingTransparency
 import FBSDKCoreKit
+import IQKeyboardManagerSwift
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -27,24 +28,6 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
         ApplicationDelegate.initialize()
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                if status == .authorized {
-                    Analytics.setAnalyticsCollectionEnabled(true)
-                    Settings.setAdvertiserTrackingEnabled(true)
-                    Settings.isAutoLogAppEventsEnabled = true
-                    Settings.isAdvertiserIDCollectionEnabled = true
-                } else {
-                    Analytics.setAnalyticsCollectionEnabled(false)
-                    Settings.setAdvertiserTrackingEnabled(false)
-                }
-            }
-        } else {
-            Analytics.setAnalyticsCollectionEnabled(true)
-            Settings.setAdvertiserTrackingEnabled(true)
-            Settings.isAutoLogAppEventsEnabled = true
-            Settings.isAdvertiserIDCollectionEnabled = true
-        }
 
         AuthUser.authDelegate = AccountController.shared
         AuthUser.enableAnonymousUser(with: LocalAnonymousProvider())
@@ -68,6 +51,8 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         Freshchat.sharedInstance().initWith(freshchatConfig)
         
         self.applyAppearance()
+        
+        IQKeyboardManager.shared.enable = false
         
         return true
     }

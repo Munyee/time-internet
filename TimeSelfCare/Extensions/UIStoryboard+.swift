@@ -29,6 +29,7 @@ enum TimeSelfCareStoryboard: String, Storyboard {
     case wificonfiguration
     case guestwifi
     case deviceinstallation
+    case wifiqualityassessment
     case blacklist
     case pppoe
 

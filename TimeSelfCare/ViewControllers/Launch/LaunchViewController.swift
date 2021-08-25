@@ -12,6 +12,9 @@ import MBProgressHUD
 import UserNotifications
 import FirebaseRemoteConfig
 import FirebaseCrashlytics
+import AppTrackingTransparency
+import Firebase
+import FBSDKCoreKit
 
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
 internal let dontAskAgainFlag: String = "dontAskAgain"
@@ -111,16 +114,37 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
 
     func getFirebaseAppVersion() {
         if NetworkReachabilityManager()!.isReachable {
+            
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization { status in
+                    if status == .authorized {
+                        Analytics.setAnalyticsCollectionEnabled(true)
+                        Settings.setAdvertiserTrackingEnabled(true)
+                        Settings.isAutoLogAppEventsEnabled = true
+                        Settings.isAdvertiserIDCollectionEnabled = true
+                    } else {
+                        Analytics.setAnalyticsCollectionEnabled(false)
+                        Settings.setAdvertiserTrackingEnabled(false)
+                    }
+                }
+            } else {
+                Analytics.setAnalyticsCollectionEnabled(true)
+                Settings.setAdvertiserTrackingEnabled(true)
+                Settings.isAutoLogAppEventsEnabled = true
+                Settings.isAdvertiserIDCollectionEnabled = true
+            }
+            
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
             settings.fetchTimeout = 30
+            settings.minimumFetchInterval = 3_600
+
             #if DEBUG
-//            settings.minimumFetchInterval = 0
             #endif
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-            remoteConfig.fetchAndActivate { status, error -> Void in
-                if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
+            remoteConfig.fetch { status, error in
+                if status == .success {
                     self.remoteConfig.activate { _, _ in
                         guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
                             self.showNext()
@@ -133,7 +157,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     }
                 } else {
                     self.showNext()
-//                    Crashlytics.crashlytics().record(error: error!)
                     print("Config not fetched")
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 }

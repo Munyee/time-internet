@@ -10,6 +10,7 @@
 import Foundation
 import Alamofire
 import ApptivityFramework
+import FirebaseCrashlytics
 import FirebasePerformance
 
 public let TimeSelfCareDomainErrorCodeKey: String = "TimeSelfCareAPIErrorCode" // swiftlint:disable:this identifier_name
@@ -129,6 +130,19 @@ public class APIClient {
             parameters: parameters,
             encoding: JSONEncoding.default)
             .responseJSON { (response: DataResponse<Any>) in
+                
+                let userInfo = [
+                    "path" : path,
+                    "response time" : response.timeline.latency
+                ] as [String : Any]
+
+                let error = NSError(domain: NSCocoaErrorDomain,
+                                         code: -1001,
+                                         userInfo: userInfo)
+                
+                Crashlytics.crashlytics().record(error: error)
+
+                print("\(path) : \(response.timeline.latency)")
                 if let statusCode = response.response?.statusCode {
                     trace?.setValue("\(statusCode)", forAttribute: "statusCode")
                 }

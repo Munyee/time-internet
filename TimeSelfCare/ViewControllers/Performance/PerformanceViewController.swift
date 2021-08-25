@@ -21,7 +21,7 @@ let kIsConnected: String = "IsConnected"
 class PerformanceViewController: BaseViewController {
     
     @IBOutlet private weak var statusLabel: UILabel!
-    @IBOutlet private weak var animationView: LOTAnimationView!
+    @IBOutlet private weak var animationView: AnimationView!
     @IBOutlet private weak var runDiagnosticsButton: UIButton!
     @IBOutlet private weak var speedTestView: UIView!
     @IBOutlet private weak var nceView: UIView!
@@ -75,8 +75,8 @@ class PerformanceViewController: BaseViewController {
     }
     
     @IBAction private func checkConnectionStatus() {
-        animationView.setAnimation(named: "Loading")
-        animationView.loopAnimation = true
+        animationView.animation = Animation.named("Loading")
+        animationView.loopMode = .playOnce
         animationView.play()
         guard
             let account = AccountController.shared.selectedAccount,
@@ -88,8 +88,8 @@ class PerformanceViewController: BaseViewController {
         self.statusLabel.text = NSLocalizedString("Checking connectivity status...", comment: "")
         AccountDataController.shared.loadConnectionStatus(account: account, service: service) { _, error in
             let isConnected: Bool = error == nil
-            self.animationView.setAnimation(named: isConnected ? "GoodConnection" : "BadConnection")
-            self.animationView.loopAnimation = false
+            self.animationView.animation = Animation.named(isConnected ? "GoodConnection" : "BadConnection")
+            self.animationView.loopMode = .playOnce
             self.animationView.play()
             
             if isConnected {

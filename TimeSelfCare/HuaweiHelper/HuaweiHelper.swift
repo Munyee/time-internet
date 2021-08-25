@@ -81,7 +81,7 @@ public extension HuaweiHelper {
     func registerErrorMessageHandle(completion: @escaping(_ result: HwNotificationMessage) -> Void) {
         let service = HwMessageService()
         service.registerErrorMessageHandle { value in
-            if let result = value as? HwNotificationMessage {
+            if let result = value {
                 completion(result)
             }
         }
@@ -646,6 +646,50 @@ public extension HuaweiHelper {
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.setWifiHardwareSwitch(AccountController.shared.gatewayDevId ?? "", withRadioType: radioType, withEnableState: true, withCallBack: callBackAdapter)
+        }
+    }
+    
+    func getRSSISignal() -> Int {
+        if #available(iOS 13.0, *) {
+            if let statusBarManager = UIApplication.shared.keyWindow?.windowScene?.statusBarManager,
+               let localStatusBar = statusBarManager.value(forKey: "createLocalStatusBar") as? NSObject,
+               let statusBar = localStatusBar.value(forKey: "statusBar") as? NSObject,
+               let _statusBar = statusBar.value(forKey: "_statusBar") as? UIView,
+               let currentData = _statusBar.value(forKey: "currentData") as? NSObject,
+               let celluar = currentData.value(forKey: "wifiEntry") as? NSObject,
+               let signalStrength = celluar.value(forKey: "displayValue") as? Int {
+                return signalStrength
+            } else {
+                return -1
+            }
+        } else {
+            var signalStrength = -1
+            let application = UIApplication.shared
+            guard let statusBarView = application.value(forKey: "statusBar") as? UIView else {
+                return -1
+            }
+            guard let foregroundView = statusBarView.value(forKey: "foregroundView") as? UIView else {
+                return -1
+            }
+            let foregroundViewSubviews = foregroundView.subviews
+            var dataNetworkItemView: UIView?
+            for subview in foregroundViewSubviews {
+                if let statusBarDataNetworkItemView = NSClassFromString("UIStatusBarDataNetworkItemView"), subview.isKind(of: statusBarDataNetworkItemView) {
+                    dataNetworkItemView = subview
+                    break
+                } else {
+                    signalStrength = -1
+                }
+            }
+            guard let strength = dataNetworkItemView?.value(forKey: "wifiStrengthRaw") as? Int else {
+                return -1
+            }
+            signalStrength = strength
+            if signalStrength == -1 {
+                return -1
+            } else {
+                return signalStrength
+            }
         }
     }
     

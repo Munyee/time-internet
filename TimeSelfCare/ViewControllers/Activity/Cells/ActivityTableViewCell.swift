@@ -19,7 +19,7 @@ class ActivityTableViewCell: UITableViewCell {
     @IBOutlet var bottomLineLabel: UILabel!
     
     func configure(with activity: Activity) {
-        self.titleLabel.text = activity.type == .launchExternalApp ? String(htmlEncodedString: activity.title ?? "") : String(htmlEncodedString: activity.type.rawValue ?? "")
+        self.titleLabel.text = (activity.title?.isEmpty ?? true) ? String(htmlEncodedString: activity.type.rawValue) : String(htmlEncodedString: activity.title ?? "")
         self.detailLabel.text = String(htmlEncodedString: activity.line1 ?? "")
         self.line2Label.text = String(htmlEncodedString: activity.line2 ?? "")
         self.statusLabel.text = activity.status

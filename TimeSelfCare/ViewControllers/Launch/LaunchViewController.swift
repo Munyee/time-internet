@@ -485,6 +485,15 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             let diagnosticsVC: DiagnosisViewController = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil).instantiateViewController()
             currentViewController.presentNavigation(diagnosticsVC, animated: true)
             completionHandler()
+        case .guestWifi:
+            AccountController.shared.showGuestWifi = true
+            
+            if let presentedVC = self.presentedViewController?.children[0].presentedViewController {
+                presentedVC.dismiss(animated: true, completion: {
+                    NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+                })
+            }
+            completionHandler()
         default:
             openActivity()
             completionHandler()

@@ -34,6 +34,7 @@ public class Activity: JsonRecord {
         case voicePlan = "Voice Plan"
         case huae = "HOOK UP & EARN"
         case reDirectMsg = "Redirect Msg"
+        case guestWifi = "Guest Wifi"
         case launchExternalApp = "LaunchExternalApp"
         case selfDiagnostic = "SelfDiagnostic"
     }
@@ -57,6 +58,7 @@ public class Activity: JsonRecord {
              .addOns,
              .huae,
              .reDirectMsg,
+             .guestWifi,
              .launchExternalApp:
            return true
         default:

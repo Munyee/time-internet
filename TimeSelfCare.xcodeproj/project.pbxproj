@@ -51,6 +51,12 @@
 		9E016BC32519896400877A62 /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E016BC12519896400877A62 /* Shop.storyboard */; };
 		9E016BC42519896400877A62 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E016BC22519896400877A62 /* ShopViewController.swift */; };
 		9E0252E2255E8E2D001CF6FC /* D-DIN-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E0252E1255E8C96001CF6FC /* D-DIN-Italic.ttf */; };
+		9E028D1D26D651250069FF31 /* DurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E028D1626D651250069FF31 /* DurationViewController.swift */; };
+		9E028D1E26D651250069FF31 /* EditGuestWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E028D1726D651250069FF31 /* EditGuestWifiViewController.swift */; };
+		9E028D1F26D651250069FF31 /* Guestwifi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E028D1826D651250069FF31 /* Guestwifi.storyboard */; };
+		9E028D2026D651250069FF31 /* GuestWifiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E028D1926D651250069FF31 /* GuestWifiViewController.swift */; };
+		9E028D2126D651250069FF31 /* ConnectedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E028D1B26D651250069FF31 /* ConnectedDevice.swift */; };
+		9E028D2226D651250069FF31 /* ConnectedDevice.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E028D1C26D651250069FF31 /* ConnectedDevice.xib */; };
 		9E183ACA266A17D200CB923B /* GettingDeviceReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183ABE266A17CE00CB923B /* GettingDeviceReadyViewController.swift */; };
 		9E183ACB266A17D200CB923B /* ApDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183AC0266A17CE00CB923B /* ApDeviceTableViewCell.swift */; };
 		9E183ACC266A17D200CB923B /* ResetDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183AC1266A17CF00CB923B /* ResetDeviceViewController.swift */; };
@@ -380,6 +386,12 @@
 		9E016BC12519896400877A62 /* Shop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
 		9E016BC22519896400877A62 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		9E0252E1255E8C96001CF6FC /* D-DIN-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "D-DIN-Italic.ttf"; sourceTree = "<group>"; };
+		9E028D1626D651250069FF31 /* DurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DurationViewController.swift; sourceTree = "<group>"; };
+		9E028D1726D651250069FF31 /* EditGuestWifiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGuestWifiViewController.swift; sourceTree = "<group>"; };
+		9E028D1826D651250069FF31 /* Guestwifi.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Guestwifi.storyboard; sourceTree = "<group>"; };
+		9E028D1926D651250069FF31 /* GuestWifiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestWifiViewController.swift; sourceTree = "<group>"; };
+		9E028D1B26D651250069FF31 /* ConnectedDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedDevice.swift; sourceTree = "<group>"; };
+		9E028D1C26D651250069FF31 /* ConnectedDevice.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectedDevice.xib; sourceTree = "<group>"; };
 		9E183ABE266A17CE00CB923B /* GettingDeviceReadyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GettingDeviceReadyViewController.swift; sourceTree = "<group>"; };
 		9E183AC0266A17CE00CB923B /* ApDeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		9E183AC1266A17CF00CB923B /* ResetDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetDeviceViewController.swift; sourceTree = "<group>"; };
@@ -681,6 +693,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9E028D1526D651250069FF31 /* GuestWifi */,
 				9EDE11CE26B8F50B00C8850E /* PPPOE */,
 				9EE460D8260043F70040D8CE /* DeviceInstallation */,
 				9E8BB093268076810091D4D3 /* Blacklist */,
@@ -960,6 +973,27 @@
 				9E016BC22519896400877A62 /* ShopViewController.swift */,
 			);
 			path = Shop;
+			sourceTree = "<group>";
+		};
+		9E028D1526D651250069FF31 /* GuestWifi */ = {
+			isa = PBXGroup;
+			children = (
+				9E028D1626D651250069FF31 /* DurationViewController.swift */,
+				9E028D1726D651250069FF31 /* EditGuestWifiViewController.swift */,
+				9E028D1826D651250069FF31 /* Guestwifi.storyboard */,
+				9E028D1926D651250069FF31 /* GuestWifiViewController.swift */,
+				9E028D1A26D651250069FF31 /* CustomViews */,
+			);
+			path = GuestWifi;
+			sourceTree = "<group>";
+		};
+		9E028D1A26D651250069FF31 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				9E028D1B26D651250069FF31 /* ConnectedDevice.swift */,
+				9E028D1C26D651250069FF31 /* ConnectedDevice.xib */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		9E183ABF266A17CE00CB923B /* Cell */ = {
@@ -1655,6 +1689,7 @@
 				9E36BB5A25E542D600E5575F /* PeriodView.xib in Resources */,
 				9E9EB76424D797FE00D0D342 /* Diagnostics.storyboard in Resources */,
 				E2FB110D22CC9492000FED93 /* Reward.storyboard in Resources */,
+				9E028D2226D651250069FF31 /* ConnectedDevice.xib in Resources */,
 				E2A8E8441FCE3D6E00EA5DF2 /* Profile.storyboard in Resources */,
 				E2E84FED1FCEB4FB0014CEAA /* DIN Alternate Regular.otf in Resources */,
 				E2626D5020A923F700891953 /* Activity.storyboard in Resources */,
@@ -1676,6 +1711,7 @@
 				E22050E61FCD4EE4004D5B10 /* DIN.plist in Resources */,
 				E23844B2210EDEDE00EB6E40 /* TimeImagePickerCell.xib in Resources */,
 				0A8E01F61FA9B50B00CA27A9 /* Launch.storyboard in Resources */,
+				9E028D1F26D651250069FF31 /* Guestwifi.storyboard in Resources */,
 				E22D054720BBE40300C38B54 /* GoodConnection.json in Resources */,
 				9E5437EF25E8E17E00195623 /* Bindgateway.storyboard in Resources */,
 			);
@@ -2023,6 +2059,7 @@
 				9E183AD2266A17D200CB923B /* AddDeviceListViewController.swift in Sources */,
 				9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */,
 				9EAB2C09249CB9ED00F12A3C /* PopUpViewController.swift in Sources */,
+				9E028D1E26D651250069FF31 /* EditGuestWifiViewController.swift in Sources */,
 				E21CF72F1FC674E900F13FAF /* AutoDebitViewController.swift in Sources */,
 				5A20BF431FE98EFC00ECFF78 /* TimeBaseViewController.swift in Sources */,
 				E2AD92C51FC3A58C00138334 /* AddOnViewController.swift in Sources */,
@@ -2049,6 +2086,7 @@
 				E20A717E1FD4E75000938766 /* FABViewController.swift in Sources */,
 				E2626D5920A972BD00891953 /* ActivityTableViewCell.swift in Sources */,
 				E219ADA01FB3D3D500A896FE /* WalkthroughCell.swift in Sources */,
+				9E028D2126D651250069FF31 /* ConnectedDevice.swift in Sources */,
 				E20A71801FD4E8FA00938766 /* FABCell.swift in Sources */,
 				E2AD69DC20AD1845001D104E /* ChangeSSIDViewController.swift in Sources */,
 				E274AD6B210711F700E62A42 /* TicketDetailViewController.swift in Sources */,
@@ -2076,6 +2114,7 @@
 				9E36BB4F25E4D9C800E5575F /* DeviceView.swift in Sources */,
 				0A8E01FB1FA9B50B00CA27A9 /* LoginViewController.swift in Sources */,
 				E27DCC981FE0E60300A82769 /* UIView+.swift in Sources */,
+				9E028D1D26D651250069FF31 /* DurationViewController.swift in Sources */,
 				9E21C0E125DE45AF008B3824 /* PCProfileViewController.swift in Sources */,
 				9E4AB96125E00EE600F1DEFE /* Units.swift in Sources */,
 				9E36BB5825E539BB00E5575F /* SelectPeriod.swift in Sources */,
@@ -2098,6 +2137,7 @@
 				9E36BB4925E3EF4700E5575F /* PCDeviceTableViewCell.swift in Sources */,
 				E2FDB2D520AAB490002F0A66 /* NotificationSettingsViewController.swift in Sources */,
 				E21CF7311FC6906800F13FAF /* CreateAutoDebitViewController.swift in Sources */,
+				9E028D2026D651250069FF31 /* GuestWifiViewController.swift in Sources */,
 				9EFC438625EE2CB0009AF8C2 /* ConnectedWifiViewController.swift in Sources */,
 				E2A8E8461FCE3D9900EA5DF2 /* ProfileDetailViewController.swift in Sources */,
 				E274AD66210711F700E62A42 /* TicketCell.swift in Sources */,

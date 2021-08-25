@@ -12,6 +12,9 @@ import MBProgressHUD
 import UserNotifications
 import FirebaseRemoteConfig
 import FirebaseCrashlytics
+import AppTrackingTransparency
+import Firebase
+import FBSDKCoreKit
 
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
 internal let dontAskAgainFlag: String = "dontAskAgain"
@@ -111,6 +114,26 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
 
     func getFirebaseAppVersion() {
         if NetworkReachabilityManager()!.isReachable {
+            
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization { status in
+                    if status == .authorized {
+                        Analytics.setAnalyticsCollectionEnabled(true)
+                        Settings.setAdvertiserTrackingEnabled(true)
+                        Settings.isAutoLogAppEventsEnabled = true
+                        Settings.isAdvertiserIDCollectionEnabled = true
+                    } else {
+                        Analytics.setAnalyticsCollectionEnabled(false)
+                        Settings.setAdvertiserTrackingEnabled(false)
+                    }
+                }
+            } else {
+                Analytics.setAnalyticsCollectionEnabled(true)
+                Settings.setAdvertiserTrackingEnabled(true)
+                Settings.isAutoLogAppEventsEnabled = true
+                Settings.isAdvertiserIDCollectionEnabled = true
+            }
+            
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
             settings.fetchTimeout = 30

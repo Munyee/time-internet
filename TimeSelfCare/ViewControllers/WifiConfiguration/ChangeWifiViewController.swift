@@ -43,7 +43,7 @@ class ChangeWifiViewController: TimeBaseViewController {
     
     @IBAction func actRetry(_ sender: Any) {
         self.errorMsg.text = ""
-        if NetworkReachabilityManager()!.isReachable {
+        if Utils.isInternetAvailable() {
             if ssidName != "" && gateway != nil {
                 if let deviceMac = self.gateway?.deviceMac, let oldGateway = self.oldGatewayId {
                     

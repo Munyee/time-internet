@@ -12,9 +12,6 @@ import MBProgressHUD
 import UserNotifications
 import FirebaseRemoteConfig
 import FirebaseCrashlytics
-import AppTrackingTransparency
-import Firebase
-import FBSDKCoreKit
 
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
 internal let dontAskAgainFlag: String = "dontAskAgain"
@@ -44,10 +41,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     override func viewDidLoad() {
         super.viewDidLoad()
         UNUserNotificationCenter.current().delegate = self
-    } 
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        getFirebaseAppVersion()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
     }
     
@@ -76,8 +74,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         progressImageView.animationRepeatCount = 1
         progressImageView.image = self.progressImageView.animationImages?.last
         progressImageView.startAnimating()
-        
-        getFirebaseAppVersion()
 
         appLogoImgView.animationImages = self.animatedLogoImages(for: "TIME_AnimationFrame")
         appLogoImgView.contentMode = .scaleAspectFill
@@ -113,27 +109,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
 
     func getFirebaseAppVersion() {
-        if NetworkReachabilityManager()!.isReachable {
-            
-            if #available(iOS 14, *) {
-                ATTrackingManager.requestTrackingAuthorization { status in
-                    if status == .authorized {
-                        Analytics.setAnalyticsCollectionEnabled(true)
-                        Settings.setAdvertiserTrackingEnabled(true)
-                        Settings.isAutoLogAppEventsEnabled = true
-                        Settings.isAdvertiserIDCollectionEnabled = true
-                    } else {
-                        Analytics.setAnalyticsCollectionEnabled(false)
-                        Settings.setAdvertiserTrackingEnabled(false)
-                    }
-                }
-            } else {
-                Analytics.setAnalyticsCollectionEnabled(true)
-                Settings.setAdvertiserTrackingEnabled(true)
-                Settings.isAutoLogAppEventsEnabled = true
-                Settings.isAdvertiserIDCollectionEnabled = true
-            }
-            
+        if Utils.isInternetAvailable() {
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
             settings.fetchTimeout = 30
@@ -143,17 +119,15 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             #endif
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-            remoteConfig.fetch { status, error in
-                if status == .success {
-                    self.remoteConfig.activate { _, _ in
-                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
-                            self.showNext()
-                            return
-                        }
-                        self.appVersionConfig = AppVersionModal(dictionary: appInit)
-                        DispatchQueue.main.async {
-                            self.checkAppVersion()
-                        }
+            remoteConfig.fetchAndActivate { status, error in
+                if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
+                    guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+                        self.showNext()
+                        return
+                    }
+                    self.appVersionConfig = AppVersionModal(dictionary: appInit)
+                    DispatchQueue.main.async {
+                        self.checkAppVersion()
                     }
                 } else {
                     self.showNext()
@@ -161,6 +135,24 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 }
             }
+//            remoteConfig.fetch { status, error in
+//                if status == .success {
+//                    self.remoteConfig.activate { _, _ in
+//                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+//                            self.showNext()
+//                            return
+//                        }
+//                        self.appVersionConfig = AppVersionModal(dictionary: appInit)
+//                        DispatchQueue.main.async {
+//                            self.checkAppVersion()
+//                        }
+//                    }
+//                } else {
+//                    self.showNext()
+//                    print("Config not fetched")
+//                    print("Error: \(error?.localizedDescription ?? "No error available.")")
+//                }
+//            }
         } else {
             self.showAlertMessage(title: "", message: "No Internet Connection", actions: [
                 UIAlertAction(title: "RETRY", style: .cancel, handler: { _ in

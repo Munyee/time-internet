@@ -111,25 +111,34 @@ class GuestWifiViewController: UIViewController {
         
         var arrDevice: [HwLanDevice] = []
         HuaweiHelper.shared.queryLanDeviceListEx { devices in
-            arrDevice = devices.filter { $0.connectInterface == "SSID\(self.guestInfo.ssidIndex)" && $0.onLine }
+            arrDevice = devices.filter { ($0.connectInterface == "SSID\(self.guestInfo.ssidIndex)" || $0.connectInterface == "SSID\(self.guestInfo.ssidIndex5G)") && $0.onLine }
 
             let arrMac = arrDevice.map { $0.mac }
+            var arrDeviceType: [HwDeviceTypeInfo] = []
             if let macList = arrMac as? [String] {
+                
+                let group = DispatchGroup()
+                
+                group.enter()
                 HuaweiHelper.shared.queryLanDeviceManufacturingInfoList(macList: macList) { deviceTypeInfo in
+                    arrDeviceType = deviceTypeInfo
+                    group.leave()
+                } error: { _ in
+                    group.leave()
+                }
+                
+                group.notify(queue: .main) {
                     hud.hide(animated: true)
-
+                    
                     self.connectedDevicesLabel.text = "Connected devices (\(arrDevice.count))"
                     
                     for device in arrDevice {
-                        let deviceType = deviceTypeInfo.first(where: { $0.mac == device.mac })
+                        let deviceType = arrDeviceType.first(where: { $0.mac == device.mac })
                         if let connectedDevice = ConnectedDevice(device: device, deviceTypeInfo: deviceType ?? HwDeviceTypeInfo()) {
                             self.connectedDeviceStackView.addArrangedSubview(connectedDevice)
                         }
                     }
-                } error: { _ in
-                    hud.hide(animated: true)
                 }
-
             } else {
                 hud.hide(animated: true)
             }

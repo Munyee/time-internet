@@ -27,8 +27,8 @@ class ConnectedDevice: UIView {
     required init?(device: HwLanDevice, deviceTypeInfo: HwDeviceTypeInfo) {
         super.init(frame: .zero)
         commonInit()
-        deviceName.text = device.name ?? "-"
-        deviceName.text = device.mac ?? "-"
+        deviceName.text = device.name != "" ? device.name : device.mac
+        deviceMac.text = device.mac ?? "-"
         
         switch deviceTypeInfo.deviceType {
         case "PC":

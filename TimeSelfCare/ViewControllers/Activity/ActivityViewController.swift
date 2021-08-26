@@ -123,6 +123,17 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
                 let addOnVC: AddOnViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
                 self.presentNavigation(addOnVC, animated: true)
             }
+        case .launchExternalApp:
+            if activity.click == "WebBrowser" {
+                if let urlString = activity.url {
+//                    let timeWebView = TIMEWebViewController()
+//                    let urlString = urlString
+//                    let url = URL(string: urlString)
+//                    timeWebView.url = url
+//                    self.navigationController?.pushViewController(timeWebView, animated: true)
+                    openURL(withURLString: urlString)
+                }
+            }
         default:
             break
         }

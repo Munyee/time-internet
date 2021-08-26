@@ -12,6 +12,9 @@ import MBProgressHUD
 import UserNotifications
 import FirebaseRemoteConfig
 import FirebaseCrashlytics
+import AppTrackingTransparency
+import Firebase
+import FBSDKCoreKit
 
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
 internal let dontAskAgainFlag: String = "dontAskAgain"
@@ -40,8 +43,13 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
         UNUserNotificationCenter.current().delegate = self
+    } 
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getFirebaseAppVersion()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -70,18 +78,12 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         progressImageView.image = self.progressImageView.animationImages?.last
         progressImageView.startAnimating()
         
-        getFirebaseAppVersion()
-
         appLogoImgView.animationImages = self.animatedLogoImages(for: "TIME_AnimationFrame")
         appLogoImgView.contentMode = .scaleAspectFill
         appLogoImgView.animationDuration = 1.0
         appLogoImgView.animationRepeatCount = 1
         appLogoImgView.image = appLogoImgView.animationImages?.last
         appLogoImgView.startAnimating()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -111,16 +113,36 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
 
     func getFirebaseAppVersion() {
         if NetworkReachabilityManager()!.isReachable {
+            if #available(iOS 14, *) {
+                ATTrackingManager.requestTrackingAuthorization { status in
+                    if status == .authorized {
+                        Analytics.setAnalyticsCollectionEnabled(true)
+                        Settings.setAdvertiserTrackingEnabled(true)
+                        Settings.isAutoLogAppEventsEnabled = true
+                        Settings.isAdvertiserIDCollectionEnabled = true
+                    } else {
+                        Analytics.setAnalyticsCollectionEnabled(false)
+                        Settings.setAdvertiserTrackingEnabled(false)
+                    }
+                }
+            } else {
+                Analytics.setAnalyticsCollectionEnabled(true)
+                Settings.setAdvertiserTrackingEnabled(true)
+                Settings.isAutoLogAppEventsEnabled = true
+                Settings.isAdvertiserIDCollectionEnabled = true
+            }
+            
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
             settings.fetchTimeout = 30
+            settings.minimumFetchInterval = 3_600
+
             #if DEBUG
-//            settings.minimumFetchInterval = 0
             #endif
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-            remoteConfig.fetchAndActivate { status, error -> Void in
-                if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
+            remoteConfig.fetch { status, error in
+                if status == .success {
                     self.remoteConfig.activate { _, _ in
                         guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
                             self.showNext()
@@ -133,7 +155,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     }
                 } else {
                     self.showNext()
-//                    Crashlytics.crashlytics().record(error: error!)
                     print("Config not fetched")
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 }
@@ -446,6 +467,17 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 let addOnVC: AddOnViewController = UIStoryboard(name: TimeSelfCareStoryboard.summary.filename, bundle: nil).instantiateViewController()
                 currentViewController.presentNavigation(addOnVC, animated: true)
                 completionHandler()
+            }
+        case .launchExternalApp:
+            if activity.click == "WebBrowser" {
+                if let urlString = activity.url {
+//                    let timeWebView = TIMEWebViewController()
+//                    let url = URL(string: urlString)
+//                    timeWebView.url = url
+//                    currentViewController.presentNavigation(timeWebView, animated: true)
+                    openURL(withURLString: urlString)
+                    completionHandler()
+                }
             }
         default:
             openActivity()

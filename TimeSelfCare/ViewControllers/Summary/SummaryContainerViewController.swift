@@ -21,13 +21,13 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var pageTitleLabel: UILabel!
     
-    @IBOutlet private weak var activityAnimationView: LOTAnimationView!
+    @IBOutlet private weak var activityAnimationView: AnimationView!
     @IBOutlet private weak var profileFullNameLabel: UILabel!
     @IBOutlet private weak var floatingActionButton: UIButton!
     @IBOutlet private weak var activityButton: UIButton!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
-    var showFloatingButton = true
+    var showFloatingButton = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +41,14 @@ class SummaryContainerViewController: TimeBaseViewController {
         
         didUpdatePage(with: 0)
         
+        self.updatePages()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
-        
-        self.updatePages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,15 +129,16 @@ class SummaryContainerViewController: TimeBaseViewController {
                             self.showFloatingButton = false
                             HuaweiHelper.shared.initHwSdk {
                                 HuaweiHelper.shared.checkIsLogin { result in
-                                    //                                if !result.isLogined {
-                                    self.HuaweiLogin()
-                                    //                                } else {
+                                    if !result.isLogined {
+                                        self.HuaweiLogin()
+                                    }
+//                                                                        else {
                                     //                                    self.checkIsKick()
                                     //                                }
                                 }
                             }
                         } else {
-                            self.showFloatingButton = true
+                            self.showFloatingButton = false
                         }
                     }
                 }
@@ -144,7 +148,9 @@ class SummaryContainerViewController: TimeBaseViewController {
     
     func HuaweiLogin() {
         DispatchQueue.main.async {
-            guard let account = AccountController.shared.selectedAccount else { return }
+            guard let account = AccountController.shared.selectedAccount else {
+                return
+            }
             
             guard
                 let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
@@ -165,9 +171,9 @@ class SummaryContainerViewController: TimeBaseViewController {
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
                             self.checkIsKick()
                         }, error: { exception in
-                            DispatchQueue.main.async {
-                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                            }
+//                            DispatchQueue.main.async {
+//                                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+//                            }
                         })
                     }
                 }
@@ -198,12 +204,12 @@ class SummaryContainerViewController: TimeBaseViewController {
         let hasUnreadActivity: Bool = ActivityDataController.shared.getActivities(account: currentAccount).first{ $0.isNew } != nil || APNSController.shared.unreadBadgeCount() > 0
         let activityButtonImage: UIImage = hasUnreadActivity ? #imageLiteral(resourceName: "ic_notification_highlight_new") : #imageLiteral(resourceName: "ic_notification_filled")
         self.activityButton.setImage(activityButtonImage, for: .normal)
-        self.activityAnimationView.setAnimation(named: "anim_notification_bell")
+        self.activityAnimationView.animation = Animation.named("anim_notification_bell")
         self.activityAnimationView.isHidden = !hasUnreadActivity
         self.activityButton.alpha = hasUnreadActivity ? 0 : 1
         if hasUnreadActivity {
-            self.activityAnimationView.setAnimation(named: "anim_notification_bell")
-            self.activityAnimationView.loopAnimation = false
+            self.activityAnimationView.animation = Animation.named("anim_notification_bell")
+            self.activityAnimationView.loopMode = .playOnce
             self.activityAnimationView.play { (_: Bool) in
                 self.activityButton.alpha = 1
                 self.activityAnimationView.isHidden = true
@@ -258,8 +264,8 @@ class SummaryContainerViewController: TimeBaseViewController {
                 menuItems.append(.autoDebit)
             }
             menuItems.append(.billingInfo)
-        case .performanceStatusSummary:
-            menuItems = [.changeSsid, .runDiagnostics]
+        //        case .performanceStatusSummary:
+        //            menuItems = [.changeSsid, .runDiagnostics]
         default:
             break
         }
@@ -425,7 +431,7 @@ extension SummaryContainerViewController: SummaryPageViewControllerDelegate {
             self.pageTitleLabel.text = NSLocalizedString("Voice Line", comment: "")
             hideFloatingActionButton()
         case .performanceStatusSummary:
-            self.pageTitleLabel.text = NSLocalizedString("Network Management", comment: "")
+            self.pageTitleLabel.text = NSLocalizedString("Control Hub", comment: "")
             if SsidDataController.shared.getSsids(account: AccountController.shared.selectedAccount).first?.isEnabled ?? false && self.showFloatingButton {
                 showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
             } else {

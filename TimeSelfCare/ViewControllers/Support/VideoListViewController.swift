@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class VideoListViewController: UIViewController {
 
-    var videos = JSON()
+    var videos: [Video] = []
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var totalVideo: UILabel!
@@ -24,7 +24,7 @@ class VideoListViewController: UIViewController {
         self.title = NSLocalizedString("HOW TO VIDEOS", comment: "")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.popBack))
         
-        totalVideo.text = "\(videos.arrayValue.count) video\(videos.arrayValue.count == 1 ? "" : "s")"
+        totalVideo.text = "\(videos.count) video\(videos.count == 1 ? "" : "s")"
         selectCategory.text = "All categories"
         categoryLabel.text = "All"
     }
@@ -58,62 +58,48 @@ class VideoListViewController: UIViewController {
 extension VideoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let categoryText = categoryLabel.text, !categoryText.contains("All") {
-            return videos.arrayValue.filter { $0["type"].stringValue.contains(categoryText) }.count
+            return videos.filter { ($0.videoCategory?.contains(categoryText) ?? true) }.count
         }
-        return videos.arrayValue.count
+        return videos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ytViewCell-table", for: indexPath) as? YTVideoTableViewCell
-        var dataVal = videos[indexPath.row]
+        var video = videos[indexPath.row]
+        
+        guard let videoId = video.videoId, let videoTitle = video.videoTitle, let videoDuration = video.videoDuration, let videoCategory = video.videoCategory else {
+            return UITableViewCell()
+        }
+        
         if let categoryText = categoryLabel.text, !categoryText.contains("All") {
-            dataVal = videos.arrayValue.filter { $0["type"].stringValue.contains(categoryText) }[indexPath.row]
+            video = videos.filter { ($0.videoCategory?.contains(categoryText) ?? true) }[indexPath.row]
         }
         let playerVars = ["controls" : 0, "playsinline" : 0, "autohide" : 1, "autoplay" : 0,
                            "fs" : 1, "rel" : 0, "loop" : 0, "enablejsapi" : 1, "modestbranding" : 0]
         cell?.ytView.webView?.backgroundColor = UIColor(hex: "#111723")
         if cell?.videoId != "" {
-            cell?.ytView.cueVideo(byId: dataVal["videoId"].stringValue, startSeconds: 0)
+            cell?.ytView.cueVideo(byId: videoId, startSeconds: 0)
         } else {
-            cell?.videoId = dataVal["videoId"].stringValue
-            cell?.ytView.load(withVideoId: dataVal["videoId"].stringValue, playerVars: playerVars)
+            cell?.videoId = videoId
+            cell?.ytView.load(withVideoId: videoId, playerVars: playerVars)
         }
         cell?.ytViewHeight.constant = (view.bounds.width) * 0.563
         cell?.ytView.webView?.allowsLinkPreview = false
-        cell?.title.text = dataVal["title"].stringValue
-        cell?.type.text = dataVal["type"].stringValue
-        cell?.duration.text = secondsToHoursMinutesSeconds(seconds: dataVal["duration"].intValue)
+        cell?.title.text = videoTitle
+        cell?.type.text = videoCategory
+        cell?.duration.text = secondsToHoursMinutesSeconds(seconds: Int(videoDuration) ?? 0)
         cell?.ytView.delegate = self
         return cell ?? UITableViewCell()
     }
 }
 
 extension VideoListViewController: YTPlayerViewDelegate {
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        playerView.duration { val, error in
-            playerView.videoUrl { url, error in
-                if let videoId = url?.valueOf("v"), error == nil {
-                    for (index, item) in self.videos.arrayValue.enumerated() {
-                        if item["videoId"].stringValue == videoId {
-                            self.videos[index]["duration"] = JSON(val)
-                            break
-                        }
-                    }
-                }
-            }
-            
-            if let cell = playerView.superview?.superview?.superview as? YTVideoTableViewCell, error == nil {
-                cell.duration.text = self.secondsToHoursMinutesSeconds(seconds: Int(val))
-            }
-        }
-    }
-    
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
         if state == .ended {
             for (index, item) in tableView.subviews.enumerated() {
                 if let cell = item as? YTVideoTableViewCell, cell.ytView == playerView {
-                    let dataVal = videos[index]
-                    cell.ytView.cueVideo(byId: dataVal["videoId"].stringValue, startSeconds: 0)
+                    let video = videos[index]
+                    cell.ytView.cueVideo(byId: video.videoId ?? "", startSeconds: 0)
                     break
                 }
             }
@@ -133,9 +119,9 @@ extension VideoListViewController: VideoCategoryViewDelegate {
     func categoryDidSelect(type: String) {
         selectCategory.text = type
         categoryLabel.text = type.contains("All") ? "All" : type
-        var totalVideos = videos.arrayValue.count
+        var totalVideos = videos.count
         if let categoryText = categoryLabel.text, !categoryText.contains("All") {
-            totalVideos = videos.arrayValue.filter { $0["type"].stringValue.contains(categoryText) }.count
+            totalVideos = videos.filter { ($0.videoCategory?.contains(categoryText) ?? true) }.count
         }
         totalVideo.text = "\(totalVideos) video\(totalVideos == 1 ? "" : "s")"
         tableView.reloadData()

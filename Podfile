@@ -17,6 +17,9 @@ target 'TimeSelfCareData' do
   pod 'SDWebImage'
   pod 'EasyTipView', :git => 'git@10.60.81.57:BSS/EasyTipView.git'
   pod 'JVFloatLabeledTextField'
+  pod 'Firebase/Core'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Performance'
 
   target 'TimeSelfCareDataTests' do
     inherit! :search_paths
@@ -37,7 +40,7 @@ target 'TimeSelfCare' do
   pod 'SwiftLint'
   pod 'SwiftyJSON'
   pod 'MBProgressHUD', '~> 1.1.0'
-  pod 'lottie-ios', '~> 2.5.3'
+  pod 'lottie-ios'
   pod 'Firebase/Core'
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Crashlytics'
@@ -45,7 +48,12 @@ target 'TimeSelfCare' do
   pod 'Smartlook'
   pod "Pulsator"
   pod 'youtube-ios-player-helper'
-
+  pod 'Firebase/Analytics'
+  pod 'Firebase/DynamicLinks'
+  pod 'FBSDKCoreKit'
+  pod 'Firebase/Performance'
+  pod 'IQKeyboardManagerSwift'
+  
   target 'TimeSelfCareTests' do
     inherit! :search_paths
     # Pods for testing
@@ -59,7 +67,7 @@ target 'TimeSelfCare' do
 end
 
 my_project_pods_swift_versions = Hash[
-  "4.0", ["Alamofire", "CardIO", "SDWebImage", "EasyTipView", "JVFloatLabeledTextField", "SwiftLint", "MBProgressHUD", "lottie-ios", "Firebase/Core", "Crashlytics", "ApptivityFramework", "FreshchatSDK"]
+  "4.0", ["Alamofire", "CardIO", "SDWebImage", "EasyTipView", "JVFloatLabeledTextField", "SwiftLint", "MBProgressHUD", "ApptivityFramework"]
 ]
 
 def setup_all_swift_versions(target, pods_swift_versions)

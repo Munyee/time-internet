@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,7 +38,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="254" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXC-5c-wgO" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                    <rect key="frame" x="229" y="77.5" width="100" height="23.5"/>
+                                                    <rect key="frame" x="229" y="82.5" width="100" height="13.5"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="GbW-2q-tOK"/>
@@ -146,6 +146,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="sU6-Ry-92T"/>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dLx-7r-O9d" firstAttribute="bottom" secondItem="sU6-Ry-92T" secondAttribute="bottom" id="5yQ-Q3-99A"/>
@@ -153,7 +154,6 @@
                             <constraint firstItem="sU6-Ry-92T" firstAttribute="trailing" secondItem="dLx-7r-O9d" secondAttribute="trailing" id="U4r-oV-oo3"/>
                             <constraint firstItem="dLx-7r-O9d" firstAttribute="leading" secondItem="sU6-Ry-92T" secondAttribute="leading" id="dIe-D9-9I7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="sU6-Ry-92T"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="dLx-7r-O9d" id="dZc-uI-wHG"/>
@@ -164,6 +164,11 @@
             <point key="canvasLocation" x="429.60000000000002" y="97.601199400299862"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="uXC-5c-wgO">
+            <size key="intrinsicContentSize" width="34" height="13.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="ic_new_notifications" width="12" height="12"/>
         <image name="ic_next_arrow_black" width="50" height="50"/>

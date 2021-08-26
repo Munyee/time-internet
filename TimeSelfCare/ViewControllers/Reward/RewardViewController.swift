@@ -393,7 +393,7 @@ extension Reward.Status {
     var footerInfo: String? {
         switch self {
         case .grabbed:
-            return NSLocalizedString("The \"Redeem\" button is only for merchant use", comment: "")
+            return NSLocalizedString("Do not click! This button is only for merchant use.", comment: "")
         case .fullyGrabbed:
             return NSLocalizedString("Best of luck in the next cycle. Rewards are up for grabs on the 15th of every month.", comment: "")
         default:

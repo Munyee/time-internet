@@ -19,7 +19,7 @@ class VideoCategoryViewController: PopUpViewController {
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var scrollViewHeight: NSLayoutConstraint!
     
-    var videos = JSON()
+    var videos: [Video] = []
     var selectedCategory = ""
     var delegate: VideoCategoryViewDelegate?
     
@@ -38,9 +38,9 @@ class VideoCategoryViewController: PopUpViewController {
         categoryView.delegate = self
         stackView.addArrangedSubview(categoryView)
         
-        let categories = videos.arrayValue.map { $0["type"].stringValue }
-        for item in Set(categories).sorted { $0.lowercased() < $1.lowercased() } {
-            let categoryView = VideoCategory(text: item)
+        let categories = videos.map { $0.videoCategory }
+        for item in Set(categories).sorted(by: { $0?.lowercased() ?? "" < $1?.lowercased() ?? "" }) {
+            let categoryView = VideoCategory(text: item ?? "")
             if selectedCategory == item {
                 categoryView.typeLabel.textColor = UIColor(hex: "#8B8B8B")
             }

@@ -23,6 +23,7 @@ class SupportMainViewController: UIViewController {
     @IBOutlet private weak var statusBackground: UIView!
     let flowLayout = CenteredCollectionViewFlowLayout()
     var ticket: Ticket?
+    var videos: [Video] = []
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -30,18 +31,6 @@ class SupportMainViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         return refreshControl
     }()
-    
-    var data = JSON(
-        [
-            ["videoId": "9oeEHZIycjg", "title": "A-Lin《有一種悲傷 A Kind of Sorrow》Official Music Video - 電影『比悲傷更悲傷的故事 More Than Blue 』主題曲", "type":"Connectivity"],
-            ["videoId": "ZqRRN7JhFSk", "title": "How to run Self-Diagnostic + TIME App functions (Hub video)", "type":"Live Chat"],
-            ["videoId": "BRcudpJzy1I", "title": "A-Lin《有一種悲傷 A Kind of Sorrow》Official Music Video - 電影『比悲傷更悲傷的故事 More Than Blue 』主題曲", "type":"Connectivity"],
-            ["videoId": "EbgNITLTji0", "title": "三個麻瓜的新成員登場！", "type":"Connectivity"],
-//            ["videoId": "1ghp2v05KiA", "title": "挑戰粉絲指定任務！模仿進擊的巨人和火影忍者跑、挑戰困難自拍到跌倒、在初鹿牧場盲測各牌牛奶...｜麻瓜挑戰", "type":"Connectivity"],
-//            ["videoId": "XwTCNn2GGck", "title": "【小孩暗黑真心話！！原來他的心裡是這樣想？！】20161121 綜藝大熱門", "type":"Connectivity"],
-//            ["videoId": "wKhYmzuqMJo", "title": "A-Lin《有一種悲傷 A Kind of Sorrow》Official Music Video - 電影『比悲傷更悲傷的故事 More Than Blue 』主題曲", "type":"Connectivity"],
-//            ["videoId": "Jxpvq068z3s", "title": "A-Lin《有一種悲傷 A Kind of Sorrow》Official Music Video - 電影『比悲傷更悲傷的故事 More Than Blue 』主題曲", "type":"Connectivity"],
-        ])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,18 +49,32 @@ class SupportMainViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionViewHeight.constant = (view.bounds.width - 72) * 0.563 + 72
-        snakePage.pageCount = data.arrayValue.count
+        snakePage.pageCount = videos.count
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.yourTicketView.isHidden = true
         loadTickets()
+        loadVideos()
     }
     
     @objc
     private func refresh() {
         loadTickets()
+    }
+    
+    func loadVideos() {
+        SupportDataController.shared.loadSupportVideos { (videoData: [Video], error) in
+            if let error = error {
+                self.showAlertMessage(with: error)
+                return
+            }
+            
+            self.videos = videoData
+            self.snakePage.pageCount = self.videos.count
+            self.collectionView.reloadData()
+        }
     }
     
     func loadTickets() {
@@ -125,64 +128,49 @@ class SupportMainViewController: UIViewController {
     
     @IBAction func viewAllVideo(_ sender: Any) {
         let videoListVC: VideoListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
-        videoListVC.videos = data
+        videoListVC.videos = videos
         self.navigationController?.pushViewController(videoListVC, animated: true)
     }
 }
 
 extension SupportMainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data.arrayValue.count
+        videos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ytViewCell", for: indexPath) as? YTVideoCollectionViewCell
-        let dataVal = data[indexPath.row]
+        let video = videos[indexPath.row]
         let playerVars = ["controls" : 0, "playsinline" : 0, "autohide" : 1, "autoplay" : 0,
                            "fs" : 1, "rel" : 0, "loop" : 0, "enablejsapi" : 1, "modestbranding" : 0]
         cell?.ytView.webView?.backgroundColor = UIColor(hex: "#111723")
+        
+        guard let videoId = video.videoId, let videoTitle = video.videoTitle, let videoDuration = video.videoDuration, let videoCategory = video.videoCategory else {
+            return UICollectionViewCell()
+        }
         if cell?.videoId != "" {
-            cell?.ytView.cueVideo(byId: dataVal["videoId"].stringValue, startSeconds: 0)
+            cell?.ytView.cueVideo(byId: videoId, startSeconds: 0)
         } else {
-            cell?.videoId = dataVal["videoId"].stringValue
-            cell?.ytView.load(withVideoId: dataVal["videoId"].stringValue, playerVars: playerVars)
+            cell?.videoId = videoId
+            cell?.ytView.load(withVideoId: videoId, playerVars: playerVars)
         }
         cell?.ytViewHeight.constant = (view.bounds.width - 72) * 0.563
         cell?.ytView.webView?.allowsLinkPreview = false
-        cell?.title.text = dataVal["title"].stringValue
-        cell?.type.text = dataVal["type"].stringValue
-        cell?.duration.text = secondsToHoursMinutesSeconds(seconds: dataVal["duration"].intValue)
+        cell?.title.text = videoTitle
+        cell?.type.text = videoCategory
+        cell?.duration.text = secondsToHoursMinutesSeconds(seconds: Int(videoDuration) ?? 0)
         cell?.ytView.delegate = self
         return cell ?? UICollectionViewCell()
     }
 }
 
 extension SupportMainViewController: YTPlayerViewDelegate {
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        playerView.duration { val, error in
-            playerView.videoUrl { url, error in
-                if let videoId = url?.valueOf("v"), error == nil {
-                    for (index, item) in self.data.arrayValue.enumerated() {
-                        if item["videoId"].stringValue == videoId {
-                            self.data[index]["duration"] = JSON(val)
-                            break
-                        }
-                    }
-                }
-            }
-            
-            if let cell = playerView.superview?.superview?.superview as? YTVideoCollectionViewCell, error == nil {
-                cell.duration.text = self.secondsToHoursMinutesSeconds(seconds: Int(val))
-            }
-        }
-    }
-    
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
         if state == .ended {
             for (index, item) in collectionView.subviews.enumerated() {
                 if let cell = item as? YTVideoCollectionViewCell, cell.ytView == playerView {
-                    let dataVal = data[index]
-                    cell.ytView.cueVideo(byId: dataVal["videoId"].stringValue, startSeconds: 0)
+                    let video = videos[index]
+                    cell.ytView.cueVideo(byId: video.videoId ?? "", startSeconds: 0)
                     break
                 }
             }

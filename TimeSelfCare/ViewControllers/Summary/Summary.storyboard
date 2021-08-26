@@ -87,7 +87,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SX5-Vo-mfp">
                                         <rect key="frame" x="315" y="0.0" width="44" height="80"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4W6-4K-1fK" customClass="LOTAnimationView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4W6-4K-1fK" customClass="AnimationView" customModule="Lottie">
                                                 <rect key="frame" x="7" y="10" width="30" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -1014,7 +1014,7 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="nXs-9A-tvv">
                                         <rect key="frame" x="20" y="141" width="335" height="62.5"/>
-                                        <string key="text">Launch the TIME HOME Forward app and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
+                                        <string key="text">Launch the TIME VOICE APP and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1087,7 +1087,7 @@
                                                     <rect key="frame" x="0.0" y="16" width="375" height="115"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="etb-RA-wim">
-                                                            <rect key="frame" x="79" y="0.0" width="217" height="24"/>
+                                                            <rect key="frame" x="96.5" y="0.0" width="182.5" height="24"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_home_forward" translatesAutoresizingMaskIntoConstraints="NO" id="yXg-nn-lOm">
                                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -1096,8 +1096,8 @@
                                                                         <constraint firstAttribute="height" constant="24" id="NtQ-QK-01X"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME HOME Forward" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdS-td-fUx">
-                                                                    <rect key="frame" x="34" y="0.0" width="183" height="24"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME VOICE APP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdS-td-fUx">
+                                                                    <rect key="frame" x="34" y="0.0" width="148.5" height="24"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -1113,8 +1113,8 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="eRu-TS-Wwe">
-                                                            <rect key="frame" x="54.5" y="73" width="266" height="0.0"/>
-                                                            <string key="text">Launch the TIME HOME Forward app and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
+                                                            <rect key="frame" x="50" y="73" width="275" height="0.0"/>
+                                                            <string key="text">Launch the TIME VOICE APP and scan the code to activate your service. To add more devices, click on the REGENERATE QR Code. Connect up to 6 devices.</string>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                             <color key="textColor" red="0.13725490200000001" green="0.1215686275" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1205,31 +1205,11 @@
             <point key="canvasLocation" x="-702" y="160"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="3bX-MJ-QWa">
-            <size key="intrinsicContentSize" width="68.5" height="97"/>
-        </designable>
-        <designable name="92u-nn-vBf">
-            <size key="intrinsicContentSize" width="34" height="13.5"/>
-        </designable>
-        <designable name="CBn-6r-Hm3">
-            <size key="intrinsicContentSize" width="55" height="13.5"/>
-        </designable>
-        <designable name="Tob-G2-jci">
-            <size key="intrinsicContentSize" width="39" height="13.5"/>
-        </designable>
-        <designable name="kwA-Q7-FQa">
-            <size key="intrinsicContentSize" width="41" height="33.5"/>
-        </designable>
-        <designable name="s6M-i2-vh8">
-            <size key="intrinsicContentSize" width="28.5" height="13.5"/>
-        </designable>
-    </designables>
     <resources>
         <image name="ic_add_to_cart" width="80" height="80"/>
         <image name="ic_close_white" width="40" height="40"/>
         <image name="ic_fab_menu" width="50" height="50"/>
-        <image name="ic_home_forward" width="44" height="44"/>
+        <image name="ic_home_forward" width="66" height="66"/>
         <image name="ic_menu" width="50" height="50"/>
         <image name="ic_notification_highlight_new" width="40" height="40"/>
         <image name="shop_magenta" width="60" height="60"/>

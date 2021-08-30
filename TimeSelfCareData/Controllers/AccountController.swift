@@ -60,6 +60,24 @@ public class AccountController {
             UserDefaults.standard.set(value, forKey: "noOfGateway")
         }
     }
+    
+    public var showGuestWifi: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "showGuestWifi")
+        }
+        set(value) {
+            UserDefaults.standard.set(value, forKey: "showGuestWifi")
+        }
+    }
+    
+    public var guestWifiDuration: Int? {
+        get {
+            return UserDefaults.standard.integer(forKey: "guestWifiDuration")
+        }
+        set(value) {
+            UserDefaults.standard.set(value, forKey: "guestWifiDuration")
+        }
+    }
 
     public var profile: Profile! { // swiftlint:disable:this implicitly_unwrapped_optional
         return AuthUser.current?.person as? Profile

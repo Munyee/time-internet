@@ -42,7 +42,7 @@ class GetConnectViewController: UIViewController {
     }
     
     @IBAction func actRetry(_ sender: Any) {
-        if NetworkReachabilityManager()!.isReachable {
+        if Utils.isInternetAvailable() {
             if ssidName != "" && gateway != nil {
                 if let deviceMac = self.gateway?.deviceMac {
                     

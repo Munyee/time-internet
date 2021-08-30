@@ -64,6 +64,10 @@ class DeviceInstallationListViewController: UIViewController {
 //                    print(exception?.description ?? "")
 //                })
 //            }
+        } error: { exception in
+            DispatchQueue.main.async {
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+            }
         }
     }
 

@@ -16,6 +16,9 @@ import HwMobileSDK
 import AppTrackingTransparency
 import FBSDKCoreKit
 import IQKeyboardManagerSwift
+import AppTrackingTransparency
+import Firebase
+import FBSDKCoreKit
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -26,8 +29,10 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
         ApplicationDelegate.initialize()
+        
         if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization { status in
                 if status == .authorized {

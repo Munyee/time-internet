@@ -58,6 +58,11 @@ class AddBlacklistViewController: UIViewController {
             } else {
                 self.tableView.reloadData()
             }
+        } error: { exception in
+            DispatchQueue.main.async {
+                hud.hide(animated: true)
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+            }
         }
     }
     

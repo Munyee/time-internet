@@ -41,10 +41,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     override func viewDidLoad() {
         super.viewDidLoad()
         UNUserNotificationCenter.current().delegate = self
-    } 
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        getFirebaseAppVersion()
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
     }
     
@@ -73,8 +74,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         progressImageView.animationRepeatCount = 1
         progressImageView.image = self.progressImageView.animationImages?.last
         progressImageView.startAnimating()
-        
-        getFirebaseAppVersion()
 
         appLogoImgView.animationImages = self.animatedLogoImages(for: "TIME_AnimationFrame")
         appLogoImgView.contentMode = .scaleAspectFill
@@ -110,7 +109,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
 
     func getFirebaseAppVersion() {
-        if NetworkReachabilityManager()!.isReachable {
+        if Utils.isInternetAvailable() {
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
             settings.fetchTimeout = 30
@@ -120,17 +119,15 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             #endif
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-            remoteConfig.fetch { status, error in
-                if status == .success {
-                    self.remoteConfig.activate { _, _ in
-                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
-                            self.showNext()
-                            return
-                        }
-                        self.appVersionConfig = AppVersionModal(dictionary: appInit)
-                        DispatchQueue.main.async {
-                            self.checkAppVersion()
-                        }
+            remoteConfig.fetchAndActivate { status, error in
+                if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
+                    guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+                        self.showNext()
+                        return
+                    }
+                    self.appVersionConfig = AppVersionModal(dictionary: appInit)
+                    DispatchQueue.main.async {
+                        self.checkAppVersion()
                     }
                 } else {
                     self.showNext()
@@ -138,6 +135,24 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 }
             }
+//            remoteConfig.fetch { status, error in
+//                if status == .success {
+//                    self.remoteConfig.activate { _, _ in
+//                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+//                            self.showNext()
+//                            return
+//                        }
+//                        self.appVersionConfig = AppVersionModal(dictionary: appInit)
+//                        DispatchQueue.main.async {
+//                            self.checkAppVersion()
+//                        }
+//                    }
+//                } else {
+//                    self.showNext()
+//                    print("Config not fetched")
+//                    print("Error: \(error?.localizedDescription ?? "No error available.")")
+//                }
+//            }
         } else {
             self.showAlertMessage(title: "", message: "No Internet Connection", actions: [
                 UIAlertAction(title: "RETRY", style: .cancel, handler: { _ in
@@ -458,6 +473,19 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     completionHandler()
                 }
             }
+        case .selfDiagnostic:
+            let diagnosticsVC: DiagnosisViewController = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil).instantiateViewController()
+            currentViewController.presentNavigation(diagnosticsVC, animated: true)
+            completionHandler()
+        case .guestWifi:
+            AccountController.shared.showGuestWifi = true
+            
+            if let presentedVC = self.presentedViewController?.children[0].presentedViewController {
+                presentedVC.dismiss(animated: true, completion: {
+                    NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+                })
+            }
+            completionHandler()
         default:
             openActivity()
             completionHandler()

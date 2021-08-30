@@ -26,10 +26,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BEn-cy-tGW">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="317"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="398"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bXR-Pe-kU7">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="317"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="398"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkz-TL-LF1" customClass="UIControl">
                                                         <rect key="frame" x="35" y="59" width="344" height="81"/>
@@ -54,7 +54,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(mac name)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFx-I9-4KL">
-                                                                <rect key="frame" x="252.5" y="30" width="62.5" height="14"/>
+                                                                <rect key="frame" x="252.5" y="30" width="62.5" height="14.5"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -154,6 +154,52 @@
                                                             <action selector="actBlacklist:" destination="qct-ec-vFD" eventType="touchUpInside" id="2mu-UB-50Q"/>
                                                         </connections>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etf-mQ-qgx" customClass="UIControl">
+                                                        <rect key="frame" x="35" y="302" width="344" height="81"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewy-Oz-XMd">
+                                                                <rect key="frame" x="0.0" y="80" width="344" height="1"/>
+                                                                <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="s69-hs-RLl"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AB2-pn-4bV">
+                                                                <rect key="frame" x="0.0" y="30" width="65" height="20"/>
+                                                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next" translatesAutoresizingMaskIntoConstraints="NO" id="1vr-HI-iiE">
+                                                                <rect key="frame" x="325" y="27.5" width="19" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="20" id="Pnm-Pv-0Y8"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(status)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLh-GK-JLp">
+                                                                <rect key="frame" x="275.5" y="30.5" width="39.5" height="14.5"/>
+                                                                <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
+                                                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="AB2-pn-4bV" firstAttribute="top" secondItem="etf-mQ-qgx" secondAttribute="top" constant="30" id="7rS-cP-8rR"/>
+                                                            <constraint firstAttribute="trailing" secondItem="1vr-HI-iiE" secondAttribute="trailing" id="Dru-V3-lWE"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ewy-Oz-XMd" secondAttribute="trailing" id="NcC-e0-gzo"/>
+                                                            <constraint firstItem="ewy-Oz-XMd" firstAttribute="top" secondItem="AB2-pn-4bV" secondAttribute="bottom" constant="30" id="Ni0-MG-XJ6"/>
+                                                            <constraint firstItem="ewy-Oz-XMd" firstAttribute="leading" secondItem="etf-mQ-qgx" secondAttribute="leading" id="YyU-IN-FoK"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ewy-Oz-XMd" secondAttribute="bottom" id="daM-4k-jck"/>
+                                                            <constraint firstItem="1vr-HI-iiE" firstAttribute="leading" secondItem="KLh-GK-JLp" secondAttribute="trailing" constant="10" id="jAJ-qA-b6t"/>
+                                                            <constraint firstItem="1vr-HI-iiE" firstAttribute="centerY" secondItem="etf-mQ-qgx" secondAttribute="centerY" constant="-3" id="kyk-Xj-fpj"/>
+                                                            <constraint firstItem="AB2-pn-4bV" firstAttribute="leading" secondItem="etf-mQ-qgx" secondAttribute="leading" id="mhR-Ml-14a"/>
+                                                            <constraint firstItem="KLh-GK-JLp" firstAttribute="centerY" secondItem="1vr-HI-iiE" secondAttribute="centerY" id="rBX-eK-Kg6"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="actGuestWifi:" destination="qct-ec-vFD" eventType="touchUpInside" id="mQd-Li-vnr"/>
+                                                        </connections>
+                                                    </view>
                                                 </subviews>
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="15" leading="35" bottom="15" trailing="35"/>
                                             </stackView>
@@ -197,6 +243,7 @@
                     </view>
                     <connections>
                         <outlet property="familyName" destination="gFx-I9-4KL" id="rhC-65-vi3"/>
+                        <outlet property="guestWifiStatus" destination="KLh-GK-JLp" id="xo4-TK-kJ0"/>
                         <outlet property="liveChatConstraint" destination="q0g-d6-Wzr" id="viG-s9-RJg"/>
                         <outlet property="liveChatView" destination="lrL-ka-HLm" id="yBk-2L-aW1"/>
                     </connections>
@@ -214,7 +261,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected WiFi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vmv-BR-Jdg">
-                                <rect key="frame" x="36" y="40" width="100.5" height="17"/>
+                                <rect key="frame" x="36" y="40" width="96" height="17"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -241,7 +288,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HV0-6u-JZn">
-                                <rect key="frame" x="139" y="237" width="136" height="29"/>
+                                <rect key="frame" x="140.5" y="237" width="133" height="29"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <state key="normal" title="Remove Wifi Network">
                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -820,19 +867,19 @@ change your WiFi network?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to the WiFi network below to access extra tools to manage your connection." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUJ-ZQ-N52">
-                                <rect key="frame" x="40" y="176" width="334" height="33"/>
+                                <rect key="frame" x="40" y="176" width="334" height="34"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You’re connected to" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4J-xu-qLj">
-                                <rect key="frame" x="144" y="269" width="126" height="16.5"/>
+                                <rect key="frame" x="146.5" y="270" width="121.5" height="17"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHi-Uj-InS">
-                                <rect key="frame" x="67" y="477" width="280" height="50"/>
+                                <rect key="frame" x="67" y="479" width="280" height="50"/>
                                 <color key="backgroundColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="lMd-Xd-BaB"/>
@@ -848,7 +895,7 @@ change your WiFi network?</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCQ-dh-tHj">
-                                <rect key="frame" x="185" y="567" width="44" height="29"/>
+                                <rect key="frame" x="185.5" y="569" width="43" height="29"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.90196078430000004" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -858,13 +905,13 @@ change your WiFi network?</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Connected" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbs-Je-sBd">
-                                <rect key="frame" x="133.5" y="307.5" width="147.5" height="33"/>
+                                <rect key="frame" x="133.5" y="309" width="147.5" height="33"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="33"/>
                                 <color key="textColor" red="0.8980392157" green="0.027450980390000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Checking" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksE-M2-14o">
-                                <rect key="frame" x="35" y="360.5" width="344" height="16.5"/>
+                                <rect key="frame" x="35" y="362" width="344" height="17"/>
                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="14"/>
                                 <color key="textColor" red="0.8980392157" green="0.027450980390000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -932,13 +979,13 @@ change your WiFi network?</string>
                                                         <rect key="frame" x="35" y="59" width="364" height="93"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change your WiFi name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqB-pG-1Tm">
-                                                                <rect key="frame" x="0.0" y="0.0" width="364" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="364" height="29"/>
                                                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your new WiFi Network Name (SSID) and new password." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exm-fM-NOL">
-                                                                <rect key="frame" x="0.0" y="35" width="364" height="28"/>
+                                                                <rect key="frame" x="0.0" y="34" width="364" height="29"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>

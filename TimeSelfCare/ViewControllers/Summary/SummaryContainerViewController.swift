@@ -49,6 +49,7 @@ class SummaryContainerViewController: TimeBaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleConnectionStatusUpdate(notification:)), name: NSNotification.Name.ConnectionStatusDidUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -167,8 +168,10 @@ class SummaryContainerViewController: TimeBaseViewController {
                 
                 if let result = data {
                     if let authCode = result["authcode"] as? String {
-                        print(authCode)
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
+                            DispatchQueue.main.async {
+                                self.showGuestWifi()
+                            }
                             self.checkIsKick()
                         }, error: { exception in
 //                            DispatchQueue.main.async {
@@ -403,6 +406,29 @@ class SummaryContainerViewController: TimeBaseViewController {
             self.showFloatingActionButton(with: #imageLiteral(resourceName: "ic_ssid_button"))
         } else {
             self.hideFloatingActionButton()
+        }
+    }
+    
+    @objc
+    func reinstateBackgroundTask() {
+        showGuestWifi()
+    }
+    
+    func showGuestWifi() {
+        if AccountController.shared.showGuestWifi {
+            AccountController.shared.showGuestWifi = false
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.label.text = NSLocalizedString("Loading...", comment: "")
+            HuaweiHelper.shared.queryUserBindGateway { gateways in
+                hud.hide(animated: true)
+                if !gateways.isEmpty {
+                    let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.guestwifi.filename, bundle: nil)
+                    guard let vc = storyboard.instantiateViewController(withIdentifier: "GuestWifiViewController") as? GuestWifiViewController else {
+                        return
+                    }
+                    self.presentNavigation(vc, animated: true)
+                }
+            }
         }
     }
 }

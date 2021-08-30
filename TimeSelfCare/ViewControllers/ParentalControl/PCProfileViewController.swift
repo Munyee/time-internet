@@ -179,6 +179,10 @@ class PCProfileViewController: UIViewController {
                 HuaweiHelper.shared.queryLanDeviceListEx { devices in
                     self.selectedDevices = devices.filter { !$0.isAp }.filter { controlledDev.contains($0.mac) }
                     self.updateDeviceList()
+                } error: { exception in
+                    DispatchQueue.main.async {
+                        self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                    }
                 }
             }
             

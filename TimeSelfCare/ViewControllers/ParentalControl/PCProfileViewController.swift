@@ -495,8 +495,11 @@ class PCProfileViewController: UIViewController {
                         }
                         
                         if !urlList.isEmpty {
-                            template.urlFilterEnable = false
+                            template.urlFilterEnable = true
+                            template.urlFilterPolicy = HwUrlFilterPolicy(0)
                             template.urlFilterList = NSMutableArray(array: urlList)
+                        } else {
+                            template.urlFilterEnable = false
                         }
                         
                         HuaweiHelper.shared.setAttachParentControlTemplate(ctrlTemplate: template, completion: { _ in

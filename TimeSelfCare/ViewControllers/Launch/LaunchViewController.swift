@@ -113,12 +113,12 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
             settings.fetchTimeout = 30
-            settings.minimumFetchInterval = 3_600
+//            settings.minimumFetchInterval = 3_600
 
             #if DEBUG
             #endif
             remoteConfig.configSettings = settings
-            remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
+//            remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
             remoteConfig.fetchAndActivate { status, error in
                 if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
                     guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {

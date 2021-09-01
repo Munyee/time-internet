@@ -38,6 +38,8 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private var appLogoImgView: UIImageView!
     @IBOutlet private var progressImageView: UIImageView!
     
+    var timer: Timer? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UNUserNotificationCenter.current().delegate = self
@@ -46,12 +48,14 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getFirebaseAppVersion()
+        timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(LaunchViewController.getFirebaseAppVersion), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+        timer?.invalidate()
     }
 
     deinit {
@@ -108,11 +112,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         return images
     }
 
-    func getFirebaseAppVersion() {
+    @objc func getFirebaseAppVersion() {
         if Utils.isInternetAvailable() {
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
-            settings.fetchTimeout = 30
+            settings.fetchTimeout = 3
 //            settings.minimumFetchInterval = 3_600
 
             #if DEBUG

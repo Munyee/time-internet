@@ -75,7 +75,7 @@ class SupportMainViewController: UIViewController {
             self.videos = Array(videoData.prefix(3))
             self.snakePage.pageCount = self.videos.count
             
-            if self.videos.count > 2 {
+            if self.videos.count >= 2 {
                 self.viewAllBtn.isHidden = false
             }
             

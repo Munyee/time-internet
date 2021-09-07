@@ -17,6 +17,7 @@ class VideoListViewController: UIViewController {
     @IBOutlet private weak var totalVideo: UILabel!
     @IBOutlet private weak var categoryLabel: UILabel!
     @IBOutlet private weak var selectCategory: UILabel!
+    @IBOutlet private weak var categoryControlView: UIControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,15 @@ class VideoListViewController: UIViewController {
         totalVideo.text = "\(videos.count) video\(videos.count == 1 ? "" : "s")"
         selectCategory.text = "All categories"
         categoryLabel.text = "All"
+        
+        
+        categoryControlView.layer.masksToBounds = false
+        categoryControlView.layer.shadowColor = UIColor.black.cgColor
+        categoryControlView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        categoryControlView.layer.shadowOpacity = 0.1
+        categoryControlView.layer.cornerRadius = 7
+        categoryControlView.layer.shadowRadius = 5
+        
     }
     
     @objc

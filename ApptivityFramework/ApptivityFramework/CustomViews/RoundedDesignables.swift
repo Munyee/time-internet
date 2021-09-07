@@ -50,10 +50,10 @@ public extension UIView  {
         }
         set {
             layer.masksToBounds = false
-            layer.shadowColor = UIColor.black.cgColor
-            layer.shadowOffset = CGSize(width: 0, height: 0)
-            layer.shadowOpacity = 0.1
-            layer.cornerRadius = cornerRadius
+            layer.shadowColor = UIColor.lightGray.cgColor
+            layer.shadowOffset = CGSize(width: 0, height: 3)
+            layer.shadowOpacity = 0.7
+            layer.cornerRadius = 14
             layer.shadowRadius = newValue
         }
     }

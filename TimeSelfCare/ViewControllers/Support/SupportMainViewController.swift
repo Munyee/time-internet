@@ -21,6 +21,7 @@ class SupportMainViewController: UIViewController {
     @IBOutlet private weak var ticketCategory: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var statusBackground: UIView!
+    @IBOutlet private weak var viewAllBtn: UIButton!
     let flowLayout = CenteredCollectionViewFlowLayout()
     var ticket: Ticket?
     var videos: [Video] = []
@@ -71,8 +72,13 @@ class SupportMainViewController: UIViewController {
                 return
             }
             
-            self.videos = videoData
+            self.videos = Array(videoData.prefix(3))
             self.snakePage.pageCount = self.videos.count
+            
+            if self.videos.count > 2 {
+                self.viewAllBtn.isHidden = false
+            }
+            
             self.collectionView.reloadData()
         }
     }

@@ -419,7 +419,7 @@ public extension HuaweiHelper {
            }
        }
     
-    func queryLanDeviceListEx(completion: @escaping(_ result: [HwLanDevice] ) -> Void) {
+    func queryLanDeviceListEx(completion: @escaping(_ result: [HwLanDevice] ) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
         let callBackAdapter = HwCallbackAdapter()
         callBackAdapter.handle = {value in
             if let data = value as? [HwLanDevice] {
@@ -427,7 +427,7 @@ public extension HuaweiHelper {
             }
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
-            print(exception?.errorCode ?? "")
+            error(exception)
         }
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
@@ -444,6 +444,22 @@ public extension HuaweiHelper {
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
             print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.queryLanDeviceManufacturingInfoList(AccountController.shared.gatewayDevId ?? "", macList: macList, callback: callBackAdapter)
+        }
+    }
+    
+    func queryLanDeviceManufacturingInfoList(macList: [String], completion: @escaping(_ result: [HwDeviceTypeInfo] ) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? [HwDeviceTypeInfo] {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
         }
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
@@ -523,11 +539,29 @@ public extension HuaweiHelper {
             }
         }
         callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
             print(exception?.errorCode ?? "")
         }
         
         if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
             service.getGuestWifiInfo(AccountController.shared.gatewayDevId ?? "", with: callBackAdapter)
+        }
+    }
+    
+    func setGuestWifiInfo(guestWifiInfo: HwGuestWifiInfo, completion: @escaping(_ result: HwSetGuestWifiInfoResult) -> Void, error: @escaping(_ result: HwActionException?) -> Void) {
+        let callBackAdapter = HwCallbackAdapter()
+        callBackAdapter.handle = {value in
+            if let data = value as? HwSetGuestWifiInfoResult {
+                completion(data)
+            }
+        }
+        callBackAdapter.exception = {(exception: HwActionException?) in
+            error(exception)
+            print(exception?.errorCode ?? "")
+        }
+        
+        if let service = HwNetopenMobileSDK.getService(HwControllerService.self) as? HwControllerService {
+            service.setGuestWifiInfo(AccountController.shared.gatewayDevId ?? "", with: guestWifiInfo, with: callBackAdapter)
         }
     }
 

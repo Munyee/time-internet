@@ -69,7 +69,7 @@ internal class SidebarTableViewController: UIViewController {
         let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
             let hud = MBProgressHUD.showAdded(to: self.parent!.view, animated: true) // swiftlint:disable:this force_unwrapping
             hud.label.text = NSLocalizedString("Logging out...", comment: "")
-
+                        
             AccountSummaryViewController.didAnimate = false
             
             AuthUser.current?.logout { _ in

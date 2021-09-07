@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -325,7 +325,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjq-Ul-OMX">
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjq-Ul-OMX">
                                                                 <rect key="frame" x="297" y="6.5" width="42" height="27"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN" pointSize="12"/>
                                                                 <state key="normal" title="View All">
@@ -420,6 +420,7 @@
                         <outlet property="ticketCategory" destination="ls2-Oa-QOu" id="BHV-kD-CgU"/>
                         <outlet property="ticketDate" destination="NMn-Ve-cr6" id="t6K-9B-GQi"/>
                         <outlet property="ticketSubject" destination="uPr-Vs-8we" id="iSP-dV-U0k"/>
+                        <outlet property="viewAllBtn" destination="wjq-Ul-OMX" id="Vdr-Fe-Nyw"/>
                         <outlet property="yourTicketView" destination="mOR-Bj-doL" id="dfD-mN-fxw"/>
                     </connections>
                 </viewController>
@@ -480,11 +481,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpt-Np-jeI">
-                                <rect key="frame" x="308" y="118.5" width="30" height="14"/>
+                                <rect key="frame" x="307" y="118.5" width="31" height="14"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Label">
                                         <attributes>
-                                            <font key="NSFont" size="12" name="DIN-Light"/>
+                                            <font key="NSFont" metaFont="cellTitle"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>

@@ -250,6 +250,10 @@ class PairingViewController: UIViewController {
             }) {
                 self.alreadyOnline()
             }
+        } error: { exception in
+            DispatchQueue.main.async {
+                self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+            }
         }
     }
     

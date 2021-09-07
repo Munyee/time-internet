@@ -308,6 +308,10 @@ class PerformanceViewController: BaseViewController {
                             return !dev.isAp && dev.onLine
                         }
                         self.numberOfDevice.text = "\(arrDev.count)"
+                    } error: { exception in
+                        DispatchQueue.main.async {
+                            self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
+                        }
                     }
                     //            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                     //                HuaweiHelper.shared.getGatewaySpeed { gatewaySpeed in

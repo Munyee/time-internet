@@ -50,7 +50,8 @@ class SupportMainViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionViewHeight.constant = (view.bounds.width - 72) * 0.563 + 72
-        snakePage.pageCount = videos.count
+//        snakePage.pageCount = videos.count
+        snakePage.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -197,7 +198,7 @@ extension SupportMainViewController: UIScrollViewDelegate {
         let page = (scrollView.contentOffset.x + 36) / (scrollView.bounds.width - 50)
         let progressInPage = scrollView.contentOffset.x + 36 - (page * (scrollView.bounds.width - 50))
         let progress = CGFloat(page) + progressInPage
-        snakePage.progress = progress
+//        snakePage.progress = progress
     }
 }
 

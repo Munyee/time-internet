@@ -12,12 +12,14 @@ import MBProgressHUD
 import UserNotifications
 import FirebaseRemoteConfig
 import FirebaseCrashlytics
+import SwiftyJSON
 
 internal let hasShownWalkthroughKey: String = "has_shown_walkthrough"
 internal let dontAskAgainFlag: String = "dontAskAgain"
 
 internal class LaunchViewController: UIViewController, UNUserNotificationCenterDelegate {
     var appVersionConfig: AppVersionModal!
+    var maintenanceMode: MaintenanceMode!
     var remoteConfig: RemoteConfig!
     var message = ""
 
@@ -48,7 +50,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getFirebaseAppVersion()
-        timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(LaunchViewController.getFirebaseAppVersion), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(LaunchViewController.getFirebaseAppVersion), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
     }
     
@@ -121,18 +123,22 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             settings.minimumFetchInterval = 3_600
 
             #if DEBUG
+            settings.minimumFetchInterval = 0
             #endif
             remoteConfig.configSettings = settings
             remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-            remoteConfig.fetchAndActivate { status, error in
-                if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
-                    guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
-                        self.showNext()
-                        return
-                    }
-                    self.appVersionConfig = AppVersionModal(dictionary: appInit)
-                    DispatchQueue.main.async {
-                        self.checkAppVersion()
+            remoteConfig.fetch(withExpirationDuration: 3_600) { status, error in
+                self.timer?.invalidate()
+                if status == .success {
+                    self.remoteConfig.activate { _, _ in
+                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
+                            self.showNext()
+                            return
+                        }
+                        self.appVersionConfig = AppVersionModal(dictionary: appInit)
+                        DispatchQueue.main.async {
+                            self.checkAppVersion()
+                        }
                     }
                 } else {
                     self.showNext()
@@ -140,24 +146,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     print("Error: \(error?.localizedDescription ?? "No error available.")")
                 }
             }
-//            remoteConfig.fetch { status, error in
-//                if status == .success {
-//                    self.remoteConfig.activate { _, _ in
-//                        guard let appInit = self.remoteConfig["app_init"].jsonValue as? NSDictionary else {
-//                            self.showNext()
-//                            return
-//                        }
-//                        self.appVersionConfig = AppVersionModal(dictionary: appInit)
-//                        DispatchQueue.main.async {
-//                            self.checkAppVersion()
-//                        }
-//                    }
-//                } else {
-//                    self.showNext()
-//                    print("Config not fetched")
-//                    print("Error: \(error?.localizedDescription ?? "No error available.")")
-//                }
-//            }
         } else {
             self.showAlertMessage(title: "", message: "No Internet Connection", actions: [
                 UIAlertAction(title: "RETRY", style: .cancel, handler: { _ in
@@ -181,22 +169,45 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             return
         }
         
-        if currentInstalledVersion < latestVersion {
-            if currentInstalledVersion < majorVersion {
-                print("Major Version update")
-                showAppVersionWithMajorUpdate(messageTitle:majorTitle, messageBody: majorText)
-            } else
-                if currentInstalledVersion < minorVersion {
-                print("Minor Version update")
-                showAppVersionWithMinorUpdate(messageTitle:minorTitle, messageBody: minorText)
-            } else if currentInstalledVersion < latestVersion {
-                print("Latest Version update")
-                showAppVersionWithLatestUpdate()
+        let request = Alamofire.request("https://api-4854611070421271444-279141.firebaseio.com/.json", method: .get, parameters: nil, encoding: URLEncoding(), headers: nil)
+        request.responseJSON { data in
+            var json = JSON(data.result.value)["production"]
+            #if DEBUG
+            json = JSON(data.result.value)["staging"]
+            #endif
+            self.maintenanceMode = MaintenanceMode(json: json)
+            if self.maintenanceMode.is_maintenance {
+                self.showMaintenanceMode(messageTitle: self.maintenanceMode.maintenance_title, messageBody: self.maintenanceMode.maintenance_text)
+            } else {
+                if currentInstalledVersion < latestVersion {
+                    if currentInstalledVersion < majorVersion {
+                        print("Major Version update")
+                        self.showAppVersionWithMajorUpdate(messageTitle:majorTitle, messageBody: majorText)
+                    } else
+                        if currentInstalledVersion < minorVersion {
+                        print("Minor Version update")
+                        self.showAppVersionWithMinorUpdate(messageTitle:minorTitle, messageBody: minorText)
+                    } else if currentInstalledVersion < latestVersion {
+                        print("Latest Version update")
+                        self.showAppVersionWithLatestUpdate()
+                    }
+                } else {
+                    print("No update")
+                    self.versionUpdateView.isHidden = true
+                    self.showNext()
+                }
             }
-        } else {
-            print("No update")
-            self.versionUpdateView.isHidden = true
-            self.showNext()
+        }
+    }
+    
+    func showMaintenanceMode(messageTitle: String, messageBody:String ) {
+        DispatchQueue.main.async {
+            self.versionUpdateView.isHidden = false
+            self.dontShowButton.isHidden = true
+            self.cancelButton.isHidden = true
+            self.alertTitleLabel.text = messageTitle
+            self.updateInfoTextView.text = messageBody
+            self.updateOrContinueButton.setTitle("OK", for: .normal)
         }
     }
     
@@ -204,6 +215,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         DispatchQueue.main.async {
             self.versionUpdateView.isHidden = false
             self.dontShowButton.isHidden = true
+            self.cancelButton.isHidden = true
             self.alertTitleLabel.text = messageTitle
             self.updateInfoTextView.text = messageBody
         }
@@ -239,10 +251,14 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
     
     @IBAction func updateButtonTapped(_ sender: Any) {
-        UserDefaults.standard.set(false, forKey:dontAskAgainFlag)
-        if let url = URL(string: self.appVersionConfig.url) {
-            print("Url = \(url)")
-            UIApplication.shared.open(url)
+        if self.maintenanceMode.is_maintenance {
+            exit(0)
+        } else {
+            UserDefaults.standard.set(false, forKey:dontAskAgainFlag)
+            if let url = URL(string: self.appVersionConfig.url) {
+                print("Url = \(url)")
+                UIApplication.shared.open(url)
+            }
         }
     }
     

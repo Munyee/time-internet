@@ -16,6 +16,7 @@ class SupportMainViewController: UIViewController {
     @IBOutlet private weak var snakePage: SnakePageControl!
     @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet private weak var yourTicketView: UIView!
+    @IBOutlet private weak var noTicketView: UIView!
     @IBOutlet private weak var ticketDate: UILabel!
     @IBOutlet private weak var ticketSubject: UILabel!
     @IBOutlet private weak var ticketCategory: UILabel!
@@ -57,6 +58,7 @@ class SupportMainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.yourTicketView.isHidden = true
+        self.noTicketView.isHidden = true
         loadTickets()
         loadVideos()
     }
@@ -96,10 +98,12 @@ class SupportMainViewController: UIViewController {
 
             guard let ticket = tickets.sorted(by: { $0.timestamp ?? 0 > $1.timestamp ?? 0 }).first else {
                 self.yourTicketView.isHidden = true
+                self.noTicketView.isHidden = false
                 return
             }
             self.ticket = ticket
             self.yourTicketView.isHidden = false
+            self.noTicketView.isHidden = true
             self.ticketDate.text = ticket.datetime
             self.ticketSubject.text = ticket.subject
             self.ticketCategory.text = ticket.category

@@ -28,15 +28,18 @@ class DiagnosisViewController: TimeBaseViewController {
     @IBOutlet private weak var signalImageView: UIImageView!
     @IBOutlet private weak var problemView: UIView!
     @IBOutlet private weak var problemLabel: UILabel!
-    @IBOutlet weak var noWifiView: UIView!
+    @IBOutlet private weak var noWifiView: UIView!
     @IBOutlet private weak var suggestionLabel: UILabel!
     @IBOutlet private weak var actionButton: UIButton!
     @IBOutlet private weak var runSpeedTestView: UIView!
+    @IBOutlet private weak var runDiagnosticButton: UIView!
+    @IBOutlet private weak var runSpeedTestButton: UIButton!
     
     public var diagnostics: Diagnostics?
     var finalScore = 0.0
     let pingTarget = 4
     var action = ""
+    var isHuaweiDevice = false
 //    var pinger = try? SwiftyPing(host: "start.highfive.com", configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
     var pinger = try? SwiftyPing(host: "1.1.1.1", configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
 
@@ -48,25 +51,40 @@ class DiagnosisViewController: TimeBaseViewController {
         runDiagnostics()
         
         animationView.isHidden = true
+        runDiagnosticButton.isHidden = true
     }
 
     func triggerActionButton(action: String) {
-        switch action {
-        case "speed_test":
-            if HuaweiHelper.shared.getRSSISignal() > 0 {
-                actionButton.setTitle("RUN DIAGNOSTICS AGAIN", for: .normal)
-                startPing()
-            } else {
-                actionButton.setTitle("TRY AGAIN", for: .normal)
-                noWifiView.isHidden = false
+        if self.isHuaweiDevice {
+            switch action {
+            case "speed_test":
+                if HuaweiHelper.shared.getRSSISignal() > 0 {
+                    actionButton.setTitle("RUN DIAGNOSTICS AGAIN", for: .normal)
+                    startPing()
+                } else {
+                    actionButton.setTitle("TRY AGAIN", for: .normal)
+                    noWifiView.isHidden = false
+                }
+                self.runSpeedTestView.isHidden = false
+            case "raise_ticket":
+                actionButton.setTitle("RAISE TICKET", for: .normal)
+            case "upgrade_firmware":
+                actionButton.setTitle("UPDATE FIRMWARE", for: .normal)
+            default:
+                break
             }
-            self.runSpeedTestView.isHidden = false
-        case "raise_ticket":
-            actionButton.setTitle("RAISE TICKET", for: .normal)
-        case "upgrade_firmware":
-            actionButton.setTitle("UPDATE FIRMWARE", for: .normal)
-        default:
-            break
+        } else {
+            runSpeedTestView.isHidden = false
+            if action == "speed_test" {
+                runSpeedTestButton.setTitle("Run Speed Test", for: .normal)
+            } else if action == "raise_ticket" {
+                actionButton.setTitle("Raise Ticket", for: .normal)
+                self.raiseTicket()
+            } else if action == "upgrade_firmware" {
+                actionButton.setTitle("Update Firmware", for: .normal)
+                self.actUpdateFirmware()
+            }
+            
         }
     }
     
@@ -149,6 +167,8 @@ class DiagnosisViewController: TimeBaseViewController {
         problemView.isHidden = true
         noWifiView.isHidden = true
         
+        let group = DispatchGroup()
+        
         let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.label.text = NSLocalizedString("Performing diagnostics...", comment: "")
         guard
@@ -157,10 +177,40 @@ class DiagnosisViewController: TimeBaseViewController {
             else {
                 return
         }
+        
+        var isCustSegments = account.custSegment == .residential
+        #if DEBUG
+            isCustSegments = account.custSegment == .residential || account.custSegment == .business
+        #endif
 
+        if isCustSegments {
+            group.enter()
+            AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
+                guard error == nil else {
+                    group.leave()
+                    print(error.debugDescription)
+                    return
+                }
+                
+                if let result = data {
+                    let huaweiDevice = IsHuaweiDevice(with: result)
+                    if huaweiDevice?.status == "yes" {
+                        self.isHuaweiDevice = true
+                        group.leave()
+                    } else {
+                        self.isHuaweiDevice = false
+                        group.leave()
+                    }
+                } else {
+                    group.leave()
+                }
+            }
+        }
+
+        group.enter()
         AccountDataController.shared.runDiagnostic(account: account, service: service) { data, error in
-            hud.hide(animated: true)
             guard error == nil else {
+                group.leave()
                 self.showAlertMessage(message: error?.localizedDescription ?? "Something Went Wrong", actions: [
                     UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .destructive) { _ in
                         self.dismissVC()
@@ -170,8 +220,14 @@ class DiagnosisViewController: TimeBaseViewController {
             }
             if let result = data {
                 self.diagnostics = Diagnostics(with: result)
-                self.updateUI(diagnostics: self.diagnostics)
+                group.leave()
             }
+        }
+        
+        group.notify(queue: .main) {
+            hud.hide(animated: true)
+            
+            self.updateUI(diagnostics: self.diagnostics)
         }
     }
 
@@ -244,12 +300,18 @@ class DiagnosisViewController: TimeBaseViewController {
     }
 
     @IBAction func actRunSpeedTest(_ sender: Any) {
-        let timeWebView = TIMEWebViewController()
-        let urlString = "https://testyourspeed.time.com.my/index2.php"
-        let url = URL(string: urlString)
-        timeWebView.url = url
-        timeWebView.title = NSLocalizedString("Speed Test", comment: "")
-        self.navigationController?.pushViewController(timeWebView, animated: true)
+        if action == "speed_test" {
+            let timeWebView = TIMEWebViewController()
+            let urlString = "https://testyourspeed.time.com.my/index2.php"
+            let url = URL(string: urlString)
+            timeWebView.url = url
+            timeWebView.title = NSLocalizedString("Speed Test", comment: "")
+            self.navigationController?.pushViewController(timeWebView, animated: true)
+        } else if action == "raise_ticket" {
+            self.raiseTicket()
+        } else if action == "upgrade_firmware" {
+            self.actUpdateFirmware()
+        }
     }
     
     @IBAction func actMainButtonPressed(_ sender: Any) {
@@ -288,10 +350,16 @@ class DiagnosisViewController: TimeBaseViewController {
 
                 let titleParagraphStyle = NSMutableParagraphStyle()
                 titleParagraphStyle.alignment = .center
-                let attributes: [NSAttributedString.Key : Any] = [
+                var attributes: [NSAttributedString.Key : Any] = [
                     NSAttributedString.Key.font: UIFont(name: "DINCondensed-Bold", size: 22) ?? UIFont.preferredFont(forTextStyle: .body),
                     NSAttributedString.Key.paragraphStyle: titleParagraphStyle
                 ]
+                if !isHuaweiDevice {
+                    attributes = [
+                        NSAttributedString.Key.font: UIFont(name: "DIN-Light", size: 16) ?? UIFont.preferredFont(forTextStyle: .body),
+                        NSAttributedString.Key.paragraphStyle: titleParagraphStyle
+                    ]
+                }
                 attributedText.addAttributes(attributes, range:  NSRange(location: 0, length: attributedText.mutableString.length))
 
                 self.messageLabel.attributedText = attributedText
@@ -310,6 +378,11 @@ class DiagnosisViewController: TimeBaseViewController {
                     self.iconImageView.isHidden = false
                     self.iconImageView.download(from: self.diagnostics?.icon ?? "")
                 }
+                
+                if isHuaweiDevice {
+                    runDiagnosticButton.isHidden = false
+                }
+                
                 self.triggerActionButton(action: self.diagnostics?.action ?? "")
                 self.action = self.diagnostics?.action ?? ""
             } catch let e as NSError {

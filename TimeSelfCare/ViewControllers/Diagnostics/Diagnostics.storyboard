@@ -25,8 +25,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxA-yg-ceE">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erz-1s-nlI">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gb-it-uNr">
+                                        <rect key="frame" x="80" y="278.5" width="254" height="339"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aDe-uH-MbG" customClass="AnimationView" customModule="Lottie">
+                                                <rect key="frame" x="0.0" y="0.0" width="254" height="254"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="aDe-uH-MbG" secondAttribute="height" multiplier="1:1" id="u5p-JF-Bmx"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DKn-mN-mwC" customClass="AnimationView" customModule="Lottie">
+                                                <rect key="frame" x="0.0" y="254" width="254" height="85"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="DKn-mN-mwC" secondAttribute="height" multiplier="3:1" id="Udt-7G-SFs"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="DKn-mN-mwC" firstAttribute="top" secondItem="aDe-uH-MbG" secondAttribute="bottom" id="4xM-Fk-DzI"/>
+                                            <constraint firstAttribute="bottom" secondItem="DKn-mN-mwC" secondAttribute="bottom" id="8Me-Y1-JSo"/>
+                                            <constraint firstAttribute="trailing" secondItem="aDe-uH-MbG" secondAttribute="trailing" id="JL0-vX-hvt"/>
+                                            <constraint firstItem="DKn-mN-mwC" firstAttribute="leading" secondItem="8Gb-it-uNr" secondAttribute="leading" id="QUn-Mb-ubr"/>
+                                            <constraint firstAttribute="trailing" secondItem="DKn-mN-mwC" secondAttribute="trailing" id="UnS-qN-hZK"/>
+                                            <constraint firstItem="aDe-uH-MbG" firstAttribute="top" secondItem="8Gb-it-uNr" secondAttribute="top" id="VF7-Wt-3qr"/>
+                                            <constraint firstItem="aDe-uH-MbG" firstAttribute="leading" secondItem="8Gb-it-uNr" secondAttribute="leading" id="qh9-aF-gh1"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="8Gb-it-uNr" firstAttribute="centerY" secondItem="erz-1s-nlI" secondAttribute="centerY" id="JrH-kh-pdQ"/>
+                                    <constraint firstItem="8Gb-it-uNr" firstAttribute="centerX" secondItem="erz-1s-nlI" secondAttribute="centerX" id="WaF-pF-vfc"/>
+                                    <constraint firstAttribute="trailing" secondItem="8Gb-it-uNr" secondAttribute="trailing" constant="80" id="enE-8B-q8s"/>
+                                    <constraint firstItem="8Gb-it-uNr" firstAttribute="leading" secondItem="erz-1s-nlI" secondAttribute="leading" constant="80" id="kna-1z-oNp"/>
+                                </constraints>
+                            </view>
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxA-yg-ceE">
+                                <rect key="frame" x="0.0" y="894" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8UE-v3-7kF">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1326.5"/>
@@ -338,17 +379,23 @@
                         <constraints>
                             <constraint firstItem="gxA-yg-ceE" firstAttribute="trailing" secondItem="l7d-Gy-g4P" secondAttribute="trailing" id="0pa-17-JMy"/>
                             <constraint firstItem="gxA-yg-ceE" firstAttribute="leading" secondItem="l7d-Gy-g4P" secondAttribute="leading" id="7Ng-F4-qpK"/>
+                            <constraint firstItem="erz-1s-nlI" firstAttribute="trailing" secondItem="l7d-Gy-g4P" secondAttribute="trailing" id="FS4-9a-BMg"/>
                             <constraint firstItem="gxA-yg-ceE" firstAttribute="bottom" secondItem="l7d-Gy-g4P" secondAttribute="bottom" id="ILR-Hx-l1F"/>
                             <constraint firstItem="gxA-yg-ceE" firstAttribute="top" secondItem="l7d-Gy-g4P" secondAttribute="top" id="KAP-63-34i"/>
                             <constraint firstItem="gxA-yg-ceE" firstAttribute="leading" secondItem="l7d-Gy-g4P" secondAttribute="leading" id="LMU-79-LGU"/>
+                            <constraint firstAttribute="bottom" secondItem="erz-1s-nlI" secondAttribute="bottom" id="Lei-Z6-aiB"/>
                             <constraint firstItem="l7d-Gy-g4P" firstAttribute="trailing" secondItem="gxA-yg-ceE" secondAttribute="trailing" id="QIV-yH-YJr"/>
                             <constraint firstItem="gxA-yg-ceE" firstAttribute="top" secondItem="l7d-Gy-g4P" secondAttribute="top" id="RGS-xs-ksX"/>
                             <constraint firstItem="gxA-yg-ceE" firstAttribute="bottom" secondItem="l7d-Gy-g4P" secondAttribute="bottom" id="SqB-Dq-fmO"/>
+                            <constraint firstItem="erz-1s-nlI" firstAttribute="leading" secondItem="l7d-Gy-g4P" secondAttribute="leading" id="ryb-rt-ucW"/>
+                            <constraint firstItem="erz-1s-nlI" firstAttribute="top" secondItem="0M5-YX-PIt" secondAttribute="top" id="xPi-q6-QNC"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="actionButton" destination="yEd-5T-9ng" id="oes-tr-loA"/>
-                        <outlet property="animationView" destination="Ehw-vC-g0O" id="8Fm-S2-jl1"/>
+                        <outlet property="animationView" destination="Ehw-vC-g0O" id="ldW-2y-ZAq"/>
+                        <outlet property="checklistView" destination="DKn-mN-mwC" id="CNg-tT-qhp"/>
+                        <outlet property="diagnosticView" destination="aDe-uH-MbG" id="kF2-bm-o94"/>
                         <outlet property="iconImageView" destination="x4C-JM-pc1" id="a1p-ZI-A7D"/>
                         <outlet property="messageLabel" destination="Ohy-uV-fLX" id="TIM-9Q-hGX"/>
                         <outlet property="noWifiView" destination="UCe-db-ZUK" id="E2a-sV-ryA"/>
@@ -357,6 +404,7 @@
                         <outlet property="runDiagnosticButton" destination="zdy-Xo-FoU" id="fgN-Cb-HOM"/>
                         <outlet property="runSpeedTestButton" destination="yLN-vu-YMb" id="mfO-lv-1Qr"/>
                         <outlet property="runSpeedTestView" destination="wgj-Qz-NSy" id="iyM-ng-VH9"/>
+                        <outlet property="scrollView" destination="gxA-yg-ceE" id="p2U-rP-NfK"/>
                         <outlet property="signalImageView" destination="vV5-OJ-Y7v" id="OUJ-2A-w8M"/>
                         <outlet property="signalLabel" destination="bzU-ml-b6l" id="rTT-oX-Iw7"/>
                         <outlet property="signalView" destination="7d3-Qe-mCz" id="cKL-mt-cnS"/>

@@ -78,9 +78,13 @@ class SupportMainViewController: UIViewController {
             self.videos = Array(videoData.prefix(3))
             self.snakePage.pageCount = self.videos.count
             
-            if self.videos.count >= 2 {
+            if self.videos.count >= 3 {
                 self.viewAllBtn.isHidden = false
             }
+            
+            #if DEBUG
+            self.viewAllBtn.isHidden = false
+            #endif
             
             self.collectionView.reloadData()
         }

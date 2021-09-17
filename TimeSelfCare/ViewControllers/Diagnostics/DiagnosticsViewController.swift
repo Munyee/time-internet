@@ -19,6 +19,7 @@ class DiagnosisViewController: TimeBaseViewController {
 //    @IBOutlet private weak var raiseTicket: UIButton!
 //    @IBOutlet private weak var runSpeedTest: UIButton!
 //    @IBOutlet private weak var updateFirmware: UIButton!
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var animationView: AnimationView!
@@ -34,12 +35,16 @@ class DiagnosisViewController: TimeBaseViewController {
     @IBOutlet private weak var runSpeedTestView: UIView!
     @IBOutlet private weak var runDiagnosticButton: UIView!
     @IBOutlet private weak var runSpeedTestButton: UIButton!
+    @IBOutlet private weak var diagnosticView: AnimationView!
+    @IBOutlet private weak var checklistView: AnimationView!
     
     public var diagnostics: Diagnostics?
     var finalScore = 0.0
     let pingTarget = 4
     var action = ""
     var isHuaweiDevice = false
+    var animationFinished = false
+    var dataLoadFinished = false
 //    var pinger = try? SwiftyPing(host: "start.highfive.com", configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
     var pinger = try? SwiftyPing(host: "1.1.1.1", configuration: PingConfiguration(interval: 0.5, with: 5), queue: DispatchQueue.global())
 
@@ -161,7 +166,7 @@ class DiagnosisViewController: TimeBaseViewController {
     }
     
     func runDiagnostics() {
-        stackView.isHidden = true
+        scrollView.isHidden = true
         runSpeedTestView.isHidden = true
         signalView.isHidden = true
         problemView.isHidden = true
@@ -169,8 +174,24 @@ class DiagnosisViewController: TimeBaseViewController {
         
         let group = DispatchGroup()
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Performing diagnostics...", comment: "")
+        self.diagnosticView.animation = Animation.named("diagnostic")
+        self.diagnosticView.loopMode = .loop
+        self.diagnosticView.contentMode = .scaleAspectFit
+        self.diagnosticView.play()
+        self.checklistView.animation = Animation.named("checklist")
+        self.checklistView.loopMode = .playOnce
+        self.checklistView.contentMode = .scaleAspectFit
+        self.checklistView.play()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 13.0) {
+            self.animationFinished = true
+            if self.dataLoadFinished {
+                self.scrollView.isHidden = false
+            }
+        }
+        
+//        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+//        hud.label.text = NSLocalizedString("Performing diagnostics...", comment: "")
         guard
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
@@ -219,14 +240,16 @@ class DiagnosisViewController: TimeBaseViewController {
                 return
             }
             if let result = data {
+                if self.animationFinished {
+                    self.scrollView.isHidden = false
+                }
                 self.diagnostics = Diagnostics(with: result)
                 group.leave()
             }
         }
         
         group.notify(queue: .main) {
-            hud.hide(animated: true)
-            
+            self.dataLoadFinished = true
             self.updateUI(diagnostics: self.diagnostics)
         }
     }
@@ -337,7 +360,6 @@ class DiagnosisViewController: TimeBaseViewController {
     }
 
     func updateUI(diagnostics: Diagnostics?) {
-        stackView.isHidden = false
         if let htmlData = self.diagnostics?.message?.data(using: String.Encoding.unicode) {
             do {
 

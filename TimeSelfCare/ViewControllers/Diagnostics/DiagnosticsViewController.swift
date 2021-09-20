@@ -63,12 +63,14 @@ class DiagnosisViewController: TimeBaseViewController {
         if self.isHuaweiDevice {
             switch action {
             case "speed_test":
-                if HuaweiHelper.shared.getRSSISignal() > 0 {
-                    actionButton.setTitle("RUN DIAGNOSTICS AGAIN", for: .normal)
-                    startPing()
-                } else {
-                    actionButton.setTitle("TRY AGAIN", for: .normal)
-                    noWifiView.isHidden = false
+                HuaweiHelper.shared.getRSSISignal { result in
+                    if result > 0 {
+                        self.actionButton.setTitle("RUN DIAGNOSTICS AGAIN", for: .normal)
+                        self.startPing()
+                    } else {
+                        self.actionButton.setTitle("TRY AGAIN", for: .normal)
+                        self.noWifiView.isHidden = false
+                    }
                 }
                 self.runSpeedTestView.isHidden = false
             case "raise_ticket":
@@ -94,53 +96,55 @@ class DiagnosisViewController: TimeBaseViewController {
     }
     
     func startPing() {
-        if HuaweiHelper.shared.getRSSISignal() > 0 {
-            pinger?.targetCount = pingTarget
-            self.finalScore = 0
-            pinger?.observer = { response in
-                let duration = response.duration * 1_000
-                let linkrate = ceil(self.calculateLinkRate(Units(kBytes: Int64(LinkRate.getRouterLinkSpeed() / 1_024)).getRateInMbps()))
-                let rssi = ceil(self.calculateRSSIScore(HuaweiHelper.shared.getRSSISignal()))
-                let latency = ceil(self.calculateLatecyScore(duration))
-                let score = ceil((linkrate * 30 / 100)) + ceil(rssi * 30 / 100) + ceil(latency * 40 / 100)
-                guard let currentCount = self.pinger?.currentCount else {
-                    return
-                }
-                let pingCount = currentCount + 1
-                self.finalScore = (self.finalScore + score)
-                
-                if pingCount == self.pingTarget {
-                    let score = self.finalScore / Double(self.pingTarget)
-                    if self.action == "speed_test" {
-                        self.signalView.isHidden = false
-                        if score >= 80 {
-                            self.signalLabel.text = "GOOD"
-                            self.signalLabel.textColor = UIColor(hex: "#EC008C")
-                            self.signalImageView.image = #imageLiteral(resourceName: "ic_signal_good")
-                            self.problemView.isHidden = true
-                        } else if score >= 60 && score < 80 {
-                            self.signalLabel.text = "FAIR"
-                            self.signalLabel.textColor = UIColor(hex: "#3BBFBB")
-                            self.signalImageView.image = #imageLiteral(resourceName: "ic_signal_fair")
-                            self.problemView.isHidden = false
-                            self.problemLabel.text = "You may be experiencing high latency, which can translate to slower video streaming, lag in games and delays in your overall Internet experience."
-                            self.setupSuggestLabel()
-                        } else if score < 60 {
-                            self.signalLabel.text = "WEAK"
-                            self.signalLabel.textColor = UIColor(hex: "#D9541E")
-                            self.signalImageView.image = #imageLiteral(resourceName: "ic_signal_weak")
-                            self.problemView.isHidden = false
-                            self.problemLabel.text = "The connection is weak here which may cause your device to frequently disconnect from the WiFi."
-                            self.setupSuggestLabel()
+        HuaweiHelper.shared.getRSSISignal { result in
+            if result > 0 {
+                self.pinger?.targetCount = self.pingTarget
+                self.finalScore = 0
+                self.pinger?.observer = { response in
+                    let duration = response.duration * 1_000
+                    let linkrate = ceil(self.calculateLinkRate(Units(kBytes: Int64(LinkRate.getRouterLinkSpeed() / 1_024)).getRateInMbps()))
+                    let rssi = ceil(self.calculateRSSIScore(result))
+                    let latency = ceil(self.calculateLatecyScore(duration))
+                    let score = ceil((linkrate * 30 / 100)) + ceil(rssi * 30 / 100) + ceil(latency * 40 / 100)
+                    guard let currentCount = self.pinger?.currentCount else {
+                        return
+                    }
+                    let pingCount = currentCount + 1
+                    self.finalScore = (self.finalScore + score)
+                    
+                    if pingCount == self.pingTarget {
+                        let score = self.finalScore / Double(self.pingTarget)
+                        if self.action == "speed_test" {
+                            self.signalView.isHidden = false
+                            if score >= 80 {
+                                self.signalLabel.text = "GOOD"
+                                self.signalLabel.textColor = UIColor(hex: "#EC008C")
+                                self.signalImageView.image = #imageLiteral(resourceName: "ic_signal_good")
+                                self.problemView.isHidden = true
+                            } else if score >= 60 && score < 80 {
+                                self.signalLabel.text = "FAIR"
+                                self.signalLabel.textColor = UIColor(hex: "#3BBFBB")
+                                self.signalImageView.image = #imageLiteral(resourceName: "ic_signal_fair")
+                                self.problemView.isHidden = false
+                                self.problemLabel.text = "You may be experiencing high latency, which can translate to slower video streaming, lag in games and delays in your overall Internet experience."
+                                self.setupSuggestLabel()
+                            } else if score < 60 {
+                                self.signalLabel.text = "WEAK"
+                                self.signalLabel.textColor = UIColor(hex: "#D9541E")
+                                self.signalImageView.image = #imageLiteral(resourceName: "ic_signal_weak")
+                                self.problemView.isHidden = false
+                                self.problemLabel.text = "The connection is weak here which may cause your device to frequently disconnect from the WiFi."
+                                self.setupSuggestLabel()
+                            }
                         }
                     }
                 }
+                try? self.pinger?.startPinging()
+            } else {
+                self.noWifiView.isHidden = false
+                self.signalView.isHidden = true
+                self.problemView.isHidden = true
             }
-            try? pinger?.startPinging()
-        } else {
-            noWifiView.isHidden = false
-            signalView.isHidden = true
-            problemView.isHidden = true
         }
     }
     
@@ -340,10 +344,12 @@ class DiagnosisViewController: TimeBaseViewController {
     @IBAction func actMainButtonPressed(_ sender: Any) {
         switch action {
         case "speed_test":
-            if HuaweiHelper.shared.getRSSISignal() > 0 {
-                self.runDiagnostics()
-            } else {
-                startPing()
+            HuaweiHelper.shared.getRSSISignal { result in
+                if result > 0 {
+                    self.runDiagnostics()
+                } else {
+                    self.startPing()
+                }
             }
         case "raise_ticket":
             self.raiseTicket()

@@ -48,7 +48,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         getFirebaseAppVersion()
-        timer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(LaunchViewController.getFirebaseAppVersion), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(LaunchViewController.getFirebaseAppVersion), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handlingInvalidSession), name: NSNotification.Name.SessionInvalid, object: nil)
     }
     

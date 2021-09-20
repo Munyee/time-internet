@@ -23,10 +23,12 @@ class SupportMainViewController: UIViewController {
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var statusBackground: UIView!
     @IBOutlet private weak var viewAllBtn: UIButton!
+    @IBOutlet private weak var raiseTicketView: UIView!
     let flowLayout = CenteredCollectionViewFlowLayout()
     var ticket: Ticket?
     var videos: [Video] = []
-    
+    var isDragging: Bool = false
+
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull to refresh", comment: ""))
@@ -53,6 +55,11 @@ class SupportMainViewController: UIViewController {
         collectionViewHeight.constant = (view.bounds.width - 72) * 0.563 + 72
 //        snakePage.pageCount = videos.count
         snakePage.isHidden = true
+        
+        raiseTicketView.layer.shadowColor = UIColor.lightGray.cgColor
+        raiseTicketView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        raiseTicketView.layer.shadowOpacity = 0.7
+        raiseTicketView.layer.shadowRadius = 5
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -153,6 +160,15 @@ extension SupportMainViewController: UICollectionViewDelegate, UICollectionViewD
         videos.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? YTVideoCollectionViewCell
+        if self.isDragging {
+            cell?.ytView.playVideo()
+        } else {
+            cell?.ytView.playVideo()
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ytViewCell", for: indexPath) as? YTVideoCollectionViewCell
         let video = videos[indexPath.row]
@@ -169,6 +185,7 @@ extension SupportMainViewController: UICollectionViewDelegate, UICollectionViewD
             cell?.videoId = videoId
             cell?.ytView.load(withVideoId: videoId, playerVars: playerVars)
         }
+        cell?.ytView.isUserInteractionEnabled = false
         cell?.ytViewHeight.constant = (view.bounds.width - 72) * 0.563
         cell?.ytView.webView?.allowsLinkPreview = false
         cell?.title.text = videoTitle
@@ -181,7 +198,7 @@ extension SupportMainViewController: UICollectionViewDelegate, UICollectionViewD
 
 extension SupportMainViewController: YTPlayerViewDelegate {
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
-        if state == .ended {
+        if state == .ended || state == .paused {
             for (index, item) in collectionView.subviews.enumerated() {
                 if let cell = item as? YTVideoCollectionViewCell, cell.ytView == playerView {
                     let video = videos[index]
@@ -207,6 +224,22 @@ extension SupportMainViewController: UIScrollViewDelegate {
         let progressInPage = scrollView.contentOffset.x + 36 - (page * (scrollView.bounds.width - 50))
         let progress = CGFloat(page) + progressInPage
 //        snakePage.progress = progress
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+         self.isDragging = true
+    }
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+         if !decelerate {
+             self.isDragging = true
+         } else {
+             self.isDragging = false
+         }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+         self.isDragging = false
     }
 }
 

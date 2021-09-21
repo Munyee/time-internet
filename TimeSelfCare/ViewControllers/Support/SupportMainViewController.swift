@@ -24,6 +24,7 @@ class SupportMainViewController: UIViewController {
     @IBOutlet private weak var statusBackground: UIView!
     @IBOutlet private weak var viewAllBtn: UIButton!
     @IBOutlet private weak var raiseTicketView: UIView!
+    @IBOutlet private weak var supportVideoView: UIView!
     let flowLayout = CenteredCollectionViewFlowLayout()
     var ticket: Ticket?
     var videos: [Video] = []
@@ -66,6 +67,7 @@ class SupportMainViewController: UIViewController {
         super.viewWillAppear(animated)
         self.yourTicketView.isHidden = true
         self.noTicketView.isHidden = true
+        self.supportVideoView.isHidden = true
         loadTickets()
         loadVideos()
     }
@@ -77,11 +79,12 @@ class SupportMainViewController: UIViewController {
     
     func loadVideos() {
         SupportDataController.shared.loadSupportVideos { (videoData: [Video], error) in
-            if let error = error {
-                self.showAlertMessage(with: error)
+            if error != nil {
+                self.supportVideoView.isHidden = true
                 return
             }
-            
+            self.supportVideoView.isHidden = false
+
             self.videos = Array(videoData.prefix(3))
             self.snakePage.pageCount = self.videos.count
             
@@ -102,8 +105,7 @@ class SupportMainViewController: UIViewController {
         
         TicketDataController.shared.loadTickets(account: AccountController.shared.selectedAccount) { (tickets: [Ticket], error: Error?) in
             self.refreshControl.endRefreshing()
-            if let error = error {
-                self.showAlertMessage(with: error)
+            if error != nil {
                 return
             }
 

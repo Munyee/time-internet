@@ -209,13 +209,15 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             let shopVC: ShopViewController = UIStoryboard(name: TimeSelfCareStoryboard.shop.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(shopVC, animated: true)
         case .support:
-            let ticketListVC: TicketListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
-            self.presentNavigation(ticketListVC, animated: true)
+//            let ticketListVC: TicketListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
+//            self.presentNavigation(ticketListVC, animated: true)
+            let supportVideoVC: SupportMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
+            self.presentNavigation(supportVideoVC, animated: true)
         case .livechat:
 
             LiveChatDataController.shared.loadStatus { statusResult in
                 if let status = statusResult {
-                    if (status == "online") {
+                    if status == "online" {
                         if let selectedAccount = AccountController.shared.selectedAccount {
                             let user = FreshchatUser.sharedInstance()
                             let profile = selectedAccount.profile

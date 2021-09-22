@@ -148,6 +148,10 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     func HuaweiLogin() {
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        
         DispatchQueue.main.async {
             guard let account = AccountController.shared.selectedAccount else {
                 return
@@ -161,6 +165,8 @@ class SummaryContainerViewController: TimeBaseViewController {
             
             let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
             AccountDataController.shared.getHuaweiSSOAuthCode(mobileId: UUIDValue, account: account, service: service) { data, error in
+                
+                hud.hide(animated: true)
                 guard error == nil else {
                     print(error.debugDescription)
                     return

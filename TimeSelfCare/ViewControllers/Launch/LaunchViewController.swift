@@ -39,11 +39,13 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var updateInfoTextView: UILabel!
     @IBOutlet private var appLogoImgView: UIImageView!
     @IBOutlet private var progressImageView: UIImageView!
+    @IBOutlet private weak var maintananceView: UIView!
     
     var timer: Timer? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.maintananceView.isHidden = true
         UNUserNotificationCenter.current().delegate = self
     }
     
@@ -176,7 +178,8 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             #endif
             self.maintenanceMode = MaintenanceMode(json: json)
             if self.maintenanceMode.is_maintenance {
-                self.showMaintenanceMode(messageTitle: self.maintenanceMode.maintenance_title, messageBody: self.maintenanceMode.maintenance_text)
+//                self.showMaintenanceMode(messageTitle: self.maintenanceMode.maintenance_title, messageBody: self.maintenanceMode.maintenance_text)
+                self.maintananceView.isHidden = false
             } else {
                 if currentInstalledVersion < latestVersion {
                     if currentInstalledVersion < majorVersion {

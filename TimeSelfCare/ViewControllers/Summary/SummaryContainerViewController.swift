@@ -177,6 +177,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
                             DispatchQueue.main.async {
                                 self.showGuestWifi()
+                                self.showControlHub()
                             }
                             self.checkIsKick()
                         }, error: { exception in
@@ -435,6 +436,14 @@ class SummaryContainerViewController: TimeBaseViewController {
                     self.presentNavigation(vc, animated: true)
                 }
             }
+        }
+    }
+    
+    func showControlHub() {
+        if AccountController.shared.showControlHub {
+            AccountController.shared.showControlHub = false
+            NotificationCenter.default.post(name: NSNotification.Name.ReceiveControlHubNotification, object: nil)
+
         }
     }
 }

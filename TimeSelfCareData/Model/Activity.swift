@@ -37,6 +37,7 @@ public class Activity: JsonRecord {
         case guestWifi = "Guest Wifi"
         case launchExternalApp = "LaunchExternalApp"
         case selfDiagnostic = "SelfDiagnostic"
+        case controlHub = "ControlHub"
     }
 
     public var id: Int

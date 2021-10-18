@@ -488,13 +488,12 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         case .launchExternalApp:
             if activity.click == "WebBrowser" {
                 if let urlString = activity.url {
-//                    let timeWebView = TIMEWebViewController()
-//                    let url = URL(string: urlString)
-//                    timeWebView.url = url
-//                    currentViewController.presentNavigation(timeWebView, animated: true)
                     openURL(withURLString: urlString)
                     completionHandler()
                 }
+            } else if activity.click == "AppStore" {
+                openURL(withURLString: self.appVersionConfig.url)
+                completionHandler()
             }
         case .selfDiagnostic:
             let diagnosticsVC: DiagnosisViewController = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil).instantiateViewController()
@@ -502,12 +501,14 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             completionHandler()
         case .guestWifi:
             AccountController.shared.showGuestWifi = true
-            
             if let presentedVC = self.presentedViewController?.children[0].presentedViewController {
                 presentedVC.dismiss(animated: true, completion: {
                     NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
                 })
             }
+            completionHandler()
+        case .controlHub:
+            AccountController.shared.showControlHub = true
             completionHandler()
         default:
             openActivity()

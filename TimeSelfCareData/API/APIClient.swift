@@ -52,8 +52,16 @@ public class APIClient {
     
     // swiftlint:disable force_unwrapping
     public static var  BaseAPIURL: URL {
-        if Installation.isStagingMode {
+//        if Installation.isStagingMode {
+//            return  URL(string: "https://selfcare-apps-staging-api.time.com.my/selfcareapi/relay.php")!
+//        }
+        let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
+        if mode == "Staging" {
             return  URL(string: "https://selfcare-apps-staging-api.time.com.my/selfcareapi/relay.php")!
+        } else if mode == "BB Staging 2" {
+            return  URL(string: "https://selfcare-stg2.time.com.my/selfcareapi/relay.php")!
+        } else if mode == "BB Staging 3" {
+            return  URL(string: "https://selfcare-stg3.time.com.my/selfcareapi/relay.php")!
         }
         return  URL(string: "https://selfcareapp.time.com.my/selfcareapi/relay.php")!
     }
@@ -79,7 +87,7 @@ public class APIClient {
     }
 
     public func getToken(forPath path: String) -> String {
-        if Installation.isStagingMode {
+        if Installation.kMode != "Production" {
               return "dev"
         }
 

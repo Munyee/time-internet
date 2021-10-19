@@ -92,10 +92,22 @@ internal class SidebarTableViewController: UIViewController {
     }
     
     private func updateVersionDisplay() {
-         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
+//         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
+        let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
+
         var appVersion = Installation.appVersion
-        if isStagingMode {
+//        if isStagingMode {
+//            appVersion = "\(appVersion) (Staging)"
+//        }
+        
+        if mode == "Staging" {
             appVersion = "\(appVersion) (Staging)"
+        } else if mode == "BB Staging 2" {
+             appVersion = "\(appVersion) (BB Staging 2)"
+        } else if mode == "BB Staging 3" {
+            appVersion = "\(appVersion) (BB Staging 3)"
+        } else if mode == "Production" {
+             appVersion = "\(appVersion)"
         }
         self.versionLabel.text = appVersion
     }

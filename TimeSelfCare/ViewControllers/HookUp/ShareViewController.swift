@@ -17,6 +17,8 @@ class ShareViewController: UIViewController {
     @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var consentView: UIView!
     @IBOutlet private weak var tncView: UIView!
+    @IBOutlet private weak var joinMeView: UIView!
+    @IBOutlet private weak var huaeLinkView: UIView!
     
     let images = [#imageLiteral(resourceName: "spread_the_word"), #imageLiteral(resourceName: "track_progress"), #imageLiteral(resourceName: "enjoy_off")]
     
@@ -29,16 +31,19 @@ class ShareViewController: UIViewController {
        // titleLabel.text = data?.title ?? ""
         desc.text = data?.description?.htmlAttributdString()?.string ?? ""
         updateShareButton(show: false)
+        huaeLinkView.isHidden = true
         if data?.title != nil {
             collectionView.isHidden = false
             shareButton.isHidden = false
             tncView.isHidden = false
             consentView.isHidden = false
+            joinMeView.isHidden = false
         } else {
             collectionView.isHidden = true
             shareButton.isHidden = true
             tncView.isHidden = true
             consentView.isHidden = true
+            joinMeView.isHidden = true
         }
     }
 
@@ -68,10 +73,13 @@ class ShareViewController: UIViewController {
         }
     
     @IBAction func actRefer(_ sender: Any) {
-        if let referVC = UIStoryboard(name: "ReferView", bundle: nil).instantiateInitialViewController() as? ReferViewController {
-            referVC.data = data
-            self.navigationController?.pushViewController(referVC, animated: true)
-        }
+//        if let referVC = UIStoryboard(name: "ReferView", bundle: nil).instantiateInitialViewController() as? ReferViewController {
+//            referVC.data = data
+//            self.navigationController?.pushViewController(referVC, animated: true)
+//        }
+        huaeLinkView.isHidden = false
+        consentView.isHidden = true
+        shareButton.isHidden = true
     }
     
     @IBAction func respondToAgreement(_ sender: UIButton) {

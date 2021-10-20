@@ -15,6 +15,7 @@ class ShareViewController: UIViewController {
     @IBOutlet private weak var desc: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet private weak var consentView: UIView!
     @IBOutlet private weak var tncView: UIView!
     
     let images = [#imageLiteral(resourceName: "spread_the_word"), #imageLiteral(resourceName: "track_progress"), #imageLiteral(resourceName: "enjoy_off")]
@@ -27,15 +28,17 @@ class ShareViewController: UIViewController {
     func initView() {
        // titleLabel.text = data?.title ?? ""
         desc.text = data?.description?.htmlAttributdString()?.string ?? ""
-        
+        updateShareButton(show: false)
         if data?.title != nil {
             collectionView.isHidden = false
             shareButton.isHidden = false
             tncView.isHidden = false
+            consentView.isHidden = false
         } else {
             collectionView.isHidden = true
             shareButton.isHidden = true
             tncView.isHidden = true
+            consentView.isHidden = true
         }
     }
 
@@ -69,6 +72,16 @@ class ShareViewController: UIViewController {
             referVC.data = data
             self.navigationController?.pushViewController(referVC, animated: true)
         }
+    }
+    
+    @IBAction func respondToAgreement(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        updateShareButton(show: sender.isSelected)
+    }
+    
+    func updateShareButton(show: Bool) {
+        shareButton.isUserInteractionEnabled = show
+        shareButton.backgroundColor = show ? UIColor.primary : UIColor.lightGray
     }
 }
 

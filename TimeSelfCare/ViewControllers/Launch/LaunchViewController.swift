@@ -22,10 +22,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     var maintenanceMode: MaintenanceMode!
     var remoteConfig: RemoteConfig!
     var message = ""
+    private var triggerModeChangeCount: Int = 0
 
-     private var hasShownWalkthrough: Bool {
-         return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
-     }
+    private var hasShownWalkthrough: Bool {
+        return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
+    }
 
     private var shouldOpenActivityController: Bool = false
 
@@ -261,6 +262,16 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 print("Url = \(url)")
                 UIApplication.shared.open(url)
             }
+        }
+    }
+    
+    @IBAction func actBypassMaintenance(_ sender: Any) {
+        self.triggerModeChangeCount += 1
+
+        if self.triggerModeChangeCount >= 5 {
+            self.triggerModeChangeCount = 0
+
+            self.showNext()
         }
     }
     

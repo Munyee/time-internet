@@ -173,10 +173,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         
         let request = Alamofire.request("https://api-4854611070421271444-279141.firebaseio.com/.json", method: .get, parameters: nil, encoding: URLEncoding(), headers: nil)
         request.responseJSON { data in
+            let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
             var json = JSON(data.result.value)["production"]
-            #if DEBUG
-            json = JSON(data.result.value)["staging"]
-            #endif
+            if mode != "Production" {
+                json = JSON(data.result.value)["staging"]
+            }
             self.maintenanceMode = MaintenanceMode(json: json)
             if self.maintenanceMode.is_maintenance {
 //                self.showMaintenanceMode(messageTitle: self.maintenanceMode.maintenance_title, messageBody: self.maintenanceMode.maintenance_text)

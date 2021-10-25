@@ -180,7 +180,7 @@
                                         </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As Of 9 Sep 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s01-MB-BvP">
-                                        <rect key="frame" x="140" y="111" width="134" height="21"/>
+                                        <rect key="frame" x="145" y="111" width="124" height="21"/>
                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -834,6 +834,9 @@ Earn Discounts!</string>
                                                                                     <constraint firstAttribute="width" secondItem="wUV-5A-A0k" secondAttribute="height" multiplier="1:1" id="eDa-9H-Q6i"/>
                                                                                 </constraints>
                                                                                 <state key="normal" image="ic_share-copy"/>
+                                                                                <connections>
+                                                                                    <action selector="copyLink:" destination="Hax-D8-gVD" eventType="touchUpInside" id="v70-9D-uqL"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GBA-aC-6K8">
                                                                                 <rect key="frame" x="15" y="70" width="35" height="35"/>
@@ -842,6 +845,9 @@ Earn Discounts!</string>
                                                                                     <constraint firstAttribute="height" constant="35" id="gkK-l9-kzE"/>
                                                                                 </constraints>
                                                                                 <state key="normal" image="ic_facebook-1"/>
+                                                                                <connections>
+                                                                                    <action selector="openFacebook:" destination="Hax-D8-gVD" eventType="touchUpInside" id="aNZ-nZ-8dK"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Io-GE-0BK">
                                                                                 <rect key="frame" x="60" y="70" width="35" height="35"/>
@@ -850,6 +856,9 @@ Earn Discounts!</string>
                                                                                     <constraint firstAttribute="width" secondItem="8Io-GE-0BK" secondAttribute="height" multiplier="1:1" id="6d8-CG-OQa"/>
                                                                                 </constraints>
                                                                                 <state key="normal" image="ic_twitter-1"/>
+                                                                                <connections>
+                                                                                    <action selector="openTwitter:" destination="Hax-D8-gVD" eventType="touchUpInside" id="Si4-66-1TR"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pZ-YW-cmD">
                                                                                 <rect key="frame" x="105" y="70" width="35" height="35"/>
@@ -858,6 +867,9 @@ Earn Discounts!</string>
                                                                                     <constraint firstAttribute="width" secondItem="3pZ-YW-cmD" secondAttribute="height" multiplier="1:1" id="CtG-nO-q2p"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="Button" image="ic_whatsapp-1"/>
+                                                                                <connections>
+                                                                                    <action selector="openWhatsapp:" destination="Hax-D8-gVD" eventType="touchUpInside" id="hwT-0a-Njc"/>
+                                                                                </connections>
                                                                             </button>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6VX-h5-QbQ">
                                                                                 <rect key="frame" x="150" y="70" width="35" height="35"/>
@@ -866,6 +878,9 @@ Earn Discounts!</string>
                                                                                     <constraint firstAttribute="height" constant="35" id="wtD-iN-SU3"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="Button" image="ic_email"/>
+                                                                                <connections>
+                                                                                    <action selector="openEmail:" destination="Hax-D8-gVD" eventType="touchUpInside" id="eq4-Bq-2Sp"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1059,6 +1074,7 @@ Earn Discounts!</string>
                         <outlet property="collectionView" destination="M4g-Iy-J0B" id="BMN-5s-yC4"/>
                         <outlet property="consentView" destination="lM7-od-ERC" id="HHn-XL-Rwi"/>
                         <outlet property="desc" destination="eZv-E2-kOr" id="YOL-q0-Fuv"/>
+                        <outlet property="huaeLinkLabel" destination="WNs-SP-E8R" id="tai-k8-T5B"/>
                         <outlet property="huaeLinkView" destination="XhH-We-rBZ" id="dCU-8z-KVb"/>
                         <outlet property="joinMeView" destination="i5N-jr-7kG" id="sNM-Io-eXY"/>
                         <outlet property="shareButton" destination="RQB-Wy-kYb" id="XGa-o1-VQa"/>
@@ -1167,7 +1183,7 @@ Earn Discounts!</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="As Of 9 Sep 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B39-yS-get">
-                                        <rect key="frame" x="140" y="111" width="134" height="21"/>
+                                        <rect key="frame" x="145" y="111" width="124" height="21"/>
                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1285,17 +1301,17 @@ Earn Discounts!</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="discountCell" id="qFX-qe-RsZ" customClass="DiscountTableViewCell" customModule="TimeSelfCare" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="62.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="63.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qFX-qe-RsZ" id="HGn-WQ-zOw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="62.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="63.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o39-h3-bWL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="169.66666666666666" height="62.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="169.66666666666666" height="63.333333333333336"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Sep 2020" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wz0-sE-ODD">
-                                                            <rect key="frame" x="20" y="22" width="134.66666666666666" height="18.666666666666671"/>
+                                                            <rect key="frame" x="20" y="22" width="134.66666666666666" height="19.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1310,10 +1326,10 @@ Earn Discounts!</string>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljq-WR-r2z">
-                                                    <rect key="frame" x="169.66666666666669" y="0.0" width="135.66666666666669" height="62.666666666666664"/>
+                                                    <rect key="frame" x="169.66666666666669" y="0.0" width="135.66666666666669" height="63.333333333333336"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="215232" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yp8-fI-0ej">
-                                                            <rect key="frame" x="41" y="22" width="53.666666666666657" height="18.666666666666671"/>
+                                                            <rect key="frame" x="43" y="22" width="49.666666666666657" height="19.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1326,10 +1342,10 @@ Earn Discounts!</string>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wce-1S-tBK">
-                                                    <rect key="frame" x="305.33333333333331" y="0.0" width="108.66666666666669" height="62.666666666666664"/>
+                                                    <rect key="frame" x="305.33333333333331" y="0.0" width="108.66666666666669" height="63.333333333333336"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RM100" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p78-js-9jb">
-                                                            <rect key="frame" x="15" y="22" width="73.666666666666671" height="18.666666666666671"/>
+                                                            <rect key="frame" x="15" y="22" width="73.666666666666671" height="19.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -1344,7 +1360,7 @@ Earn Discounts!</string>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jzf-qL-qjS">
-                                                    <rect key="frame" x="15" y="61.666666666666664" width="384" height="1"/>
+                                                    <rect key="frame" x="15" y="62.333333333333336" width="384" height="1"/>
                                                     <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="Lab-m5-6Mf"/>

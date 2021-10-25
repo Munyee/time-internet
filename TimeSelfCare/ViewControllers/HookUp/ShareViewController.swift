@@ -19,6 +19,7 @@ class ShareViewController: UIViewController {
     @IBOutlet private weak var tncView: UIView!
     @IBOutlet private weak var joinMeView: UIView!
     @IBOutlet private weak var huaeLinkView: UIView!
+    @IBOutlet private weak var huaeLinkLabel: UILabel!
     
     let images = [#imageLiteral(resourceName: "spread_the_word"), #imageLiteral(resourceName: "track_progress"), #imageLiteral(resourceName: "enjoy_off")]
     
@@ -31,6 +32,7 @@ class ShareViewController: UIViewController {
        // titleLabel.text = data?.title ?? ""
         desc.text = data?.description?.htmlAttributdString()?.string ?? ""
         updateShareButton(show: false)
+        huaeLinkLabel.text = data?.link
         huaeLinkView.isHidden = true
         if data?.title != nil {
             collectionView.isHidden = false
@@ -48,29 +50,29 @@ class ShareViewController: UIViewController {
     }
 
     func showTnc() {
-            let timeWebView = TIMEWebViewController()
-            let urlString = "https://www.time.com.my/terms-and-conditions?link=personal&title=HookUpAndEarn"
-            let url = URL(string: urlString)
-            timeWebView.url = url
-            timeWebView.title = NSLocalizedString("TERMS & CONDITIONS", comment: "")
-            self.navigationController?.pushViewController(timeWebView, animated: true)
-        }
-
-        func showFAQ() {
-            let timeWebView = TIMEWebViewController()
-            let urlString = "https://www.time.com.my/support/faq?section=self-care&question=who-is-eligible-for-this-programme"
-            let url = URL(string: urlString)
-            timeWebView.url = url
-            timeWebView.title = NSLocalizedString("FAQ", comment: "")
-            self.navigationController?.pushViewController(timeWebView, animated: true)
-        }
-        @IBAction func actTnC(_ sender: Any) {
-            showTnc()
-        }
-
-        @IBAction func actFAQ(_ sender: Any) {
-            showFAQ()
-        }
+        let timeWebView = TIMEWebViewController()
+        let urlString = "https://www.time.com.my/terms-and-conditions?link=personal&title=HookUpAndEarn"
+        let url = URL(string: urlString)
+        timeWebView.url = url
+        timeWebView.title = NSLocalizedString("TERMS & CONDITIONS", comment: "")
+        self.navigationController?.pushViewController(timeWebView, animated: true)
+    }
+    
+    func showFAQ() {
+        let timeWebView = TIMEWebViewController()
+        let urlString = "https://www.time.com.my/support/faq?section=self-care&question=who-is-eligible-for-this-programme"
+        let url = URL(string: urlString)
+        timeWebView.url = url
+        timeWebView.title = NSLocalizedString("FAQ", comment: "")
+        self.navigationController?.pushViewController(timeWebView, animated: true)
+    }
+    @IBAction func actTnC(_ sender: Any) {
+        showTnc()
+    }
+    
+    @IBAction func actFAQ(_ sender: Any) {
+        showFAQ()
+    }
     
     @IBAction func actRefer(_ sender: Any) {
 //        if let referVC = UIStoryboard(name: "ReferView", bundle: nil).instantiateInitialViewController() as? ReferViewController {
@@ -85,6 +87,50 @@ class ShareViewController: UIViewController {
     @IBAction func respondToAgreement(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         updateShareButton(show: sender.isSelected)
+    }
+    
+    @IBAction func openFacebook(_ sender: Any) {
+        let url = String(format: "https://www.facebook.com/share.php?u=%@&quote=%@", data?.link ?? "", data?.fb_text ?? "")
+        if let link = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
+          UIApplication.shared.open(link)
+        }
+    }
+    
+    @IBAction func openTwitter(_ sender: Any) {
+        let url = String(format: "https://www.twitter.com/share?url=%@&text=%@", data?.link ?? "", data?.fb_text ?? "")
+        if let link = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
+          UIApplication.shared.open(link)
+        }
+    }
+    
+    @IBAction func openWhatsapp(_ sender: Any) {
+        let url = String(format: "https://api.whatsapp.com/send?text=%@", data?.whatsapp_text ?? "")
+        if let link = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
+            if UIApplication.shared.canOpenURL(link) {
+              UIApplication.shared.open(link)
+            } else {
+              print("Unable to open whatsapp")
+            }
+        }
+    }
+    
+    @IBAction func openEmail(_ sender: Any) {
+        let subject = data?.email_subject ?? ""
+        let body = data?.email_text ?? ""
+        let coded = "mailto:?subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        if let link = URL(string: coded ?? "") {
+            if UIApplication.shared.canOpenURL(link) {
+                UIApplication.shared.open(link)
+            } else {
+                print("Unable to open email")
+            }
+        }
+    }
+    
+    @IBAction func copyLink(_ sender: Any) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = data?.link
+        self.view.showToast(message: "Link Copied", font: .systemFont(ofSize: 12.0))
     }
     
     func updateShareButton(show: Bool) {

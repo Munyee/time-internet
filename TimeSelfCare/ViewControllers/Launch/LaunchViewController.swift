@@ -22,10 +22,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     var maintenanceMode: MaintenanceMode!
     var remoteConfig: RemoteConfig!
     var message = ""
+    private var triggerModeChangeCount: Int = 0
 
-     private var hasShownWalkthrough: Bool {
-         return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
-     }
+    private var hasShownWalkthrough: Bool {
+        return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
+    }
 
     private var shouldOpenActivityController: Bool = false
 
@@ -172,10 +173,11 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         
         let request = Alamofire.request("https://api-4854611070421271444-279141.firebaseio.com/.json", method: .get, parameters: nil, encoding: URLEncoding(), headers: nil)
         request.responseJSON { data in
+            let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
             var json = JSON(data.result.value)["production"]
-            #if DEBUG
-            json = JSON(data.result.value)["staging"]
-            #endif
+            if mode != "Production" {
+                json = JSON(data.result.value)["staging"]
+            }
             self.maintenanceMode = MaintenanceMode(json: json)
             if self.maintenanceMode.is_maintenance {
 //                self.showMaintenanceMode(messageTitle: self.maintenanceMode.maintenance_title, messageBody: self.maintenanceMode.maintenance_text)
@@ -261,6 +263,16 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 print("Url = \(url)")
                 UIApplication.shared.open(url)
             }
+        }
+    }
+    
+    @IBAction func actBypassMaintenance(_ sender: Any) {
+        self.triggerModeChangeCount += 1
+
+        if self.triggerModeChangeCount >= 5 {
+            self.triggerModeChangeCount = 0
+
+            self.showNext()
         }
     }
     

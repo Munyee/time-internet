@@ -47,6 +47,7 @@ target 'TimeSelfCare' do
   pod 'FreshchatSDK'
   pod 'Smartlook'
   pod "Pulsator"
+  pod 'youtube-ios-player-helper'
   pod 'Firebase/Analytics'
   pod 'Firebase/DynamicLinks'
   pod 'FBSDKCoreKit'

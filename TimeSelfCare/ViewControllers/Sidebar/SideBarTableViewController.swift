@@ -92,10 +92,22 @@ internal class SidebarTableViewController: UIViewController {
     }
     
     private func updateVersionDisplay() {
-         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
+//         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
+        let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
+
         var appVersion = Installation.appVersion
-        if isStagingMode {
+//        if isStagingMode {
+//            appVersion = "\(appVersion) (Staging)"
+//        }
+        
+        if mode == "Staging" {
             appVersion = "\(appVersion) (Staging)"
+        } else if mode == "BB Staging 2" {
+             appVersion = "\(appVersion) (BB Staging 2)"
+        } else if mode == "BB Staging 3" {
+            appVersion = "\(appVersion) (BB Staging 3)"
+        } else if mode == "Production" {
+             appVersion = "\(appVersion)"
         }
         self.versionLabel.text = appVersion
     }
@@ -209,13 +221,15 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             let shopVC: ShopViewController = UIStoryboard(name: TimeSelfCareStoryboard.shop.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(shopVC, animated: true)
         case .support:
-            let ticketListVC: TicketListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
-            self.presentNavigation(ticketListVC, animated: true)
+//            let ticketListVC: TicketListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
+//            self.presentNavigation(ticketListVC, animated: true)
+            let supportVideoVC: SupportMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
+            self.presentNavigation(supportVideoVC, animated: true)
         case .livechat:
 
             LiveChatDataController.shared.loadStatus { statusResult in
                 if let status = statusResult {
-                    if (status == "online") {
+                    if status == "online" {
                         if let selectedAccount = AccountController.shared.selectedAccount {
                             let user = FreshchatUser.sharedInstance()
                             let profile = selectedAccount.profile

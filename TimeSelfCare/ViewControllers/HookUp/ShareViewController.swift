@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class ShareViewController: UIViewController {
 
@@ -33,13 +34,21 @@ class ShareViewController: UIViewController {
         desc.text = data?.description?.htmlAttributdString()?.string ?? ""
         updateShareButton(show: false)
         huaeLinkLabel.text = data?.link
-        huaeLinkView.isHidden = true
+        
         if data?.title != nil {
             collectionView.isHidden = false
-            shareButton.isHidden = false
             tncView.isHidden = false
-            consentView.isHidden = false
             joinMeView.isHidden = false
+            
+            if data?.huae_consent == "yes" {
+                huaeLinkView.isHidden = false
+                shareButton.isHidden = true
+                consentView.isHidden = true
+            } else {
+                huaeLinkView.isHidden = true
+                shareButton.isHidden = false
+                consentView.isHidden = false
+            }
         } else {
             collectionView.isHidden = true
             shareButton.isHidden = true
@@ -79,9 +88,25 @@ class ShareViewController: UIViewController {
 //            referVC.data = data
 //            self.navigationController?.pushViewController(referVC, animated: true)
 //        }
-        huaeLinkView.isHidden = false
-        consentView.isHidden = true
-        shareButton.isHidden = true
+        
+        guard
+            let account = AccountController.shared.selectedAccount
+            else {
+                return
+        }
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        
+        AccountDataController.shared.setHuaeConsent(account: account) { data, error in
+            hud.hide(animated: true)
+            guard error == nil else {
+                return
+            }
+            self.huaeLinkView.isHidden = false
+            self.consentView.isHidden = true
+            self.shareButton.isHidden = true
+        }
     }
     
     @IBAction func respondToAgreement(_ sender: UIButton) {

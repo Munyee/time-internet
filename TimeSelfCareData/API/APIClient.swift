@@ -87,7 +87,8 @@ public class APIClient {
     }
 
     public func getToken(forPath path: String) -> String {
-        if Installation.kMode != "Production" {
+        let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
+        if mode != "Production" {
               return "dev"
         }
 

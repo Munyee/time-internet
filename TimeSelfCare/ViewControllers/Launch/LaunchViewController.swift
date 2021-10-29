@@ -138,6 +138,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                             return
                         }
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
+                        VersionDataController.shared.setInstallUrl(url: self.appVersionConfig.url)
                         DispatchQueue.main.async {
                             self.checkAppVersion()
                         }
@@ -498,15 +499,13 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 completionHandler()
             }
         case .launchExternalApp:
-            if activity.click == "WebBrowser" {
-                if let urlString = activity.url {
-                    openURL(withURLString: urlString)
-                    completionHandler()
-                }
-            } else if activity.click == "AppStore" {
-                openURL(withURLString: self.appVersionConfig.url)
+            if let urlString = activity.url {
+                openURL(withURLString: urlString)
                 completionHandler()
             }
+        case .appStore:
+            openURL(withURLString: self.appVersionConfig.url)
+            completionHandler()
         case .selfDiagnostic:
             let diagnosticsVC: DiagnosisViewController = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil).instantiateViewController()
             currentViewController.presentNavigation(diagnosticsVC, animated: true)

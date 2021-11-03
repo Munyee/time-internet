@@ -50,6 +50,7 @@ class SummaryContainerViewController: TimeBaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +89,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     private func updatePages() {
+        self.showAlertMessage(message: "\(AccountController.shared.showControlHub)")
         DispatchQueue.main.async {
             self.pages = [.accountSummary, .addOnSummary]
             
@@ -419,6 +421,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     @objc
     func reinstateBackgroundTask() {
         showGuestWifi()
+        showControlHub()
     }
     
     func showGuestWifi() {

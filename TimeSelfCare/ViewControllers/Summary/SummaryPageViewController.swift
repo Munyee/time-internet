@@ -64,6 +64,7 @@ internal class SummaryPageViewController: UIPageViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleControlHub), name: NSNotification.Name.ReceiveControlHubNotification, object: nil)
     }
 
     @objc
@@ -84,7 +85,6 @@ internal class SummaryPageViewController: UIPageViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateDataSet(items: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleControlHub), name: NSNotification.Name.ReceiveControlHubNotification, object: nil)
         self.refresh()
     }
     

@@ -89,7 +89,6 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     private func updatePages() {
-        self.showAlertMessage(message: "\(AccountController.shared.showControlHub)")
         DispatchQueue.main.async {
             self.pages = [.accountSummary, .addOnSummary]
             

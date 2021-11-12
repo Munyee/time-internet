@@ -16,9 +16,6 @@ import HwMobileSDK
 import AppTrackingTransparency
 import FBSDKCoreKit
 import IQKeyboardManagerSwift
-import AppTrackingTransparency
-import Firebase
-import FBSDKCoreKit
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -32,25 +29,6 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
         ApplicationDelegate.initialize()
-        
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                if status == .authorized {
-                    Analytics.setAnalyticsCollectionEnabled(true)
-                    Settings.setAdvertiserTrackingEnabled(true)
-                    Settings.isAutoLogAppEventsEnabled = true
-                    Settings.isAdvertiserIDCollectionEnabled = true
-                } else {
-                    Analytics.setAnalyticsCollectionEnabled(false)
-                    Settings.setAdvertiserTrackingEnabled(false)
-                }
-            }
-        } else {
-            Analytics.setAnalyticsCollectionEnabled(true)
-            Settings.setAdvertiserTrackingEnabled(true)
-            Settings.isAutoLogAppEventsEnabled = true
-            Settings.isAdvertiserIDCollectionEnabled = true
-        }
 
         AuthUser.authDelegate = AccountController.shared
         AuthUser.enableAnonymousUser(with: LocalAnonymousProvider())
@@ -118,6 +96,24 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                if status == .authorized {
+                    Analytics.setAnalyticsCollectionEnabled(true)
+                    Settings.setAdvertiserTrackingEnabled(true)
+                    Settings.isAutoLogAppEventsEnabled = true
+                    Settings.isAdvertiserIDCollectionEnabled = true
+                } else {
+                    Analytics.setAnalyticsCollectionEnabled(false)
+                    Settings.setAdvertiserTrackingEnabled(false)
+                }
+            }
+        } else {
+            Analytics.setAnalyticsCollectionEnabled(true)
+            Settings.setAdvertiserTrackingEnabled(true)
+            Settings.isAutoLogAppEventsEnabled = true
+            Settings.isAdvertiserIDCollectionEnabled = true
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

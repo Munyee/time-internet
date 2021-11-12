@@ -12,7 +12,7 @@ class RewardCell: UITableViewCell {
     @IBOutlet private weak var iconView: UIImageView!
 
     @IBOutlet private weak var itemLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UITextView!
 
     func configure(with description: String, icon: UIImage?, index: Int?) {
         self.iconView.image = icon
@@ -24,6 +24,23 @@ class RewardCell: UITableViewCell {
         } else {
             self.itemLabel.text = "•"
         }
-        self.descriptionLabel.text = description.htmlAttributedString?.string
+        
+        self.descriptionLabel.text = String(htmlEncodedString: description)
+        self.descriptionLabel.dataDetectorTypes = .all
+        self.descriptionLabel.isScrollEnabled = false
+        self.descriptionLabel.textColor = .darkGray
+
+        do {
+            let attrStr = try NSMutableAttributedString(data: description.data(using: String.Encoding.unicode, allowLossyConversion: true)!, options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+            self.descriptionLabel.attributedText = attrStr
+            self.descriptionLabel.font =  UIFont(name: "DIN-Light", size: 16)
+        } catch {
+            print(error)
+        }
+        
+        self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.descriptionLabel.isScrollEnabled = false
+        self.descriptionLabel.textContainerInset = .zero
+
     }
 }

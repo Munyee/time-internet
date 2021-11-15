@@ -15,6 +15,7 @@ public class VersionDataController {
     }
 
     var version: Int?
+    var installUrl: String?
 
     func loadVersionData(
         path: String,
@@ -37,6 +38,14 @@ public class VersionDataController {
 public extension VersionDataController {
     func getVersion() -> Int? {
         return self.version
+    }
+    
+    func setInstallUrl(url: String) {
+        installUrl = url
+    }
+    
+    func getInstallUrl() -> String? {
+        return self.installUrl
     }
 
     func loadVersion(

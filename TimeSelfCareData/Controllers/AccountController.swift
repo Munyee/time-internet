@@ -12,6 +12,7 @@ import HwMobileSDK
 
 public extension NSNotification.Name {
     static let SelectedAccountDidChange: NSNotification.Name = NSNotification.Name(rawValue: "SelectedAccountDidChange")
+    static let ReceiveControlHubNotification: NSNotification.Name = NSNotification.Name(rawValue: "ReceiveControlHubNotification")
 }
 
 public let sessionIdKey = "sessionIdKey"
@@ -67,6 +68,15 @@ public class AccountController {
         }
         set(value) {
             UserDefaults.standard.set(value, forKey: "showGuestWifi")
+        }
+    }
+    
+    public var showControlHub: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "showControlHub")
+        }
+        set(value) {
+            UserDefaults.standard.set(value, forKey: "showControlHub")
         }
     }
     

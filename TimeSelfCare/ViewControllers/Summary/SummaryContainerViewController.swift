@@ -50,6 +50,7 @@ class SummaryContainerViewController: TimeBaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotificationIndicator), name: NSNotification.Name.NotificationDidReceive, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleAccountChange), name: NSNotification.Name.SelectedAccountDidChange, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -177,6 +178,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                         HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
                             DispatchQueue.main.async {
                                 self.showGuestWifi()
+                                self.showControlHub()
                             }
                             self.checkIsKick()
                         }, error: { exception in
@@ -418,6 +420,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     @objc
     func reinstateBackgroundTask() {
         showGuestWifi()
+        showControlHub()
     }
     
     func showGuestWifi() {
@@ -435,6 +438,14 @@ class SummaryContainerViewController: TimeBaseViewController {
                     self.presentNavigation(vc, animated: true)
                 }
             }
+        }
+    }
+    
+    func showControlHub() {
+        if AccountController.shared.showControlHub {
+            AccountController.shared.showControlHub = false
+            NotificationCenter.default.post(name: NSNotification.Name.ReceiveControlHubNotification, object: nil)
+
         }
     }
 }

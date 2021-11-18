@@ -124,15 +124,12 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
                 self.presentNavigation(addOnVC, animated: true)
             }
         case .launchExternalApp:
-            if activity.click == "WebBrowser" {
-                if let urlString = activity.url {
-//                    let timeWebView = TIMEWebViewController()
-//                    let urlString = urlString
-//                    let url = URL(string: urlString)
-//                    timeWebView.url = url
-//                    self.navigationController?.pushViewController(timeWebView, animated: true)
-                    openURL(withURLString: urlString)
-                }
+            if let urlString = activity.url {
+                openURL(withURLString: urlString)
+            }
+        case .appStore:
+            if let url = VersionDataController.shared.getInstallUrl() {
+                openURL(withURLString: url)
             }
         default:
             break

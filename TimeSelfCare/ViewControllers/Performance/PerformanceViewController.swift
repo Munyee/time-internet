@@ -253,18 +253,22 @@ class PerformanceViewController: BaseViewController {
     }
     
     @IBAction func actWifiConfiguration(_ sender: Any) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        HuaweiHelper.shared.queryGateway(completion: { _ in
-            hud.hide(animated: true)
-            if let wifiConfVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiConfigurationViewController") as? WifiConfigurationViewController {
-                wifiConfVC.gateway = self.gateway
-                self.presentNavigation(wifiConfVC, animated: true)
-            }
-        }, error: { _ in
-            hud.hide(animated: true)
-            self.showNotAvailable()
-        })
+//        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+//        hud.label.text = NSLocalizedString("Loading...", comment: "")
+//        HuaweiHelper.shared.queryGateway(completion: { _ in
+//            hud.hide(animated: true)
+//            if let wifiConfVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiConfigurationViewController") as? WifiConfigurationViewController {
+//                wifiConfVC.gateway = self.gateway
+//                self.presentNavigation(wifiConfVC, animated: true)
+//            }
+//        }, error: { _ in
+//            hud.hide(animated: true)
+//            self.showNotAvailable()
+//        })
+        if let wifiConfVC = UIStoryboard(name: TimeSelfCareStoryboard.wificonfiguration.filename, bundle: nil).instantiateViewController(withIdentifier: "WifiConfigurationViewController") as? WifiConfigurationViewController {
+            wifiConfVC.gateway = self.gateway
+            self.presentNavigation(wifiConfVC, animated: true)
+        }
     }
     
     @IBAction func bindGateway(_ sender: Any) {
@@ -292,9 +296,10 @@ class PerformanceViewController: BaseViewController {
         let showAddnce = !UserDefaults.standard.bool(forKey: self.kIsSetupNCE)
         
         HuaweiHelper.shared.queryUserBindGateway { gateways in
-            if !gateways.isEmpty {
+            self.gateway = gateways.first(where: { !$0.deviceId.isEmpty })
+
+            if self.gateway != nil {
                 AccountController.shared.gatewayDevId = gateways.first(where: { !$0.deviceId.isEmpty })?.deviceId
-                self.gateway = gateways.first(where: { !$0.deviceId.isEmpty })
                 
                 self.connectionStackView.isHidden = false
                 self.nceFeatureView.isHidden = true

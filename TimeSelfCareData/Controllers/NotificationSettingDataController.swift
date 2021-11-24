@@ -108,6 +108,7 @@ public extension NotificationSettingDataController {
     func updateNotificationSetting(notificationSetting: NotificationSetting, completion: SimpleRequestListener? = nil) {
         var body: [String: Any] = [:]
         body["username"] = AccountController.shared.profile?.username
+        body["app_version"] = Installation.appVersion
         for (key, value) in notificationSetting.toJson() {
             body[key] = value
         }

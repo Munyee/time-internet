@@ -23,6 +23,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     var remoteConfig: RemoteConfig!
     var message = ""
     private var triggerModeChangeCount: Int = 0
+    var isBypass = false
 
     private var hasShownWalkthrough: Bool {
         return Installation.current().valueForKey(hasShownWalkthroughKey) as? Bool ?? false
@@ -138,6 +139,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                             return
                         }
                         self.appVersionConfig = AppVersionModal(dictionary: appInit)
+                        VersionDataController.shared.setInstallUrl(url: self.appVersionConfig.url)
                         DispatchQueue.main.async {
                             self.checkAppVersion()
                         }
@@ -179,8 +181,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 json = JSON(data.result.value)["staging"]
             }
             self.maintenanceMode = MaintenanceMode(json: json)
-            if self.maintenanceMode.is_maintenance {
-//                self.showMaintenanceMode(messageTitle: self.maintenanceMode.maintenance_title, messageBody: self.maintenanceMode.maintenance_text)
+            if self.maintenanceMode.is_maintenance && !self.isBypass {
                 self.maintananceView.isHidden = false
             } else {
                 if currentInstalledVersion < latestVersion {
@@ -271,7 +272,8 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
 
         if self.triggerModeChangeCount >= 5 {
             self.triggerModeChangeCount = 0
-
+            isBypass = true
+            self.maintananceView.isHidden = true
             self.showNext()
         }
     }
@@ -498,29 +500,28 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 completionHandler()
             }
         case .launchExternalApp:
-            if activity.click == "WebBrowser" {
-                if let urlString = activity.url {
-//                    let timeWebView = TIMEWebViewController()
-//                    let url = URL(string: urlString)
-//                    timeWebView.url = url
-//                    currentViewController.presentNavigation(timeWebView, animated: true)
-                    openURL(withURLString: urlString)
-                    completionHandler()
-                }
+            if let urlString = activity.url {
+                openURL(withURLString: urlString)
+                completionHandler()
             }
+        case .appStore:
+            openURL(withURLString: self.appVersionConfig.url)
+            completionHandler()
         case .selfDiagnostic:
             let diagnosticsVC: DiagnosisViewController = UIStoryboard(name: TimeSelfCareStoryboard.diagnostics.filename, bundle: nil).instantiateViewController()
             currentViewController.presentNavigation(diagnosticsVC, animated: true)
-            completionHandler()
+            getFirebaseAppVersion()
         case .guestWifi:
             AccountController.shared.showGuestWifi = true
-            
             if let presentedVC = self.presentedViewController?.children[0].presentedViewController {
                 presentedVC.dismiss(animated: true, completion: {
                     NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
                 })
             }
-            completionHandler()
+            getFirebaseAppVersion()
+        case .controlHub:
+            AccountController.shared.showControlHub = true
+            getFirebaseAppVersion()
         default:
             openActivity()
             completionHandler()

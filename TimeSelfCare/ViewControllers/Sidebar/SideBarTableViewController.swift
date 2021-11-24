@@ -226,7 +226,7 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
             let supportVideoVC: SupportMainViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
             self.presentNavigation(supportVideoVC, animated: true)
         case .livechat:
-
+            
             LiveChatDataController.shared.loadStatus { statusResult in
                 if let status = statusResult {
                     if status == "online" {
@@ -238,37 +238,42 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
                             user.phoneNumber = profile?.mobileNo
                             Freshchat.sharedInstance().setUser(user)
                             Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
-                        }
+                            
                             let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
-
                             alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
                                 Freshchat.sharedInstance().showConversations(self)
                             }))
-
                             alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
                                 Freshchat.sharedInstance().showFAQs(self)
                             }))
-
                             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
-
+                            
                             self.present(alert, animated: true, completion: nil)
                         } else {
-                            if var vc = UIApplication.shared.keyWindow?.rootViewController {
-                                while let presentedViewController = vc.presentedViewController {
-                                    vc = presentedViewController
-                                }
-
-                                if let alertView = UIStoryboard(name: "LiveChatAlert", bundle: nil).instantiateViewController(withIdentifier: "alertView") as? LiveChatPopUpViewController {
-                                    vc.addChild(alertView)
-                                    alertView.view.frame = vc.view.frame
-                                    vc.view.addSubview(alertView.view)
-                                    alertView.didMove(toParent: vc)
-                                }
+                            if let viewController = UIStoryboard(name: "LiveChatUserDetailsViewController", bundle: nil).instantiateViewController(withIdentifier: "LiveChatUserDetailsViewController") as? LiveChatUserDetailsViewController {
+                                viewController.modalTransitionStyle = .crossDissolve
+                                viewController.modalPresentationStyle = .overFullScreen
+                                viewController.previousViewController = self
+                                self.present(viewController, animated: true, completion: nil)
+                            }
+                        }
+                    } else {
+                        if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                            while let presentedViewController = vc.presentedViewController {
+                                vc = presentedViewController
+                            }
+                            
+                            if let alertView = UIStoryboard(name: "LiveChatAlert", bundle: nil).instantiateViewController(withIdentifier: "alertView") as? LiveChatPopUpViewController {
+                                vc.addChild(alertView)
+                                alertView.view.frame = vc.view.frame
+                                vc.view.addSubview(alertView.view)
+                                alertView.didMove(toParent: vc)
                             }
                         }
                     }
                 }
             }
+        }
         }
     }
 }

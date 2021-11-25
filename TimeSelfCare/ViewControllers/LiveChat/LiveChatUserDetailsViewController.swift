@@ -70,35 +70,37 @@ class LiveChatUserDetailsViewController: UIViewController {
         
         if let name = nameTextField.text, name != "", let email = emailTextField.text, email != "", let handphoneNumber = handphoneNumberTextField.text, handphoneNumber != "" {
             
-            let user = FreshchatUser.sharedInstance()
-            user.firstName = name
-            user.email = email
-            user.phoneNumber = handphoneNumber
-            Freshchat.sharedInstance().setUser(user)
-            if let soNumber = soNumberTextField.text, soNumber != "" {
-                Freshchat.sharedInstance().setUserPropertyforKey("so_number", withValue: soNumber)
-            }
-            
-            let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
-                self.dismiss(animated: true, completion: {
-                    if self.previousViewController != nil {
-                        Freshchat.sharedInstance().showConversations(self.previousViewController)
-                    }
-                })
-            }))
+            Freshchat.sharedInstance().resetUser(completion: {
+                let user = FreshchatUser.sharedInstance()
+                user.firstName = name
+                user.email = email
+                user.phoneNumber = handphoneNumber
+                Freshchat.sharedInstance().setUser(user)
+                if let soNumber = soNumberTextField.text, soNumber != "" {
+                    Freshchat.sharedInstance().setUserPropertyforKey("so_number", withValue: soNumber)
+                }
+                
+                let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
+                    self.dismiss(animated: true, completion: {
+                        if self.previousViewController != nil {
+                            Freshchat.sharedInstance().showConversations(self.previousViewController)
+                        }
+                    })
+                }))
 
-            alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
-                self.dismiss(animated: true, completion: {
-                    if self.previousViewController != nil {
-                        Freshchat.sharedInstance().showFAQs(self.previousViewController)
-                    }
-                })
-            }))
+                alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
+                    self.dismiss(animated: true, completion: {
+                        if self.previousViewController != nil {
+                            Freshchat.sharedInstance().showFAQs(self.previousViewController)
+                        }
+                    })
+                }))
 
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
 
-            self.present(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
+            })
         }
     }
 

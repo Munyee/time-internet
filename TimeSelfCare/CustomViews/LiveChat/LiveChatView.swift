@@ -31,35 +31,34 @@ class LiveChatView: UIView, UIActionSheetDelegate {
         LiveChatDataController.shared.loadStatus { statusResult in
             if let status = statusResult {
                 if (status == "online") {
-                    if let selectedAccount = AccountController.shared.selectedAccount {
-                        let user = FreshchatUser.sharedInstance()
-                        let profile = selectedAccount.profile
-                        user.firstName = profile?.fullname
-                        user.email = profile?.email
-                        user.phoneNumber = profile?.mobileNo
-                        Freshchat.sharedInstance().setUser(user)
-                        Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
+                    let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
+                    alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
                         
-                        let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
-                        alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
-                            Freshchat.sharedInstance().showConversations(self.viewController(forView: self)!)
-                        }))
-                        alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
-                            Freshchat.sharedInstance().showFAQs(self.viewController(forView: self)!)
-                        }))
-                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
-
-                        self.viewController(forView: self)?.present(alert, animated: true, completion: nil)
-                    } else {
-                        if let viewController = UIStoryboard(name: "LiveChatUserDetailsViewController", bundle: nil).instantiateViewController(withIdentifier: "LiveChatUserDetailsViewController") as? LiveChatUserDetailsViewController {
-                            if let previousViewController = self.viewController(forView: self) {
-                                viewController.modalTransitionStyle = .crossDissolve
-                                viewController.modalPresentationStyle = .overFullScreen
-                                viewController.previousViewController = previousViewController
-                                self.viewController(forView: self)?.present(viewController, animated: true, completion: nil)
+                            if let selectedAccount = AccountController.shared.selectedAccount {
+                                let user = FreshchatUser.sharedInstance()
+                                let profile = selectedAccount.profile
+                                user.firstName = profile?.fullname
+                                user.email = profile?.email
+                                user.phoneNumber = profile?.mobileNo
+                                Freshchat.sharedInstance().setUser(user)
+                                Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
+                                Freshchat.sharedInstance().showConversations(self.viewController(forView: self)!)
+                            } else {
+                                if let viewController = UIStoryboard(name: "LiveChatUserDetailsViewController", bundle: nil).instantiateViewController(withIdentifier: "LiveChatUserDetailsViewController") as? LiveChatUserDetailsViewController {
+                                    if let previousViewController = self.viewController(forView: self) {
+                                        viewController.modalTransitionStyle = .crossDissolve
+                                        viewController.modalPresentationStyle = .overFullScreen
+                                        viewController.previousViewController = previousViewController
+                                        self.viewController(forView: self)?.present(viewController, animated: true, completion: nil)
+                                    }
+                                }
                             }
-                        }
-                    }
+                    }))
+                    alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
+                        Freshchat.sharedInstance().showFAQs(self.viewController(forView: self)!)
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                    self.viewController(forView: self)?.present(alert, animated: true, completion: nil)
                 } else {
                     if var vc = UIApplication.shared.keyWindow?.rootViewController {
                         while let presentedViewController = vc.presentedViewController {

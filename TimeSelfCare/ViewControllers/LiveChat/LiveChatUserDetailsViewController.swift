@@ -79,9 +79,26 @@ class LiveChatUserDetailsViewController: UIViewController {
                 Freshchat.sharedInstance().setUserPropertyforKey("so_number", withValue: soNumber)
             }
             
-            dismiss(animated: true, completion: {
-                Freshchat.sharedInstance().showConversations(self.previousViewController)
-            })
+            let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
+                self.dismiss(animated: true, completion: {
+                    if self.previousViewController != nil {
+                        Freshchat.sharedInstance().showConversations(self.previousViewController)
+                    }
+                })
+            }))
+
+            alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
+                self.dismiss(animated: true, completion: {
+                    if self.previousViewController != nil {
+                        Freshchat.sharedInstance().showFAQs(self.previousViewController)
+                    }
+                })
+            }))
+
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+
+            self.present(alert, animated: true, completion: nil)
         }
     }
 

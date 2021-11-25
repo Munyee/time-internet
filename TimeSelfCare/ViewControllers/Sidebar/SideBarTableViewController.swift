@@ -231,32 +231,34 @@ extension SidebarTableViewController: UITableViewDataSource, UITableViewDelegate
                     if let status = statusResult {
                         if status == "online" {
                             Freshchat.sharedInstance().resetUser(completion: {
-                                if let selectedAccount = AccountController.shared.selectedAccount, let service = ServiceDataController.shared.getServices(account: selectedAccount).first {
-                                    let user = FreshchatUser.sharedInstance()
-                                    let profile = selectedAccount.profile
-                                    user.firstName = profile?.fullname
-                                    user.email = profile?.email
-                                    user.phoneNumber = profile?.mobileNo
-                                    Freshchat.sharedInstance().setUser(user)
-                                    Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
-                                    Freshchat.sharedInstance().setUserPropertyforKey("so_number", withValue: service.serviceId)
-                                    
-                                    let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
-                                    alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
-                                        Freshchat.sharedInstance().showConversations(self)
-                                    }))
-                                    alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
-                                        Freshchat.sharedInstance().showFAQs(self)
-                                    }))
-                                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
-                                    
-                                    self.present(alert, animated: true, completion: nil)
-                                } else {
-                                    if let viewController = UIStoryboard(name: "LiveChatUserDetailsViewController", bundle: nil).instantiateViewController(withIdentifier: "LiveChatUserDetailsViewController") as? LiveChatUserDetailsViewController {
-                                        viewController.modalTransitionStyle = .crossDissolve
-                                        viewController.modalPresentationStyle = .overFullScreen
-                                        viewController.previousViewController = self
-                                        self.present(viewController, animated: true, completion: nil)
+                                DispatchQueue.main.async {
+                                    if let selectedAccount = AccountController.shared.selectedAccount, let service = ServiceDataController.shared.getServices(account: selectedAccount).first {
+                                        let user = FreshchatUser.sharedInstance()
+                                        let profile = selectedAccount.profile
+                                        user.firstName = profile?.fullname
+                                        user.email = profile?.email
+                                        user.phoneNumber = profile?.mobileNo
+                                        Freshchat.sharedInstance().setUser(user)
+                                        Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
+                                        Freshchat.sharedInstance().setUserPropertyforKey("so_number", withValue: service.serviceId)
+                                        
+                                        let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
+                                        alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
+                                            Freshchat.sharedInstance().showConversations(self)
+                                        }))
+                                        alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
+                                            Freshchat.sharedInstance().showFAQs(self)
+                                        }))
+                                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                                        
+                                        self.present(alert, animated: true, completion: nil)
+                                    } else {
+                                        if let viewController = UIStoryboard(name: "LiveChatUserDetailsViewController", bundle: nil).instantiateViewController(withIdentifier: "LiveChatUserDetailsViewController") as? LiveChatUserDetailsViewController {
+                                            viewController.modalTransitionStyle = .crossDissolve
+                                            viewController.modalPresentationStyle = .overFullScreen
+                                            viewController.previousViewController = self
+                                            self.present(viewController, animated: true, completion: nil)
+                                        }
                                     }
                                 }
                             })

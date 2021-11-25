@@ -41,8 +41,8 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         var appKey = "8c2c04e4-0080-44ba-b4de-dc0fa8af2cc2"
 
         #if DEBUG
-            appId = "23bb7b7f-0da4-4837-b4c4-a233c251adad"
-            appKey = "590e83e4-c424-4f02-9cd0-e7dab8db8320"
+//            appId = "23bb7b7f-0da4-4837-b4c4-a233c251adad"
+//            appKey = "590e83e4-c424-4f02-9cd0-e7dab8db8320"
         #else
             let smartlookConfig = Smartlook.SetupConfiguration(key: "73e0b72d49d303d9c7e365bbfbcffde6e0e5dabc")
             Smartlook.setupAndStartRecording(configuration: smartlookConfig)

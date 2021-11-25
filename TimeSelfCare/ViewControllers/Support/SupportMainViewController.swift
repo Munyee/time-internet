@@ -28,6 +28,7 @@ class SupportMainViewController: UIViewController {
     let flowLayout = CenteredCollectionViewFlowLayout()
     var ticket: Ticket?
     var videos: [Video] = []
+    var allVideos: [Video] = []
     var isDragging: Bool = false
 
     lazy var refreshControl: UIRefreshControl = {
@@ -86,6 +87,7 @@ class SupportMainViewController: UIViewController {
             self.supportVideoView.isHidden = false
 
             self.videos = Array(videoData.prefix(3))
+            self.allVideos = videoData
             self.snakePage.pageCount = self.videos.count
             
             if self.videos.count >= 3 {
@@ -152,7 +154,7 @@ class SupportMainViewController: UIViewController {
     
     @IBAction func viewAllVideo(_ sender: Any) {
         let videoListVC: VideoListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
-        videoListVC.videos = videos
+        videoListVC.videos = allVideos
         self.navigationController?.pushViewController(videoListVC, animated: true)
     }
 }

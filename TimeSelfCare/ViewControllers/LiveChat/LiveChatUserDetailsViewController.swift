@@ -32,16 +32,6 @@ class LiveChatUserDetailsViewController: UIViewController {
                 titleLabel.font = UIFont.getCustomFont(family: "DIN", style: .headline)
             }
         }
-
-        if backgroundView != nil {
-            backgroundView.layer.cornerRadius = 8.0
-            backgroundView.layer.masksToBounds = true
-        }
-        
-        if startChatBackgroundView != nil {
-            startChatBackgroundView.layer.cornerRadius = 8.0
-            startChatBackgroundView.layer.masksToBounds = true
-        }
         
         IQKeyboardManager.shared.enable = true
     }

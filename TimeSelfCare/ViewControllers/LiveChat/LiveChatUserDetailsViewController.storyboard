@@ -269,27 +269,23 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3SV-DD-Jkn">
-                                        <rect key="frame" x="20" y="434" width="220" height="50"/>
-                                        <color key="backgroundColor" red="0.90196078431372551" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="START CHAT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jV1-ci-Guf">
-                                        <rect key="frame" x="20" y="438" width="220" height="46"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJ2-oS-44f">
                                         <rect key="frame" x="20" y="434" width="220" height="50"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.92549019610000005" green="0.0" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="iJi-Hb-7sf"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                        <state key="normal">
+                                        <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="22"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="START CHAT">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="startChatButtonTapped:" destination="Uce-0g-vPO" eventType="touchUpInside" id="ZXB-AI-GwS"/>
                                         </connections>
@@ -297,28 +293,25 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="jV1-ci-Guf" firstAttribute="trailing" secondItem="iJ2-oS-44f" secondAttribute="trailing" id="21Z-NT-CGG"/>
                                     <constraint firstItem="iJ2-oS-44f" firstAttribute="top" secondItem="5Kp-2z-Hfd" secondAttribute="bottom" constant="20" id="484-bG-fwe"/>
-                                    <constraint firstItem="jV1-ci-Guf" firstAttribute="top" secondItem="iJ2-oS-44f" secondAttribute="top" constant="4" id="BnM-te-uUu"/>
                                     <constraint firstItem="5Kp-2z-Hfd" firstAttribute="leading" secondItem="yFa-Pg-ln5" secondAttribute="leading" constant="20" id="GqA-kN-nCj"/>
-                                    <constraint firstItem="jV1-ci-Guf" firstAttribute="bottom" secondItem="iJ2-oS-44f" secondAttribute="bottom" id="L9O-PN-OL7"/>
                                     <constraint firstItem="5Kp-2z-Hfd" firstAttribute="top" secondItem="Hid-u6-tJe" secondAttribute="bottom" constant="20" id="TT2-wE-c8a"/>
                                     <constraint firstItem="viF-on-8Zu" firstAttribute="leading" secondItem="yFa-Pg-ln5" secondAttribute="leading" id="XVA-Qr-oAq"/>
-                                    <constraint firstItem="jV1-ci-Guf" firstAttribute="leading" secondItem="iJ2-oS-44f" secondAttribute="leading" id="aPN-Ce-CTb"/>
                                     <constraint firstAttribute="trailing" secondItem="iJ2-oS-44f" secondAttribute="trailing" constant="20" id="cVF-a2-nQN"/>
                                     <constraint firstAttribute="bottom" secondItem="iJ2-oS-44f" secondAttribute="bottom" constant="20" id="d69-7C-GEt"/>
                                     <constraint firstItem="Hid-u6-tJe" firstAttribute="top" secondItem="viF-on-8Zu" secondAttribute="bottom" constant="20" id="g4h-r3-fYP"/>
                                     <constraint firstItem="Hid-u6-tJe" firstAttribute="leading" secondItem="yFa-Pg-ln5" secondAttribute="leading" constant="20" id="hHx-J9-YYx"/>
                                     <constraint firstItem="viF-on-8Zu" firstAttribute="top" secondItem="yFa-Pg-ln5" secondAttribute="top" id="hdO-OO-Gyb"/>
                                     <constraint firstAttribute="trailing" secondItem="viF-on-8Zu" secondAttribute="trailing" id="hhH-zA-RZL"/>
-                                    <constraint firstItem="3SV-DD-Jkn" firstAttribute="top" secondItem="jV1-ci-Guf" secondAttribute="top" constant="-4" id="iBx-ha-HN4"/>
-                                    <constraint firstItem="3SV-DD-Jkn" firstAttribute="bottom" secondItem="jV1-ci-Guf" secondAttribute="bottom" id="iM1-cC-oup"/>
-                                    <constraint firstItem="3SV-DD-Jkn" firstAttribute="leading" secondItem="jV1-ci-Guf" secondAttribute="leading" id="ips-Nq-wEC"/>
                                     <constraint firstItem="iJ2-oS-44f" firstAttribute="leading" secondItem="yFa-Pg-ln5" secondAttribute="leading" constant="20" id="k1B-sv-IHu"/>
                                     <constraint firstAttribute="trailing" secondItem="5Kp-2z-Hfd" secondAttribute="trailing" constant="20" id="nYK-T5-YUJ"/>
                                     <constraint firstAttribute="trailing" secondItem="Hid-u6-tJe" secondAttribute="trailing" constant="20" id="yr2-3D-GtZ"/>
-                                    <constraint firstItem="3SV-DD-Jkn" firstAttribute="trailing" secondItem="jV1-ci-Guf" secondAttribute="trailing" id="zrg-wd-Ucc"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AKE-UQ-1rs"/>
@@ -342,7 +335,6 @@
                         <outlet property="nameErrorView" destination="toh-eG-NYF" id="vbi-G1-Qfq"/>
                         <outlet property="nameTextField" destination="KfV-9k-fXk" id="j4x-e0-XHr"/>
                         <outlet property="soNumberTextField" destination="LNh-l2-ceN" id="J6F-GO-KSM"/>
-                        <outlet property="startChatBackgroundView" destination="3SV-DD-Jkn" id="thw-U6-nTG"/>
                         <outlet property="titleLabel" destination="BcE-C8-bP5" id="ZFJ-in-zWH"/>
                     </connections>
                 </viewController>

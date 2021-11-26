@@ -62,6 +62,7 @@ internal class ChangePasswordViewController: BaseAuthViewController {
         // log them out so they need to login again and restart the flow.
         if AccountController.shared.profile?.shouldChangePassword == true {
             AuthUser.current?.logout()
+            FreshChatManager.shared.logout()
         }
 
         if self.navigationController?.viewControllers.count ?? 0 > 1 {

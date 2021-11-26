@@ -60,15 +60,22 @@ class PppoeAlertViewController: PopUpViewController {
                 if status == "online" {
                     Freshchat.sharedInstance().resetUser(completion: {
                         DispatchQueue.main.async {
-                            if let selectedAccount = AccountController.shared.selectedAccount, let service = ServiceDataController.shared.getServices(account: selectedAccount).first  {
-                                let user = FreshchatUser.sharedInstance()
-                                let profile = selectedAccount.profile
-                                user.firstName = profile?.fullname
-                                user.email = profile?.email
-                                user.phoneNumber = profile?.mobileNo
-                                Freshchat.sharedInstance().setUser(user)
-                                Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
-                                Freshchat.sharedInstance().setUserPropertyforKey("so_number", withValue: service.serviceId)
+                            if let selectedAccount = AccountController.shared.selectedAccount, let service = ServiceDataController.shared.getServices(account: selectedAccount).first {
+                                if let restoreID = FreshChatManager.shared.restoreID, let username = selectedAccount.profileUsername {
+                                    Freshchat.sharedInstance().identifyUser(withExternalID: username, restoreID: restoreID)
+                                } else {
+                                    let user = FreshchatUser.sharedInstance()
+                                    let profile = selectedAccount.profile
+                                    user.firstName = profile?.fullname
+                                    user.email = profile?.email
+                                    user.phoneNumber = profile?.mobileNo
+                                    Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
+                                    Freshchat.sharedInstance().setUserPropertyforKey("so_number", withValue: service.serviceId)
+                                    Freshchat.sharedInstance().setUser(user)
+                                    if let username = selectedAccount.profileUsername {
+                                        Freshchat.sharedInstance().identifyUser(withExternalID: username, restoreID: nil)
+                                    }
+                                }
                                 
                                 let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
                                 alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in

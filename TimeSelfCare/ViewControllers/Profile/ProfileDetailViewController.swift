@@ -66,6 +66,7 @@ internal class ProfileDetailViewController: TimeBaseViewController {
                 ServiceDataController.shared.loadServices(accountNo: account.accountNo) { (_: [Service], error: Error?) in
                     if error != nil {
                         AuthUser.current?.logout()
+                        FreshChatManager.shared.logout()
                         return
                     }
                     serviceCount += 1
@@ -131,6 +132,7 @@ internal class ProfileDetailViewController: TimeBaseViewController {
                     confirmationVC.mode = .logout
                     confirmationVC.actionBlock = {
                         UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+                        FreshChatManager.shared.logout()
                     }
                     confirmationVC.modalPresentationStyle = .fullScreen
                     self.present(confirmationVC, animated: true, completion: nil)

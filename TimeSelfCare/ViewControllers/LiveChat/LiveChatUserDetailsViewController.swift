@@ -43,32 +43,43 @@ class LiveChatUserDetailsViewController: UIViewController {
     }
     
     @IBAction func startChatButtonTapped(_ sender: UIButton) {
-        if let name = nameTextField.text, name != "" {
+        var isNameError = false
+        var isEmailError = false
+        var isHandphoneNumberError = false
+        
+        if let name = nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), name != "" {
+            isNameError = false
             nameErrorView.isHidden = true
         } else {
+            isNameError = true
             nameErrorView.isHidden = false
         }
         
-        if let email = emailTextField.text, email != "" {
+        if let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), email != "" {
             let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
             let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
             if emailPred.evaluate(with: email) {
+                isEmailError = false
                 emailErrorView.isHidden = true
             } else {
+                isEmailError = true
                 emailErrorView.isHidden = false
             }
         } else {
+            isEmailError = true
             emailErrorView.isHidden = false
         }
         
-        if let handphoneNumber = handphoneNumberTextField.text, handphoneNumber != "" {
+        if let handphoneNumber = handphoneNumberTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), handphoneNumber != "" {
+            isHandphoneNumberError = false
             handphoneNumberErrorView.isHidden = true
         } else {
+            isHandphoneNumberError = true
             handphoneNumberErrorView.isHidden = false
         }
         
-        if let name = nameTextField.text, name != "", let email = emailTextField.text, email != "", let handphoneNumber = handphoneNumberTextField.text, handphoneNumber != "" {
+        if !isNameError && !isEmailError && !isHandphoneNumberError, let name = nameTextField.text, let email = emailTextField.text, let handphoneNumber = handphoneNumberTextField.text {
             
             DispatchQueue.main.async {
                 if let restoreID = FreshChatManager.shared.restoreID {

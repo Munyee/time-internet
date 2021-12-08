@@ -32,6 +32,9 @@
 		34903699039B835F9DB6BE8F /* Pods_TimeSelfCareTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF6DE7A576BD0D797E0A8B6 /* Pods_TimeSelfCareTests.framework */; };
 		41A79D2B24403EA0002A9C4B /* AppVersionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A79D2A24403EA0002A9C4B /* AppVersionModal.swift */; };
 		4D0A9757D0386117A572CDEA /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2CC50C123745B40460E00F /* CoreVideo.framework */; };
+		4D11EC83275457EF00D11ECB /* FreshChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D11EC82275457EF00D11ECB /* FreshChatManager.swift */; };
+		4D20CD54274CE37900FC2B92 /* LiveChatUserDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D20CD53274CE37900FC2B92 /* LiveChatUserDetailsViewController.storyboard */; };
+		4DA6E6EF274E061E00CD48D5 /* LiveChatUserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA6E6EE274E061E00CD48D5 /* LiveChatUserDetailsViewController.swift */; };
 		5A20BF431FE98EFC00ECFF78 /* TimeBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A20BF421FE98EFC00ECFF78 /* TimeBaseViewController.swift */; };
 		5A478FFE1FA972080074B5D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A478FFD1FA972080074B5D4 /* AppDelegate.swift */; };
 		5A4790031FA972080074B5D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A4790011FA972080074B5D4 /* Main.storyboard */; };
@@ -375,6 +378,9 @@
 		3478C2601D6BFABEE311A666 /* Pods-TimeSelfCareData.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSelfCareData.debug.xcconfig"; path = "Target Support Files/Pods-TimeSelfCareData/Pods-TimeSelfCareData.debug.xcconfig"; sourceTree = "<group>"; };
 		35B153EF5FBEB48967028D5F /* Pods_TimeSelfCare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSelfCare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41A79D2A24403EA0002A9C4B /* AppVersionModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersionModal.swift; sourceTree = "<group>"; };
+		4D11EC82275457EF00D11ECB /* FreshChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreshChatManager.swift; sourceTree = "<group>"; };
+		4D20CD53274CE37900FC2B92 /* LiveChatUserDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LiveChatUserDetailsViewController.storyboard; sourceTree = "<group>"; };
+		4DA6E6EE274E061E00CD48D5 /* LiveChatUserDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveChatUserDetailsViewController.swift; sourceTree = "<group>"; };
 		5A20BF421FE98EFC00ECFF78 /* TimeBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBaseViewController.swift; sourceTree = "<group>"; };
 		5A478FFA1FA972070074B5D4 /* TimeSelfCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeSelfCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A478FFD1FA972080074B5D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -721,30 +727,31 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9E028D1526D651250069FF31 /* GuestWifi */,
-				9EDE11CE26B8F50B00C8850E /* PPPOE */,
-				9EE460D8260043F70040D8CE /* DeviceInstallation */,
-				9E8BB093268076810091D4D3 /* Blacklist */,
-				9EFC438025EE127F009AF8C2 /* WifiConfiguration */,
-				9E5437ED25E8E16400195623 /* BindGateway */,
-				9E59AF6125DE31AD00FF427A /* ParentalControl */,
-				9E8FC9AD25357255008936D2 /* HookUp */,
-				9E016BC02519896400877A62 /* Shop */,
-				9E9EB76024D797FE00D0D342 /* Diagnostics */,
-				E2FB110B22CC9477000FED93 /* Reward */,
-				E274AD54210711F700E62A42 /* Support */,
 				E2626D4E20A923DD00891953 /* Activity */,
 				0A8E01F11FA9B50B00CA27A9 /* AuthMenu */,
 				E2730B872097024D00A140F1 /* BillingInfo */,
+				9E5437ED25E8E16400195623 /* BindGateway */,
+				9E8BB093268076810091D4D3 /* Blacklist */,
 				E2A8E8491FCE6A3800EA5DF2 /* Common */,
+				9EE460D8260043F70040D8CE /* DeviceInstallation */,
+				9E9EB76024D797FE00D0D342 /* Diagnostics */,
+				9E028D1526D651250069FF31 /* GuestWifi */,
+				9E8FC9AD25357255008936D2 /* HookUp */,
 				E2B6C2C91FB42A3A00F65B05 /* Launch */,
+				4D20CD52274CE2DC00FC2B92 /* LiveChat */,
+				9E59AF6125DE31AD00FF427A /* ParentalControl */,
 				E2610F751FC51F5300959D85 /* Payment */,
 				E2AD69D620AD12B5001D104E /* Performance */,
+				9EDE11CE26B8F50B00C8850E /* PPPOE */,
 				E2A8E8421FCE3D5900EA5DF2 /* Profile */,
+				E2FB110B22CC9477000FED93 /* Reward */,
+				9E016BC02519896400877A62 /* Shop */,
 				E2E2FF6B1FC3CADF00125566 /* Sidebar */,
 				E2B6C2C81FB42A2500F65B05 /* Summary */,
+				E274AD54210711F700E62A42 /* Support */,
 				5A20BF421FE98EFC00ECFF78 /* TimeBaseViewController.swift */,
 				E219AD9A1FB3D1F600A896FE /* Walkthrough */,
+				9EFC438025EE127F009AF8C2 /* WifiConfiguration */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -835,12 +842,12 @@
 		0A9433811FAAC5AC00AA0DFF /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				9EE0B95E2465206F0073288B /* ExpandableLiveChat */,
-				9EE0B959246512A70073288B /* LiveChat */,
 				0A9433821FAAC5E000AA0DFF /* CentredImageButton.swift */,
+				9EE0B95E2465206F0073288B /* ExpandableLiveChat */,
 				E21AA70220B3E795008851F1 /* FloatLabeledTextView.swift */,
-				E277BA1621118C6000660FCE /* TimeTableView.swift */,
+				9EE0B959246512A70073288B /* LiveChat */,
 				9EAB2C08249CB9ED00F12A3C /* PopUpViewController.swift */,
+				E277BA1621118C6000660FCE /* TimeTableView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -903,6 +910,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		4D20CD52274CE2DC00FC2B92 /* LiveChat */ = {
+			isa = PBXGroup;
+			children = (
+				4D11EC82275457EF00D11ECB /* FreshChatManager.swift */,
+				4DA6E6EE274E061E00CD48D5 /* LiveChatUserDetailsViewController.swift */,
+				4D20CD53274CE37900FC2B92 /* LiveChatUserDetailsViewController.storyboard */,
+			);
+			path = LiveChat;
+			sourceTree = "<group>";
+		};
 		5A478FF11FA972070074B5D4 = {
 			isa = PBXGroup;
 			children = (
@@ -935,23 +952,23 @@
 		5A478FFC1FA972070074B5D4 /* TimeSelfCare */ = {
 			isa = PBXGroup;
 			children = (
+				5A478FFD1FA972080074B5D4 /* AppDelegate.swift */,
+				9EC13561241B6E1200E59C44 /* APTSidebarNavigationController */,
+				5A4790041FA972080074B5D4 /* Assets.xcassets */,
+				0A94337E1FAAB81900AA0DFF /* Bridging-Header.h */,
+				0A9433811FAAC5AC00AA0DFF /* CustomViews */,
+				0A9433841FAACE1900AA0DFF /* Extensions */,
+				9E9BBA082465516D00F2514D /* FCTheme.plist */,
 				9E19CDFC26B0111000FD9184 /* Firebase */,
 				9E4AB95925DFF8D100F1DEFE /* HuaweiHelper */,
-				9EC13561241B6E1200E59C44 /* APTSidebarNavigationController */,
-				E2626D5520A965A200891953 /* TimeSelfCare.entitlements */,
-				E22050DB1FCD4A47004D5B10 /* Resource */,
-				0A9433841FAACE1900AA0DFF /* Extensions */,
-				0A9433811FAAC5AC00AA0DFF /* CustomViews */,
-				0A8E01F01FA9B50B00CA27A9 /* ViewControllers */,
-				5A478FFD1FA972080074B5D4 /* AppDelegate.swift */,
-				5A4790011FA972080074B5D4 /* Main.storyboard */,
-				5A4790041FA972080074B5D4 /* Assets.xcassets */,
-				9E9BBA082465516D00F2514D /* FCTheme.plist */,
 				5A4790091FA972080074B5D4 /* Info.plist */,
-				0A94337E1FAAB81900AA0DFF /* Bridging-Header.h */,
-				0A3DA9F81FE3CEBB004E304A /* TIMEWebViewController.swift */,
-				E203036123617F8200F27028 /* TestAppDelegate.swift */,
+				5A4790011FA972080074B5D4 /* Main.storyboard */,
 				E203036323617FE500F27028 /* main.swift */,
+				E22050DB1FCD4A47004D5B10 /* Resource */,
+				E203036123617F8200F27028 /* TestAppDelegate.swift */,
+				E2626D5520A965A200891953 /* TimeSelfCare.entitlements */,
+				0A3DA9F81FE3CEBB004E304A /* TIMEWebViewController.swift */,
+				0A8E01F01FA9B50B00CA27A9 /* ViewControllers */,
 			);
 			path = TimeSelfCare;
 			sourceTree = "<group>";
@@ -1759,6 +1776,7 @@
 				E27CE9FC22CCB6CC00DD9340 /* RewardHeaderView.xib in Resources */,
 				E23844B0210E904800EB6E40 /* TimeImagePickerViewController.xib in Resources */,
 				5A4790031FA972080074B5D4 /* Main.storyboard in Resources */,
+				4D20CD54274CE37900FC2B92 /* LiveChatUserDetailsViewController.storyboard in Resources */,
 				9E2D735E26F3C31700D1B980 /* VideoCategory.xib in Resources */,
 				E22050E61FCD4EE4004D5B10 /* DIN.plist in Resources */,
 				E23844B2210EDEDE00EB6E40 /* TimeImagePickerCell.xib in Resources */,
@@ -2119,6 +2137,7 @@
 				9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */,
 				9EAB2C09249CB9ED00F12A3C /* PopUpViewController.swift in Sources */,
 				9E028D1E26D651250069FF31 /* EditGuestWifiViewController.swift in Sources */,
+				4D11EC83275457EF00D11ECB /* FreshChatManager.swift in Sources */,
 				E21CF72F1FC674E900F13FAF /* AutoDebitViewController.swift in Sources */,
 				5A20BF431FE98EFC00ECFF78 /* TimeBaseViewController.swift in Sources */,
 				E2AD92C51FC3A58C00138334 /* AddOnViewController.swift in Sources */,
@@ -2172,6 +2191,7 @@
 				9E9EB76324D797FE00D0D342 /* DiagnosticsViewController.swift in Sources */,
 				E2FB887E20905EB200DDADC5 /* VoicePlanHeaderView.swift in Sources */,
 				9EDFA8B325ECE25F00C18ED0 /* OpenSettingViewController.swift in Sources */,
+				4DA6E6EF274E061E00CD48D5 /* LiveChatUserDetailsViewController.swift in Sources */,
 				E274AD65210711F700E62A42 /* RightConversationCell.swift in Sources */,
 				9E2D736726F3C34300D1B980 /* VideoListViewController.swift in Sources */,
 				9E36BB4F25E4D9C800E5575F /* DeviceView.swift in Sources */,
@@ -2480,7 +2500,7 @@
 				CODE_SIGN_ENTITLEMENTS = TimeSelfCare/TimeSelfCare.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 843;
+				CURRENT_PROJECT_VERSION = 851;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				ENABLE_BITCODE = NO;
@@ -2491,7 +2511,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.5;
+				MARKETING_VERSION = 5.7;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2513,7 +2533,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 843;
+				CURRENT_PROJECT_VERSION = 851;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2523,7 +2543,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.5;
+				MARKETING_VERSION = 5.7;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2771,7 +2791,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 843;
+				CURRENT_PROJECT_VERSION = 851;
 				DEVELOPMENT_TEAM = V2J6WJMU9K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2781,7 +2801,7 @@
 				INFOPLIST_FILE = TimeSelfCare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.5;
+				MARKETING_VERSION = 5.7;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.time.selfcare.app.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -77,13 +77,14 @@ extension VideoListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ytViewCell-table", for: indexPath) as? YTVideoTableViewCell
         var video = videos[indexPath.row]
         
+        if let categoryText = categoryLabel.text, !categoryText.contains("All") {
+            video = videos.filter { ($0.videoCategory?.contains(categoryText) ?? true) }[indexPath.row]
+        }
+        
         guard let videoId = video.videoId, let videoTitle = video.videoTitle, let videoDuration = video.videoDuration, let videoCategory = video.videoCategory else {
             return UITableViewCell()
         }
         
-        if let categoryText = categoryLabel.text, !categoryText.contains("All") {
-            video = videos.filter { ($0.videoCategory?.contains(categoryText) ?? true) }[indexPath.row]
-        }
         let playerVars = ["controls" : 0, "playsinline" : 0, "autohide" : 1, "autoplay" : 0,
                            "fs" : 1, "rel" : 0, "loop" : 0, "enablejsapi" : 1, "modestbranding" : 0]
         cell?.ytView.webView?.backgroundColor = UIColor(hex: "#111723")

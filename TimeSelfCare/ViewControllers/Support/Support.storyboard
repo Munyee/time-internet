@@ -36,13 +36,13 @@
                                                         <rect key="frame" x="0.0" y="40" width="375" height="137"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your tickets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWp-vi-gCY">
-                                                                <rect key="frame" x="36" y="0.0" width="72.5" height="38"/>
+                                                                <rect key="frame" x="36" y="0.0" width="72.5" height="20"/>
                                                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="20"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CpA-A3-OO3">
-                                                                <rect key="frame" x="297" y="5.5" width="42" height="27"/>
+                                                                <rect key="frame" x="297" y="-3.5" width="42" height="27"/>
                                                                 <fontDescription key="fontDescription" name="DIN-Light" family="DIN" pointSize="12"/>
                                                                 <state key="normal" title="View All">
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,22 +52,22 @@
                                                                 </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j33-pC-b5O" customClass="UIControl">
-                                                                <rect key="frame" x="16" y="48" width="343" height="89"/>
+                                                                <rect key="frame" x="16" y="30" width="343" height="107"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMn-Ve-cr6">
-                                                                        <rect key="frame" x="20" y="15" width="25" height="14.5"/>
+                                                                        <rect key="frame" x="20" y="15" width="25" height="32.5"/>
                                                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN" pointSize="12"/>
                                                                         <color key="textColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Others" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ls2-Oa-QOu">
-                                                                        <rect key="frame" x="20" y="59.5" width="36" height="14.5"/>
+                                                                        <rect key="frame" x="20" y="77.5" width="36" height="14.5"/>
                                                                         <fontDescription key="fontDescription" name="DIN-Light" family="DIN-Light" pointSize="12"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPr-Vs-8we">
-                                                                        <rect key="frame" x="20" y="35.5" width="176" height="18"/>
+                                                                        <rect key="frame" x="20" y="53.5" width="176" height="18"/>
                                                                         <attributedString key="attributedText">
                                                                             <fragment content="Conversation with Emily Cooper">
                                                                                 <attributes>
@@ -78,14 +78,14 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_next_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="Hmr-WV-s7M">
-                                                                        <rect key="frame" x="308" y="34.5" width="20" height="20"/>
+                                                                        <rect key="frame" x="308" y="43.5" width="20" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="Qwa-FB-DL6"/>
                                                                             <constraint firstAttribute="height" constant="20" id="UQ6-rD-Eat"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPO-3M-6e6">
-                                                                        <rect key="frame" x="213" y="34.5" width="80" height="20.5"/>
+                                                                        <rect key="frame" x="213" y="43.5" width="80" height="20.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5m-3u-brl">
                                                                                 <rect key="frame" x="12" y="5" width="56" height="10.5"/>
@@ -214,7 +214,7 @@
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="18"/>
                                                                         <inset key="titleEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
-                                                                        <state key="normal" title="Raise a ticket" backgroundImage="raise_a_ticket">
+                                                                        <state key="normal" title="CHAT WITH US" backgroundImage="raise_a_ticket">
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         </state>
                                                                         <userDefinedRuntimeAttributes>
@@ -713,7 +713,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="251" text="OPEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLu-8C-CG6" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                    <rect key="frame" x="225" y="48" width="100" height="13.5"/>
+                                                    <rect key="frame" x="225" y="43" width="100" height="23.5"/>
                                                     <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="tintColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -962,7 +962,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="251" text="OPEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX7-pr-ykB" customClass="InsetLabel" customModule="ApptivityFramework">
-                                                <rect key="frame" x="235" y="33.5" width="100" height="13.5"/>
+                                                <rect key="frame" x="235" y="28.5" width="100" height="23.5"/>
                                                 <color key="backgroundColor" red="0.66274509800000003" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="qTg-EK-8Vf"/>
@@ -1450,10 +1450,10 @@
             <size key="intrinsicContentSize" width="50" height="50"/>
         </designable>
         <designable name="LLu-8C-CG6">
-            <size key="intrinsicContentSize" width="30.5" height="13.5"/>
+            <size key="intrinsicContentSize" width="50.5" height="23.5"/>
         </designable>
         <designable name="lX7-pr-ykB">
-            <size key="intrinsicContentSize" width="30.5" height="13.5"/>
+            <size key="intrinsicContentSize" width="50.5" height="23.5"/>
         </designable>
     </designables>
     <resources>

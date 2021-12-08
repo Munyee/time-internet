@@ -16,9 +16,6 @@ import HwMobileSDK
 import AppTrackingTransparency
 import FBSDKCoreKit
 import IQKeyboardManagerSwift
-import AppTrackingTransparency
-import Firebase
-import FBSDKCoreKit
 
 extension NSNotification.Name {
     static let NotificationDidReceive: NSNotification.Name = NSNotification.Name(rawValue: "NotificationDidReceive")
@@ -32,25 +29,6 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
         ApplicationDelegate.initialize()
-        
-        if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-                if status == .authorized {
-                    Analytics.setAnalyticsCollectionEnabled(true)
-                    Settings.setAdvertiserTrackingEnabled(true)
-                    Settings.isAutoLogAppEventsEnabled = true
-                    Settings.isAdvertiserIDCollectionEnabled = true
-                } else {
-                    Analytics.setAnalyticsCollectionEnabled(false)
-                    Settings.setAdvertiserTrackingEnabled(false)
-                }
-            }
-        } else {
-            Analytics.setAnalyticsCollectionEnabled(true)
-            Settings.setAdvertiserTrackingEnabled(true)
-            Settings.isAutoLogAppEventsEnabled = true
-            Settings.isAdvertiserIDCollectionEnabled = true
-        }
 
         AuthUser.authDelegate = AccountController.shared
         AuthUser.enableAnonymousUser(with: LocalAnonymousProvider())
@@ -63,8 +41,8 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         var appKey = "8c2c04e4-0080-44ba-b4de-dc0fa8af2cc2"
 
         #if DEBUG
-            appId = "23bb7b7f-0da4-4837-b4c4-a233c251adad"
-            appKey = "590e83e4-c424-4f02-9cd0-e7dab8db8320"
+//            appId = "23bb7b7f-0da4-4837-b4c4-a233c251adad"
+//            appKey = "590e83e4-c424-4f02-9cd0-e7dab8db8320"
         #else
             let smartlookConfig = Smartlook.SetupConfiguration(key: "73e0b72d49d303d9c7e365bbfbcffde6e0e5dabc")
             Smartlook.setupAndStartRecording(configuration: smartlookConfig)
@@ -72,14 +50,15 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let freshchatConfig: FreshchatConfig = FreshchatConfig(appID: appId, andAppKey: appKey)
         Freshchat.sharedInstance().initWith(freshchatConfig)
-        
+        FreshChatManager.shared.listenForRestoreId()
+
         self.applyAppearance()
         
         IQKeyboardManager.shared.enable = false
         
         return true
     }
-
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -118,6 +97,24 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                if status == .authorized {
+                    Analytics.setAnalyticsCollectionEnabled(true)
+                    Settings.setAdvertiserTrackingEnabled(true)
+                    Settings.isAutoLogAppEventsEnabled = true
+                    Settings.isAdvertiserIDCollectionEnabled = true
+                } else {
+                    Analytics.setAnalyticsCollectionEnabled(false)
+                    Settings.setAdvertiserTrackingEnabled(false)
+                }
+            }
+        } else {
+            Analytics.setAnalyticsCollectionEnabled(true)
+            Settings.setAdvertiserTrackingEnabled(true)
+            Settings.isAutoLogAppEventsEnabled = true
+            Settings.isAdvertiserIDCollectionEnabled = true
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

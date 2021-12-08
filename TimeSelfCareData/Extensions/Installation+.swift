@@ -10,13 +10,15 @@ import Foundation
 import ApptivityFramework
 
 public extension Installation {
-    static let kIsStagingMode: String = "Staging Mode"
+//    static let kIsStagingMode: String = "Staging Mode"
+    static let kMode: String = "Mode"
 
     static var appVersion: String {
         return "v\(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0") #\(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "")"
     }
 
-    static var isStagingMode: Bool {
-        return UserDefaults.standard.bool(forKey: kIsStagingMode)
+    static var isStagingMode: String {
+//        return UserDefaults.standard.bool(forKey: kIsStagingMode)
+        return UserDefaults.standard.string(forKey: kMode) ?? "Production"
     }
 }

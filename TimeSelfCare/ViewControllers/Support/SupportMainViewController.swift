@@ -28,6 +28,7 @@ class SupportMainViewController: UIViewController {
     let flowLayout = CenteredCollectionViewFlowLayout()
     var ticket: Ticket?
     var videos: [Video] = []
+    var allVideos: [Video] = []
     var isDragging: Bool = false
 
     lazy var refreshControl: UIRefreshControl = {
@@ -86,6 +87,7 @@ class SupportMainViewController: UIViewController {
             self.supportVideoView.isHidden = false
 
             self.videos = Array(videoData.prefix(3))
+            self.allVideos = videoData
             self.snakePage.pageCount = self.videos.count
             
             if self.videos.count >= 3 {
@@ -138,8 +140,61 @@ class SupportMainViewController: UIViewController {
     }
     
     @IBAction func createTicket(_ sender: Any) {
-        let ticketFormVC: TicketFormViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
-        self.presentNavigation(ticketFormVC, animated: true)
+        LiveChatDataController.shared.loadStatus { statusResult in
+            if let status = statusResult {
+                if status == "online" {
+                    DispatchQueue.main.async {
+                        if let selectedAccount = AccountController.shared.selectedAccount, let service = ServiceDataController.shared.getServices(account: selectedAccount).first {
+                            if let restoreID = FreshChatManager.shared.restoreID, let username = selectedAccount.profileUsername {
+                                Freshchat.sharedInstance().identifyUser(withExternalID: username, restoreID: restoreID)
+                            } else {
+                                let user = FreshchatUser.sharedInstance()
+                                let profile = selectedAccount.profile
+                                user.firstName = profile?.fullname
+                                user.email = profile?.email
+                                user.phoneNumber = profile?.mobileNo
+                                Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
+                                Freshchat.sharedInstance().setUserPropertyforKey("so_number", withValue: service.serviceId)
+                                Freshchat.sharedInstance().setUser(user)
+                                if let username = selectedAccount.profileUsername {
+                                    Freshchat.sharedInstance().identifyUser(withExternalID: username, restoreID: nil)
+                                }
+                            }
+                            
+                            let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
+                            alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
+                                Freshchat.sharedInstance().showConversations(self)
+                            }))
+                            alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
+                                Freshchat.sharedInstance().showFAQs(self)
+                            }))
+                            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            if let viewController = UIStoryboard(name: "LiveChatUserDetailsViewController", bundle: nil).instantiateViewController(withIdentifier: "LiveChatUserDetailsViewController") as? LiveChatUserDetailsViewController {
+                                viewController.modalTransitionStyle = .crossDissolve
+                                viewController.modalPresentationStyle = .overFullScreen
+                                viewController.previousViewController = self
+                                self.present(viewController, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                } else {
+                    if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                        while let presentedViewController = vc.presentedViewController {
+                            vc = presentedViewController
+                        }
+                        
+                        if let alertView = UIStoryboard(name: "LiveChatAlert", bundle: nil).instantiateViewController(withIdentifier: "alertView") as? LiveChatPopUpViewController {
+                            vc.addChild(alertView)
+                            alertView.view.frame = vc.view.frame
+                            vc.view.addSubview(alertView.view)
+                            alertView.didMove(toParent: vc)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func viewTicket(_ sender: Any) {
@@ -152,7 +207,7 @@ class SupportMainViewController: UIViewController {
     
     @IBAction func viewAllVideo(_ sender: Any) {
         let videoListVC: VideoListViewController = UIStoryboard(name: TimeSelfCareStoryboard.support.filename, bundle: nil).instantiateViewController()
-        videoListVC.videos = videos
+        videoListVC.videos = allVideos
         self.navigationController?.pushViewController(videoListVC, animated: true)
     }
 }

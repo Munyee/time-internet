@@ -83,6 +83,7 @@ internal class LoginViewController: BaseAuthViewController {
             if profile.passwordHasExpired {
                 AuthUser.current?.logout { _ in
                     HUD.hide(animated: true)
+                    FreshChatManager.shared.logout()
 
                     let alertTitle = NSLocalizedString("Password Expired", comment: "")
                     let alertMessage = NSLocalizedString("Password expired. Please reset your password.", comment: "")
@@ -97,6 +98,7 @@ internal class LoginViewController: BaseAuthViewController {
             } else {
                 AccountSummaryViewController.didAnimate = false
                 HUD.hide(animated: true)
+                FreshChatManager.shared.logout()
                 self.dismissVC()
             }
         }
@@ -152,19 +154,41 @@ internal class LoginViewController: BaseAuthViewController {
         if self.triggerModeChangeCount >= 5 {
             self.triggerModeChangeCount = 0
 
-            let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
-            UserDefaults.standard.set(!isStagingMode, forKey: Installation.kIsStagingMode)
+//            let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
+//            UserDefaults.standard.set(!isStagingMode, forKey: Installation.kIsStagingMode)
+            let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
+            if mode == "Production" {
+                UserDefaults.standard.set("Staging", forKey: Installation.kMode)
+            } else if mode == "Staging" {
+                UserDefaults.standard.set("BB Staging 2", forKey: Installation.kMode)
+            } else if mode == "BB Staging 2" {
+                UserDefaults.standard.set("BB Staging 3", forKey: Installation.kMode)
+            } else if mode == "BB Staging 3" {
+                UserDefaults.standard.set("Production", forKey: Installation.kMode)
+            }
 
             self.updateVersionDisplay()
         }
     }
 
     private func updateVersionDisplay() {
-         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
+//         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
+        let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
+
         var appVersion = Installation.appVersion
-        if isStagingMode {
+//        if isStagingMode {
+//            appVersion = "\(appVersion) (Staging)"
+//        }
+        if mode == "Staging" {
             appVersion = "\(appVersion) (Staging)"
+        } else if mode == "BB Staging 2" {
+             appVersion = "\(appVersion) (BB Staging 2)"
+        }  else if mode == "BB Staging 3" {
+            appVersion = "\(appVersion) (BB Staging 3)"
+        } else if mode == "Production" {
+             appVersion = "\(appVersion)"
         }
+
         self.versionButton.setTitle(appVersion, for: .normal)
     }
     

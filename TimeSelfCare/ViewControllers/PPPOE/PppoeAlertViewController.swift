@@ -58,29 +58,44 @@ class PppoeAlertViewController: PopUpViewController {
             hud.hide(animated: true)
             if let status = statusResult {
                 if status == "online" {
-                    if let selectedAccount = AccountController.shared.selectedAccount {
-                        let user = FreshchatUser.sharedInstance()
-                        let profile = selectedAccount.profile
-                        user.firstName = profile?.fullname
-                        user.email = profile?.email
-                        user.phoneNumber = profile?.mobileNo
-                        Freshchat.sharedInstance().setUser(user)
-                        Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
-                    }
-
-                    let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
-
-                    alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
-                        Freshchat.sharedInstance().showConversations(self)
-                    }))
-
-                    alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
-                        Freshchat.sharedInstance().showFAQs(self)
-                    }))
-
-                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
-
-                    self.present(alert, animated: true, completion: nil)
+                    Freshchat.sharedInstance().resetUser(completion: {
+                        DispatchQueue.main.async {
+                            if let selectedAccount = AccountController.shared.selectedAccount, let service = ServiceDataController.shared.getServices(account: selectedAccount).first {
+                                if let restoreID = FreshChatManager.shared.restoreID, let username = selectedAccount.profileUsername {
+                                    Freshchat.sharedInstance().identifyUser(withExternalID: username, restoreID: restoreID)
+                                } else {
+                                    let user = FreshchatUser.sharedInstance()
+                                    let profile = selectedAccount.profile
+                                    user.firstName = profile?.fullname
+                                    user.email = profile?.email
+                                    user.phoneNumber = profile?.mobileNo
+                                    Freshchat.sharedInstance().setUserPropertyforKey("AccountNo", withValue: selectedAccount.accountNo)
+                                    Freshchat.sharedInstance().setUserPropertyforKey("so_number", withValue: service.serviceId)
+                                    Freshchat.sharedInstance().setUser(user)
+                                    if let username = selectedAccount.profileUsername {
+                                        Freshchat.sharedInstance().identifyUser(withExternalID: username, restoreID: nil)
+                                    }
+                                }
+                                
+                                let alert = UIAlertController(title: "Choose Option", message: nil, preferredStyle: .actionSheet)
+                                alert.addAction(UIAlertAction(title: "Conversations", style: .default , handler:{ (UIAlertAction) in
+                                    Freshchat.sharedInstance().showConversations(self)
+                                }))
+                                alert.addAction(UIAlertAction(title: "FAQ", style: .default , handler:{ (UIAlertAction) in
+                                    Freshchat.sharedInstance().showFAQs(self)
+                                }))
+                                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                                self.present(alert, animated: true, completion: nil)
+                            } else {
+                                if let viewController = UIStoryboard(name: "LiveChatUserDetailsViewController", bundle: nil).instantiateViewController(withIdentifier: "LiveChatUserDetailsViewController") as? LiveChatUserDetailsViewController {
+                                    viewController.modalTransitionStyle = .crossDissolve
+                                    viewController.modalPresentationStyle = .overFullScreen
+                                    viewController.previousViewController = self
+                                    self.present(viewController, animated: true, completion: nil)
+                                }
+                            }
+                        }
+                    })
                 } else {
                     self.openURL(withURLString: "http://m.me/TIMEinternet")
                 }

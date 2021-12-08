@@ -408,6 +408,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 self.errorLabel.isHidden = false
                 self.okButton.isHidden = false
                 AuthUser.current?.logout()
+                FreshChatManager.shared.logout()
                 completion?(error)
                 return
             }
@@ -421,6 +422,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                         self.errorLabel.isHidden = false
                         self.okButton.isHidden = false
                         AuthUser.current?.logout()
+                        FreshChatManager.shared.logout()
                         completion?(error)
                         return
                     }
@@ -442,6 +444,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @objc
     private func handlingInvalidSession() {
         AuthUser.current?.logout()
+        FreshChatManager.shared.logout()
         self.showNext()
     }
 

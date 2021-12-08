@@ -83,6 +83,7 @@ internal class LoginViewController: BaseAuthViewController {
             if profile.passwordHasExpired {
                 AuthUser.current?.logout { _ in
                     HUD.hide(animated: true)
+                    FreshChatManager.shared.logout()
 
                     let alertTitle = NSLocalizedString("Password Expired", comment: "")
                     let alertMessage = NSLocalizedString("Password expired. Please reset your password.", comment: "")
@@ -97,6 +98,7 @@ internal class LoginViewController: BaseAuthViewController {
             } else {
                 AccountSummaryViewController.didAnimate = false
                 HUD.hide(animated: true)
+                FreshChatManager.shared.logout()
                 self.dismissVC()
             }
         }

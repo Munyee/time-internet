@@ -21,7 +21,9 @@ class ShareViewController: UIViewController {
     @IBOutlet private weak var joinMeView: UIView!
     @IBOutlet private weak var huaeLinkView: UIView!
     @IBOutlet private weak var huaeLinkLabel: UILabel!
-    
+    @IBOutlet private weak var subjectLabel: UILabel!
+    @IBOutlet private weak var textLabel: UILabel!
+
     let images = [#imageLiteral(resourceName: "spread_the_word"), #imageLiteral(resourceName: "track_progress"), #imageLiteral(resourceName: "enjoy_off")]
     
     override func viewDidLoad() {
@@ -34,6 +36,8 @@ class ShareViewController: UIViewController {
         desc.text = data?.description?.htmlAttributdString()?.string ?? ""
         updateShareButton(show: false)
         huaeLinkLabel.text = data?.link
+        subjectLabel.text = data?.subject
+        textLabel.text = data?.text
         
         if data?.title != nil {
             collectionView.isHidden = false

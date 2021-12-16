@@ -21,6 +21,7 @@ public class HUAE: JsonRecord {
     public var email_subject: String?
     public var email_text: String?
     public var link_twitter: String?
+    public var huae_consent: String?
     
     public var referral_status_list: [String : Any]?
     public var discount_balance: String?
@@ -40,6 +41,7 @@ public class HUAE: JsonRecord {
         self.email_subject = String()
         self.email_text = String()
         self.link_twitter = String()
+        self.huae_consent = String()
         self.referral_status_list = [String : Any]()
         self.discount_balance = String()
         self.discount_bill_date = String()
@@ -66,6 +68,7 @@ public class HUAE: JsonRecord {
         self.email_subject = data["email_subject"] as? String
         self.email_text = data["email_text"] as? String
         self.link_twitter = data["link_twitter"] as? String
+        self.huae_consent = data["huae_consent"] as? String
         
         self.referral_status_list = data["referral_status_list"] as? [String : Any]
         self.discount_balance = data["discount_balance"] as? String

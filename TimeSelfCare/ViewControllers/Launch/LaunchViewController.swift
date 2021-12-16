@@ -44,7 +44,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private weak var maintananceView: UIView!
     
     var timer: Timer? = nil
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.maintananceView.isHidden = true
@@ -122,8 +122,8 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         if Utils.isInternetAvailable() {
             remoteConfig = RemoteConfig.remoteConfig()
             let settings = RemoteConfigSettings()
-            settings.fetchTimeout = 30
-            settings.minimumFetchInterval = 3_600
+            settings.fetchTimeout = 3
+//            settings.minimumFetchInterval = 3_600
 
             #if DEBUG
             settings.minimumFetchInterval = 0

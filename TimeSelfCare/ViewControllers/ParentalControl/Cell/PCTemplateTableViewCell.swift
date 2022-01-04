@@ -37,6 +37,7 @@ class PCTemplateTableViewCell: UITableViewCell {
     @IBAction func actToggle(_ sender: Any) {
         let template = ctrlTemplate ?? HwAttachParentControlTemplate()
         template.enable = templateSwitch.isOn
+        template.urlFilterEnable = templateSwitch.isOn
         
         HuaweiHelper.shared.setAttachParentControlTemplate(ctrlTemplate: template, completion: { _ in
              self.delegate?.templateUpdated()

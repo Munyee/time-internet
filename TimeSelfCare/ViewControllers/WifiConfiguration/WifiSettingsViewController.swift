@@ -99,8 +99,7 @@ class WifiSettingsViewController: UIViewController {
         if !switchTurnOffWifi.isOn {
             self.showAlertMessage(title: "Are you sure?", message: "Turning off your WiFi will disable your entire network and disconnect all devices on it.", actions: [
                 UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
-                    self.toggleWifiEnabled(band: "2.4G", switchWifi: self.switchTurnOffWifi)
-                    self.toggleWifiEnabled(band: "5G", switchWifi: self.switchTurnOffWifi)
+                    self.toggleWifiEnabled(switchWifi: self.switchTurnOffWifi)
                     HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "2.4G", completion: { _ in }, error: { _ in })
                     HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "5G", completion: { _ in }, error: { _ in })
                     self.hideWifiView.alpha = 0.3
@@ -117,8 +116,7 @@ class WifiSettingsViewController: UIViewController {
                 }
             ])
         } else {
-            self.toggleWifiEnabled(band: "2.4G", switchWifi: self.switchTurnOffWifi)
-            self.toggleWifiEnabled(band: "5G", switchWifi: self.switchTurnOffWifi)
+            self.toggleWifiEnabled(switchWifi: self.switchTurnOffWifi)
             HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "2.4G", completion: { _ in }, error: { _ in })
             HuaweiHelper.shared.enableWifiHardwareSwitch(radioType: "5G", completion: { _ in }, error: { _ in })
             self.hideWifiView.alpha = 1
@@ -128,35 +126,35 @@ class WifiSettingsViewController: UIViewController {
         }
     }
     
-    @IBAction func actToggle2p4g(_ sender: Any) {
-        if !switch5g.isOn {
-            self.showAlertMessage(title: "Are you sure?", message: "Turning both WiFi bands off will disable your network.", actions: [
-                UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
-                    self.toggleWifiEnabled(band: "2.4G", switchWifi: self.switch2p4g)
-                },
-                UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-                    self.switch2p4g.isOn = true
-                }
-            ])
-        } else {
-            toggleWifiEnabled(band: "2.4G", switchWifi: switch2p4g)
-        }
-    }
+//    @IBAction func actToggle2p4g(_ sender: Any) {
+//        if !switch5g.isOn {
+//            self.showAlertMessage(title: "Are you sure?", message: "Turning both WiFi bands off will disable your network.", actions: [
+//                UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
+//                    self.toggleWifiEnabled(band: "2.4G", switchWifi: self.switch2p4g)
+//                },
+//                UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+//                    self.switch2p4g.isOn = true
+//                }
+//            ])
+//        } else {
+//            toggleWifiEnabled(band: "2.4G", switchWifi: switch2p4g)
+//        }
+//    }
     
-    @IBAction func actToggle5g(_ sender: Any) {
-        if !switch2p4g.isOn {
-            self.showAlertMessage(title: "Are you sure?", message: "Turning both WiFi bands off will disable your network.", actions: [
-                UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
-                    self.toggleWifiEnabled(band: "5G", switchWifi: self.switch5g)
-                },
-                UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
-                    self.switch5g.isOn = true
-                }
-            ])
-        } else {
-            toggleWifiEnabled(band: "5G", switchWifi: switch5g)
-        }
-    }
+//    @IBAction func actToggle5g(_ sender: Any) {
+//        if !switch2p4g.isOn {
+//            self.showAlertMessage(title: "Are you sure?", message: "Turning both WiFi bands off will disable your network.", actions: [
+//                UIAlertAction(title: NSLocalizedString("Turn Off", comment: ""), style: .destructive) { _ in
+//                    self.toggleWifiEnabled(band: "5G", switchWifi: self.switch5g)
+//                },
+//                UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
+//                    self.switch5g.isOn = true
+//                }
+//            ])
+//        } else {
+//            toggleWifiEnabled(band: "5G", switchWifi: switch5g)
+//        }
+//    }
     
     @IBAction func actWifiScheduling(_ sender: UISwitch) {
         toggleWifiSchedule()
@@ -338,8 +336,8 @@ class WifiSettingsViewController: UIViewController {
         }
     }
     
-    func toggleWifiEnabled(band: String, switchWifi: UISwitch) {
-        if let dataInfos = wifiInfos.filter({ $0?.radioType == band }) as? [HwWifiInfo] {
+    func toggleWifiEnabled(switchWifi: UISwitch) {
+        if let dataInfos = wifiInfos as? [HwWifiInfo] {
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
             hud.label.text = NSLocalizedString("Loading...", comment: "")
             
@@ -350,6 +348,7 @@ class WifiSettingsViewController: UIViewController {
             if switchWifi.isOn {
                 sortedArr.first(where: {$0.radioType == "2.4G"})?.enable = true
                 sortedArr.first(where: {$0.radioType == "5G"})?.enable = true
+                sortedArr.first(where: {$0.radioType == "5G"})?.dualbandCombine = kHwSetDualbandCombineOn
             } else {
                 for wifiInfo in dataInfos {
                     wifiInfo.enable = false

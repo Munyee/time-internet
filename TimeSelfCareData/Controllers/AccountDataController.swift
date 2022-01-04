@@ -207,6 +207,17 @@ public extension AccountDataController {
         }
     }
     
+    func setHuaeConsent(account: Account, completion: @escaping SimpleRequestListener) {
+        let path = "set_huae_consent"
+        var body: [String: Any] = [:]
+        body["account_no"] = account.accountNo
+        body["username"] = account.profileUsername
+
+        APIClient.shared.postRequest(path: path, body: body) { response, error in
+            completion(response, error)
+        }
+    }
+    
     func getHuaweiSSOAuthCode(mobileId: String, account: Account, service: Service, completion: @escaping SimpleRequestListener) {
         let path = "get_huawei_sso_authcode"
         var body: [String: Any] = [:]

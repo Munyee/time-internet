@@ -52,8 +52,6 @@ class PCProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        IQKeyboardManager.shared.enable = true
-        
         NotificationCenter.default.addObserver(self, selector: #selector(PCProfileViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(PCProfileViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -88,6 +86,7 @@ class PCProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.liveChatView.isHidden = false
+        IQKeyboardManager.shared.enable = true
     }
     
     @objc
@@ -496,8 +495,11 @@ class PCProfileViewController: UIViewController {
                         }
                         
                         if !urlList.isEmpty {
-                            template.urlFilterEnable = false
+                            template.urlFilterEnable = true
+                            template.urlFilterPolicy = HwUrlFilterPolicy(0)
                             template.urlFilterList = NSMutableArray(array: urlList)
+                        } else {
+                            template.urlFilterEnable = false
                         }
                         
                         HuaweiHelper.shared.setAttachParentControlTemplate(ctrlTemplate: template, completion: { _ in

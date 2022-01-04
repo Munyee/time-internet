@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class ShareViewController: UIViewController {
 
@@ -15,8 +16,14 @@ class ShareViewController: UIViewController {
     @IBOutlet private weak var desc: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet private weak var consentView: UIView!
     @IBOutlet private weak var tncView: UIView!
-    
+    @IBOutlet private weak var joinMeView: UIView!
+    @IBOutlet private weak var huaeLinkView: UIView!
+    @IBOutlet private weak var huaeLinkLabel: UILabel!
+    @IBOutlet private weak var subjectLabel: UILabel!
+    @IBOutlet private weak var textLabel: UILabel!
+
     let images = [#imageLiteral(resourceName: "spread_the_word"), #imageLiteral(resourceName: "track_progress"), #imageLiteral(resourceName: "enjoy_off")]
     
     override func viewDidLoad() {
@@ -27,48 +34,137 @@ class ShareViewController: UIViewController {
     func initView() {
        // titleLabel.text = data?.title ?? ""
         desc.text = data?.description?.htmlAttributdString()?.string ?? ""
+        updateShareButton(show: false)
+        huaeLinkLabel.text = data?.link
+        subjectLabel.text = data?.subject
+        textLabel.text = data?.text
         
         if data?.title != nil {
             collectionView.isHidden = false
-            shareButton.isHidden = false
             tncView.isHidden = false
+            joinMeView.isHidden = false
+            
+            if data?.huae_consent == "yes" {
+                huaeLinkView.isHidden = false
+                shareButton.isHidden = true
+                consentView.isHidden = true
+            } else {
+                huaeLinkView.isHidden = true
+                shareButton.isHidden = false
+                consentView.isHidden = false
+            }
         } else {
             collectionView.isHidden = true
             shareButton.isHidden = true
             tncView.isHidden = true
+            consentView.isHidden = true
+            joinMeView.isHidden = true
         }
     }
 
     func showTnc() {
-            let timeWebView = TIMEWebViewController()
-            let urlString = "https://www.time.com.my/terms-and-conditions?link=personal&title=HookUpAndEarn"
-            let url = URL(string: urlString)
-            timeWebView.url = url
-            timeWebView.title = NSLocalizedString("TERMS & CONDITIONS", comment: "")
-            self.navigationController?.pushViewController(timeWebView, animated: true)
-        }
-
-        func showFAQ() {
-            let timeWebView = TIMEWebViewController()
-            let urlString = "https://www.time.com.my/support/faq?section=self-care&question=who-is-eligible-for-this-programme"
-            let url = URL(string: urlString)
-            timeWebView.url = url
-            timeWebView.title = NSLocalizedString("FAQ", comment: "")
-            self.navigationController?.pushViewController(timeWebView, animated: true)
-        }
-        @IBAction func actTnC(_ sender: Any) {
-            showTnc()
-        }
-
-        @IBAction func actFAQ(_ sender: Any) {
-            showFAQ()
-        }
+        let timeWebView = TIMEWebViewController()
+        let urlString = "https://www.time.com.my/terms-and-conditions?link=personal&title=HookUpAndEarn"
+        let url = URL(string: urlString)
+        timeWebView.url = url
+        timeWebView.title = NSLocalizedString("TERMS & CONDITIONS", comment: "")
+        self.navigationController?.pushViewController(timeWebView, animated: true)
+    }
+    
+    func showFAQ() {
+        let timeWebView = TIMEWebViewController()
+        let urlString = "https://www.time.com.my/support/faq?section=self-care&question=who-is-eligible-for-this-programme"
+        let url = URL(string: urlString)
+        timeWebView.url = url
+        timeWebView.title = NSLocalizedString("FAQ", comment: "")
+        self.navigationController?.pushViewController(timeWebView, animated: true)
+    }
+    @IBAction func actTnC(_ sender: Any) {
+        showTnc()
+    }
+    
+    @IBAction func actFAQ(_ sender: Any) {
+        showFAQ()
+    }
     
     @IBAction func actRefer(_ sender: Any) {
-        if let referVC = UIStoryboard(name: "ReferView", bundle: nil).instantiateInitialViewController() as? ReferViewController {
-            referVC.data = data
-            self.navigationController?.pushViewController(referVC, animated: true)
+//        if let referVC = UIStoryboard(name: "ReferView", bundle: nil).instantiateInitialViewController() as? ReferViewController {
+//            referVC.data = data
+//            self.navigationController?.pushViewController(referVC, animated: true)
+//        }
+        
+        guard
+            let account = AccountController.shared.selectedAccount
+            else {
+                return
         }
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        
+        AccountDataController.shared.setHuaeConsent(account: account) { data, error in
+            hud.hide(animated: true)
+            guard error == nil else {
+                return
+            }
+            self.huaeLinkView.isHidden = false
+            self.consentView.isHidden = true
+            self.shareButton.isHidden = true
+        }
+    }
+    
+    @IBAction func respondToAgreement(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        updateShareButton(show: sender.isSelected)
+    }
+    
+    @IBAction func openFacebook(_ sender: Any) {
+        let url = String(format: "https://www.facebook.com/share.php?u=%@&quote=%@", data?.link ?? "", data?.fb_text ?? "")
+        if let link = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
+          UIApplication.shared.open(link)
+        }
+    }
+    
+    @IBAction func openTwitter(_ sender: Any) {
+        let url = String(format: "https://www.twitter.com/share?url=%@&text=%@", data?.link ?? "", data?.fb_text ?? "")
+        if let link = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
+          UIApplication.shared.open(link)
+        }
+    }
+    
+    @IBAction func openWhatsapp(_ sender: Any) {
+        let url = String(format: "https://api.whatsapp.com/send?text=%@", data?.whatsapp_text ?? "")
+        if let link = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") {
+            if UIApplication.shared.canOpenURL(link) {
+              UIApplication.shared.open(link)
+            } else {
+              print("Unable to open whatsapp")
+            }
+        }
+    }
+    
+    @IBAction func openEmail(_ sender: Any) {
+        let subject = data?.email_subject ?? ""
+        let body = data?.email_text ?? ""
+        let coded = "mailto:?subject=\(subject)&body=\(body)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        if let link = URL(string: coded ?? "") {
+            if UIApplication.shared.canOpenURL(link) {
+                UIApplication.shared.open(link)
+            } else {
+                print("Unable to open email")
+            }
+        }
+    }
+    
+    @IBAction func copyLink(_ sender: Any) {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = data?.link
+        self.view.showToast(message: "Link Copied", font: .systemFont(ofSize: 12.0))
+    }
+    
+    func updateShareButton(show: Bool) {
+        shareButton.isUserInteractionEnabled = show
+        shareButton.backgroundColor = show ? UIColor.primary : UIColor.lightGray
     }
 }
 

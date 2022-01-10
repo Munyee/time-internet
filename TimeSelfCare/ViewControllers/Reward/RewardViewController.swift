@@ -18,7 +18,7 @@ class RewardViewController: TimeBaseViewController {
                 self.yearsView.isHidden = false
                 self.yearsConstraint.constant = 60
                 self.rewards = self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }
-                self.yearLabel1.text = String(format: "%d", self.rewards[0].year!)
+                self.yearLabel1.text = String(format: "%d", self.rewards[0].year ?? "")
                 self.yearLabel1.textColor = UIColor.primary
                 self.yearLabel2.text = String(format: "%d", self.rewards[1].year ?? "")
                 self.yearLabel2.textColor = UIColor.gray
@@ -190,6 +190,8 @@ class RewardViewController: TimeBaseViewController {
         self.reward = reward
         if let imagePath = reward.image {
             self.tableHeaderImageView.sd_setImage(with: URL(string: imagePath), completed: nil)
+        } else {
+            self.tableHeaderImageView.image = UIImage()
         }
         self.sectionCollapsed = [Bool](repeating: true, count: reward.sections.count)
         self.rewardNameLabel.text = String(htmlEncodedString: reward.name ?? "")

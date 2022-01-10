@@ -23,10 +23,10 @@ public class BillingInfo: JsonRecord {
     public var billState: String?
     public var billCountry: String = NSLocalizedString("MALAYSIA", comment: "") // Hardcoded to Malaysia
     public var displayBillingAddress: String?
-    public var billingMethod: Int?
+    public var billingMethod: String?
     public var canUpdateBillingMethod: Bool?
     public var canUpdateBillingAddress: Bool?
-    public var billingMethodOptions: [Int: String] = [:]
+    public var billingMethodOptions: [String: String] = [:]
     public var accountNo: String?
 
     public var billingMethodString: String? {
@@ -43,9 +43,9 @@ public class BillingInfo: JsonRecord {
 
     public required init?(with json: [String : Any]) {
         ((json["list_billing_method"] as? [String: String]) ?? [:]).forEach {
-            if let key = Int($0.key) {
-                self.billingMethodOptions[key] = $0.value
-            }
+            // if let key = Int($0.key) {
+                self.billingMethodOptions[$0.key] = $0.value
+            // }
         }
 
         self.deposit = json["deposit"] as? String
@@ -61,7 +61,7 @@ public class BillingInfo: JsonRecord {
         self.billCity = json["bill_city"] as? String
         self.billState = json["bill_state"] as? String
         self.displayBillingAddress = json["billing_address_string"] as? String
-        self.billingMethod = json["billing_method"] as? Int
+        self.billingMethod = json["billing_method"] as? String
         self.canUpdateBillingMethod = json["can_update_billing_method"] as? Bool
         self.canUpdateBillingAddress = json["can_update_billing_address"] as? Bool
         self.accountNo = json["account_no"] as? String

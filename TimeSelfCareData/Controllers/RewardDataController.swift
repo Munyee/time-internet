@@ -56,7 +56,15 @@ public class RewardDataController {
     }
 
     private func process(_ jsonArray: [[String: Any]]) -> [Reward] {
-        return jsonArray.compactMap { try? Reward(from: $0) }
+        return jsonArray.compactMap {
+            var reward: Reward!
+            do {
+                try reward = Reward(from: $0)
+            } catch {
+                print("\(error)")
+            }
+            return reward ?? nil
+        }
     }
 
     private func insert(_ incomingRewards: [Reward]) {

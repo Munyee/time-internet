@@ -20,7 +20,7 @@ class RewardViewController: TimeBaseViewController {
                 self.rewards = self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }
                 self.yearLabel1.text = String(format: "%d", self.rewards[0].year!)
                 self.yearLabel1.textColor = UIColor.primary
-                self.yearLabel2.text = String(format: "%d", self.rewards[1].year!)
+                self.yearLabel2.text = String(format: "%d", self.rewards[1].year ?? "")
                 self.yearLabel2.textColor = UIColor.gray
                 self.reward = self.rewards[0]
             } else {
@@ -305,8 +305,10 @@ extension RewardViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RewardHeaderView") as? RewardHeaderView {
-            headerView.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
-            headerView.delegate = self
+            if section < self.sections.count {
+                headerView.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
+                headerView.delegate = self
+            }
             return headerView
         }
         return nil
@@ -387,6 +389,8 @@ extension Reward.Status {
             return NSLocalizedString("REDEEMED", comment: "")
         case .expired:
             return NSLocalizedString("EXPIRED", comment: "")
+        case .notAvailable:
+            return NSLocalizedString("NOT AVAILABLE", comment: "")
         }
     }
 

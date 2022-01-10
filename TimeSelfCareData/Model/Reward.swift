@@ -12,6 +12,7 @@ public class Reward: Codable {
     public enum Status: String, Codable {
         case available, grabbed, redeemed, expired
         case fullyGrabbed = "fully_grabbed"
+        case notAvailable = "not_available"
     }
 
     public enum OutletGroup: String {

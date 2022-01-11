@@ -151,7 +151,7 @@ class RewardViewController: TimeBaseViewController {
                 return
             }
 
-            self.rewards = rewards
+            self.rewards = rewards.filter { $0.status != nil && $0.status != .notAvailable }
         }
     }
 

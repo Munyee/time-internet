@@ -89,6 +89,7 @@ public extension RewardDataController {
         if let account = account {
             filteredItems = filteredItems.filter { $0.accountNo == account.accountNo }
         }
+        filteredItems = filteredItems.filter { $0.status != .notAvailable }
 
         return filteredItems
     }

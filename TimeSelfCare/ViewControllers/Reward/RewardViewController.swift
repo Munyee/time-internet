@@ -15,19 +15,21 @@ class RewardViewController: TimeBaseViewController {
         didSet {
             
             if rewards.count >= 1 {
-                self.yearsView.isHidden = false
                 self.yearsConstraint.constant = 60
                 self.rewards = self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }
                 self.yearLabel1.text = String(format: "%d", self.rewards[0].year ?? "")
                 self.yearLabel1.textColor = UIColor.primary
-                if rewards.count >= 2, self.rewards[1].status != .notAvailable {
-                    self.yearLabel2.text = String(format: "%d", self.rewards[1].year ?? "")
+                if rewards.count >= 2, self.rewards[1].status != .notAvailable, let year2 = self.rewards[1].year {
+                    self.yearsView.isHidden = false
+                    self.yearLabel2.text = String(format: "%d", year2)
                     self.yearLabel2.textColor = UIColor.gray
                 } else {
+                    self.yearsView.isHidden = true
                     self.yearLabel2.text = ""
                 }
                 self.reward = self.rewards[0]
             } else {
+                self.yearsView.isHidden = true
                 self.reward = self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }.first
             }
             

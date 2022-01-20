@@ -56,7 +56,15 @@ public class RewardDataController {
     }
 
     private func process(_ jsonArray: [[String: Any]]) -> [Reward] {
-        return jsonArray.compactMap { try? Reward(from: $0) }
+        return jsonArray.compactMap {
+            var reward: Reward!
+            do {
+                try reward = Reward(from: $0)
+            } catch {
+                print("\(error)")
+            }
+            return reward ?? nil
+        }
     }
 
     private func insert(_ incomingRewards: [Reward]) {
@@ -81,6 +89,7 @@ public extension RewardDataController {
         if let account = account {
             filteredItems = filteredItems.filter { $0.accountNo == account.accountNo }
         }
+        filteredItems = filteredItems.filter { $0.status != nil && $0.status != .notAvailable }
 
         return filteredItems
     }

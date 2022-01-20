@@ -14,16 +14,22 @@ class RewardViewController: TimeBaseViewController {
     private var rewards: [Reward] = [] {
         didSet {
             
-            if rewards.count >= 2 {
-                self.yearsView.isHidden = false
+            if rewards.count >= 1 {
                 self.yearsConstraint.constant = 60
                 self.rewards = self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }
-                self.yearLabel1.text = String(format: "%d", self.rewards[0].year!)
+                self.yearLabel1.text = String(format: "%d", self.rewards[0].year ?? "")
                 self.yearLabel1.textColor = UIColor.primary
-                self.yearLabel2.text = String(format: "%d", self.rewards[1].year!)
-                self.yearLabel2.textColor = UIColor.gray
+                if rewards.count >= 2, self.rewards[1].status != .notAvailable, let year2 = self.rewards[1].year {
+                    self.yearsView.isHidden = false
+                    self.yearLabel2.text = String(format: "%d", year2)
+                    self.yearLabel2.textColor = UIColor.gray
+                } else {
+                    self.yearsView.isHidden = true
+                    self.yearLabel2.text = ""
+                }
                 self.reward = self.rewards[0]
             } else {
+                self.yearsView.isHidden = true
                 self.reward = self.rewards.sorted { $0.year ?? 0 > $1.year ?? 0 }.first
             }
             
@@ -145,7 +151,7 @@ class RewardViewController: TimeBaseViewController {
                 return
             }
 
-            self.rewards = rewards
+            self.rewards = rewards.filter { $0.status != nil && $0.status != .notAvailable }
         }
     }
 
@@ -190,6 +196,8 @@ class RewardViewController: TimeBaseViewController {
         self.reward = reward
         if let imagePath = reward.image {
             self.tableHeaderImageView.sd_setImage(with: URL(string: imagePath), completed: nil)
+        } else {
+            self.tableHeaderImageView.image = UIImage()
         }
         self.sectionCollapsed = [Bool](repeating: true, count: reward.sections.count)
         self.rewardNameLabel.text = String(htmlEncodedString: reward.name ?? "")
@@ -253,9 +261,11 @@ class RewardViewController: TimeBaseViewController {
     }
     
     @IBAction func actYear2(_ sender: Any) {
-        self.yearLabel1.textColor = UIColor.gray
-        self.yearLabel2.textColor = UIColor.primary
-        displayReward(reward: self.rewards[1])
+        if rewards.count >= 2, self.rewards[1].status != .notAvailable {
+            self.yearLabel1.textColor = UIColor.gray
+            self.yearLabel2.textColor = UIColor.primary
+            displayReward(reward: self.rewards[1])
+        }
     }
 }
 
@@ -305,8 +315,10 @@ extension RewardViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RewardHeaderView") as? RewardHeaderView {
-            headerView.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
-            headerView.delegate = self
+            if section < self.sections.count {
+                headerView.configure(with: self.sections[section], isCollapsed: self.sectionCollapsed[section])
+                headerView.delegate = self
+            }
             return headerView
         }
         return nil
@@ -387,6 +399,8 @@ extension Reward.Status {
             return NSLocalizedString("REDEEMED", comment: "")
         case .expired:
             return NSLocalizedString("EXPIRED", comment: "")
+        case .notAvailable:
+            return NSLocalizedString("NOT AVAILABLE", comment: "")
         }
     }
 

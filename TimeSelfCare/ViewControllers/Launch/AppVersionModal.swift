@@ -45,6 +45,8 @@ class MaintenanceMode: NSObject {
     var is_maintenance = false
     var maintenance_title = ""
     var maintenance_text = ""
+    var show_notice = false
+    var notice_message = ""
     
     override init() {
         super.init()
@@ -54,6 +56,8 @@ class MaintenanceMode: NSObject {
         is_maintenance = json["is_maintenance"].boolValue
         maintenance_title = json["maintenance_title"].stringValue
         maintenance_text = json["maintenance_text"].stringValue
+        show_notice = json["show_notice"].boolValue
+        notice_message = json["notice_message"].stringValue
     }
     
     deinit {

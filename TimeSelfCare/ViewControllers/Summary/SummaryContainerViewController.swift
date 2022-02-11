@@ -51,7 +51,7 @@ class SummaryContainerViewController: TimeBaseViewController {
         request.responseJSON { data in
             let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
             var json = JSON(data.result.value)["production"]
-            if mode != "Production" {
+            if mode != "Production" && !mode.isEmpty {
                 json = JSON(data.result.value)["staging"]
             }
             let maintenanceMode = MaintenanceMode(json: json)

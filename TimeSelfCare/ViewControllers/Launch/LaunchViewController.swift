@@ -177,7 +177,7 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
         request.responseJSON { data in
             let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
             var json = JSON(data.result.value)["production"]
-            if mode != "Production" {
+            if mode != "Production" && !mode.isEmpty {
                 json = JSON(data.result.value)["staging"]
             }
             self.maintenanceMode = MaintenanceMode(json: json)

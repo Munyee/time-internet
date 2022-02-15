@@ -42,12 +42,17 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     @IBOutlet private var appLogoImgView: UIImageView!
     @IBOutlet private var progressImageView: UIImageView!
     @IBOutlet private weak var maintananceView: UIView!
-    
+    @IBOutlet weak var importantNoticeView: UIView!
+    @IBOutlet weak var importantNoticeLabel: UILabel!
+    @IBOutlet weak var maintenanceTopView: UIView!
+
     var timer: Timer? = nil
         
     override func viewDidLoad() {
         super.viewDidLoad()
         self.maintananceView.isHidden = true
+        self.importantNoticeView.isHidden = true
+        self.maintenanceTopView.isHidden = true
         UNUserNotificationCenter.current().delegate = self
     }
     
@@ -181,8 +186,18 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 json = JSON(data.result.value)["staging"]
             }
             self.maintenanceMode = MaintenanceMode(json: json)
+            
             if self.maintenanceMode.is_maintenance && !self.isBypass {
                 self.maintananceView.isHidden = false
+                self.maintenanceTopView.isHidden = false
+                
+                if self.maintenanceMode.show_notice {
+                    self.importantNoticeView.isHidden = false
+                    self.importantNoticeLabel.attributedText = self.maintenanceMode.notice_message.htmlAttributdString()
+                    self.importantNoticeLabel.textColor = UIColor.white
+                } else {
+                    self.importantNoticeView.isHidden = true
+                }
             } else {
                 if currentInstalledVersion < latestVersion {
                     if currentInstalledVersion < majorVersion {
@@ -274,6 +289,8 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
             self.triggerModeChangeCount = 0
             isBypass = true
             self.maintananceView.isHidden = true
+            self.maintenanceTopView.isHidden = true
+            self.importantNoticeView.isHidden = true
             self.showNext()
         }
     }

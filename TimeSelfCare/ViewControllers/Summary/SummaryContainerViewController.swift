@@ -58,7 +58,8 @@ class SummaryContainerViewController: TimeBaseViewController {
             
             if maintenanceMode.show_notice {
                 self.importantNoticeView.isHidden = false
-                self.importantNoticeLabel.text = maintenanceMode.notice_message
+                self.importantNoticeLabel.attributedText = maintenanceMode.notice_message.htmlAttributdString()
+                self.importantNoticeLabel.textColor = UIColor.white
             } else {
                 self.importantNoticeView.isHidden = true
             }

@@ -9,6 +9,8 @@
 import UIKit
 import Lottie
 import MBProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class SummaryContainerViewController: TimeBaseViewController {
     enum Page {
@@ -27,6 +29,8 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet private weak var activityButton: UIButton!
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet weak var liveChatConstraint: NSLayoutConstraint!
+    @IBOutlet weak var importantNoticeView: UIView!
+    @IBOutlet weak var importantNoticeLabel: UILabel!
     var showFloatingButton = false
     
     override func viewDidLoad() {
@@ -42,6 +46,24 @@ class SummaryContainerViewController: TimeBaseViewController {
         didUpdatePage(with: 0)
         
         self.updatePages()
+        
+        let request = Alamofire.request("https://api-4854611070421271444-279141.firebaseio.com/.json", method: .get, parameters: nil, encoding: URLEncoding(), headers: nil)
+        request.responseJSON { data in
+            let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
+            var json = JSON(data.result.value)["production"]
+            if mode != "Production" && !mode.isEmpty {
+                json = JSON(data.result.value)["staging"]
+            }
+            let maintenanceMode = MaintenanceMode(json: json)
+            
+            if maintenanceMode.show_notice {
+                self.importantNoticeView.isHidden = false
+                self.importantNoticeLabel.attributedText = maintenanceMode.notice_message.htmlAttributdString()
+                self.importantNoticeLabel.textColor = UIColor.white
+            } else {
+                self.importantNoticeView.isHidden = true
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -396,6 +418,10 @@ class SummaryContainerViewController: TimeBaseViewController {
         
         let diagnosticsVC: DiagnosisViewController = storyboard.instantiateViewController()
         self.presentNavigation(diagnosticsVC, animated: true)
+    }
+    
+    @IBAction func actCloseNotice(_ sender: Any) {
+        self.importantNoticeView.isHidden = true
     }
     
     @objc

@@ -60,6 +60,8 @@
 		9E028D2126D651250069FF31 /* ConnectedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E028D1B26D651250069FF31 /* ConnectedDevice.swift */; };
 		9E028D2226D651250069FF31 /* ConnectedDevice.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E028D1C26D651250069FF31 /* ConnectedDevice.xib */; };
 		9E028D5E26D72E1E0069FF31 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E028D5D26D72E1E0069FF31 /* Utils.swift */; };
+		9E16A34E27BEA3D200D7D5F8 /* ImportantNotice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E16A34D27BEA3D200D7D5F8 /* ImportantNotice.storyboard */; };
+		9E16A35027BEA3E800D7D5F8 /* ImportantNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16A34F27BEA3E800D7D5F8 /* ImportantNoticeViewController.swift */; };
 		9E183ACA266A17D200CB923B /* GettingDeviceReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183ABE266A17CE00CB923B /* GettingDeviceReadyViewController.swift */; };
 		9E183ACB266A17D200CB923B /* ApDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183AC0266A17CE00CB923B /* ApDeviceTableViewCell.swift */; };
 		9E183ACC266A17D200CB923B /* ResetDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183AC1266A17CF00CB923B /* ResetDeviceViewController.swift */; };
@@ -416,6 +418,8 @@
 		9E028D1B26D651250069FF31 /* ConnectedDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedDevice.swift; sourceTree = "<group>"; };
 		9E028D1C26D651250069FF31 /* ConnectedDevice.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectedDevice.xib; sourceTree = "<group>"; };
 		9E028D5D26D72E1E0069FF31 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		9E16A34D27BEA3D200D7D5F8 /* ImportantNotice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImportantNotice.storyboard; sourceTree = "<group>"; };
+		9E16A34F27BEA3E800D7D5F8 /* ImportantNoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportantNoticeViewController.swift; sourceTree = "<group>"; };
 		9E183ABE266A17CE00CB923B /* GettingDeviceReadyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GettingDeviceReadyViewController.swift; sourceTree = "<group>"; };
 		9E183AC0266A17CE00CB923B /* ApDeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		9E183AC1266A17CF00CB923B /* ResetDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetDeviceViewController.swift; sourceTree = "<group>"; };
@@ -727,6 +731,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9E16A34C27BEA3B800D7D5F8 /* ImportantNotice */,
 				E2626D4E20A923DD00891953 /* Activity */,
 				0A8E01F11FA9B50B00CA27A9 /* AuthMenu */,
 				E2730B872097024D00A140F1 /* BillingInfo */,
@@ -1042,6 +1047,15 @@
 				9E028D1C26D651250069FF31 /* ConnectedDevice.xib */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		9E16A34C27BEA3B800D7D5F8 /* ImportantNotice */ = {
+			isa = PBXGroup;
+			children = (
+				9E16A34D27BEA3D200D7D5F8 /* ImportantNotice.storyboard */,
+				9E16A34F27BEA3E800D7D5F8 /* ImportantNoticeViewController.swift */,
+			);
+			path = ImportantNotice;
 			sourceTree = "<group>";
 		};
 		9E183ABF266A17CE00CB923B /* Cell */ = {
@@ -1764,6 +1778,7 @@
 				9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */,
 				E2A8E84B1FCE6A4B00EA5DF2 /* Common.storyboard in Resources */,
 				9EE460DA260044160040D8CE /* Deviceinstallation.storyboard in Resources */,
+				9E16A34E27BEA3D200D7D5F8 /* ImportantNotice.storyboard in Resources */,
 				E2AD92C91FC3AE2700138334 /* Summary.storyboard in Resources */,
 				9EAB2C0B249CBB0500F12A3C /* LiveChatAlert.storyboard in Resources */,
 				E2E84FE71FCEA87E0014CEAA /* DINCondensed-Bold.ttf in Resources */,
@@ -2111,6 +2126,7 @@
 				0A8E01F91FA9B50B00CA27A9 /* AuthMenuViewController.swift in Sources */,
 				E27DCC961FE0C3D900A82769 /* String+.swift in Sources */,
 				9E2D735C26F3C31700D1B980 /* YTVideoTableViewCell.swift in Sources */,
+				9E16A35027BEA3E800D7D5F8 /* ImportantNoticeViewController.swift in Sources */,
 				E2AD92C71FC3A5DC00138334 /* VoiceSummaryViewController.swift in Sources */,
 				E22050DA1FCD08EF004D5B10 /* AddOnDetailViewController.swift in Sources */,
 				9EC1356C241B6E1200E59C44 /* UIViewController+APTSidebarNavigation.m in Sources */,

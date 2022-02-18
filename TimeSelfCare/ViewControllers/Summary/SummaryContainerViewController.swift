@@ -12,6 +12,17 @@ import MBProgressHUD
 import Alamofire
 import SwiftyJSON
 
+class BannerGesture: UITapGestureRecognizer {
+    
+    var label: UILabel = UILabel()
+    var href: [Href] = []
+    var text = ""
+
+    override init(target: Any?, action: Selector?) {
+        super.init(target: target, action: action)
+    }
+}
+
 class SummaryContainerViewController: TimeBaseViewController {
     enum Page {
         case accountSummary, addOnSummary, voiceLineSummary, performanceStatusSummary
@@ -58,8 +69,13 @@ class SummaryContainerViewController: TimeBaseViewController {
             
             if maintenanceMode.show_notice {
                 self.importantNoticeView.isHidden = false
-                self.importantNoticeLabel.attributedText = maintenanceMode.notice_message.htmlAttributdString()
-                self.importantNoticeLabel.textColor = UIColor.white
+                self.importantNoticeLabel.attributedText = maintenanceMode.notice_message_v2.htmlAttributedStringWith(href: maintenanceMode.notice_message_href)
+                let tapGesture = BannerGesture(target: self, action: #selector(self.didTappedAttributedLabel(gesture:)))
+                tapGesture.label = self.importantNoticeLabel
+                tapGesture.href = maintenanceMode.notice_message_href
+                tapGesture.text = self.importantNoticeLabel.attributedText?.string ?? ""
+                self.importantNoticeLabel.isUserInteractionEnabled = true
+                self.importantNoticeLabel.addGestureRecognizer(tapGesture)
             } else {
                 self.importantNoticeView.isHidden = true
             }
@@ -108,6 +124,29 @@ class SummaryContainerViewController: TimeBaseViewController {
     @objc
     private func handleAccountChange() {
         self.updatePages()
+    }
+    
+    @objc
+    func didTappedAttributedLabel(gesture: BannerGesture) {
+        for item in gesture.href {
+            let range = (gesture.text as NSString).range(of: item.href)
+            if gesture.didTapAttributedTextInLabel(label: gesture.label, inRange: range) {
+                if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                    while let presentedViewController = vc.presentedViewController {
+                        vc = presentedViewController
+                    }
+                    
+                    if let alertView = UIStoryboard(name: "ImportantNotice", bundle: nil).instantiateViewController(withIdentifier: "ImportantNoticeViewController") as? ImportantNoticeViewController {
+                        alertView.desc = item.desc
+                        vc.addChild(alertView)
+                        alertView.view.frame = vc.view.frame
+                        vc.view.addSubview(alertView.view)
+                        alertView.didMove(toParent: vc)
+                    }
+                }
+            }
+
+        }
     }
     
     private func updatePages() {

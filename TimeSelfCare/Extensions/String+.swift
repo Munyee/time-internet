@@ -61,11 +61,40 @@ public extension String {
             documentAttributes: nil
         )
     }
+    
+    func htmlAttributedStringWith(href: [Href]) -> NSAttributedString? {
+        
+        let style = "<style> body { font-family: 'DIN-Light'; font-size: 16px; } b {font-family: 'DIN-Bold'; font-size: 16px;} i {font-family: 'D-DIN-Italic'; font-size: 16px;} </style>"
+        let styledHtml = style + self
+        
+        var attributedString = NSMutableAttributedString(string: styledHtml)
+
+        guard let data = styledHtml.data(using: .utf8) else {
+            return nil
+        }
+        
+        if let newAttributeString = try? NSMutableAttributedString(
+            data: data,
+            options: [.documentType: NSAttributedString.DocumentType.html],
+            documentAttributes: nil
+        ) {
+            attributedString = newAttributeString
+        }
+
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: attributedString.length))
+        
+        for item in href {
+            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: "EC008C") ?? UIColor.primary, range: (attributedString.string as NSString).range(of: item.href))
+        }
+        
+        return attributedString
+        
+    }
 }
 
 public extension NSMutableAttributedString {
 
-    public func setAsLink(textToFind:String, linkURL:String) -> Bool {
+    func setAsLink(textToFind:String, linkURL:String) -> Bool {
 
         let foundRange = self.mutableString.range(of: textToFind)
         if foundRange.location != NSNotFound {

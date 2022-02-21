@@ -193,8 +193,13 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                 
                 if self.maintenanceMode.show_notice {
                     self.importantNoticeView.isHidden = false
-                    self.importantNoticeLabel.attributedText = self.maintenanceMode.notice_message.htmlAttributdString()
-                    self.importantNoticeLabel.textColor = UIColor.white
+                    self.importantNoticeLabel.attributedText = self.maintenanceMode.notice_message_v2.htmlAttributedStringWith(href: self.maintenanceMode.notice_message_href)
+                    let tapGesture = BannerGesture(target: self, action: #selector(self.didTappedAttributedLabel(gesture:)))
+                    tapGesture.label = self.importantNoticeLabel
+                    tapGesture.href = self.maintenanceMode.notice_message_href
+                    tapGesture.text = self.importantNoticeLabel.attributedText?.string ?? ""
+                    self.importantNoticeLabel.isUserInteractionEnabled = true
+                    self.importantNoticeLabel.addGestureRecognizer(tapGesture)
                 } else {
                     self.importantNoticeView.isHidden = true
                 }
@@ -217,6 +222,29 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     self.showNext()
                 }
             }
+        }
+    }
+    
+    @objc
+    func didTappedAttributedLabel(gesture: BannerGesture) {
+        for item in gesture.href {
+            let range = (gesture.text as NSString).range(of: item.href)
+            if gesture.didTapAttributedTextInLabel(label: gesture.label, inRange: range) {
+                if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                    while let presentedViewController = vc.presentedViewController {
+                        vc = presentedViewController
+                    }
+                    
+                    if let alertView = UIStoryboard(name: "ImportantNotice", bundle: nil).instantiateViewController(withIdentifier: "ImportantNoticeViewController") as? ImportantNoticeViewController {
+                        alertView.desc = item.desc
+                        vc.addChild(alertView)
+                        alertView.view.frame = vc.view.frame
+                        vc.view.addSubview(alertView.view)
+                        alertView.didMove(toParent: vc)
+                    }
+                }
+            }
+
         }
     }
     

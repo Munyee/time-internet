@@ -47,7 +47,9 @@ class MaintenanceMode: NSObject {
     var maintenance_text = ""
     var show_notice = false
     var notice_message = ""
-    
+    var notice_message_v2 = ""
+    var notice_message_href: [Href] = []
+
     override init() {
         super.init()
     }
@@ -58,9 +60,27 @@ class MaintenanceMode: NSObject {
         maintenance_text = json["maintenance_text"].stringValue
         show_notice = json["show_notice"].boolValue
         notice_message = json["notice_message"].stringValue
+        notice_message_v2 = json["notice_message_v2"].stringValue
+        for hrefJson in json["notice_message_href"].arrayValue {
+            notice_message_href.append(Href(json: hrefJson))
+        }
     }
     
     deinit {
         print("MaintenanceMode Modal deinit")
+    }
+}
+
+public class Href: NSObject {
+    var href = ""
+    var desc = ""
+
+    override init() {
+        super.init()
+    }
+    
+    init (json: JSON) {
+        href = json["href"].stringValue
+        desc = json["desc"].stringValue
     }
 }

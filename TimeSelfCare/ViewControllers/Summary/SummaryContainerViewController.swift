@@ -69,7 +69,7 @@ class SummaryContainerViewController: TimeBaseViewController {
             
             let version = UserDefaults.standard.string(forKey: MaintenanceMode.NOTICE_POPUP_VERSION)
             
-            if version != maintenanceMode.notice_auto_popup.ver || version == nil {
+            if (version != maintenanceMode.notice_auto_popup.ver || version == nil) && maintenanceMode.notice_auto_popup.ver != "" {
                 if var vc = UIApplication.shared.keyWindow?.rootViewController {
                     while let presentedViewController = vc.presentedViewController {
                         vc = presentedViewController

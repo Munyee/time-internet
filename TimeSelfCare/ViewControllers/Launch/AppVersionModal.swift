@@ -42,6 +42,9 @@ class AppVersionModal: NSObject {
 }
 
 class MaintenanceMode: NSObject {
+    
+    static let NOTICE_POPUP_VERSION: String = "notice_popup_version"
+    
     var is_maintenance = false
     var maintenance_title = ""
     var maintenance_text = ""
@@ -49,6 +52,7 @@ class MaintenanceMode: NSObject {
     var notice_message = ""
     var notice_message_v2 = ""
     var notice_message_href: [Href] = []
+    var notice_auto_popup: NoticePopUp = NoticePopUp()
 
     override init() {
         super.init()
@@ -64,6 +68,7 @@ class MaintenanceMode: NSObject {
         for hrefJson in json["notice_message_href"].arrayValue {
             notice_message_href.append(Href(json: hrefJson))
         }
+        notice_auto_popup = NoticePopUp(json: json["notice_auto_popup"])
     }
     
     deinit {
@@ -81,6 +86,20 @@ public class Href: NSObject {
     
     init (json: JSON) {
         href = json["href"].stringValue
+        desc = json["desc"].stringValue
+    }
+}
+
+public class NoticePopUp: NSObject {
+    var ver = ""
+    var desc = ""
+
+    override init() {
+        super.init()
+    }
+    
+    init (json: JSON) {
+        ver = json["ver"].stringValue
         desc = json["desc"].stringValue
     }
 }

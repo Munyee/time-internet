@@ -67,6 +67,24 @@ class SummaryContainerViewController: TimeBaseViewController {
             }
             let maintenanceMode = MaintenanceMode(json: json)
             
+            let version = UserDefaults.standard.string(forKey: MaintenanceMode.NOTICE_POPUP_VERSION)
+            
+            if (version != maintenanceMode.notice_auto_popup.ver || version == nil) && maintenanceMode.notice_auto_popup.ver != "" {
+                if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                    while let presentedViewController = vc.presentedViewController {
+                        vc = presentedViewController
+                    }
+                    
+                    if let alertView = UIStoryboard(name: "ImportantNotice", bundle: nil).instantiateViewController(withIdentifier: "NoticePopUpViewController") as? NoticePopUpViewController {
+                        alertView.noticePopUp = maintenanceMode.notice_auto_popup
+                        vc.addChild(alertView)
+                        alertView.view.frame = vc.view.frame
+                        vc.view.addSubview(alertView.view)
+                        alertView.didMove(toParent: vc)
+                    }
+                }
+            }
+            
             if maintenanceMode.show_notice {
                 self.importantNoticeView.isHidden = false
                 self.importantNoticeLabel.attributedText = maintenanceMode.notice_message_v2.htmlAttributedStringWith(href: maintenanceMode.notice_message_href)

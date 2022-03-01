@@ -165,19 +165,6 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
     }
     
     func checkAppVersion() {
-        guard
-            let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,
-            let currentInstalledVersion = Int(bundleVersion),
-            let majorVersion = Int(self.appVersionConfig.major),
-            let minorVersion = Int(self.appVersionConfig.minor),
-            let latestVersion = Int(self.appVersionConfig.latest),
-            let majorTitle = self.appVersionConfig.major_title as? String,
-            let majorText = self.appVersionConfig.major_text as? String,
-            let minorTitle = self.appVersionConfig.minor_title as? String,
-            let minorText = self.appVersionConfig.minor_text as? String else {
-            return
-        }
-        
         let request = Alamofire.request("https://api-4854611070421271444-279141.firebaseio.com/.json", method: .get, parameters: nil, encoding: URLEncoding(), headers: nil)
         request.responseJSON { data in
             let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
@@ -204,24 +191,41 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
                     self.importantNoticeView.isHidden = true
                 }
             } else {
-                if currentInstalledVersion < latestVersion {
-                    if currentInstalledVersion < majorVersion {
-                        print("Major Version update")
-                        self.showAppVersionWithMajorUpdate(messageTitle:majorTitle, messageBody: majorText)
-                    } else
-                        if currentInstalledVersion < minorVersion {
-                        print("Minor Version update")
-                        self.showAppVersionWithMinorUpdate(messageTitle:minorTitle, messageBody: minorText)
-                    } else if currentInstalledVersion < latestVersion {
-                        print("Latest Version update")
-                        self.showAppVersionWithLatestUpdate()
-                    }
-                } else {
-                    print("No update")
-                    self.versionUpdateView.isHidden = true
-                    self.showNext()
-                }
+                self.proceed()
             }
+        }
+    }
+    
+    func proceed() {
+        guard
+            let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String,
+            let currentInstalledVersion = Int(bundleVersion),
+            let majorVersion = Int(self.appVersionConfig.major),
+            let minorVersion = Int(self.appVersionConfig.minor),
+            let latestVersion = Int(self.appVersionConfig.latest),
+            let majorTitle = self.appVersionConfig.major_title as? String,
+            let majorText = self.appVersionConfig.major_text as? String,
+            let minorTitle = self.appVersionConfig.minor_title as? String,
+            let minorText = self.appVersionConfig.minor_text as? String else {
+            return
+        }
+        
+        if currentInstalledVersion < latestVersion {
+            if currentInstalledVersion < majorVersion {
+                print("Major Version update")
+                self.showAppVersionWithMajorUpdate(messageTitle:majorTitle, messageBody: majorText)
+            } else
+                if currentInstalledVersion < minorVersion {
+                print("Minor Version update")
+                self.showAppVersionWithMinorUpdate(messageTitle:minorTitle, messageBody: minorText)
+            } else if currentInstalledVersion < latestVersion {
+                print("Latest Version update")
+                self.showAppVersionWithLatestUpdate()
+            }
+        } else {
+            print("No update")
+            self.versionUpdateView.isHidden = true
+            self.showNext()
         }
     }
     
@@ -315,11 +319,34 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
 
         if self.triggerModeChangeCount >= 5 {
             self.triggerModeChangeCount = 0
-            isBypass = true
-            self.maintananceView.isHidden = true
-            self.maintenanceTopView.isHidden = true
-            self.importantNoticeView.isHidden = true
-            self.showNext()
+            
+            let savedMaintenancePassword = UserDefaults.standard.string(forKey: "MAINTENANCE_PASSWORD")
+            
+            if savedMaintenancePassword != self.maintenanceMode.maintenance_password {
+                let alert = UIAlertController(title: "Bypass Password", message: "", preferredStyle: .alert)
+                alert.addTextField { textField in
+                    textField.placeholder = "Password"
+                }
+                alert.addAction( UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                    let textField = alert?.textFields![0]
+                    if textField?.text == self.maintenanceMode.maintenance_password {
+                        UserDefaults.standard.set(textField?.text, forKey: "MAINTENANCE_PASSWORD")
+                        self.isBypass = true
+                        self.maintananceView.isHidden = true
+                        self.maintenanceTopView.isHidden = true
+                        self.importantNoticeView.isHidden = true
+                        self.showNext()
+                    }
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.isBypass = true
+                self.maintananceView.isHidden = true
+                self.maintenanceTopView.isHidden = true
+                self.importantNoticeView.isHidden = true
+                self.showNext()
+            }
         }
     }
     

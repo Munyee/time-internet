@@ -60,6 +60,8 @@
 		9E028D2126D651250069FF31 /* ConnectedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E028D1B26D651250069FF31 /* ConnectedDevice.swift */; };
 		9E028D2226D651250069FF31 /* ConnectedDevice.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E028D1C26D651250069FF31 /* ConnectedDevice.xib */; };
 		9E028D5E26D72E1E0069FF31 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E028D5D26D72E1E0069FF31 /* Utils.swift */; };
+		9E11317A27D079E600021E91 /* ServerSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E11317927D079E600021E91 /* ServerSelection.storyboard */; };
+		9E11317C27D079F100021E91 /* ServerSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E11317B27D079F100021E91 /* ServerSelectionViewController.swift */; };
 		9E16A34E27BEA3D200D7D5F8 /* ImportantNotice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E16A34D27BEA3D200D7D5F8 /* ImportantNotice.storyboard */; };
 		9E16A35027BEA3E800D7D5F8 /* ImportantNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E16A34F27BEA3E800D7D5F8 /* ImportantNoticeViewController.swift */; };
 		9E183ACA266A17D200CB923B /* GettingDeviceReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E183ABE266A17CE00CB923B /* GettingDeviceReadyViewController.swift */; };
@@ -419,6 +421,8 @@
 		9E028D1B26D651250069FF31 /* ConnectedDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedDevice.swift; sourceTree = "<group>"; };
 		9E028D1C26D651250069FF31 /* ConnectedDevice.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectedDevice.xib; sourceTree = "<group>"; };
 		9E028D5D26D72E1E0069FF31 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		9E11317927D079E600021E91 /* ServerSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ServerSelection.storyboard; sourceTree = "<group>"; };
+		9E11317B27D079F100021E91 /* ServerSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectionViewController.swift; sourceTree = "<group>"; };
 		9E16A34D27BEA3D200D7D5F8 /* ImportantNotice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImportantNotice.storyboard; sourceTree = "<group>"; };
 		9E16A34F27BEA3E800D7D5F8 /* ImportantNoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportantNoticeViewController.swift; sourceTree = "<group>"; };
 		9E183ABE266A17CE00CB923B /* GettingDeviceReadyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GettingDeviceReadyViewController.swift; sourceTree = "<group>"; };
@@ -733,6 +737,7 @@
 		0A8E01F01FA9B50B00CA27A9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9E11317827D079D800021E91 /* ServerSelection */,
 				9E16A34C27BEA3B800D7D5F8 /* ImportantNotice */,
 				E2626D4E20A923DD00891953 /* Activity */,
 				0A8E01F11FA9B50B00CA27A9 /* AuthMenu */,
@@ -1049,6 +1054,15 @@
 				9E028D1C26D651250069FF31 /* ConnectedDevice.xib */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		9E11317827D079D800021E91 /* ServerSelection */ = {
+			isa = PBXGroup;
+			children = (
+				9E11317927D079E600021E91 /* ServerSelection.storyboard */,
+				9E11317B27D079F100021E91 /* ServerSelectionViewController.swift */,
+			);
+			path = ServerSelection;
 			sourceTree = "<group>";
 		};
 		9E16A34C27BEA3B800D7D5F8 /* ImportantNotice */ = {
@@ -1776,6 +1790,7 @@
 				E2FB110D22CC9492000FED93 /* Reward.storyboard in Resources */,
 				9E028D2226D651250069FF31 /* ConnectedDevice.xib in Resources */,
 				E2A8E8441FCE3D6E00EA5DF2 /* Profile.storyboard in Resources */,
+				9E11317A27D079E600021E91 /* ServerSelection.storyboard in Resources */,
 				E2E84FED1FCEB4FB0014CEAA /* DIN Alternate Regular.otf in Resources */,
 				E2626D5020A923F700891953 /* Activity.storyboard in Resources */,
 				9ECA46412436C79F00EB0DB8 /* EVoucherView.xib in Resources */,
@@ -2152,6 +2167,7 @@
 				9E183ACD266A17D200CB923B /* NoDeviceFoundViewController.swift in Sources */,
 				9E183AD2266A17D200CB923B /* AddDeviceListViewController.swift in Sources */,
 				9E2D736526F3C34300D1B980 /* CenteredCollectionViewFlowLayout.swift in Sources */,
+				9E11317C27D079F100021E91 /* ServerSelectionViewController.swift in Sources */,
 				9E2D736426F3C34300D1B980 /* VideoCategoryViewController.swift in Sources */,
 				9EF3C4A9243EB924007C22DC /* ContactUsViewController.swift in Sources */,
 				9EAB2C09249CB9ED00F12A3C /* PopUpViewController.swift in Sources */,

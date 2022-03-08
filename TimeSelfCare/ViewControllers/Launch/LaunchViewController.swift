@@ -319,17 +319,20 @@ internal class LaunchViewController: UIViewController, UNUserNotificationCenterD
 
         if self.triggerModeChangeCount >= 5 {
             self.triggerModeChangeCount = 0
-            
+            let secret: String = "MaintenanceMode_88_2O22"
+
             let savedMaintenancePassword = UserDefaults.standard.string(forKey: "MAINTENANCE_PASSWORD")
             
-            if savedMaintenancePassword != self.maintenanceMode.maintenance_password {
+            let savedRawString = (savedMaintenancePassword ?? "") + secret
+            if savedRawString.toMD5Hex() != self.maintenanceMode.maintenance_password {
                 let alert = UIAlertController(title: "Bypass Password", message: "", preferredStyle: .alert)
                 alert.addTextField { textField in
                     textField.placeholder = "Password"
                 }
                 alert.addAction( UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
                     let textField = alert?.textFields![0]
-                    if textField?.text == self.maintenanceMode.maintenance_password {
+                    let rawString = (textField?.text ?? "") + secret
+                    if rawString.toMD5Hex() == self.maintenanceMode.maintenance_password {
                         UserDefaults.standard.set(textField?.text, forKey: "MAINTENANCE_PASSWORD")
                         self.isBypass = true
                         self.maintananceView.isHidden = true

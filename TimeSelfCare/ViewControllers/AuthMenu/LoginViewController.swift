@@ -17,6 +17,8 @@ internal class LoginViewController: BaseAuthViewController {
 
     private weak var tooltip: EasyTipView?
     private var triggerModeChangeCount: Int = 0
+    private var matchPattern = "12132331"
+    private var pattern = ""
 
     @IBOutlet private weak var versionButton: UIButton!
     @IBOutlet private weak var containerView: UIStackView!
@@ -105,6 +107,7 @@ internal class LoginViewController: BaseAuthViewController {
     }
 
     @IBAction func toggleVisibility(_ sender: UIButton) {
+        devPattern(button: sender)
         sender.isSelected = !sender.isSelected
         self.passwordTextField.isSecureTextEntry = !sender.isSelected
     }
@@ -123,6 +126,7 @@ internal class LoginViewController: BaseAuthViewController {
     }
 
     @IBAction func toggleTooltip(_ sender: UIButton) {
+        devPattern(button: sender)
         if sender == self.tooltip?.presentingView {
             self.tooltip?.dismiss(gesture: nil)
             self.tooltip = nil
@@ -149,36 +153,44 @@ internal class LoginViewController: BaseAuthViewController {
     }
 
     @IBAction func triggerModeChange(_ sender: Any) {
-        self.triggerModeChangeCount += 1
-
-        if self.triggerModeChangeCount >= 5 {
-            self.triggerModeChangeCount = 0
-
-//            let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
-//            UserDefaults.standard.set(!isStagingMode, forKey: Installation.kIsStagingMode)
-            let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
-            if mode == "Production" {
-                UserDefaults.standard.set("Staging", forKey: Installation.kMode)
-            } else if mode == "Staging" {
-                UserDefaults.standard.set("BB Staging 2", forKey: Installation.kMode)
-            } else if mode == "BB Staging 2" {
-                UserDefaults.standard.set("BB Staging 3", forKey: Installation.kMode)
-            } else if mode == "BB Staging 3" {
-                UserDefaults.standard.set("Production", forKey: Installation.kMode)
+        self.pattern = "" // reset pattern
+//        self.triggerModeChangeCount += 1
+//
+//        if self.triggerModeChangeCount >= 5 {
+//            self.triggerModeChangeCount = 0
+//
+//            let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
+//            if mode == "Production" {
+//                UserDefaults.standard.set("Staging", forKey: Installation.kMode)
+//            } else if mode == "Staging" {
+//                UserDefaults.standard.set("BB Staging 2", forKey: Installation.kMode)
+//            } else if mode == "BB Staging 2" {
+//                UserDefaults.standard.set("BB Staging 3", forKey: Installation.kMode)
+//            } else if mode == "BB Staging 3" {
+//                UserDefaults.standard.set("Production", forKey: Installation.kMode)
+//            }
+//
+//            self.updateVersionDisplay()
+//        }
+    }
+    
+    func devPattern(button: UIButton) {
+        pattern += "\(button.tag)"
+                
+        if pattern == matchPattern {
+            pattern = ""
+            self.view.showToast(message: "Pattern Matched", font: .systemFont(ofSize: 12.0))
+            if let viewController = UIStoryboard(name: "ServerSelection", bundle: nil).instantiateViewController(withIdentifier: "ServerSelectionViewController") as? ServerSelectionViewController {
+                viewController.delegate = self
+                self.presentNavigation(viewController, animated: true)
             }
-
-            self.updateVersionDisplay()
         }
     }
 
     private func updateVersionDisplay() {
-//         let isStagingMode: Bool = UserDefaults.standard.bool(forKey: Installation.kIsStagingMode)
         let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
 
         var appVersion = Installation.appVersion
-//        if isStagingMode {
-//            appVersion = "\(appVersion) (Staging)"
-//        }
         if mode == "Staging" {
             appVersion = "\(appVersion) (Staging)"
         } else if mode == "BB Staging 2" {
@@ -228,5 +240,21 @@ internal class LoginViewController: BaseAuthViewController {
 extension LoginViewController: KeyboardChangeObserver {
     func keyboardChanging(endHeight: CGFloat, duration: TimeInterval) {
         self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: endHeight, right: 0)
+    }
+}
+
+extension LoginViewController: ServerSelectionDelegate {
+    func update(server: String) {
+        if server == "Production" {
+            UserDefaults.standard.set("Production", forKey: Installation.kMode)
+        } else if server == "Staging" {
+            UserDefaults.standard.set("Staging", forKey: Installation.kMode)
+        } else if server == "BB Staging 2" {
+            UserDefaults.standard.set("BB Staging 2", forKey: Installation.kMode)
+        } else if server == "BB Staging 3" {
+            UserDefaults.standard.set("BB Staging 3", forKey: Installation.kMode)
+        }
+        
+        self.updateVersionDisplay()
     }
 }

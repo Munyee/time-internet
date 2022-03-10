@@ -85,6 +85,21 @@ class SummaryContainerViewController: TimeBaseViewController {
                 }
             }
             
+            
+            if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                while let presentedViewController = vc.presentedViewController {
+                    vc = presentedViewController
+                }
+                
+                if let alertView = UIStoryboard(name: "BillingPopUp", bundle: nil).instantiateViewController(withIdentifier: "BillingPopUpViewController") as? BillingPopUpViewController {
+                    vc.addChild(alertView)
+                    alertView.view.frame = vc.view.frame
+                    vc.view.addSubview(alertView.view)
+                    alertView.didMove(toParent: vc)
+                }
+            }
+            
+            
             if maintenanceMode.show_notice {
                 self.importantNoticeView.isHidden = false
                 self.importantNoticeLabel.attributedText = maintenanceMode.notice_message_v2.htmlAttributedStringWith(href: maintenanceMode.notice_message_href)

@@ -177,7 +177,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mZv-qD-v9D">
                                                                 <rect key="frame" x="0.0" y="0.0" width="287" height="56"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qn2-Ja-KWK">
+                                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qn2-Ja-KWK">
                                                                         <rect key="frame" x="0.0" y="6" width="44" height="44"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="44" id="2xE-O8-417"/>
@@ -227,7 +227,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pF9-dn-Mpj">
                                                                 <rect key="frame" x="0.0" y="0.0" width="287" height="56"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7h-bf-zBA">
+                                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7h-bf-zBA">
                                                                         <rect key="frame" x="0.0" y="6" width="44" height="44"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="44" id="DED-WQ-xfr"/>
@@ -259,7 +259,7 @@
                                                                             <outlet property="delegate" destination="1y3-g0-gsb" id="ijm-Ae-ZOR"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnU-rz-dis">
+                                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnU-rz-dis">
                                                                         <rect key="frame" x="243" y="6" width="44" height="44"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="44" id="f4l-bO-m1W"/>
@@ -360,7 +360,7 @@
                                                     <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="triggerModeChange:" destination="1y3-g0-gsb" eventType="touchUpInside" id="GKK-7C-xp0"/>
+                                                    <action selector="triggerModeChange:" destination="1y3-g0-gsb" eventType="touchUpInside" id="b41-yz-Jho"/>
                                                 </connections>
                                             </button>
                                         </subviews>

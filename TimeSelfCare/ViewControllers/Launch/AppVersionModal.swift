@@ -45,6 +45,7 @@ class MaintenanceMode: NSObject {
     
     static let NOTICE_POPUP_VERSION: String = "notice_popup_version"
     
+    var maintenance_password = ""
     var is_maintenance = false
     var maintenance_title = ""
     var maintenance_text = ""
@@ -59,6 +60,7 @@ class MaintenanceMode: NSObject {
     }
     
     init (json: JSON) {
+        maintenance_password = json["maintenance_password"].stringValue
         is_maintenance = json["is_maintenance"].boolValue
         maintenance_title = json["maintenance_title"].stringValue
         maintenance_text = json["maintenance_text"].stringValue

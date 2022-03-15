@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import EasyTipView
 
 internal class SignUpViewController: BaseAuthViewController {
@@ -85,15 +84,16 @@ internal class SignUpViewController: BaseAuthViewController {
             self.showAlertMessage(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Password does not match, please try again.", comment: ""), actions: [UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil)])
             return
         }
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Signing Up...", comment: "")
+        
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading(toView: self.view)
 
         APIClient.shared.signUp(
             icNumber: self.myKadNoTextField.inputText,
             accountNumber: self.accountNumberTextField.inputText,
             password: self.createPasswordTextField.inputText
         ) { _, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return

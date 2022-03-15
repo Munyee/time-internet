@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import EasyTipView
 
 internal class LoginViewController: BaseAuthViewController {

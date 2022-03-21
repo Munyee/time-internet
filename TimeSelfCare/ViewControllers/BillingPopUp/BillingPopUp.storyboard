@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Cfz-g7-s4i">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Billing Pop Up View Controller-->
+        <scene sceneID="Qov-MG-NzI">
+            <objects>
+                <viewController storyboardIdentifier="BillingPopUpViewController" id="Cfz-g7-s4i" customClass="BillingPopUpViewController" customModule="TimeSelfCare" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SK2-gH-VOB">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Gv-dC-dCS">
+                                <rect key="frame" x="37" y="224" width="354" height="488"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="billing_popup_banner" translatesAutoresizingMaskIntoConstraints="NO" id="lSC-6e-icM">
+                                        <rect key="frame" x="-1" y="0.0" width="356" height="210.33333333333334"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="lSC-6e-icM" secondAttribute="height" multiplier="340:201" id="SsZ-VA-4vD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your bill has a new look!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ayc-S7-nRL">
+                                        <rect key="frame" x="25" y="254.33333333333331" width="304" height="30"/>
+                                        <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bx-5U-fto">
+                                        <rect key="frame" x="25" y="300.33333333333337" width="304" height="38.666666666666686"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="We’ve enhanced your TIME bill so you can find the information you need at a glance.">
+                                                <attributes>
+                                                    <font key="NSFont" size="16" name="DIN-Light"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4P-uS-Z72">
+                                        <rect key="frame" x="74" y="379" width="206" height="51"/>
+                                        <color key="backgroundColor" red="0.92549019607843142" green="0.0" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="206" id="W9r-EO-0bQ"/>
+                                            <constraint firstAttribute="height" constant="51" id="pPX-4P-Mg4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="27"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="6" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="CHECK IT OUT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actCheckItOut:" destination="Cfz-g7-s4i" eventType="touchUpInside" id="cz8-Ul-EvY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVk-33-zkI">
+                                        <rect key="frame" x="328" y="11" width="15" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="5CU-Cn-Efu"/>
+                                            <constraint firstAttribute="width" constant="15" id="wCo-GO-3ZG"/>
+                                        </constraints>
+                                        <state key="normal" image="icon_billing_close"/>
+                                        <connections>
+                                            <action selector="actDismiss:" destination="Cfz-g7-s4i" eventType="touchUpInside" id="y1z-Rs-p1B"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Ayc-S7-nRL" firstAttribute="leading" secondItem="4Gv-dC-dCS" secondAttribute="leading" constant="25" id="3eo-fj-umt"/>
+                                    <constraint firstItem="1bx-5U-fto" firstAttribute="top" secondItem="Ayc-S7-nRL" secondAttribute="bottom" constant="16" id="CRW-Dw-XhG"/>
+                                    <constraint firstItem="mVk-33-zkI" firstAttribute="top" secondItem="4Gv-dC-dCS" secondAttribute="top" constant="11" id="Lvq-sg-OWa"/>
+                                    <constraint firstItem="1bx-5U-fto" firstAttribute="leading" secondItem="4Gv-dC-dCS" secondAttribute="leading" constant="25" id="T6u-LA-0AG"/>
+                                    <constraint firstItem="lSC-6e-icM" firstAttribute="leading" secondItem="4Gv-dC-dCS" secondAttribute="leading" constant="-1" id="XTf-ns-VPA"/>
+                                    <constraint firstItem="W4P-uS-Z72" firstAttribute="centerX" secondItem="4Gv-dC-dCS" secondAttribute="centerX" id="a4Q-FL-589"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ayc-S7-nRL" secondAttribute="trailing" constant="25" id="ack-r6-Nye"/>
+                                    <constraint firstAttribute="trailing" secondItem="lSC-6e-icM" secondAttribute="trailing" constant="-1" id="d2H-dG-Erg"/>
+                                    <constraint firstAttribute="trailing" secondItem="1bx-5U-fto" secondAttribute="trailing" constant="25" id="gq4-d3-e0d"/>
+                                    <constraint firstAttribute="trailing" secondItem="mVk-33-zkI" secondAttribute="trailing" constant="11" id="kW9-rE-wmZ"/>
+                                    <constraint firstItem="Ayc-S7-nRL" firstAttribute="top" secondItem="lSC-6e-icM" secondAttribute="bottom" constant="44" id="mMA-QL-Syk"/>
+                                    <constraint firstItem="W4P-uS-Z72" firstAttribute="top" secondItem="1bx-5U-fto" secondAttribute="bottom" constant="40" id="neX-qf-WVx"/>
+                                    <constraint firstAttribute="bottom" secondItem="W4P-uS-Z72" secondAttribute="bottom" constant="58" id="vKB-yO-Job"/>
+                                    <constraint firstItem="lSC-6e-icM" firstAttribute="top" secondItem="4Gv-dC-dCS" secondAttribute="top" id="z0a-Sg-9V8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Lxu-Fa-gcj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4Gv-dC-dCS" firstAttribute="centerX" secondItem="Lxu-Fa-gcj" secondAttribute="centerX" id="2vs-7u-g1Q"/>
+                            <constraint firstItem="4Gv-dC-dCS" firstAttribute="leading" secondItem="Lxu-Fa-gcj" secondAttribute="leading" constant="37" id="Ehb-G1-qO3"/>
+                            <constraint firstItem="Lxu-Fa-gcj" firstAttribute="trailing" secondItem="4Gv-dC-dCS" secondAttribute="trailing" constant="37" id="PM8-lz-Lpt"/>
+                            <constraint firstItem="4Gv-dC-dCS" firstAttribute="centerY" secondItem="Lxu-Fa-gcj" secondAttribute="centerY" id="qHR-jV-dfr"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PNl-hP-Lyc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-546.37681159420299" y="105.80357142857143"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="billing_popup_banner" width="303" height="178"/>
+        <image name="icon_billing_close" width="15" height="15"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

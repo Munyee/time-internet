@@ -219,7 +219,7 @@
                                    : @"UNKNOWN";
       FPRLogInfo(kFPRClientMetricLogged,
                  @"Logging network request trace - %@, Response code: %@, %.4fms",
-                 FPRDecodeString(networkRequestMetric.url), responseCode, duration / 1000.0);
+                 trace.trimmedURLString, responseCode, duration / 1000.0);
       firebase_perf_v1_PerfMetric metric = FPRGetPerfMetricMessage(self.config.appID);
       FPRSetNetworkRequestMetric(&metric, networkRequestMetric);
       FPRSetApplicationProcessState(&metric,
@@ -252,7 +252,7 @@
 - (void)processAndLogEvent:(firebase_perf_v1_PerfMetric)event {
   BOOL tracingEnabled = self.configuration.isDataCollectionEnabled;
   if (!tracingEnabled) {
-    FPRLogError(kFPRClientPerfNotConfigured, @"Dropping event since data collection is disabled.");
+    FPRLogDebug(kFPRClientPerfNotConfigured, @"Dropping event since data collection is disabled.");
     return;
   }
 
@@ -271,7 +271,6 @@
   });
 
   // Attempts to dispatch events if successfully retrieve installation ID.
-  __block firebase_perf_v1_PerfMetric curEvent = event;
   [self.installations
       installationIDWithCompletion:^(NSString *_Nullable identifier, NSError *_Nullable error) {
         if (error) {
@@ -279,8 +278,9 @@
                       error.description);
         } else {
           dispatch_group_async(self.eventsQueueGroup, self.eventsQueue, ^{
-            curEvent.application_info.app_instance_id = FPREncodeString(identifier);
-            [self.gdtLogger logEvent:event];
+            firebase_perf_v1_PerfMetric updatedEvent = event;
+            updatedEvent.application_info.app_instance_id = FPREncodeString(identifier);
+            [self.gdtLogger logEvent:updatedEvent];
           });
         }
       }];

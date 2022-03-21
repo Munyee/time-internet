@@ -61,6 +61,35 @@ class SummaryContainerViewController: TimeBaseViewController {
         
         self.updatePages()
         
+        let account = AccountController.shared.selectedAccount! // swiftlint:disable:this force_unwrapping
+
+        BillingPopUpDataController.shared.loadBillingPopUp(account: account) { (data, error) in
+            
+            guard error == nil else {
+                print(error.debugDescription)
+                return
+            }
+            
+            if let result = data, let show = result.show {
+                if show {
+                    if var vc = UIApplication.shared.keyWindow?.rootViewController {
+                        while let presentedViewController = vc.presentedViewController {
+                            vc = presentedViewController
+                        }
+                        
+                        if let alertView = UIStoryboard(name: "BillingPopUp", bundle: nil).instantiateViewController(withIdentifier: "BillingPopUpViewController") as? BillingPopUpViewController {
+                            alertView.pdf_url = result.pdf_url
+                            vc.addChild(alertView)
+                            alertView.view.frame = vc.view.frame
+                            vc.view.addSubview(alertView.view)
+                            alertView.didMove(toParent: vc)
+                        }
+                    }
+                }
+            }
+            
+        }
+        
         let request = Alamofire.request("https://api-4854611070421271444-279141.firebaseio.com/.json", method: .get, parameters: nil, encoding: URLEncoding(), headers: nil)
         request.responseJSON { data in
             let mode: String = UserDefaults.standard.string(forKey: Installation.kMode) ?? "Production"
@@ -87,6 +116,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                     }
                 }
             }
+            
             
             if maintenanceMode.show_notice {
                 self.importantNoticeView.isHidden = false

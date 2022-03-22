@@ -29,6 +29,8 @@ internal class LoginViewController: BaseAuthViewController {
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var liveChatView: ExpandableLiveChatView!
     @IBOutlet private weak var liveChatConstraint: NSLayoutConstraint!
+    
+    var hud: LoadingView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,26 +66,26 @@ internal class LoginViewController: BaseAuthViewController {
             return
         }
 
-        let HUD: MBProgressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
-        HUD.label.text = NSLocalizedString("Logging in...", comment: "Logging in...")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading(toView: self.view)
 
         let identity = UserPassIdentity(username: self.usernameTextField.inputText, password: self.passwordTextField.inputText)
         APIClient.shared.loginWithEmail(identity.identifier, password: identity.challenge) { _, error in
             guard error == nil else {
-                HUD.hide(animated: true)
+                hud.hideLoading()
                 self.showAlertMessage(with: error)
                 return
             }
 
             guard let profile = AccountController.shared.profile else {
-                HUD.hide(animated: true)
+                hud.hideLoading()
                 self.showAlertMessage(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("An unexpected login error has occured.", comment: ""), actions: [UIAlertAction(title: "OK", style: .default, handler: nil)])
                 return
             }
 
             if profile.passwordHasExpired {
                 AuthUser.current?.logout { _ in
-                    HUD.hide(animated: true)
+                    hud.hideLoading()
                     FreshChatManager.shared.logout()
 
                     let alertTitle = NSLocalizedString("Password Expired", comment: "")
@@ -98,7 +100,7 @@ internal class LoginViewController: BaseAuthViewController {
                 }
             } else {
                 AccountSummaryViewController.didAnimate = false
-                HUD.hide(animated: true)
+                hud.hideLoading()
                 FreshChatManager.shared.logout()
                 self.dismissVC()
             }

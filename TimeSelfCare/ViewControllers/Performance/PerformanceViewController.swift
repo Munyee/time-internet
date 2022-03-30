@@ -9,7 +9,6 @@
 import UIKit
 import Lottie
 import HwMobileSDK
-import MBProgressHUD
 import SwiftyJSON
 
 public extension NSNotification.Name {
@@ -182,10 +181,10 @@ class PerformanceViewController: BaseViewController {
                 return
         }
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         AccountDataController.shared.getPPPOEInfo(account: account, service: service) { data, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             guard error == nil else {
                 if let nsError = error as NSError?, let responseCode = nsError.userInfo["reponseCode"] as? Int {
                     var pppoeType: PppoeAlertType = .error
@@ -225,29 +224,29 @@ class PerformanceViewController: BaseViewController {
     }
     
     @IBAction func actParentalControl(_ sender: Any) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         HuaweiHelper.shared.queryGateway(completion: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.parentalcontrol.filename, bundle: nil).instantiateViewController(withIdentifier: "PCTemplateListViewController") as? PCTemplateListViewController {
                 self.presentNavigation(templateVC, animated: true)
             }
         }, error: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.showNotAvailable()
         })
     }
     
     @IBAction func actDeviceInstallation(_ sender: Any) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         HuaweiHelper.shared.queryGateway(completion: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let templateVC = UIStoryboard(name: TimeSelfCareStoryboard.deviceinstallation.filename, bundle: nil).instantiateViewController(withIdentifier: "DeviceInstallationListViewController") as? DeviceInstallationListViewController {
                 self.presentNavigation(templateVC, animated: true)
             }
         }, error: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.showNotAvailable()
         })
     }

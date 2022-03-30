@@ -86,7 +86,7 @@ internal class SignUpViewController: BaseAuthViewController {
         }
         
         let hud = LoadingView().addLoading(toView: self.view)
-        hud.showLoading(toView: self.view)
+        hud.showLoading()
 
         APIClient.shared.signUp(
             icNumber: self.myKadNoTextField.inputText,

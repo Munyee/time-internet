@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 class PCTemplateListViewController: UIViewController {
     
@@ -54,9 +53,9 @@ class PCTemplateListViewController: UIViewController {
     @objc
     func getParentalControl() {
         templateList.removeAll()
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+
         HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
             
             if tplList.isEmpty {
@@ -70,17 +69,17 @@ class PCTemplateListViewController: UIViewController {
             }
             
             HuaweiHelper.shared.getParentControlTemplateDetailList(templateNames: names, completion: { arrData in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.templateList = arrData
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }) { _ in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.dismissVC()
             }
             
         }) { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.dismissVC()
         }
     }
@@ -126,9 +125,9 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
                 message: NSLocalizedString("Are you sure want to remove from the list?", comment: ""),
                 actions: [
                     UIAlertAction(title: NSLocalizedString("Confirm", comment: ""), style: .destructive) { _ in
-                        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                        hud.label.text = NSLocalizedString("Loading...", comment: "")
-                                                
+                        let hud = LoadingView().addLoading(toView: self.view)
+                        hud.showLoading()
+
                         if let controlledDev = template.macList as? [String] {
                             let group = DispatchGroup()
                             for dev in controlledDev {
@@ -143,12 +142,12 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
                             
                             group.notify(queue: .main) {
                                 HuaweiHelper.shared.deleteAttachParentControlTemplate(name: template.name, completion: { _ in
-                                    hud.hide(animated: true)
+                                    hud.hideLoading()
                                     self.getParentalControl()
                                 }, error: { exception in
                                     DispatchQueue.main.async {
                                         self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                                        hud.hide(animated: true)
+                                        hud.hideLoading()
                                     }
                                 })
                             }

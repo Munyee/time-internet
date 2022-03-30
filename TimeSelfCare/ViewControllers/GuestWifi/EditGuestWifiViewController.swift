@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import HwMobileSDK
 
 class EditGuestWifiViewController: UIViewController {
@@ -75,10 +74,10 @@ class EditGuestWifiViewController: UIViewController {
     }
     
     func queryGuestWifi() {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        HuaweiHelper.shared.getGuestWifiInfo { info in
-            hud.hide(animated: true)
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+                HuaweiHelper.shared.getGuestWifiInfo { info in
+            hud.hideLoading()
             self.guestInfo = info
             
             if info.encrypt == HwGuestWifiInfoEncryptMode.OPEN {
@@ -113,7 +112,7 @@ class EditGuestWifiViewController: UIViewController {
             self.checkCanNext()
             
         } error: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
         }
     }
     
@@ -152,13 +151,13 @@ class EditGuestWifiViewController: UIViewController {
             guestWifi.encrypt = HwGuestWifiInfoEncryptMode.OPEN
         }
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         HuaweiHelper.shared.setGuestWifiInfo(guestWifiInfo: guestWifi) { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.popBack()
         } error: { exception in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
         }
     }

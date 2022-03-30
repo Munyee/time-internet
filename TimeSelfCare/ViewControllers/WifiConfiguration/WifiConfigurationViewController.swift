@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 class WifiConfigurationViewController: UIViewController {
     
     @IBOutlet weak var liveChatView: ExpandableLiveChatView!
@@ -60,10 +59,10 @@ class WifiConfigurationViewController: UIViewController {
     }
     
     func queryGuestWifi() {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         HuaweiHelper.shared.getGuestWifiInfo { info in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if info.enabled {
                 self.remainingTime = info.remainSec
                 if info.duration == 0 {
@@ -78,7 +77,7 @@ class WifiConfigurationViewController: UIViewController {
                 self.guestWifiStatus.textColor = #colorLiteral(red: 0.8980392157, green: 0.02745098039, blue: 0.02745098039, alpha: 1)
             }
         } error: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
         }
     }
     

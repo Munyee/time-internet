@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 class DeviceInstallationListViewController: UIViewController {
 
@@ -77,9 +76,9 @@ class DeviceInstallationListViewController: UIViewController {
     
     @objc
     func goToAddDevice() {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+        
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
 //        HuaweiHelper.shared.getGuestWifiInfo(completion: { guestWifi in
@@ -127,7 +126,7 @@ class DeviceInstallationListViewController: UIViewController {
 //        })
         HuaweiHelper.shared.getGuestWifiInfo(completion: { guestWifi in
             HuaweiHelper.shared.getWifiInfoAll(completion: { wifiInfoAll in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
                 let arrData = wifiInfoAll.infoList.filter { wifiInfo -> Bool in
                     wifiInfo.ssidIndex != guestWifi.ssidIndex && wifiInfo.ssidIndex != guestWifi.ssidIndex5G
@@ -153,11 +152,11 @@ class DeviceInstallationListViewController: UIViewController {
                     }
                 }
             }, error: { _ in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
             })
         }, error: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         })
     }

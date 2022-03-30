@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import EasyTipView
 
 protocol BillingInfoFormComponentViewDelegate: class {
@@ -593,11 +592,10 @@ class BillingInfoFormViewController: UIViewController {
         self.populateData()
 
         let okAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Updating...", comment: "")
-
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
             BillingInfoDataController.shared.updateBillingInfo(billingInfo: self.billingInfo) { _, error in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 if let error = error {
                     self.showAlertMessage(with: error)
                     return

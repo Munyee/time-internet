@@ -230,6 +230,9 @@ class TicketDetailViewController: UIViewController {
 
     @objc
     private func popViewController() {
+        selectedImageCollectionView.delegate = nil
+        tableView.delegate = nil
+        messageWebView.scrollView.delegate = nil
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
         }

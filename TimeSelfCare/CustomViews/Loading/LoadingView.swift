@@ -18,11 +18,18 @@ class LoadingView: UIView {
         return view
     }
     
-    public func showLoading(toView: UIView) {
-        toView.addSubview(self)
+    public func showLoading() {
+        animationView.play()
+        if var vc = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = vc.presentedViewController {
+                vc = presentedViewController
+            }
+            vc.view.addSubview(self)
+        }
     }
     
     public func hideLoading() {
+        animationView.stop()
         self.removeFromSuperview()
     }
     
@@ -39,7 +46,7 @@ class LoadingView: UIView {
     private func commonInit() {
         Bundle.main.loadNibNamed("Loading", owner: self, options: nil)
         addSubview(contentView)
-        contentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
+        contentView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         animationView.animation = Animation.named("new_loading")
         animationView.loopMode = .loop
         animationView.play()

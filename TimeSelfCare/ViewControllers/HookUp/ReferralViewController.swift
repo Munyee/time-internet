@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class ReferralViewController: UIViewController {
 
@@ -29,6 +28,7 @@ class ReferralViewController: UIViewController {
     
     @objc
     func popBack() {
+        tableView.delegate = nil
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
         }
@@ -41,11 +41,11 @@ class ReferralViewController: UIViewController {
                 return
         }
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+
         AccountDataController.shared.getHuaeInfo(account: account) { data, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             guard error == nil else {
                 return
             }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class ChangeSSIDViewController: TimeBaseViewController {
 
@@ -42,14 +41,14 @@ class ChangeSSIDViewController: TimeBaseViewController {
             // TODO: handle error here.
             return
         }
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Updating...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
 
         ssid.name = self.ssidNameTextField.text
         ssid.password = self.ssidPasswordTextField.text
 
         SsidDataController.shared.updateSsid(ssid: ssid) { _, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return

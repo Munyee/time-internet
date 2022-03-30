@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 internal class ChangePasswordViewController: BaseAuthViewController {
     override var allRequiredTextFields: [VDTTextField] {
@@ -65,6 +64,7 @@ internal class ChangePasswordViewController: BaseAuthViewController {
             FreshChatManager.shared.logout()
         }
 
+        scrollView.delegate = nil
         if self.navigationController?.viewControllers.count ?? 0 > 1 {
             DispatchQueue.main.async {
                 self.navigationController?.popViewController(animated: true)
@@ -95,11 +95,11 @@ internal class ChangePasswordViewController: BaseAuthViewController {
             self.showAlertMessage(with: error)
             return
         }
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Changing Password..", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
 
         APIClient.shared.changePassword(username, currentPassword: self.currentPasswordTextField.inputText, newPassword: self.newPasswordTextField.inputText) { _, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return

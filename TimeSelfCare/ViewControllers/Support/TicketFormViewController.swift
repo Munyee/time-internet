@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import TimeSelfCareData
 
 protocol TicketFormComponentViewDelegate: class {
@@ -354,8 +353,8 @@ class TicketFormViewController: TimeBaseViewController {
         }
         ticket.accountNo = AccountController.shared.selectedAccount?.accountNo
 
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Creating ticket...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         let images: [UIImage] = self.selectedImageInfo.compactMap {
             guard var image = $0[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
                 return nil
@@ -364,7 +363,7 @@ class TicketFormViewController: TimeBaseViewController {
         }
 
         TicketDataController.shared.createTicket(ticket, account: AccountController.shared.selectedAccount, attachments: images) { _, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return

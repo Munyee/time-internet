@@ -52,7 +52,7 @@ class ExpandableLiveChatView: UIView {
     @IBAction func actClick(_ sender: Any) {
         if (isExpand) {
             let hud = LoadingView().addLoading(toView: self)
-            hud.showLoading(toView: self)
+            hud.showLoading()
             
             LiveChatDataController.shared.loadStatus { statusResult in
                 hud.hideLoading()

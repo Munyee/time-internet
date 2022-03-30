@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 protocol PCDevicesViewControllerDelegate {
     func selected(devices: [HwLanDevice])
@@ -37,8 +36,8 @@ class PCDevicesViewController: UIViewController {
     
     func queryDevices() {
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
 
         HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
             let names = tplList.map { template -> String in template.name }
@@ -75,9 +74,9 @@ class PCDevicesViewController: UIViewController {
                     }
                 }
                 
-                hud.hide(animated: true)
+                hud.hideLoading()
             }, error: { exception in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
                     UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
                         self.dismissVC()
@@ -86,7 +85,7 @@ class PCDevicesViewController: UIViewController {
             })
             
         }, error: { exception in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
                 UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
                     self.dismissVC()

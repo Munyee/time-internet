@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import Lottie
 import SwiftyJSON
 
@@ -194,8 +193,6 @@ class DiagnosisViewController: TimeBaseViewController {
             }
         }
         
-//        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-//        hud.label.text = NSLocalizedString("Performing diagnostics...", comment: "")
         guard
             let account = AccountController.shared.selectedAccount,
             let service: Service = ServiceDataController.shared.getServices(account: account).first(where: { $0.category == .broadband || $0.category == .broadbandAstro })
@@ -267,11 +264,11 @@ class DiagnosisViewController: TimeBaseViewController {
             ticket.description = self.diagnostics?.message
             ticket.accountNo = AccountController.shared.selectedAccount?.accountNo
 
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Creating ticket...", comment: "")
-
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
+            
             TicketDataController.shared.createTicket(ticket, account: AccountController.shared.selectedAccount, attachments: []) { _, error in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 if let error = error {
                     self.showAlertMessage(with: error)
                     return
@@ -292,8 +289,8 @@ class DiagnosisViewController: TimeBaseViewController {
         let alert = UIAlertController(title: "Bear With Us!", message: "You'll be logged out shortly for the firmware update. The update will take approximately 1 hour. You may check your firmware update status again once it's done.", preferredStyle: .alert)
         alert.addAction(
             UIAlertAction(title: "OK", style: .default, handler: { action in
-                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                hud.label.text = NSLocalizedString("Loading...", comment: "")
+                let hud = LoadingView().addLoading(toView: self.view)
+                hud.showLoading()
                 
                 guard
                     let account = AccountController.shared.selectedAccount,
@@ -303,7 +300,7 @@ class DiagnosisViewController: TimeBaseViewController {
                 }
                 
                 AccountDataController.shared.upgradeFirmware(account: account, service: service) { data, error in
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                     guard error == nil else {
                         return
                     }

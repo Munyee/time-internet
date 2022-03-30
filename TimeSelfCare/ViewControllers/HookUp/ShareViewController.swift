@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class ShareViewController: UIViewController {
 
@@ -99,11 +98,11 @@ class ShareViewController: UIViewController {
                 return
         }
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+
         AccountDataController.shared.setHuaeConsent(account: account) { data, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             guard error == nil else {
                 return
             }

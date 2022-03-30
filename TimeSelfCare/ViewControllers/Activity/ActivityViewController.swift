@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class ActivityViewController: TimeBaseViewController {
     var activities: [Activity] = [] {

@@ -67,8 +67,7 @@ internal class LoginViewController: BaseAuthViewController {
         }
 
         let hud = LoadingView().addLoading(toView: self.view)
-        hud.showLoading(toView: self.view)
-
+        hud.showLoading()
         let identity = UserPassIdentity(username: self.usernameTextField.inputText, password: self.passwordTextField.inputText)
         APIClient.shared.loginWithEmail(identity.identifier, password: identity.challenge) { _, error in
             guard error == nil else {

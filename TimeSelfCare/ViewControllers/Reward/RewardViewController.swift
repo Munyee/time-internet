@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class RewardViewController: TimeBaseViewController {
 
@@ -140,11 +139,11 @@ class RewardViewController: TimeBaseViewController {
     private func refresh() {
         self.rewards = RewardDataController.shared.getRewards(account: AccountController.shared.selectedAccount)
 
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
 
         RewardDataController.shared.loadRewards(account: AccountController.shared.selectedAccount) { (rewards: [Reward], error: Error?) in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.refreshControl.endRefreshing()
             if let error = error {
                 self.showAlertMessage(with: error)
@@ -168,11 +167,11 @@ class RewardViewController: TimeBaseViewController {
 
             let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
             let grabAction = UIAlertAction(title: NSLocalizedString("Grab", comment: ""), style: .default) { _ in
-                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                hud.label.text = NSLocalizedString("Grabbing...", comment: "")
+                let hud = LoadingView().addLoading(toView: self.view)
+                hud.showLoading()
                 RewardDataController.shared.grabReward(reward,
                                                        account: AccountController.shared.selectedAccount) { _, error in
-                                                        hud.hide(animated: true)
+                                                        hud.hideLoading()
                                                         if let error = error {
                                                             self.showAlertMessage(with: error)
                                                             return

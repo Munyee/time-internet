@@ -46,6 +46,7 @@ class ContactUsViewController: BaseAuthViewController {
     }
 
     @IBAction func backToHome(_ sender: Any) {
+        scrollView.delegate = nil
         self.navigationController?.popViewController(animated: true)
     }
 

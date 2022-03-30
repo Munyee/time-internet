@@ -227,7 +227,7 @@ class SummaryContainerViewController: TimeBaseViewController {
             #endif
             
             if isCustSegments {
-                self.hud?.showLoading(toView: self.view)
+                self.hud?.showLoading()
                 AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
                     guard error == nil else {
                         print(error.debugDescription)
@@ -537,7 +537,7 @@ class SummaryContainerViewController: TimeBaseViewController {
     func showGuestWifi() {
         if AccountController.shared.showGuestWifi {
             AccountController.shared.showGuestWifi = false
-            hud?.showLoading(toView: self.view)
+            hud?.showLoading()
             HuaweiHelper.shared.queryUserBindGateway { gateways in
                 self.hud?.hideLoading()
                 if !gateways.isEmpty {

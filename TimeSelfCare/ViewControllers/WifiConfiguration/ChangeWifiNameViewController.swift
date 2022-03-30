@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 class ChangeWifiNameViewController: UIViewController {
     
@@ -116,17 +115,17 @@ class ChangeWifiNameViewController: UIViewController {
                 }
                 
                 if let wifiInfos = arrWifiInfo as? [HwWifiInfo] {
-                    let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                    hud.label.text = NSLocalizedString("Loading...", comment: "")
+                    let hud = LoadingView().addLoading(toView: self.view)
+                    hud.showLoading()
                     HuaweiHelper.shared.setWifiInfoList(wifiInfos: wifiInfos, completion: { _ in
                         DispatchQueue.main.async {
-                            hud.hide(animated: true)
+                            hud.hideLoading()
                             self.popBack()
                         }
                     }, error: { exception in
                         DispatchQueue.main.async {
                             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                            hud.hide(animated: true)
+                            hud.hideLoading()
                         }
                     })
                 }

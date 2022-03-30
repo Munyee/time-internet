@@ -41,6 +41,7 @@ class VideoListViewController: UIViewController {
     
     @objc
     func popBack() {
+        tableView.delegate = nil
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
         }

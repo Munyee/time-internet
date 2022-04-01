@@ -178,7 +178,7 @@ class GuestWifiViewController: UIViewController {
         if guestInfo != nil && guestInfo.ssid.isEmpty {
             self.edit()
         } else {
-            self.toggleGuestWifi(enable: !guestInfo.enabled)
+            self.toggleGuestWifi(enable: !(guestInfo.enabled))
         }
     }
     

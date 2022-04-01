@@ -31,6 +31,7 @@ internal class HomeForwardListViewController: TimeBaseViewController {
 
     @objc
     func back() {
+        self.tableView.delegate = nil
         self.dismissVC()
     }
 }

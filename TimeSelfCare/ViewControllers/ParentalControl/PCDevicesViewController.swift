@@ -28,10 +28,16 @@ class PCDevicesViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("SELECT DEVICE(S)", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_close_magenta"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_close_magenta"), style: .done, target: self, action: #selector(self.dismissView))
         
         queryDevices()
         checkConfirmButton()
+    }
+    
+    @objc
+    func dismissView() {
+        self.tableView.delegate = nil
+        self.dismissVC()
     }
     
     func queryDevices() {
@@ -79,7 +85,7 @@ class PCDevicesViewController: UIViewController {
                 hud.hideLoading()
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
                     UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
-                        self.dismissVC()
+                        self.dismissView()
                     }
                 ])
             })
@@ -88,7 +94,7 @@ class PCDevicesViewController: UIViewController {
             hud.hideLoading()
             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
                 UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
-                    self.dismissVC()
+                    self.dismissView()
                 }
             ])
         })
@@ -138,7 +144,7 @@ class PCDevicesViewController: UIViewController {
     }
     
     @IBAction func actConfirm(_ sender: Any) {
-        self.dismissVC()
+        self.dismissView()
         delegate?.selected(devices: selectedDevices)
     }
     

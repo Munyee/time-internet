@@ -70,6 +70,7 @@ internal class ChangePasswordViewController: BaseAuthViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         } else {
+            self.scrollView.delegate = nil
             self.dismissVC()
         }
     }
@@ -118,6 +119,7 @@ internal class ChangePasswordViewController: BaseAuthViewController {
             let alertTitle = NSLocalizedString("Success", comment: "")
             let alertMessage = NSLocalizedString("You have successfully changed your password. Please use your new password in your next login.", comment: "")
             let dismissAction = UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default) { _ in
+                self.scrollView.delegate = nil
                 self.dismissVC()
             }
             self.showAlertMessage(title: alertTitle, message: alertMessage, actions: [dismissAction])

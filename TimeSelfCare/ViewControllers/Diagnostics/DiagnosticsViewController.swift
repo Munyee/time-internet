@@ -235,6 +235,7 @@ class DiagnosisViewController: TimeBaseViewController {
                 group.leave()
                 self.showAlertMessage(message: error?.localizedDescription ?? "Something Went Wrong", actions: [
                     UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .destructive) { _ in
+                        self.scrollView.delegate = nil
                         self.dismissVC()
                     }
                 ])
@@ -277,6 +278,7 @@ class DiagnosisViewController: TimeBaseViewController {
                 let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
                 confirmationVC.mode = .ticketSubmitted
                 confirmationVC.actionBlock = {
+                    self.scrollView.delegate = nil
                     self.dismissVC()
                 }
                 confirmationVC.modalPresentationStyle = .fullScreen

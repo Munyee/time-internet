@@ -29,7 +29,7 @@ class ActivityViewController: TimeBaseViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("NOTIFICATIONS", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Settings", comment: ""), style: .plain, target: self, action: #selector(self.changeNotificationSettings(_:)))
 
         self.tableView.rowHeight = UITableView.automaticDimension
@@ -48,6 +48,12 @@ class ActivityViewController: TimeBaseViewController {
         super.viewDidAppear(animated)
         UIApplication.shared.applicationIconBadgeNumber = 0
         APNSController.shared.markAllRead()
+    }
+    
+    @objc
+    func dismissView() {
+        tableView.delegate = nil
+        self.dismissVC()
     }
 
     @objc

@@ -52,6 +52,7 @@ internal class BillsViewController: TimeBaseViewController {
 
     @objc
     func back() {
+        self.tableView.delegate = nil
         self.dismissVC()
     }
 

@@ -82,13 +82,19 @@ class RewardViewController: TimeBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("TIME REWARDS", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
 
         self.tableView.addSubview(self.refreshControl)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 50
 
         self.tableView.register(UINib(nibName: "RewardHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "RewardHeaderView")
+    }
+    
+    @objc
+    func dismissView() {
+        self.tableView.delegate = nil
+        self.dismissVC()
     }
 
     override func viewWillLayoutSubviews() {

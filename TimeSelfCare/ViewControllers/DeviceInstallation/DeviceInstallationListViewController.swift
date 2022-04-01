@@ -21,7 +21,7 @@ class DeviceInstallationListViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("DEVICE INSTALLATION", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.getAPList), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -30,6 +30,12 @@ class DeviceInstallationListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchAPList()
+    }
+    
+    @objc
+    func dismissView() {
+        tableView.delegate = nil
+        self.dismissVC()
     }
     
     @objc

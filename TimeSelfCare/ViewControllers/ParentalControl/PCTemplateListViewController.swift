@@ -20,7 +20,7 @@ class PCTemplateListViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("PARENTAL CONTROLS", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = 10
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "ic_add"), style: .done, target: self, action: #selector(self.goToAddTemplate)), UIBarButtonItem(image: #imageLiteral(resourceName: "ic_info"), style: .done, target: self, action: #selector(self.goToMainView)), spacer]
@@ -51,6 +51,12 @@ class PCTemplateListViewController: UIViewController {
     }
     
     @objc
+    func dismissView() {
+        tableView.delegate = nil
+        self.dismissVC()
+    }
+    
+    @objc
     func getParentalControl() {
         templateList.removeAll()
         let hud = LoadingView().addLoading(toView: self.view)
@@ -75,12 +81,12 @@ class PCTemplateListViewController: UIViewController {
                 self.refreshControl.endRefreshing()
             }) { _ in
                 hud.hideLoading()
-                self.dismissVC()
+                self.dismissView()
             }
             
         }) { _ in
             hud.hideLoading()
-            self.dismissVC()
+            self.dismissView()
         }
     }
 }

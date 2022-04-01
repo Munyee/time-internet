@@ -102,10 +102,12 @@ class AddBlacklistViewController: UIViewController {
         HuaweiHelper.shared.setLanDeviceToBlackList(list: selectedDevices, isAdd: true, completion: { _ in
             if self.exDevices.isEmpty {
                 hud.hideLoading()
+                self.tableView.delegate = nil
                 self.dismissVC()
                 self.delegate?.selected(devices: self.selectedDevices)
             } else {
                 HuaweiHelper.shared.setLanDeviceToBlackList(list: self.exDevices, isAdd: false, completion: { _ in
+                    self.tableView.delegate = nil
                     self.dismissVC()
                     self.delegate?.selected(devices: self.selectedDevices)
                     hud.hideLoading()

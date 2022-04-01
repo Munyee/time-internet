@@ -377,7 +377,7 @@ class BillingInfoFormViewController: UIViewController {
 
     private func setupUI() {
         self.navigationItem.title = NSLocalizedString("BILLING INFO", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissView))
 
         let addressStackView = UIStackView()
         addressStackView.axis = .vertical
@@ -580,6 +580,12 @@ class BillingInfoFormViewController: UIViewController {
                 break
             }
         }
+    }
+    
+    @objc
+    func dismissView() {
+        scrollView.delegate = nil
+        self.dismissVC()
     }
 
     @IBAction func submitBillingInfo(sender: Any?) {

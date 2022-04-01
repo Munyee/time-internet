@@ -30,7 +30,7 @@ class VoiceSummaryViewController: BaseViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("Voice", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
 
         self.tableView.register(VoicePlanHeaderView.self, forHeaderFooterViewReuseIdentifier: headerViewIdentifier)
 
@@ -41,6 +41,12 @@ class VoiceSummaryViewController: BaseViewController {
         self.tableView.estimatedRowHeight = 100
     }
 
+    @objc
+    func dismissView() {
+        self.tableView.delegate = nil
+        self.dismissVC()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.refresh()

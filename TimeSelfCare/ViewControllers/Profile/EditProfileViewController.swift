@@ -121,7 +121,7 @@ class EditProfileViewController: BaseAuthViewController {
                 confirmationVC.mode = .profileUpdated
                 confirmationVC.actionBlock = {
                     confirmationVC.dismissVC()
-                    scrollView.delegate = nil
+                    self.scrollView.delegate = nil
                     self.navigationController?.popViewController(animated: true)
                 }
                 confirmationVC.modalPresentationStyle = .fullScreen

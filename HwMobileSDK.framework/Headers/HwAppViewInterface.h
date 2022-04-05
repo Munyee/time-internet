@@ -1,11 +1,11 @@
 #import <Foundation/Foundation.h>
-#import "HwScannerResult.h"
 
 /**
  原生界面类型(Original interface type)
  */
 typedef enum
 {
+    kHwViewNameTypeUnknown = 0,
     /** 网络设备(Network device)*/
     kHwViewNameTypeMyNetWork = 1,
     /** 智能设备(Smart device)*/
@@ -131,30 +131,7 @@ typedef enum
  *
  *  @since 1.0
  */
-- (BOOL)openContainerView:(HwWebView *)webView andTitle:(NSString *)title;
-
-/**
- *  
- *
- *  @brief 打开二维码扫描页面(open a QR code scanning page)
- *
- *  @param callBack 返回扫描结果(returned scanning result)
- *
- *  @since 1.0
- */
-- (void)scan:(void(^)(HwScannerResult *scanResult))callBack;
-
-/**
- *  
- *
- *  @brief 打开条形码扫描页面
- *
- *  @param callBack
- *
- *  @since 1.0
- */
-- (void)scanBarcode:(void(^)(HwScannerResult *scanResult))callBack;
-
+- (BOOL)openContainerView:(NSString *)path andTitle:(NSString *)title;
 
 /**
  *  
@@ -246,8 +223,20 @@ typedef enum
  */
 - (BOOL)isBatelcoVersion;
 
+/// 获取app版本信息
+- (id)getAppTarget;
+
 - (BOOL)setBarStyle:(NSDictionary *)param;
 
+/// 获取图片文件列表
+/// @param location 当前位置
+- (NSString *)getImgFileList:(NSString *)location;
+
+/// 获取拓扑图
+- (void)getRealTopo:(void(^)(id))callback;
+
+/// 网关直连信息
+- (BOOL)judgeLocalNetwork;
 @end
 
 

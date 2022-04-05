@@ -6,7 +6,10 @@
 //  Copyright © 2019 com.huawei. All rights reserved.
 //
 
-#import "HwControllerService.h"
+#import <HwMobileSDK/HwControllerService.h>
+#import <HwMobileSDK/HwSteeringSensitivity.h>
+#import <HwMobileSDK/HwScenarioConfig.h>
+#import <HwMobileSDK/HwRadioOptimize.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -89,6 +92,24 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setWifiInfoList:(NSString *)deviceId
           withWifiInfos:(NSArray *)wifiInfoList
            withCallback:(id<HwCallback>)callback;
+
+/**
+ 添加网关WIFI
+ 
+ @param deviceId 网关ID(gateway ID)
+ @param wifiInfo wifiInfo
+ @param callback 回调(callback)
+ */
+- (void)addWlanSsid:(NSString *)deviceId param:(HwWifiInfo *)wifiInfo withCallback:(id<HwCallback>)callback;
+
+/**
+ 删除网关WIFI
+ 
+ @param deviceId 网关ID(gateway ID)
+ @param ssid ssidIndex
+ @param callback 回调(callback)
+ */
+- (void)delWlanSsid:(NSString *)deviceId ssid:(int)ssid withCallback:(id<HwCallback>)callback;
 
 /**
  *
@@ -336,6 +357,59 @@ withSsinIndex:(int)ssidIndex
 withSsinIndex:(int)ssidIndex
  withCallback:(id<HwCallback>)callback;
 
+#pragma mark SteeringSensitivity
+/**
+ *
+ *  @brief 设置Wi-Fi漫游灵敏度
+ *
+ *  @param deviceId 要操作的网关ID (ID of the gateway to be operated)
+ *  @param param  灵敏度
+ *  @param callback
+ *
+ */
+- (void)setSteeringSensitivity:(NSString *)deviceId withParam:(HwSteeringSensitivity *)param withCallback:(id<HwCallback>)callback;
+
+/**
+ *
+ *  @brief 查询Wi-Fi漫游灵敏度
+ *
+ *  @param deviceId 要操作的网关ID (ID of the gateway to be operated)
+ *  @param callback HwSteeringSensitivity
+ *
+ */
+- (void)querySteeringSensitivity:(NSString *)deviceId withCallback:(id<HwCallback>)callback;
+
+#pragma mark WiFi信道与功率调优
+/**
+ *
+ *  @brief 设置调优场景
+ *
+ *  @param deviceId 要操作的网关ID (ID of the gateway to be operated)
+ *  @param param  场景
+ *  @param callback
+ *
+ */
+- (void)setRadioOptimize:(NSString *)deviceId withParam:(HwScenarioConfig *)param withCallback:(id<HwCallback>)callback;
+
+/**
+ *
+ *  @brief 查询当前配置场景
+ *
+ *  @param deviceId 要操作的网关ID (ID of the gateway to be operated)
+ *  @param callback HwScenarioConfig
+ *
+ */
+- (void)queryRadioOptimize:(NSString *)deviceId withCallback:(id<HwCallback>)callback;
+
+/**
+ *
+ *  @brief 查询信道和功率调优结果
+ *
+ *  @param deviceId 要操作的网关ID (ID of the gateway to be operated)
+ *  @param callback HwRadioOptimize
+ *
+ */
+- (void)queryRadioOptimizeResult:(NSString *)deviceId withCallback:(id<HwCallback>)callback;
 @end
 
 NS_ASSUME_NONNULL_END

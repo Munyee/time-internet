@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwCertificate.h"
+#import <HwMobileSDK/HwCertificate.h>
 
 typedef void(^HwServerTrustServiceCallback)(HwCertificate *certInfo);
 

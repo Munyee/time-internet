@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwUserInfo.h"
+#import <HwMobileSDK/HwUserInfo.h>
 
 @class HwGatewayInfo;
 
@@ -11,6 +11,23 @@
 @property (nonatomic, copy) NSString *type;
 /** 多因素类型对应的取值 */
 @property (nonatomic, copy) NSString *value;
+
+@end
+
+@interface HwAccountInfo : NSObject
+
+/** 用户ID */
+@property (nonatomic, copy) NSString *accountId;
+/** 账号类型 */
+@property (nonatomic, copy) NSString *accountType;
+/** 昵称 */
+@property (nonatomic, copy) NSString *nickName;
+/** 用户账号 */
+@property (nonatomic, copy) NSString *userAccount;
+/** 用户手机号 */
+@property (nonatomic, copy) NSString *email;
+/** 用户邮箱 */
+@property (nonatomic, copy) NSString *phone;
 
 @end
 
@@ -46,4 +63,10 @@
 
 /** 多因素认证*/
 @property(nonatomic, strong) HwMultiFactor *multiFactorAuthentication;
+
+/** 三方账号头像*/
+@property(nonatomic, copy) NSString *headImgUrl;
+
+/** 三方账号信息*/
+@property(nonatomic, strong) NSArray <HwAccountInfo *>*accountInfo;
 @end

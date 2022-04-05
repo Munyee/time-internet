@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
-#import "HwMessageServiceSave.h"
-#import "HwNotificationMessage.h"
+#import <HwMobileSDK/HwMessageServiceSave.h>
+#import <HwMobileSDK/HwNotificationMessage.h>
 
 @protocol HwCallback;
 @class HwUploadSuccessData;
@@ -111,5 +111,12 @@
  @param handler 回调
  */
 - (void)registerErrorMessageHandle:(void (^)(HwNotificationMessage *note))handler;
+
+/**
+ 注册 本地网络授权未开启通知
+ 
+ @param handler 回调
+ */
+- (void)registerLocalNetworkMessageHandle:(void (^)(NSError *err))handler;
 
 @end

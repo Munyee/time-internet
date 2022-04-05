@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwSetInternetWanInfoParam.h"
+#import <HwMobileSDK/HwSetInternetWanInfoParam.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

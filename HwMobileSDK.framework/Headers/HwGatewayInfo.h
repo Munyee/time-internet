@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwTenantInfo.h"
+#import <HwMobileSDK/HwTenantInfo.h>
 /**
  业务开通状态(Service activation status)
  */

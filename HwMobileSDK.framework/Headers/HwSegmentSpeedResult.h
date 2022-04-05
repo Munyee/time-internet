@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwGetSegmentSpeedResult.h"
+#import <HwMobileSDK/HwGetSegmentSpeedResult.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HwSegmentSpeedResult : NSObject

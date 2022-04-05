@@ -24,4 +24,7 @@
 /** pppoeAccount */
 @property(nonatomic,copy) NSString *pppoeAccount;
 
+/** managedType EMS or PLUGIN */
+@property(nonatomic,copy) NSString *manageType;
+
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwSignedRecord.h"
-#import "HwCommonSignPrivacyStatementResult.h"
+#import <HwMobileSDK/HwSignedRecord.h>
+#import <HwMobileSDK/HwCommonSignPrivacyStatementResult.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class HLSignedPrivacyStatementInfo;

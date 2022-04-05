@@ -5,7 +5,7 @@ typedef enum : NSUInteger {
 } HwRadioTypeStatus;
 
 #import <Foundation/Foundation.h>
-#import "HwCommonDefine.h"
+#import <HwMobileSDK/HwCommonDefine.h>
 
 @interface HwApTrafficInfo : NSObject
 

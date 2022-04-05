@@ -1,6 +1,6 @@
 
 #import <Foundation/Foundation.h>
-#import "HwCallback.h"
+#import <HwMobileSDK/HwCallback.h>
 
 NS_ASSUME_NONNULL_BEGIN
 /**
@@ -29,6 +29,16 @@ NS_ASSUME_NONNULL_BEGIN
  
  */
 - (void) getCommonPrivacyStatement:(NSString *)appVersion
+                          callback:(id<HwCallback>)callback;
+/**
+ 消费者查询租户隐私申明
+ 
+ @param appVersion app版本号
+ @param callback     callback|HwCommonSignPrivacyStatementResult
+ 
+ */
+- (void) getCommonPrivacyStatement:(NSString *)appVersion
+                          deviceId:(nullable NSString *)deviceId
                           callback:(id<HwCallback>)callback;
 /**
  消费者查询隐私申明信息与签署情况

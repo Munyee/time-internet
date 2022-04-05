@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwWifiInfo.h"
-#import "HwWifiTimer.h"
+#import <HwMobileSDK/HwWifiInfo.h>
+#import <HwMobileSDK/HwWifiTimer.h>
 
 @class HLWifiInfoAll;
 NS_ASSUME_NONNULL_BEGIN

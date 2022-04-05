@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwAuthInitParam.h"
+#import <HwMobileSDK/HwAuthInitParam.h>
 
 typedef NSString *(^HwCallbackAppAuthGetToken)(void);
 

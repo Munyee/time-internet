@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy)NSString* operatingSystem;
 /** 是否为可管理的AP*/
 @property(nonatomic, assign)BOOL isAp;
+/** 单频-双频*/
+@property(nonatomic, copy)NSString* wiFiBands;
+/** 设备类型*/
+@property(nonatomic, copy)NSString *model;
 @end
 
 NS_ASSUME_NONNULL_END

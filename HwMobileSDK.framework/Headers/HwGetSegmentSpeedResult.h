@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwSegmentSpeedTestMacro.h"
-#import "HwSegmentSpeedTestSubModels.h"
+#import <HwMobileSDK/HwSegmentSpeedTestMacro.h>
+#import <HwMobileSDK/HwSegmentSpeedTestSubModels.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -90,4 +90,52 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface HwGetSegmentSpeedProcessInfo : NSObject
+
+/** sn */
+@property (nonatomic , copy) NSString *serialNum;
+
+/** 分段索引 */
+@property (nonatomic , copy) NSString *index;
+
+/** 上行测速状态 */
+@property (nonatomic , assign) HwSegmentSpeedTestState uploadStatus;
+
+/** 上行测速状错误码，只有发生错误（即 status 失败），才返回 */
+@property (nonatomic , copy) NSString *uploadErrorCode;
+
+/** 平均上传速率 */
+@property (nonatomic , copy) NSString *uploadSpeed;
+
+/** 上传字节数 */
+@property (nonatomic , copy) NSString *uploadBytes;
+
+/** 下行测速状态 */
+@property (nonatomic , assign) HwSegmentSpeedTestState downloadStatus;
+
+/** 下行测速状错误码，只有发生错误（即 status 失败），才返回 */
+@property (nonatomic , copy) NSString *downloadErrorCode;
+
+/** 平均下载速率 */
+@property (nonatomic , copy) NSString *downloadSpeed;
+
+/** 下载字节数 */
+@property (nonatomic , copy) NSString *downloadBytes;
+
+/** 测速时间 */
+@property (nonatomic , copy) NSString *reportTime;
+@end
+
+@interface HwGetSegmentSpeedProcessResult : NSObject
+
+/** 分段索引 */
+@property (nonatomic , copy) NSString *index;
+
+/** 上行up/下行down */
+@property (nonatomic , copy) NSString *direct;
+
+/** 测速过程信息集 */
+@property (nonatomic , copy) NSArray <HwGetSegmentSpeedProcessInfo *>*resultList;
+
+@end
 NS_ASSUME_NONNULL_END

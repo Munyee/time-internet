@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-#import "HwActionException.h"
+#import <HwMobileSDK/HwActionException.h>
 
 /**
  *  

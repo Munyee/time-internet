@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwCommonDefine.h"
+#import <HwMobileSDK/HwCommonDefine.h>
 
 /**
  发送方式(Sending mode)

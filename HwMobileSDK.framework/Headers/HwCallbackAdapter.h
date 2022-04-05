@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
-#import "HwCallback.h"
-#import "HwActionException.h"
+#import <HwMobileSDK/HwCallback.h>
+#import <HwMobileSDK/HwActionException.h>
 
 typedef void(^HwCallbackHandle)(id value);
 typedef void(^HwCallbackException)(HwActionException * exception);

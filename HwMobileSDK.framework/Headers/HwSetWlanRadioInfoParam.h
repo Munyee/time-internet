@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwGetWlanRadioInfoParam.h"
-#import "HwSetWlanHardwareSwitchParam.h"
+#import <HwMobileSDK/HwGetWlanRadioInfoParam.h>
+#import <HwMobileSDK/HwSetWlanHardwareSwitchParam.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

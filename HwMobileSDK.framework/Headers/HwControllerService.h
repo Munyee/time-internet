@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
 
-#import "HwCallback.h"
-#import "HwWifiInfo.h"
-#import "HwAttachParentControlTemplate.h"
-#import "HwLanDeviceBandWidth.h"
-#import "HwWifiTimer.h"
+#import <HwMobileSDK/HwCallback.h>
+#import <HwMobileSDK/HwWifiInfo.h>
+#import <HwMobileSDK/HwAttachParentControlTemplate.h>
+#import <HwMobileSDK/HwLanDeviceBandWidth.h>
+#import <HwMobileSDK/HwWifiTimer.h>
 
-#import "HwCommonDefine.h"
+#import <HwMobileSDK/HwCommonDefine.h>
 @class HwIsApDeviceNeededUpgradeParam;
 @class HwApDeviceUpgradeParam;
 @class HwApDeviceUpgradeStatusParam;
@@ -33,6 +33,7 @@
 
 @class HwLedInfo;
 @class HwApChannelInfo;
+@class HwQueryApChannelInfoParam;
 
 @class HwSyncWifiSwitchInfo;
 @class HwWifiAdvancedInfo;
@@ -184,7 +185,6 @@ typedef enum
                withCallback:(id<HwCallback>)callback;
 
 /**
- *  @author Huawei
  *
  *  @brief 查询设备WLAN频段开关
  *
@@ -200,7 +200,6 @@ typedef enum
                  withCallback:(id<HwCallback>)callback;
 
 /**
- *  @author Huawei
  *
  *  @brief 设置设备WLAN频段开关
  *
@@ -225,6 +224,15 @@ typedef enum
 - (void)getWlanRadioInfo:(NSString *)deviceId
                    param:(HwGetWlanRadioInfoParam *)param
             withCallback:(id<HwCallback>)callback;
+
+/**
+ 查询设备WLAN频段信息列表
+ 
+ @param deviceId 网关mac
+ @param callback 回调 Array<HwWlanRadioInfo>
+ */
+- (void)queryWlanRadioList:(NSString *)deviceId
+              withCallback:(id<HwCallback>)callback;
 
 /**
  设置设备WLAN频段信息

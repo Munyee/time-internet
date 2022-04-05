@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwCallback.h"
-#import "HwCallbackAdapter.h"
-#import "HwIsNeededUpgradeResult.h"
+#import <HwMobileSDK/HwCallback.h>
+#import <HwMobileSDK/HwCallbackAdapter.h>
+#import <HwMobileSDK/HwIsNeededUpgradeResult.h>
+#import <HwMobileSDK/HwAppViewInterface.h>
+#import <HwMobileSDK/HwWebView.h>
 
 // 轮询升级结果间隔时间
 #define UPGRADE_QUERY_INTERVAL_TIME 5
@@ -38,4 +40,9 @@
  */
 - (void)isNeededUpgrade:(NSString *)deviceId withCallback:(id<HwCallback>)callback;
 
++ (void)setWebViewSDKBridge:(HwWebView *)webview
+                   deviceId:(NSString *)deviceId
+                  interface:(id<HwAppViewInterface>)interface
+                navDelegate:(id<WKNavigationDelegate>)navDelegate
+             scriptDelegate:(id<WKScriptMessageHandler>)scriptDelegate;
 @end

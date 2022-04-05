@@ -24,6 +24,19 @@ typedef enum
     kHwGatewayUpLinkModeXGPON
 } HwGatewayUpLinkMode;
 
+/** 射频调优相关配置*/
+typedef enum {
+    // 支持射频调优
+    kHwRadioCalibration = 1 << 0,
+    // 支持场景化配置
+    kHwRadioScenario = 1 << 1,
+    // 支持auto配置
+    kHwRadioAuto = 1 << 2,
+} HwRadioOptimizeType;
+
+/** 在线状态*/
+@property(nonatomic ,copy) NSString *status;
+
 /** 软件版本 (Software version)*/
 @property(nonatomic ,copy) NSString *swVersion;
 
@@ -60,6 +73,9 @@ typedef enum
 /** 设备名称*/
 @property(nonatomic,copy) NSString *devName;
 
+/** 设备名称*/
+@property(nonatomic,copy) NSString *devAliasName;
+
 /** wifi 频段(NCE新增)*/
 @property(nonatomic,copy) NSString *wiFiBands;
 
@@ -87,4 +103,16 @@ typedef enum
 
 /**  是否支持uni*/
 @property(nonatomic,copy) NSString *supportedUniPorts;
+
+/**  射频调优能力集*/
+@property(nonatomic,assign) HwRadioOptimizeType supportedRadioOptimize;
+
+/// 是否支持射频调优
+- (BOOL)isSupportRadioCalibration;
+
+/// 是否支持场景化配置
+- (BOOL)isSupportRadioScenario;
+
+/// 是否支持auto配置
+- (BOOL)isSupportRadioAuto;
 @end

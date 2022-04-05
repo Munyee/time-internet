@@ -6,9 +6,9 @@
 //  Copyright © 2020 com.huawei. All rights reserved.
 //
 
-#import "HwInternetWanInfo.h"
-#import "HwWifiInfo.h"
-#import "HwSetGatewayConfigStatusParam.h"
+#import <HwMobileSDK/HwInternetWanInfo.h>
+#import <HwMobileSDK/HwWifiInfo.h>
+#import <HwMobileSDK/HwSetGatewayConfigStatusParam.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

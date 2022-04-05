@@ -6,7 +6,8 @@
 //  Copyright © 2019 com.huawei. All rights reserved.
 //
 
-#import "HwControllerService.h"
+#import <HwMobileSDK/HwControllerService.h>
+#import <HwMobileSDK/HwLedInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,6 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
  *  @since 1.0
  */
 - (void)queryLanDeviceListEx:(NSString *)deviceId withCallback:(id<HwCallback>)callback;
+
+/// 查询下挂设备的级联信息
+/// @param deviceId 网关mac
+/// @param staMac 设备mac
+/// @param callback Array <HwLanDeviceLevel>
+- (void)queryLanDeviceLevel:(NSString *)deviceId staMac:(NSString *)staMac withCallback:(id<HwCallback>)callback;
 /**
  *
  *
@@ -143,6 +150,28 @@ NS_ASSUME_NONNULL_BEGIN
  *  @since 1.0
  */
 - (void)setLedStatus:(NSString *)deviceId withLedInfo:(HwLedInfo *)ledInfo withCallback:(id<HwCallback>)callback;
+
+/**
+ *
+ *
+ *  @brief 查询ap的LED状态 (query the LED status)
+ *
+ *  @param deviceId 网关ID (gateway ID)
+ *  @param callback NSArray <HwApLedInfo *>*
+ *
+ */
+- (void)getApLedStatus:(NSString *)deviceId macList:(NSArray <NSString *>*)macList withCallback:(id<HwCallback>)callback;
+
+/**
+ *
+ *
+ *  @brief 设置ap的LED状态 (set the LED status)
+ *
+ *  @param deviceId 网关ID (gateway ID)
+ *  @param callback HwResult
+ *
+ */
+- (void)setApLedStatus:(NSString *)deviceId withLedInfo:(HwApLedInfo *)ledInfo withCallback:(id<HwCallback>)callback;
 
 /**
  *
@@ -336,6 +365,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *
+ *  @brief 查询指定ap的信道
+ *
+ *  @param deviceId  网关ID(gateway ID)
+ *  @param param 入参
+ *  @param callback  Array<HwApChannelInfo *>
+ *
+ */
+- (void)queryApChannel:(NSString *)deviceId
+                 param:(HwQueryApChannelInfoParam *)param
+          withCallback:(id<HwCallback>)callback;
+
+/**
+ *
  *
  *  @brief 触发AP自动调整到最优工作信道(Trigger the AP to automatically switch to the optimal working channel.)
  *
@@ -397,6 +439,19 @@ NS_ASSUME_NONNULL_BEGIN
 *  @since 1.0
 */
 -(void)getLanEdgeOntInfo:(NSString *)deviceId withPortIndexArray:(NSArray *)portIndexArray withCallback:(id<HwCallback>)callback;
+
+/**
+ *
+ *
+ *  @brief 获取下行PON口物理状态信息
+ *
+ *  @param deviceId 要操作的网关ID (ID of the gateway to be operated)
+ *  @param portIndexArray PON端口序号数组
+ *  @param callback  NSArray<HwLanPONPhysicalInfo *>
+ *
+ *  @since 1.0
+ */
+-(void)getLanPONPhysicalInfo:(NSString *)deviceId withPortIndexArray:(NSArray *)portIndexArray withCallback:(id<HwCallback>)callback;
 
 /**
 *
@@ -469,6 +524,16 @@ NS_ASSUME_NONNULL_BEGIN
 *
 */
 - (void)getApLanInfo:(NSString *)deviceId withCallback:(id<HwCallback>)callback;
+
+/**
+ *
+ *  @brief 获取AP的UplinkInfo信息
+ *
+ *  @param deviceId 要操作的网关ID (ID of the gateway to be operated)
+ *  @param callback NSArray<HwApUplinkInfo *>
+ *
+ */
+- (void)queryApUplinkInfo:(NSString *)deviceId macList:(NSArray *)macList withCallback:(id<HwCallback>)callback;
 @end
 
 NS_ASSUME_NONNULL_END

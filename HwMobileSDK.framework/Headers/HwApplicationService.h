@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwApplicationServiceSave.h"
+#import <HwMobileSDK/HwApplicationServiceSave.h>
 
 @class HwApplicationDoActionParam;
 

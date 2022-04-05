@@ -40,6 +40,6 @@ typedef enum
 @property (nonatomic , copy) NSString *aliasName;
 
 /** 设备列表 */
-@property (nonatomic , copy) NSMutableArray *macList;
+@property (nonatomic , strong) NSMutableArray *macList;
 
 @end

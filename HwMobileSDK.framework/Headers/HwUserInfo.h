@@ -12,9 +12,6 @@
 /** 用户账号 (User account) */
 @property(nonatomic, copy) NSString *userAccount;
 
-/** 用户头像 (User avatar)*/
-@property(nonatomic, copy) NSString *headPortraitMd5;
-
 /** 用户昵称 (User nickname)*/
 @property(nonatomic, copy) NSString *nickname;
 
@@ -35,5 +32,8 @@
 
 /** 是否是默认密码*/
 @property(nonatomic, copy) NSString *isDefaultPwd;
+
+/** 账号类型 */
+@property(nonatomic, copy) NSString *accountType;
 
 @end

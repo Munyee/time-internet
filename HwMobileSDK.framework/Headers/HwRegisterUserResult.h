@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "HwResult.h"
-#import "HwLoginInfo.h"
+#import <HwMobileSDK/HwResult.h>
+#import <HwMobileSDK/HwLoginInfo.h>
 /**
  *  
  *

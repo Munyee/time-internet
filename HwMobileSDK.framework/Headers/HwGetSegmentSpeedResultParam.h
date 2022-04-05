@@ -15,4 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString *taskId;
 @end
 
+@interface HwQuerySegmentSpeedProcessParam : NSObject
+
+/** 测试任务 id */
+@property (nonatomic , copy) NSString *taskId;
+
+/** 查询索引 */
+@property (nonatomic , copy) NSArray <NSString *>*indexList;
+
+@end
 NS_ASSUME_NONNULL_END

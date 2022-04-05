@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwUserFeedBack.h"
+#import <HwMobileSDK/HwUserFeedBack.h>
 
 /**
  *  

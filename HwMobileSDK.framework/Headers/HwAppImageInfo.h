@@ -21,7 +21,7 @@
 @property (nonatomic, copy) NSString *appId;
 
 /** 应用图标(application icon) */
-@property (nonatomic, copy) NSString *imageMd5;
+@property (nonatomic, copy) NSString *imageEncrypt;
 
 /** 应用图标(application icon) */
 @property (nonatomic, copy) UIImage *image;

@@ -7,20 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwCallback.h"
-#import "HwCallbackAdapter.h"
-#import "HwStartSegmentSpeedTestParam.h"
-#import "HwStartSegmentSpeedTestResult.h"
-#import "HwGetSegmentSpeedResultParam.h"
-#import "HwGetSegmentSpeedResult.h"
-#import "HwStopSegmentSpeedTestParam.h"
-#import "HwStopSegmentSpeedTestResult.h"
-#import "HwSpeedTestConfigInfo.h"
-#import "HwSegmentTestGetHistoryRecordParam.h"
-#import "HwSegmentTestSpeedRecordInfo.h"
-#import "HwSegmentTestSaveRecordParam.h"
-#import "HwSegmentTestSaveRecordResult.h"
-#import "HwSegmentSpeedResult.h"
+#import <HwMobileSDK/HwCallback.h>
+#import <HwMobileSDK/HwCallbackAdapter.h>
+#import <HwMobileSDK/HwStartSegmentSpeedTestParam.h>
+#import <HwMobileSDK/HwStartSegmentSpeedTestResult.h>
+#import <HwMobileSDK/HwGetSegmentSpeedResultParam.h>
+#import <HwMobileSDK/HwGetSegmentSpeedResult.h>
+#import <HwMobileSDK/HwStopSegmentSpeedTestParam.h>
+#import <HwMobileSDK/HwStopSegmentSpeedTestResult.h>
+#import <HwMobileSDK/HwSpeedTestConfigInfo.h>
+#import <HwMobileSDK/HwSegmentTestGetHistoryRecordParam.h>
+#import <HwMobileSDK/HwSegmentTestSpeedRecordInfo.h>
+#import <HwMobileSDK/HwSegmentTestSaveRecordParam.h>
+#import <HwMobileSDK/HwSegmentTestSaveRecordResult.h>
+#import <HwMobileSDK/HwSegmentSpeedResult.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -57,6 +57,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) getSegmentSpeedTestResultAndStatusWithDeviceId:(NSString *)deviceId
                                          param:(HwGetSegmentSpeedResultParam *)param
                                       callback:(id<HwCallback>)callback;
+
+/**
+ 查询分段测试过程结果
+ 
+ @param deviceId 设备 id
+ @param param 查询参数对象
+ @param callback 回调 | (NSArray<HwGetSegmentSpeedResult *> *)value
+ */
+- (void) querySegmentSpeedProcessResult:(NSString *)deviceId
+                                  param:(HwQuerySegmentSpeedProcessParam *)param
+                               callback:(id<HwCallback>)callback;
 
 /**
  停止分段测试

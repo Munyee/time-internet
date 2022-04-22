@@ -46,6 +46,11 @@ class LoadingView: UIView {
     private func commonInit() {
         Bundle.main.loadNibNamed("Loading", owner: self, options: nil)
         addSubview(contentView)
+        var bounds = UIScreen.main.bounds
+        var width = bounds.size.width
+        var height = bounds.size.height
+        
+        contentView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         contentView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         animationView.animation = Animation.named("new_loading")
         animationView.loopMode = .loop

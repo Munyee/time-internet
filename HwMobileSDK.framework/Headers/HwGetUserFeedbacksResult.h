@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwUserFeedBack.h"
+#import <HwMobileSDK/HwUserFeedBack.h>
 
 @interface HwGetUserFeedbacksResult : NSObject
 /** 未处理意见反馈数 */

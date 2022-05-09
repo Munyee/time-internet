@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwResult.h"
+#import <HwMobileSDK/HwResult.h>
 
 /**
  *  
@@ -9,5 +9,8 @@
  *  @since 1.0
  */
 @interface HwModifyPasswordResult : HwResult
+
+/// true-需要重新登录，false-不需要重新登录
+@property (nonatomic, assign) BOOL isNeedLogin;
 
 @end

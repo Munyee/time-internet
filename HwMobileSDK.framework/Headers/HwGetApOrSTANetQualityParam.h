@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwGetGatewayNetQualityParam.h"
+#import <HwMobileSDK/HwGetGatewayNetQualityParam.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class HwGetApOrSTANetQualityShowOption;

@@ -90,6 +90,28 @@ typedef NS_ENUM(NSInteger, HwblackCause)
 /** 天线数量 */
 @property(nonatomic,copy) NSString *antennaNumber;
 
+/** radioType */
+@property (nonatomic, copy) NSString *radioType;
+
+/** 设备接入的WiFi名称 */
+@property (nonatomic, copy) NSString *ssid;
+
 //-(id)initWithString:(NSString*)devStr;
+
+@end
+
+@interface HwLanDeviceLevel : NSObject
+
+/// 设备mac
+@property (nonatomic, copy) NSString *mac;
+
+/// 上级设备mac
+@property (nonatomic, copy) NSString *parentMac;
+
+/// 设备类型，AP、PLCM、device
+@property (nonatomic, copy) NSString *nodeType;
+
+/// 设备接入方式，Wireless、Ethernet、PLC、PON
+@property (nonatomic, copy) NSString *accessMode;
 
 @end

@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 class WifiSettingsViewController: UIViewController {
     
@@ -203,11 +202,11 @@ class WifiSettingsViewController: UIViewController {
     func queryAllWifi() {
         wifiInfos = []
         stackView.isHidden = true
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         HuaweiHelper.shared.getGuestWifiInfo(completion: { guestWifi in
             HuaweiHelper.shared.getWifiInfoAll(completion: { wifiInfoAll in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.stackView.isHidden = false
 //                self.switchDualBand.isOn = wifiInfoAll.dualbandCombine
 //                self.singleBandView.isHidden = wifiInfoAll.dualbandCombine
@@ -217,7 +216,7 @@ class WifiSettingsViewController: UIViewController {
                 }
                 
                 let group = DispatchGroup()
-                hud.show(animated: true)
+                hud.showLoading()
                 for infoItem in arrData {
                     group.enter()
                     HuaweiHelper.shared.getWifiInfo(ssidIndex: infoItem.ssidIndex, completion: { info in
@@ -226,13 +225,13 @@ class WifiSettingsViewController: UIViewController {
                     }, error: { exception -> Void in
                         DispatchQueue.main.async {
                             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                            hud.hide(animated: true)
+                            hud.hideLoading()
                         }
                     })
                 }
                 
                 group.notify(queue: .main) {
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                     self.switchHideWifi.isOn = !self.wifiInfos.contains(where: { wifiInfo -> Bool in
                         return wifiInfo?.isSsidAdvertisementEnabled == true
                     })
@@ -266,24 +265,24 @@ class WifiSettingsViewController: UIViewController {
             }, error: { exception -> Void in
                 DispatchQueue.main.async {
                     self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }
                 
             })
         }, error: { exception in
             DispatchQueue.main.async {
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                hud.hide(animated: true)
+                hud.hideLoading()
             }
         })
     }
     
     func queryWifiTimer() {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         HuaweiHelper.shared.getWifiTimer(completion: { timer in
             DispatchQueue.main.async {
-                hud.hide(animated: true)
+                hud.hideLoading()
                 if timer.startTime == "" {
                     timer.startTime = "01:00"
                 }
@@ -304,16 +303,16 @@ class WifiSettingsViewController: UIViewController {
         }, error: { exception -> Void in
             DispatchQueue.main.async {
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                hud.hide(animated: true)
+                hud.hideLoading()
             }
         })
     }
     
     func toggleDualBand() {
         if let dataInfos = wifiInfos as? [HwWifiInfo] {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
-            
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
+
             for wifiInfo in dataInfos {
                 if switchDualBand.isOn {
                     wifiInfo.enable = true
@@ -324,13 +323,13 @@ class WifiSettingsViewController: UIViewController {
             }
             HuaweiHelper.shared.setWifiInfoList(wifiInfos: dataInfos, completion: { info in
                 DispatchQueue.main.async {
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                     self.wifiInfos = dataInfos
                 }
             }, error: { exception in
                 DispatchQueue.main.async {
                     self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }
             })
         }
@@ -338,9 +337,9 @@ class WifiSettingsViewController: UIViewController {
     
     func toggleWifiEnabled(switchWifi: UISwitch) {
         if let dataInfos = wifiInfos as? [HwWifiInfo] {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
-            
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
+
             let sortedArr = dataInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
                 return "\(wifiInfoA.ssidIndex)".compare("\(wifiInfoB.ssidIndex)", options: .numeric) == .orderedAscending
             })
@@ -357,12 +356,12 @@ class WifiSettingsViewController: UIViewController {
 
             HuaweiHelper.shared.setWifiInfoList(wifiInfos: dataInfos, completion: { _ in
                 DispatchQueue.main.async {
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }
             }, error: { exception in
                 DispatchQueue.main.async {
                     self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }
             })
         }
@@ -370,21 +369,21 @@ class WifiSettingsViewController: UIViewController {
     
     func toggleHideWifiNetwork() {
         if let dataInfos = wifiInfos as? [HwWifiInfo] {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
-            
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
+
             for wifiInfo in dataInfos {
                 wifiInfo.isSsidAdvertisementEnabled = !switchHideWifi.isOn
             }
             HuaweiHelper.shared.setWifiInfoList(wifiInfos: dataInfos, completion: { _ in
                 DispatchQueue.main.async {
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                     self.wifiInfos = dataInfos
                 }
             }, error: { exception in
                 DispatchQueue.main.async {
                     self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }
             })
         }
@@ -392,18 +391,18 @@ class WifiSettingsViewController: UIViewController {
     
     func toggleWifiSchedule() {
         if let newTimer = timer {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
             newTimer.enabled = switchScheduling.isOn
             HuaweiHelper.shared.setWifiTimer(timer: newTimer, completion: { _ in
                 self.timer = newTimer
                 self.schedulingView.isHidden = !self.switchScheduling.isOn
-                hud.hide(animated: true)
+                hud.hideLoading()
             }, error: { exception in
                 DispatchQueue.main.async {
                     self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                     self.switchScheduling.isOn = !self.switchScheduling.isOn
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }
             })
             
@@ -415,8 +414,8 @@ class WifiSettingsViewController: UIViewController {
     }
     
     func updateWifiInfo(info: HwSetWifiInfoListResult) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         let group = DispatchGroup()
         for successItem in info.successList {
             group.enter()
@@ -432,7 +431,7 @@ class WifiSettingsViewController: UIViewController {
                     }, error: { exception in
                         DispatchQueue.main.async {
                             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                            hud.hide(animated: true)
+                            hud.hideLoading()
                         }
                     })
                 }
@@ -440,7 +439,7 @@ class WifiSettingsViewController: UIViewController {
         }
         
         group.notify(queue: .main) {
-            hud.hide(animated: true)
+            hud.hideLoading()
         }
     }
     
@@ -485,8 +484,8 @@ extension WifiSettingsViewController: ScheduleViewControllerDelegate {
     func updateNewTime(type: HeaderType, time: String) {
         if type == .startAt {
             if let newTimer = timer {
-                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                hud.label.text = NSLocalizedString("Loading...", comment: "")
+                let hud = LoadingView().addLoading(toView: self.view)
+                hud.showLoading()
 
                 let startTime = self.getDate(stringDate: time)
                 let utcStartDate = self.getGMTTime(date: startTime)
@@ -496,18 +495,18 @@ extension WifiSettingsViewController: ScheduleViewControllerDelegate {
                     self.timer = newTimer
                     self.schedulingView.isHidden = !self.switchScheduling.isOn
                     self.startLabel.text = time
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }, error: { exception in
                     DispatchQueue.main.async {
                         self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                        hud.hide(animated: true)
+                        hud.hideLoading()
                     }
                 })
             }
         } else if type == .closeAt {
             if let newTimer = timer {
-                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                hud.label.text = NSLocalizedString("Loading...", comment: "")
+                let hud = LoadingView().addLoading(toView: self.view)
+                hud.showLoading()
 
                 let endTimer = self.getDate(stringDate: time)
                 let utcEndDate = self.getGMTTime(date: endTimer)
@@ -517,11 +516,11 @@ extension WifiSettingsViewController: ScheduleViewControllerDelegate {
                     self.timer = newTimer
                     self.schedulingView.isHidden = !self.switchScheduling.isOn
                     self.closeLabel.text = time
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }, error: { exception in
                     DispatchQueue.main.async {
                         self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                        hud.hide(animated: true)
+                        hud.hideLoading()
                     }
                 })
             }

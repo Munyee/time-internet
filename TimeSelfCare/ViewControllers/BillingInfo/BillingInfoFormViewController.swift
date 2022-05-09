@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import EasyTipView
 
 protocol BillingInfoFormComponentViewDelegate: class {
@@ -378,7 +377,7 @@ class BillingInfoFormViewController: UIViewController {
 
     private func setupUI() {
         self.navigationItem.title = NSLocalizedString("BILLING INFO", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissView))
 
         let addressStackView = UIStackView()
         addressStackView.axis = .vertical
@@ -582,6 +581,12 @@ class BillingInfoFormViewController: UIViewController {
             }
         }
     }
+    
+    @objc
+    func dismissView() {
+        scrollView.delegate = nil
+        self.dismissVC()
+    }
 
     @IBAction func submitBillingInfo(sender: Any?) {
         self.billingInfoComponentViews.forEach { $0.validate() }
@@ -593,11 +598,10 @@ class BillingInfoFormViewController: UIViewController {
         self.populateData()
 
         let okAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Updating...", comment: "")
-
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
             BillingInfoDataController.shared.updateBillingInfo(billingInfo: self.billingInfo) { _, error in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 if let error = error {
                     self.showAlertMessage(with: error)
                     return

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import TimeSelfCareData
 
 protocol TicketFormComponentViewDelegate: class {
@@ -257,7 +256,7 @@ class TicketFormViewController: TimeBaseViewController {
 
     private func setupUI() {
         self.title = NSLocalizedString("CREATE TICKET", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .done, target: self, action: #selector(self.dismissView))
 
         for component in TicketFormComponent.allValues {
             let ticketFormComponentView = TicketFormComponentView()
@@ -333,6 +332,13 @@ class TicketFormViewController: TimeBaseViewController {
         stackView.addArrangedSubview(submitButton)
         self.containerStackView.addArrangedSubview(stackView)
     }
+    
+    @objc
+    func dismissView() {
+        self.scrollView.delegate = nil
+        self.attachmentCollectionView.delegate = nil
+        self.dismissVC()
+    }
 
     @objc
     private func createTicket() {
@@ -354,8 +360,8 @@ class TicketFormViewController: TimeBaseViewController {
         }
         ticket.accountNo = AccountController.shared.selectedAccount?.accountNo
 
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Creating ticket...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         let images: [UIImage] = self.selectedImageInfo.compactMap {
             guard var image = $0[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
                 return nil
@@ -364,7 +370,7 @@ class TicketFormViewController: TimeBaseViewController {
         }
 
         TicketDataController.shared.createTicket(ticket, account: AccountController.shared.selectedAccount, attachments: images) { _, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return
@@ -373,7 +379,7 @@ class TicketFormViewController: TimeBaseViewController {
             let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
             confirmationVC.mode = .ticketSubmitted
             confirmationVC.actionBlock = {
-                self.dismissVC()
+                self.dismissView()
             }
             confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)

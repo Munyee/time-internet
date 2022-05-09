@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 internal class AutoDebitViewController: TimeBaseViewController {
 
@@ -198,10 +197,10 @@ extension AutoDebitViewController {
         }
 
         let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Removing...", comment: "")
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
             CreditCardDataController.shared.removeCreditCard(username: profile.username, account: selectedAccount) { error in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 if let error = error {
                     self.showAlertMessage(with: error)
                     return

@@ -6,7 +6,7 @@
 //  Copyright © 2017 com.huawei. All rights reserved.
 //
 
-#import "HwResult.h"
+#import <HwMobileSDK/HwResult.h>
 
 @interface HwUploadSuccessResult : HwResult
 

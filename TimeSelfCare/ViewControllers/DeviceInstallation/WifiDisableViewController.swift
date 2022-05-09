@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 protocol WifiDisableViewControllerDelegate {
     func wifiEnabled()
@@ -30,10 +29,8 @@ class WifiDisableViewController: UIViewController {
     }
     
     @IBAction func actEnableWifi(_ sender: Any) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-
-        hud.show(animated: true)
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         
         let group = DispatchGroup()
         group.enter()
@@ -42,7 +39,7 @@ class WifiDisableViewController: UIViewController {
         }, error: { exception in
             DispatchQueue.main.async {
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                hud.hide(animated: true)
+                hud.hideLoading()
             }
         })
         
@@ -52,13 +49,13 @@ class WifiDisableViewController: UIViewController {
         }, error: { exception in
             DispatchQueue.main.async {
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                hud.hide(animated: true)
+                hud.hideLoading()
             }
         })
         
         if let dataInfos = wifiInfos as? [HwWifiInfo] {
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
             
             let sortedArr = dataInfos.sorted(by: { (wifiInfoA, wifiInfoB) -> Bool in
                 return "\(wifiInfoA.ssidIndex)".compare("\(wifiInfoB.ssidIndex)", options: .numeric) == .orderedAscending
@@ -73,13 +70,13 @@ class WifiDisableViewController: UIViewController {
             }, error: { exception in
                 DispatchQueue.main.async {
                     self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }
             })
         }
         
         group.notify(queue: .main) {
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.dismiss(animated: true) {
                 self.delegate?.wifiEnabled()
             }

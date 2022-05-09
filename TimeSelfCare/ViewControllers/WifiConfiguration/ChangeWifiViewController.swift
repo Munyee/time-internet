@@ -10,7 +10,6 @@ import CoreLocation
 import UIKit
 import HwMobileSDK
 import SystemConfiguration.CaptiveNetwork
-import MBProgressHUD
 import Alamofire
 
 protocol ChangeWifiViewControllerDelegate {
@@ -47,9 +46,9 @@ class ChangeWifiViewController: TimeBaseViewController {
             if ssidName != "" && gateway != nil {
                 if let deviceMac = self.gateway?.deviceMac, let oldGateway = self.oldGatewayId {
                     
-                    let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                    hud.label.text = NSLocalizedString("Loading...", comment: "")
-                    
+                    let hud = LoadingView().addLoading(toView: self.view)
+                    hud.showLoading()
+
                     if gateway?.deviceMac == oldGateway {
                         HuaweiHelper.shared.setGatewayNickname(deviceId: oldGateway, gatewayName: self.ssidName, completion: { _ in
                             self.delegate?.changeSuccess()
@@ -70,7 +69,7 @@ class ChangeWifiViewController: TimeBaseViewController {
                             })
                         }, error: { _ in
                             self.failed()
-                            hud.hide(animated: true)
+                            hud.hideLoading()
                         })
                     }
                 } else {

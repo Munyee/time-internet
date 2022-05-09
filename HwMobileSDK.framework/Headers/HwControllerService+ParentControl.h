@@ -6,8 +6,8 @@
 //  Copyright © 2019 com.huawei. All rights reserved.
 //
 
-#import "HwControllerService.h"
-#import "HwEaiInfo.h"
+#import <HwMobileSDK/HwControllerService.h>
+#import <HwMobileSDK/HwEaiInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

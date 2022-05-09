@@ -6,7 +6,7 @@
  *  @since 1.6
  */
 
-#import "HwResult.h"
+#import <HwMobileSDK/HwResult.h>
 
 @interface HwEnableWifiWpsResult : HwResult
 

@@ -8,7 +8,6 @@
 
 import UIKit
 import SDWebImage
-import MBProgressHUD
 
 internal class HomeForwardDetailViewController: TimeBaseViewController {
     let THF_MAX_GENCOUNT: Int = 6
@@ -45,10 +44,10 @@ internal class HomeForwardDetailViewController: TimeBaseViewController {
         guard let account = AccountController.shared.selectedAccount else {
             return
         }
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Generating new QR Code", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         APIClient.shared.generateTHRCode(AccountController.shared.profile.username, account: account, service: service) { ( _, error: Error?) in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return

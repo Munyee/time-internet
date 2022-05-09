@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MBProgressHUD
 
 internal class SidebarTableViewController: UIViewController {
     private enum Section: Int {
@@ -67,13 +66,13 @@ internal class SidebarTableViewController: UIViewController {
     
     @IBAction func logout(_ sender: Any) {
         let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
-            let hud = MBProgressHUD.showAdded(to: self.parent!.view, animated: true) // swiftlint:disable:this force_unwrapping
-            hud.label.text = NSLocalizedString("Logging out...", comment: "")
-            
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
+
             AccountSummaryViewController.didAnimate = false
             
             AuthUser.current?.logout { _ in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 FreshChatManager.shared.logout()
                 let storyboard = UIStoryboard(name: "Common", bundle: nil)
                 if let confirmationVC = storyboard.instantiateViewController(withIdentifier: "ConfirmationViewController") as? ConfirmationViewController {

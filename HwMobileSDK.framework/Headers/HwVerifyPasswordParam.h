@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwParam.h"
-#import "HwCommonDefine.h"
+#import <HwMobileSDK/HwParam.h>
+#import <HwMobileSDK/HwCommonDefine.h>
 
 /**
  *   17-06-22 14:06:00

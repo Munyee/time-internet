@@ -8,7 +8,7 @@ target 'TimeSelfCareData' do
   use_frameworks!
 
   # ApptivityFramework
-  pod 'ApptivityFramework', :path => './ApptivityFramework'
+#  pod 'ApptivityFramework', :path => './ApptivityFramework'
   #pod 'ApptivityFramework', :git => 'git@bitbucket.org:apptivitylab/apptivityframework-ios.git', :branch => 'master'
   
   # Pods for TimeSelfCareData
@@ -33,7 +33,7 @@ target 'TimeSelfCare' do
   use_frameworks!
 
   # ApptivityFramework
-  pod 'ApptivityFramework', :path => './ApptivityFramework'
+#  pod 'ApptivityFramework', :path => './ApptivityFramework'
   #pod 'ApptivityFramework', :git => 'git@bitbucket.org:apptivitylab/apptivityframework-ios.git', :branch => 'master'
 
   # Pods for TimeSelfCare

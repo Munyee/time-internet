@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HwVerifyCode.h"
+#import <HwMobileSDK/HwVerifyCode.h>
 
 @protocol HwCallback;
 @class HwModifyPasswordParam;

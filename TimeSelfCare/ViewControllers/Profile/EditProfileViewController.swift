@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class EditProfileViewController: BaseAuthViewController {
 
@@ -101,10 +100,11 @@ class EditProfileViewController: BaseAuthViewController {
                 body["office_no"] = self.contactOfficeTextField.text ?? ""
             }
             
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
 
             APIClient.shared.editProfile(body) { _, error in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 if let error = error {
                     let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
                     confirmationVC.mode = .profileFailed
@@ -121,6 +121,7 @@ class EditProfileViewController: BaseAuthViewController {
                 confirmationVC.mode = .profileUpdated
                 confirmationVC.actionBlock = {
                     confirmationVC.dismissVC()
+                    self.scrollView.delegate = nil
                     self.navigationController?.popViewController(animated: true)
                 }
                 confirmationVC.modalPresentationStyle = .fullScreen
@@ -132,6 +133,7 @@ class EditProfileViewController: BaseAuthViewController {
     }
 
     @objc func cancelEditProfile() {
+        scrollView.delegate = nil
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
         }

@@ -32,7 +32,6 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 #import <HwMobileSDK/HwCallback.h>
 #import <HwMobileSDK/HwCallbackAdapter.h>
 #import <HwMobileSDK/HwCommonDefine.h>
-#import <HwMobileSDK/HwEnumType.h>
 #import <HwMobileSDK/HwFeedbackInfo.h>
 #import <HwMobileSDK/HwFeedbackResult.h>
 #import <HwMobileSDK/HwFindPasswordParam.h>
@@ -47,7 +46,6 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 #import <HwMobileSDK/HwLoginResult.h>
 #import <HwMobileSDK/HwLogoutResult.h>
 #import <HwMobileSDK/HwClosingResult.h>
-#import <HwMobileSDK/HwManufacturerMeta.h>
 #import <HwMobileSDK/HwMemberInfo.h>
 #import <HwMobileSDK/HwModifyPasswordParam.h>
 #import <HwMobileSDK/HwModifyPasswordResult.h>
@@ -63,15 +61,12 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 #import <HwMobileSDK/HwReplaceGatewayParam.h>
 #import <HwMobileSDK/HwReplaceGatewayResult.h>
 #import <HwMobileSDK/HwResult.h>
-#import <HwMobileSDK/HwScannerResult.h>
 #import <HwMobileSDK/HwSearchedUserGateway.h>
-#import <HwMobileSDK/HwSetUserHeadPortraitResult.h>
 #import <HwMobileSDK/HwSetUserNicknameResult.h>
 #import <HwMobileSDK/HwShareGatewayAccount.h>
 #import <HwMobileSDK/HwShareGatewayAccountResult.h>
 #import <HwMobileSDK/HwShareGatewayParam.h>
 #import <HwMobileSDK/HwShareGatewayResult.h>
-#import <HwMobileSDK/HwTriggerMeta.h>
 #import <HwMobileSDK/HwUnbindGatewayResult.h>
 #import <HwMobileSDK/HwTransferAdminRightsResult.h>
 #import <HwMobileSDK/HwVerifyCodeForTransferAdminParam.h>
@@ -79,13 +74,14 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 #import <HwMobileSDK/HwUnshareGatewayParam.h>
 #import <HwMobileSDK/HwUnshareGatewayResult.h>
 #import <HwMobileSDK/HwUserBindedGateway.h>
-#import <HwMobileSDK/HwUserHeadPortraitInfo.h>
 #import <HwMobileSDK/HwUserInfo.h>
 #import <HwMobileSDK/HwUserService.h>
 #import <HwMobileSDK/HwUserServiceSave.h>
 #import <HwMobileSDK/HwVerifyCode.h>
 #import <HwMobileSDK/HwVerifyCodeForBindParam.h>
 #import <HwMobileSDK/HwVerifyCodeForFindpwdParam.h>
+#import <HwMobileSDK/HwFamilyInfo.h>
+#import <HwMobileSDK/HwEvaluationThreshold.h>
 
 #import <HwMobileSDK/HwWidgetMeta.h>
 #import <HwMobileSDK/HwLogoutGatewayResult.h>
@@ -132,6 +128,7 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 #import <HwMobileSDK/HwLoginParam.h>
 #import <HwMobileSDK/HwIsLoginParam.h>
 #import <HwMobileSDK/HwIsNeedAppForceUpdateResult.h>
+#import <HwMobileSDK/HwThirdPublic.h>
 /* UserService */
 
 /* ControllerService */
@@ -261,28 +258,12 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 #import <HwMobileSDK/HwGetWlanWpsStatusResult.h>
 #import <HwMobileSDK/HwLanEdgeOntInfo.h>
 #import <HwMobileSDK/HwAPSystemInfo.h>
+#import <HwMobileSDK/HwSteeringSensitivity.h>
+#import <HwMobileSDK/HwScenarioConfig.h>
+#import <HwMobileSDK/HwRadioOptimize.h>
+#import <HwMobileSDK/HwLanPONPhysicalInfo.h>
+#import <HwMobileSDK/HwApUplinkInfo.h>
 /* ControllerService */
-
-/* SceneService */
-#import <HwMobileSDK/HwSceneService.h>
-#import <HwMobileSDK/HwSceneAction.h>
-#import <HwMobileSDK/HwSceneCondition.h>
-#import <HwMobileSDK/HwSceneConditionAlarm.h>
-#import <HwMobileSDK/HwSceneConditionCron.h>
-#import <HwMobileSDK/HwSceneDate.h>
-#import <HwMobileSDK/HwSceneMeta.h>
-#import <HwMobileSDK/HwTriggerMeta.h>
-#import <HwMobileSDK/HwCreateSceneParam.h>
-#import <HwMobileSDK/HwCreateSceneResult.h>
-#import <HwMobileSDK/HwDeleteSceneParam.h>
-#import <HwMobileSDK/HwDeleteSceneResult.h>
-#import <HwMobileSDK/HwExecuteSceneParam.h>
-#import <HwMobileSDK/HwExecuteSceneResult.h>
-#import <HwMobileSDK/HwGetSceneListParam.h>
-#import <HwMobileSDK/HwGetSceneListResult.h>
-#import <HwMobileSDK/HwModifySceneParam.h>
-#import <HwMobileSDK/HwModifySceneResult.h>
-/* SceneService */
 
 /* SystemService */
 #import <HwMobileSDK/HwSystemServiceSave.h>
@@ -309,20 +290,6 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 
 /* HwDeviceMetaService */
 #import <HwMobileSDK/HwDeviceMetaService.h>
-#import <HwMobileSDK/HwGetProductMetaParam.h>
-#import <HwMobileSDK/HwGetSupportedActionListParam.h>
-#import <HwMobileSDK/HwGetSupportedActionListResult.h>
-#import <HwMobileSDK/HwGetSupportedAlarmListParam.h>
-#import <HwMobileSDK/HwGetSupportedAlarmListResult.h>
-#import <HwMobileSDK/HwGetSupportedManufacturerListResult.h>
-#import <HwMobileSDK/HwGetSupportedProductListParam.h>
-#import <HwMobileSDK/HwGetSupportedProductListResult.h>
-#import <HwMobileSDK/HwGetSupportedTriggerListParam.h>
-#import <HwMobileSDK/HwGetSupportedTriggerListResult.h>
-#import <HwMobileSDK/HwGetWidgetListResult.h>
-#import <HwMobileSDK/HwGetWidgetParam.h>
-#import <HwMobileSDK/HwActionMeta.h>
-#import <HwMobileSDK/HwAlarmMeta.h>
 /* HwDeviceMetaService */
 
 /* HwApplicationService */
@@ -353,6 +320,9 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 #import <HwMobileSDK/HwGetApOrSTANetQualityParam.h>
 #import <HwMobileSDK/HwGetApOrSTANetQualityResult.h>
 #import <HwMobileSDK/HwDPIService.h>
+#import <HwMobileSDK/HwDPIService+User.h>
+#import <HwMobileSDK/HwUserAccelerationInfo.h>
+#import <HwMobileSDK/HwQueryAccelerationParam.h>
 /* HwDPIService */
 
 /* HwSegmentTestSpeedService */
@@ -376,7 +346,7 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 
 #import <HwMobileSDK/HwDownloadFeedbackPicturesParam.h>
 #import <HwMobileSDK/HwDownloadFeedbackPicturesResult.h>
-
+#import <HwMobileSDK/HwPingInfo.h>
 /* HwConsumerAppService */
 
 /* HwSegmentTestSpeedService */
@@ -437,5 +407,12 @@ FOUNDATION_EXPORT const unsigned char MobileSDKVersionString[];
 #import <HwMobileSDK/HwEaiInfo.h>
 #import <HwMobileSDK/HwDeviceAccState.h>
 #import <HwMobileSDK/HwDeviceAccStrategy.h>
+#import <HwMobileSDK/HwPingService.h>
+#import <HwMobileSDK/HwPingInfo.h>
+
+/* HwRestService */
+#import <HwMobileSDK/HwRestService.h>
+/* HwRestService */
+
 #pragma mark startImport
 #endif /* HwHwMobileSDK_h */

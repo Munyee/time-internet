@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
 
-#import "HwCallback.h"
-#import "HwAppViewInterface.h"
+#import <HwMobileSDK/HwCallback.h>
+#import <HwMobileSDK/HwAppViewInterface.h>
 
-#import "HwWebView.h"
-#import "HwWidgetMeta.h"
+#import <HwMobileSDK/HwWebView.h>
+#import <HwMobileSDK/HwWidgetMeta.h>
 
-#import "HwSmarthomeEngineSaveService.h"
+#import <HwMobileSDK/HwSmarthomeEngineSaveService.h>
 
 /**
  智慧家居集成(Smart home integration)

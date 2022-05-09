@@ -12,7 +12,6 @@ enum PppoeAlertType {
 }
 
 import UIKit
-import MBProgressHUD
 
 class PppoeAlertViewController: PopUpViewController {
 
@@ -51,11 +50,11 @@ class PppoeAlertViewController: PopUpViewController {
     }
 
     func openLiveChat() {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
 
         LiveChatDataController.shared.loadStatus { statusResult in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let status = statusResult {
                 if status == "online" {
                     Freshchat.sharedInstance().resetUser(completion: {

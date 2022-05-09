@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class VoiceSummaryViewController: BaseViewController {
     private var voiceServices: [Service] = [] {
@@ -31,7 +30,7 @@ class VoiceSummaryViewController: BaseViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("Voice", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
 
         self.tableView.register(VoicePlanHeaderView.self, forHeaderFooterViewReuseIdentifier: headerViewIdentifier)
 
@@ -42,6 +41,12 @@ class VoiceSummaryViewController: BaseViewController {
         self.tableView.estimatedRowHeight = 100
     }
 
+    @objc
+    func dismissView() {
+        self.tableView.delegate = nil
+        self.dismissVC()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.refresh()
@@ -181,10 +186,10 @@ extension VoiceSummaryViewController: VoicePlanCellDelegate {
             else {
                 return
         }
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Generating new QR Code", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         APIClient.shared.generateTHRCode(AccountController.shared.profile.username, account: account, service: service) { ( _, error: Error?) in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return

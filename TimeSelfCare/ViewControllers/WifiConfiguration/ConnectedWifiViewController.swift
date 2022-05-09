@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 class ConnectedWifiViewController: UIViewController {
 
@@ -66,11 +65,11 @@ class ConnectedWifiViewController: UIViewController {
         }
         
         let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         AccountDataController.shared.getHuaweiSSOAuthCode(mobileId: UUIDValue, account: account, service: service) { data, error in
             guard error == nil else {
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.showAlertMessage(message: error.debugDescription)
                 return
             }
@@ -78,10 +77,10 @@ class ConnectedWifiViewController: UIViewController {
             if let result = data {
                 if let authCode = result["authcode"] as? String {
                     HuaweiHelper.shared.initWithAppAuth(token: authCode, username: service.serviceId, completion: { _ in
-                        hud.hide(animated: true)
+                        hud.hideLoading()
                         self.dismissVC()
                     }, error: { exception in
-                        hud.hide(animated: true)
+                        hud.hideLoading()
                         self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                     })
                 }

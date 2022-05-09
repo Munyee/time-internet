@@ -1,6 +1,6 @@
 
 #import <Foundation/Foundation.h>
-#import "HwCertificate.h"
+#import <HwMobileSDK/HwCertificate.h>
 
 @protocol HwCallback;
 @class HwLoginParam;
@@ -72,6 +72,14 @@
  */
 + (void)initWithAppAuth:(HwAppAuthInitParam *)initParam
            withCallback:(id<HwCallback>)callback;
+
+/// 切换当前网关
+/// @param deviceId 网关mac
+/// @param isLocal true：近端，false：远端
++ (void)changeCurrentOnt:(NSString *)deviceId isLocal:(BOOL)isLocal;
+
+/// 获取当前网关
++ (NSString *)getCurrentOnt;
 		  
 /**
  *

@@ -1,6 +1,6 @@
-#import "HwSystemServiceSave.h"
-#import "HwDeviceAccState.h"
-#import "HwDeviceAccStrategy.h"
+#import <HwMobileSDK/HwSystemServiceSave.h>
+#import <HwMobileSDK/HwDeviceAccState.h>
+#import <HwMobileSDK/HwDeviceAccStrategy.h>
 
 @protocol HwCallback;
 
@@ -12,6 +12,7 @@
 @class HwDownloadFeedbackPicturesParam;
 @class HwDeleteFeedbackParam;
 @class HwGetCloudFeatureParam;
+@class HwOntPlatAddressModel;
 /**
  *  
  *
@@ -159,4 +160,19 @@ typedef void(^HwgetAppConfigHandle)(NSString* tag,HwgetAppConfigHandleCallBack c
  @param callback 回调 HwResult
  */
 - (void)setAccStrategyState:(NSString *)deviceId param:(NSArray <HwDeviceAccStrategy *>*)list withCallback:(id<HwCallback>)callback;
+
+/**
+ 获取平台设定的网关评价指标的阈值
+ 
+ @param callback 回调 HwEvaluationThreshold
+ */
+- (void)queryEvaluationThreshold:(id<HwCallback>)callback;
+
+/**
+ 查询NCE南向IP
+
+ @param callback 回调
+ */
+- (void)getHomePublicIpAddr:(id<HwCallback>)callback;
+
 @end

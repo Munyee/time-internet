@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 import IQKeyboardManagerSwift
 
 class PCProfileViewController: UIViewController {
@@ -91,11 +90,13 @@ class PCProfileViewController: UIViewController {
     
     @objc
     func popToRoot() {
+        scrollView.delegate = nil
         self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc
     func popBack() {
+        scrollView.delegate = nil
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
         }
@@ -398,11 +399,11 @@ class PCProfileViewController: UIViewController {
                 message: NSLocalizedString("Are you sure want to remove from the list?", comment: ""),
                 actions: [
                     UIAlertAction(title: NSLocalizedString("Confirm", comment: ""), style: .destructive) { _ in
-                        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                        hud.label.text = NSLocalizedString("Loading...", comment: "")
-                        
+                        let hud = LoadingView().addLoading(toView: self.view)
+                        hud.showLoading()
+
                         guard let controlledDev = self.template?.macList as? [String] else {
-                            hud.hide(animated: true)
+                            hud.hideLoading()
                             self.popToRoot()
                             return
                         }
@@ -420,12 +421,12 @@ class PCProfileViewController: UIViewController {
                         
                         group.notify(queue: .main) {
                             HuaweiHelper.shared.deleteAttachParentControlTemplate(name: self.name, completion: { _ in
-                                hud.hide(animated: true)
+                                hud.hideLoading()
                                 self.popToRoot()
                             }, error: { exception in
                                 DispatchQueue.main.async {
                                     self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                                    hud.hide(animated: true)
+                                    hud.hideLoading()
                                 }
                             })
                         }
@@ -444,19 +445,19 @@ class PCProfileViewController: UIViewController {
             return
         }
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+
         HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
             let names = tplList.map { $0.name }
             
             if let arrNames = names as? [String] {
                 HuaweiHelper.shared.getParentControlTemplateDetailList(templateNames: arrNames, completion: { arrData in
                     
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                     let arrName = arrData.filter { $0.name != self.template?.name }.map { $0.aliasName }
                     if arrName.contains(where: { $0 == self.profileTextView.text }) {
-                        hud.hide(animated: true)
+                        hud.hideLoading()
                         self.showAlertMessage(title: "Error", message: "Existing profile name", dismissTitle: "Ok")
                         return
                     } else {
@@ -515,22 +516,22 @@ class PCProfileViewController: UIViewController {
                             }
                             
                             group.notify(queue: .main) {
-                                hud.hide(animated: true)
+                                hud.hideLoading()
                                 self.popToRoot()
                             }
                         }, error: { exception in
-                            hud.hide(animated: true)
+                            hud.hideLoading()
                             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                         })
                     }
                     
                 }, error: { exception in
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                     self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
                 })
             }
         }, error: { exception in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
         })
     }

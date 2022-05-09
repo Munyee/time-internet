@@ -20,7 +20,19 @@
 /** TXPower 表示发送光功率；(单位：dBm) (Transmit optical power (dBm))*/
 @property(nonatomic, copy) NSString *txPower;
 
+/** TXPower 表示发送光功率min；(单位：dBm) (Transmit optical power (dBm))*/
+@property(nonatomic, copy) NSString *txPowerMin;
+
+/** TXPower 表示发送光功率max；(单位：dBm) (Transmit optical power (dBm))*/
+@property(nonatomic, copy) NSString *txPowerMax;
+
 /** RXPower 接收光功率；(单位：dBm)(Receive optical power (dBm))*/
 @property(nonatomic, copy) NSString *rxPower;
+
+/** RXPower 接收光功率min；(单位：dBm)(Receive optical power (dBm))*/
+@property(nonatomic, copy) NSString *rxPowerMin;
+
+/** RXPower 接收光功率max；(单位：dBm)(Receive optical power (dBm))*/
+@property(nonatomic, copy) NSString *rxPowerMax;
 
 @end

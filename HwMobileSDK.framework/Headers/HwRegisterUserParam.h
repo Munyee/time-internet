@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "HwParam.h"
-#import "HwCommonDefine.h"
+#import <HwMobileSDK/HwParam.h>
+#import <HwMobileSDK/HwCommonDefine.h>
 
 /**
  *  

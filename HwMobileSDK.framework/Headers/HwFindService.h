@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwGatewayDevice.h"
+#import <HwMobileSDK/HwGatewayDevice.h>
 
 @protocol HwCallback;
 
@@ -23,5 +23,17 @@
  *  @since 1.0
  */
 - (void)find:(NSDictionary *)conditions withCallback:(id<HwCallback>)callback;
+
+/**
+ *
+ *
+ *  @brief 更新网关sn
+ *
+ *  @param gatewayDevice 网关信息
+ *  @param newSn 网关新sn
+ *  @param callback   返回回调 HwResult
+ *
+ */
+- (void)replaceGatewaySn:(HwGatewayDevice *)gatewayDevice sn:(NSString *)newSn withCallback:(id<HwCallback>)callback;
 
 @end

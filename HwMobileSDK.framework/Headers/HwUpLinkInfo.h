@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwPonInformation.h"
-#import "HwWANInfo.h"
+#import <HwMobileSDK/HwPonInformation.h>
+#import <HwMobileSDK/HwWANInfo.h>
 
 typedef NS_ENUM(long) {
     kLedStatusUnknown = -1,

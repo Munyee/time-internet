@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwDeviceOnlineTimeInfo.h"
+#import <HwMobileSDK/HwDeviceOnlineTimeInfo.h>
 @class HwClassTraffic;
 @class HwDeviceTrafficStatistics;
 

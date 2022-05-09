@@ -20,7 +20,7 @@ class ShopViewController: TimeBaseViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("SHOP", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
         
         let path = "open_shop"
         parameters["action"] = path
@@ -41,6 +41,12 @@ class ShopViewController: TimeBaseViewController, WKUIDelegate {
         self.activity.startAnimating()
         self.webView.navigationDelegate = self
         self.activity.hidesWhenStopped = true
+    }
+    
+    @objc
+    func dismissView() {
+        self.webView.scrollView.delegate = nil
+        self.dismissVC()
     }
 }
 

@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 protocol PCDevicesViewControllerDelegate {
     func selected(devices: [HwLanDevice])
@@ -29,16 +28,22 @@ class PCDevicesViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("SELECT DEVICE(S)", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_close_magenta"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_close_magenta"), style: .done, target: self, action: #selector(self.dismissView))
         
         queryDevices()
         checkConfirmButton()
     }
     
+    @objc
+    func dismissView() {
+        self.tableView.delegate = nil
+        self.dismissVC()
+    }
+    
     func queryDevices() {
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
 
         HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
             let names = tplList.map { template -> String in template.name }
@@ -75,21 +80,21 @@ class PCDevicesViewController: UIViewController {
                     }
                 }
                 
-                hud.hide(animated: true)
+                hud.hideLoading()
             }, error: { exception in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
                     UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
-                        self.dismissVC()
+                        self.dismissView()
                     }
                 ])
             })
             
         }, error: { exception in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""), actions: [
                 UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default) { _ in
-                    self.dismissVC()
+                    self.dismissView()
                 }
             ])
         })
@@ -139,7 +144,7 @@ class PCDevicesViewController: UIViewController {
     }
     
     @IBAction func actConfirm(_ sender: Any) {
-        self.dismissVC()
+        self.dismissView()
         delegate?.selected(devices: selectedDevices)
     }
     

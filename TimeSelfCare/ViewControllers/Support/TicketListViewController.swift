@@ -35,12 +35,18 @@ class TicketListViewController: TimeBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("SUPPORT", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
 
         self.tableView.addSubview(self.refreshControl)
 
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 60
+    }
+    
+    @objc
+    func dismissView() {
+        self.tableView.delegate = nil
+        self.dismissVC()
     }
 
     override func viewWillAppear(_ animated: Bool) {

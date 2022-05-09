@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 class PCTemplateListViewController: UIViewController {
     
@@ -21,7 +20,7 @@ class PCTemplateListViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("PARENTAL CONTROLS", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
         let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         spacer.width = 10
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: #imageLiteral(resourceName: "ic_add"), style: .done, target: self, action: #selector(self.goToAddTemplate)), UIBarButtonItem(image: #imageLiteral(resourceName: "ic_info"), style: .done, target: self, action: #selector(self.goToMainView)), spacer]
@@ -52,11 +51,17 @@ class PCTemplateListViewController: UIViewController {
     }
     
     @objc
+    func dismissView() {
+        tableView.delegate = nil
+        self.dismissVC()
+    }
+    
+    @objc
     func getParentalControl() {
         templateList.removeAll()
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+
         HuaweiHelper.shared.getAttachParentalControlTemplateList(completion: { tplList in
             
             if tplList.isEmpty {
@@ -70,18 +75,18 @@ class PCTemplateListViewController: UIViewController {
             }
             
             HuaweiHelper.shared.getParentControlTemplateDetailList(templateNames: names, completion: { arrData in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.templateList = arrData
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }) { _ in
-                hud.hide(animated: true)
-                self.dismissVC()
+                hud.hideLoading()
+                self.dismissView()
             }
             
         }) { _ in
-            hud.hide(animated: true)
-            self.dismissVC()
+            hud.hideLoading()
+            self.dismissView()
         }
     }
 }
@@ -126,9 +131,9 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
                 message: NSLocalizedString("Are you sure want to remove from the list?", comment: ""),
                 actions: [
                     UIAlertAction(title: NSLocalizedString("Confirm", comment: ""), style: .destructive) { _ in
-                        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                        hud.label.text = NSLocalizedString("Loading...", comment: "")
-                                                
+                        let hud = LoadingView().addLoading(toView: self.view)
+                        hud.showLoading()
+
                         if let controlledDev = template.macList as? [String] {
                             let group = DispatchGroup()
                             for dev in controlledDev {
@@ -143,12 +148,12 @@ extension PCTemplateListViewController: UITableViewDelegate, UITableViewDataSour
                             
                             group.notify(queue: .main) {
                                 HuaweiHelper.shared.deleteAttachParentControlTemplate(name: template.name, completion: { _ in
-                                    hud.hide(animated: true)
+                                    hud.hideLoading()
                                     self.getParentalControl()
                                 }, error: { exception in
                                     DispatchQueue.main.async {
                                         self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
-                                        hud.hide(animated: true)
+                                        hud.hideLoading()
                                     }
                                 })
                             }

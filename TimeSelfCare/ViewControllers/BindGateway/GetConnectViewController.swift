@@ -10,7 +10,6 @@ import CoreLocation
 import UIKit
 import HwMobileSDK
 import SystemConfiguration.CaptiveNetwork
-import MBProgressHUD
 import Alamofire
 
 protocol GetConnectViewControllerDelegate {
@@ -46,15 +45,15 @@ class GetConnectViewController: UIViewController {
             if ssidName != "" && gateway != nil {
                 if let deviceMac = self.gateway?.deviceMac {
                     
-                    let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                    hud.label.text = NSLocalizedString("Loading...", comment: "")
+                    let hud = LoadingView().addLoading(toView: self.view)
+                    hud.showLoading()
                     HuaweiHelper.shared.bindGateway(deviceMac: deviceMac, gatewayNickname: ssidName, completion: { _ in
-                        hud.hide(animated: true)
+                        hud.hideLoading()
                         self.delegate?.bindSuccessful()
                         self.dismissVC()
                     }, error: { _ in
                         self.failed()
-                        hud.hide(animated: true)
+                        hud.hideLoading()
                     })
                     
                 } else {

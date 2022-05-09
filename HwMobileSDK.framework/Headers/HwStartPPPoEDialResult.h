@@ -1,5 +1,5 @@
 
-#import "HwResult.h"
+#import <HwMobileSDK/HwResult.h>
 #import <Foundation/Foundation.h>
 
 /**

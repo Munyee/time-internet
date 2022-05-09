@@ -64,6 +64,7 @@ public class CountryCodeListViewController: UIViewController {
     
     @IBAction func cancel(sender: Any) {
         self.completion?(nil, true)
+        self.tableView.delegate = nil
         self.dismissVC()
     }
 }
@@ -91,6 +92,7 @@ extension CountryCodeListViewController: UITableViewDataSource, UITableViewDeleg
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let country: (name: String, isoCountryCode: String) = self.displayMode == .countries ? self.countries[indexPath.row] : self.searchResults[indexPath.row]
         self.completion?(PhoneCountry.phoneCode(for: country.isoCountryCode), false)
+        self.tableView.delegate = nil
         self.dismissVC()
     }
     

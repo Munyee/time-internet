@@ -1,7 +1,7 @@
 
 #import <Foundation/Foundation.h>
-#import "HwWlanNeighborInfo.h"
-#import "HwApTrafficInfo.h"
+#import <HwMobileSDK/HwWlanNeighborInfo.h>
+#import <HwMobileSDK/HwApTrafficInfo.h>
 
 /**
  *  

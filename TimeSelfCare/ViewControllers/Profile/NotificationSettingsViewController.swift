@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import UserNotifications
 
 class NotificationSettingsViewController: BaseViewController {
@@ -36,10 +35,10 @@ class NotificationSettingsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         NotificationSettingDataController.shared.loadNotificationSettings(account: AccountController.shared.selectedAccount) { (settings: [NotificationSetting], error: Error?) in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return
@@ -127,10 +126,10 @@ class NotificationSettingsViewController: BaseViewController {
 
         let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
 
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Updating...", comment: "")
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
             NotificationSettingDataController.shared.updateNotificationSetting(notificationSetting: notificationSetting) { _, error in
-                hud.hide(animated: true)
+                hud.hideLoading()
 
                 if let error = error {
                     self.showAlertMessage(with: error)

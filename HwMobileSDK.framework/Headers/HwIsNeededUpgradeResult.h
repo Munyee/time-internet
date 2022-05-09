@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "HwPluginUpgradeProgressInfo.h"
-#import "HwResult.h"
+#import <HwMobileSDK/HwPluginUpgradeProgressInfo.h>
+#import <HwMobileSDK/HwResult.h>
 
 /**
  *  

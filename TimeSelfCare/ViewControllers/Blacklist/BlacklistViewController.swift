@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 class BlacklistViewController: UIViewController {
 
@@ -30,6 +29,7 @@ class BlacklistViewController: UIViewController {
     
     @objc
     func popBack() {
+        tableView.delegate = nil
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -112,14 +112,14 @@ extension BlacklistViewController: UITableViewDelegate, UITableViewDataSource {
                 message: NSLocalizedString("Are you sure you want to remove this device from the blacklist?", comment: ""),
                 actions: [
                     UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .destructive) { _ in
-                        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                        hud.label.text = NSLocalizedString("Loading...", comment: "")
+                        let hud = LoadingView().addLoading(toView: self.view)
+                        hud.showLoading()
                         
                         HuaweiHelper.shared.deleteLanDeviceFromBlackList(lanDevice: device, completion: { _ in
                             self.queryBlackList()
-                            hud.hide(animated: true)
+                            hud.hideLoading()
                         }, error: { _ in
-                            hud.hide(animated: true)
+                            hud.hideLoading()
                         })
                     },
                     UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .cancel, handler: nil)])

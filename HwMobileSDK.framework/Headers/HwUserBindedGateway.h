@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwGatewayInfo.h"
+#import <HwMobileSDK/HwGatewayInfo.h>
 
 /**
  *  

@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "HwResult.h"
-#import "HwTenantInfo.h"
+#import <HwMobileSDK/HwResult.h>
+#import <HwMobileSDK/HwTenantInfo.h>
 
 typedef enum : NSUInteger {
     //普通租户
@@ -27,4 +27,7 @@ typedef enum : NSUInteger {
 
 /** 备机ip*/
 @property(nonatomic, copy) NSString *backupServerIp;
+
+/** 是否是首次登录 */
+@property (nonatomic, assign) BOOL isDefaultPwd;
 @end

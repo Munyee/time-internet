@@ -1,10 +1,12 @@
 #import <Foundation/Foundation.h>
-#import "HwUserServiceSave.h"
-#import "HwVerifyCode.h"
-#import "HwCheckVerifyCodeParam.h"
-#import "HwJudgeAccountExistParam.h"
-#import "HwAppInfoParam.h"
-#import "HwQueryOMMessageParam.h"
+#import <HwMobileSDK/HwUserServiceSave.h>
+#import <HwMobileSDK/HwVerifyCode.h>
+#import <HwMobileSDK/HwCheckVerifyCodeParam.h>
+#import <HwMobileSDK/HwJudgeAccountExistParam.h>
+#import <HwMobileSDK/HwAppInfoParam.h>
+#import <HwMobileSDK/HwQueryOMMessageParam.h>
+#import <HwMobileSDK/HwFamilyInfo.h>
+#import <HwMobileSDK/HwThirdAuthParam.h>
 
 @protocol HwCallback;
 @class HwRegisterUserParam;
@@ -356,4 +358,35 @@ withTranferAdminRightsParam:(HwTransferAdminRightsParam *)param
  @param callback 回调
 */
 - (void)checkMultiFactorCode:(NSString *)code withCallback:(id<HwCallback>)callback;
+
+/**
+ 查询所有的家庭信息
+ 
+ @param callback Array<HwFamilyInfo>
+ */
+- (void)queryFamilyInfoList:(id<HwCallback>)callback;
+
+/**
+ 三方账号登录
+ 
+ @param param 登录信息
+ @param callback 回调 HwLoginInfo
+ */
+- (void)thirdPartAuth:(HwThirdAuthParam *)param withCallback:(id<HwCallback>)callback;
+
+/**
+ 三方账号绑定
+ 
+ @param param 绑定信息
+ @param callback 回调
+ */
+- (void)bindThirdAccount:(HwThirdAuthParam *)param withCallback:(id<HwCallback>)callback;
+
+/**
+ 三方账号解绑
+ 
+ @param param 绑定信息
+ @param callback 回调
+ */
+- (void)unbindAccount:(kHwThirdPlatformType)type withCallback:(id<HwCallback>)callback;
 @end

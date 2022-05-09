@@ -1,5 +1,20 @@
 #import <Foundation/Foundation.h>
-#import "HwWlanRadioInfo.h"
+#import <HwMobileSDK/HwWlanRadioInfo.h>
+
+typedef enum {
+    HwSyncFlagCancel = 0,
+    HwSyncFlagSync,
+}HwSyncFlagType;
+
+@interface HwSyncDevice : NSObject
+
+/** mac*/
+@property(nonatomic ,copy) NSString *mac;
+
+/** 1同步，0取消*/
+@property(nonatomic ,assign) HwSyncFlagType syncFlag;
+
+@end
 
 /**
  *
@@ -100,4 +115,35 @@ typedef enum {
 
 /** AcsMode */
 @property (nonatomic, assign) HwAcsModeType acsMode;
+
+/** WMM是否使能*/
+@property (nonatomic, copy) NSString *wmmEnable;
+
+/** 国家码*/
+@property (nonatomic, copy) NSString *regulatoryDomain;
+
+/** 最大用户数*/
+@property (nonatomic, copy) NSString *maxUsers;
+
+/** 在线用户*/
+@property (nonatomic, copy) NSString *onlineUsers;
+
+/** 接收报文数*/
+@property (nonatomic, copy) NSString *recvPackets;
+
+/** 发送报文数*/
+@property (nonatomic, copy) NSString *sendPackets;
+
+/** vlanId*/
+@property (nonatomic, copy) NSString *vlanId;
+
+/** 上行限速 Kbps，0表示不限速*/
+@property (nonatomic, copy) NSString *upSpeed;
+
+/** 下行限速 Kbps，0表示不限速*/
+@property (nonatomic, copy) NSString *downSpeed;
+
+/** ap列表*/
+@property (nonatomic, strong) NSArray <HwSyncDevice *>*syncApList;
+
 @end

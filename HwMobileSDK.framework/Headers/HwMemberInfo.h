@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwUserInfo.h"
+#import <HwMobileSDK/HwUserInfo.h>
 
 /**
  *  

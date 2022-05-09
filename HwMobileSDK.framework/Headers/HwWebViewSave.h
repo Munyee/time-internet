@@ -2,9 +2,9 @@
 
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
+#import <HwMobileSDK/HwAppViewInterface.h>
 
 @class HLJSBridge;
-@class HLAppJSBridgeService;
 /**
  *  
  *
@@ -12,24 +12,14 @@
  *
  *  @since 1.0
  */
-@interface HwWebViewSave : WKWebView
+@interface HwWebViewSave : WKWebView <HwAppViewInterface>
 
 /** Webview Javascript bridge对象 (Webview Javascript bridge object)*/
-@property(nonatomic,strong) HLJSBridge* appJsBridge;
+@property(nonatomic, strong) HLJSBridge *appJsBridge;
 
-- (void) setJSBService:(HLAppJSBridgeService *)service;
-- (HLAppJSBridgeService *) jsbService;
+@property(nonatomic, copy) NSString *deviceId;
 
-/**
- *  
- *
- *  @brief 设置jsbridge接口(set a jsbridge interface)
- *
- *  @param jsBridge js bridge对象(js bridge object)
- *
- *  @since 1.0
- */
-- (void)setAppJsBridgeInterface:(HLJSBridge *)jsBridge;
+@property(nonatomic, weak) id <HwAppViewInterface> delegate;
 
 /**
  *  

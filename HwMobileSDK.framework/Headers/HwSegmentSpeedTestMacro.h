@@ -39,12 +39,14 @@ typedef NS_ENUM(NSInteger , HwSegmentSpeedTestTestRange) {
  - HwSegmentSpeedTestToolTypeIPERF: "iperf"
  - HwSegmentSpeedTestToolTypePKTGEN: "pktgen"
  - HwSegmentSpeedTestToolTypeHTTP: "http"
+ - HwSegmentSpeedTestToolTypeSpeedTest: "speedt"
  - HwSegmentSpeedTestToolTypeUNKNOWN: 异常
  */
 typedef NS_ENUM(NSInteger , HwSegmentSpeedTestToolType) {
     HwSegmentSpeedTestToolTypeIPERF,
     HwSegmentSpeedTestToolTypePKTGEN,
     HwSegmentSpeedTestToolTypeHTTP,
+    HwSegmentSpeedTestToolTypeSpeedTest,
     HwSegmentSpeedTestToolTypeUNKNOWN = 999,
 };
 

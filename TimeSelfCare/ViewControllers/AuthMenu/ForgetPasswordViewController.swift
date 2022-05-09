@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import EasyTipView
 
 internal class ForgetPasswordViewController: BaseAuthViewController {
@@ -25,8 +24,11 @@ internal class ForgetPasswordViewController: BaseAuthViewController {
     @IBOutlet private weak var resetPasswordButton: UIButton!
     @IBOutlet private weak var noteLabel: UILabel!
 
+    var hud: LoadingView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        hud = LoadingView().addLoading(toView: self.view)
 
         let noteText = "An email will be sent to you in the next five minutes to reset your password. Otherwise, please get in touch with us at 1800 18 1818 or cs@time.com.my."
         let attributedString = NSMutableAttributedString(string: noteText, attributes: [NSAttributedString.Key.font: UIFont.getCustomFont(family: "DIN", style: .subheadline)])
@@ -57,10 +59,9 @@ internal class ForgetPasswordViewController: BaseAuthViewController {
     }
 
     @IBAction func resetPassword(_ sender: Any) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Resetting password...", comment: "")
+        hud?.showLoading()
         APIClient.shared.forgetPassword(self.usernameTextField.inputText, accountNo: self.accountTextField.inputText) { response, error in
-            hud.hide(animated: true)
+            self.hud?.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return
@@ -68,7 +69,7 @@ internal class ForgetPasswordViewController: BaseAuthViewController {
             let dismissAction = UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default) { _ in
                 self.dismiss(animated: true, completion: nil)
             }
-
+            
             let message: String
             if let responseMessage = response?["message"] as? String, !responseMessage.isEmpty {
                 message = responseMessage

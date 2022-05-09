@@ -35,4 +35,14 @@
 - (void)feedback:(NSString *)deviceId withFeedbackInfo:(HwFeedbackInfo *)feedbackInfo
     withCallBack:(id<HwCallback>)callback;
 
+/**
+ *
+ *
+ *  @brief 查询能力集
+ *
+ *  @param callback     NSDictionary
+ *
+ *  @since 1.7
+ */
+- (void)getCloudFeature:(id<HwCallback>)callback;
 @end

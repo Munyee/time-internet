@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwSegmentSpeedTestMacro.h"
-#import "HwSegmentSpeedTestSubModels.h"
+#import <HwMobileSDK/HwSegmentSpeedTestMacro.h>
+#import <HwMobileSDK/HwSegmentSpeedTestSubModels.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface HwInternetSpeedTestConfigInfo : NSObject

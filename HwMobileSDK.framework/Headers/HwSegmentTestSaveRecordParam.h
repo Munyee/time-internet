@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwSegmentSpeedTestMacro.h"
-#import "HwSegmentSpeedTestSubModels.h"
+#import <HwMobileSDK/HwSegmentSpeedTestMacro.h>
+#import <HwMobileSDK/HwSegmentSpeedTestSubModels.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) HwSegmentSpeedTestDimension dimension;
 /** 维度的设备 Mac */
 @property (nonatomic , copy) NSString *dimensionDeviceId;
+/** 分段测速0，一键测速1 */
+@property (nonatomic , copy) NSString *testType;
 /** 子记录列表 */
 @property (nonatomic , strong) NSArray<HwSegmentSpeedTestSaveSubRecordInfo *> *subRecordList;
 

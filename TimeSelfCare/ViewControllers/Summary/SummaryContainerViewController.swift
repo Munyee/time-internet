@@ -8,7 +8,6 @@
 
 import UIKit
 import Lottie
-import MBProgressHUD
 import Alamofire
 import SwiftyJSON
 
@@ -43,9 +42,13 @@ class SummaryContainerViewController: TimeBaseViewController {
     @IBOutlet weak var importantNoticeView: UIView!
     @IBOutlet weak var importantNoticeLabel: UILabel!
     var showFloatingButton = false
+        
+    var hud: LoadingView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hud = LoadingView().addLoading(toView: self.view)
+
         self.profileFullNameLabel.text = AccountController.shared.selectedAccount?.profile?.fullname ?? "..."
         
         self.floatingActionButton.layer.shadowPath = UIBezierPath(ovalIn: self.floatingActionButton.bounds).cgPath
@@ -224,11 +227,8 @@ class SummaryContainerViewController: TimeBaseViewController {
             #endif
             
             if isCustSegments {
-                let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-                hud.label.text = NSLocalizedString("Loading...", comment: "")
+                self.hud?.showLoading()
                 AccountDataController.shared.isUsingHuaweiDevice(account: account, service: service) { data, error in
-                    hud.hide(animated: true)
-                    
                     guard error == nil else {
                         print(error.debugDescription)
                         return
@@ -249,6 +249,7 @@ class SummaryContainerViewController: TimeBaseViewController {
                                 }
                             }
                         } else {
+                            self.hud?.hideLoading()
                             self.showFloatingButton = false
                         }
                     }
@@ -258,10 +259,6 @@ class SummaryContainerViewController: TimeBaseViewController {
     }
     
     func HuaweiLogin() {
-        
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        
         DispatchQueue.main.async {
             guard let account = AccountController.shared.selectedAccount else {
                 return
@@ -276,7 +273,8 @@ class SummaryContainerViewController: TimeBaseViewController {
             let UUIDValue = UIDevice.current.identifierForVendor!.uuidString
             AccountDataController.shared.getHuaweiSSOAuthCode(mobileId: UUIDValue, account: account, service: service) { data, error in
                 
-                hud.hide(animated: true)
+                self.hud?.hideLoading()
+
                 guard error == nil else {
                     print(error.debugDescription)
                     return
@@ -539,10 +537,9 @@ class SummaryContainerViewController: TimeBaseViewController {
     func showGuestWifi() {
         if AccountController.shared.showGuestWifi {
             AccountController.shared.showGuestWifi = false
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Loading...", comment: "")
+            hud?.showLoading()
             HuaweiHelper.shared.queryUserBindGateway { gateways in
-                hud.hide(animated: true)
+                self.hud?.hideLoading()
                 if !gateways.isEmpty {
                     let storyboard = UIStoryboard(name: TimeSelfCareStoryboard.guestwifi.filename, bundle: nil)
                     guard let vc = storyboard.instantiateViewController(withIdentifier: "GuestWifiViewController") as? GuestWifiViewController else {

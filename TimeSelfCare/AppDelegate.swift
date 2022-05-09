@@ -27,6 +27,8 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
+        HwNetopenMobileSDK.trustAllServerCertificate(true)
+        
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
         ApplicationDelegate.initialize()
 
@@ -206,13 +208,13 @@ extension AppDelegate: APNSControllerDelegate {
 extension AppDelegate {
     func applyAppearance() {
         UIFont.setCustomFont()
-
+        
         UINavigationBar.appearance().tintColor = UIColor.primary
-
+        
         if let title2Font = UIFont.getCustomFont(family: "DIN", style: .title2) {
             UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: title2Font]
         }
-
+        
         var backgroundImage: UIImage
         if #available(iOS 11.0, *) {
             backgroundImage = #imageLiteral(resourceName: "bg_navbar_44")
@@ -221,10 +223,22 @@ extension AppDelegate {
         }
         
         UINavigationBar.appearance().setBackgroundImage(backgroundImage.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch), for: .default)
-
+        
         if let subheadlineFont = UIFont.getCustomFont(family: "DIN", style: .subheadline) {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: subheadlineFont], for: .normal)
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: subheadlineFont], for: .highlighted)
         }
+        
+       if #available(iOS 13.0, *) {
+           let appearance = UINavigationBarAppearance()
+           appearance.configureWithOpaqueBackground()
+           appearance.backgroundColor = UIColor.white
+           if let title2Font = UIFont.getCustomFont(family: "DIN", style: .title2) {
+               appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: title2Font]
+           }
+           
+           UINavigationBar.appearance().standardAppearance = appearance
+           UINavigationBar.appearance().scrollEdgeAppearance = appearance
+       }
     }
 }

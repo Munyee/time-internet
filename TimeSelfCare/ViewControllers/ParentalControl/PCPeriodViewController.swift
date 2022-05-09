@@ -45,7 +45,7 @@ class PCPeriodViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("SELECT ACCESS PERIOD", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_close_magenta"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_close_magenta"), style: .done, target: self, action: #selector(self.dismissView))
         
         self.pickerViewLoaded(row: 0, component: 0)
         self.pickerViewLoaded(row: 0, component: 1)
@@ -53,6 +53,12 @@ class PCPeriodViewController: UIViewController {
         self.pickerViewLoaded(row: 0, component: 3)
         
         checkConfirmButton()
+    }
+    
+    @objc
+    func dismissView() {
+        self.tableView.delegate = nil
+        self.dismissVC()
     }
     
     @IBAction func actConfirm(_ sender: Any) {
@@ -63,7 +69,7 @@ class PCPeriodViewController: UIViewController {
                 "dayOfWeeks": selectedPeriod.map { $0.type },
                 "repeatMode": selectedPeriod.first?.repeatMode
             ]) {
-                self.dismissVC()
+                self.dismissView()
                 if index != nil {
                     period.index = index
                 }

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwParam.h"
+#import <HwMobileSDK/HwParam.h>
 
 typedef NS_ENUM(NSInteger, kHwSecurityCodeType)
 {

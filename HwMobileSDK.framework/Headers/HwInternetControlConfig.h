@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwTimeDuration.h"
-#import "HwAppList.h"
-#import "HwUrlCfg.h"
+#import <HwMobileSDK/HwTimeDuration.h>
+#import <HwMobileSDK/HwAppList.h>
+#import <HwMobileSDK/HwUrlCfg.h>
 @class HwCustomParam;
 @class HwDefaultParam;
 @class HwBlockAllParam;

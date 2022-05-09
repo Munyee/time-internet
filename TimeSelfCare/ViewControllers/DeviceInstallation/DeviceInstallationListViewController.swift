@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 
 class DeviceInstallationListViewController: UIViewController {
 
@@ -22,7 +21,7 @@ class DeviceInstallationListViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = NSLocalizedString("DEVICE INSTALLATION", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.getAPList), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -31,6 +30,12 @@ class DeviceInstallationListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchAPList()
+    }
+    
+    @objc
+    func dismissView() {
+        tableView.delegate = nil
+        self.dismissVC()
     }
     
     @objc
@@ -77,9 +82,9 @@ class DeviceInstallationListViewController: UIViewController {
     
     @objc
     func goToAddDevice() {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+        
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
 //        HuaweiHelper.shared.getGuestWifiInfo(completion: { guestWifi in
@@ -127,7 +132,7 @@ class DeviceInstallationListViewController: UIViewController {
 //        })
         HuaweiHelper.shared.getGuestWifiInfo(completion: { guestWifi in
             HuaweiHelper.shared.getWifiInfoAll(completion: { wifiInfoAll in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
                 let arrData = wifiInfoAll.infoList.filter { wifiInfo -> Bool in
                     wifiInfo.ssidIndex != guestWifi.ssidIndex && wifiInfo.ssidIndex != guestWifi.ssidIndex5G
@@ -153,11 +158,11 @@ class DeviceInstallationListViewController: UIViewController {
                     }
                 }
             }, error: { _ in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
             })
         }, error: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         })
     }

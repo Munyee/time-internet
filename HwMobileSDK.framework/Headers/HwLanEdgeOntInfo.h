@@ -117,9 +117,41 @@ NS_ASSUME_NONNULL_BEGIN
 /** Edge ONT PON口的发射光功率(单位：dbm)   */
 @property(nonatomic,copy) NSString * txPower;
 
+/** TXPower 表示发送光功率min；(单位：dBm) (Transmit optical power (dBm))*/
+@property(nonatomic, copy) NSString *txPowerMin;
+
+/** TXPower 表示发送光功率max；(单位：dBm) (Transmit optical power (dBm))*/
+@property(nonatomic, copy) NSString *txPowerMax;
+
 /**Edge ONT PON口的接收光功率(单位：dbm)   */
 @property(nonatomic,copy) NSString * rxPower;
 
+/** PON口的接收光功率Min(单位：dbm) */
+@property(nonatomic,copy) NSString * rxPowerMin;
+
+/** PON口的接收光功率Max(单位：dbm) */
+@property(nonatomic,copy) NSString * rxPowerMax;
+
+/** 主网关收到该Edge ONT 上行定帧错误 */
+@property(nonatomic,assign) int miniOltDelimiter;
+
+/** 主网关收到该Edge ONT 上行BIP错误 */
+@property(nonatomic,assign) int miniOltBip;
+
+/** 主网关收到该Edge ONT 上行HEC错误 */
+@property(nonatomic,assign) int miniOltHec;
+
+/** Edge ONT收到的下行BIP错误 */
+@property(nonatomic,assign) int bip;
+
+/** 从网关接收到网关的光功率 */
+@property(nonatomic,copy) NSString *miniOltRxPower;
+
+/** 从网关接收到网关的光功率最小值 */
+@property(nonatomic,copy) NSString *miniOltRxPowerMin;
+
+/** 从网关接收到网关的光功率最大值 */
+@property(nonatomic,copy) NSString *miniOltRxPowerMax;
 @end
 
 NS_ASSUME_NONNULL_END

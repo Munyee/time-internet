@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class ChangeSSIDViewController: TimeBaseViewController {
 
@@ -24,9 +23,15 @@ class ChangeSSIDViewController: TimeBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .plain, target: self, action: #selector(self.dismissView))
         self.title = NSLocalizedString("Change SSID", comment: "")
         Keyboard.addKeyboardChangeObserver(self)
+    }
+    
+    @objc
+    func dismissView() {
+        self.scrollView.delegate = nil
+        self.dismissVC()
     }
 
     @IBAction func togglePasswordVisibiity(_ sender: UIButton) {
@@ -42,14 +47,14 @@ class ChangeSSIDViewController: TimeBaseViewController {
             // TODO: handle error here.
             return
         }
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Updating...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
 
         ssid.name = self.ssidNameTextField.text
         ssid.password = self.ssidPasswordTextField.text
 
         SsidDataController.shared.updateSsid(ssid: ssid) { _, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return
@@ -58,7 +63,7 @@ class ChangeSSIDViewController: TimeBaseViewController {
             let confirmationVC: ConfirmationViewController = UIStoryboard(name: TimeSelfCareStoryboard.common.filename, bundle: nil).instantiateViewController()
             confirmationVC.mode = .infoUpdated
             confirmationVC.actionBlock = {
-                self.dismissVC()
+                self.dismissView()
             }
             confirmationVC.modalPresentationStyle = .fullScreen
             self.present(confirmationVC, animated: true, completion: nil)

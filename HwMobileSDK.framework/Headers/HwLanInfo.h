@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Half、Full、Auto
 @property (nonatomic, copy) NSString *duplexMode;
 
+/// 10、100、1000、10000
+@property (nonatomic, assign) int maxBitRate;
+
 @end
 
 NS_ASSUME_NONNULL_END

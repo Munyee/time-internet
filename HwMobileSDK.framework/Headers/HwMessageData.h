@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "HwMessageService.h"
+#import <HwMobileSDK/HwMessageService.h>
 
 /**
  *  

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwSegmentTestSaveRecordParam.h"
+#import <HwMobileSDK/HwSegmentTestSaveRecordParam.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

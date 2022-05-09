@@ -1,4 +1,4 @@
-#import "HwParam.h"
+#import <HwMobileSDK/HwParam.h>
 
 /**
  *  

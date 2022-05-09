@@ -1,4 +1,4 @@
-#import "HwResult.h"
+#import <HwMobileSDK/HwResult.h>
 
 /**
  *  

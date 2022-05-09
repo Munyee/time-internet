@@ -15,8 +15,8 @@ public extension String {
 
     func toIntegerOnly() -> String {
         let allowedChars : Set<Character> =
-            Set("1234567890".characters)
-        return String(self.characters.filter { allowedChars.contains($0) })
+            Set("1234567890")
+        return String(self.filter { allowedChars.contains($0) })
     }
 
     var capitalizedFirstLetter: String {

@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HwCallback.h"
-#import "HwAppInfo.h"
-#import "HwAppDetail.h"
-#import "HwCallbackAdapter.h"
-#import "HwAppDetail.h"
-#import "HwAppImageInfo.h"
+#import <HwMobileSDK/HwCallback.h>
+#import <HwMobileSDK/HwAppInfo.h>
+#import <HwMobileSDK/HwAppDetail.h>
+#import <HwMobileSDK/HwCallbackAdapter.h>
+#import <HwMobileSDK/HwAppDetail.h>
+#import <HwMobileSDK/HwAppImageInfo.h>
 
 @interface HwApplicationServiceSave : NSObject
 

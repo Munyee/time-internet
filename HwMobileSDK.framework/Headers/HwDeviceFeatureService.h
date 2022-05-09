@@ -7,7 +7,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "HwCallbackAdapter.h"
+#import <HwMobileSDK/HwCallbackAdapter.h>
 
 @interface HwDeviceFeatureService : NSObject
 

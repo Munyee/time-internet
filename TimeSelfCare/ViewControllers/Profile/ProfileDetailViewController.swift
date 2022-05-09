@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 internal class ProfileDetailViewController: TimeBaseViewController {
 
@@ -120,13 +119,13 @@ internal class ProfileDetailViewController: TimeBaseViewController {
 
     @IBAction func logout(_ sender: Any) {
         let yesAction = UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default) { _ in
-            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = NSLocalizedString("Logging out...", comment: "")
+            let hud = LoadingView().addLoading(toView: self.view)
+            hud.showLoading()
 
             AccountSummaryViewController.didAnimate = false
 
             AuthUser.current?.logout { _ in
-                hud.hide(animated: true)
+                hud.hideLoading()
                 let storyboard = UIStoryboard(name: "Common", bundle: nil)
                 if let confirmationVC = storyboard.instantiateViewController(withIdentifier: "ConfirmationViewController") as? ConfirmationViewController {
                     confirmationVC.mode = .logout

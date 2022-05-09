@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 import HwMobileSDK
 
 class GuestWifiViewController: UIViewController {
@@ -69,10 +68,10 @@ class GuestWifiViewController: UIViewController {
     }
     
     func queryGuestWifi() {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         HuaweiHelper.shared.getGuestWifiInfo { info in
-            hud.hide(animated: true)
+            hud.hideLoading()
             
             self.guestInfo = info
             if info.ssid.isEmpty {
@@ -93,7 +92,7 @@ class GuestWifiViewController: UIViewController {
             }
             self.queryLanDevices()
         } error: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
         }
     }
     
@@ -106,9 +105,9 @@ class GuestWifiViewController: UIViewController {
             view.removeFromSuperview()
         }
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+
         var arrDevice: [HwLanDevice] = []
         HuaweiHelper.shared.queryLanDeviceListEx { devices in
             arrDevice = devices.filter { ($0.connectInterface == "SSID\(self.guestInfo.ssidIndex)" || $0.connectInterface == "SSID\(self.guestInfo.ssidIndex5G)") && $0.onLine }
@@ -128,7 +127,7 @@ class GuestWifiViewController: UIViewController {
                 }
                 
                 group.notify(queue: .main) {
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                     
                     self.connectedDevicesLabel.text = "Connected devices (\(arrDevice.count))"
                     
@@ -140,10 +139,10 @@ class GuestWifiViewController: UIViewController {
                     }
                 }
             } else {
-                hud.hide(animated: true)
+                hud.hideLoading()
             }
         } error: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
         }
     }
     
@@ -179,7 +178,7 @@ class GuestWifiViewController: UIViewController {
         if guestInfo != nil && guestInfo.ssid.isEmpty {
             self.edit()
         } else {
-            self.toggleGuestWifi(enable: !guestInfo.enabled)
+            self.toggleGuestWifi(enable: !(guestInfo.enabled))
         }
     }
     
@@ -193,10 +192,10 @@ class GuestWifiViewController: UIViewController {
         guestWifi.remainSec = enable ? Int32((AccountController.shared.guestWifiDuration ?? 0) * 60) : Int32(0)
         guestWifi.remaining = enable ? Int32(AccountController.shared.guestWifiDuration ?? 0) : Int32(0)
 
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         HuaweiHelper.shared.setGuestWifiInfo(guestWifiInfo: guestWifi) { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.timer?.invalidate()
             self.timerView.borderColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
             self.infinityView.tintColor = #colorLiteral(red: 0.3999636769, green: 0.400023967, blue: 0.3999447227, alpha: 1)
@@ -205,7 +204,7 @@ class GuestWifiViewController: UIViewController {
             self.updateGuestWifi(info: guestWifi)
         } error: { exception in
             DispatchQueue.main.async {
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
             }
         }

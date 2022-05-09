@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 internal class ChangeEmailViewController: BaseAuthViewController {
     override var allRequiredTextFields: [VDTTextField] {
@@ -23,10 +22,10 @@ internal class ChangeEmailViewController: BaseAuthViewController {
     }
 
     @IBAction func changeEmailAddress(_ sender: Any) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Updating email address...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         APIClient.shared.changeEmailAddress(AccountController.shared.profile.username, email: self.emailAddressTextField.inputText) { _, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return

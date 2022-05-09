@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MBProgressHUD
 
 class HookupViewController: TimeBaseViewController {
 
@@ -35,11 +34,11 @@ class HookupViewController: TimeBaseViewController {
                 return
         }
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
-        
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
+
         AccountDataController.shared.getHuaeInfo(account: account) { data, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             guard error == nil else {
                 return
             }

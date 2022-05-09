@@ -11,10 +11,18 @@
 
 typedef NS_ENUM(NSInteger, HwLedStatus) {
     kHwLedStatusON,
-    kHwLedStatusOFF
+    kHwLedStatusOFF,
+    kHwLedStatusUnSupport,
 };
 
 /** LED状态 (LED status)*/
 @property (nonatomic ,assign) HwLedStatus ledStatus;
+
+@end
+
+@interface HwApLedInfo : HwLedInfo
+
+/** LED状态 (LED status)*/
+@property (nonatomic ,copy) NSString *apMac;
 
 @end

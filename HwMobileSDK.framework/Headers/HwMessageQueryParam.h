@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "HwParam.h"
+#import <HwMobileSDK/HwParam.h>
 
-#import "HwMessageService.h"
+#import <HwMobileSDK/HwMessageService.h>
 
 /**
  * 查询家信消息方向(Query a home message direction)

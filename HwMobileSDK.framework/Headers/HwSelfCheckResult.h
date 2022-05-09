@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "HwResult.h"
-#import "HwSelfCheckItem.h"
+#import <HwMobileSDK/HwResult.h>
+#import <HwMobileSDK/HwSelfCheckItem.h>
 /**
  *  
  *
@@ -17,6 +17,6 @@
 @property (nonatomic, copy)NSString  *acknowledge;
 
 /** 确认结果列表() */
-@property (nonatomic, copy) NSMutableArray<HwSelfCheckItem *> *selfCheckItemList;
+@property (nonatomic, strong) NSMutableArray<HwSelfCheckItem *> *selfCheckItemList;
 
 @end

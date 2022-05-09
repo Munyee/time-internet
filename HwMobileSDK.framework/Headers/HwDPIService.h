@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwCallback.h"
+#import <HwMobileSDK/HwCallback.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @class HwGetGatewayNetQualityParam;

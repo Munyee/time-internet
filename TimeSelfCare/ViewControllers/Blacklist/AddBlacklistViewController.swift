@@ -8,7 +8,6 @@
 
 import UIKit
 import HwMobileSDK
-import MBProgressHUD
 import FirebaseCrashlytics
 
 protocol AddBlacklistViewControllerDelegate {
@@ -40,11 +39,11 @@ class AddBlacklistViewController: UIViewController {
 
     func queryDevices() {
         
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         
         HuaweiHelper.shared.queryLanDeviceListEx { devices in
-            hud.hide(animated: true)
+            hud.hideLoading()
             self.arrDevices = devices.filter { !$0.isAp }
             self.arrDevices = self.arrDevices.sorted { $0.onLine && !$1.onLine }
             self.tableView.reloadData()
@@ -60,7 +59,7 @@ class AddBlacklistViewController: UIViewController {
             }
         } error: { exception in
             DispatchQueue.main.async {
-                hud.hide(animated: true)
+                hud.hideLoading()
                 self.showAlertMessage(message: HuaweiHelper.shared.mapErrorMsg(exception?.errorCode ?? ""))
             }
         }
@@ -77,8 +76,8 @@ class AddBlacklistViewController: UIViewController {
     }
     
     @IBAction func actConfirm(_ sender: Any) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Loading...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         
         exDevices = self.exDevices.filter { !selectedDevices.contains($0) }
         
@@ -102,20 +101,22 @@ class AddBlacklistViewController: UIViewController {
 
         HuaweiHelper.shared.setLanDeviceToBlackList(list: selectedDevices, isAdd: true, completion: { _ in
             if self.exDevices.isEmpty {
-                hud.hide(animated: true)
+                hud.hideLoading()
+                self.tableView.delegate = nil
                 self.dismissVC()
                 self.delegate?.selected(devices: self.selectedDevices)
             } else {
                 HuaweiHelper.shared.setLanDeviceToBlackList(list: self.exDevices, isAdd: false, completion: { _ in
+                    self.tableView.delegate = nil
                     self.dismissVC()
                     self.delegate?.selected(devices: self.selectedDevices)
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 }, error: { _ in
-                    hud.hide(animated: true)
+                    hud.hideLoading()
                 })
             }
         }, error: { _ in
-            hud.hide(animated: true)
+            hud.hideLoading()
         })
         
     }

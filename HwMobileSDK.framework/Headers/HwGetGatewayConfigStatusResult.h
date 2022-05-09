@@ -6,8 +6,8 @@
 //  Copyright © 2019 com.huawei. All rights reserved.
 //
 
-#import "HwResult.h"
-#import "HwSetGatewayConfigStatusParam.h"
+#import <HwMobileSDK/HwResult.h>
+#import <HwMobileSDK/HwSetGatewayConfigStatusParam.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -16,5 +16,7 @@
 @property (nonatomic, copy) NSString *accountNew;
 /**	发送手机号(The phone should receive)*/
 @property (nonatomic, copy) NSString *receivePhone;
+/** 发送邮箱(The email should receive)*/
+@property (nonatomic, copy) NSString *receiveEmail;
 
 @end

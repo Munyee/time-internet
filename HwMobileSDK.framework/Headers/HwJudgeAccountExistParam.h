@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwParam.h"
+#import <HwMobileSDK/HwParam.h>
 
 /**
  待判断账号的账号类型

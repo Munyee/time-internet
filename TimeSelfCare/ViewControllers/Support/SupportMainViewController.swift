@@ -41,7 +41,7 @@ class SupportMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("SUPPORT", comment: "")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissVC(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_back_arrow"), style: .done, target: self, action: #selector(self.dismissView))
         
         self.scrollView.addSubview(refreshControl)
         
@@ -62,6 +62,13 @@ class SupportMainViewController: UIViewController {
         raiseTicketView.layer.shadowOffset = CGSize(width: 0, height: 0)
         raiseTicketView.layer.shadowOpacity = 0.7
         raiseTicketView.layer.shadowRadius = 5
+    }
+    
+    @objc
+    func dismissView() {
+        self.scrollView.delegate = nil
+        self.collectionView.delegate = nil
+        self.dismissVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {

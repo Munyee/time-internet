@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwGetWlanRadioInfoParam.h"
-#import "HwSsidInfo.h"
+#import <HwMobileSDK/HwGetWlanRadioInfoParam.h>
+#import <HwMobileSDK/HwSsidInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -94,6 +94,12 @@ typedef NS_ENUM(NSInteger,HwAcsModeType) {
 
 /** 支持的ssid列表*/
 @property (nonatomic, strong) NSArray <HwSsidInfo *>*ssidList;
+
+/** mac */
+@property (nonatomic, copy) NSString *mac;
+
+/** 设备名称 */
+@property (nonatomic, copy) NSString *devName;
 
 @end
 

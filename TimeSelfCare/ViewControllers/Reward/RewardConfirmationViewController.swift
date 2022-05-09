@@ -8,7 +8,6 @@
 
 import UIKit
 import SDWebImage
-import MBProgressHUD
 
 class RewardConfirmationViewController: TimeBaseViewController {
     @IBOutlet private weak var rewardImageView: UIImageView!
@@ -54,13 +53,13 @@ class RewardConfirmationViewController: TimeBaseViewController {
     }
 
     @IBAction func redeem(_ sender: Any) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.label.text = NSLocalizedString("Redeeming...", comment: "")
+        let hud = LoadingView().addLoading(toView: self.view)
+        hud.showLoading()
         RewardDataController.shared.redeemReward(
             self.reward,
             account: AccountController.shared.selectedAccount
         ) { _, error in
-            hud.hide(animated: true)
+            hud.hideLoading()
             if let error = error {
                 self.showAlertMessage(with: error)
                 return

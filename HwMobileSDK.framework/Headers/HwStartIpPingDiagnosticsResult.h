@@ -4,7 +4,7 @@
 //
 //
 
-#import "HwResult.h"
+#import <HwMobileSDK/HwResult.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

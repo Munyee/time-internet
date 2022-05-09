@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwControllerService.h"
+#import <HwMobileSDK/HwControllerService.h>
 
 /**
  *  

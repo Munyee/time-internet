@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "HwParam.h"
+#import <HwMobileSDK/HwParam.h>
 
 /**
  *  

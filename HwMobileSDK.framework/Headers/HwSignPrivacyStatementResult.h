@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HwResult.h"
+#import <HwMobileSDK/HwResult.h>
 
 @class HLSignPrivacyStatementResult;
 @interface HwSignPrivacyStatementResult : HwResult

@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
-#import "HwCallback.h"
-#import "HwActionException.h"
-#import "HwMessageHandle.h"
+#import <HwMobileSDK/HwCallback.h>
+#import <HwMobileSDK/HwActionException.h>
+#import <HwMobileSDK/HwMessageHandle.h>
 
 @class HwMessageData;
 

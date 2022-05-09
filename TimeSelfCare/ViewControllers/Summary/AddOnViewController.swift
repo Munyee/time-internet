@@ -33,6 +33,7 @@ class AddOnViewController: BaseViewController {
 
     @objc
     func back() {
+        tableView.delegate = nil
         self.dismissVC()
     }
 
